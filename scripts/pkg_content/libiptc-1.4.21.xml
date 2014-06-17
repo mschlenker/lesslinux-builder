@@ -1,0 +1,45 @@
+<pkgdesc name='libiptc' version='1.4.21'>
+    <subpackage name='skel'>
+        <softlink owner='0' group='0' path='/usr/lib/libiptc.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libiptc.so.0'/>
+        <softlink owner='0' group='0' path='/usr/lib/libip4tc.so.0'/>
+        <softlink owner='0' group='0' path='/usr/lib/libip4tc.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libip6tc.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libip6tc.so.0'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file owner='0' group='0' path='/usr/lib/libip4tc.so.0.1.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libip6tc.so.0.1.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libiptc.so.0.0.0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file owner='0' group='0' path='/usr/lib/libiptc.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libip6tc.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libip4tc.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libip6tc.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libiptc.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libip4tc.pc' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='tzdata'/>
+        <subpackage name='ignore'/>
+        <subpackage name='doc'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='localization'/>
+        <subpackage name='devel'/>
+        <subpackage name='bin'/>
+        <subpackage name='config'/>
+        <subpackage name='minimal'/>
+        <subpackage name='skel'/>
+    </vanished>
+</pkgdesc>

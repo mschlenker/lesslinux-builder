@@ -1,0 +1,1882 @@
+<pkgdesc name='vim' version='7.4'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/usr/bin/gvim' owner='0'/>
+        <softlink group='0' path='/usr/bin/rvim' owner='0'/>
+        <softlink group='0' path='/usr/bin/view' owner='0'/>
+        <softlink group='0' path='/usr/bin/vimdiff' owner='0'/>
+        <softlink group='0' path='/usr/bin/gview' owner='0'/>
+        <softlink group='0' path='/usr/bin/eview' owner='0'/>
+        <softlink group='0' path='/usr/bin/rgvim' owner='0'/>
+        <softlink group='0' path='/usr/bin/rview' owner='0'/>
+        <softlink group='0' path='/usr/bin/rgview' owner='0'/>
+        <softlink group='0' path='/usr/bin/gvimdiff' owner='0'/>
+        <softlink group='0' path='/usr/bin/evim' owner='0'/>
+        <softlink group='0' path='/usr/bin/ex' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.UTF-8/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ja/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.KOI8-R/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/ru.UTF-8/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/it.ISO8859-1/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.UTF-8/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.ISO8859-2/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/fr.ISO8859-1/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl.UTF-8/man1/rgview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/gvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/ex.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/gview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/view.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/rgvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/rview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/gvimdiff.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/rvim.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/eview.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/pl/man1/rgview.1' owner='0'/>
+        <directory group='0' path='/etc' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/bin' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/vim' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/indent' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/print' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/spell' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/compiler' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/tutor' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/syntax' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/ftplugin' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/keymap' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/autoload' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/autoload/xml' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/uk.cp1251' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/uk.cp1251/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/cs.cp1250' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/cs.cp1250/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_CN.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_CN.UTF-8/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/eo' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/eo/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/nl' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/nl/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ja' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ja/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/fr' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/fr/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ja.euc-jp' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ja.euc-jp/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_CN' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_CN/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ko' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ko/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/de' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/de/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_TW' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_TW/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/cs' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/cs/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/sk.cp1250' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/sk.cp1250/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ga' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ga/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pl.cp1250' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pl.cp1250/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/sv' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/sv/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ru' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ru/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/it' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/it/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/en_GB' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/en_GB/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_TW.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_TW.UTF-8/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/nb' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/nb/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/vi' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/vi/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/uk' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/uk/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/sk' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/sk/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/fi' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/fi/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/no' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/no/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_CN.cp936' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/zh_CN.cp936/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/af' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/af/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ru.cp1251' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ru.cp1251/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ja.sjis' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ja.sjis/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pl.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pl.UTF-8/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ca' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ca/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pt_BR' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pt_BR/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/es' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/es/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pl' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/pl/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ko.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/lang/ko.UTF-8/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/tools' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/doc' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/plugin' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/colors' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/macros' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/macros/hanoi' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/macros/urm' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/macros/life' owner='0'/>
+        <directory group='0' path='/usr/share/vim/vim74/macros/maze' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/it.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/man/it.UTF-8/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/ja' owner='0'/>
+        <directory group='0' path='/usr/share/man/ja/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/ru.KOI8-R' owner='0'/>
+        <directory group='0' path='/usr/share/man/ru.KOI8-R/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/fr' owner='0'/>
+        <directory group='0' path='/usr/share/man/fr/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/it' owner='0'/>
+        <directory group='0' path='/usr/share/man/it/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/ru.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/man/ru.UTF-8/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/it.ISO8859-1' owner='0'/>
+        <directory group='0' path='/usr/share/man/it.ISO8859-1/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/fr.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/man/fr.UTF-8/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/pl.ISO8859-2' owner='0'/>
+        <directory group='0' path='/usr/share/man/pl.ISO8859-2/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/fr.ISO8859-1' owner='0'/>
+        <directory group='0' path='/usr/share/man/fr.ISO8859-1/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/pl.UTF-8' owner='0'/>
+        <directory group='0' path='/usr/share/man/pl.UTF-8/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/pl' owner='0'/>
+        <directory group='0' path='/usr/share/man/pl/man1' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file group='0' path='/usr/bin/vim' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/xxd' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-13.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/mac-roman.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-10.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/latin1.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-15.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/ks_roman.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/jis_roman.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/dec-mcs.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cp1254.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cns_roman.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/ascii.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/koi8-u.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-8.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cp1255.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cp1252.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/koi8-r.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-4.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-11.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-7.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/hp-roman8.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-5.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cp1253.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cp1257.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-14.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cp1251.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cp1250.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-9.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/gb_roman.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-2.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/cidfont.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/iso-8859-3.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/ebcdic-uk.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/print/prolog.ps' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.UTF-8/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.UTF-8/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.UTF-8/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.UTF-8/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.UTF-8/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ja/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ja/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ja/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ja/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ja/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.KOI8-R/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.KOI8-R/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.KOI8-R/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.KOI8-R/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.KOI8-R/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.UTF-8/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.UTF-8/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.UTF-8/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.UTF-8/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/ru.UTF-8/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.ISO8859-1/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.ISO8859-1/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.ISO8859-1/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.ISO8859-1/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/it.ISO8859-1/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.UTF-8/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.UTF-8/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.UTF-8/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.UTF-8/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.UTF-8/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.ISO8859-2/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.ISO8859-2/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.ISO8859-2/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.ISO8859-2/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.ISO8859-2/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.ISO8859-1/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.ISO8859-1/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.ISO8859-1/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.ISO8859-1/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/fr.ISO8859-1/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.UTF-8/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.UTF-8/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.UTF-8/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.UTF-8/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl.UTF-8/man1/xxd.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl/man1/vimtutor.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl/man1/evim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl/man1/vimdiff.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl/man1/vim.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/pl/man1/xxd.1' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file group='0' path='/etc/vimrc' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fan.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/inform.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/html.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/django.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jsp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/spyce.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/nqc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/smcl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/clean.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/icon.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pccts.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/javascript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jess.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/specman.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dylan.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fasm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/kscript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cheetah.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gretl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rebol.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tcl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lisp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/aml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gtkrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/gnat.vim' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file group='0' path='/usr/share/vim/vim74/lang/uk.cp1251/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/cs.cp1250/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/zh_CN.UTF-8/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/eo/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/nl/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ja/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/fr/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ja.euc-jp/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/zh_CN/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ko/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/de/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/zh_TW/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/cs/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/sk.cp1250/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ga/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/pl.cp1250/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/sv/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ru/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/it/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/en_GB/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/zh_TW.UTF-8/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/nb/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/vi/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/uk/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/sk/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/fi/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/no/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/zh_CN.cp936/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/af/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ru.cp1251/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ja.sjis/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/pl.UTF-8/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ca/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/pt_BR/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/es/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/pl/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/ko.UTF-8/LC_MESSAGES/vim.mo' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' path='/usr/bin/gvimtutor' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/vimtutor' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/perl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/dictdconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/ocaml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/sql.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/occam.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/mp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/html.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/cmake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/css.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/vb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/pascal.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/sass.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/docbk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/xf86conf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/pov.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/jsp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/php.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/xml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/cobol.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/erlang.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/logtalk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/ishd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/make.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/zimbu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/cpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/mail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/dtrace.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/tf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/cuda.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/d.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/yaml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/c.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/ld.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/framescript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/rst.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/haml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/fortran.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/lifelines.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/xinetd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/htmldjango.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/javascript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/ch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/eterm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/xsd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/sdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/matlab.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/zsh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/treetop.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/perl6.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/dylan.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/gitconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/prolog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/aap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/xslt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/ant.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/tilde.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/dtd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/config.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/automake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/liquid.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/tex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/objc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/scss.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/verilog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/vhdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/bst.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/mma.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/postscr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/eiffel.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/cdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/chaiscript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/tcsh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/r.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/tcl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/bib.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/yacc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/xhtml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/falcon.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/hamster.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/gitolite.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/vim.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/sml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/clojure.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/scheme.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/awk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/rpl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/readline.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/idlang.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/ada.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/sqlanywhere.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/java.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/eruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/dictconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/lisp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/python.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/cs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/lua.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/sh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/ruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/pyrex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/changelog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent/cucumber.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/scripts.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/cleanadd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/spell.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/en.utf-8.sug' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/fixdup.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/en.utf-8.spl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/yi.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/en.latin1.sug' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/check_locales.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/en.ascii.sug' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/en.ascii.spl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/he.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/spell/en.latin1.spl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/synmenu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/evim.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indent.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/perl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/splint.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/checkstyle.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/ocaml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/fpc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/javac.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/rubyunit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/gfortran.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/rspec.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/hp_acc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/sass.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/msvc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/fortran_cv.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/php.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/xmllint.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/neato.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/bdf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/xmlwf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/onsgmls.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/erlang.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/fortran_F.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/mips_c.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/fortran_g77.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/rst.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/haml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/fortran_lf95.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/intel.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/se.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/pbx.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/bcc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/msbuild.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/decada.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/xbuild.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/ant.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/tex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/gcc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/irix5_cpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/mcs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/tcl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/mipspro_cpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/icc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/ifort.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/dot.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/jikes.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/irix5_c.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/eruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/mipspro_c89.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/gnat.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/cs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/tidy.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/pyunit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/ruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/modelsim_vcom.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/g95.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/cucumber.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/fortran_elf90.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/compiler/rake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/indoff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.nl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.tr.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.pl.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ru.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/README.el.cp737.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.fr' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.nb' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.no.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.pt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/README.el.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.hu.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ja.euc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.hu' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.pl.cp1250' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ko.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.eo.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.hr.cp1250' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.el' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.eo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.es' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.zh_cn.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.el.cp737' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.zh.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.it' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.cs' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.nb.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.zh.euc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.zh_tw.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.it.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ca' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.vi.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.hu.cp1250' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.nl.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ca.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ja.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.hr.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.bar' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.hr' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ru' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.pt.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.sk.cp1250' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.no' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.bar.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.de' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.el.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.zh.big5' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.sk' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.fr.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ja.sjis' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.es.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.sv' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.sk.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.sv.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ko.euc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.de.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.pl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.tr.iso9' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.ru.cp1251' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.cs.utf-8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tutor/tutor.cs.cp1250' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/perl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/robots.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/nroff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/slpconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/splint.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cfg.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dirpager.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/updatedb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/papp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dictdconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sinda.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dcl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ocaml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dircolors.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/apachestyle.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/upstreamdat.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/model.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sql.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sqloracle.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/wsh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dosini.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/idl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/uil.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/slpreg.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/javacc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/occam.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/icemenu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gitcommit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cdrdaoconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/aptconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/csp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/udevconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cvsrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tads.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/asn.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/kwt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gdmo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/abel.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/web.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mib.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rtf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xbl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dracula.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/change.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lftp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/htmlcheetah.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lite.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/snobol4.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sisu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sgmldecl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rcs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/slrnsc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sgmllnx.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/elinks.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cmake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/nosyntax.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/group.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xdefaults.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/css.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/texmf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sas.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/latte.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/obj.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/openroad.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/a2ps.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fvwm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/wml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/autoit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pascal.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sass.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/webmacro.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/docbk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/snnspat.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xf86conf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/doxygen.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/modconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vgrindefs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/qf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lotos.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pike.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/abc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/eviews.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pov.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/reva.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pcap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/php.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sdc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/elmfilt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sshdconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xpm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/winbatch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ctrlh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/taskedit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/docbksgml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/autohotkey.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cobol.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/atlas.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/taskdata.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xxd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/indent.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/debcontrol.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/slice.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/bdf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/manconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sqlhana.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/bc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/erlang.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ave.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cvs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/logtalk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ishd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lprolog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/make.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/groovy.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/moo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/zimbu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/git.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sendpr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/squid.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/netrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dsl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hostconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gitrebase.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/syncolor.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/man.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/muttrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lpc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dtrace.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vera.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jgraph.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/esterel.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cuda.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gpg.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/d.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fdcc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/antlr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/trustees.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/yaml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/c.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/abaqus.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ld.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/smarty.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/framescript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/msql.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pine.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/slrnrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/nasm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rst.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dtml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mysql.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lhaskell.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/esmtprc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ldapconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/modula2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vrml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jovial.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/haml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/resolv.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rib.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dts.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/wdiff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fortran.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/wsml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ratpoison.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sindaout.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/promela.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dylanintr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tt2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/haskell.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/texinfo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lifelines.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/kix.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xinetd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/scilab.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sieve.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/asciidoc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/htmldjango.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/nastran.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/nsis.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/terminfo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/esqlc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/initex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lout.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/plaintex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/uc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fvwm2m4.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xpm2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/eterm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/conaryrecipe.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hastepreproc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/racc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tt2html.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xsd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/limits.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fstab.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/kconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mallard.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ncf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/htmlos.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/aspperl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/po.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gnuplot.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cmusrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/grub.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/stp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/matlab.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gprof.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/apache.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/diva.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ora.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mailcap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mupad.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/asmh8300.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/messages.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/focexec.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ppd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rcslog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/verilogams.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/litestep.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cupl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mailaliases.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/snnsres.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/netrw.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mrxvtrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xkb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/zsh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/blank.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/takout.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/treetop.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/perl6.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/maxima.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ibasic.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gsp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vmasm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/upstart.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lynx.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/monk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/protocols.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/svn.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/masm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gitconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/coco.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ninja.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/proto.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sqr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/passwd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/svg.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/amiga.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/prolog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/modsim3.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/aap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xmath.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sensors.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fetchmail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/valgrind.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/elf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/spup.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/catalog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sshconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/wvdial.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/clipper.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/htmlm4.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/debsources.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/markdown.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mason.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/art.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/crm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/debchangelog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xslt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/groff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ptcap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ant.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ist.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tilde.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dtd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/bzr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/slpspi.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lsl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/help.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/screen.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/modula3.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hostsaccess.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/desktop.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/config.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/automake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rnoweb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/baan.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/syntax.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gitsendemail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/usserverlog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mplayerconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rhelp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/liquid.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dnsmasq.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/whitespace.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cynpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/arch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/freebasic.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/synload.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rexx.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/asterisk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lilo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pod.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/plm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/inittab.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tsscl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cuplsim.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ia64.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/prescribe.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/objc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/registry.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pilrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/scss.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/verilog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/colortest.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jam.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/m4.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/aflex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/snnsnet.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/2html.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tasm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vhdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/objcpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/acedb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/bst.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/natural.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mma.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/postscr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/eiffel.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/asm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jal.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/aspvbs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lss.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dosbatch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jargon.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/chordpro.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pli.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sqlinformix.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/btm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/udevrules.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/purifylog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/trasys.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/radiance.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/chaiscript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rpcgen.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/udevperm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xmodmap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/virata.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tcsh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/z8a.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/procmail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/r.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/a65.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/named.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/calendar.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/bib.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/bindzone.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/csc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pfmain.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/msidl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rnc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ayacc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/spice.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/smil.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sed.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/yacc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/edif.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hercules.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sather.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mgp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/privoxy.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/psf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gdb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/msmessages.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/voscm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/grads.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/context.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/plp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/skill.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tags.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sudoers.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/expect.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dcd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xhtml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/csh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/falcon.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/simula.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vsejcl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/omnimark.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/libao.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hamster.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/smith.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mmp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gkrellmrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gitolite.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pinfo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/vim.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/asm68k.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/haste.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sindacmp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sqlforms.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/upstreaminstalllog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/clojure.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/opl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/quake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tsalt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dot.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cynlib.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/scheme.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/fgl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mgl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/awk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/progress.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rpl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hitest.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ampl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/abap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sysctl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/plsql.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/logindefs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ipfilter.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pamconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cdrtoc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/xquery.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/takcmp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ecd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/csdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mmix.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/readline.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/slang.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tar.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/flexwiki.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tt2js.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pic.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/povini.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/loginaccess.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lace.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/idlang.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/master.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ada.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ahdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sqlanywhere.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gnash.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/java.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/maple.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dylanlid.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sgml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/gedcom.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/exports.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/hgcommit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/spec.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/manual.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/iss.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pdf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/chaskell.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/nanorc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/exim.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/stata.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tssop.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/samba.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/eruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/datascript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dictconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/wget.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sicad.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/strace.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cweb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/initng.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/python.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/usw2kagtlog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/docbkxml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tli.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/b.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/rng.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ppwiz.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/asteriskvm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mel.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cterm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/conf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lua.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/upstreamlog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tidy.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/dns.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/denyhosts.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tssgm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/crontab.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/viminfo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/phtml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/foxpro.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/redif.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/diff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/services.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/def.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cabal.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/tak.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/forth.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/chill.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/pyrex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/mush.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/basic.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/lscript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/remind.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/sqlj.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/form.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/ldif.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/changelog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/desc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/alsaconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/jproperties.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/cucumber.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/st.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/syntax/setserial.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/perl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/slpconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/updatedb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/dictdconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/ocaml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/dircolors.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sql.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/dosini.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/slpreg.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/occam.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/gitcommit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/cdrdaoconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/udevconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/cvsrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/kwt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/mp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/html.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/lftp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/logcheck.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/elinks.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/group.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xdefaults.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/css.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/a2ps.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/vb.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/fvwm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/pascal.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sass.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/docbk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xf86conf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/modconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/mf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/qf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/jsp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/reva.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/php.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/cobol.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/indent.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/debcontrol.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/bdf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/manconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/erlang.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/logtalk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/ishd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/lprolog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/make.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/zimbu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/git.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/cpp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/netrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/hostconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/gitrebase.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/mail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/man.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/muttrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/dtrace.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/gpg.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/logtalk.dict' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/yaml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/c.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/abaqus.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/ld.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/framescript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/rst.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/haml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/fortran.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/haskell.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xinetd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sieve.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/htmldjango.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/javascript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/nsis.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/terminfo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/ch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/initex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/plaintex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/eterm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/racc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/tt2html.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xsd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/limits.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/kconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/grub.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/matlab.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/gprof.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/mailcap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/mailaliases.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/mrxvtrc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/zsh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/treetop.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/perl6.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/protocols.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/gitconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/passwd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/svg.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/prolog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/aap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sensors.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/fetchmail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sshconfig.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/markdown.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/art.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/crm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/debchangelog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xslt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/ant.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/dtd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/slpspi.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/help.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/screen.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/hostsaccess.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/config.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/automake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/gitsendemail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/mplayerconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/liquid.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/tex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/arch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/objc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/scss.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/verilog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/m4.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/vhdl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/bst.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/postscr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/aspvbs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/dosbatch.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/btm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/udevrules.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/udevperm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xmodmap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/tcsh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/procmail.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/tcl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/calendar.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/csc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/rnc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/msmessages.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/context.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sudoers.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/xhtml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/csh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/falcon.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/libao.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/hamster.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/pinfo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/vim.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/clojure.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/quake.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/scheme.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/rpl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/abap.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sysctl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/logindefs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/pamconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/readline.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/flexwiki.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/loginaccess.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/ada.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/java.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sgml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/spec.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/pdf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/nanorc.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/eruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/dictconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/lisp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/python.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/conf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/cs.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/lua.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/denyhosts.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/diff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/services.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/sh.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/ruby.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/pyrex.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/changelog.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/alsaconf.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/cucumber.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugin/setserial.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/delmenu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/mswin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/bugreport.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/optwin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/russian-yawerty.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/ukrainian-dvorak.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/russian-dvorak.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/slovak.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/esperanto_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/polish-slash_cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/arabic_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/bulgarian-bds.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/polish-slash_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/persian-iranian_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/arabic.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian_iso-8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrew_cp1255.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/croatian_iso-8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/persian.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/accents.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/sinhala-phonetic_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/greek_cp1253.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrewp_iso-8859-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/esperanto.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/czech_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/lithuanian-baltic.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/greek_iso-8859-7.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/slovak_iso-8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrew.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/thaana.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian-latin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/bulgarian-phonetic.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/czech.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/dvorak.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/greek_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/russian-jcukenwin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/thaana-phonetic_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrewp_cp1255.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/polish-slash_cp852.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrewp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/slovak_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/kana.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/russian-jcuken.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/magyar_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrewp_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian_cp1251.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/polish-slash_iso-8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/greek_cp737.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/belarusian-jcuken.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian_iso-8859-5.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/croatian.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/croatian_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/canfr-win.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/polish-slash.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/mongolian_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrew_iso-8859-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/greek.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian_cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/sinhala.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/hebrew_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/ukrainian-jcuken.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/pinyin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian-latin_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/tamil_tscii.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/slovak_cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/serbian_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/vietnamese-viqr_utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/keymap/croatian_cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/gvimrc_example.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/python3complete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/sqlcomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/netrwSettings.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/netrwFileHandlers.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/phpcomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/getscript.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/xsl.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/xhtml10t.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/xhtml10s.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/xhtml10f.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/html401t.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/html40s.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/xsd.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/xhtml11.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/html401f.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/html40f.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/html40t.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/html401s.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xml/html32.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/xmlcomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/paste.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/pythoncomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/netrw.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/htmlcomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/decada.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/csscomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/rubycomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/vimball.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/ccomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/clojurecomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/spellfile.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/tohtml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/javascriptcomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/gzip.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/tar.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/ada.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/syntaxcomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/zip.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/autoload/adacomplete.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/menu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja_jp.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_chinese(gb)_gb.936.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_eo_eo.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja_jp.cp932.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ko_kr.euckr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_it.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pl_pl.cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_english_united_kingdom.ascii.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_hu.iso_8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fr.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_cs_cz.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pt_br.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_hu_hu.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_es.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fr_fr.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_japanese_japan.932.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_yu.iso_8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_yu.ascii.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fi_fi.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_chinese_taiwan.950.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_czech_czech_republic.1252.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_yu.iso_8859-5.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja.ujis.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_english_united_kingdom.1252.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fi.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja_jp.ujis.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh.big5.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_hu.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pt_br.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ca.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_cs.cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_cn.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_yu.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_en_gb.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_rs.iso_8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_de_de.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_no_no.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sl_si.cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ru_ru.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_no.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_tw.cp950.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pt_pt.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ca_es.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sv.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_uk_ua.koi8-u.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pl_pl.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_cn.gb2312.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_es.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh.cp950.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_eo_xx.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_tw.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ru_ru.koi8-r.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fi_fi.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ru_ru.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_finnish_finland.1252.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_vi_vn.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_slovak_slovak_republic.1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fi.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pl.cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_german_germany.1252.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_rs.ascii.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_it_it.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sk_sk.iso_8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_af.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_chinese(taiwan)_taiwan.950.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ko_kr.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sk_sk.1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sk_sk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_italian_italy.1252.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sv_se.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_cn.cp936.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_de.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ru.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ca_es.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ko.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_cs_cz.iso_8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_af_af.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh.gb2312.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_polish_poland.1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_nl_nl.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_chinese_gb.936.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_cs.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_cs_cz.cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_de_de.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_it_it.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_czech_czech_republic.1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sk_sk.cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sv.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sv_se.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sl_si.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pt_pt.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_nl_nl.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_spanish_spain.850.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_es_es.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_czech_czech_republic.ascii.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_nl.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_af_af.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_rs.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_hu_hu.iso_8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_uk_ua.cp1251.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pl_pl.iso_8859-2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_no_no.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fr.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja.cp932.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_tw.big5.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ko_kr.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja.eucjp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_es_es.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_en_gb.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pt_pt.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sk.cp1250.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ca.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_eo.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_af.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja.euc-jp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_cn.gbk.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sl_si.latin2.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh_cn.18030.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_french_france.1252.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_de.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_zh.cp936.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_no.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_it.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_fr_fr.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja_jp.eucjp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_ja_jp.euc-jp.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_nl.utf-8.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_pt_br.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_cs_cz.latin1.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/lang/menu_sr_rs.iso_8859-5.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/vim132' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/ccfilter.c' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/vim_vs_net.cmd' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/vimm' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/unicode.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/efm_filter.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/xcmdsrv_client.c' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/pltags.pl' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/shtags.pl' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/ccfilter.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/blink.c' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/vimspell.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/shtags.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/ccfilter_README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/mve.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/efm_filter.pl' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/mve.awk' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/efm_perl.pl' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/ref' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/tools/vimspell.sh' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/arabic.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_netrw.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/quotes.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/repeat.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/insert.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_10.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/remote.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/quickfix.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_40.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/ft_ada.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_04.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_41.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_mint.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/helphelp.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/mlang.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_ruby.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/vi_diff.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_toc.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_vms.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/gui_x11.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_32.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/hangulin.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/debug.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_21.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_29.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/tips.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_90.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pattern.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/version5.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/recover.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/filetype.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/vim2html.pl' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/term.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_390.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_zip.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/diff.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/quickref.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_dos.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_05.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/netbeans.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/debugger.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/version6.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/change.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_pyth.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_paren.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_mzsch.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_31.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_win32.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_11.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_spec.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/motion.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/fold.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/indent.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/help.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_02.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/various.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/visual.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_risc.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/eval.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_cscop.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/index.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_22.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/editing.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/spell.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_qnx.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_ole.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_vimball.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/gui.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_09.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_sniff.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/version4.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/sign.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_beos.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/tags' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_07.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/hebrew.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/starting.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_42.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/farsi.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/workshop.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_26.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/tabpage.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_23.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_mac.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/gui_w16.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/message.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/digraph.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/develop.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_30.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_gzip.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/syntax.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_44.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_03.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/map.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_lua.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_08.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_tcl.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/version7.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_20.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/options.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_12.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_01.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_24.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/autocmd.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/cmdline.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_os2.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_getscript.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_unix.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_25.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/tagsrch.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/windows.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/rileft.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/intro.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_45.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/print.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_27.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/scroll.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_amiga.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/ft_sql.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_06.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_28.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/usr_43.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/howto.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/gui_w32.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/uganda.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/sponsor.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/todo.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/undo.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/russian.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/pi_tar.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/if_perl.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/mbyte.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/doc/os_msdos.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftoff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/getscriptPlugin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/netrwPlugin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/tarPlugin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/zipPlugin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/vimballPlugin.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/rrhelper.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/spellfile.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/tohtml.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/gzip.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/plugin/matchparen.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/filetype.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/vimrc_example.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/evening.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/koehler.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/slate.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/darkblue.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/pablo.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/blue.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/delek.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/elflord.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/zellner.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/desert.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/morning.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/default.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/shine.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/torte.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/ron.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/murphy.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/colors/peachpuff.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/justify.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/matchit.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/hanoi/hanoi.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/hanoi/poster' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/hanoi/click.me' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/urm/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/urm/urm' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/urm/urm.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/urm/examples' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/dvorak' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/editexisting.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/less.sh' owner='0' mode='100755'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/life/life.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/life/click.me' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/swapmous.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/less.bat' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/shellmenu.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/less.vim' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/maze.c' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/maze_5.78' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/poster' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/mazeclean.c' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/main.aap' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/Makefile' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/maze_mac' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/maze/mazeansi.c' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/macros/matchit.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/vim/vim74/ftplugof.vim' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

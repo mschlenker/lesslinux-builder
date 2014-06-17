@@ -1,0 +1,35 @@
+<pkgdesc name='truecrypt' version='7.1a'>
+    <subpackage name='skel'>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/bin' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/applications' owner='0'/>
+        <directory group='0' path='/usr/share/icons' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file group='0' mode='100755' path='/usr/bin/truecrypt' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, stripped' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100644' path='/usr/share/applications/truecrypt.desktop' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/icons/truecrypt.png' fileout='PNG image, 48 x 48, 8-bit/color RGB, non-interlaced' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='config'/>
+        <subpackage name='doc'/>
+        <subpackage name='minimal'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='bin'/>
+        <subpackage name='ignore'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='skel'/>
+    </vanished>
+</pkgdesc>

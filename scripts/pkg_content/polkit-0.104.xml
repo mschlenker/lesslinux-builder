@@ -1,0 +1,120 @@
+<pkgdesc version='0.104' name='polkit'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/usr/lib/libpolkit-agent-1.so' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpolkit-agent-1.so.0' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpolkit-backend-1.so' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpolkit-backend-1.so.0' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpolkit-gobject-1.so' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpolkit-gobject-1.so.0' owner='0'/>
+        <directory group='0' path='/etc/polkit-1' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/localauthority' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/localauthority.conf.d' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/localauthority/10-vendor.d' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/localauthority/20-org.d' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/localauthority/30-site.d' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/localauthority/50-local.d' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/localauthority/90-mandatory.d' owner='0'/>
+        <directory group='0' path='/etc/polkit-1/nullbackend.conf.d' owner='0'/>
+        <directory group='0' path='/usr/include/polkit-1' owner='0'/>
+        <directory group='0' path='/usr/include/polkit-1/polkit' owner='0'/>
+        <directory group='0' path='/usr/include/polkit-1/polkitagent' owner='0'/>
+        <directory group='0' path='/usr/include/polkit-1/polkitbackend' owner='0'/>
+        <directory group='0' path='/usr/lib/polkit-1' owner='0'/>
+        <directory group='0' path='/usr/lib/polkit-1/extensions' owner='0'/>
+        <directory group='0' path='/usr/share/polkit-1' owner='0'/>
+        <directory group='0' path='/usr/share/polkit-1/actions' owner='0'/>
+        <directory group='0' path='/usr/var/lib/polkit-1' owner='0'/>
+        <directory group='0' path='/usr/var/lib/polkit-1/localauthority' owner='0'/>
+        <directory group='0' path='/usr/var/lib/polkit-1/localauthority/10-vendor.d' owner='0'/>
+        <directory group='0' path='/usr/var/lib/polkit-1/localauthority/20-org.d' owner='0'/>
+        <directory group='0' path='/usr/var/lib/polkit-1/localauthority/30-site.d' owner='0'/>
+        <directory group='0' path='/usr/var/lib/polkit-1/localauthority/50-local.d' owner='0'/>
+        <directory group='0' path='/usr/var/lib/polkit-1/localauthority/90-mandatory.d' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' mode='100755' group='0' path='/usr/lib/libpolkit-agent-1.so.0.0.0' owner='0'/>
+        <file fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' mode='100755' group='0' path='/usr/lib/libpolkit-backend-1.so.0.0.0' owner='0'/>
+        <file fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' mode='100755' group='0' path='/usr/lib/libpolkit-gobject-1.so.0.0.0' owner='0'/>
+        <file fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' mode='100755' group='0' path='/usr/lib/polkit-1/extensions/libnullbackend.so' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' mode='100755' group='0' path='/usr/bin/pk-example-frobnicate' owner='0'/>
+        <file fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' mode='100755' group='0' path='/usr/bin/pkaction' owner='0'/>
+        <file fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' mode='100755' group='0' path='/usr/bin/pkcheck' owner='0'/>
+        <file fileout='setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' mode='104755' group='0' path='/usr/bin/pkexec' owner='0'/>
+        <file fileout='setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' mode='104755' group='0' path='/usr/libexec/polkit-agent-helper-1' owner='0'/>
+        <file fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' mode='100755' group='0' path='/usr/libexec/polkitd' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'>
+        <file fileout='XML  document text' mode='100644' group='0' path='/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf' owner='0'/>
+        <file fileout='ASCII text' mode='100644' group='0' path='/etc/pam.d/polkit-1' owner='0'/>
+        <file fileout='ASCII English text' mode='100644' group='0' path='/etc/polkit-1/localauthority.conf.d/50-localauthority.conf' owner='0'/>
+        <file fileout='ASCII English text' mode='100644' group='0' path='/etc/polkit-1/nullbackend.conf.d/50-nullbackend.conf' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkit.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitactiondescription.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitauthority.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitauthorityfeatures.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitauthorizationresult.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitcheckauthorizationflags.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitdetails.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitenumtypes.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkiterror.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitidentity.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitimplicitauthorization.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitpermission.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitprivate.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitsubject.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitsystembusname.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkittemporaryauthorization.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkittypes.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitunixgroup.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitunixnetgroup.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitunixprocess.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitunixsession.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkit/polkitunixuser.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitagent/polkitagent.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitagent/polkitagentenumtypes.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitagent/polkitagentlistener.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitagent/polkitagentsession.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitagent/polkitagenttextlistener.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitagent/polkitagenttypes.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitbackend/polkitbackend.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitbackend/polkitbackendactionlookup.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitbackend/polkitbackendauthority.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitbackend/polkitbackendinteractiveauthority.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitbackend/polkitbackendlocalauthority.h' owner='0'/>
+        <file fileout='ASCII C program text' mode='100644' group='0' path='/usr/include/polkit-1/polkitbackend/polkitbackendtypes.h' owner='0'/>
+        <file fileout='current ar archive' mode='100644' group='0' path='/usr/lib/libpolkit-agent-1.a' owner='0'/>
+        <file fileout='libtool library file' mode='100755' group='0' path='/usr/lib/libpolkit-agent-1.la' owner='0'/>
+        <file fileout='current ar archive' mode='100644' group='0' path='/usr/lib/libpolkit-backend-1.a' owner='0'/>
+        <file fileout='libtool library file' mode='100755' group='0' path='/usr/lib/libpolkit-backend-1.la' owner='0'/>
+        <file fileout='current ar archive' mode='100644' group='0' path='/usr/lib/libpolkit-gobject-1.a' owner='0'/>
+        <file fileout='libtool library file' mode='100755' group='0' path='/usr/lib/libpolkit-gobject-1.la' owner='0'/>
+        <file fileout='ASCII text' mode='100644' group='0' path='/usr/lib/pkgconfig/polkit-agent-1.pc' owner='0'/>
+        <file fileout='ASCII text' mode='100644' group='0' path='/usr/lib/pkgconfig/polkit-backend-1.pc' owner='0'/>
+        <file fileout='ASCII text' mode='100644' group='0' path='/usr/lib/pkgconfig/polkit-gobject-1.pc' owner='0'/>
+        <file fileout='current ar archive' mode='100644' group='0' path='/usr/lib/polkit-1/extensions/libnullbackend.a' owner='0'/>
+        <file fileout='libtool library file' mode='100755' group='0' path='/usr/lib/polkit-1/extensions/libnullbackend.la' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file fileout='GNU message catalog (little endian), revision 0, 9 messages' mode='100644' group='0' path='/usr/share/locale/da/LC_MESSAGES/polkit-1.mo' owner='0'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file fileout='data' mode='100644' group='0' path='/usr/lib/girepository-1.0/Polkit-1.0.typelib' owner='0'/>
+        <file fileout='data' mode='100644' group='0' path='/usr/lib/girepository-1.0/PolkitAgent-1.0.typelib' owner='0'/>
+        <file fileout='ASCII text' mode='100644' group='0' path='/usr/share/dbus-1/system-services/org.freedesktop.PolicyKit1.service' owner='0'/>
+        <file fileout='XML  document text' mode='100644' group='0' path='/usr/share/gir-1.0/Polkit-1.0.gir' owner='0'/>
+        <file fileout='XML  document text' mode='100644' group='0' path='/usr/share/gir-1.0/PolkitAgent-1.0.gir' owner='0'/>
+        <file fileout='XML  document text' mode='100644' group='0' path='/usr/share/polkit-1/actions/org.freedesktop.policykit.examples.pkexec.policy' owner='0'/>
+        <file fileout='XML  document text' mode='100644' group='0' path='/usr/share/polkit-1/actions/org.freedesktop.policykit.policy' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'>
+        <file fileout='ASCII text' mode='100644' group='0' path='/etc/group' owner='0'/>
+        <file fileout='ASCII text' mode='100644' group='0' path='/etc/passwd' owner='0'/>
+        <file fileout='ASCII text' mode='100644' group='0' path='/etc/shadow' owner='0'/>
+    </subpackage>
+</pkgdesc>

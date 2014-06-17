@@ -1,0 +1,66 @@
+<pkgdesc name='libcap' version='2.22'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/lib/libcap.so' owner='0'/>
+        <softlink group='0' path='/lib/libcap.so.2' owner='0'/>
+        <directory group='0' path='/lib' owner='0'/>
+        <directory group='0' path='/lib/security' owner='0'/>
+        <directory group='0' path='/sbin' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/include' owner='0'/>
+        <directory group='0' path='/usr/include/sys' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/man3' owner='0'/>
+        <directory group='0' path='/usr/share/man/man8' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file group='0' mode='100755' path='/lib/security/pam_cap.so' owner='0'/>
+        <file group='0' mode='100755' path='/sbin/capsh' owner='0'/>
+        <file group='0' mode='100755' path='/sbin/getpcaps' owner='0'/>
+	<file group='0' mode='100644' path='/lib/libcap.so.2.22' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' mode='100644' path='/usr/share/man/man1/capsh.1' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_clear.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_clear_flag.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_compare.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_copy_ext.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_copy_int.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_drop_bound.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_dup.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_free.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_from_name.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_from_text.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_get_bound.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_get_fd.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_get_file.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_get_flag.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_get_pid.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_get_proc.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_init.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_set_fd.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_set_file.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_set_flag.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_set_proc.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_size.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_to_name.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/cap_to_text.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/capgetp.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/capsetp.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man3/libcap.3' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man8/getcap.8' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man8/setcap.8' owner='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file group='0' mode='100644' path='/lib/libcap.a' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/sys/capability.h' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

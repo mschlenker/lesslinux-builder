@@ -1,0 +1,86 @@
+<pkgdesc name='libtirpc' version='0.2.4'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/usr/lib/libtirpc.so.1' owner='0'/>
+        <softlink group='0' path='/usr/lib/libtirpc.so' owner='0'/>
+        <directory group='0' path='/etc' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/lib' owner='0'/>
+        <directory group='0' path='/usr/lib/pkgconfig' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/man3' owner='0'/>
+        <directory group='0' path='/usr/share/man/man5' owner='0'/>
+        <directory group='0' path='/usr/include' owner='0'/>
+        <directory group='0' path='/usr/include/tirpc' owner='0'/>
+        <directory group='0' path='/usr/include/tirpc/rpcsvc' owner='0'/>
+        <directory group='0' path='/usr/include/tirpc/rpc' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file group='0' path='/usr/lib/libtirpc.so.1.0.10' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'>
+        <file group='0' path='/usr/share/man/man3/bindresvport.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/des_crypt.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/getnetconfig.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/getnetpath.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/getrpcent.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/getrpcport.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_clnt_auth.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_clnt_calls.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_clnt_create.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_secure.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_soc.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_svc_calls.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_svc_create.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_svc_err.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_svc_reg.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rpc_xdr.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man3/rtime.3t' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man5/netconfig.5' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file group='0' path='/etc/netconfig' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file group='0' path='/usr/lib/libtirpc.la' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/libtirpc.a' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/pkgconfig/libtirpc.pc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpcsvc/crypt.x' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpcsvc/crypt.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/netconfig.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/xdr.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/types.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/svc_soc.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/svc.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/svc_dg.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/svc_auth.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/rpc_msg.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/rpc.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/rpcent.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/rpc_com.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/rpcb_prot.x' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/rpcb_prot.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/rpcb_clnt.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/raw.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/pmap_rmt.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/pmap_prot.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/pmap_clnt.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/nettype.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/des.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/des_crypt.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/clnt_stat.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/clnt_soc.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/clnt.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/auth_unix.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/auth_kerb.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/auth.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/auth_gss.h' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/tirpc/rpc/auth_des.h' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,25 @@
+<pkgdesc version='0.0.2' name='pangox-compat'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libpangox-1.0.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libpangox-1.0.so.0' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libpangox-1.0.so.0.0.0' mode='100755' fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'>
+        <file path='/etc/pango/pangox.aliases' mode='100644' fileout='ASCII text' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/pango-1.0/pango/pangox.h' mode='100644' fileout='ASCII C program text' group='0' owner='0'/>
+        <file path='/usr/lib/libpangox-1.0.a' mode='100644' fileout='current ar archive' group='0' owner='0'/>
+        <file path='/usr/lib/libpangox-1.0.la' mode='100755' fileout='libtool library file' group='0' owner='0'/>
+        <file path='/usr/lib/pkgconfig/pangox.pc' mode='100644' fileout='ASCII text' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

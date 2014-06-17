@@ -1,0 +1,90 @@
+<pkgdesc version='2.7.1' name='nettle'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libnettle.so.4' group='0' owner='0'/>
+        <softlink path='/usr/lib/libnettle.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libhogweed.so.2' group='0' owner='0'/>
+        <softlink path='/usr/lib/libhogweed.so' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/info' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/usr/include/nettle' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/pkgconfig' group='0' owner='0'/>
+        <directory path='/usr/bin' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file mode='100644' path='/usr/lib/libnettle.so.4.7' group='0' owner='0'/>
+        <file mode='100644' path='/usr/lib/libhogweed.so.2.5' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file mode='100755' path='/usr/bin/sexp-conv' group='0' owner='0'/>
+        <file mode='100755' path='/usr/bin/nettle-hash' group='0' owner='0'/>
+        <file mode='100755' path='/usr/bin/nettle-lfib-stream' group='0' owner='0'/>
+        <file mode='100755' path='/usr/bin/pkcs1-conv' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100644' path='/usr/share/info/nettle.info' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/info/dir' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file mode='100644' path='/usr/include/nettle/aes.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/arcfour.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/arctwo.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/asn1.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/bignum.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/blowfish.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/base16.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/base64.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/buffer.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/camellia.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/cast128.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/cbc.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/ctr.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/des.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/des-compat.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/dsa.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/ecc-curve.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/ecc.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/ecdsa.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/gcm.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/gosthash94.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/hmac.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/knuth-lfib.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/macros.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/md2.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/md4.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/md5.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/md5-compat.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/memxor.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/nettle-meta.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/nettle-types.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/pbkdf2.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/pgp.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/pkcs1.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/realloc.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/ripemd160.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/rsa.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/rsa-compat.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/salsa20.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/sexp.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/serpent.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/sha.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/sha1.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/sha2.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/sha3.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/twofish.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/umac.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/yarrow.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/nettle/nettle-stdint.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/lib/libnettle.a' group='0' owner='0'/>
+        <file mode='100644' path='/usr/lib/libhogweed.a' group='0' owner='0'/>
+        <file mode='100644' path='/usr/lib/pkgconfig/nettle.pc' group='0' owner='0'/>
+        <file mode='100644' path='/usr/lib/pkgconfig/hogweed.pc' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,609 @@
+<pkgdesc name='grub' version='2.00'>
+    <subpackage name='skel'>
+        <directory group='0' path='/etc' owner='0'/>
+        <directory group='0' path='/etc/bash_completion.d' owner='0'/>
+        <directory group='0' path='/etc/grub.d' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/bin' owner='0'/>
+        <directory group='0' path='/usr/lib' owner='0'/>
+        <directory group='0' path='/usr/lib/grub' owner='0'/>
+        <directory group='0' path='/usr/lib/grub/i386-pc' owner='0'/>
+        <directory group='0' path='/usr/sbin' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/grub' owner='0'/>
+        <directory group='0' path='/usr/share/info' owner='0'/>
+        <directory group='0' path='/usr/share/locale' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ast' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ast/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ca' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ca/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/da' owner='0'/>
+        <directory group='0' path='/usr/share/locale/da/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de@hebrew' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de@hebrew/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de_CH' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de_CH/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@arabic' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@arabic/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@cyrillic' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@cyrillic/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@greek' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@greek/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@hebrew' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@hebrew/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@piglatin' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@piglatin/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@quot' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@quot/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/eo' owner='0'/>
+        <directory group='0' path='/usr/share/locale/eo/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fi' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fi/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fr' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fr/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/hu' owner='0'/>
+        <directory group='0' path='/usr/share/locale/hu/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/id' owner='0'/>
+        <directory group='0' path='/usr/share/locale/id/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/it' owner='0'/>
+        <directory group='0' path='/usr/share/locale/it/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ja' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ja/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/nl' owner='0'/>
+        <directory group='0' path='/usr/share/locale/nl/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/pa' owner='0'/>
+        <directory group='0' path='/usr/share/locale/pa/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/pl' owner='0'/>
+        <directory group='0' path='/usr/share/locale/pl/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ru' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ru/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/sv' owner='0'/>
+        <directory group='0' path='/usr/share/locale/sv/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/uk' owner='0'/>
+        <directory group='0' path='/usr/share/locale/uk/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/vi' owner='0'/>
+        <directory group='0' path='/usr/share/locale/vi/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_CN' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_CN/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_TW' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_TW/LC_MESSAGES' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file group='0' mode='100755' path='/usr/bin/grub-editenv' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-fstest' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-menulst2cfg' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mkfont' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mkimage' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mklayout' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mkpasswd-pbkdf2' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mkrelpath' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mount' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-script-check' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/acpi.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/acpi.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/adler32.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/adler32.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/affs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/affs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/afs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/afs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ahci.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ahci.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/all_video.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/all_video.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/aout.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/aout.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/at_keyboard.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/at_keyboard.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ata.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ata.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/backtrace.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/backtrace.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/bfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/bfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/biosdisk.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/biosdisk.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/bitmap.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/bitmap.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/bitmap_scale.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/bitmap_scale.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/blocklist.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/blocklist.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/boot.image' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/boot.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/boot.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/bsd.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/bsd.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/btrfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/btrfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/bufio.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/bufio.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cat.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cat.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cdboot.image' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/chain.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/chain.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cmostest.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cmostest.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cmp.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cmp.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/configfile.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/configfile.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cpio.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cpio.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cpio_be.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cpio_be.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cpuid.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cpuid.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/crc64.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/crc64.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/crypto.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/crypto.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cryptodisk.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cryptodisk.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cs5536.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/cs5536.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/date.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/date.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/datehook.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/datehook.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/datetime.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/datetime.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/diskboot.image' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/diskfilter.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/diskfilter.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/dm_nv.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/dm_nv.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/drivemap.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/drivemap.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/echo.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/echo.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/efiemu.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/efiemu.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ehci.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ehci.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/elf.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/elf.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/exfat.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/exfat.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/exfctest.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/exfctest.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ext2.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ext2.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/extcmd.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/extcmd.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/fat.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/fat.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/font.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/font.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/freedos.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/freedos.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/fshelp.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/fshelp.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/functional_test.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/functional_test.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_arcfour.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_arcfour.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_blowfish.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_blowfish.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_camellia.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_camellia.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_cast5.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_cast5.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_crc.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_crc.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_des.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_des.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_md4.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_md4.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_md5.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_md5.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_rfc2268.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_rfc2268.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_rijndael.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_rijndael.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_rmd160.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_rmd160.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_seed.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_seed.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_serpent.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_serpent.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_sha1.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_sha1.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_sha256.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_sha256.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_sha512.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_sha512.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_tiger.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_tiger.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_twofish.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_twofish.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gcry_whirlpool.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gcry_whirlpool.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gdb.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gdb.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/geli.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/geli.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gettext.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gettext.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gfxmenu.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gfxmenu.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gfxterm.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gfxterm.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gptsync.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gptsync.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/gzio.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gzio.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/halt.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/halt.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/hashsum.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/hashsum.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/hdparm.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/hdparm.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/hello.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/hello.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/help.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/help.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/hexdump.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/hexdump.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/hfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/hfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/hfsplus.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/hfsplus.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/http.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/http.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/iorw.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/iorw.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/iso9660.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/iso9660.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/jfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/jfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/jpeg.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/jpeg.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/kernel.exec' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/kernel.img' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/keylayouts.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/keylayouts.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/keystatus.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/keystatus.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ldm.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ldm.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/legacycfg.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/legacycfg.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/linux.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/linux.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/linux16.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/linux16.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lnxboot.image' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/loadenv.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/loadenv.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/loopback.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/loopback.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ls.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ls.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lsacpi.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lsacpi.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lsapm.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lsapm.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lsmmap.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lsmmap.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lspci.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lspci.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/luks.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/luks.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lvm.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lvm.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lzma_decompress.image' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lzopio.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/lzopio.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/mdraid09.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/mdraid09.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/mdraid09_be.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/mdraid09_be.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/mdraid1x.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/mdraid1x.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/memdisk.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/memdisk.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/memrw.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/memrw.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/minicmd.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/minicmd.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/minix.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/minix.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/minix2.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/minix2.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/minix2_be.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/minix2_be.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/minix3.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/minix3.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/minix3_be.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/minix3_be.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/minix_be.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/minix_be.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/mmap.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/mmap.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/msdospart.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/msdospart.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/multiboot.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/multiboot.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/multiboot2.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/multiboot2.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/net.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/net.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/newc.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/newc.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/nilfs2.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/nilfs2.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/normal.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/normal.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ntfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ntfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ntfscomp.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ntfscomp.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ntldr.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ntldr.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/odc.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/odc.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ohci.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ohci.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_acorn.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_acorn.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_amiga.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_amiga.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_apple.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_apple.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_bsd.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_bsd.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_dvh.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_dvh.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_gpt.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_gpt.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_msdos.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_msdos.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_plan.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_plan.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_sun.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_sun.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/part_sunpc.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/part_sunpc.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/parttool.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/parttool.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/password.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/password.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/password_pbkdf2.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/password_pbkdf2.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/pata.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/pata.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/pbkdf2.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/pbkdf2.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/pci.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/pci.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/plan9.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/plan9.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/play.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/play.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/png.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/png.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/priority_queue.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/priority_queue.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/probe.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/probe.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/pxe.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/pxe.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/pxeboot.image' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/pxechain.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/pxechain.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/raid5rec.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/raid5rec.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/raid6rec.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/raid6rec.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/read.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/read.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/reboot.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/reboot.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/regexp.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/regexp.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/reiserfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/reiserfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/relocator.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/relocator.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/romfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/romfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/scsi.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/scsi.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/search.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/search.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/search_fs_file.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/search_fs_file.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/search_fs_uuid.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/search_fs_uuid.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/search_label.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/search_label.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/sendkey.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/sendkey.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/serial.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/serial.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/setjmp.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/setjmp.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/setpci.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/setpci.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/sfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/sfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/sleep.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/sleep.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/squash4.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/squash4.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/tar.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/tar.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/terminal.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/terminal.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/terminfo.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/terminfo.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/test.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/test.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/test_blockarg.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/test_blockarg.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/testload.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/testload.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/tftp.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/tftp.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/tga.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/tga.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/time.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/time.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/trig.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/trig.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/true.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/true.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/udf.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/udf.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ufs1.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ufs1.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/ufs2.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/ufs2.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/uhci.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/uhci.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/usb.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/usb.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/usb_keyboard.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/usb_keyboard.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/usbms.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/usbms.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/usbserial_common.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/usbserial_common.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/usbserial_ftdi.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/usbserial_ftdi.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/usbserial_pl2303.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/usbserial_pl2303.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/usbtest.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/usbtest.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/vbe.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/vbe.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/vga.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/vga.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/vga_text.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/vga_text.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/video.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/video.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/video_bochs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/video_bochs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/video_cirrus.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/video_cirrus.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/video_fb.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/video_fb.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/videoinfo.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/videoinfo.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/videotest.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/videotest.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/xfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/xfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/xnu.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/xnu.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/xnu_uuid.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/xnu_uuid.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/xzio.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/xzio.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/zfs.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/zfs.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/zfscrypt.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/zfscrypt.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/zfsinfo.mod' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/zfsinfo.module' fileout='ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-bios-setup' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-ofpathname' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-probe' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-sparc64-setup' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' mode='100644' path='/usr/share/info/dir' fileout='gzip compressed data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/info/grub-dev.info' fileout='gzip compressed data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/info/grub.info' fileout='gzip compressed data' owner='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file group='0' mode='100644' path='/etc/bash_completion.d/grub' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100755' path='/etc/grub.d/00_header' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/etc/grub.d/10_linux' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/etc/grub.d/20_linux_xen' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/etc/grub.d/30_os-prober' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/etc/grub.d/40_custom' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/etc/grub.d/41_custom' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100644' path='/etc/grub.d/README' fileout='ASCII English text' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'>
+        <file group='0' mode='100644' path='/usr/share/locale/ast/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 196 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/ca/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/da/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 349 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/de/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/de@hebrew/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/de_CH/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@arabic/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@cyrillic/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@greek/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@hebrew/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@piglatin/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@quot/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/eo/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 505 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/fi/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/fr/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/hu/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 357 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/id/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 196 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/it/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 946 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/ja/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 205 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/nl/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1135 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/pa/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 688 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/pl/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/ru/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/sv/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 520 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/uk/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 1137 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/vi/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 195 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/zh_CN/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 353 messages' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/zh_TW/LC_MESSAGES/grub.mo' fileout='GNU message catalog (little endian), revision 0, 357 messages' owner='0'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100755' path='/usr/bin/grub-kbdcomp' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mkrescue' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/grub-mkstandalone' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/boot.img' fileout='x86 boot sector; partition 4: ID=0xd3, starthead 205, startsector 4277659983, 0 sectors, code offset 0x63' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/cdboot.img' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/command.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/config.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/crypto.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/diskboot.img' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/fs.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gdb_grub' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/grub/i386-pc/gmodule.pl' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lnxboot.img' fileout='Linux kernel x86 boot executable bzImage, version \353HdrS\003, RW-rootFS,' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/lzma_decompress.img' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/moddep.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/modinfo.sh' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/partmap.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/parttool.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/pxeboot.img' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/terminal.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/grub/i386-pc/video.lst' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-install' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-mkconfig' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-mknetdir' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-reboot' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/grub-set-default' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/grub/grub-mkconfig_lib' fileout='ASCII English text' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='config'/>
+        <subpackage name='doc'/>
+        <subpackage name='minimal'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='bin'/>
+        <subpackage name='ignore'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='skel'/>
+    </vanished>
+</pkgdesc>

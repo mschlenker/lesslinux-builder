@@ -1,0 +1,34 @@
+<pkgdesc version='1.3.6' name='libburn'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libburn.so.4' group='0' owner='0'/>
+        <softlink path='/usr/lib/libburn.so' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/pkgconfig' group='0' owner='0'/>
+        <directory path='/usr/bin' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/usr/include/libburn' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/man' group='0' owner='0'/>
+        <directory path='/usr/share/man/man1' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/bin/cdrskin' group='0' owner='0' mode='100755'/>
+	<file path='/usr/lib/libburn.so.4.89.0' group='0' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'></subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/cdrskin.1' group='0' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libburn.la' group='0' owner='0' mode='100755'/>
+        <file path='/usr/lib/libburn.a' group='0' owner='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libburn-1.pc' group='0' owner='0' mode='100644'/>
+        <file path='/usr/include/libburn/libburn.h' group='0' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

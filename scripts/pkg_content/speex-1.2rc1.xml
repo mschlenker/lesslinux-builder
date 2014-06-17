@@ -1,0 +1,65 @@
+<pkgdesc version='1.2rc1' name='speex'>
+    <subpackage name='skel'>
+        <softlink owner='0' group='0' path='/usr/lib/libspeex.so.1'/>
+        <softlink owner='0' group='0' path='/usr/lib/libspeexdsp.so.1'/>
+        <softlink owner='0' group='0' path='/usr/lib/libspeexdsp.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libspeex.so'/>
+        <directory owner='0' group='0' path='/usr/include/speex'/>
+        <directory owner='0' group='0' path='/usr/share/doc/speex'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file owner='0' mode='100755' group='0' path='/usr/bin/speexdec'/>
+        <file owner='0' mode='100755' group='0' path='/usr/bin/speexenc'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/libspeexdsp.so.1.5.0'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/libspeex.so.1.5.0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' mode='100644' group='0' path='/usr/share/doc/speex/manual.pdf'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/speexenc.1'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/speexdec.1'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file owner='0' mode='100644' group='0' path='/etc/ld.so.cache'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_resampler.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_header.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_preprocess.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_config_types.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_callbacks.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_stereo.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_buffer.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_types.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_bits.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_echo.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/speex/speex_jitter.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/aclocal/speex.m4'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/pkgconfig/speex.pc'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/pkgconfig/speexdsp.pc'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/libspeex.la'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/libspeex.a'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/libspeexdsp.la'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/libspeexdsp.a'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'>
+        <file owner='0' mode='100600' group='0' path='/var/cache/ldconfig/aux-cache'/>
+    </subpackage>
+    <vanished>
+        <subpackage name='uncategorized'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='config'/>
+        <subpackage name='bin'/>
+        <subpackage name='localization'/>
+        <subpackage name='devel'/>
+        <subpackage name='skel'/>
+        <subpackage name='ignore'/>
+        <subpackage name='doc'/>
+        <subpackage name='minimal'/>
+    </vanished>
+</pkgdesc>

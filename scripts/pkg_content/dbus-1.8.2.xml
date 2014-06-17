@@ -1,0 +1,87 @@
+<pkgdesc name='dbus' version='1.8.2'>
+    <subpackage name='skel'>
+        <softlink owner='0' group='0' path='/usr/lib/libdbus-1.so.3'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdbus-1.so'/>
+        <directory owner='0' group='0' path='/etc'/>
+        <directory owner='0' group='0' path='/etc/dbus-1'/>
+        <directory owner='0' group='0' path='/etc/dbus-1/system.d'/>
+        <directory owner='0' group='0' path='/etc/dbus-1/session.d'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/var'/>
+        <directory owner='0' group='0' path='/usr/var/lib'/>
+        <directory owner='0' group='0' path='/usr/var/lib/dbus'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/dbus-1.0'/>
+        <directory owner='0' group='0' path='/usr/lib/dbus-1.0/include'/>
+        <directory owner='0' group='0' path='/usr/lib/dbus-1.0/include/dbus'/>
+        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
+        <directory owner='0' group='0' path='/usr/include'/>
+        <directory owner='0' group='0' path='/usr/include/dbus-1.0'/>
+        <directory owner='0' group='0' path='/usr/include/dbus-1.0/dbus'/>
+        <directory owner='0' group='0' path='/usr/bin'/>
+        <directory owner='0' group='0' path='/usr/libexec'/>
+        <directory owner='0' group='0' path='/usr/share'/>
+        <directory owner='0' group='0' path='/usr/share/dbus-1'/>
+        <directory owner='0' group='0' path='/usr/share/dbus-1/services'/>
+        <directory owner='0' group='0' path='/usr/share/dbus-1/system-services'/>
+        <directory owner='0' group='0' path='/usr/share/doc'/>
+        <directory owner='0' group='0' path='/usr/share/doc/dbus'/>
+        <directory owner='0' group='0' path='/var'/>
+        <directory owner='0' group='0' path='/var/lib'/>
+        <directory owner='0' group='0' path='/var/lib/dbus'/>
+        <directory owner='0' group='0' path='/var/run'/>
+        <directory owner='0' group='0' path='/var/run/dbus'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file owner='0' group='0' path='/usr/libexec/dbus-daemon-launch-helper' mode='104750'/>
+	<file owner='0' group='0' path='/usr/lib/libdbus-1.so.3.8.4' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file owner='0' group='0' path='/usr/bin/dbus-daemon' mode='100755'/>
+        <file owner='0' group='0' path='/usr/bin/dbus-launch' mode='100755'/>
+        <file owner='0' group='0' path='/usr/bin/dbus-monitor' mode='100755'/>
+        <file owner='0' group='0' path='/usr/bin/dbus-send' mode='100755'/>
+        <file owner='0' group='0' path='/usr/bin/dbus-cleanup-sockets' mode='100755'/>
+        <file owner='0' group='0' path='/usr/bin/dbus-run-session' mode='100755'/>
+        <file owner='0' group='0' path='/usr/bin/dbus-uuidgen' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' group='0' path='/usr/share/doc/dbus/system-activation.txt' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/doc/dbus/diagram.png' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/doc/dbus/diagram.svg' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file owner='0' group='0' path='/etc/dbus-1/session.conf' mode='100644'/>
+        <file owner='0' group='0' path='/etc/dbus-1/system.conf' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file owner='0' group='0' path='/usr/lib/libdbus-1.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libdbus-1.a' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/dbus-1.0/include/dbus/dbus-arch-deps.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/dbus-1.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-address.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-bus.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-connection.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-errors.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-macros.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-memory.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-message.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-misc.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-pending-call.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-protocol.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-server.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-shared.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-signature.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-syntax.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-threads.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/dbus-1.0/dbus/dbus-types.h' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'>
+        <file owner='0' group='0' path='/usr/var/lib/dbus/machine-id' mode='100644'/>
+        <file owner='0' group='0' path='/var/lib/dbus/machine-id' mode='100644'/>
+    </subpackage>
+</pkgdesc>

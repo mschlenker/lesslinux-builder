@@ -1,0 +1,57 @@
+<pkgdesc name='wayland' version='1.5.0'>
+    <subpackage name='skel'>
+        <softlink owner='0' group='0' path='/usr/lib/libwayland-server.so.0'/>
+        <softlink owner='0' group='0' path='/usr/lib/libwayland-server.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libwayland-client.so.0'/>
+        <softlink owner='0' group='0' path='/usr/lib/libwayland-client.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libwayland-cursor.so.0'/>
+        <softlink owner='0' group='0' path='/usr/lib/libwayland-cursor.so'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
+        <directory owner='0' group='0' path='/usr/bin'/>
+        <directory owner='0' group='0' path='/usr/share'/>
+        <directory owner='0' group='0' path='/usr/share/aclocal'/>
+        <directory owner='0' group='0' path='/usr/share/wayland'/>
+        <directory owner='0' group='0' path='/usr/include'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file owner='0' group='0' path='/usr/lib/libwayland-server.so.0.1.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libwayland-client.so.0.2.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libwayland-cursor.so.0.0.0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file owner='0' group='0' path='/usr/bin/wayland-scanner' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'>
+	<file owner='0' group='0' path='/usr/share/wayland/wayland.xml' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/wayland/wayland.dtd' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file owner='0' group='0' path='/usr/lib/libwayland-server.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libwayland-client.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libwayland-cursor.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libwayland-server.a' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/libwayland-client.a' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/libwayland-cursor.a' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/wayland-client.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/wayland-server.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/wayland-scanner.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/wayland-cursor.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-util.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-server.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-client.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-egl.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-version.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-cursor.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-server-protocol.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/wayland-client-protocol.h' mode='100644'/>
+	<file owner='0' group='0' path='/usr/share/aclocal/wayland-scanner.m4' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/wayland/wayland-scanner.mk' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'></subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

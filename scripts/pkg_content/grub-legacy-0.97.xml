@@ -1,0 +1,64 @@
+<pkgdesc name='grub-legacy' version='0.97'>
+    <subpackage name='skel'>
+        <directory group='0' path='/usr/compat.old/info' owner='0'/>
+        <directory group='0' path='/usr/compat.old/lib/grub' owner='0'/>
+        <directory group='0' path='/usr/compat.old/lib/grub/i386-pc' owner='0'/>
+        <directory group='0' path='/usr/compat.old/man' owner='0'/>
+        <directory group='0' path='/usr/compat.old/man/man1' owner='0'/>
+        <directory group='0' path='/usr/compat.old/man/man8' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file group='0' mode='100755' path='/usr/compat.old/bin/mbchk' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/compat.old/sbin/grub' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'>
+        <file group='0' mode='100644' path='/etc/ld.so.cache' fileout='data' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100644' path='/usr/compat.old/info/dir' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/info/grub.info' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/info/multiboot.info' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/e2fs_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0x2, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/fat_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0x3, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/ffs_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0x1, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/iso9660_stage1_5' fileout='isolinux Loader' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/jfs_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0x7, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/minix_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0x4, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/reiserfs_stage1_5' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/stage1' fileout='x86 boot sector; GRand Unified Bootloader, stage1 version 0x3, code offset 0x48' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/stage2' fileout='data' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/stage2_eltorito' fileout='isolinux Loader' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/ufs2_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0xa, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/vstafs_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0x6, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/lib/grub/i386-pc/xfs_stage1_5' fileout='GRand Unified Bootloader stage1_5 version 3.2, identifier 0x8, GRUB version 0.97, configuration file /boot/grub/stage2' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/man/man1/mbchk.1' fileout='troff or preprocessor input text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/man/man8/grub-install.8' fileout='troff or preprocessor input text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/man/man8/grub-md5-crypt.8' fileout='troff or preprocessor input text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/man/man8/grub-terminfo.8' fileout='troff or preprocessor input text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/compat.old/man/man8/grub.8' fileout='troff or preprocessor input text' owner='0'/>
+        <file group='0' mode='100755' path='/usr/compat.old/sbin/grub-install' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/compat.old/sbin/grub-md5-crypt' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/compat.old/sbin/grub-set-default' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100755' path='/usr/compat.old/sbin/grub-terminfo' fileout='POSIX shell script text executable' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'>
+        <file group='0' mode='100600' path='/var/cache/ldconfig/aux-cache' fileout='data' owner='0'/>
+    </subpackage>
+    <vanished>
+        <subpackage name='config'/>
+        <subpackage name='doc'/>
+        <subpackage name='minimal'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='bin'/>
+        <subpackage name='ignore'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='skel'/>
+    </vanished>
+</pkgdesc>

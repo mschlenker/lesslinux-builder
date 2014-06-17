@@ -1,0 +1,48 @@
+<pkgdesc version='1.2.2' name='libSM'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libSM.so.6' group='0' owner='0'/>
+        <softlink path='/usr/lib/libSM.so' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/pkgconfig' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/usr/include/X11' group='0' owner='0'/>
+        <directory path='/usr/include/X11/SM' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/doc' group='0' owner='0'/>
+        <directory path='/usr/share/doc/libSM' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libSM.so.6.0.1' group='0' mode='100755' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'>
+        <file path='/usr/share/doc/libSM/SMlib.xml' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/doc/libSM/xsmp.xml' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/sm.pc' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/libSM.la' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/libSM.a' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/X11/SM/SMlib.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/X11/SM/SM.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/X11/SM/SMproto.h' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='tzdata'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='ignore'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='bin'/>
+        <subpackage name='skel'/>
+        <subpackage name='localization'/>
+        <subpackage name='devel'/>
+        <subpackage name='minimal'/>
+    </vanished>
+</pkgdesc>

@@ -1,0 +1,111 @@
+<pkgdesc name='elfutils' version='0.158'>
+    <subpackage name='skel'>
+        <softlink group='0' owner='0' path='/usr/lib/libelf.so.1'/>
+        <softlink group='0' owner='0' path='/usr/lib/libelf.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_arm.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_s390.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_tilegx.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_x86_64.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_alpha.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_sparc.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_ia64.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_sh.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_ppc64.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_i386.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_ppc.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/elfutils/libebl_aarch64.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/libdw.so.1'/>
+        <softlink group='0' owner='0' path='/usr/lib/libasm.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/libasm.so.1'/>
+        <softlink group='0' owner='0' path='/usr/lib/libdw.so'/>
+        <directory group='0' owner='0' path='/usr'/>
+        <directory group='0' owner='0' path='/usr/bin'/>
+        <directory group='0' owner='0' path='/usr/include'/>
+        <directory group='0' owner='0' path='/usr/include/elfutils'/>
+        <directory group='0' owner='0' path='/usr/share'/>
+        <directory group='0' owner='0' path='/usr/share/locale'/>
+        <directory group='0' owner='0' path='/usr/share/locale/uk'/>
+        <directory group='0' owner='0' path='/usr/share/locale/uk/LC_MESSAGES'/>
+        <directory group='0' owner='0' path='/usr/share/locale/ja'/>
+        <directory group='0' owner='0' path='/usr/share/locale/ja/LC_MESSAGES'/>
+        <directory group='0' owner='0' path='/usr/share/locale/es'/>
+        <directory group='0' owner='0' path='/usr/share/locale/es/LC_MESSAGES'/>
+        <directory group='0' owner='0' path='/usr/share/locale/pl'/>
+        <directory group='0' owner='0' path='/usr/share/locale/pl/LC_MESSAGES'/>
+        <directory group='0' owner='0' path='/usr/share/locale/en@boldquot'/>
+        <directory group='0' owner='0' path='/usr/share/locale/en@boldquot/LC_MESSAGES'/>
+        <directory group='0' owner='0' path='/usr/share/locale/en@quot'/>
+        <directory group='0' owner='0' path='/usr/share/locale/en@quot/LC_MESSAGES'/>
+        <directory group='0' owner='0' path='/usr/share/locale/de'/>
+        <directory group='0' owner='0' path='/usr/share/locale/de/LC_MESSAGES'/>
+        <directory group='0' owner='0' path='/usr/lib'/>
+        <directory group='0' owner='0' path='/usr/lib/elfutils'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file group='0' owner='0' path='/usr/lib/libelf-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/libdw-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/libasm-0.158.so' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_x86_64-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_i386-0.158.so' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+	 <file group='0' owner='0' path='/usr/bin/eu-size' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-readelf' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-nm' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-ar' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-ld' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-stack' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-addr2line' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-objdump' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-strip' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-unstrip' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-ranlib' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-elflint' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-strings' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-findtextrel' mode='100755'/>
+        <file group='0' owner='0' path='/usr/bin/eu-elfcmp' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_s390-0.158.so' mode='100755'/>
+	<file group='0' owner='0' path='/usr/lib/elfutils/libebl_ia64-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_sh-0.158.so' mode='100755'/>
+	<file group='0' owner='0' path='/usr/lib/elfutils/libebl_alpha-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_aarch64-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_tilegx-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_arm-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_sparc-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_ppc64-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/lib/elfutils/libebl_ppc-0.158.so' mode='100755'/>
+        <file group='0' owner='0' path='/usr/include/elfutils/libdw.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/elfutils/libdwfl.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/elfutils/libasm.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/elfutils/elf-knowledge.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/elfutils/version.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/elfutils/libebl.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/nlist.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/dwarf.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/gelf.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/include/libelf.h' mode='100644'/>
+        <file group='0' owner='0' path='/usr/lib/libdw.a' mode='100644'/>
+        <file group='0' owner='0' path='/usr/lib/libelf.a' mode='100644'/>
+        <file group='0' owner='0' path='/usr/lib/libebl.a' mode='100644'/>
+        <file group='0' owner='0' path='/usr/lib/libasm.a' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file group='0' owner='0' path='/usr/share/locale/uk/LC_MESSAGES/elfutils.mo' mode='100644'/>
+        <file group='0' owner='0' path='/usr/share/locale/ja/LC_MESSAGES/elfutils.mo' mode='100644'/>
+        <file group='0' owner='0' path='/usr/share/locale/es/LC_MESSAGES/elfutils.mo' mode='100644'/>
+        <file group='0' owner='0' path='/usr/share/locale/pl/LC_MESSAGES/elfutils.mo' mode='100644'/>
+        <file group='0' owner='0' path='/usr/share/locale/en@boldquot/LC_MESSAGES/elfutils.mo' mode='100644'/>
+        <file group='0' owner='0' path='/usr/share/locale/en@quot/LC_MESSAGES/elfutils.mo' mode='100644'/>
+        <file group='0' owner='0' path='/usr/share/locale/de/LC_MESSAGES/elfutils.mo' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' owner='0' path='/usr/bin/eu-make-debug-archive' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

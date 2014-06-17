@@ -1,0 +1,38 @@
+<pkgdesc name='libpciaccess' version='0.13.2'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libpciaccess.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpciaccess.so.0' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libpciaccess.so.0.11.1' owner='0' mode='100755' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/pciaccess.h' owner='0' mode='100644' group='0'/>
+        <file path='/usr/lib/libpciaccess.a' owner='0' mode='100644' group='0'/>
+        <file path='/usr/lib/pkgconfig/pciaccess.pc' owner='0' mode='100644' group='0'/>
+        <file path='/usr/lib/libpciaccess.la' owner='0' mode='100755' group='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='localization'/>
+        <subpackage name='ignore'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='bin'/>
+        <subpackage name='devel'/>
+        <subpackage name='config'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='doc'/>
+        <subpackage name='minimal'/>
+        <subpackage name='skel'/>
+    </vanished>
+</pkgdesc>

@@ -1,0 +1,44 @@
+<pkgdesc name='dhcpcd' version='6.2.1'>
+    <subpackage name='skel'>
+        <directory owner='0' path='/etc' group='0'/>
+        <directory owner='0' path='/etc/dhcpcd' group='0'/>
+        <directory owner='0' path='/lib' group='0'/>
+        <directory owner='0' path='/lib/dhcpcd' group='0'/>
+        <directory owner='0' path='/lib/dhcpcd/dhcpcd-hooks' group='0'/>
+        <directory owner='0' path='/sbin' group='0'/>
+        <directory owner='0' path='/share' group='0'/>
+        <directory owner='0' path='/share/man' group='0'/>
+        <directory owner='0' path='/share/man/man5' group='0'/>
+        <directory owner='0' path='/share/man/man8' group='0'/>
+        <directory owner='0' path='/var' group='0'/>
+        <directory owner='0' path='/var/lib' group='0'/>
+        <directory owner='0' path='/var/lib/dhcpcd' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file mode='100555' owner='0' path='/sbin/dhcpcd' group='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100444' owner='0' path='/share/man/man5/dhcpcd.conf.5' group='0'/>
+        <file mode='100444' owner='0' path='/share/man/man8/dhcpcd.8' group='0'/>
+        <file mode='100444' owner='0' path='/share/man/man8/dhcpcd-run-hooks.8' group='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file mode='100644' owner='0' path='/etc/dhcpcd/dhcpcd.conf' group='0'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file mode='100555' owner='0' path='/lib/dhcpcd/dhcpcd-run-hooks' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/20-resolv.conf' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/01-test' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/10-mtu' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/10-wpa_supplicant' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/15-timezone' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/02-dump' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/29-lookup-hostname' group='0'/>
+        <file mode='100444' owner='0' path='/lib/dhcpcd/dhcpcd-hooks/30-hostname' group='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
