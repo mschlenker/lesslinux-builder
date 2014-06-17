@@ -1,0 +1,10 @@
+<llpackages>
+	<package name="wireshark" />
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/wireshark" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/wireshark
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

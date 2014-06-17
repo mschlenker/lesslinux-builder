@@ -1,0 +1,62 @@
+<llpackages>
+	<package 
+		name="uClibc"
+		version="20130713"
+		class="devel"
+		install="destdir"
+		providedeps="no"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                   
+				<pkg sha1="6fcc7fc2858bb4469e1d6ec5c07ef78bda879ed8">uClibc-20130713.config</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                                             
+				<pkg sha1="d140272e5b6eb58953154e9bb92ee6633bc394cc">uClibc-20130713.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130712" interval="90" page="http://www.uclibc.org/" />
+		</sources>
+		<builddeps>
+                        <dep>cross-gcc</dep>
+                        <dep>cross-linux-headers</dep>
+                        <dep>cross-binutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			
+			cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.config ${PKGNAME}/.config 
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}
+			make
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME} 
+			mkdir -p ${TGTDIR}/usr/local/crosstools/i486-linux-uclibc
+			make install PREFIX=${TGTDIR}/usr/local/crosstools/i486-linux-uclibc/
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME} # -${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

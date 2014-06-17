@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="cross-busybox"
+		version="1.21.1"
+		install="destdir"
+		providedeps="no"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                                      
+				<pkg sha1="511e9d4b42ace1fc831a1787382ab4dc261eb4c2">busybox-1.21.1.config</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                                           
+				<pkg sha1="9244187d8d30447e165c694e89f4731c1705a53b">busybox-1.21.1.tar.bz2</pkg>
+				<mirror>http://busybox.net/downloads/</mirror>
+			</file>
+			<manualcheck date="20130722" interval="60" page="http://www.busybox.net/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>coreutils</dep>
+                        <dep>cross-binutils</dep>
+                        <dep>cross-gcc</dep>
+                        <dep>cross-linux-headers</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>uClibc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			bunzip2 -c ${SRCDIR}/busybox-${PKGVERSION}.tar.bz2 | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			
+			cp ${SRCDIR}/busybox-1.21.1.config busybox-${PKGVERSION}/.config 
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			
+			cd busybox-${PKGVERSION}
+			export PATH=$PATH:/usr/local/crosstools/bin
+			make oldconfig CROSS_COMPILE=i486-linux-uclibc-
+			make CROSS_COMPILE=i486-linux-uclibc-
+			make install CROSS_COMPILE=i486-linux-uclibc-
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/usr/share/staticstuff
+			tar cvjf ${TGTDIR}/usr/share/staticstuff/busybox-static-uClibc-i686-${PKGVERSION}.tar.bz2 busybox-${PKGVERSION}
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf busybox-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

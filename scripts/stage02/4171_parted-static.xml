@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="parted-static"
+		version="3.1"
+		class="lib"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                
+				<pkg sha1="4f006d29451f7cfbf6131efdb0148e7f386ebc8f">parted-3.1.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/parted/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/parted/">
+					<atext linktext="parted-3.1.1." />
+					<atext linktext="parted-3.1.2." />
+					<atext linktext="parted-3.2." />
+					<atext linktext="parted-3.3." />
+					<atext linktext="parted-3.4." />
+					<atext linktext="parted-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>device-mapper</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/parted-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd parted-${PKGVERSION}                    
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --enable-device-mapper=no --disable-nls --with-readline=no && make LDFLAGS=-all-static 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd parted-${PKGVERSION}
+			mkdir -p $TGTDIR/static/sbin
+			install -m 0755 parted/parted $TGTDIR/static/sbin/parted
+			strip $TGTDIR/static/sbin/parted 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf parted-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

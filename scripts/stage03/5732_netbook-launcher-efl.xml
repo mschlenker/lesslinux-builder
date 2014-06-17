@@ -1,0 +1,36 @@
+<llpackages>
+	<package 
+		name="netbook-launcher-efl"
+		version="0.3.2"
+		class="user"
+		>
+	</package>
+	<scripts>
+		<scriptdata location="/etc/rc.d/0610-nblauncher.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides nblauncher
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+nbpath=/usr/share/netbook-launcher-efl/data/themes
+
+case $1 in 
+    start)
+	cat /proc/mounts | grep -v themes/default.edj && mount -o bind ${nbpath}/alternative.edj ${nbpath}/default.edj 
+    ;;
+    stop)
+	umount ${nbpath}/default.edj
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

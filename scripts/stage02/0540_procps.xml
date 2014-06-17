@@ -1,0 +1,76 @@
+<llpackages>
+	<package 
+		name="procps"
+		version="3.2.8"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="a0c86790569dec26b5d9037e8868ca907acc9829">procps-3.2.8.tar.gz</pkg>
+				<mirror>http://procps.sourceforge.net/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="70eb76e7370448213130d5520d8132f0bd1c761f">procps-3.2.8-watch_unicode-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20130503" interval="180" page="http://procps.sourceforge.net/" />
+			<check>
+				<page html="http://procps.sourceforge.net/download.html">
+					<atext linktext="procps-3.2.9.tar.gz" />
+					<atext linktext="procps-3.2.10.tar.gz" />
+					<atext linktext="procps-3.2.11.tar.gz" />
+					<atext linktext="procps-3.3.0.tar.gz" />
+					<atext linktext="procps-4.0.0.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+			<dep>ncurses</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-watch_unicode-1.patch | patch -p1
+			sed -i -e 's@\*/module.mk@proc/module.mk ps/module.mk@' Makefile
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,39 @@
+<llpackages>
+	<package 
+		name="make-legacy"
+		version="3.81"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="41ed86d941b9c8025aee45db56c0283169dcab3d">make-3.81.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/make/</mirror>
+			</file>
+			<check>
+				<page html="http://ftp.gnu.org/gnu/make/">
+					<atext linktext="make-3.81.1." />
+					<atext linktext="make-3.81.2." />
+					<atext linktext="make-3.81.3." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/make-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd make-${PKGVERSION}
+			./configure --prefix=/tools --program-suffix=-3.81 --disable-nls --infodir=/tmp --mandir=/tmp && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd make-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

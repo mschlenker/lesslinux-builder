@@ -1,0 +1,85 @@
+<llpackages>
+	<package 
+		name="pciutils"
+		version="3.2.1"
+		class="lib"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                
+				<pkg sha1="4ff9f98938c063b1f183cebc2a0c9dcbc80395d4">pciutils-3.2.1.tar.bz2</pkg>
+				<mirror>http://ftp.kernel.org/pub/software/utils/pciutils/</mirror>
+			</file>
+			<file>                           
+				<pkg sha1="d755247da5d7033fa3f3cdb1cfd9dd0644be9a52">pciids-20140221.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<!--<file>            
+				<pkg sha1="7d6db83ae8a5cfd61cb4e715b9315792b7e7b15f">pciids-20090321.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>-->
+			<manualcheck date="20140221" interval="180" page="http://ftp.kernel.org/pub/software/utils/pciutils/" />
+			<check>
+				<page html="rsync://ftp.kernel.org/pub/software/utils/pciutils/">
+					<atext linktext="pciutils-3.2.2." />
+					<atext linktext="pciutils-3.2.3." />
+					<atext linktext="pciutils-3.2.4." />
+					<atext linktext="pciutils-3.2.5." />
+					<atext linktext="pciutils-3.2." />
+					<atext linktext="pciutils-3.3" />
+					<atext linktext="pciutils-4." />
+					<atext linktext="pciutils-5" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gzip</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				pump make -j $jobcount DNS=yes SHARED=yes PREFIX=/usr  CC="distcc gcc" CXX="distcc g++" 
+			else
+				make DNS=yes SHARED=yes PREFIX=/usr 
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make DNS=yes SHARED=yes PREFIX=/usr install
+			## bunzip2 -c ${SRCDIR}/pciids-20120625.bz2 | gzip -c > /usr/share/pci.ids.gz
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

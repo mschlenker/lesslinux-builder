@@ -1,0 +1,119 @@
+<llpackages>
+	<dirs>
+		<dir mode="0755">/etc</dir>
+		<dir mode="0755">/etc/default</dir>
+	</dirs>
+	<links>
+		<!-- blue theme used in Sicher Surfen 2009 -->
+		<!-- <softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+		<!-- green theme used in Notfall-CD 2.0 -->
+		<softlink target="/usr/share/themes/Xfce-basic/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce-basic/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> 
+	</links>
+	<scripts>
+		<scriptdata location="/etc/default/windowmanager" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+RUNTIMECONFWM=icewm
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+. /etc/lesslinux/branding/branding.en.sh
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+# Uncomment to debug
+# /usr/bin/Terminal &
+# /usr/bin/xterm &
+# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+
+[ -f  "${HOME}/Desktop/tarnmailer.desktop" ] || install -m 0755 /usr/share/applications/tarnmailer.desktop "${HOME}/Desktop"
+
+if [ -f "${HOME}/.mozilla/plugins/libflashplayer.so" ] ; then
+	echo "Found Flash"
+else
+	install -m 0755 /usr/share/applications/flashinstall.desktop "${HOME}/Desktop/flashinstall.desktop"
+fi
+
+# Fixes
+sed -i 's%iconsFaenza%icons/Faenza%g' $HOME/.icewm/menu
+sed -i 's%2\.6\.8\.4%2.6.8.5%g' $HOME/.mozilla/firefox/c3o3frus.default/prefs.js
+
+setxkbmap -layout "$xkbmap"
+esetroot -scale /etc/lesslinux/branding/desktop.jpg
+Thunar --daemon &
+xfsettingsd
+sleep 1
+xfsettingsd --replace
+if xdpyinfo | grep -q -i composite ; then
+	sed -i 's/fake transparency=true/fake transparency=false/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+	compton -cCGbf 
+	xcompmgr -c &
+fi
+xbindkeys &
+xfdesktop &
+icewm-session
+shutdown-wrapper.sh
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0100-files.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+		
+# check, if the files needed exist - some of those directories are defaults of customers
+# and not used on normal LessLinux builds
+
+for d in Data Runtime Software Programme Windows-Programme Programs Windows-Programs Lizenzen lizenzen licenses legal ; do
+	[ -d /lesslinux/cdrom/${d} ] && tar -C /lesslinux/cdrom -cf - ${d} | tar -C /lesslinux/data -xf -
+done
+for f in liesmich.html readme.html LIESMICH.html README.html Start.exe Start.inf ; do 
+	[ -f /lesslinux/cdrom/${f} ] && tar -C /lesslinux/cdrom -cf - ${f} | tar -C /lesslinux/data -xf -
+done
+
+		]]>
+		</scriptdata>
+	</scripts> 
+	<package name="initramfs-antispy" version="20131113-01" allowfail="yes">
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="3630107462e9141191f881c8c92434b861253c32">surfer-antispy-20131113-01.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+install -m 0644 ${SRCDIR}/surfer-antispy-${PKGVERSION}.tar.gz ${INITRAMFS}/etc/lesslinux/skel/surfer.tgz
+		
+		]]>
+		</install>
+	</package>
+</llpackages>

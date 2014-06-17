@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="alsa-plugins"
+		version="1.0.27"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                            
+				<pkg sha1="a04da303d3f70005f6ce472bbab6ecac1072a558">alsa-plugins-1.0.27.tar.bz2</pkg>
+				<mirror>ftp://ftp.alsa-project.org/pub/plugins/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="120" page="ftp://ftp.alsa-project.org/pub/lib/" />
+			<check>
+				<page html="http://ftp.silug.org/pub/alsa/plugins/">
+					<atext linktext="alsa-plugins-1.0.27.1." />
+					<atext linktext="alsa-plugins-1.0.28." />
+					<atext linktext="alsa-plugins-1.0.29." />
+					<atext linktext="alsa-plugins-1.1." />
+					<atext linktext="alsa-plugins-1.2." />
+					<atext linktext="alsa-plugins-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>alsa-lib</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<!-- soft -->
+			<dep>ffmpeg</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# FIXME! Re-enable avcodec/a52!
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --disable-avcodec  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --disable-avcodec
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,229 @@
+<llpackages>
+	<dirs>
+		<dir mode="0755">/etc/samba</dir>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0755">/etc/default</dir>
+	</dirs>
+	<links>
+		<!-- blue theme used in Sicher Surfen 2009 -->
+		<!-- <softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+		<!-- green theme used in Notfall-DVD 2.0 -->
+		<softlink target="/usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink>
+	</links>
+	<scripts>
+		<scriptdata location="/etc/lesslinux/placeholder_container" mode="0644" group="0" owner="0">
+		<![CDATA[
+System nicht gefunden
+
+Ein Fehler ist aufgetreten: Das Systemlaufwerk wurde nicht gefunden! Die wahr-
+scheinlichsten Ursachen sind ein nicht unterstuetzter Chipsatz oder ein bes-
+chaedigtes Startmedium. Bitte gehen Sie wie folgt vor:
+
+ * Falls Sie von einer selbst gebrannten CD starten: Brennen Sie die CD
+   erneut, verwenden Sie den Brennmodus DAO und brennen Sie langsamer
+   
+ * Bei Start von USB-Stick: Moeglicherweise ist der Stick defekt, verwenden
+   Sie einen anderen oder lesen Sie die Hinweise zur Erstellung eines 
+   ISO-Hybrid-Sticks
+   
+ * Bei Start von CD: Probieren Sie ein anderes Laufwerk, beispielsweise ein
+   per USB statt per SATA angebundenes
+   
+Sollte das Problem erneut auftreten, wenden Sie sich mit moeglicht detail-
+lierten Angaben zur Hardware per Email an support@mattiasschlenker.de.
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/placeholder_container.pl" mode="0644" group="0" owner="0">
+		<![CDATA[
+System nie zosta znaleziony
+
+Wystapil blad: nie znaleziono dysku systemowego. Najbardziej prawdopodobne
+przyczyny to: nieobslugiwany chipset lub uszkodzony nosnik startowy. Co
+mozna zrobic:
+
+ * Jezeli Plyta Ratunkowa zostala wypalona samodzielnie, nagraj ja ponownie
+   w trybie Disc At Once z najnizsza mozliwa predkoscia
+   
+ * W przypadku uruchamiania Plyty Ratunkowej z pamieci USB, powodem
+   problemu moze byc uszkodzony pendrive - nalezy uzyc innego nosnika 
+   
+ * W przypadku problemow z dzialaniem Plyty Ratunkowej z CD sprobuj ja
+   uruchomic z innego nosnika, takiego jak pendrive, karta pamieci lub
+   przenosny dysk SATA podlaczany przez USB
+   
+Jezeli problemu nie daje sie rozwiazac, skontaktuj sie redakcja, przesylajac
+szczegolowy opis problemu na adres redakcja@komputerswiat.pl
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+. /etc/lesslinux/branding/branding.en.sh
+
+if xrandr | grep -E '^\s+(640|720|800)x.+\*' ; then
+	xrandr --size 1280x800 || \
+	xrandr --size 1024x600 || \
+	xrandr --size 1024x768
+fi
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+if [ -f /etc/lesslinux/branding/overlay_home.${lang}.tar.gz ] ; then
+	tar -C /home -xzf /etc/lesslinux/branding/overlay_home.${lang}.tar.gz
+fi
+
+xset -dpms
+xset s off 
+
+rm -rf /home/surfer/.cache 
+rm -f /home/surfer/.config/cairo-dock/current_theme/launchers/09launcher.desktop 
+sed -i 's%/usr/share/lesslinux/notfallcd4/cobigreen\.png%/etc/lesslinux/branding/cobigreen.png%g' /home/surfer/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 
+
+# Uncomment to debug
+# /usr/bin/Terminal &
+# /usr/bin/xterm &
+
+setxkbmap -layout "$xkbmap"
+esetroot -scale /usr/share/lesslinux/notfallcd4/cobigreen.png
+
+if [ -f "${HOME}/.mozilla/plugins/libflashplayer.so" ] ; then
+	echo "Found Flash"
+else
+	install -m 0755 /usr/share/applications/flashinstall.desktop "${HOME}/Desktop/flashinstall.desktop"
+fi
+
+rm /home/surfer/Desktop/Anleitungen
+rm /home/surfer/Desktop/Poradniki
+if [ "$lang" = de ] ; then
+	if [ -d /usr/share/lesslinux/notfallcd4/Anleitungen ] ; then
+		ln -sf /usr/share/lesslinux/notfallcd4/Anleitungen /home/surfer/Desktop/Anleitungen
+	fi	
+	for x in cdrom isoloop ; do
+		if [ -d /lesslinux/${x}/Anleitungen ] ; then
+			ln -sf /lesslinux/${x}/Anleitungen /home/surfer/Desktop/Anleitungen
+		fi		
+	done
+elif [ "$lang" = pl ] ; then
+	if [ -d /lesslinux/isoloop/Poradniki ] ; then
+		ln -sf /lesslinux/isoloop/Poradniki /home/surfer/Desktop/Poradniki
+	elif [ -d /lesslinux/cdrom/Poradniki ] ; then
+		ln -sf /lesslinux/cdrom/Poradniki /home/surfer/Desktop/Poradniki
+	else
+		ln -sf /usr/share/lesslinux/notfallcd4/Anleitungen /home/surfer/Desktop/Poradniki
+	fi
+else
+	ln -sf /usr/share/lesslinux/notfallcd4/Anleitungen /home/surfer/Desktop/Manuals
+fi
+
+rm /home/surfer/Desktop/lesslinux.desktop 
+if [ -f /AntiVir/scancl ] ; then
+	cp /usr/share/applications/031_avfrontend.desktop /home/surfer/Desktop 
+	chmod 0755 /home/surfer/Desktop/031_avfrontend.desktop
+else
+	rm /home/surfer/Desktop/031_avfrontend.desktop 
+fi
+
+if xdpyinfo | grep -q -i composite ; then
+	sed -i 's/fake transparency=true/fake transparency=false/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+else
+	sed -i 's/fake transparency=false/fake transparency=true/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+fi
+# cairo-dock -c &
+xfce4-session
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/default/browser" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+DEFAULT_HOMEPAGE='file:///etc/lesslinux/branding/homepage/index.xhtml|http://www.computerbild.de/'
+	
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0100-files.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+		
+# first check, if the files needed exist
+for d in lizenzen Windows-Programme Anleitungen Poradniki ; do
+	[ -d /lesslinux/cdrom/$d ] && tar -C /lesslinux/cdrom -cf - $d | tar -C /lesslinux/data -xf -
+done
+for f in liesmich.html shutdown.bat ; do
+	[ -f /lesslinux/cdrom/$f ] && tar -C /lesslinux/cdrom -cf - $f | tar -C /lesslinux/data -xf -
+done
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/samba/smb.conf" mode="0644" group="0" owner="0">
+<![CDATA[
+		
+[global]
+	workgroup = WORKGROUP
+	server string = Notfall-DVD 2.5.0 (Samba, LessLinux)
+	netbios name = NOTFALL-DVD
+	dns proxy = No
+	log file = /var/log/samba.log
+	max log size = 1000
+	syslog = No
+	security = user
+	encrypt passwords = true
+	passdb backend = tdbsam
+	map to guest = Bad User
+	guest account = surfer
+	invalid users = root
+	follow symlinks= yes 
+	wide links= yes
+	unix extensions = no
+
+[Laufwerke]
+	path = /media/disk
+	comment = Alle eingebundenen Laufwerke
+	writeable = No
+	browseable = Yes
+	guest ok = Yes
+	
+		]]>
+		</scriptdata>
+	</scripts> 
+	<package name="initramfs_cbrescue_noassi" version="20130903-00" allowfail="yes">
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="6d8f00b88f7d055c1c828c8e6b63cbba3d1e856b">surfer-notfall4-20130903-00.tgz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+install -m 0644 ${SRCDIR}/surfer-notfall4-${PKGVERSION}.tgz ${INITRAMFS}/etc/lesslinux/skel/surfer.tgz
+		
+		]]>
+		</install>
+	</package>
+</llpackages>

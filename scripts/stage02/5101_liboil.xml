@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="liboil"
+		version="0.3.17"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>           
+				<pkg sha1="f9d7103a3a4a4089f56197f81871ae9129d229ed">liboil-0.3.17.tar.gz</pkg>
+				<mirror>http://liboil.freedesktop.org/download/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="365" page="http://liboil.freedesktop.org/download/" />
+			<check>
+				<page html="http://liboil.freedesktop.org/download/">
+					<atext linktext="liboil-0.3.18.tar.gz" />
+					<atext linktext="liboil-0.3.19.tar.gz" />
+					<atext linktext="liboil-0.3.20.tar.gz" />
+					<atext linktext="liboil-0.4.tar.gz" />
+					<atext linktext="liboil-0.4.0.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

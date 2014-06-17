@@ -1,0 +1,22 @@
+<llpackages>
+	<package 
+		name="rescuetool"
+		version="20111125-00"
+		class="user"
+		>
+	</package>
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/rescuetool" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /opt/computerbild/rescuetool/fakestart.sh
+surfer  ALL = NOPASSWD: /opt/computerbild/rescuetool/kexec-wrapper.sh
+surfer  ALL = NOPASSWD: /opt/computerbild/rescuetool/assi-wrapper.sh
+surfer  ALL = NOPASSWD: /usr/bin/chvt
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

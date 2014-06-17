@@ -1,0 +1,60 @@
+<llpackages>
+	<package 
+		name="ninvaders"
+		version="0.1.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="5ab825694b108cbfa988377ca216188fa9a76e89">ninvaders-0.1.1.tar.gz</pkg>
+				<mirror>http://heanet.dl.sourceforge.net/project/ninvaders/ninvaders/0.1.1/</mirror>
+			</file>
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xset-1.2.3." />
+					<atext linktext="xset-1.2.4." />
+					<atext linktext="xset-1.2.5." />
+					<atext linktext="xset-1.2.6." />
+					<atext linktext="xset-1.3." />
+					<atext linktext="xset-1.4." />
+					<atext linktext="xset-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			install -m 0755 nInvaders ${TGTDIR}/usr/bin
+			ln -s nInvaders ${TGTDIR}/usr/bin/ninvaders 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,126 @@
+<llpackages>
+	<dirs>
+		<dir mode="0755">/etc/lesslinux</dir>
+		<dir mode="0755">/etc/lesslinux/firefox</dir>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<!-- FIXME: Dubletten entfernen -->
+	<scripts>
+		<!-- <scriptdata location="/etc/lesslinux/firefox/firefox_common.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/firefox_common.cfg
+pref("startup.homepage_welcome_url", "file:///etc/lesslinux/branding/browser_startup.html");
+// END /etc/lesslinux/firefox/firefox_common.cfg
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/firefox/force_startpage.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/force_startpage.cfg
+pref("browser.startup.homepage", "file:///etc/lesslinux/branding/browser_too_old.html");
+lockPref("browser.startup.homepage", "file:///etc/lesslinux/branding/browser_too_old.html");
+// END /etc/lesslinux/firefox/force_startpage.cfg
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/firefox/prevent_xpi.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/prevent_xpi.cfg
+pref("xpinstall.enabled", false);
+lockPref("xpinstall.enabled", false);
+// END /etc/lesslinux/firefox/prevent_xpi.cfg
+		]]>
+		</scriptdata> -->
+		<scriptdata location="/etc/sudoers.lax.d/firefox" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /opt/firefox-13.0.1/firefox_smack
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/firefox" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /opt/firefox-13.0.1/firefox_smack
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0515-firefox50.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides ff
+#lesslinux license BSD
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+skipflash=0
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+expiration=20121230
+ffversion=` grep -E '\sfirefox-unstable\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
+
+case $1 in 
+    start)
+	printf "$bold===> Preparing Firefox $ffversion $normal\n"
+	[ "$security" '!=' "smack" ] || install -m 0755 /usr/bin/dbus-launch /static/bin/
+	mount -t tmpfs -o mode=0755,size=24m,nodev,nosuid tmpfs /opt/firefox-${ffversion}/plugins
+	if [ "$skipflash" -gt 0 ] ; then
+	    printf "$bold---> Skipping Flash Player $normal\n"
+	elif [ -f /lesslinux/blob/libflashplayer.so ] ; then
+	    ln -sf /lesslinux/blob/libflashplayer.so /opt/firefox-${ffversion}/plugins/
+	elif [ ` ls /lesslinux/blob/install_flash_player_*.tar.gz 2> /dev/null | wc -l ` -gt 0 ] ; then
+	    tar -C  /opt/firefox-${ffversion}/plugins -xvf \
+		` ls /lesslinux/blob/install_flash_player_*.tar.gz | tail -n1 ` 
+	elif [ -f /usr/lib/browserplugins/libgnashplugin.so ] ; then
+	   ln -sf /usr/lib/browserplugins/libgnashplugin.so /opt/firefox-${ffversion}/plugins/
+	fi
+    ;;
+    stop)
+	printf "$bold===> Unmounting Firefox overlay $normal\n"
+	umount /opt/firefox-${ffversion}/lesslinux > /dev/null 2>&1
+	umount /opt/firefox-${ffversion}/plugins > /dev/null 2>&1
+	umount /etc/lesslinux/firefox > /dev/null 2>&1
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/xinitrc.d/0023-firefox.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides ffuser
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+skipflash=0
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+[ -f /etc/default/browser ] && . /etc/default/browser
+
+expiration=20130101
+ffversion=` grep -E '\sfirefox-unstable\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
+
+case $1 in 
+    start)
+	# DEFAULT_HOMEPAGE should be set in /etc/default/browser
+	# homepage can be set via cheatcode homepage=http://blog.lesslinux.org/ at boot time
+	if [ -n "$DEFAULT_HOMEPAGE" ] ; then
+		find $HOME/.mozilla/firefox -maxdepth 2 -name prefs.js | while read fname ; do
+			echo 'user_pref("browser.startup.homepage", "'"$DEFAULT_HOMEPAGE"'");' > $fname
+		done
+	fi
+	find $HOME/.mozilla/firefox -maxdepth 2 -name prefs.js | while read fname ; do
+		if [ -n "$homepage" ] ; then
+			echo 'user_pref("browser.startup.homepage", "'"$homepage"'");' >> $fname
+		fi
+		# echo 'user_pref("browser.startup.homepage_override.mstone", "rv:'$ffversion'");' >> $fname
+		# echo 'user_pref("extensions.lastAppVersion", "'$ffversion'");' >> $fname
+		# echo 'user_pref("extensions.lastPlatformVersion", "'$ffversion'");' >> $fname
+		# sed -i 's/\:10\.0\.2/:'$ffversion'/g' $fname
+	done
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+	<package  name="firefox-unstable" />
+</llpackages>

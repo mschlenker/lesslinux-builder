@@ -1,0 +1,91 @@
+<llpackages>
+	<package 
+		name="partclone"
+		version="0.2.69"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                            
+				<pkg sha1="6e29a6e5b258743687ed27d2eeecefbcffc7a424">partclone_0.2.69.orig.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/partclone/stable/0.2.69/</mirror>
+			</file>
+			<manualcheck date="20140215" interval="180" page="http://downloads.sourceforge.net/project/partclone/stable/" />
+			<check>
+				<page html="http://sourceforge.net/projects/partclone/files/stable/">
+					<atext linktext="0.2.70" />
+					<atext linktext="0.2.71" />
+					<atext linktext="0.2.72" />
+					<atext linktext="0.2.73" />
+					<atext linktext="0.2.74" />
+					<atext linktext="0.2.75" />
+					<atext linktext="0.2.76" />
+					<atext linktext="0.2.77" />
+					<atext linktext="0.2.78" />
+					<atext linktext="0.2.79" />
+					<atext linktext="0.2.80" />
+					<atext linktext="0.2.81" />
+					<atext linktext="0.2.82" />
+					<atext linktext="0.2.83" />
+					<atext linktext="0.2.84" />
+					<atext linktext="0.2.9" />
+					<atext linktext="0.3." />
+					<atext linktext="0.4" />
+					<atext linktext="0.5" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>e2fsprogs</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ntfs-3g_ntfsprogs</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --enable-extfs --sysconfdir=/etc   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --enable-extfs --sysconfdir=/etc 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

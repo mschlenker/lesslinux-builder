@@ -1,0 +1,69 @@
+<llpackages>
+	<package name="ethtool" />
+	<scripts>
+	<scriptdata location="/etc/rc.d/0200-ethtool.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides ethtool
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	ethtool=''
+	ethwait=10
+	ethiface=eth0
+	for i in `cat /proc/cmdline` ; do
+		case "$i" in
+		    ethtool=*)
+			ethtool=`echo "$i" | awk -F '=' '{print $2}'`
+		    ;;
+		    ethwait=*)
+			ethwait=`echo "$i" | awk -F '=' '{print $2}'`
+		    ;;
+		    ethiface=*)
+			ethiface=`echo "$i" | awk -F '=' '{print $2}'`
+		    ;;
+		esac
+	done
+	if [ -n "$ethtool" ] ; then
+		printf "$bold===> Setting options on wired interfaces $normal\n"
+		printf "$bold---> Waiting 5s for interfaces to settle $normal\n"
+		sleep 5 
+		ethjobs=` echo $ethtool | sed 's%|% %' ` 
+		ifaces=` echo $ethiface | sed 's%|% %' ` 
+		for j in $ethjobs ; do
+			params=''
+			[ "$j" = "autonegoff100full" ] && params="autoneg off speed 100 duplex full"
+			[ "$j" = "autonegoff100half" ] && params="autoneg off speed 100 duplex half"
+			[ "$j" = "autonegoff10full" ]  && params="autoneg off speed 10 duplex full"
+			[ "$j" = "autonegoff10half" ]  && params="autoneg off speed 10 duplex half"
+			for n in $ifaces ; do
+				ethtool -s ${n} ${params} 
+				sleep 1
+				for m in ` seq 0 $ethwait ` ; do
+					if ethtool ${n} | grep 'Auto-negotiation: off' ; then
+						sleep 1
+					else
+						printf "$bold+++> Still trying to set parameters for ${n} $normal\n"
+						ethtool -s ${n} ${params} 
+						sleep 2
+					fi
+				done
+				printf "$bold---> Current state of interface ${n} $normal\n"
+				ethtool ${n}
+			done
+		done
+	fi
+    ;;
+esac
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

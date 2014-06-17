@@ -1,0 +1,62 @@
+<llpackages>
+	<package 
+		name="p7zip"
+		version="9.20.1"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="1cd567e043ee054bf08244ce15f32cb3258306b7">p7zip_9.20.1_src_all.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/p7zip/p7zip/9.20.1</mirror>
+			</file>
+			<manualcheck date="20120715" interval="180" page="http://downloads.sourceforge.net/project/p7zip/p7zip" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/p7zip/files/p7zip/">
+					<atext linktext="9.14" />
+					<atext linktext="9.15" />
+					<atext linktext="9.16" />
+					<atext linktext="9.17" />
+					<atext linktext="10." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}_${PKGVERSION}_src_all.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}_src_all.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}_src_all.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			sed -i 's/DEST_HOME=\/usr\/local/DEST_HOME=\/usr/g' install.sh
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			make all
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			make DEST_HOME=/usr install
+			]]>
+		</install>
+	</package>
+</llpackages>

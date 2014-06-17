@@ -1,0 +1,83 @@
+<llpackages>
+	<package 
+		name="shadow"
+		version="4.2.1"
+		class="skel"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                            
+				<pkg sha1="0917cbadd4ce0c7c36670e5ecd37bbed92e6d82d">shadow-4.2.1.tar.xz</pkg>
+				<mirror>http://pkg-shadow.alioth.debian.org/releases/</mirror>
+			</file>
+			<manualcheck date="20140518" interval="180" page="http://pkg-shadow.alioth.debian.org/releases/" />
+			<!-- <check>
+				<page html="http://pkg-shadow.alioth.debian.org/">
+					<atext linktext="shadow-4.1.5.2.NEWS" />
+					<atext linktext="shadow-4.1.6.NEWS" />
+					<atext linktext="shadow-4.1.7.NEWS" />
+					<atext linktext="shadow-4.1.8" />
+					<atext linktext="shadow-4.2." />
+					<atext linktext="shadow-4.3" />
+					<atext linktext="shadow-5" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			
+			sed -i 's/groups$(EXEEXT) //' src/Makefile.in
+			find man -name Makefile.in -exec sed -i 's/groups\.1 / /' {} \;
+			sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD MD5@' -e 's@/var/spool/mail@/var/mail@' etc/login.defs
+			sed -i -e 's/ ko//' -e 's/ zh_CN zh_TW//' man/Makefile.in
+	
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --sysconfdir=/etc --with-libpam=no && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/bin
+			make install DESTDIR=${TGTDIR}
+			mv -v ${TGTDIR}/usr/bin/passwd ${TGTDIR}/bin
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf ${PKGNAME}-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,65 @@
+<llpackages>
+	<package 
+		name="hal"
+		version="0.5.14"
+		class="lib"
+		>
+	</package>
+	<scripts>
+		<scriptdata location="/etc/rc.d/0422-hald.sh" mode="0755" group="0" owner="0">
+			<![CDATA[#!/static/bin/ash
+	
+#lesslinux provides hald
+#lesslinux license BSD
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	printf "${bold}===> Starting HALD ${normal}\n"
+	[ "$security" = "smack" ] && \
+		echo netmgr > /proc/self/attr/current
+	mkdir -p /etc/hal/fdi/preprobe
+	mkdir -p /etc/hal/fdi/information
+	mkdir -p /etc/hal/fdi/policy
+	mkdir -p /usr/var/cache/hald
+	/usr/libexec/hald-generate-fdi-cache
+	/usr/sbin/hald --daemon=yes --use-syslog &
+    ;;
+    stop)
+	true
+        # echo "FIXME: properly stop hald"
+    ;;
+esac
+
+			]]>
+		</scriptdata>
+		<scriptdata location="/etc/dbus-1/system.d/halusers.conf" mode="0644" group="0" owner="0">
+			<![CDATA[<!DOCTYPE busconfig PUBLIC
+ "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+<busconfig>
+
+ <!-- Allow users in the halusers group invoke HAL methods -->
+ <policy group="halusers">
+  <allow send_interface="org.freedesktop.Hal.Device.SystemPowerManagement"/>
+  <allow send_interface="org.freedesktop.Hal.Device.LaptopPanel"/>
+  <allow send_interface="org.freedesktop.Hal.Device.Volume"/>
+  <allow send_interface="org.freedesktop.Hal.Device.Volume.Crypto"/>
+ </policy>
+ <policy user="0">
+   <allow send_interface="org.freedesktop.Hal.Device.SystemPowerManagement"/>
+   <allow send_interface="org.freedesktop.Hal.Device.LaptopPanel"/>
+   <allow send_interface="org.freedesktop.Hal.Device.Volume"/>
+   <allow send_interface="org.freedesktop.Hal.Device.Volume.Crypto"/>
+ </policy>
+</busconfig>
+]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

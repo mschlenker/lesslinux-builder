@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="lesslinux-bankgui"
+		version="20111216-01"
+		class="user"
+		>
+	</package>
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/bankgui" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = /usr/bin/bankselector.sh
+surfer  ALL = NOPASSWD: /usr/bin/writesmackrules.sh
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/bankgui" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = /usr/bin/bankselector.sh
+surfer  ALL = NOPASSWD: /usr/bin/writesmackrules.sh
+		]]>
+		</scriptdata>
+	<scriptdata location="/etc/rc.d/0640-bankgui.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides bankgui
+#lesslinux license BSD
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	printf "$bold===> Adjusting bankgui $normal\n"
+	if [ -f "/etc/lesslinux/banking/allowedservers.xml" ] ; then
+		printf "$bold===> Allowing servers $normal\n"
+		timeout 7 /static/sbin/newsmack netmgr /usr/bin/ruby /usr/bin/smack_bankrules.rb
+	fi
+	if mountpoint -q /etc/ssl/certs ; then
+		"$bold===> Skipping SSL certs $normal\n"
+	else
+		freeloop=` losetup -f `
+		losetup $freeloop /usr/share/lesslinux/banking/certs.sqs
+		mkdir -p /etc/ssl/certs
+		mount $freeloop /etc/ssl/certs
+	fi
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

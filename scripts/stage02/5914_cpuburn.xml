@@ -1,0 +1,40 @@
+<llpackages>
+	<package 
+		name="cpuburn"
+		version="20130925"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="2e3a4ee29aa42b76d655fcf5f3e3819b54a137f2">cpuburn-20130925.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			echo 'Nothing to build'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/cpuburn
+			install -m 0755 cpuburn ${TGTDIR}/usr/bin
+			install -m 0755 cpuburn.rb ${TGTDIR}/usr/share/lesslinux/cpuburn
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="pcsc-lite"
+		class="user"
+		>
+	</package>
+	<scripts>
+		<scriptdata location="/etc/rc.d/0520-pcscd.sh" mode="0755" group="0" owner="0">
+			<![CDATA[#!/static/bin/ash
+	
+#lesslinux provides pcscd
+#lesslinux license BSD
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	printf "${bold}===> Starting PCSCD ${normal}\n"
+	cat /proc/mounts | grep -q /usr/pcsc/drivers || mount -o bind /usr/lib/pcsc/drivers /usr/pcsc/drivers
+	if pidof pcscd ; then
+		printf "${bold}---> Please terminate other instances first ${normal}\n"
+		exit 1
+	fi
+	/usr/sbin/pcscd
+	# [ "$security" = "smack" ] && \
+	#	echo netmgr > /proc/self/attr/current
+	# /usr/bin/dbus-daemon --config-file=/etc/dbus-1/system.conf
+    ;;
+    stop)
+	printf "${bold}===> Terminating PCSCD ${normal}\n"
+	kill ` pidof pcscd ` 
+	if pidof pcscd ; then
+		sleep 2
+		kill -9 ` pidof pcscd `
+		killall -9 pcscd 
+	fi
+	rm -rf /var/run/pcscd/pcscd.*
+    ;;
+esac
+
+			]]>
+		</scriptdata>
+	</scripts>
+</llpackages>
+

@@ -1,0 +1,84 @@
+<llpackages>
+	<package 
+		name="cryptsetup"
+		version="1.6.4"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                                      
+				<pkg sha1="cf4c4ea68e50e2756a824fa90645ad38eab7895c">cryptsetup-1.6.4.tar.xz</pkg>
+				<mirror>http://cryptsetup.googlecode.com/files/</mirror>
+			</file>
+			<manualcheck date="20140518" interval="60" page="http://code.google.com/p/cryptsetup/" />
+			<!-- <check>
+				<page html="http://code.google.com/p/cryptsetup/">
+					<atext linktext="cryptsetup-1.6.6." />
+					<atext linktext="cryptsetup-1.6.7." />
+					<atext linktext="cryptsetup-1.6.8." />
+					<atext linktext="cryptsetup-1.6.9." />
+					<atext linktext="cryptsetup-1.6.5." />
+					<atext linktext="cryptsetup-1.7." />
+					<atext linktext="cryptsetup-1.8." />
+					<atext linktext="cryptsetup-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>device-mapper</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>popt</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd cryptsetup-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd cryptsetup-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf cryptsetup-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

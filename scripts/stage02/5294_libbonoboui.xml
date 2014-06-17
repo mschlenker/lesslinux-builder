@@ -1,0 +1,137 @@
+<llpackages>
+	<package 
+		name="libbonoboui"
+		version="2.24.5"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                           
+				<pkg sha1="9657e7194ef3f5782f183e021fdb4014531b6cd8">libbonoboui-2.24.5.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libbonoboui/2.24/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/libbonoboui/2.24/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libbonoboui/2.24/">
+					<atext linktext="libbonoboui-2.24.6." />
+					<atext linktext="libbonoboui-2.24.7." />
+					<atext linktext="libbonoboui-2.24.8." />
+					<atext linktext="libbonoboui-2.24.9." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libbonoboui/">
+					<atext linktext="2.26" />
+					<atext linktext="2.28" />
+					<atext linktext="2.30" />
+					<atext linktext="2.32" />
+					<atext linktext="3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-vfs</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXft</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libart_lgpl</dep>
+                        <dep>libbonobo</dep>
+                        <dep>libcanberra</dep>
+                        <dep>libglade</dep>
+                        <dep>libgnome</dep>
+                        <dep>libgnomecanvas</dep>
+                        <dep>libogg</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libtool</dep>
+                        <dep>libvorbis</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>popt</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<!-- soft -->
+			 <dep>imake</dep>
+			 <dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
+			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf ${PKGNAME}-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>

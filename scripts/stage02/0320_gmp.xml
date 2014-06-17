@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="gmp"
+		version="6.0.0a"
+		class="devel"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                   
+				<pkg sha1="1aaf78358ab9e34aeb61f3ae08174ee9118ece98">gmp-6.0.0a.tar.xz</pkg>
+				<mirror>http://ftp.sunet.se/pub/gnu/gmp/</mirror>
+			</file>
+			<manualcheck date="20140517" interval="120" page="http://ftp.sunet.se/pub/gnu/gmp/" />
+			<check>
+				<page html="http://ftp.sunet.se/pub/gnu/gmp/">
+					<atext linktext="gmp-6.0.0b." />
+					<atext linktext="gmp-6.0.0c." />
+					<atext linktext="gmp-6.0.1." />
+					<atext linktext="gmp-6.0.2." />
+					<atext linktext="gmp-6.0.3." />
+					<atext linktext="gmp-6.1." />
+					<atext linktext="gmp-6.2." />
+					<atext linktext="gmp-6.3." />
+					<atext linktext="gmp-6.4." />
+					<atext linktext="gmp-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-6.0.0
+			ABI=32 ./configure --prefix=/usr --enable-cxx  && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-6.0.0
+			make check 2>&1 | tee gmp-check-log
+			awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-6.0.0
+			make install DESTDIR=${TGTDIR}
+			mkdir -v ${TGTDIR}/usr/share/doc/gmp-${PKGVERSION}
+			cp    -v doc/{isa_abi_headache,configuration} doc/*.html ${TGTDIR}/usr/share/doc/gmp-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION} ${PKGNAME}-6.0.0
+			]]>
+		</clean>
+	</package>
+</llpackages>

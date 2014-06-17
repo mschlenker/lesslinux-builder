@@ -1,0 +1,75 @@
+<llpackages>
+	<package 
+		name="libart_lgpl"
+		version="2.3.21"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                      
+				<pkg sha1="dbac185c65696381ef188de1f98b348b530e22f9">libart_lgpl-2.3.21.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libart_lgpl/2.3/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/libart_lgpl/2.3/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libart_lgpl/2.3/">
+					<atext linktext="libart_lgpl-2.3.22.tar.bz2" />
+					<atext linktext="libart_lgpl-2.3.23.tar.bz2" />
+					<atext linktext="libart_lgpl-2.3.24.tar.bz2" />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libart_lgpl/">
+					<atext linktext="2.4/" />
+					<atext linktext="2.5/" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

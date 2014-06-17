@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="firmware-broadcom"
+		version="20130213"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<!-- <file>                                                                               
+				<pkg sha1="b9040f65378e057d6e0a7b54a76952c0369d4f66">b43-tools-20110114.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<file>                                                                               
+				<pkg sha1="8f33940a14e078e86003e8128e93ede3c436fc8e">b43-fwcutter-017.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                               
+				<pkg sha1="b1f61d283bd7d05ade313da522cb0d0ad4033652">wl_apsta-3.130.20.0.o</pkg>
+				<mirror>http://downloads.openwrt.org/sources/</mirror>
+			</file>
+			<!-- <file>                                                                                 
+				<pkg sha1="ad5b3170cb9c72636e84392aefcdacf306270938">broadcom-wl-4.178.10.4.tar.bz2</pkg>
+				<mirror>http://downloads.openwrt.org/sources/</mirror>
+			</file> -->
+			<file>                                                                                 
+				<pkg sha1="21691a8c99c66f58d18f863ee43593d1633b454c">broadcom-wl-5.100.138.tar.bz2</pkg>
+				<mirror>http://www.lwfinger.com/b43-firmware/</mirror>
+			</file>
+			<manualcheck date="20120624" interval="60" page="http://linuxwireless.org/en/users/Drivers/b43#firmware" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+			<dep>rsync</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xjf ${SRCDIR}/b43-fwcutter-017.tar.bz2
+			tar xjf ${SRCDIR}/broadcom-wl-5.100.138.tar.bz2
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd b43-fwcutter-017
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/lib/firmware
+			./b43-fwcutter-017/b43-fwcutter -w ${TGTDIR}/lib/firmware ${SRCDIR}/wl_apsta-3.130.20.0.o
+			./b43-fwcutter-017/b43-fwcutter -w ${TGTDIR}/lib/firmware broadcom-wl-5.100.138/linux/wl_apsta.o
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf b43-fwcutter-017
+			rm -rf broadcom-wl-5.100.138
+			]]>
+		</clean>
+	</package>
+</llpackages>

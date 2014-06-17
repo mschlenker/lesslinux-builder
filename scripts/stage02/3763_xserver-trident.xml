@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="xf86-video-trident"
+		version="20130514"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                      
+				<pkg sha1="85bc8fcb89d035ef06097055bd1c61ce57ad448a">xf86-video-trident-20130514.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
+			</file>
+			<manualcheck date="20130430" interval="180" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
+					<atext linktext="xf86-video-trident-1.3.9." />
+					<atext linktext="xf86-video-trident-1.3.10." />
+					<atext linktext="xf86-video-trident-1.3.7." />
+					<atext linktext="xf86-video-trident-1.3.8." />
+					<atext linktext="xf86-video-trident-1.4." />
+					<atext linktext="xf86-video-trident-1.5." />
+					<atext linktext="xf86-video-trident-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libpciaccess</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xf86dgaproto</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME} # -${PKGVERSION}
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME} # -${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME} # -${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

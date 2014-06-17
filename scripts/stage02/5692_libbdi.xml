@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="libdbi"
+		version="0.9.0"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                    
+				<pkg sha1="6c1ecfb78f43a921d5f914299304bd6c82cb0e23">libdbi-0.9.0.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libdbi/libdbi/libdbi-0.9.0/</mirror>
+			</file>
+			<manualcheck date="20140215" interval="180" page="http://downloads.sourceforge.net/project/libdbi/libdbi/" />
+			<check>
+				<page html="http://sourceforge.net/projects/libdbi/files/libdbi/">
+					<atext linktext="0.9.1" />
+					<atext linktext="0.9.2" />
+					<atext linktext="0.9.3" />
+					<atext linktext="0.9.4" />
+					<atext linktext="0.9.5" />
+					<atext linktext="0.9.6" />
+					<atext linktext="0.9.7" />
+					<atext linktext="0.9.8" />
+					<atext linktext="0.10." />
+					<atext linktext="0.11." />
+					<atext linktext="0.12." />
+					<atext linktext="1.0" />
+				</page>
+			</check>
+		</sources> 
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

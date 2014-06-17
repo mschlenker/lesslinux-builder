@@ -1,0 +1,62 @@
+<llpackages>
+	<package 
+		name="uClibc-amd64"
+		version="20130713"
+		class="devel"
+		install="destdir"
+		providedeps="no"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                   
+				<pkg sha1="deebd68a78f5c80eb20d41b864c578928a7116ac">uClibc-amd64-20130713.config</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                                             
+				<pkg sha1="d140272e5b6eb58953154e9bb92ee6633bc394cc">uClibc-20130713.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130712" interval="90" page="http://www.uclibc.org/" />
+		</sources>
+		<builddeps>
+                        <dep>cross-gcc-amd64</dep>
+                        <dep>cross-linux-headers</dep>
+                        <dep>cross-binutils-amd64</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/uClibc-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			
+			cp ${SRCDIR}/uClibc-amd64-${PKGVERSION}.config uClibc/.config 
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			
+			cd uClibc
+			make
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			cd uClibc
+			mkdir -p ${TGTDIR}/usr/local/crosstools-amd64/amd64-linux-uclibc
+			make install PREFIX=${TGTDIR}/usr/local/crosstools-amd64/amd64-linux-uclibc/
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf uClibc # -${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

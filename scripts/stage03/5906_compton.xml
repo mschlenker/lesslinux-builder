@@ -1,0 +1,27 @@
+<llpackages>
+	<package name="compton" />
+	<scripts>
+		<scriptdata location="/etc/xinitrc.d/0010-compton.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides compton
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+skipflash=0
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors 
+
+case $1 in 
+    start)
+	compton -cCGbf 
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

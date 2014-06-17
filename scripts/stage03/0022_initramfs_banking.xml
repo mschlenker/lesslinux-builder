@@ -1,0 +1,413 @@
+<llpackages>
+	<dirs>
+	        <dir mode="0755">/etc/wicd</dir>
+		<dir mode="0755">/etc/smack</dir>
+		<dir mode="0755">/etc/smack/banks</dir>
+	</dirs>
+	<links>
+		<!-- blue theme used in Sicher Surfen 2009 -->
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink>
+		<!-- green theme used in Notfall-CD 2.0 -->
+		<!-- <softlink target="/usr/share/themes/Xfce-saltlake/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce-saltlake/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+	</links>
+	<scripts>
+		<scriptdata location="/etc/rc.defaults.override" mode="0755" group="0" owner="0">
+		<![CDATA[#
+rootpwhash='!'
+clean_rootpwhash='!'
+userpwhash='!'
+clean_userpwhash='!'		
+wlan=''
+#		]]>
+		</scriptdata>
+		<scriptdata location="/static/bin/looplauncher" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/sh
+while true ; do
+	strace -o /dev/null /usr/bin/netbook-launcher-efl
+done
+		
+#		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+tar -C /lesslinux/cdrom -cf - FreeOTFE lizenzen GPL.txt cbicon.ico autorun.inf | tar -C /lesslinux/data -xf - 
+mkdir -p /lesslinux/data/binary
+freespace=` df -k /lesslinux/data | tail -n1 | awk '{print $4}' `
+freespace=` expr $freespace - 1024 ` 
+if [ "$freespace" -gt 524288 ] ; then
+	contsize=255
+elif [ "$freespace" -gt 0 ] ; then
+	contsize=` expr $freespace / 2048 - 1 ` 
+fi
+[ "$contsize" -lt 1 ] && exit 1
+for fname in binary/bank2011.llc bank2011.vol ; do
+	echo '---> Creating '"${fname}" > /dev/tty8
+	echo -n '0%' > /dev/tty8
+	for i in ` seq 0 $contsize ` ; do
+		percentage=` expr ${i}00 / ${contsize} `
+		printf '\033[10D' > /dev/tty8 
+		printf "${percentage}" > /dev/tty8
+		echo -n '%' > /dev/tty8
+		dd if=/dev/zero bs=1048576 count=1 seek=${i} of=/lesslinux/data/${fname}
+	done
+	printf '\033[10D' > /dev/tty8 
+	sync
+	echo '100%' > /dev/tty8
+done
+
+#		]]>
+		</scriptdata>
+		<scriptdata location="/static/bin/geldkarte.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+pidof pcscd
+retval="$?"
+if [ "$retval" -gt 0 ] ; then 
+	case $lang in
+		de)
+			zenity --error --text "Der PCSCD Prozess scheint nicht zu laufen. Bitte stecken Sie den Kartenleser vor dem Systemstart an."
+		;;
+		*)
+			zenity --error --text "The PCSCD process does not seem to berunning. Please attach the card reader before booting." 
+		;;
+	esac
+	exit 1
+fi
+
+output=` timeout -t 3 geldkarte loaded `
+retval="$?"
+
+if [ "$retval" -lt 1 ] ; then
+	amount=` echo "$output" | awk '{print $5}' `
+	case $lang in 
+		de)
+			zenity --info --text "Auf der eingelegten Geldkarte befinden sich $amount EURO."
+		;;
+		*)
+			zenity --info --text "The amount of micromoney stored on your card is $amount."
+		;;
+	esac
+	exit 0
+else
+	case $lang in 
+		de)
+			zenity --error --text "Der Kartenleser oder die eingelegte Geldkarte konnten nicht erkannt werden."
+		;;
+		*)
+			zenity --error --text "The card reader or the inserted card could not be identified."
+		;;
+	esac
+	exit 1
+fi
+
+		
+#		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+		
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done		
+
+if lspci | grep -q 'VMware SVGA' ; then
+	xrandr --size 1024x768
+	xrandr --size 1280x800
+	xrandr --size 1366x768
+fi
+
+grep -q 'home/surfer/Downloads' /home/surfer/.gtk-bookmarks || echo 'file:///home/surfer/Downloads' >>  /home/surfer/.gtk-bookmarks
+
+# /usr/bin/xterm &
+# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+
+# replace old path for background file on COMPUTERBILD edition
+sed -i 's/\/etc\/lesslinux\/branding\/computerbild\/desktop-cb-20090707\.jpg/\/etc\/lesslinux\/branding\/desktop.jpg/' /home/surfer/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+sed -i 's/\/opt\/firefox\/lib/\/opt\/firefox35\/lib/g' /home/surfer/.config/xfce4/panel/launcher-10.rc
+sed -i 's/\/opt\/firefox\/lib/\/opt\/firefox35\/lib/g' /home/surfer/Desktop/010_firefox.desktop
+sed -i 's/etc\/lesslinux\/branding\/computerbild\/firstrun.html/etc\/lesslinux\/branding\/browser_startup.html/g' \
+/home/surfer/.mozilla/firefox/kqe39h9l.default/prefs.js
+		
+sed -i 's/layouts=us,ru/layouts='"${xkbmap}"',us/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+sed -i 's/display_type=0/display_type=1/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+sed -i 's/variants=,winkeys/variants=,/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+
+# FIXME! Should not be hardcoded!
+
+if mountpoint -q /media/bank2011_vol ; then
+	if [ "$lang" = de ] ; then
+		ln -s /media/bank2011_vol "/home/surfer/Desktop/Dokumente"
+		grep -q 'home/surfer/Desktop/Dokumente' /home/surfer/.gtk-bookmarks || echo 'file:///home/surfer/Desktop/Dokumente' >>  /home/surfer/.gtk-bookmarks
+		echo "user_pref(\"browser.download.dir\", \"/home/surfer/Desktop/Dokumente\");" >> /home/surfer/.mozilla/firefox/default_profile/prefs.js
+		[ -f /media/bank2011_vol/Anleitung.pdf ] || cp /etc/lesslinux/branding/Anleitung.pdf /media/bank2011_vol/
+	elif [ "$lang" = pl ] ; then
+		ln -s /media/bank2011_vol "/home/surfer/Desktop/Dokumenty"
+		grep -q 'home/surfer/Desktop/Dokumenty' /home/surfer/.gtk-bookmarks || echo 'file:///home/surfer/Desktop/Dokumenty' >>  /home/surfer/.gtk-bookmarks
+		echo "user_pref(\"browser.download.dir\", \"/home/surfer/Desktop/Dokumenty\");" >> /home/surfer/.mozilla/firefox/default_profile/prefs.js
+		## [ -f /media/bank2011_vol/Instrukcja.pdf ] || cp /etc/lesslinux/branding/Instrukcja.pdf /media/bank2011_vol/
+	else
+		ln -s /media/bank2011_vol "/home/surfer/Desktop/Documents"
+		grep -q 'home/surfer/Desktop/Documents' /home/surfer/.gtk-bookmarks || echo 'file:///home/surfer/Desktop/Documents' >>  /home/surfer/.gtk-bookmarks
+		echo "user_pref(\"browser.download.dir\", \"/home/surfer/Desktop/Documents\");" >> /home/surfer/.mozilla/firefox/default_profile/prefs.js
+	fi
+else
+	rm -f /home/surfer/Desktop/Dokumente /home/surfer/Desktop/Dokumenty /home/surfer/Desktop/Documents
+	echo "user_pref(\"browser.download.dir\", \"/home/surfer/Desktop\");" >> /home/surfer/.mozilla/firefox/default_profile/prefs.js
+fi
+
+cp /usr/share/applications/shutdown.desktop .config/xfce4/panel/launcher-1/13143755381.desktop 
+
+# FIXME! Firefox might do it itself!
+
+if grep 'version="3.5"' /home/surfer/.mozilla/firefox/default_profile/extensions/langpack-de\@firefox.mozilla.org/install.rdf ; then
+	rm -rf /home/surfer/.mozilla/firefox/default_profile/extensions/langpack-de\@firefox.mozilla.org
+fi
+
+sed -i 's/rv:1\.9\.1\.5/rv:1.9.2.2/g' /home/surfer/.mozilla/firefox/default_profile/prefs.js
+sed -i 's/rv:1\.9\.2\.2/rv:1.9.2.6/g' /home/surfer/.mozilla/firefox/default_profile/prefs.js
+sed -i 's/3\.5\.5/3.6.2/g' /home/surfer/.mozilla/firefox/default_profile/prefs.js
+sed -i 's/3\.6\.2/3.6.6/g' /home/surfer/.mozilla/firefox/default_profile/prefs.js
+
+mkdir /home/surfer/.lesslinux
+		
+# Temporary fixes!
+#		
+# if [ -f /home/surfer/Desktop/bankcrawler.desktop ] ; then
+#	echo "Skipping bank crawler"
+# else
+#	cat > /home/surfer/Desktop/bankcrawler.desktop << CRWL
+#	
+#[Desktop Entry]
+#Version=1.0
+#Encoding=UTF-8
+#Type=Application
+#Name=Bank verwalten
+#Comment=
+#Categories=Application;
+#Exec=/usr/bin/bankselector_wrapper.sh
+#Icon=xfce-internet
+#Terminal=false
+#StartupNotify=false
+#
+#CRWL
+#
+# fi
+# 
+# Remove some unnecessary desktop icons
+rm -f Desktop/010_firefox.desktop Desktop/gnucash.desktop Desktop/bankcrawler.desktop
+
+[ -f /home/surfer/.config/Trolltech.conf ] || cp /etc/lesslinux/branding/misc/Trolltech.conf /home/surfer/.config/
+
+mkdir /home/surfer/Downloads
+
+if [ "$lang" = "ru" ] ; then
+	# setxkbmap -rules xorg -model pc105 -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+	setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+else
+	# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+	setxkbmap -layout "$xkbmap"
+fi
+
+ln -sf /home/surfer/.mozilla/firefox/sv6s0ikf.default /home/surfer/.mozilla/firefox/default_profile
+
+# Start Firefox with the warning page...
+
+decay=20121230 
+today=` date '+%Y%m%d' ` 
+
+if [ "$today" -gt "$decay" ] ; then
+	firefox file:///etc/lesslinux/branding/browser_too_old.html &
+fi
+
+/static/bin/looplauncher &
+/usr/bin/xfce4-session
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/smack/accesses" mode="0644" group="0" owner="0">
+		<![CDATA[internet	_		rwxa
+_ 		internet	rwxa
+internet	usrbin		r---
+_		usrbin		r-x-
+netmgr		usrbin		r-x-
+netmgr          _               rwxa
+netmgr          bankcfg         rwxa
+bankcfg         netmgr          rw--
+_		netmgr		rwx-
+internet	outgoing	rw--
+netmgr		outgoing	rw--
+outgoing	internet	rw--
+outgoing	netmgr          rw--
+hbci            _               rwxa
+_               hbci            rwxa
+hbci            outgoing        rw--
+outgoing        hbci            rw--
+hbci            usrbin          r-x-
+hbci            internet        rwxa
+internet        hbci            rwxa]]>
+		</scriptdata>
+		<scriptdata location="/etc/smack/user" mode="0644" group="0" owner="0">
+		<![CDATA[root _ +
+surfer _ internet hbci
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0060-earlynet.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+#lesslinux provides netdummy
+
+exit 0
+
+# END		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0300-earlynet.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+#lesslinux provides earlynet
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+# Start Networking
+
+case $1 in 
+  start)
+    if [ "$nonet" -gt 0 ] ; then
+      printf "$bold===> Skipping networking $normal\n"
+    else
+      if [ "$dhcp" -gt 0 ] ; then
+          printf "$bold===> Setting up networking (DHCP) $normal\n"
+	  for i in 0 1 2 3 4 5 6 7 8 9
+          do
+	      udhcpc -q -s /static/share/udhcpc/default.script -i eth$i > /dev/null 2>&1 &
+	  done
+      else
+	  # staticnet=|iface|ip|mask|dns|gateway|
+	  netif=` echo "$staticnet" | awk -F '|' '{print $2}' `
+	  ip=` echo "$staticnet" | awk -F '|' '{print $3}' `
+	  mask=` echo "$staticnet" | awk -F '|' '{print $4}' `
+	  dns=` echo "$staticnet" | awk -F '|' '{print $5}' `
+	  gw=` echo "$staticnet" | awk -F '|' '{print $6}' ` 
+          printf "$bold===> Setting up networking (static)                              "
+          ifconfig $netif inet $ip netmask $mask
+          echo "nameserver $dns" > /etc/resolv.conf
+          route add default gw $gw
+          if ifconfig $netif > /dev/null 2>&1 ; then
+              printf "$success"
+          else       
+              printf "$failed"
+          fi
+      fi
+    fi
+  ;;
+  stop)
+    printf "$bold===> Stopping ethernet networking                                "
+    if ifconfig $netif down > /dev/null 2>&1 ; then
+      printf "$success"
+    else
+      printf "$failed"
+    fi  
+  ;;
+esac    
+
+printf "$normal"
+
+# END		]]>
+		</scriptdata>
+		<scriptdata location="/etc/inittab" mode="0644" group="0" owner="0">
+		<![CDATA[::sysinit:/etc/rc
+tty1::respawn:/static/bin/show_placeholder
+tty2::respawn:/static/sbin/getty -l /static/bin/login 38400 tty2
+tty3::respawn:/static/bin/x_user_start
+tty4::askfirst:/static/bin/ash
+tty5::askfirst:/bin/bash
+::ctrlaltdel:/static/sbin/reboot
+::shutdown:/etc/rc.shutdown]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/placeholder_monitor" mode="0644" group="0" owner="0">
+		<![CDATA[
+Wenn Sie dies sehen koennen...
+
+ * ... haben Sie entweder mit der Tastenkombination Strg+Alt+F1 auf die
+   Systemkonsole gewechselt - mit Strg+Alt+F6 wechseln Sie zurueck in die
+   grafische Oberflaeche, oder...
+   
+ * ... die grafische Oberflaeche konnte nicht richtig gestartet werden.
+   In diesem Fall starten Sie das System bitte mit der Tastenkombination
+   Strg+Alt+Entf neu.
+   
+Probieren Sie ggf. die Eintraege im Menu fuer einen abgesicherten Start.
+Hier finden Sie viele Optionen, mit denen Sie das Startverhalten beein-
+flussen koennen.
+
+Sollte das Problem erneut auftreten, wenden Sie sich mit moeglichst detail-
+lierten Angaben zur Hardware per Email an support@mattiasschlenker.de.
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/placeholder_container" mode="0644" group="0" owner="0">
+		<![CDATA[
+System nicht gefunden
+
+Ein Fehler ist aufgetreten: Das Systemlaufwerk wurde nicht gefunden! Die wahr-
+scheinlichsten Ursachen sind ein nicht unterstuetzter Chipsatz oder ein bes-
+chaedigtes Startmedium. Bitte gehen Sie wie folgt vor:
+
+ * Falls Sie von einer selbst gebrannten CD starten: Brennen Sie die CD
+   erneut, verwenden Sie den Brennmodus DAO und brennen Sie langsamer
+   
+ * Bei Start von USB-Stick: Moeglicherweise ist der Stick defekt, formatieren
+   Sie ihn vor der Installation neu oder verwenden Sie einen anderen
+   
+ * Bei Start von CD: Probieren Sie ein anderes Laufwerk, beispielsweise ein
+   per USB statt per SATA angebundenes
+   
+Sollte das Problem erneut auftreten, wenden Sie sich mit moeglichst detail-
+lierten Angaben zur Hardware per Email an support@mattiasschlenker.de.
+]]>
+		</scriptdata>
+	</scripts>
+	
+	<package name="initramfs_cbbanking" version="20111124" allowfail="yes">
+		<sources>
+			<file>                                                          
+				<pkg sha1="3760482ad6c054d3d31738d117fb9bda938fc16e">surfer-cbbanking-20111124.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+install -m 0644 ${SRCDIR}/surfer-cbbanking-${PKGVERSION}.tar.gz ${INITRAMFS}/etc/lesslinux/skel/surfer.tgz
+		
+		]]>
+		</install>
+	</package>
+</llpackages>

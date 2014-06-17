@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="scrollkeeper"
+		version="0.3.14"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>       
+				<pkg sha1="0462799a2d96f46dec76f2fd057e2dfe8d7cb94d">scrollkeeper-0.3.14.tar.gz</pkg>
+				<mirror>http://surfnet.dl.sourceforge.net/sourceforge/scrollkeeper/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="365" page="http://sourceforge.net/projects/scrollkeeper/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/scrollkeeper/files/">
+					<atext linktext="scrollkeeper-0.3.15.tar.gz" />
+					<atext linktext="scrollkeeper-0.3.16.tar.gz" />
+					<atext linktext="scrollkeeper-0.4.tar.gz" />
+					<atext linktext="scrollkeeper-0.4.0.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>docbook-sgml4</dep>
+			<dep>docbook-sgml</dep>
+			<dep>docbook-xml</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

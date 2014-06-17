@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="device-mapper"
+		version="2.02.105"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="796163e766480cdc427cd443dc1336ae8e8e3bd7">LVM2.2.02.105.tgz</pkg>
+				<mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
+			</file>
+			<manualcheck date="20140214" interval="180" page="http://mirrors.kernel.org/sources.redhat.com/lvm2/" />
+			<check>
+				<page html="http://mirrors.kernel.org/sources.redhat.com/lvm2/">
+					<atext linktext="LVM2.2.02.107.t" />
+					<atext linktext="LVM2.2.02.108.t" />
+					<atext linktext="LVM2.2.02.106.t" />
+					<atext linktext="LVM2.2.02.11" />
+					<atext linktext="LVM2.2.03" />
+					<atext linktext="LVM2.2.04" />
+					<atext linktext="LVM2.3" />
+					<atext linktext="LVM2.4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/LVM2.${PKGVERSION}.tgz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd LVM2.${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd LVM2.${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf LVM2.${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

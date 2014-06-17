@@ -1,0 +1,45 @@
+<llpackages>
+	<package 
+		name="chntpw"
+		version="140201"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file><!-- http://pogostick.net/~pnh/ntpasswd/chntpw-source-080526.zip -->
+				<pkg sha1="a28bef3fc4e333cd1d4abe40e07c3a75348bdd8d">chntpw-source-140201.zip</pkg>
+				<mirror>http://pogostick.net/~pnh/ntpasswd/</mirror>
+			</file>
+			<manualcheck date="20140519" interval="180" page="http://pogostick.net/~pnh/ntpasswd/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unzip ${SRCDIR}/${PKGNAME}-source-${PKGVERSION}
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			install -m 0755 chntpw /usr/bin
+			install -m 0755 reged /usr/bin
+			]]>
+		</install>
+	</package>
+</llpackages>

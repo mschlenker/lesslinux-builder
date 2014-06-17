@@ -1,0 +1,26 @@
+<llpackages>
+	<package name="alsa-utils" />
+	<!-- <dirs>
+		<dir mode="0755">/lib</dir>
+		<dir mode="0755">/lib/udev</dir>
+		<dir mode="0755">/lib/udev/rules.d</dir>
+	</dirs> -->
+	<!-- <scripts>
+		<scriptdata location="/lib/udev/rules.d/77-sound-permissions.rules" mode="0644" group="0" owner="0">
+		<![CDATA[
+
+# ALSA devices
+SUBSYSTEM=="sound", 		GROUP="audio"
+SUBSYSTEM=="snd", 		GROUP="audio"
+KERNEL=="controlC[0-9]*",	NAME="snd/%k", MODE="0666"
+KERNEL=="hw[CD0-9]*",		NAME="snd/%k", MODE="0662"
+KERNEL=="pcm[CD0-9]*c",		NAME="snd/%k", MODE="0662"
+KERNEL=="pcm[CD0-9]*p",		NAME="snd/%k", MODE="0666"
+KERNEL=="midiC[D0-9]*",		NAME="snd/%k", MODE="0666"
+KERNEL=="timer",		NAME="snd/%k", MODE="0666"
+KERNEL=="seq",			NAME="snd/%k", MODE="0666"
+
+		]]>
+		</scriptdata>
+	</scripts> -->
+</llpackages>

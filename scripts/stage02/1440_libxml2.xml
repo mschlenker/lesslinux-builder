@@ -1,0 +1,87 @@
+<llpackages>
+	<package 
+		name="libxml2"
+		version="2.9.1"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>               
+				<pkg sha1="eb3e2146c6d68aea5c2a4422ed76fe196f933c21">libxml2-2.9.1.tar.gz</pkg>
+				<mirror>ftp://xmlsoft.org/libxml2/</mirror>
+			</file>
+			<manualcheck date="20140221" interval="180" page="ftp://xmlsoft.org/libxml2/" />
+			<check>
+				<page html="ftp://xmlsoft.org/libxml2/">
+					<atext linktext="libxml2-2.9.2." />
+					<atext linktext="libxml2-2.9.3." />
+					<atext linktext="libxml2-2.9.4." />
+					<atext linktext="libxml2-2.9.5." />
+					<atext linktext="libxml2-2.9.6." />
+					<atext linktext="libxml2-2.9.7." />
+					<atext linktext="libxml2-2.9.8." />
+					<atext linktext="libxml2-2.9.9." />
+					<atext linktext="libxml2-2.10." />
+					<atext linktext="libxml2-2.11." />
+					<atext linktext="libxml2-2.12." />
+					<atext linktext="libxml2-2.13." />
+					<atext linktext="libxml2-2.14." />
+					<atext linktext="libxml2-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which pump ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr  --with-python --with-threads=no  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr  --with-python --with-threads=no
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

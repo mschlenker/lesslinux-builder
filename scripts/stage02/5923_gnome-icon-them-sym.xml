@@ -1,0 +1,89 @@
+<llpackages>
+	<package 
+		name="gnome-icon-theme-symbolic"
+		version="3.10.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                       
+				<pkg sha1="5b61ee13f0a93615a7aba525438b1b6d452ba94b">gnome-icon-theme-symbolic-3.10.1.tar.xz</pkg>
+				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gnome-icon-theme-symbolic/3.10/</mirror>
+			</file>
+			<manualcheck date="20131129" interval="365" page="http://www.libarchive.org/" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/2.32/">
+					<atext linktext="file-roller-2.32.3." />
+					<atext linktext="file-roller-2.32.4." />
+					<atext linktext="file-roller-2.32.5." />
+					<atext linktext="file-roller-2.32.6." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/">
+					<atext linktext="2.34" />
+					<atext linktext="2.36" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+			<dep>gnome-icon-theme3</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>procps</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			paxctl -m ${TGTDIR}/usr/bin/file-roller
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

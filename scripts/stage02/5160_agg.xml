@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="agg"
+		version="2.5"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="08f23da64da40b90184a0414369f450115cdb328">agg-2.5.tar.gz</pkg>
+				<mirror>http://www.antigrain.com/</mirror>
+			</file>
+			<manualcheck date="20120715" interval="180" page="http://www.antigrain.com/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>rsync</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			rsync -avHP include/ /usr/include/agg2/
+			chmod -R 0755 /usr/include/agg2/
+			install -m 0755 src/libagg.a /usr/lib/
+			]]>
+		</install>
+	</package>
+</llpackages>

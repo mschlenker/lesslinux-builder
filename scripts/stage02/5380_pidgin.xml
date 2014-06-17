@@ -1,0 +1,111 @@
+<llpackages>
+	<package 
+		name="pidgin"
+		version="2.10.9"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="f3de8fd94dba1f4c98d5402a02430f9f323e665a">pidgin-2.10.9.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/pidgin/Pidgin/2.10.9/</mirror>
+			</file>
+			<manualcheck date="20140216" interval="180" page="http://sourceforge.net/projects/pidgin/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/pidgin/files/">
+					<atext linktext="pidgin-2.10.11." />
+					<atext linktext="pidgin-2.10.12." />
+					<atext linktext="pidgin-2.10.10." />
+					<atext linktext="pidgin-2.11." />
+					<atext linktext="pidgin-2.12." />
+					<atext linktext="pidgin-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+			<dep>avahi</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>grep</dep>
+                        <dep>gst-plugins-base</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+			<dep>libidn</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>startup-notification</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<!-- soft -->
+			 <dep>imake</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/opt --sysconfdir=/etc  --disable-screensaver \
+				--disable-gtkspell --disable-vv --disable-meanwhile \
+				--disable-nm  --disable-tcl
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			# paxctl -m /opt/bin/finch
+			# paxctl -m /opt/bin/pidgin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

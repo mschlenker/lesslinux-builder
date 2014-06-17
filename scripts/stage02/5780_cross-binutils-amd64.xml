@@ -1,0 +1,90 @@
+<llpackages>
+	<package 
+		name="cross-binutils-amd64"
+		version="2.24"
+		class="devel"
+		install="destdir"
+		providedeps="no"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                 
+				<pkg sha1="7ac75404ddb3c4910c7594b51ddfc76d4693debb">binutils-2.24.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
+			</file>
+			<!-- <file>                                                                                  
+				<pkg sha1="6b8f8f5de91332527c5d173caf010818e6c86409">binutils-2.22-build_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20140205" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/binutils/">
+					<atext linktext="binutils-2.24.1." />
+					<atext linktext="binutils-2.24.2." />
+					<atext linktext="binutils-2.24.3" />
+					<atext linktext="binutils-2.25." />
+					<atext linktext="binutils-2.26." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/binutils-${PKGVERSION}.tar.bz2
+			mkdir binutils-build
+			]]>
+		</unpack>
+		<!-- <patch>			
+			<![CDATA[ 
+			cd binutils-${PKGVERSION}
+			## cat ${SRCDIR}/${PKGNAME}-2.19-pt-pax-flags-200811041810.patch | patch -p1
+			sed -i -e 's/@colophon/@@colophon/' -e 's/doc@cygnus.com/doc@@cygnus.com/' bfd/doc/bfd.texinfo
+			rm -fv etc/standards.info
+			sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd binutils-build
+			../binutils-${PKGVERSION}/configure --target=amd64-linux-uclibc  --prefix=/usr/local/crosstools-amd64 --disable-nls --disable-werror
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd binutils-build
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[ 
+			rm -rf binutils-build
+			rm -rf binutils-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

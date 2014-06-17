@@ -1,0 +1,66 @@
+<llpackages>
+	<package 
+		name="compositeproto"
+		version="0.4.2"
+		class="lib"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="aa7b5abcfd5bbfad7cb681ce89dc1d6e381e3044">compositeproto-0.4.2.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+				<mirror>ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/current/src/proto/</mirror>
+			</file>
+			<manualcheck date="20130430" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
+					<atext linktext="compositeproto-0.4.3." />
+					<atext linktext="compositeproto-0.4.4." />
+					<atext linktext="compositeproto-0.4.5." />
+					<atext linktext="compositeproto-0.4.6." />
+					<atext linktext="compositeproto-0.5." />
+					<atext linktext="compositeproto-0.6." />
+					<atext linktext="compositeproto-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

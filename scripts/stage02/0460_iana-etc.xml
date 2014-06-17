@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="iana-etc"
+		version="2.30"
+		class="skel"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="218593bcb9264014c4e397d838b2c218eac9df06">iana-etc-2.30.tar.bz2</pkg>
+				<mirror>http://sethwklein.net/</mirror>
+			</file>
+			<manualcheck date="20130503" interval="365" page="http://sethwklein.net/" />
+			<check>
+				<page html="http://sethwklein.net/iana-etc">
+					<atext linktext="iana-etc-2.31." />
+					<atext linktext="iana-etc-2.32." />
+					<atext linktext="iana-etc-2.33." />
+					<atext linktext="iana-etc-2.40." />
+					<atext linktext="iana-etc-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>ncurses</dep>
+			<dep>ncurses-8bit</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

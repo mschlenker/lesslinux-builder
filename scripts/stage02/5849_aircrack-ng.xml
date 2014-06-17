@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="aircrack-ng"
+		version="1.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="16eed1a8cf06eb8274ae382150b56589b23adf77">aircrack-ng-1.1.tar.gz</pkg>
+				<mirror>http://download.aircrack-ng.org/</mirror>
+			</file>
+			<!-- <manualcheck date="20120822" interval="120" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<check>
+				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
+					<atext linktext="1.42.7." />
+					<atext linktext="1.42.8." />
+					<atext linktext="1.42.6." />
+					<atext linktext="1.43." />
+					<atext linktext="1.44." />
+					<atext linktext="1.45." />
+					<atext linktext="2.0." />
+					<atext linktext="2.00." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>sed</dep>
+			<dep>wireless_tools</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/-Werror//g' common.mak
+			make
+
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} prefix=/usr
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

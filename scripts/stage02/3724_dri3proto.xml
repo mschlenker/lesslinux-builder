@@ -1,0 +1,62 @@
+<llpackages>
+	<package 
+		name="dri3proto"
+		version="1.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                 
+				<pkg sha1="d6d1ed90553370299c82446dac1dbcc76ddc53fd">dri3proto-1.0.tar.gz</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<manualcheck date="20130430" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
+					<atext linktext="xf86dgaproto-2.1.1.tar.bz2" />
+					<atext linktext="xf86dgaproto-2.1.2.tar.bz2" />
+					<atext linktext="xf86dgaproto-2.2.tar.bz2" />
+					<atext linktext="xf86dgaproto-2.3.tar.bz2" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,40 @@
+<llpackages>
+	<package 
+		name="ncurses"
+		version="5.9"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                      
+				<pkg sha1="3e042e5f2c7223bffdaac9646a533b8c758b65b5">ncurses-5.9.tar.gz</pkg>
+				<mirror>ftp://ftp.gnu.org/gnu/ncurses/</mirror>
+			</file>
+			<manualcheck date="20130503" interval="180" page="http://ftp.gnu.org/gnu/ncurses/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/ncurses/">
+					<atext linktext="ncurses-5.10" />
+					<atext linktext="ncurses-5.11" />
+					<atext linktext="ncurses-6." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools --with-shared --without-debug --without-ada --enable-overwrite && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

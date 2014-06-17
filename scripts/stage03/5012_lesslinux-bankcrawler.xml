@@ -1,0 +1,24 @@
+<llpackages>
+	<package 
+		name="lesslinux-bankcrawler"
+		version="20091117"
+		class="user"
+		>
+	</package>
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/bankcrawler" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/local/bankcrawler/crawl_bank.sh
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/bankcrawler" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/local/bankcrawler/crawl_bank.sh
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

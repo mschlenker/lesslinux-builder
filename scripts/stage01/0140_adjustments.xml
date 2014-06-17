@@ -1,0 +1,36 @@
+<llpackages>
+	<package 
+		name="adjustments_1"
+		version="0.2"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<manualcheck date="20120611" interval="365" page="" />
+		</sources>
+		<sources>
+			<!-- keine -->
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			echo 'Nothing to unpack'
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			
+			# SPECS=`dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/specs
+			# $LFS_TGT-gcc -dumpspecs | sed -e 's@/lib\(64\)\?/ld@/tools&@g' -e "/^\*cpp:$/{n;s,$, -isystem /tools/include,}" > $SPECS
+			# echo "New specs file is: $SPECS"
+			# unset SPECS
+	
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			echo 'Nothing to install'
+			touch /tools/include/adjustments_successful
+			]]>
+		</install>
+	</package>
+</llpackages>

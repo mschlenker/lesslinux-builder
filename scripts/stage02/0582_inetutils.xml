@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="inetutils"
+		version="1.9.2"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="b5aa9902e3a82bfd6e75b9aa80b72111e5418447">inetutils-1.9.2.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/inetutils/</mirror>
+			</file>
+			<manualcheck date="20140214" interval="180" page="http://ftp.gnu.org/gnu/inetutils" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/inetutils/">
+					<atext linktext="inetutils-1.9.3." />
+					<atext linktext="inetutils-1.9.4." />
+					<atext linktext="inetutils-1.9.5." />
+					<atext linktext="inetutils-1.10." />
+					<atext linktext="inetutils-1.11." />
+					<atext linktext="inetutils-1.12." />
+					<atext linktext="inetutils-1.13." />
+					<atext linktext="inetutils-1.14." />
+					<atext linktext="inetutils-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>binutils</dep>
+			<dep>bison</dep>
+			<dep>coreutils</dep>
+			<dep>gcc</dep>
+			<dep>glibc</dep>
+			<dep>grep</dep>
+			<dep>linux_headers</dep>
+			<dep>ncurses</dep>
+			<dep>readline</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e '/gets is a/d' lib/stdio.in.h
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --libexecdir=/usr/sbin --localstatedir=/var --disable-ifconfig \
+				--disable-logger --disable-syslogd --disable-whois --disable-servers && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

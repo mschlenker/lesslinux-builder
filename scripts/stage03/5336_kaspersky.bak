@@ -1,0 +1,242 @@
+<llpackages>
+	<package 
+		name="kaspersky"
+		version="5.7-26"
+		class="user"
+		strip="no"
+		>
+	</package>
+	<dirs>
+		<dir mode="0755">/var/opt</dir>
+		<dir mode="0755">/var/opt/kaspersky</dir>
+		<dir mode="0755">/var/opt/kaspersky/kav4ws</dir>
+		<dir mode="0755">/var/opt/kaspersky/kav4ws/middleware</dir>
+		<dir mode="0755">/etc/init.d</dir>
+		<dir mode="0755">/etc/opt</dir>
+		<dir mode="0755">/etc/opt/kaspersky</dir>
+		<dir mode="0755">/var/log/kaspersky</dir>
+		<dir mode="0755">/var/log/kaspersky/kav4ws</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/init.d/kav4ws" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+/bin/true
+
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0600-kaspersky.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides kaspersky
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	if mountpoint -q /opt/kaspersky/kav4ws/var ; then
+	    printf "$bold===> Skipping Kaspersky, already mounted $normal\n"
+	else
+	    printf "$bold===> Preparing Kaspersky Antivirus $normal\n"
+	    mountpoint -q /lesslinux/cdrom && mount -o remount,rw /lesslinux/cdrom
+	    if mountpoint -q /lesslinux/cdrom && mkdir /lesslinux/cdrom/kaspersky ; then
+		tar -C /opt/kaspersky/kav4ws/var/bases -cf - . | tar -C /lesslinux/cdrom/kaspersky -xf -
+	    fi
+	    if [ -d /lesslinux/cdrom/kaspersky ] ; then
+		mount -o mode=755 -t tmpfs tmpfs /opt/kaspersky/kav4ws/var
+		mkdir -m 0755 /opt/kaspersky/kav4ws/var/bases
+		mkdir -m 0755 /opt/kaspersky/kav4ws/var/bases.backup
+		mkdir -m 0755 /opt/kaspersky/kav4ws/var/licenses
+		mount -o bind /lesslinux/cdrom/kaspersky /opt/kaspersky/kav4ws/var/bases
+	    else
+		rand=` dd if=/dev/urandom bs=1024 count=16 | sha1sum | awk '{print $1}' `
+		tar -cf /tmp/kaspersky_${rand}.tar /opt/kaspersky/kav4ws/var
+		mount -o mode=755 -t tmpfs tmpfs /opt/kaspersky/kav4ws/var
+		tar -C / -xf /tmp/kaspersky_${rand}.tar
+		rm /tmp/kaspersky_${rand}.tar
+		mkdir /opt/kaspersky/kav4ws/var/bases.backup
+	    fi
+	    if [ -f /etc/lesslinux/branding/kaspersky.key ] ; then
+		mv /opt/kaspersky/kav4ws/var/licenses/appinfo.dat /opt/kaspersky/kav4ws/var/licenses/appinfo.bak
+		/opt/kaspersky/kav4ws/bin/kav4ws-licensemanager -a/etc/lesslinux/branding/kaspersky.key
+	    fi
+	    echo '' >> /etc/sudoers
+	    echo '# added by /etc/rc.d/0600-kaspersky.sh' >> /etc/sudoers
+	    echo 'surfer  ALL = NOPASSWD: /opt/kaspersky/kav4ws/bin/kav4ws-keepup2date' >> /etc/sudoers
+	    echo 'surfer  ALL = NOPASSWD: /opt/computerbild/avfrontend/virusfrontend' >> /etc/sudoers
+	    echo 'surfer  ALL = NOPASSWD: /usr/share/lesslinux/avfrontend/virusfrontend' >> /etc/sudoers
+	fi
+    ;;
+    stop)
+	printf "$bold===> Unmounting Kaspersky signatures $normal\n"
+	if mountpoint -q /opt/kaspersky/kav4ws/var/bases ; then
+		fuser -km -9 /opt/kaspersky/kav4ws/var/bases
+		umount /opt/kaspersky/kav4ws/var/bases
+	fi
+	if mountpoint -q /opt/kaspersky/kav4ws/var ; then
+		fuser -km -9 /opt/kaspersky/kav4ws/var
+		umount /opt/kaspersky/kav4ws/var
+	fi
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/var/opt/kaspersky/applications.setup" mode="0755" group="0" owner="0">
+		<![CDATA[[52]
+DEFAULTCONFIG=/etc/opt/kaspersky/kav4ws.conf
+ID=52
+INSTROOT=/opt/kaspersky/kav4ws
+NAME=Kaspersky Anti-Virus for Linux WorkStation
+PATH_BASES=/opt/kaspersky/kav4ws/var/bases
+PATH_LICENSES=/opt/kaspersky/kav4ws/var/licenses
+USED_PKGMGR=deb
+VERSION=5.7.26		
+
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/opt/kaspersky/kav4ws.conf" mode="0755" group="0" owner="0">
+		<![CDATA[
+
+[path]
+BasesPath=/opt/kaspersky/kav4ws/var/bases
+LicensePath=/opt/kaspersky/kav4ws/var/licenses
+IcheckerDbFile=/opt/kaspersky/kav4ws/var/ichecker.db
+
+[locale]
+DateFormat=%d/%m/%y
+TimeFormat=%H:%M:%S
+
+[network]
+MiddlewareAddress=/var/run/kav4ws/kavmidware.socket
+
+[monitor.options]
+ExcludeDirs=/proc
+ExcludeMask=
+IncludeDirs=
+Packed=yes
+Archives=no
+SelfExtArchives=no
+MailBases=no
+MailPlain=no
+Heuristic=yes
+Cure=no
+Ichecker=no
+FileCacheSize=15000
+KernelCacheSize=500
+CheckFilesLimit=20
+HashType=md5
+UseAVbasesSet=standard
+
+[monitor.path]
+BackupPath=
+PidFile=/var/run/kav4ws/kavmonitor.pid
+
+[monitor.actions]
+OnInfected=
+OnSuspicion=
+OnWarning=
+OnCured=
+OnProtected=
+OnCorrupted=
+OnError=
+
+[monitor.report]
+ReportLevel=4
+ReportFileName=/var/log/kaspersky/kav4ws/kavmonitor.log
+Append=yes
+ShowOk=yes
+
+[scanner.options]
+Archives=yes
+Cure=no
+ExcludeDirs=
+ExcludeMask=
+Heuristic=yes
+LocalFS=no
+MailBases=yes
+MailPlain=yes
+Packed=yes
+Recursion=yes
+SelfExtArchives=yes
+Ichecker=yes
+UseAVbasesSet=standard
+FollowSymlinks=yes
+
+[scanner.path]
+BackupPath=
+
+
+[scanner.report]
+Append=yes
+ReportFileName=/var/log/kaspersky/kav4ws/kavscanner.log
+ReportLevel=4
+ShowOk=yes
+ShowContainerResultOnly=no
+ShowObjectResultOnly=no
+
+[scanner.container]
+OnInfected=
+OnSuspicion=
+OnWarning=
+OnCured=
+OnProtected=
+OnCorrupted=
+OnError=
+
+[scanner.object]
+OnInfected=
+OnSuspicion=
+OnWarning=
+OnCured=
+OnProtected=
+OnCorrupted=
+OnError=
+
+[scanner.display]
+ShowContainerResultOnly=no
+ShowObjectResultOnly=no
+ShowOk=yes
+ShowProgress=yes
+
+[updater.path]
+AVBasesTestPath=/opt/kaspersky/kav4ws/lib/bin/avbasestest
+BackUpPath=/opt/kaspersky/kav4ws/var/bases.backup
+
+[updater.report]
+Append=yes
+ReportFileName=/var/log/kaspersky/kav4ws/keepup2date.log
+ReportLevel=4
+
+[updater.options]
+PassiveFtp=yes
+KeepSilent=no
+ProxyAddress=
+UseProxy=no
+UseUpdateServerUrl=no
+UseUpdateServerUrlOnly=no
+UpdateServerUrl=
+PostUpdateCmd=/etc/init.d/kav4ws reload_avbase
+RegionSettings=ru
+ConnectTimeout=30
+
+[middleware.options]
+ScannerExe=/opt/kaspersky/kav4ws/bin/kav4ws-kavscanner
+Keepup2dateExe=/opt/kaspersky/kav4ws/bin/kav4ws-keepup2date
+LicensemanagerExe=/opt/kaspersky/kav4ws/bin/kav4ws-licensemanager
+MonitorInitdScript=/etc/init.d/kav4ws
+DirToStoreFiles=/var/opt/kaspersky/kav4ws/middleware
+ReportLevel=0
+ReportsDir=/var/log/kaspersky/kav4ws
+
+
+]]>
+	</scriptdata>
+	</scripts>
+</llpackages>

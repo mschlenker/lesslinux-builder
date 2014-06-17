@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="psmisc"
+		version="22.21"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                   
+				<pkg sha1="09fabbef4539b58b6b8738a73da3d21d5daa1a58">psmisc-22.21.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/psmisc/psmisc/</mirror>
+			</file>
+			<manualcheck date="20140221" interval="180" page="http://sourceforge.net/projects/psmisc/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/psmisc/files/">
+					<atext linktext="psmisc-22.23." />
+					<atext linktext="psmisc-22.24." />
+					<atext linktext="psmisc-22.22." />
+					<atext linktext="psmisc-23." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			ln -sv killall ${TGTDIR}/bin/pidof
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

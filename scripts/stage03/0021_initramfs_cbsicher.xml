@@ -1,0 +1,278 @@
+<llpackages>
+	<links>
+		<!-- blue theme used in Sicher Surfen 2009 -->
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink>
+		<!-- green theme used in Notfall-CD 2.0 -->
+		<!-- <softlink target="/usr/share/themes/Xfce-saltlake/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce-saltlake/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+	</links>
+	<scripts>
+		<scriptdata location="/etc/inittab" mode="0644" group="0" owner="0">
+		<![CDATA[::sysinit:/etc/rc
+tty1::respawn:/static/bin/show_placeholder
+tty2::respawn:/static/sbin/getty -l /static/bin/login 38400 tty2
+tty3::respawn:/static/sbin/getty -l /static/bin/login 38400 tty3
+tty4::askfirst:/static/bin/ash
+tty5::askfirst:/bin/bash
+tty6::respawn:/static/bin/x_user_start
+::ctrlaltdel:/static/sbin/reboot
+::shutdown:/etc/rc.shutdown]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.defaults.override" mode="0755" group="0" owner="0">
+		<![CDATA[#
+rootpwhash='!'
+clean_rootpwhash='!'
+userpwhash='!'
+clean_userpwhash='!'		
+wlan=''
+#		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+		
+# /usr/bin/xterm &
+# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+
+# replace old path for background file on COMPUTERBILD edition
+sed -i 's/\/etc\/lesslinux\/branding\/computerbild\/desktop-cb-20090707\.jpg/\/etc\/lesslinux\/branding\/desktop.jpg/' /home/surfer/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+
+# Replace old version path in Thunderbirds desktop icon
+sed -i 's/-2\.0\.0\.22//g' /home/surfer/Desktop/020_thunderbird.desktop
+sed -i 's/\/opt\/thunderbird\/lib\/thunderbird\/icons\/mozicon50\.xpm/\/opt\/thunderbird30\/lib\/thunderbird\/chrome\/icons\/default\/default48.png/g' \
+	/home/surfer/Desktop/020_thunderbird.desktop
+sed -i 's/-2\.0\.0\.22//g' /home/surfer/.config/xfce4/panel/launcher-12473156652.rc
+sed -i 's/\/opt\/thunderbird\/lib\/thunderbird\/icons\/mozicon50\.xpm/\/opt\/thunderbird30\/lib\/thunderbird\/chrome\/icons\/default\/default48.png/g' \
+	/home/surfer/.config/xfce4/panel/launcher-12473156652.rc
+sed -i 's%/opt/thunderbird30/%/opt/thunderbird31/%g' /home/surfer/Desktop/020_thunderbird.desktop
+sed -i 's%/opt/thunderbird30/%/opt/thunderbird31/%g' /home/surfer/.config/xfce4/panel/launcher-12473156652.rc
+
+# Replace old versions of firefox icons
+sed -i 's/\/opt\/firefox\/lib/\/opt\/firefox35\/lib/g' /home/surfer/.config/xfce4/panel/launcher-10.rc
+sed -i 's/\/opt\/firefox\/lib/\/opt\/firefox35\/lib/g' /home/surfer/Desktop/010_firefox.desktop
+sed -i 's/image\/jpeg=firefox-usercreated.desktop/image\/jpeg=ristretto.desktop/g' /home/surfer/.local/share/applications/defaults.list
+sed -i 's/image\/png=firefox-usercreated.desktop/image\/png=ristretto.desktop/g' /home/surfer/.local/share/applications/defaults.list
+sed -i 's/image\/gif=firefox-usercreated.desktop/image\/gif=ristretto.desktop/g' /home/surfer/.local/share/applications/defaults.list
+sed -i 's/etc\/lesslinux\/branding\/computerbild\/firstrun.html/etc\/lesslinux\/branding\/browser_startup.html/g' \
+	/home/surfer/.mozilla/firefox/kqe39h9l.default/prefs.js
+sed -i 's%Icon=/opt/firefox35/lib/firefox/icons/mozicon128.png%Icon=/opt/firefox50/icons/mozicon128.png%g' /home/surfer/Desktop/010_firefox.desktop
+sed -i 's%Icon=/opt/firefox35/lib/firefox/icons/mozicon128.png%Icon=/opt/firefox50/icons/mozicon128.png%g' /home/surfer/.config/xfce4/panel/launcher-10.rc
+sed -i 's%Icon=/opt/firefox35/lib/firefox/icons/mozicon128.png%Icon=/opt/firefox50/icons/mozicon128.png%g' /home/surfer/.config/xfce4/panel/launcher-3/13021041340.desktop
+sed -i 's%Icon=/opt/firefox35/lib/firefox/icons/mozicon128.png%Icon=/opt/firefox50/icons/mozicon128.png%g' /home/surfer/.config/xfce4/panel/launcher-3/13203468600.desktop
+sed -i 's%Icon=/opt/thunderbird31/lib/thunderbird/chrome/icons/default/default48.png%Icon=/opt/thunderbird50/chrome/icons/default/default256.png%g' /home/surfer/Desktop/020_thunderbird.desktop
+sed -i 's%Icon=/opt/thunderbird31/lib/thunderbird/chrome/icons/default/default48.png%Icon=/opt/thunderbird50/chrome/icons/default/default256.png%g' /home/surfer/.config/xfce4/panel/launcher-4/13203926690.desktop
+sed -i 's%Icon=/opt/thunderbird31/lib/thunderbird/chrome/icons/default/default48.png%Icon=/opt/thunderbird50/chrome/icons/default/default256.png%g' /home/surfer/.config/xfce4/panel/launcher-12473156652.rc
+
+
+# Replace changed wicd icon path
+sed -i 's/=wicd-client/=wicd-gtk/g' /home/surfer/Desktop/005_wicd.desktop
+		
+# Delete Thunderbird icon if started without container
+if mount | grep '/home' | grep '/dev/mapper' ; then
+	echo '/home seems to be on container, no need to delete Thunderbird'
+else
+	echo '/home does not seem to be on container, deleting Thunderbird'
+	rm /home/surfer/Desktop/020_thunderbird.desktop
+	rm /home/surfer/.config/xfce4/panel/launcher-12473156652.rc
+	sed -i 's/<item name="launcher" id="12473156652"\/>/<!-- weg damit -->/g' /home/surfer/.config/xfce4/panel/panels.xml
+	if [ -f /etc/lesslinux/surfer.hash ] ; then
+		echo 'Hash for surfer exists, keeping mount tools'
+	elif [ "$laxsudo" '!=' 1 ] ; then
+		echo 'Hash for surfer missing, deleting mount tools'
+		rm /home/surfer/Desktop/030_mmmm.desktop
+		rm /home/surfer/.config/xfce4/panel/launcher-12473151760.rc
+		mv /home/surfer/.config/xfce4/panel/launcher-9.rc /home/surfer/.config/xfce4/panel/launcher-9.bak
+		cat /home/surfer/.config/xfce4/panel/launcher-9.bak | head -n 13 > /home/surfer/.config/xfce4/panel/launcher-9.rc
+		sed -i 's/<item name="launcher" id="12473151760"\/>/<!-- weg damit -->/g' /home/surfer/.config/xfce4/panel/panels.xml
+	fi
+fi
+
+# Add the new firefox submenus for flash
+oldsha=` sha1sum /home/surfer/.config/xfce4/panel/launcher-10.rc | awk '{print $1}' `
+if [ "$oldsha" = "24626ba26ee53a16d9f314ea73ec41234a01f6ad" ] ; then
+	tar -C /home/ -x surfer/.config/xfce4/panel/launcher-10.rc -f /etc/lesslinux/skel/surfer.tgz
+fi
+
+# Change some firefox settings according to language
+if [ "$lang" = "ru" ] ; then
+	if [ -f /home/surfer/.mozilla/firefox/kqe39h9l.default/russian_mod ] ; then
+		echo "Russian files already copied"
+	else
+		mv /home/surfer/.mozilla/firefox/kqe39h9l.default/searchplugins.ru/searchplugins /home/surfer/.mozilla/firefox/kqe39h9l.default/
+		cp /home/surfer/.mozilla/firefox/kqe39h9l.default/places.sqlite.ru /home/surfer/.mozilla/firefox/kqe39h9l.default/places.sqlite
+		cp /home/surfer/.mozilla/firefox/kqe39h9l.default/search.sqlite.ru /home/surfer/.mozilla/firefox/kqe39h9l.default/search.sqlite
+		cp /home/surfer/.mozilla/firefox/kqe39h9l.default/prefs.js.ru /home/surfer/.mozilla/firefox/kqe39h9l.default/prefs.js
+		sed -i 's/display_type=0/display_type=1/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+		touch /home/surfer/.mozilla/firefox/kqe39h9l.default/russian_mod
+		touch /home/surfer/.lesslinux/keymaps.replaced
+	fi
+elif [ "$lang" = "pl" ] ; then
+	if [ -f /home/surfer/.mozilla/firefox/kqe39h9l.default/polish_mod ]; then
+		echo "Polish files already copied"
+	else
+		# mv /home/surfer/.mozilla/firefox/kqe39h9l.default/searchplugins.pl/searchplugins /home/surfer/.mozilla/firefox/kqe39h9l.default/
+		cp /home/surfer/.mozilla/firefox/kqe39h9l.default/places.sqlite.pl /home/surfer/.mozilla/firefox/kqe39h9l.default/places.sqlite
+		cp /home/surfer/.mozilla/firefox/kqe39h9l.default/search.sqlite.pl /home/surfer/.mozilla/firefox/kqe39h9l.default/search.sqlite
+		cp /home/surfer/.mozilla/firefox/kqe39h9l.default/prefs.js.pl /home/surfer/.mozilla/firefox/kqe39h9l.default/prefs.js
+		sed -i 's/layouts=us,ru/layouts='"${xkbmap}"',us/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+		sed -i 's/display_type=0/display_type=1/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+		sed -i 's/variants=,winkeys/variants=,/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+		touch /home/surfer/.mozilla/firefox/kqe39h9l.default/polish_mod
+		touch /home/surfer/.lesslinux/keymaps.replaced
+	fi
+else	
+	if [ -f /home/surfer/.lesslinux/keymaps.replaced ] ; then
+		echo "Skipping keymap replacements"
+	else
+		sed -i 's/layouts=us,ru/layouts='"${xkbmap}"',us/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+		sed -i 's/display_type=0/display_type=1/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+		sed -i 's/variants=,winkeys/variants=,/g' /home/surfer/.config/xfce4/panel/xkb-plugin-12581166590.rc
+		touch /home/surfer/.lesslinux/keymaps.replaced
+	fi
+fi
+		
+# Temporary fixes for Trolltech.conf
+[ -f /home/surfer/.config/Trolltech.conf ] || cp /etc/lesslinux/branding/misc/Trolltech.conf /home/surfer/.config/
+# Replace Bitstream Vera in Trolltech.conf
+sed -i 's/Bitstream Vera Sans/DejaVu Sans/g' /home/surfer/.config/Trolltech.conf
+
+# Make a Download directory for Mozilla Firefox
+mkdir /home/surfer/Downloads
+
+# Create a FileZilla icon if it does not exist
+if [ -f /home/surfer/.lesslinux/filezilla_icon_created ] ; then
+	echo 'Skipping FileZilla icon'
+else
+	mkdir /home/surfer/.lesslinux
+cat >> /home/surfer/Desktop/filezilla.desktop << FZICON
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=FileZilla
+Comment=
+Categories=CB-Other;
+Exec=/usr/bin/filezilla
+Icon=gnome-fs-network
+Terminal=false
+StartupNotify=true
+
+FZICON
+
+touch /home/surfer/.lesslinux/filezilla_icon_created
+fi
+
+# Create a VLC icon if it does not exist
+if [ -f /home/surfer/.lesslinux/vlc_icon_created ] ; then
+	echo 'Skipping VLC icon'
+else
+	mkdir /home/surfer/.lesslinux
+cat >> /home/surfer/Desktop/vlc.desktop << VLCICON
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=VLC
+Comment=Video LAN Client
+Categories=CB-Other;
+Exec=vlc
+Icon=video
+Terminal=false
+StartupNotify=true
+
+VLCICON
+
+touch /home/surfer/.lesslinux/vlc_icon_created
+fi
+
+# Disable Out Of Process Flash plugin - it won't play together with SMACK
+
+if [ -f /home/surfer/.lesslinux/oop_flash_disabled ] ; then
+	echo 'Skipping FileZilla icon'
+else
+	mkdir /home/surfer/.lesslinux
+	echo 'user_pref("dom.ipc.plugins.enabled.libflashplayer.so", false);' >> /home/surfer/.mozilla/firefox/kqe39h9l.default/prefs.js
+	touch /home/surfer/.lesslinux/oop_flash_disabled
+fi
+
+# Create a LessLinux icon if it does not exist
+if [ -f /home/surfer/.lesslinux/lesslinux_link_created ] ; then
+    echo 'LessLinux Link already exists'
+else
+cat >> /home/surfer/Desktop/lesslinux.desktop << LLWWW
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=LessLinux
+Comment=Visit the LessLinux website
+Comment[de]=Zur LessLinux-Webseite
+Categories=Application;
+Exec=/usr/bin/firefox http://www.lesslinux.de/ 
+Icon=www
+Terminal=false
+StartupNotify=true
+
+
+LLWWW
+
+    mkdir /home/surfer/.lesslinux
+    touch /home/surfer/.lesslinux/lesslinux_link_created
+fi
+
+
+
+# Keymap fixes according to language selection
+if [ "$lang" = "ru" ] ; then
+	# setxkbmap -rules xorg -model pc105 -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+	setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+else
+	# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+	setxkbmap -layout "$xkbmap"
+fi
+
+# if  [ -n "$xrandr" ] ; then
+#	/usr/bin/xrandr --size "$xrandr"
+# fi
+# user define keymap
+# if [ -f /home/surfer/.lesslinux/keymap.active ] ; then
+#	usermap=` cat /home/surfer/.lesslinux/keymap.active `
+#	setxkbmap -rules xorg -model pc105 -layout "$usermap"
+# fi
+
+/usr/bin/xfce4-session
+		
+		]]>
+		</scriptdata>
+	</scripts>
+	<package name="initramfs_cbsicher" version="20111124" allowfail="yes">
+		<sources>
+			<file>                                                                              
+				<pkg sha1="5527defec567587d427876591e7ba59dd8685ac8">surfer-cbsicher-20111124.tgz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+install -m 0644 ${SRCDIR}/surfer-cbsicher-${PKGVERSION}.tgz ${INITRAMFS}/etc/lesslinux/skel/surfer.tgz
+		
+		]]>
+		</install>
+	</package>
+</llpackages>

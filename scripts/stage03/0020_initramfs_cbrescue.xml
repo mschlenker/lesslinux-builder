@@ -1,0 +1,273 @@
+<llpackages>
+	<links>
+		<!-- blue theme used in Sicher Surfen 2009 -->
+		<!-- <softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+		<!-- green theme used in Notfall-CD 2.0 -->
+		<!-- <softlink target="/usr/share/themes/Xfce-saltlake/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce-saltlake/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+		<!-- blue theme used in Spanish Rescue CD 3.0 -->
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink>
+	</links>
+	<scripts>
+		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+		
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+if [ "$lang" = "es" ] ; then
+	ln -sf /usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc /home/surfer/.gtkrc
+	ln -sf /usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc /home/surfer/.gtkrc-2.0
+	sed -i 's/Xfce-saltlake/Xfce-dawn/g' /home/surfer/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+	echo -n > /home/surfer/Desktop/rescuecd2011_www.desktop
+	cat >> /home/surfer/Desktop/rescuecd2011_www.desktop << LLWWW
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Rescue CD 2011
+Comment=
+Categories=Application;
+Exec=exo-open http://www.computerhoy.es/rescuecd2011
+Icon=www
+Terminal=false
+StartupNotify=true
+
+
+LLWWW
+
+fi
+
+# /usr/bin/xterm &
+# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+		
+# Change some firefox settings according to language
+if [ "$lang" = "pl" ] ; then
+	if [ -f /home/surfer/.mozilla/firefox/kqe39h9l.default/polish_mod ]; then
+		echo "Polish files already copied"
+	else
+		mv /home/surfer/.mozilla/firefox/kqe39h9l.default /home/surfer/.mozilla/firefox/kqe39h9l.default.de
+		mv /home/surfer/.mozilla/firefox/kqe39h9l.default.pl /home/surfer/.mozilla/firefox/kqe39h9l.default
+		touch /home/surfer/.mozilla/firefox/kqe39h9l.default/polish_mod
+	fi
+else	
+	rm -rf /home/surfer/.mozilla/firefox/kqe39h9l.default.pl
+fi	
+		
+		# replace old path for background file on COMPUTERBILD edition
+		sed -i 's/\/etc\/lesslinux\/branding\/computerbild\/desktop-cb-20090707\.jpg/\/etc\/lesslinux\/branding\/desktop.jpg/' /home/surfer/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+		# Replace old version path in Thunderbirds desktop icon
+		sed -i 's/-2\.0\.0\.22//g' /home/surfer/Desktop/020_thunderbird.desktop
+		sed -i 's/-2\.0\.0\.22//g' /home/surfer/.config/xfce4/panel/launcher-12473156652.rc
+		sed -i 's/\/opt\/firefox\/lib/\/opt\/firefox35\/lib/g' /home/surfer/.config/xfce4/panel/launcher-10.rc
+		sed -i 's/\/opt\/firefox\/lib/\/opt\/firefox35\/lib/g' /home/surfer/Desktop/010_firefox.desktop
+		
+		if mount | grep '/home' | grep '/dev/mapper' ; then
+			echo '/home seems to be on container, no need to delete Thunderbird'
+		else
+			echo '/home does not seem to be on container, deleting Thunderbird'
+			rm /home/surfer/Desktop/020_thunderbird.desktop
+			rm /home/surfer/.config/xfce4/panel/launcher-12473156652.rc
+			sed -i 's/<item name="launcher" id="12473156652"\/>/<!-- weg damit -->/g' /home/surfer/.config/xfce4/panel/panels.xml
+			if [ -f /etc/lesslinux/surfer.hash ] ; then
+			    echo 'Hash for surfer exists, keeping mount tools'
+			elif [ "$laxsudo" '!=' 1 ] ; then
+			    echo 'Hash for surfer missing, deleting mount tools'
+			    rm /home/surfer/Desktop/030_mmmm.desktop
+			    rm /home/surfer/.config/xfce4/panel/launcher-12473151760.rc
+			    mv /home/surfer/.config/xfce4/panel/launcher-9.rc /home/surfer/.config/xfce4/panel/launcher-9.bak
+			    cat /home/surfer/.config/xfce4/panel/launcher-9.bak | head -n 13 > /home/surfer/.config/xfce4/panel/launcher-9.rc
+			    sed -i 's/<item name="launcher" id="12473151760"\/>/<!-- weg damit -->/g' /home/surfer/.config/xfce4/panel/panels.xml
+			fi
+		fi
+		
+# Lets take a look at Kasperskys expiration date
+today=` date +%Y%m%d `
+expir=20111231
+
+if [ "$today" -gt "$expir" -o "$lang" = "pl" ] && grep 'Name=Kaspersky' /home/surfer/Desktop/030_kaspersky.desktop ; then
+	sed -i 's/Name=Kaspersky/Name=ClamAV/g' /home/surfer/Desktop/030_kaspersky.desktop
+	sed -i 's/Exec=run-kaspersky-gui.sh/Exec=avfrontend-clamav.sh/g' /home/surfer/Desktop/030_kaspersky.desktop
+fi
+if [ '!' -x '/opt/kaspersky/kav4ws/bin/kav4ws-kavscanner' ] && grep 'Name=Kaspersky' /home/surfer/Desktop/030_kaspersky.desktop ; then
+	sed -i 's/Name=Kaspersky/Name=ClamAV/g' /home/surfer/Desktop/030_kaspersky.desktop
+	sed -i 's/Exec=run-kaspersky-gui.sh/Exec=avfrontend-clamav.sh/g' /home/surfer/Desktop/030_kaspersky.desktop
+fi
+
+# Delete the PDFs on Polish builds
+if [ "$lang" = "pl" ] ; then
+	rm -rf "/home/surfer/Desktop/Anleitungen"
+fi
+# Delete the PDFs on Spanish builds
+if [ "$lang" = "es" ] ; then
+	rm -rf "/home/surfer/Desktop/Anleitungen"
+	[ -d /lesslinux/cdrom/Manual ] && ln -sf /lesslinux/cdrom/Manual /home/surfer/Desktop/Manual
+	[ -d /lesslinux/toram/Manual ] && ln -sf /lesslinux/toram/Manual /home/surfer/Desktop/Manual
+fi
+# Delete the PDFs on German builds
+if [ "$lang" = "de" ] ; then
+	if [ -d /lesslinux/cdrom/Anleitungen ] ; then
+		rm -rf /home/surfer/Desktop/Anleitungen
+		ln -sf /lesslinux/cdrom/Anleitungen /home/surfer/Desktop/Anleitungen
+	elif [ -d /lesslinux/toram/Anleitungen ] ; then
+		rm -rf /home/surfer/Desktop/Anleitungen
+		ln -sf /lesslinux/toram/Anleitungen /home/surfer/Desktop/Anleitungen
+	fi
+fi
+		
+		
+# Replace changed wicd icon path
+sed -i 's/=wicd-client/=wicd-gtk/g' /home/surfer/Desktop/005_wicd.desktop		
+sed -i 's+/usr/sbin/testdisk+testdisk+g' /home/surfer/Desktop/730_testdisk.desktop
+
+# Temporary fixes!
+		
+[ -f /home/surfer/.config/Trolltech.conf ] || cp /etc/lesslinux/branding/misc/Trolltech.conf /home/surfer/.config/
+
+setxkbmap -layout "$xkbmap"
+if  [ -n "$xrandr" ] ; then
+	/usr/bin/xrandr --size "$xrandr"
+fi
+/usr/bin/xfce4-session
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc_rescuetool" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+
+if [ "$lang" = "es" ] ; then
+	ln -sf /usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc /home/surfer/.gtkrc
+	ln -sf /usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc /home/surfer/.gtkrc-2.0
+	sed -i 's/Xfce-saltlake/Xfce-dawn/g' /home/surfer/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+fi
+
+if  [ -n "$xrandr" ] ; then
+	/usr/bin/xrandr --size "$xrandr"
+fi
+
+xfsettingsd
+
+# Uncomment to debug
+# sudo /usr/bin/Terminal &
+
+setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+# /usr/bin/Esetroot /usr/local/xconfgui/testbild.png &
+# /usr/bin/matchbox-window-manager -force_dialogs "NotfallDreinull,Nutzungs- und Haftungsbedingungen" &
+xfwm4 &
+
+if [ -f /var/run/lesslinux/bad_memory ] || cat "$simulate" | grep '|badmem|' ; then
+	zenity --error --title 'Defekter Arbeitsspeicher gefunden' \
+	--text 'Ihr Arbeitsspeicher weist Fehler auf. Bitte testen Sie Ihren Arbeitsspeicher einzeln mit dem Speichertest im Expertenmenü. Ihr Computer wird jetzt abgeschaltet.'
+	shutdown -h now
+fi
+
+cd /opt/computerbild/rescuetool
+ruby -I. disclaimer.rb
+
+do_the_loop=0
+while [ "$do_the_loop" -lt 1 ] ; do
+	sudo /opt/computerbild/rescuetool/assi-wrapper.sh
+	if [ -f /var/run/lesslinux/assistant_running ] ; then
+		zenity --question --text "An error occured, the assistant did not terminate properly. If this happens again, you might contact support@mattiasschlenker.de with as many details as possible. Do you want to start the assistant again?"
+		do_the_loop=$?
+	else
+		do_the_loop=1
+	fi
+done	
+
+chvt 8
+sudo shutdown -r now
+# sudo reboot
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/fbsplash.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[BAR_LEFT=57
+BAR_TOP=313
+BAR_WIDTH=497
+BAR_HEIGHT=20
+BAR_R=254
+BAR_G=000
+BAR_B=006
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/fbsplash.cfg.es" mode="0644" group="0" owner="0">
+		<![CDATA[BAR_LEFT=36
+BAR_TOP=333
+BAR_WIDTH=569
+BAR_HEIGHT=20
+BAR_R=254
+BAR_G=000
+BAR_B=006
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/installer.d/copy_readme.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+
+# $1 is target device
+# $2 is target partition
+
+[ "$2" = "1" ] && exit 0
+
+mkdir /lesslinux/tgt_unused
+mount ${1}1 /lesslinux/tgt_unused
+cp /etc/lesslinux/branding/liesmich_partition.html /lesslinux/tgt_unused/LIESMICH.html 
+tar -C /lesslinux/install_target -cf - Windows-Programme Anleitungen | tar -C /lesslinux/tgt_unused -xf - 
+umount /lesslinux/tgt_unused
+rmdir /lesslinux/tgt_unused
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+tar -C /lesslinux/cdrom -cf - Anleitungen Windows-Programme lizenzen GPL.txt cbicon.ico autorun.usb haftung.txt liesmich.html | tar -C /lesslinux/data -xf - 
+mv /lesslinux/data/autorun.usb /lesslinux/data/autorun.inf
+mkdir -p /lesslinux/data/lesslinux/blob
+
+#		]]>
+		</scriptdata>
+	</scripts>
+	<package name="initramfs_cbrescue" version="20111125" allowfail="yes">
+		<sources>
+			<file>                                                    
+				<pkg sha1="ebf3e9ea7b5c007f36839f13d3959402f1dd419b">surfer-cbrescue-20111125.tgz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+install -m 0644 ${SRCDIR}/surfer-cbrescue-${PKGVERSION}.tgz ${INITRAMFS}/etc/lesslinux/skel/surfer.tgz
+		
+		]]>
+		</install>
+	</package>
+</llpackages>

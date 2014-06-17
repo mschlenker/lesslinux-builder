@@ -1,0 +1,110 @@
+<llpackages>
+	<package 
+		name="gst-plugins-good"
+		version="0.10.31"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                              
+				<pkg sha1="b45fc01b133fc23617fa501dd9307a90f467b396">gst-plugins-good-0.10.31.tar.bz2</pkg>
+				<mirror>http://gstreamer.freedesktop.org/src/gst-plugins-good/</mirror>
+			</file>
+			<manualcheck date="20130209" interval="120" page="http://gstreamer.freedesktop.org/src/gst-plugins-good/" />
+			<check>
+				<page html="http://gstreamer.freedesktop.org/src/gst-plugins-good/">
+					<atext linktext="gst-plugins-good-0.10.37." />
+					<atext linktext="gst-plugins-good-0.10.32." />
+					<atext linktext="gst-plugins-good-0.10.33." />
+					<atext linktext="gst-plugins-good-0.10.34." />
+					<atext linktext="gst-plugins-good-0.10.35." />
+					<atext linktext="gst-plugins-good-0.10.36." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gst-plugins-base</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+                        <!-- <dep>hal</dep> -->
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libsmbios</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>speex</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			 <dep>imake</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --disable-hal --disable-gst_v4l2
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

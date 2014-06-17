@@ -1,0 +1,66 @@
+<llpackages>
+	<package 
+		name="ktoblzcheck"
+		version="1.43"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="9b03780f17c5e4ef6a821cd9d819cb39e4fb559f">ktoblzcheck-1.43.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/ktoblzcheck/</mirror>
+			</file>
+			<!-- <check>
+				<page html="http://download.enlightenment.org/releases/">
+					<atext linktext="eina-1.0.1." />
+					<atext linktext="eina-1.0.2." />
+					<atext linktext="eina-1.0.3." />
+					<atext linktext="eina-1.1." />
+					<atext linktext="eina-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>wget</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

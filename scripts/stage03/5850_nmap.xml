@@ -1,0 +1,10 @@
+<llpackages>
+	<package name="nmap" class="user" />
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/zenmap" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/zenmap
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

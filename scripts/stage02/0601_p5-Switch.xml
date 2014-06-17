@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="p5-switch"
+		version="2.16"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                               
+				<pkg sha1="2737a2b5e64a9d715528fa50a8d967710106220e">Switch-2.16.tar.gz</pkg>
+				<mirror>http://search.cpan.org/CPAN/authors/id/R/RG/RGARCIA/</mirror>
+			</file>
+			<manualcheck date="20130503" interval="180" page="http://search.cpan.org/" />
+			<check>
+				<page html="http://search.cpan.org/CPAN/authors/id/R/RG/RGARCIA/">
+					<atext linktext="Switch-2.17" />
+					<atext linktext="Switch-2.18" />
+					<atext linktext="Switch-2.19" />
+					<atext linktext="Switch-2.20" />
+					<atext linktext="Switch-2.21" />
+					<atext linktext="Switch-2.22" />
+					<atext linktext="Switch-3" />
+					<atext linktext="Switch-4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>binutils</dep>
+			<dep>bison</dep>
+			<dep>coreutils</dep>
+			<dep>gcc</dep>
+			<dep>glibc</dep>
+			<dep>grep</dep>
+			<dep>inetutils</dep>
+			<dep>linux_headers</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>zlib</dep>
+			<dep>perl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/Switch-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd Switch-${PKGVERSION}
+			perl Makefile.PL
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd Switch-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf Switch-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

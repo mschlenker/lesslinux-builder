@@ -1,0 +1,53 @@
+<llpackages>
+	<package 
+		name="glamor-egl"
+		version="0.6.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                  
+				<pkg sha1="749865c4aa5e6e17e6e60860224d0d6226a2c238">glamor-egl-0.6.0.tar.gz</pkg>
+				<mirror>http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/</mirror>
+			</file>
+			<manualcheck date="20140215" interval="180" page="http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
+					<atext linktext="presentproto-1.0.1." />
+					<atext linktext="presentproto-1.0.2." />
+					<atext linktext="presentproto-1.1." />
+					<atext linktext="presentproto-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep>
+			<dep>glu</dep>
+			<dep>xorg-server</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>

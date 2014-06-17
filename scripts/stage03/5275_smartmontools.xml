@@ -1,0 +1,52 @@
+<llpackages>
+	<package 
+		name="smartmontools"
+		class="user"
+		>
+	</package>
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/smartmontools" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/sbin/smartctl
+surfer  ALL = NOPASSWD: /usr/sbin/smartd
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/smartmontools" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/sbin/smartctl
+surfer  ALL = NOPASSWD: /usr/sbin/smartd
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0510-smartmon.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides smartmon
+#lesslinux license BSD
+#lesslinux description
+# Allow surfer to use gparted
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	printf "$bold===> Enabling SMART $normal\n"
+	for dev in /dev/sd[a-z] ; do
+	    smartctl --smart=on --offlineauto=on --saveauto=on $dev > /dev/null 2>&1
+	    smartctl --test=short $dev 
+	done
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+		</scripts>
+</llpackages>

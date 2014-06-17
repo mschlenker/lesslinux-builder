@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="xrandr"
+		version="1.4.2"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                         
+				<pkg sha1="e9f67b83ecac5a2485fdf89b13f4a076961139e1">xrandr-1.4.2.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/app/</mirror>
+			</file>
+			<manualcheck date="20140519" interval="60" page="http://xorg.freedesktop.org/archive/individual/app/" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xrandr-1.4.5." />
+					<atext linktext="xrandr-1.4.2." />
+					<atext linktext="xrandr-1.4.3." />
+					<atext linktext="xrandr-1.4.4." />
+					<atext linktext="xrandr-1.5." />
+					<atext linktext="xrandr-1.6." />
+					<atext linktext="xrandr-1.7." />
+					<atext linktext="xrandr-1.8." />
+					<atext linktext="xrandr-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

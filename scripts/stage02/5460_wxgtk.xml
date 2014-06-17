@@ -1,0 +1,96 @@
+<llpackages>
+	<package 
+		name="wxWidgets"
+		version="2.8.12"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<!-- <file>                         
+				<pkg sha1="191d313d540c2735172a53199a997c52d4eef31b">wxWidgets-2.8.12.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/wxwindows/2.8.12/</mirror>
+			</file> -->
+			<file>                         
+				<pkg sha1="191d313d540c2735172a53199a997c52d4eef31b">wxWidgets-2.8.12.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/wxwindows/2.8.12/</mirror>
+			</file>
+			<file>                         
+				<pkg sha1="7ed46708edd87bb74cf99126b6e83fea6d5c7055">scintilla303.tgz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tiff</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/scintilla303.tgz
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glib.patch | patch -p1
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd scintilla/gtk
+			make prefix=/usr
+			cd ../../${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --with-gtk --enable-shared --enable-static --disable-compat26 --enable-unicode && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf scintilla
+			]]>
+		</clean>
+	</package>
+</llpackages>

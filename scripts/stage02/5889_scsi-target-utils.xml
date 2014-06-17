@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="iscsi-target-utils"
+		version="20130529"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                      
+				<pkg sha1="7af8928b917ed8cfdd6b3fd9aeed85d032e9c902">iscsi-target-utils-20130529.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130528" interval="60" page="https://github.com/fujita/tgt" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/xchat/files/">
+					<atext linktext="xchat-2.8.9." />
+					<atext linktext="xchat-2.8.10." />
+					<atext linktext="xchat-2.8.11." />
+					<atext linktext="xchat-2.8.12." />
+					<atext linktext="xchat-2.9." />
+					<atext linktext="xchat-2.10." />
+					<atext linktext="xchat-3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd tgt
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd tgt
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf tgt
+			]]>
+		</clean>
+	</package>
+</llpackages>

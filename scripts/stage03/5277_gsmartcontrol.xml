@@ -1,0 +1,25 @@
+<llpackages>
+	<package 
+		name="gsmartcontrol"
+		class="user"
+		>
+	</package>
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/gsmartcontrol" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/gsmartcontrol
+surfer  ALL = NOPASSWD: /usr/bin/gsmartcontrol-root
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/gsmartcontrol" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/gsmartcontrol
+surfer  ALL = NOPASSWD: /usr/bin/gsmartcontrol-root
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

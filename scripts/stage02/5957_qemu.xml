@@ -1,0 +1,116 @@
+<llpackages>
+	<package 
+		name="qemu"
+		version="2.0.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="cc24a60a93ba697057a67b6a7224b95627eaf1a6">qemu-2.0.0.tar.bz2</pkg>
+				<mirror>http://wiki.qemu-project.org/download/</mirror>
+			</file>
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
+					<atext linktext="gnome-calculator-3.10.6." />
+					<atext linktext="gnome-calculator-3.10.3." />
+					<atext linktext="gnome-calculator-3.10.4." />
+					<atext linktext="gnome-calculator-3.10.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
+					<atext linktext="3.12" />
+					<atext linktext="3.14" />
+					<atext linktext="4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>Python</dep>
+                        <dep>SDL</dep>
+                        <dep>atk</dep>
+                        <dep>attr</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>git</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-icon-theme</dep>
+                        <dep>gnutls3</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>iasl</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libX11</dep>
+                        <dep>libcap</dep>
+                        <dep>libpng15</dep>
+                        <dep>libssh2</dep>
+                        <dep>libtool</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>openssl</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>procps</dep>
+                        <dep>pygobject</dep>
+                        <dep>readline</dep>
+                        <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>vte</dep>
+                        <dep>xfsprogs</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/qemu --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \
+				--target-list=x86_64-softmmu,arm-softmmu,arm-linux-user,armeb-linux-user,i386-linux-user,x86_64-linux-user
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

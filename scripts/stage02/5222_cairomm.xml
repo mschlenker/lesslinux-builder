@@ -1,0 +1,95 @@
+<llpackages>
+	<package 
+		name="cairomm"
+		version="1.10.0"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                 
+				<pkg sha1="f08bf8a331067f0d1e876523f07238fba6b26b99">cairomm-1.10.0.tar.gz</pkg>
+				<mirror>http://cairographics.org/releases/</mirror>
+			</file>
+			<manualcheck date="20130501" interval="365" page="http://cairographics.org/releases/" />
+			<check>
+				<page html="http://cairographics.org/releases/">
+					<atext linktext="cairomm-1.10.1." />
+					<atext linktext="cairomm-1.10.2." />
+					<atext linktext="cairomm-1.10.3." />
+					<atext linktext="cairomm-1.10.4." />
+					<atext linktext="cairomm-1.11." />
+					<atext linktext="cairomm-1.13." />
+					<atext linktext="cairomm-1.14." />
+					<atext linktext="cairomm-1.12." />
+					<atext linktext="cairomm-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libsigc++</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

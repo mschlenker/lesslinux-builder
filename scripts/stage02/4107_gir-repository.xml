@@ -1,0 +1,89 @@
+<llpackages>
+	<package 
+		name="gir-repository"
+		version="0.6.5"
+		class="lib"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>        
+				<pkg sha1="0a036f32227a41096d394ff822a6a631688ee47f">gir-repository-0.6.5.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gir-repository/0.6/</mirror>
+			</file>
+			<manualcheck date="20130430" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/gir-repository/0.6/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gir-repository/0.6/">
+					<atext linktext="gir-repository-0.6.6." />
+					<atext linktext="gir-repository-0.6.7." />
+					<atext linktext="gir-repository-0.6.8." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gir-repository/">
+					<atext linktext="0.7" />
+					<atext linktext="0.8" />
+					<atext linktext="0.9" />
+					<atext linktext="1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXft</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p /etc/lesslinux/
+			touch /etc/lesslinux/FIXME_REMOVE_${PKGNAME}-${PKGVERSION}
+			# cd ${PKGNAME}-${PKGVERSION}
+			# make install
+			]]>
+		</install>
+	</package>
+</llpackages>

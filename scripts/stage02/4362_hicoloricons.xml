@@ -1,0 +1,60 @@
+<llpackages>
+	<package 
+		name="hicolor-icon-theme"
+		version="0.13"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources> 
+			<file>               
+				<pkg sha1="15e30dfcf5e7b53c1a6f9028c30665006abba55c">hicolor-icon-theme-0.13.tar.gz</pkg>
+				<mirror>http://icon-theme.freedesktop.org/releases/</mirror>
+			</file>
+			<manualcheck date="20140109" interval="365" page="http://icon-theme.freedesktop.org/releases/" />
+			<check>
+				<page html="http://icon-theme.freedesktop.org/releases/">
+					<atext linktext="hicolor-icon-theme-0.18.tar.gz" />
+					<atext linktext="hicolor-icon-theme-0.14.tar.gz" />
+					<atext linktext="hicolor-icon-theme-0.15.tar.gz" />
+					<atext linktext="hicolor-icon-theme-0.16.tar.gz" />
+					<atext linktext="hicolor-icon-theme-0.17.tar.gz" />
+					<atext linktext="hicolor-icon-theme-1.0.tar.gz" />
+					<atext linktext="hicolor-icon-theme-1.1.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="alsa-firmware"
+		version="1.0.27"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                             
+				<pkg sha1="91782f07e492f58ce4746a76a66914497fc654fe">alsa-firmware-1.0.27.tar.bz2</pkg>
+				<mirror>ftp://ftp.alsa-project.org/pub/firmware/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="120" page="ftp://ftp.alsa-project.org/pub/lib/" />
+			<check>
+				<page html="http://ftp.silug.org/pub/alsa/firmware/">
+					<atext linktext="alsa-utils-1.0.27.1." />
+					<atext linktext="alsa-utils-1.0.27.2." />
+					<atext linktext="alsa-utils-1.0.28." />
+					<atext linktext="alsa-utils-1.0.29." />
+					<atext linktext="alsa-utils-1.1." />
+					<atext linktext="alsa-utils-1.2." />
+					<atext linktext="alsa-utils-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>alsa-lib</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,119 @@
+<llpackages>
+	<package 
+		name="gedit"
+		version="2.30.4"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>       
+				<pkg sha1="ff7f4088d0b89224b84406557a7d9970323fdcc3">gedit-2.30.4.tar.bz2</pkg>
+				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gedit/2.30/</mirror>
+			</file>
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gedit/2.30/">
+					<atext linktext="gedit-2.30.5." />
+					<atext linktext="gedit-2.30.6." />
+					<atext linktext="gedit-2.30.7." />
+					<atext linktext="gedit-2.30.8." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gedit/">
+					<atext linktext="2.32" />
+					<atext linktext="2.34" />
+					<atext linktext="2.36" />
+					<atext linktext="3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>docbook-xml</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gnutls</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>gtksourceview</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libsoup</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>pygtk</dep>
+                        <dep>scrollkeeper</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+			 <dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
+			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --disable-spell
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

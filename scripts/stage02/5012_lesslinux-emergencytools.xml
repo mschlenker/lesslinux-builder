@@ -1,0 +1,49 @@
+<llpackages>
+	<package 
+		name="lesslinux-emergencytools"
+		version="20130525"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                        
+				<pkg sha1="831626a4c5ba6caf81c5ad8bf6ca4ee3ebc404e0">lesslinux-emergencytools-20130525.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd lesslinux-emergencytools
+			install -m 0755 photorec-starter.rb /usr/bin
+			install -m 0755 photorec-starter.sh /usr/bin
+			install -m 0755 dc3dd-starter.rb /usr/bin
+			install -m 0755 dc3dd-starter.sh /usr/bin
+			install -m 0755 ms-sys-starter.rb /usr/bin
+			install -m 0755 ms-sys-starter.sh /usr/bin
+			install -m 0755 ddrescue-starter.rb /usr/bin
+			install -m 0755 ddrescue-starter.sh /usr/bin
+			install -m 0755 chntpw-starter.rb /usr/bin
+			install -m 0755 sshd-starter.sh /usr/bin
+			install -m 0755 mount_drives.rb /usr/bin
+			mkdir -m 0755 /etc/lesslinux/emergencytools
+			install -m 0644 photorec_suffixes.txt /etc/lesslinux/emergencytools
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,91 @@
+<llpackages>
+	<package 
+		name="kbd"
+		version="2.0.1"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                       
+				<pkg sha1="8d7d6f9fc95d8abb80156da0713a4cbc0dbfda97">kbd-2.0.1.tar.gz</pkg>
+				<mirror>http://ftp.altlinux.com/pub/people/legion/kbd/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="44f2fb0ac18db4f717421db756db4897f88dc08c">kbd-2.0.1-backspace-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20131116" interval="120" page="http://ftp.altlinux.com/pub/people/legion/kbd/" />
+			<check>
+				<page html="http://ftp.altlinux.com/pub/people/legion/kbd/">
+					<atext linktext="kbd-2.0.2." />
+					<atext linktext="kbd-2.0.3." />
+					<atext linktext="kbd-2.1." />
+					<atext linktext="kbd-2.2." />
+					<atext linktext="kbd-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libtool</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<!-- <dep>Linux-PAM</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-backspace-1.patch | patch -p1s
+			sed -i 's/\(RESIZECONS_PROGS=\)yes/\1no/g' configure
+			sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# autoreconf
+			PKG_CONFIG_PATH=/tools/lib/pkgconfig ./configure --prefix=/usr --disable-vlock && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# mkdir -p ${TGTDIR}/bin
+			mkdir -p ${TGTDIR}/usr/bin
+			# mkdir -p ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			# mv -v ${TGTDIR}/usr/bin/{kbd_mode,loadkeys,openvt,setfont} ${TGTDIR}/bin
+			# cp -R -v doc/* ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

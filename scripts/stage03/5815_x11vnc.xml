@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="x11vnc"
+		version="0.9.13"
+		class="user"
+		install="destdir"
+		>
+	</package>
+	<scripts>
+		<scriptdata location="/etc/xinitrc.d/0010-x11vnc.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+#lesslinux provides x11vnc
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+x11vnc=''
+conn=''
+pass=''
+parg=''
+sarg=''
+
+case $1 in start)
+   for i in `cat /proc/cmdline` ; do
+      case "$i" in
+	x11vnc=*)
+	    x11vnc=` echo "$i" | awk -F '=' '{print $2}' `
+	    mode=` echo $x11vnc | awk -F '|' '{print $2}' `
+	    if [ "$mode" = reverse ] ; then
+		conn=` echo $x11vnc | awk -F '|' '{print $3}' `
+	    else
+	        pass=` echo $x11vnc | awk -F '|' '{print $3}' `
+	    fi
+	;;
+	vncssl=*)
+	   vncssl=` echo "$i" | awk -F '=' '{print $2}' `
+	   if [ "$vncssl" -gt 0 -o "$vncssl" = true ] ; then
+		sarg='-ssl SAVE_NOPROMPT'
+	   fi
+	;;
+      esac
+   done
+   parg=''
+   # carg='-ncache 10'
+   carg=''
+   if [ -n "$pass" ] ; then
+       parg="-passwd $pass"
+   fi
+   if [ "$mode" = "remote" ] ; then
+       x11vnc -forever -display :0 $sarg $parg $carg &
+   elif [ "$mode" = "local" ] ; then
+       x11vnc -forever -display :0 -listen 127.0.0.1 $sarg $parg $carg &
+   elif [ "$mode" = "reverse" ] && [ -n "$conn" ] ; then
+       x11vnc -coe -loop -display :0 $carg -connect "$conn" &
+   fi
+   ;;
+esac
+
+
+
+		
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

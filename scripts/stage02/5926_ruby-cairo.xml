@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="ruby-cairo"
+		version="1.12.9"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="aa26cc263964ca5a3f16a6224a02798155fcd71b">rcairo-1.12.9.tar.gz</pkg>
+				<mirror>http://cairographics.org/releases/</mirror>
+			</file>
+			<manualcheck date="20140519" interval="60" page="http://cairographics.org/releases/" />
+			<!--<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.1.2." />
+					<atext linktext="grsync-1.2." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>-->
+		</sources>
+		 <builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>distcc</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/rcairo-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd rcairo-${PKGVERSION}/
+			ruby extconf.rb
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd rcairo-${PKGVERSION}/
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf rcairo-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,52 @@
+<llpackages>
+	<package 
+		name="firmware_rtl8192"
+		version="20130717"
+		class="user"
+		install="destdir">
+		<license>proprietary</license>
+		<sources>
+			<file>
+				<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git -->                                                              
+				<pkg sha1="4dcaa181ff59b13c51190ff566c71687badacc8c">linux-firmware-20130717.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130716" interval="60" page="git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>unzip</dep>
+			<dep>coreutils</dep>
+                        <dep>diffutils</dep>
+			<dep>rsync</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[
+			
+			# tar xjf ${SRCDIR}/linux-firmware-${PKGVERSION}.tar.bz2
+			echo "Nothing to unpack"
+			true
+			
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/lib/firmware
+			touch ${TGTDIR}/lib/firmware/${PKGNAME}-${PKGVERSION}_is_now_part_of_linux-firmware
+			
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			rm -rf linux-firmware/ 
+			]]>
+		</clean>
+	</package>
+</llpackages>

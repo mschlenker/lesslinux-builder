@@ -1,0 +1,115 @@
+<llpackages>
+	<package 
+		name="nautilus-dropbox"
+		version="20111030"
+		class="user"
+		>
+	</package>
+	<scripts>
+		<scriptdata location="/etc/rc.d/0710-dropbox.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides dropbox
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	mountpoint -q /usr/share/dropbox/.dropbox-dist && exit 0
+	mountpoint -q /usr/share/dropbox && exit 0
+	if [ -f /lesslinux/blob/dropbox.sqs ] ; then
+		if mount -o loop /lesslinux/blob/dropbox.sqs /usr/share/dropbox/.dropbox-dist ; then
+			"mounting succeeded" > /dev/null
+		else
+			mkdir -p /lesslinux/tmp/dropbox
+			tar -C /lesslinux/tmp/dropbox -xzf /lesslinux/blob/dropbox.tgz
+			mksquashfs /lesslinux/tmp/dropbox/.dropbox-dist /lesslinux/blob/dropbox.sqs.tmp
+			cat /lesslinux/blob/dropbox.sqs.tmp > /lesslinux/blob/dropbox.sqs
+			rm /lesslinux/blob/dropbox.sqs.tmp
+			rm -rf /lesslinux/tmp/dropbox
+			mount -o loop /lesslinux/blob/dropbox.sqs /usr/share/dropbox/.dropbox-dist
+		fi
+	elif [ -f /lesslinux/blob/dropbox.tgz ] ; then
+		mount -t tmpfs tmpfs -o mode=0755,size=50M,uid=0,gid=0 /usr/share/dropbox/
+		tar -C /usr/share/dropbox -xzf /lesslinux/blob/dropbox.tgz
+	fi
+    ;;
+    stop)
+	mountpoint -q /usr/share/dropbox/.dropbox-dist || mountpoint -q /usr/share/dropbox || exit 0
+	killall dropbox
+	if umount /usr/share/dropbox/.dropbox-dist ; then
+		echo "unmounting succeeded" > /dev/null
+	elif umount /usr/share/dropbox ; then
+		echo "unmounting succeeded" > /dev/null
+	else
+		killall -9 dropbox
+		fuser -k -M -9 /usr/share/dropbox/.dropbox-dist
+		fuser -k -M -9 /usr/share/dropbox
+	fi
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0350-dropbox.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+		
+# first check, if the files needed exist
+[ -f /lesslinux/cdrom/lesslinux/blob/dropbox.tgz ] || exit 1
+freespace=` df -k /lesslinux/data | tail -n1 | awk '{print $4}' `
+freespace=` expr $freespace - 1024 ` 
+if [ "$freespace" -lt 65536 ] ; then
+	exit 0
+fi
+mkdir -p /lesslinux/data/${contdir}/blob
+touch /lesslinux/data/${contdir}/blob/dropbox.sqs
+
+		]]>
+		</scriptdata>
+		
+		
+		<scriptdata location="/etc/xinitrc.d/0710-dropbox.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides dropbox
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+### FIXME!!!!
+
+case $1 in 
+    start)
+	machineid=`  sqlite3 /home/surfer/.dropbox/config.db 'select value from config where key="host_id" ' ` 
+	if [ -n "$machineid" ] ; then
+		/usr/share/dropbox/.dropbox-dist/dropbox & 
+	fi
+    ;;
+    stop)
+	killall dropbox
+	killall -9 dropbox
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

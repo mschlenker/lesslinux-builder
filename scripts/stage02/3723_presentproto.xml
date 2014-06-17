@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="presentproto"
+		version="1.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                  
+				<pkg sha1="432371cdc464881029c3f39f9bf81cc80a484e54">presentproto-1.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<manualcheck date="20140215" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
+					<atext linktext="presentproto-1.0.1." />
+					<atext linktext="presentproto-1.0.2." />
+					<atext linktext="presentproto-1.1." />
+					<atext linktext="presentproto-1.2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+			<dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>

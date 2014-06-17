@@ -1,0 +1,42 @@
+<llpackages>
+	<package name="qemu" />
+	<dirs>
+		<dir mode="0755">/lib</dir>
+		<dir mode="0755">/lib/udev</dir>
+		<dir mode="0755">/lib/udev/rules.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/rc.d/0600-qemu.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides qemu
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	groupadd -g 60042 kvm
+	usermod -a -G kvm surfer
+	chown -R root:kvm /dev/kvm 
+	chmod 0660 /dev/kvm
+    ;;
+esac
+		]]>
+		</scriptdata>
+		<scriptdata location="/lib/udev/rules.d/66-kvm.rules" mode="0644" group="0" owner="0">
+		<![CDATA[
+KERNEL=="kvm", NAME="%k", GROUP="kvm", MODE="0660"
+		]]>
+		</scriptdata>
+		<modlist provides="qemu" hwenv="default">
+			<module>nbd</module>
+			<module>kvm</module>
+		</modlist>
+	</scripts>
+</llpackages>

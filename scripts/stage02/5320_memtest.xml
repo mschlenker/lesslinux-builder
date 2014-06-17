@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="memtest86"
+		version="4.20"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                   
+				<pkg sha1="df49a3d0b003c575d5a26dedc3d66dbe905db1b6">memtest86+-4.20.tar.gz</pkg>
+				<mirror>http://www.memtest.org/download/4.20/</mirror>
+			</file>
+			<manualcheck date="20120624" interval="180" page="http://www.memtest.org/" />
+			<!-- <file>    
+				<pkg sha1="f7cb7eed0d794010e89c09922c0a9b69a9600be0">memtest86+-4.10-remove-img.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<check>
+				<page html="http://www.memtest.org/download/">
+					<atext linktext="4.21" />
+					<atext linktext="4.22" />
+					<atext linktext="4.23" />
+					<atext linktext="4.3" />
+					<atext linktext="4.4" />
+					<atext linktext="4.5" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>nasm</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}+-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-remove-img.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}+-${PKGVERSION}
+			make
+			# enlarge the size of memtest.bin
+			SIZE=$(wc -c memtest.bin | awk '{print $1}')
+			FILL=$((1474560 - $SIZE))
+			dd if=/dev/zero of=fill.tmp bs=$FILL count=1
+			cat memtest.bin fill.tmp > memtest.img
+			rm -f fill.tmp
+
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}+-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/share/memtest
+			mkdir -p ${TGTDIR}/boot
+			install -m 0644 memtest.img ${TGTDIR}/boot
+			install -m 0644 memtest.bin ${TGTDIR}/usr/share/memtest
+			install -m 0644 memtest     ${TGTDIR}/usr/share/memtest
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}+-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

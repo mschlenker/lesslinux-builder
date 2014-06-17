@@ -1,0 +1,42 @@
+<llpackages>
+	<package 
+		name="rescuetool"
+		version="20111125-00"
+		class="user"
+		>
+		<license>proprietary</license>
+		<sources>
+			<file>                                                                                                
+				<pkg sha1="46a3e61e8e28e5c83d729d34140e8e00e067d81e">rescuetool-20111125-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<!-- <builddeps>
+			<dep>bash</dep>
+			<dep>qt-everywhere-opensource-src</dep>
+		</builddeps> -->
+		<unpack>
+			<![CDATA[
+			mkdir rescuetool
+			cd rescuetool
+			tar xvjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			mkdir -m 0755 -p /opt/computerbild/rescuetool
+			for i in *.rb *.sh  *.png  *.txt ; do
+				install -m 0755 $i /opt/computerbild/rescuetool
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>

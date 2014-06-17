@@ -1,0 +1,88 @@
+<llpackages>
+	<package 
+		name="libdrm"
+		version="2.4.54"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                      
+				<pkg sha1="b73d69b42800755ed9dfd8aa9a906fe941cfbb7e">libdrm-2.4.54.tar.bz2</pkg>
+				<mirror>http://dri.freedesktop.org/libdrm/</mirror>
+			</file>
+			<manualcheck date="20140518" interval="90" page="http://dri.freedesktop.org/libdrm/" />
+			<!-- <check>
+				<page html="http://dri.freedesktop.org/libdrm/">
+					<atext linktext="libdrm-2.4.53." />
+					<atext linktext="libdrm-2.4.54." />
+					<atext linktext="libdrm-2.4.55." />
+					<atext linktext="libdrm-2.5." />
+					<atext linktext="libdrm-2.6." />
+					<atext linktext="libdrm-2.7." />
+					<atext linktext="libdrm-3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+			<dep>libpciaccess</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>udev</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			# FIXME, this is i386 only!
+			export CFLAGS="-march=i686 -O2"
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc --enable-vmwgfx-experimental-api CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --sysconfdir=/etc --enable-vmwgfx-experimental-api 
+				make  
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# cd drm
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			# rm -rf drm 
+			]]>
+		</clean>
+	</package>
+</llpackages>

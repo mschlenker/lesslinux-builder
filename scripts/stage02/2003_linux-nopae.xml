@@ -1,0 +1,119 @@
+<llpackages>
+	<package 
+		name="linux-nopae"
+		version="3.14.7"
+		class="kernel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                  
+				<pkg sha1="316da81d9df1dceab53d3d552fc448436f1c1736">config-3.14-nonpae-lesslinux-20140513-1438</pkg> 
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<pkg sha1="660d8a1c2c694b1dbb361ef7fcbd62846ba742a5">lesslinux-fblogo-20100922.ppm</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                 
+				<pkg sha1="fc777520e5976caf0d5513502b8156f73748e379">linux-3.14.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="5fe2dd64bd03945ec0df16c66af512e64cb086a4">patch-3.14.7.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<manualcheck date="20140608" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-3.14.10." />
+					<atext linktext="patch-3.14.8." />
+					<atext linktext="patch-3.14.9." />
+					<atext linktext="patch-3.15." />
+					<atext linktext="patch-3.16." />
+					<atext linktext="patch-3.17." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+			<dep>ruby</dep>
+			<dep>installkernel-debian</dep>
+			<dep>xz</dep>
+			<dep>bzip2</dep>
+			<dep>gzip</dep>
+			<dep>lesslinux-modextract</dep>
+			<dep>module-init-tools</dep>
+			<!-- <dep>linux-pax</dep> -->
+			<dep>bc</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd linux-3.14
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
+			cp -v ${SRCDIR}/config-3.14-nonpae-lesslinux-20140513-1438 .config
+			sed -i 's/lesslinux-000/lesslinux-nopae-000/g' .config
+			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
+			cd ..
+			mv linux-3.14 linux-${PKGVERSION}
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			make oldconfig
+			make clean
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount bzImage CC="distcc gcc" CXX="distcc g++" 
+			else
+				make -j 4 
+				make -j 4 bzImage
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd linux-${PKGVERSION}
+			mkdir -p ${TGTDIR}/boot
+			INSTALL_MOD_PATH=${TGTDIR} make modules_install
+			rm -rf ${TGTDIR}/lib/firmware 
+			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-lesslinux-nopae-000
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-lesslinux-nopae-000 -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
+			
+			true
+			
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf linux-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>
+

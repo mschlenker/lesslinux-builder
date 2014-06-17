@@ -1,0 +1,44 @@
+<llpackages>
+	<package 
+		name="findutils"
+		version="4.4.2"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>               
+				<pkg sha1="e8dd88fa2cc58abffd0bfc1eddab9020231bb024">findutils-4.4.2.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/findutils/</mirror>
+			</file>
+			<manualcheck date="20130503" interval="180" page="http://ftp.gnu.org/gnu/findutils" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/findutils/">
+					<atext linktext="findutils-4.4.3.tar.gz" />
+					<atext linktext="findutils-4.4.4.tar.gz" />
+					<atext linktext="findutils-4.4.5.tar.gz" />
+					<atext linktext="findutils-4.4.6.tar.gz" />
+					<atext linktext="findutils-4.5.0.tar.gz" />
+					<atext linktext="findutils-4.5.1.tar.gz" />
+					<atext linktext="findutils-5.0.0.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

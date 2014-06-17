@@ -1,0 +1,73 @@
+<llpackages>
+	<package 
+		name="linux_headers"
+		version="3.14.7"
+		class="devel"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="fc777520e5976caf0d5513502b8156f73748e379">linux-3.14.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="5fe2dd64bd03945ec0df16c66af512e64cb086a4">patch-3.14.7.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<manualcheck date="20140608" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-3.14.10." />
+					<atext linktext="patch-3.14.8." />
+					<atext linktext="patch-3.14.9." />
+					<atext linktext="patch-3.15." />
+					<atext linktext="patch-3.16." />
+					<atext linktext="patch-3.17." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			
+			cd linux-3.14
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cd ..
+			mv -v linux-3.14 linux-${PKGVERSION}
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			
+			cd linux-${PKGVERSION}
+			make mrproper && make headers_check
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			cd linux-${PKGVERSION}
+			make INSTALL_HDR_PATH=dest headers_install
+			find dest/include \( -name .install -o -name ..install.cmd \) -delete
+			mkdir -p ${TGTDIR}/usr/include
+			cp -rv dest/include/* ${TGTDIR}/usr/include
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf linux-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

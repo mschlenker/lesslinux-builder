@@ -1,0 +1,123 @@
+<llpackages>
+	<package 
+		name="gnome-vfs"
+		version="2.24.4"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                 
+				<pkg sha1="0dc634e7dd979fd218f378902c0ca1af80738961">gnome-vfs-2.24.4.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gnome-vfs/2.24/</mirror>
+			</file>
+			<file>                 
+				<pkg sha1="0e610a1e8e62b880cd7ba6c60db916953603d75e">gnome-vfs-2.24.4-patch01.diff</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                 
+				<pkg sha1="f016f2dbe567f1078e9ccd9f3a5798d28244b47d">gnome-vfs-2.24.4-patch02.diff</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130519" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-vfs/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-vfs/2.24/">
+					<atext linktext="gnome-vfs-2.24.5." />
+					<atext linktext="gnome-vfs-2.24.6." />
+					<atext linktext="gnome-vfs-2.24.7." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-vfs/">
+					<atext linktext="2.26" />
+					<atext linktext="2.28" />
+					<atext linktext="2.30" />
+					<atext linktext="2.32" />
+					<atext linktext="3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+			<dep>GConf2</dep>
+                        <dep>ORBit2</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gamin</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-mime-data</dep>
+                        <dep>grep</dep>
+                        <!-- <dep>hal</dep> -->
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libsmbios</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			 <dep>samba</dep>
+			 <dep>attr</dep>
+			 <dep>openssh</dep>
+			 <dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-patch01.diff | patch -p0
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-patch02.diff | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
+			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --disable-hal  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --disable-hal 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR="${TGTDIR}"
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,37 @@
+<llpackages>
+	<package 
+		name="lesslinux-keymap-switcher"
+		version="20091106"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>          
+				<pkg sha1="cffae99a4e0799578eb8f5b0c5a8afbd4ade58cd">lesslinux-keymap-switcher-20091106.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			install -m 0755 keymapswitcher.rb /usr/bin
+			]]>
+		</install>
+	</package>
+</llpackages>

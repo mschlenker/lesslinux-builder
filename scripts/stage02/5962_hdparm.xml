@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="hdparm"
+		version="9.43"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                            
+				<pkg sha1="3ffbcf46237245868a569125a6d5c92a0e07e7ce">hdparm-9.43.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/hdparm/hdparm/</mirror>
+			</file>
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
+					<atext linktext="gnome-calculator-3.10.6." />
+					<atext linktext="gnome-calculator-3.10.3." />
+					<atext linktext="gnome-calculator-3.10.4." />
+					<atext linktext="gnome-calculator-3.10.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
+					<atext linktext="3.12" />
+					<atext linktext="3.14" />
+					<atext linktext="4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fuse</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

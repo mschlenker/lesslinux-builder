@@ -1,0 +1,86 @@
+<llpackages>
+	<package 
+		name="scite"
+		version="341"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="6149c05fe882bc1e1d2262ba5da04088280d7e59">scintilla341.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/3.4.1/</mirror>
+			</file>
+			<file>                                                                               
+				<pkg sha1="c99add1a536dacffafce48921f94c643b39f15a9">scite341.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/SciTE/3.4.1/</mirror>
+			</file>
+			<manualcheck date="20140520" interval="120" page="http://sourceforge.net/projects/scintilla/files/SciTE/" />
+			<check>
+				<page html="http://sourceforge.net/projects/scintilla/files/SciTE/">
+					<atext linktext="3.4.2" />
+					<atext linktext="3.4.3" />
+					<atext linktext="3.4.4" />
+					<atext linktext="3.4.5" />
+					<atext linktext="3.6." />
+					<atext linktext="3.7." />
+					<atext linktext="3.5." />
+					<atext linktext="4.0." />
+					<atext linktext="4.1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pkg-config</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			for f in scintilla scite ; do
+				tar xzf ${SRCDIR}/${f}${PKGVERSION}.tgz
+			done
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				pump make -j $jobcount -C scintilla/gtk prefix=/usr CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount -C scite/gtk prefix=/usr CC="distcc gcc" CXX="distcc g++" 
+			else
+				make -C scintilla/gtk prefix=/usr GTK3=yes
+				make -C scite/gtk prefix=/usr GTK3=yes
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd scite/gtk
+			make prefix=/usr DESTDIR=${TGTDIR} GTK3=yes install 
+			ln -sf SciTE ${TGTDIR}/usr/bin/scite 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf scintilla scite
+			]]>
+		</clean>
+	</package>
+</llpackages>

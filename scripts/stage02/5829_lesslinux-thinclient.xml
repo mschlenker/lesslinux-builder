@@ -1,0 +1,73 @@
+<llpackages>
+	<package 
+		name="lesslinux-thinclient"
+		version="20130214-02"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                             
+				<pkg sha1="d348ccdff81e33d7aa36ba3755d09b790af61738">lesslinux-thinclient-20130214-02.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xset-1.2.3." />
+					<atext linktext="xset-1.2.4." />
+					<atext linktext="xset-1.2.5." />
+					<atext linktext="xset-1.2.6." />
+					<atext linktext="xset-1.3." />
+					<atext linktext="xset-1.4." />
+					<atext linktext="xset-2." />
+				</page>
+			</check> -->
+		</sources>
+		<!-- <builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXmu</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xbitmaps</dep>
+                        <dep>xproto-base</dep>
+			<dep>libXcursor</dep>
+		</builddeps> -->
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do here!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd thinchooser
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/thinclient
+			for f in chooser mask ; do
+				install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/thinclient
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>

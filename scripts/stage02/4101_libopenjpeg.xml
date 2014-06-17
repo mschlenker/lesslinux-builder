@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="openjpeg"
+		version="1.3"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="8d6870d9500ea09e0b1d30b981bea1c8de534de4">openjpeg_v1_3.tar.gz</pkg>
+				<mirror>http://www.openjpeg.org/</mirror>
+			</file>
+			<manualcheck date="20120624" interval="120" page="http://code.google.com/p/openjpeg/downloads/list" />
+			<check>
+				<page html="http://code.google.com/p/openjpeg/downloads/list">
+					<atext linktext="openjpeg_v1_3_1.tar.gz" />
+					<atext linktext="openjpeg_v1_4.tar.gz" />
+					<atext linktext="openjpeg_v1_5.tar.gz" />
+					<atext linktext="openjpeg_v2_0.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}_v1_3.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd OpenJPEG_v1_3
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				pump make -j $jobcount PREFIX=/usr CC="distcc gcc" CXX="distcc g++" 
+			else
+				make PREFIX=/usr
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd OpenJPEG_v1_3
+			make PREFIX=/usr install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf OpenJPEG_v1_3
+			]]>
+		</clean>
+	</package>
+</llpackages>

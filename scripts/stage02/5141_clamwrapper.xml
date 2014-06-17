@@ -1,0 +1,49 @@
+<llpackages>
+	<package 
+		name="clamwrapper"
+		version="20091110-01"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="164bf50cc4802fcfd24c45e12a43c6f53af84c69">clamwrapper-20091110-01.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="365" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>qt-everywhere-opensource-src</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do...'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -m 0755 /opt/bin
+			mkdir -m 0755 /opt/sbin
+			install -m 0755 clam_wrapper /opt/bin/
+			install -m 0755 clam_terminal /opt/bin/
+			install -m 0755 clam_update /opt/sbin/
+			install -m 0755 /usr/bin/Terminal /opt/bin/
+			install -m 0755 /usr/bin/zenity /opt/bin/
+			install -m 4755 /usr/bin/sudo /bin/
+			]]>
+		</install>
+	</package>
+</llpackages>

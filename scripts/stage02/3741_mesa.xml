@@ -1,0 +1,158 @@
+<llpackages>
+	<package 
+		name="Mesa"
+		version="10.1.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                     
+				<pkg sha1="a32cc671d927550e75f47ecfeafaf1c3a7915f52">MesaLib-10.1.4.tar.bz2</pkg>
+				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.1.4/</mirror>
+			</file>
+			<!-- <file>                                                                                     
+				<pkg sha1="c29e0bc8a55604c8717b2ca4af1f7ad1a53acb28">dri3proto-1.0.tar.gz</pkg>
+				<mirror>http://cgit.freedesktop.org/xorg/proto/dri3proto/snapshot/</mirror>
+			</file> -->
+			<manualcheck date="20140609" interval="60" page="http://www.mesa3d.org/" />
+			<!-- <check>
+				<page html="ftp://ftp.freedesktop.org/pub/mesa//">
+					<atext linktext="10.1" />
+					<atext linktext="10.2" />
+					<atext linktext="10.0.8" />
+					<atext linktext="10.0.9" />
+					<atext linktext="10.0.5" />
+					<atext linktext="10.0.6" />
+					<atext linktext="10.0.7" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+			<dep>automake</dep>
+			<dep>automake113</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>file</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXt</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libdrm</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+			<dep>libtool</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>talloc</dep>
+			<dep>llvm</dep>
+			<dep>libvdpau</dep>
+			<dep>elfutils</dep>
+			<dep>dri3proto</dep>
+			<dep>presentproto</dep>
+			<dep>libxshmfence</dep>
+			<!-- soft -->
+			<dep>makedepend</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.gz
+			fi
+			# tar xzf ${SRCDIR}/dri3proto-1.0.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}-llvm.patch | patch -p0
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			
+			echo "Now working in:"
+			pwd
+			
+			echo 'Current environment:'
+			env
+			echo 'Unsetting SRCDIR'
+			unset SRCDIR
+			echo 'Current environment:'
+			env
+			
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC='distcc /usr/bin/gcc'
+				export CXX='distcc /usr/bin/g++'
+			else
+				export CC='/usr/bin/gcc'
+				export CXX='/usr/bin/g++'
+			fi
+			
+			./configure --prefix=/usr     \
+				--sysconfdir=/etc              \
+				--enable-texture-float         \
+				--enable-gles1                 \
+				--enable-gles2                 \
+				--enable-openvg                \
+				--enable-vdpau                 \
+				--enable-osmesa                \
+				--enable-xa                    \
+				--enable-gbm                   \
+				--enable-gallium-egl           \
+				--enable-gallium-gbm           \
+				--enable-glx-tls               \
+				--with-llvm-shared-libs        \
+				--with-egl-platforms="drm,x11" \
+				--with-gallium-drivers="nouveau,r300,r600,radeonsi,svga,swrast" 
+				
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount 
+				make -j $jobcount 
+				make
+			else
+				make
+			fi
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			echo 'Unsetting SRCDIR'
+			unset SRCDIR
+			echo 'Current environment:'
+			env
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

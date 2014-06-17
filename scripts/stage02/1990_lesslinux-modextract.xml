@@ -1,0 +1,40 @@
+<llpackages>
+	<package 
+		name="lesslinux-modextract"
+		version="20091118"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="b18544f860bd1f21a4e2e1bbd1660bb19face4b3">lesslinux-modextract-20091118.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="365" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/bin
+			cd lesslinux-modextract
+			for i in *.rb ; do
+				install -m 0755 $i ${TGTDIR}/usr/bin
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>

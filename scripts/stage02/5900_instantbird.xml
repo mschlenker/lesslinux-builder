@@ -1,0 +1,259 @@
+<llpackages>
+	<package 
+		name="instantbird"
+		version="1.5"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                         
+				<pkg sha1="bf5fe5a5a9d4623f0bee4b0756c38159e88f7422">instantbird-1.5.src.tgz</pkg>
+				<mirror>http://instantbird.com/downloads/1.5/</mirror>
+			</file>
+			<manualcheck date="20140216" interval="45" page="http://instantbird.com/downloads/" />
+			<check>
+				<page html="http://instantbird.com/downloads/">
+					<atext linktext="1.5.1" />
+					<atext linktext="1.5.2" />
+					<atext linktext="1.5.3" />
+					<atext linktext="1.5.4" />
+					<atext linktext="1.6/" />
+					<atext linktext="1.7/" />
+					<atext linktext="1.8/" />
+					<atext linktext="1.9/" />
+					<atext linktext="1.10/" />
+					<atext linktext="2.0/" />
+					<atext linktext="2.1/" />
+					<atext linktext="2.2/" />
+					<atext linktext="3.0/" />
+					<atext linktext="4.0/" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Mesa</dep><dep>glu</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>autoconf</dep>
+			<dep>autoconf213</dep>
+                        <dep>avahi</dep>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+			<dep>bzip2</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-vfs</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libIDL</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libart_lgpl</dep>
+                        <dep>libbonobo</dep>
+                        <dep>libbonoboui</dep>
+                        <dep>libcanberra</dep>
+                        <dep>libgnome-keyring</dep>
+                        <dep>libgnome</dep>
+                        <dep>libgnomecanvas</dep>
+                        <dep>libgnomeui</dep>
+                        <dep>libnotify</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>makedepend</dep>
+			<dep>openssl</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>popt</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>unzip</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>wget</dep>
+                        <dep>which</dep>
+                        <dep>wireless_tools</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                        <dep>yasm</dep>
+                        <dep>zip</dep>
+                        <dep>zlib</dep>
+			<dep>libmng</dep>
+			<dep>lcms</dep>
+			<dep>nspr</dep>
+			<dep>distcc</dep>
+			<!-- Make sure instantbird is built after firefox and thunderbird to make sure not three processes link at the same time -->
+			<dep>firefox</dep>
+			<dep>thunderbird</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tgz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}-src
+			export SHELL=/bin/bash
+			
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				sed -i "s%MOZ_MAKE_FLAGS=-j4%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" mozconfig 
+				# echo "MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"" > .mozconfig 
+				make -f client.mk configure
+				pump make -f client.mk build  
+			else
+				make -f client.mk configure
+				make -f client.mk build
+			fi
+			echo '===> Trying to find libxul.so...'
+			find ../obj-instantbird -type f -name libxul.so
+			
+			ccount=0
+			while [ '!' -f ../obj-instantbird/mozilla/toolkit/library/libxul.so -a $ccount -lt 5 ] ; do
+				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
+				sleep 300
+				make -f client.mk build
+				ccount=` expr $ccount + 1 ` 
+			done
+			sed -i 's%components/libdbusservice%# components/libdbusservice%g' instantbird/installer/removed-files.in
+			cd ../obj-instantbird
+			make package
+			
+			echo '==> Searching XPIs'
+			find ../obj-instantbird -name '*.xpi' | sort 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+LIBXUL=obj-instantbird/mozilla/toolkit/library/libxul.so
+TARFILE=obj-instantbird/mozilla/dist/instantbird-${PKGVERSION}.en-US.linux-i686.tar.bz2
+[ -f "$TARFILE" ] || exit 1
+[ -f "$LIBXUL" ] || exit 1
+			
+mkdir -p ${TGTDIR}/opt
+mkdir -p ${TGTDIR}/usr/share/icons
+mkdir -p ${TGTDIR}/usr/bin
+mkdir -p ${TGTDIR}/usr/share/applications/
+tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
+mv ${TGTDIR}/opt/instantbird ${TGTDIR}/opt/instantbird-${PKGVERSION}
+
+install -m 0644 ${TGTDIR}/opt/instantbird-${PKGVERSION}/icons/mozicon128.png ${TGTDIR}/usr/share/icons/instantbird128.png 
+mkdir -p ${TGTDIR}/opt/instantbird-${PKGVERSION}/plugins
+touch ${TGTDIR}/opt/instantbird-${PKGVERSION}/plugins/.intentionally_empty
+
+echo -n '' > ${TGTDIR}/usr/bin/instantbird-${PKGVERSION}
+cat >> ${TGTDIR}/usr/bin/instantbird-${PKGVERSION} << FFRUN
+#!/bin/sh
+
+PATH=/static/bin:/static/sbin:\$PATH
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+langopts=""
+echo "\$LANGUAGE" | grep '^de' >/dev/null && langopts="-contentLocale de-DE -UILocale de-DE"
+echo "\$LANGUAGE" | grep '^pl' >/dev/null && langopts="-contentLocale pl-PL -UILocale pl-PL"
+echo "\$LANGUAGE" | grep '^es' >/dev/null && langopts="-contentLocale es-ES -UILocale es-ES"
+echo "\$LANGUAGE" | grep '^ru' >/dev/null && langopts="-contentLocale ru-RU -UILocale ru-RU"
+echo "\$LANGUAGE" | grep '^fr' >/dev/null && langopts="-contentLocale fr-FR -UILocale fr-FR"
+echo "\$LANGUAGE" | grep '^it' >/dev/null && langopts="-contentLocale it-IT -UILocale it-IT"
+echo "\$LANGUAGE" | grep '^nl' >/dev/null && langopts="-contentLocale nl-NL -UILocale nl-NL"
+echo "\$LANGUAGE" | grep '^pt' >/dev/null && langopts="-contentLocale pt-PT -UILocale pt-PT"
+
+[ "\$security" '!=' "smack" ] && exec /opt/instantbird-${PKGVERSION}/instantbird \$langopts \$@
+
+if [ "\$#" -lt 1 ] ; then
+    exec sudo /opt/instantbird-${PKGVERSION}/instantbird_smack
+else
+    if ps waux | grep 'surfer   /opt/.*/instantbird-bin' | grep -v grep ; then
+        /opt/instantbird-${PKGVERSION}/instantbird \$@
+    else
+        sudo /opt/instantbird-${PKGVERSION}/instantbird_smack &
+	sleep 5
+	exec /opt/instantbird-${PKGVERSION}/instantbird \$@
+    fi
+fi
+FFRUN
+
+rm ${TGTDIR}/usr/bin/instantbird
+ln -sf /usr/bin/instantbird-${PKGVERSION} ${TGTDIR}/usr/bin/instantbird
+chmod a+rx ${TGTDIR}/usr/bin/instantbird-${PKGVERSION}
+
+echo -n '' > ${TGTDIR}/opt/instantbird-${PKGVERSION}/instantbird_smack
+cat >> ${TGTDIR}/opt/instantbird-${PKGVERSION}/instantbird_smack << FFSMACK
+#!/static/bin/ash
+
+langopts=""
+echo "\$LANGUAGE" | grep '^de' >/dev/null && langopts="-contentLocale de-DE -UILocale de-DE"
+echo "\$LANGUAGE" | grep '^pl' >/dev/null && langopts="-contentLocale pl-PL -UILocale pl-PL"
+echo "\$LANGUAGE" | grep '^es' >/dev/null && langopts="-contentLocale es-ES -UILocale es-ES"
+echo "\$LANGUAGE" | grep '^ru' >/dev/null && langopts="-contentLocale ru-RU -UILocale ru-RU"
+echo "\$LANGUAGE" | grep '^fr' >/dev/null && langopts="-contentLocale fr-FR -UILocale fr-FR"
+echo "\$LANGUAGE" | grep '^it' >/dev/null && langopts="-contentLocale it-IT -UILocale it-IT"
+echo "\$LANGUAGE" | grep '^nl' >/dev/null && langopts="-contentLocale nl-NL -UILocale nl-NL"
+echo "\$LANGUAGE" | grep '^pt' >/dev/null && langopts="-contentLocale pt-PT -UILocale pt-PT"
+/static/sbin/newsmack internet /static/bin/su surfer -c "/opt/instantbird-${PKGVERSION}/instantbird \$langopts"
+
+FFSMACK
+
+chmod a+rx ${TGTDIR}/opt/instantbird-${PKGVERSION}/instantbird_smack
+/sbin/paxctl -m -r ${TGTDIR}/opt/instantbird-${PKGVERSION}/instantbird-bin
+			
+chown -R 0:0 ${TGTDIR}/opt/instantbird-${PKGVERSION}
+
+cat >> ${TGTDIR}/usr/share/applications/instantbird.desktop << IDESK
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Instantbird
+Comment=Instant Messanger
+Categories=Network;
+Exec=/usr/bin/instantbird
+Icon=/usr/share/icons/instantbird128.png
+Terminal=false
+StartupNotify=true
+
+IDESK
+			
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf obj-instantbird
+			rm -rf ${PKGNAME}-${PKGVERSION}-src
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,150 @@
+<llpackages>
+	<package 
+		name="glibc"
+		version="2.19"
+		class="lib"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                
+				<pkg sha1="b29e1f94b8a32e283e1cb66c9a913950c496fb51">glibc-2.19.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
+			</file>
+			<file>                                                                                  
+				<pkg sha1="d61e9ba795b64f1b1aa81023f3e45157cb426c93">glibc-2.19-fhs-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<!-- <file>                                                                                            
+				<pkg sha1="41a88bf6a20926a4a1e9792ae5eb2a9854dc44af">glibc-2.16-gcc_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20140518" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/glibc/">
+					<atext linktext="glibc-2.19.1." />
+					<atext linktext="glibc-2.19.2." />
+					<atext linktext="glibc-2.19.3." />
+					<atext linktext="glibc-2.19.4." />
+					<atext linktext="glibc-2.20." />
+					<atext linktext="glibc-2.21." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			mkdir glibc-build
+			unxz -c ${SRCDIR}/glibc-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+
+cd glibc-${PKGVERSION}
+sed -i 's/\\$$(pwd)/`pwd`/' timezone/Makefile
+patch -Np1 -i ${SRCDIR}/glibc-2.19-fhs-1.patch
+
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd glibc-build
+			case `uname -m` in
+			i?86) 
+				echo "CFLAGS += -march=i486 -mtune=generic -O3 -pipe" > configparms
+			;;
+			esac
+			../glibc-${PKGVERSION}/configure \
+				--prefix=/usr          \
+				--disable-profile      \
+				--enable-kernel=2.6.34 \
+				--enable-obsolete-rpc
+			make
+			echo '=== Build finished, testing...'
+			make -k check 2>&1 | tee glibc-check-log
+			echo '=== Testing finished, grepping...'
+			grep Error glibc-check-log
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd glibc-build
+			make -k check 2>&1 | tee glibc-check-log
+			grep Error glibc-check-log
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd glibc-build
+			touch /etc/ld.so.conf
+			make install
+			cp -v ../glibc-${PKGVERSION}/nscd/nscd.conf /etc/nscd.conf
+			mkdir -pv /var/cache/nscd
+			mkdir -pv /usr/include/rpc
+			mkdir -pv /usr/include/rpcsvc
+			# cp -v ../glibc-${PKGVERSION}/sunrpc/rpc/*.h /usr/include/rpc
+			# cp -v ../glibc-${PKGVERSION}/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
+			# cp -v ../glibc-${PKGVERSION}/nis/rpcsvc/*.h /usr/include/rpcsvc
+			mkdir -pv /usr/lib/locale
+			localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8
+			localedef -i de_DE -f ISO-8859-1 de_DE
+			localedef -i de_DE@euro -f ISO-8859-15 de_DE@euro
+			localedef -i de_DE -f UTF-8 de_DE.UTF-8
+			localedef -i en_HK -f ISO-8859-1 en_HK
+			localedef -i en_PH -f ISO-8859-1 en_PH
+			localedef -i en_US -f ISO-8859-1 en_US
+			localedef -i en_US -f UTF-8 en_US.UTF-8
+			localedef -i es_ES -f UTF-8 es_ES.UTF-8
+			localedef -i es_MX -f ISO-8859-1 es_MX
+			localedef -i es_MX -f UTF-8 es_MX.UTF-8
+			localedef -i fa_IR -f UTF-8 fa_IR
+			localedef -i fr_FR -f ISO-8859-1 fr_FR
+			localedef -i fr_FR@euro -f ISO-8859-15 fr_FR@euro
+			localedef -i fr_FR -f UTF-8 fr_FR.UTF-8
+			localedef -i it_IT -f UTF-8 it_IT.UTF-8
+			localedef -i ja_JP -f EUC-JP ja_JP
+			localedef -i pl_PL -f UTF-8 pl_PL.UTF-8
+			localedef -i ru_RU -f UTF-8 ru_RU.UTF-8
+			localedef -i tr_TR -f UTF-8 tr_TR.UTF-8
+			localedef -i zh_CN -f GB18030 zh_CN.GB18030
+			cat > /etc/nsswitch.conf << "EOF"
+# Begin /etc/nsswitch.conf
+
+passwd: files
+group: files
+shadow: files
+
+hosts: files dns
+networks: files
+
+protocols: files
+services: files
+ethers: files
+rpc: files
+
+# End /etc/nsswitch.conf
+EOF
+
+			cat > /etc/ld.so.conf << "EOF"
+# Begin /etc/ld.so.conf
+
+/usr/local/lib
+/opt/lib
+/usr/compat.new/lib
+/usr/compat.old/lib
+
+# End /etc/ld.so.conf
+EOF
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>

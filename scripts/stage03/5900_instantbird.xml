@@ -1,0 +1,47 @@
+<llpackages>
+	<package name="instantbird" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/instantbird" mode="0640" group="0" owner="0">
+		<![CDATA[
+ssurfer   ALL = NOPASSWD: /opt/instantbird-INSTANTBIRDVERSION/instantbird_smack
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/instantbird" mode="0640" group="0" owner="0">
+		<![CDATA[
+surfer   ALL = NOPASSWD: /opt/instantbird-INSTANTBIRDVERSION/instantbird_smack
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0517-instantbird.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides ib
+#lesslinux license BSD
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+skipflash=0
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+ibversion=` grep -E '\sinstantbird\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
+
+case $1 in 
+    start)
+	printf "$bold===> Preparing Instantbird $ibversion $normal\n"
+	for f in /etc/sudoers.lax.d/instantbird /etc/sudoers.strict.d/instantbird ; do
+		sed -i 's/INSTANTBIRDVERSION/'"$ibversion"'/g' ${f}
+		chmod 0440 ${f}
+	done
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

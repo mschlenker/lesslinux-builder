@@ -1,0 +1,95 @@
+<llpackages>
+	<package 
+		name="gst-plugins-ugly1"
+		version="1.2.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                              
+				<pkg sha1="170dc7a35285a3828b0b0f01872ab5921d589bf1">gst-plugins-ugly-1.2.4.tar.xz</pkg>
+				<mirror>http://gstreamer.freedesktop.org/src/gst-plugins-ugly/</mirror>
+			</file>
+			<manualcheck date="20140515" interval="120" page="http://gstreamer.freedesktop.org/src/gst-plugins-ugly/" />
+			<check>
+				<page html="http://gstreamer.freedesktop.org/src/gst-plugins-ugly/">
+					<atext linktext="gst-plugins-ugly-1.2.10." />
+					<atext linktext="gst-plugins-ugly-1.2.5." />
+					<atext linktext="gst-plugins-ugly-1.2.6." />
+					<atext linktext="gst-plugins-ugly-1.2.7." />
+					<atext linktext="gst-plugins-ugly-1.2.8." />
+					<atext linktext="gst-plugins-ugly-1.2.9." />
+					<atext linktext="gst-plugins-ugly-1.3." />
+					<atext linktext="gst-plugins-ugly-1.4." />
+					<atext linktext="gst-plugins-ugly-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>a52dec</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gst-plugins-base1</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>inetutils</dep>
+                        <dep>libdvdread</dep>
+                        <dep>libffi</dep>
+                        <dep>libmad</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>x264</dep>
+			<dep>distcc</dep>
+			<dep>gcc48</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/gst-plugins-ugly-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gst-plugins-ugly-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc /usr/local/gcc48/bin/gcc48"
+				export CXX="distcc /usr/local/gcc48/bin/g++48" 
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				export CC="/usr/local/gcc48/bin/gcc48"
+				export CXX="/usr/local/gcc48/bin/g++48" 
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gst-plugins-ugly-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gst-plugins-ugly-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

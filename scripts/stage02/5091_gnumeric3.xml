@@ -1,0 +1,119 @@
+<llpackages>
+	<package 
+		name="gnumeric3"
+		version="1.12.15"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                     
+				<pkg sha1="1242f51a58f49e962a44b35ef10a317adef6f77d">gnumeric-1.12.15.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gnumeric/1.12/</mirror>
+			</file>
+			<manualcheck date="20140519" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/gnumeric/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnumeric/1.12/">
+					<atext linktext="gnumeric-1.12.17." />
+					<atext linktext="gnumeric-1.12.18." />
+					<atext linktext="gnumeric-1.12.16." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnumeric/">
+					<atext linktext="1.13" />
+					<atext linktext="1.14" />
+					<atext linktext="1.15" />
+					<atext linktext="1.16" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>brasero</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>evince3</dep>
+                        <dep>expat</dep>
+                        <dep>flex</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gconf3</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection1</dep>
+                        <dep>goffice3</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libgsf</dep>
+                        <dep>libpng15</dep>
+                        <dep>librsvg</dep>
+                        <dep>libwnck3</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>scrollkeeper</dep>
+                        <dep>sed</dep>
+                        <dep>xz</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/gnumeric-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gnumeric-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				# PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
+				./configure --prefix=/usr --sysconfdir=/etc CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				# PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig 
+				./configure --prefix=/usr --sysconfdir=/etc
+				make  
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gnumeric-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gnumeric-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

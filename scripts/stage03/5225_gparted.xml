@@ -1,0 +1,19 @@
+<llpackages>
+	<package name="gparted" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/gparted" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/sbin/gparted
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/gparted" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = /usr/sbin/gparted
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

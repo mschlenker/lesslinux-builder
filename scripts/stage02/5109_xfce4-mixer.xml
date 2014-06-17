@@ -1,0 +1,92 @@
+<llpackages>
+	<package 
+		name="xfce4-mixer"
+		version="4.10.0"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="8d2fda90f293603496bd23426486315ccf8d06f9">xfce4-mixer-4.10.0.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/apps/xfce4-mixer/4.10/</mirror>
+			</file> 
+			<manualcheck date="20140519" interval="90" page="http://archive.xfce.org/src/apps/xfce4-mixer/4.8/" />
+			<!-- <check>
+				<page html="http://archive.xfce.org/src/apps/xfce4-mixer/4.8/">
+					<atext linktext="xfce4-mixer-4.8.1" />
+					<atext linktext="xfce4-mixer-4.8.2" />
+					<atext linktext="xfce4-mixer-4.8.3" />
+					<atext linktext="xfce4-mixer-4.8.4" />
+					<atext linktext="xfce4-mixer-4.8.5" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gst-plugins-base</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxfce4util</dep>
+                        <dep>libxfcegui4</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>startup-notification</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xfce4-panel</dep>
+                        <dep>xfconf</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			 cd ${PKGNAME}-${PKGVERSION}
+			 ./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			 make install
+			]]>
+		</install>
+	</package>
+</llpackages>

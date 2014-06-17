@@ -1,0 +1,86 @@
+<llpackages>
+	<package 
+		name="gstreamer"
+		version="0.10.36"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                             
+				<pkg sha1="ff95b5316b920e7c2836588bba18fa61395fbd03">gstreamer-0.10.36.tar.bz2</pkg>
+				<mirror>http://gstreamer.freedesktop.org/src/gstreamer/</mirror>
+			</file>
+			<manualcheck date="20130204" interval="120" page="http://gstreamer.freedesktop.org/src/gstreamer/" />
+			<check>
+				<page html="http://gstreamer.freedesktop.org/src/gstreamer/">
+					<atext linktext="gstreamer-0.10.38." />
+					<atext linktext="gstreamer-0.10.37." />
+					<atext linktext="gstreamer-0.10.38." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			 <dep>GConf</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison2</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			PATH=/usr/compat.old/bin:/usr/compat/old/sbin:$PATH
+			export PATH
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			for i in /usr/bin/gst-* ; do
+				paxctl -m $i
+			done
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

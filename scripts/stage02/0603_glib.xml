@@ -1,0 +1,112 @@
+<llpackages>
+	<package 
+		name="glib"
+		version="2.40.0"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                
+				<pkg sha1="44e1442ed4d1bf3fa89138965deb35afc1335a65">glib-2.40.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/glib/2.40/</mirror>
+			</file>
+			<!--
+			
+			This patch is necessary to build against wncksync later. On glib updates please
+			check if it is still necessary/available.
+	
+			-->
+			<!-- <file>      
+				<pkg sha1="016335531c7d30666b48071b1cfd8a2195a6c9ea">glib2.0_2.26.0-0ubuntu1.diff.gz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/g/glib2.0/</mirror>
+			</file> -->
+			<!-- <file>    
+				<pkg sha1="d4835bb1618fc1e1dfe88ef8443c12fcae69f90e">glib-2.24.1.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/glib/2.24/</mirror>
+			</file>
+			<file>    
+				<pkg sha1="6faf85f52e1f43a1e6018cd5f913d4fd71edfd0c">glib-2.24.1-copyright.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<manualcheck date="20140517" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/glib/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/glib/2.40/">
+					<atext linktext="glib-2.40.1." />
+					<atext linktext="glib-2.40.2." />
+					<atext linktext="glib-2.40.3." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/glib/">
+					<atext linktext="2.42" />
+					<atext linktext="2.44" />
+					<atext linktext="2.46" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>automake113</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+			<dep>bison</dep>
+			<dep>procps</dep>
+			<dep>grep</dep>
+			<dep>bash</dep>
+			<dep>inetutils</dep>
+			<dep>perl</dep>
+			<dep>pcre</dep>
+			<dep>pkg-config</dep>
+			<dep>Python</dep>
+			<!-- <dep>desktop-file-utils</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			# tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<!-- This patch replaces the UTF-8 copyright symbol by (C) to prevent ruby-gnome from failing-->
+		<!-- <patch>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			gunzip -c ${SRCDIR}/${PKGNAME}2.0_2.26.0-0ubuntu1.diff.gz | patch -p1
+			 cat debian/patches/71_gio_launch_handler.patch | patch -p1 
+			find . -type f -name '*.h' -exec sed -i  's/©/(C)/g' {} \;
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				echo 'Building with distcc'
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			else
+				jobcount=3
+			fi
+			./configure --prefix=/usr && make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

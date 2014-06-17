@@ -1,0 +1,112 @@
+<llpackages>
+	<package 
+		name="gtksourceview3"
+		version="3.12.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                       
+				<pkg sha1="157ee7291988f89eebdbf6c4bb05e9901572f1ad">gtksourceview-3.12.2.tar.xz</pkg>
+				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gtksourceview/3.12</mirror>
+			</file>
+			<manualcheck date="20140519" interval="120" page="http://ftp.acc.umu.se/pub/gnome/sources/gtksourceview/" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/2.32/">
+					<atext linktext="file-roller-2.32.3." />
+					<atext linktext="file-roller-2.32.4." />
+					<atext linktext="file-roller-2.32.5." />
+					<atext linktext="file-roller-2.32.6." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/">
+					<atext linktext="2.34" />
+					<atext linktext="2.36" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib-networking</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>icon-naming-utils</dep>
+                        <dep>icu</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng15</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>procps</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>xz</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/gtksourceview-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gtksourceview-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gtksourceview-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gtksourceview-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

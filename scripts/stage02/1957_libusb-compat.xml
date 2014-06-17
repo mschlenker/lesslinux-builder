@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="libusb-compat"
+		version="0.1.5"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>              
+				<pkg sha1="062319276d913c753a4b1341036e6a2e42abccc9">libusb-compat-0.1.5.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libusb/libusb-compat-0.1/libusb-compat-0.1.5/</mirror>
+			</file>
+			<manualcheck date="20140220" interval="30" page="http://sourceforge.net/projects/libusb/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/libusb/files/libusb-compat-0.1/">
+					<atext linktext="libusb-compat-0.1.6" />
+					<atext linktext="libusb-compat-0.1.7" />
+					<atext linktext="libusb-compat-0.1.8" />
+					<atext linktext="libusb-compat-0.1.9" />
+					<atext linktext="libusb-compat-0.1.10" />
+					<atext linktext="libusb-compat-0.1.11" />
+					<atext linktext="libusb-compat-0.1.12" />
+					<atext linktext="libusb-compat-0.1.13" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>libusb</dep>
+			<dep>usbids</dep>
+			<dep>pkg-config</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

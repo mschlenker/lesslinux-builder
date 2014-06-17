@@ -1,0 +1,112 @@
+<llpackages>
+	<package 
+		name="GConf2"
+		version="2.32.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>             
+				<pkg sha1="8c53a2b3220cfc058a08638a89fe35e44cfef581">GConf-2.32.4.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/GConf/2.32/</mirror>
+			</file>
+			<manualcheck date="20130430" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/GConf/2.32/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/GConf/2.32/">
+					<atext linktext="GConf-2.32.5." />
+					<atext linktext="GConf-2.32.6." />
+					<atext linktext="GConf-2.32.7." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/GConf/">
+					<atext linktext="2.34" />
+					<atext linktext="2.36" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>ORBit2</dep>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>polkit</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/GConf-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			# cd ${PKGNAME}-${PKGVERSION}
+			# sed -i 's%<glib.h>%"/usr/include/glib-2.0/glib.h"%g' defaults/gconf-defaults.c 
+			# sed -i 's%<glib-object.h>%"/usr/include/glib-2.0/glib-object.h"%g' defaults/gconf-defaults.c 
+			true
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd GConf-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --enable-inotify --with-gtk=2.0 CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --enable-inotify --with-gtk=2.0
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd GConf-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf GConf-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

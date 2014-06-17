@@ -1,0 +1,112 @@
+<llpackages>
+	<dirs>
+		<dir mode="0755">/etc/lesslinux</dir>
+		<dir mode="0755">/etc/lesslinux/firefox</dir>
+	</dirs>
+	<!-- FIXME: Dubletten entfernen -->
+	<scripts>
+		<scriptdata location="/etc/lesslinux/firefox/firefox_common.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/firefox_common.cfg
+pref("startup.homepage_welcome_url", "file:///etc/lesslinux/branding/browser_startup.html");
+// END /etc/lesslinux/firefox/firefox_common.cfg
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/firefox/force_startpage.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/force_startpage.cfg
+pref("browser.startup.homepage", "file:///etc/lesslinux/branding/browser_too_old.html");
+lockPref("browser.startup.homepage", "file:///etc/lesslinux/branding/browser_too_old.html");
+// END /etc/lesslinux/firefox/force_startpage.cfg
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/firefox/prevent_xpi.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/prevent_xpi.cfg
+pref("xpinstall.enabled", false);
+lockPref("xpinstall.enabled", false);
+// END /etc/lesslinux/firefox/prevent_xpi.cfg
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0411-firefox.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides ff35prep
+#lesslinux license BSD
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+skipflash=0
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+expiration=20111231
+ffversion=` grep -E '\sshiretoko-source\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
+
+case $1 in 
+    start)
+	printf "$bold===> Preparing Firefox 3.6.x $normal\n"
+	if mountpoint -q /opt/firefox35/lib/firefox-$ffversion/lesslinux ; then
+	    echo "tmpfs for firefox already mounted"
+	else
+            [ "\$security" '!=' "smack" ] && cp /usr/bin/dbus-launch /static/bin/
+	    mount -t tmpfs -o mode=0755,size=1m,nodev,nosuid,noexec tmpfs /opt/firefox35/lib/firefox-$ffversion/lesslinux
+	    tar -C / -cf /tmp/.ff-$ffversion.tar /etc/lesslinux/firefox
+	    mount -t tmpfs -o mode=0755,size=1m,nodev,nosuid,noexec tmpfs /etc/lesslinux/firefox
+	    tar -C / -xf /tmp/.ff-$ffversion.tar
+	    rm /tmp/.ff-$ffversion.tar
+	    ln -sf /etc/lesslinux/firefox/firefox_common.cfg /opt/firefox35/lib/firefox-$ffversion/lesslinux/lesslinux.cfg 
+	    idate=` date '+%Y%m%d' `
+	    if [ "$idate" -gt "$expiration" ] ; then
+	        cat /etc/lesslinux/firefox/prevent_xpi.cfg /etc/lesslinux/firefox/force_startpage.cfg > /etc/lesslinux/firefox/firefox_defaults.cfg
+		ln -sf /etc/lesslinux/firefox/force_startpage.cfg /etc/lesslinux/firefox/firefox_allow_xpi.cfg
+	    elif [ "$laxsudo" '=' 1 ] ; then	
+	        ln -sf /etc/lesslinux/firefox/firefox_common.cfg /etc/lesslinux/firefox/firefox_allow_xpi.cfg
+		ln -sf /etc/lesslinux/firefox/firefox_allow_xpi.cfg /etc/lesslinux/firefox/firefox_defaults.cfg
+	    else
+		ln -sf /etc/lesslinux/firefox/prevent_xpi.cfg /etc/lesslinux/firefox/firefox_defaults.cfg
+		ln -sf /etc/lesslinux/firefox/firefox_common.cfg /etc/lesslinux/firefox/firefox_allow_xpi.cfg
+	    fi
+	    ln -sf /etc/lesslinux/firefox/firefox_defaults.cfg /opt/firefox35/lib/firefox-$ffversion/lesslinux/lesslinux.cfg
+	    chown -R 1000:1000 /etc/lesslinux/firefox
+	    # mount an overlay for plugins
+	    mount -t tmpfs -o mode=0755,size=16m,nodev,nosuid tmpfs /opt/firefox35/lib/firefox-$ffversion/plugins
+	    if [ "$skipflash" -gt 0 ] ; then
+	        printf "$bold---> Skipping Flash Player $normal\n"
+	    elif [ -f /etc/lesslinux/flashplugin ] ; then
+		ln -s /usr/lib/browserplugins/` cat /etc/lesslinux/flashplugin ` /opt/firefox35/lib/firefox-$ffversion/plugins/
+	    else
+	        if [ -d /lesslinux/toram/lesslinux/blob ] ; then
+		    blobdir="/lesslinux/toram/lesslinux/blob"
+		elif [ -d /lesslinux/isoloop/lesslinux/blob ] ; then
+		    blobdir="/lesslinux/isoloop/lesslinux/blob"
+		else
+	            blobdir="/lesslinux/cdrom/lesslinux/blob"
+		fi
+		if [ -f ${blobdir}/libflashplayer.so ] ; then
+		    ln -sf ${blobdir}/libflashplayer.so /opt/firefox35/lib/firefox-$ffversion/plugins/
+		elif [ -f ${blobdir}/install_flash_player_10_linux.tar.gz ] ; then
+		    tar -C /opt/firefox35/lib/firefox-$ffversion/plugins -xvf ${blobdir}/install_flash_player_10_linux.tar.gz
+		elif [ -f /usr/lib/browserplugins/libgnashplugin.so ] ; then
+		    ln -sf /usr/lib/browserplugins/libgnashplugin.so /opt/firefox35/lib/firefox-$ffversion/plugins/
+		fi
+	    fi
+	fi
+    ;;
+    stop)
+	printf "$bold===> Unmounting Firefox 3.6.x overlay $normal\n"
+	umount /opt/firefox35/lib/firefox-$ffversion/lesslinux > /dev/null 2>&1
+	umount /opt/firefox35/lib/firefox-$ffversion/plugins > /dev/null 2>&1
+	umount /etc/lesslinux/firefox > /dev/null 2>&1
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+	<package 
+		name="shiretoko-source"
+		version="3.6.16"
+		class="user"
+		>
+	</package>
+</llpackages>

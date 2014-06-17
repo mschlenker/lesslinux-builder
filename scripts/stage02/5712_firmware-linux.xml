@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="linux-firmware"
+		version="3.14.7"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git -->                                                              
+				<pkg sha1="e20e4e82f01ac2faec479b259da2eafa7d9ef5f4">linux-firmware-20140513.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git -->                                                              
+				<pkg sha1="653f32d591ea8fb5cb3e04101c02c1a46863dd02">lesslinux-firmwarefinder-20130723.rb</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130912" interval="60" page="git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-3.20." />
+					<atext linktext="patch-3.15." />
+					<atext linktext="patch-3.16." />
+					<atext linktext="patch-3.17." />
+					<atext linktext="patch-3.18." />
+					<atext linktext="patch-3.19." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux</dep>
+			<dep>firmware_intel</dep>
+			<dep>firmware_rtl8192</dep>
+			<dep>firmware-brcm</dep>
+			<dep>firmware_ralink</dep>
+			<dep>firmware_zydas</dep>
+			<dep>firmware_intel_ipw</dep>
+			<dep>firmware_ar9170</dep>
+			<dep>firmware_rtl8192</dep>
+			<dep>firmware-broadcom</dep>
+			<dep>alsa-firmware</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xjf ${SRCDIR}/linux-firmware-20140513.tar.bz2
+			cp ${SRCDIR}/lesslinux-firmwarefinder-20130723.rb lesslinux-firmwarefinder.rb
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			
+			echo 'Nothing to do here!'
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			export LANG=en_US.UTF-8
+			export LANGUAGE=en_US:en_GB:en
+			ruby lesslinux-firmwarefinder.rb ${PKGVERSION}-lesslinux-000 ${TGTDIR}/lib/firmware
+			cd ${TGTDIR}/lib/firmware
+			ln -sf iwlwifi-6000g2a-{5,4}.ucode
+			ln -sf iwlwifi-6000g2b-{5,4}.ucode
+			ln -sf iwlwifi-7260-{7,6}.ucode
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf linux-firmware lesslinux-firmwarefinder.rb 
+			]]>
+		</clean>
+	</package>
+</llpackages>

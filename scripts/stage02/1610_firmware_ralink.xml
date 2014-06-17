@@ -1,0 +1,55 @@
+<llpackages>
+	<package 
+		name="firmware_ralink"
+		version="20130717"
+		class="user"
+		install="destdir">
+		<license>proprietary</license>
+		<sources>
+			<file>
+				<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git -->                                                              
+				<pkg sha1="0d9df089b74a38ee287eed6171b1c68fcd169573">linux-firmware-20120102.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20120625" interval="90" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+			<dep>rsync</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[
+			
+			# tar xjf ${SRCDIR}/linux-firmware-${PKGVERSION}.tar.bz2
+			echo "Nothing to unpack"
+			true
+			
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/lib/firmware
+			touch ${TGTDIR}/lib/firmware/${PKGNAME}-${PKGVERSION}_is_now_part_of_linux-firmware
+			
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			rm -rf linux-firmware/ 
+			]]>
+		</clean>
+	</package>
+</llpackages>

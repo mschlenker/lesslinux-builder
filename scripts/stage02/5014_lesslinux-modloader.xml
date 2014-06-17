@@ -1,0 +1,39 @@
+<llpackages>
+	<package 
+		name="lesslinux-modloader"
+		version="20090623"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>      
+				<pkg sha1="c07621e9ec0ed7b32524d44cbcb9dc3e3ed34c7d">lesslinux-modloader-20090623.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -m 0755 /etc/lesslinux/
+			# install -m 0644 usb_modules.xml /etc/lesslinux
+			install -m 0755 llmodloader.rb /usr/bin/
+			]]>
+		</install>
+	</package>
+</llpackages>

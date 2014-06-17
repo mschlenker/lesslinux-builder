@@ -1,0 +1,45 @@
+<llpackages>
+	<package 
+		name="scancl-blob"
+		version="20120912-00"
+		class="user"
+		install="destdir">
+		<license>proprietary</license>
+		<sources>
+			<file>                                                                                        
+				<pkg sha1="038dfb03fc9460621e08ff7c6f2e02a3b0013fde">scancl-blob-20120912-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>qt-everywhere-opensource-src</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xvjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			mkdir -p -m 0755 ${TGTDIR}/etc/avira
+			mkdir -p -m 0755 ${TGTDIR}/usr/bin
+			mkdir -p -m 0755 ${TGTDIR}/usr/share/lesslinux/scancl-blob
+			
+			install -m 0755 avupdate ${TGTDIR}/usr/share/lesslinux/scancl-blob
+			install -m 0644 scancl.conf.lesslinux ${TGTDIR}/etc/avira			
+			install -m 0644 avupdate.conf.lesslinux ${TGTDIR}/etc/avira
+			install -m 0644 avupdate.bat ${TGTDIR}/etc/avira
+			
+			]]>
+		</install>
+	</package>
+</llpackages>

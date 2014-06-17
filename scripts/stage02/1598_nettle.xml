@@ -1,0 +1,85 @@
+<llpackages>
+	<package 
+		name="nettle"
+		version="2.7.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                       
+				<pkg sha1="e7477df5f66e650c4c4738ec8e01c2efdb5d1211">nettle-2.7.1.tar.gz</pkg>
+				<mirror>http://www.lysator.liu.se/~nisse/archive/</mirror>
+			</file>
+			<manualcheck date="20130716" interval="60" page="http://www.lysator.liu.se/~nisse/archive/" />
+			<check>
+				<page html="http://www.lysator.liu.se/~nisse/archive/">
+					<atext linktext="nettle-2.7.2." />
+					<atext linktext="nettle-2.7.3." />
+					<atext linktext="nettle-2.7.4." />
+					<atext linktext="nettle-2.10." />
+					<atext linktext="nettle-2.11." />
+					<atext linktext="nettle-2.12." />
+					<atext linktext="nettle-2.8." />
+					<atext linktext="nettle-2.9." />
+					<atext linktext="nettle-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

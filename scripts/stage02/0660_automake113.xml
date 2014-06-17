@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="automake113"
+		version="1.13.4"
+		class="devel"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="20dac46d2699cb32c8102584db67e964c472b03e">automake-1.13.4.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/automake/</mirror>
+			</file>
+			<manualcheck date="20130716" interval="120" page="http://ftp.gnu.org/gnu/automake/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/automake/">
+					<atext linktext="automake-1.13.5" />
+					<atext linktext="automake-1.13.6" />
+					<atext linktext="automake-1.13.7" />
+					<atext linktext="automake-1.13.8" />
+					<atext linktext="automake-1.13.9" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>autoconf</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>m4</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/automake-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd automake-${PKGVERSION}
+			./configure --prefix=/usr/local/automake113 && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd automake-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd automake-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			mkdir -p ${TGTDIR}/usr/bin
+			ln -sf /usr/local/automake113/bin/automake ${TGTDIR}/usr/bin/automake-1.13
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf automake-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,57 @@
+<llpackages>
+	<package 
+		name="faenza"
+		version="1.3"
+		class="user"
+		install="destdir" >
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                           
+				<pkg sha1="dfc6cc2ec6f6ecfbef0e436007cee75054043adc">faenza-icon-theme_1.3.zip</pkg>
+				<mirror>http://faenza-icon-theme.googlecode.com/files/</mirror>
+			</file>
+			<manualcheck date="20140215" interval="180" page="http://faenza-icon-theme.googlecode.com/files/" />
+		</sources>
+		<builddeps>
+                        <dep>glibc</dep>
+			<dep>bash</dep>
+                        <dep>rsync</dep>
+			<dep>tar</dep>
+			<dep>unzip</dep>
+			<dep>gzip</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unzip ${SRCDIR}/${PKGNAME}-icon-theme_${PKGVERSION}.zip
+			for d in Faenza Faenza-Dark Faenza-Darkest Faenza-Darker Faenza-Ambiance Faenza-Radiance ; do
+				tar xzf ${d}.tar.gz
+			done
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			for d in Faenza Faenza-Dark Faenza-Darkest Faenza-Darker Faenza-Ambiance Faenza-Radiance ; do
+				find ${d} -type f -exec touch {} \;
+			done
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/share/icons
+			for d in Faenza Faenza-Dark Faenza-Darkest Faenza-Darker Faenza-Ambiance Faenza-Radiance ; do
+				tar -cf - ${d} | tar -C ${TGTDIR}/usr/share/icons/ -xvf - 
+			done
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			for d in Faenza Faenza-Dark Faenza-Darkest Faenza-Darker Faenza-Ambiance Faenza-Radiance ; do
+				rm -rf ${d}
+			done 
+			]]>
+		</clean>
+	</package>
+</llpackages>

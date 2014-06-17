@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="xdotool"
+		version="2.20101012.3049"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>   
+				<pkg sha1="b57e9b63123f326f0d1c8c43ff66678753d3da0c">xdotool-2.20101012.3049.tar.gz</pkg>
+				<mirror>http://semicomplete.googlecode.com/files/</mirror>
+			</file>
+			<check>
+				<page html="http://www.semicomplete.com/projects/xdotool/">
+					<atext linktext="xdotool-2.2010102" />
+					<atext linktext="xdotool-2.2010103" />
+					<atext linktext="xdotool-2.201011" />
+					<atext linktext="xdotool-2.201012" />
+					<atext linktext="xdotool-2.2011" />
+					<atext linktext="xdotool-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXi</dep>
+                        <dep>libXtst</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>recordproto</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install PREFIX=/usr
+			]]>
+		</install>
+	</package>
+</llpackages>

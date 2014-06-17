@@ -1,0 +1,1227 @@
+<llpackages>
+	<dirs>
+		<dir mode="0755">/etc/X11</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/X11/xorg.conf.xorg" mode="0644" group="0" owner="0">
+		<![CDATA[
+
+Section "Files"
+EndSection
+
+### Default Monitor: autoprobe everything
+
+Section "Monitor"
+        Identifier      "Standardmonitor"
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "default_screen"
+        Monitor         "Standardmonitor"
+        Defaultdepth    24
+EndSection
+
+### TFT with max 1920x1200@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1920x1200"
+        HorizSync       30-76
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1920x1200"
+        Monitor         "TFT_1920x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1200" "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1920x1200
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1920x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1200" "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1920x1080@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1920x1080"
+        HorizSync       30-69
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1920x1080"
+        Monitor         "TFT_1920x1080"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1920x1080
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1920x1080"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1680x1050@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1680x1050"
+        HorizSync       30-67
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1680x1050"
+        Monitor         "TFT_1680x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1680x1050
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1680x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1600x1200@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1600x1200"
+        HorizSync       30-95
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1600x1200"
+        Monitor         "CRT_1600x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1600x1200" "1400x1050" "1280x1024" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1600x1200@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1600x1200"
+        HorizSync       30-76
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1600x1200"
+        Monitor         "TFT_1600x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1600x1200" "1400x1050" "1280x1024" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1600x1200
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1600x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1600x1200" "1400x1050" "1280x1024" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1440x900@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1440x900"
+        HorizSync       30-57
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1440x900"
+        Monitor         "TFT_1440x900"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1440x900
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1440x900"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1400x1050@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1400x1050"
+        HorizSync       30-83
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1400x1050"
+        Monitor         "CRT_1400x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1400x1050" "1280x1024" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1400x1050@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1400x1050"
+        HorizSync       30-67
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1400x1050"
+        Monitor         "TFT_1400x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1400x1050" "1280x1024" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1400x1050
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1400x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1400x1050" "1280x1024" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1366x768@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1366x768"
+        HorizSync       30-49
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1366x768"
+        Monitor         "TFT_1366x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1366x768" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1366x768
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1366x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1366x768" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1280x1024@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1280x1024"
+        HorizSync       30-81
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1280x1024"
+        Monitor         "CRT_1280x1024"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x1024" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1280x1024@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1280x1024"
+        HorizSync       30-81
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1280x1024"
+        Monitor         "TFT_1280x1024"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x1024" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1280x1024
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1280x1024"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x1024" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+     
+### TFT with max 1280x800@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1280x800x"
+        HorizSync       30-81
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1280x800"
+        Monitor         "TFT_1280x800"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1280x800
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1280x800"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1152x864@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1152x864"
+        HorizSync       30-69
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1152x864"
+        Monitor         "CRT_1152x864"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1152x864" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1152x864@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1152x864"
+        HorizSync       30-81
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1152x864"
+        Monitor         "TFT_1152x864"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1152x864" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1152x864
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1152x864"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1152x864" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1024x768@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1024x768"
+        HorizSync       30-61
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1024x768"
+        Monitor         "CRT_1024x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1024x768@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1024x768"
+        HorizSync       30-49
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1024x768"
+        Monitor         "TFT_1024x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1024x768
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1024x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1024x600@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1024x600"
+        HorizSync       30-39
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1024x600"
+        Monitor         "TFT_1024x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1024x600
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1024x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 800x600@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_800x600"
+        HorizSync       30-48
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_800x600"
+        Monitor         "CRT_800x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### TFT with max 800x600@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_800x600"
+        HorizSync       30-39
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_800x600"
+        Monitor         "TFT_800x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Autodetect 800x600
+
+Section "Screen"
+        Identifier      "Screen_AUTO_800x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### TFT with max 800x480@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_800x480"
+        HorizSync       30-38
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_800x480"
+        Monitor         "TFT_800x480"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Autodetect 800x480
+
+Section "Screen"
+        Identifier      "Screen_AUTO_800x480"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Settings for conf interface
+
+Section "Monitor"
+        Identifier      "TFT_Xconfgui"
+        HorizSync       28-36
+        VertRefresh     47-56
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_Xconfgui"
+#        Monitor         "TFT_Xconfgui"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Common settings
+
+Section "InputDevice"
+        Identifier      "Generic Keyboard"
+        Driver          "kbd"
+        Option          "CoreKeyboard"
+        Option          "XkbRules"      "xorg"
+        Option          "XkbModel"      "pc105"
+        Option          "XkbOptions"    "lv3:ralt_switch"
+EndSection
+                                                        
+Section "InputDevice"
+        Identifier      "Configured Mouse"
+        Driver          "mouse"
+        Option          "CorePointer"
+        Option          "Device"        "/dev/input/mice"
+        Option          "Protocol"      "ImPS/2"
+        Option          "ZAxisMapping"  "4 5"
+        Option          "Emulate3Buttons"       "true"
+EndSection
+
+Section "ServerLayout"
+        Identifier      "Default Layout"
+#        Inputdevice     "Generic Keyboard"
+#        Inputdevice     "Configured Mouse"
+        Screen          "default_screen"
+EndSection
+
+Section "ServerFlags"
+        Option          "AutoAddDevices" "true"
+        Option          "AutoEnableDevices" "true"
+        Option          "AllowEmptyInput" "false"
+EndSection 
+
+Section "Module"
+EndSection
+
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/X11/xorg.conf.vesa" mode="0644" group="0" owner="0">
+		<![CDATA[
+
+Section "Files"
+EndSection
+
+### Default Monitor: autoprobe everything
+
+Section "Monitor"
+        Identifier      "Standardmonitor"
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "default_screen"
+        Monitor         "Standardmonitor"
+        Defaultdepth    24
+EndSection
+
+### TFT with max 1920x1200@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1920x1200"
+        HorizSync       30-76
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1920x1200"
+        Monitor         "TFT_1920x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1200" "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1920x1200
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1920x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1200" "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1920x1080@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1920x1080"
+        HorizSync       30-69
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1920x1080"
+        Monitor         "TFT_1920x1080"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1920x1080
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1920x1080"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1920x1080" "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1680x1050@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1680x1050"
+        HorizSync       30-67
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1680x1050"
+        Monitor         "TFT_1680x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1680x1050
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1680x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1680x1050" "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1600x1200@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1600x1200"
+        HorizSync       30-95
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1600x1200"
+        Monitor         "CRT_1600x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1600x1200" "1400x1050" "1280x1024" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1600x1200@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1600x1200"
+        HorizSync       30-76
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1600x1200"
+        Monitor         "TFT_1600x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1600x1200" "1400x1050" "1280x1024" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1600x1200
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1600x1200"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1600x1200" "1400x1050" "1280x1024" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1440x900@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1440x900"
+        HorizSync       30-57
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1440x900"
+        Monitor         "TFT_1440x900"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1440x900
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1440x900"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1440x900" "1366x768" "1280x800" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1400x1050@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1400x1050"
+        HorizSync       30-83
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1400x1050"
+        Monitor         "CRT_1400x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1400x1050" "1280x1024" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1400x1050@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1400x1050"
+        HorizSync       30-67
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1400x1050"
+        Monitor         "TFT_1400x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1400x1050" "1280x1024" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1400x1050
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1400x1050"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1400x1050" "1280x1024" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1366x768@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1366x768"
+        HorizSync       30-49
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1366x768"
+        Monitor         "TFT_1366x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1366x768" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1366x768
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1366x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1366x768" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1280x1024@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1280x1024"
+        HorizSync       30-81
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1280x1024"
+        Monitor         "CRT_1280x1024"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x1024" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1280x1024@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1280x1024"
+        HorizSync       30-81
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1280x1024"
+        Monitor         "TFT_1280x1024"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x1024" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1280x1024
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1280x1024"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x1024" "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+     
+### TFT with max 1280x800@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1280x800x"
+        HorizSync       30-81
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1280x800"
+        Monitor         "TFT_1280x800"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1280x800
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1280x800"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1280x800" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1152x864@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1152x864"
+        HorizSync       30-69
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1152x864"
+        Monitor         "CRT_1152x864"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1152x864" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1152x864@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1152x864"
+        HorizSync       30-81
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1152x864"
+        Monitor         "TFT_1152x864"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1152x864" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1152x864
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1152x864"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1152x864" "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 1024x768@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_1024x768"
+        HorizSync       30-61
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_1024x768"
+        Monitor         "CRT_1024x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1024x768@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1024x768"
+        HorizSync       30-49
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1024x768"
+        Monitor         "TFT_1024x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1024x768
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1024x768"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x768" "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### TFT with max 1024x600@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_1024x600"
+        HorizSync       30-39
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_1024x600"
+        Monitor         "TFT_1024x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### Autodetect 1024x600
+
+Section "Screen"
+        Identifier      "Screen_AUTO_1024x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "1024x600" "800x600"         
+        EndSubSection
+EndSection
+
+### CRT with max 800x600@75Hz
+
+Section "Monitor"
+        Identifier      "CRT_800x600"
+        HorizSync       30-48
+        VertRefresh     50-75
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_CRT_800x600"
+        Monitor         "CRT_800x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### TFT with max 800x600@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_800x600"
+        HorizSync       30-39
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_800x600"
+        Monitor         "TFT_800x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Autodetect 800x600
+
+Section "Screen"
+        Identifier      "Screen_AUTO_800x600"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### TFT with max 800x480@60Hz
+
+Section "Monitor"
+        Identifier      "TFT_800x480"
+        HorizSync       30-38
+        VertRefresh     50-60
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_TFT_800x480"
+        Monitor         "TFT_800x480"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Autodetect 800x480
+
+Section "Screen"
+        Identifier      "Screen_AUTO_800x480"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Settings for conf interface
+
+Section "Monitor"
+        Identifier      "TFT_Xconfgui"
+        HorizSync       28-36
+        VertRefresh     47-56
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "Screen_Xconfgui"
+#        Monitor         "TFT_Xconfgui"
+        Defaultdepth    24
+        SubSection "Display"
+             Modes "800x600" "800x480" "640x480"         
+        EndSubSection
+EndSection
+
+### Common settings
+
+Section "InputDevice"
+        Identifier      "Generic Keyboard"
+        Driver          "kbd"
+        Option          "CoreKeyboard"
+        Option          "XkbRules"      "xorg"
+        Option          "XkbModel"      "pc105"
+        Option          "XkbOptions"    "lv3:ralt_switch"
+EndSection
+                                                        
+Section "InputDevice"
+        Identifier      "Configured Mouse"
+        Driver          "mouse"
+        Option          "CorePointer"
+        Option          "Device"        "/dev/input/mice"
+        Option          "Protocol"      "ImPS/2"
+        Option          "ZAxisMapping"  "4 5"
+        Option          "Emulate3Buttons"       "true"
+EndSection
+
+Section "ServerLayout"
+        Identifier      "Default Layout"
+#        Inputdevice     "Generic Keyboard"
+#        Inputdevice     "Configured Mouse"
+        Screen          "default_screen"
+EndSection
+
+Section "ServerFlags"
+        Option          "AutoAddDevices" "true"
+        Option          "AutoEnableDevices" "true"
+        Option          "AllowEmptyInput" "false"
+EndSection 
+
+Section "Module"
+EndSection
+
+Section "Device"
+	Identifier "VESA card"
+	Driver "vesa"
+EndSection
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/X11/xorg.conf.fbdev" mode="0644" group="0" owner="0">
+		<![CDATA[
+
+Section "Files"
+EndSection
+
+### Default Monitor: autoprobe everything
+
+Section "Monitor"
+        Identifier      "Standardmonitor"
+        Option          "DPMS"
+EndSection
+                
+Section "Screen"
+        Identifier      "default_screen"
+        Monitor         "Standardmonitor"
+        # Defaultdepth    24
+EndSection
+
+Section "InputDevice"
+        Identifier      "Generic Keyboard"
+        Driver          "kbd"
+        Option          "CoreKeyboard"
+        Option          "XkbRules"      "xorg"
+        Option          "XkbModel"      "pc105"
+        Option          "XkbOptions"    "lv3:ralt_switch"
+EndSection
+                                                        
+Section "InputDevice"
+        Identifier      "Configured Mouse"
+        Driver          "mouse"
+        Option          "CorePointer"
+        Option          "Device"        "/dev/input/mice"
+        Option          "Protocol"      "ImPS/2"
+        Option          "ZAxisMapping"  "4 5"
+        Option          "Emulate3Buttons"       "true"
+EndSection
+
+Section "ServerLayout"
+        Identifier      "Default Layout"
+#        Inputdevice     "Generic Keyboard"
+#        Inputdevice     "Configured Mouse"
+        Screen          "default_screen"
+EndSection
+
+Section "ServerFlags"
+        Option          "AutoAddDevices" "true"
+        Option          "AutoEnableDevices" "true"
+        Option          "AllowEmptyInput" "false"
+EndSection 
+
+Section "Module"
+EndSection
+
+Section "Device"
+	Identifier "Fbdev card"
+	Driver "fbdev"
+EndSection
+
+]]>
+		</scriptdata>
+	</scripts>
+	<package name="xorg-server" class="user" />
+</llpackages>

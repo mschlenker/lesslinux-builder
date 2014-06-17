@@ -1,0 +1,88 @@
+<llpackages>
+	<package 
+		name="cmake"
+		version="2.8.12.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                           
+				<pkg sha1="5661a607acbce7c16bb5f15ff2895fa5ca53a4da">cmake-2.8.12.1.tar.gz</pkg>
+				<mirror>http://www.cmake.org/files/v2.8/</mirror>
+			</file>
+			<manualcheck date="20131204" interval="90" page="http://www.cmake.org/files/" />
+			<check>
+				<page html="http://www.cmake.org/files/v2.8/">
+					<atext linktext="cmake-2.8.12.2." />
+					<atext linktext="cmake-2.8.12.3." />
+					<atext linktext="cmake-2.8.12.4." />
+					<atext linktext="cmake-2.8.13." />
+					<atext linktext="cmake-2.8.14." />
+					<atext linktext="cmake-2.8.15." />
+				</page>
+				<page html="http://www.cmake.org/files/">
+					<atext linktext="v2.10" />
+					<atext linktext="v2.12" />
+					<atext linktext="v3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>e2fsprogs</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+			<dep>ncurses-8bit</dep>
+                        <dep>openssh</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>zlib</dep>
+			<dep>curl</dep>
+			<dep>expat</dep>
+			<dep>bzip2</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --no-qt-gui --parallel=4
+			sed -i 's%/usr/lib/libcurses.so%%g' Source/CMakeFiles/ccmake.dir/build.make
+			make cmake
+			make ccmake
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

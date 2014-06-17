@@ -1,0 +1,73 @@
+<llpackages>
+	<package 
+		name="openvpn"
+		version="2.3.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="20adb275760b0cfe99eb9cb34228d74bccb48ad8">openvpn-2.3.4.tar.xz</pkg>
+				<mirror>http://swupdate.openvpn.org/community/releases/</mirror>
+			</file>
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
+					<atext linktext="gnome-calculator-3.10.6." />
+					<atext linktext="gnome-calculator-3.10.3." />
+					<atext linktext="gnome-calculator-3.10.4." />
+					<atext linktext="gnome-calculator-3.10.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
+					<atext linktext="3.12" />
+					<atext linktext="3.14" />
+					<atext linktext="4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Linux-PAM</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>iproute2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>lzo</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --enable-iproute2 
+			make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

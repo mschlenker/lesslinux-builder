@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="gdisk"
+		version="0.8.10"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                
+				<pkg sha1="1708e232220236b6bdf299b315e9bc2205c01ba5">gptfdisk-0.8.10.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/gptfdisk/gptfdisk/0.8.10/</mirror>
+			</file>
+			<manualcheck date="20140519" interval="60" page="http://sourceforge.net/projects/gptfdisk/files/gptfdisk/" />
+			<check>
+				<page html="http://sourceforge.net/projects/gptfdisk/files/gptfdisk/">
+					<atext linktext="0.8.19" />
+					<atext linktext="0.8.11" />
+					<atext linktext="0.8.12" />
+					<atext linktext="0.8.13" />
+					<atext linktext="0.8.14" />
+					<atext linktext="0.8.15" />
+					<atext linktext="0.8.16" />
+					<atext linktext="0.8.17" />
+					<atext linktext="0.8.18" />
+					<atext linktext="0.9.0" />
+					<atext linktext="0.9.1" />
+					<atext linktext="0.9.2" />
+					<atext linktext="0.9.3" />
+					<atext linktext="0.9.4" />
+					<atext linktext="0.9.5" />
+					<atext linktext="1.0.0" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>popt</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>icu</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/gptfdisk-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd gptfdisk-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gptfdisk-${PKGVERSION}
+			install -m 0755 gdisk /usr/sbin
+			install -m 0755 sgdisk /usr/sbin
+			install -m 0644 gdisk.8 /usr/man/man8
+			install -m 0644 sgdisk.8 /usr/man/man8
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gptfdisk-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

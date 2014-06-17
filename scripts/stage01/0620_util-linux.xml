@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="util-linux"
+		version="2.24.2"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                                                               
+				<pkg sha1="4d2159b2420b8090b31f7198ff9d392a5b3cf0ff">util-linux-2.24.2.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/util-linux/v2.24/</mirror>
+			</file>
+			<manualcheck date="20140517" interval="120" page="https://www.kernel.org/pub/linux/utils/util-linux/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/">
+					<atext linktext="v2.27" />
+					<atext linktext="v2.25" />
+					<atext linktext="v2.26" />
+					<atext linktext="v3." />
+				</page>
+				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/v2.24/">
+					<atext linktext="util-linux-2.24.6." />
+					<atext linktext="util-linux-2.24.7." />
+					<atext linktext="util-linux-2.24.3." />
+					<atext linktext="util-linux-2.24.4." />
+					<atext linktext="util-linux-2.24.5." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xvf - 
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			# echo 'Nothing to do!'
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-i18n-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-uname-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools                \
+				--disable-makeinstall-chown    \
+				--without-systemdsystemunitdir \
+				PKG_CONFIG=""
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

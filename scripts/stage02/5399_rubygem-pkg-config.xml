@@ -1,0 +1,236 @@
+<llpackages>
+	<package 
+		name="rubygem-pkg-config"
+		version="1.1.3"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                 
+				<pkg sha1="ff98fb494edb7f032d9aaef8d1af8281f698a1ec">pkg-config-1.1.3.gem</pkg>
+				<mirror>http://distfiles.lesslinux.org</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="0ab34c99a720da4bf7e2d6f6f05d126417fe41ca">ruby-gnome2-all-0.19.4-glib-mkenums.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/ruby-gnome2/files/">
+					<atext linktext="ruby-gnome2-all-0.19.5." />
+					<atext linktext="ruby-gnome2-all-0.19.6." />
+					<atext linktext="ruby-gnome2-all-0.19.7." />
+					<atext linktext="ruby-gnome2-all-0.20.0." />
+					<atext linktext="ruby-gnome2-all-0.20.1." />
+					<atext linktext="ruby-gnome2-all-0.20.2." />
+					<atext linktext="ruby-gnome2-all-0.20.3." />
+					<atext linktext="ruby-gnome2-all-0.21." />
+					<atext linktext="ruby-gnome2-all-0.22." />
+					<atext linktext="ruby-gnome2-all-0.23" />
+					<atext linktext="ruby-gnome2-all-0.3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>ImageMagick</dep>
+                        <dep>Mesa</dep><dep>glu</dep>
+                        <dep>ORBit2</dep>
+                        <dep>SDL</dep>
+                        <dep>Thunar</dep>
+                        <!-- <dep>abiword</dep> -->
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>atkmm</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>brasero</dep>
+                        <dep>cairo</dep>
+                        <dep>cairomm</dep>
+                        <dep>compositeproto</dep>
+                        <dep>coreutils</dep>
+                        <dep>cryptsetup</dep>
+                        <dep>curl</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus-python</dep>
+                        <dep>dbus</dep>
+                        <dep>e2fsprogs</dep>
+                        <dep>eggdbus</dep>
+                        <dep>evieext</dep>
+                        <dep>evince</dep>
+                        <dep>exo</dep>
+                        <dep>ffmpeg</dep>
+                        <dep>font-util</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>fribidi</dep>
+                        <dep>fuse</dep>
+                        <dep>gamin</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>giblib</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>glibmm</dep>
+                        <dep>gnome-desktop</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gnome-icon-theme</dep>
+                        <dep>gnome-keyring</dep>
+                        <dep>gnome-menus</dep>
+                        <dep>gnome-mime-data</dep>
+                        <!-- <dep>gnome-panel</dep>
+                        <dep>gnome-utils</dep> -->
+                        <dep>gnome-vfs</dep>
+                        <dep>gnumeric</dep>
+                        <dep>gnutls</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>goffice</dep>
+                        <dep>gst-plugins-bad</dep>
+                        <dep>gst-plugins-base</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+                        <dep>gtkmm</dep>
+                        <!-- <dep>hal</dep> -->
+                        <dep>icon-naming-utils</dep>
+			<dep>imlib2</dep>
+                        <dep>iso-codes</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libIDL</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXaw</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXfont</dep>
+                        <dep>libXft</dep>
+                        <dep>libXi</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXv</dep>
+                        <dep>libXvMC</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libart_lgpl</dep>
+                        <dep>libbonobo</dep>
+                        <dep>libbonoboui</dep>
+                        <dep>libburn</dep>
+                        <dep>libcanberra</dep>
+                        <dep>libdrm</dep>
+                        <dep>libexif</dep>
+                        <dep>libffi</dep>
+                        <dep>libfontenc</dep>
+                        <dep>libglade</dep>
+                        <dep>libgnome-keyring</dep>
+                        <dep>libgnome</dep>
+                        <dep>libgnomecanvas</dep>
+                        <dep>libgnomeui</dep>
+                        <dep>libgsf</dep>
+                        <dep>libgtop</dep>
+                        <dep>libgweather</dep>
+                        <dep>libisoburn</dep>
+                        <dep>libisofs</dep>
+                        <dep>libnl</dep><dep>libnl3</dep>
+                        <dep>libnotify</dep>
+                        <dep>libogg</dep>
+                        <dep>liboil</dep>
+                        <dep>libpciaccess</dep>
+                        <dep>libpng12</dep>
+			<dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libproxy</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>librsvg</dep>
+                        <dep>libsigc++</dep>
+                        <dep>libsmbios</dep>
+                        <dep>libsoup</dep>
+                        <dep>libtasn1</dep>
+                        <dep>libunique</dep><dep>libunique3</dep>
+                        <dep>libusb</dep><dep>libusb-compat</dep>
+                        <dep>libvorbis</dep>
+                        <dep>libwnck</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxfce4ui</dep>
+                        <dep>libxfce4util</dep>
+                        <dep>libxfcegui4</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>libxklavier</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxsettings-client</dep>
+			<dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>newt</dep>
+                        <dep>openssl</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pangomm</dep>
+                        <dep>parted</dep>
+                        <dep>pcre</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>polkit</dep>
+                        <dep>poppler</dep>
+                        <dep>popt</dep>
+                        <dep>pycairo</dep>
+                        <dep>pygobject</dep>
+                        <dep>pygtk</dep>
+                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>ruby</dep>
+                        <dep>shared-mime-info</dep>
+                        <dep>slang</dep>
+                        <dep>speex</dep>
+                        <dep>sqlite</dep>
+                        <dep>startup-notification</dep>
+                        <dep>udev</dep>
+                        <dep>usbutils</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>vte</dep>
+                        <dep>wv</dep>
+                        <dep>xbitmaps</dep>
+                        <dep>xf86-input-evdev</dep>
+                        <dep>xf86-input-synaptics</dep>
+                        <dep>xf86dgaproto</dep>
+                        <dep>xfce4-panel</dep>
+                        <dep>xfce4-session</dep>
+                        <dep>xfconf</dep>
+                        <dep>xineramaproto</dep>
+                        <dep>xkeyboard-config</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xtrans</dep>
+                        <dep>xz</dep>
+                        <dep>zlib</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			exit 0
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glib-mkenums.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cp ${SRCDIR}/pkg-config-${PKGVERSION}.gem ./
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			gem install pkg-config --version ${PKGVERSION} --local
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm pkg-config-${PKGVERSION}.gem
+			]]>
+		</clean>
+	</package>
+</llpackages>

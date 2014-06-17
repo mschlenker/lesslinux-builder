@@ -1,0 +1,102 @@
+<llpackages>
+	<package 
+		name="libunique"
+		version="1.1.6"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                   
+				<pkg sha1="d44ad06503efaaa0c660c5f8a817e90fbe254d1f">libunique-1.1.6.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libunique/1.1/</mirror>
+			</file>
+			<file>                   
+				<pkg sha1="34768076df295c41b9a77551fc1827881dcea71a">libunique_1.1.6-4.debian.tar.gz</pkg>
+				<mirror>http://ftp.de.debian.org/debian/pool/main/libu/libunique/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="1" page="http://ftp2.nluug.nl/windowing/gnome/sources/libunique/" />
+		</sources>
+		<builddeps>
+			<dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<!-- soft -->
+			 <dep>imake</dep>
+			 <dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-4.debian.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ../debian/patches/00git_g_const_return.patch | patch -p1
+			cat ../debian/patches/01_format-security.patch | patch -p1
+			cat ../debian/patches/99_ltmain_as-needed.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc
+			find . -type f -name Makefile -exec sed -i 's%-Werror%%g' {} \;
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+	</package>
+</llpackages>

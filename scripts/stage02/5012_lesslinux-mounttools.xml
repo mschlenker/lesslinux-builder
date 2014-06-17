@@ -1,0 +1,41 @@
+<llpackages>
+	<package 
+		name="lesslinux-mounttools"
+		version="20130924-00"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                 
+				<pkg sha1="e7c2db5354f7cc26d34a9fbb5fba999458646149">lesslinux-mounttools-20130924-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="120" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/bin/
+			for i in llmounttool.sh llaskpass-mount.rb mmmm.rb smbmm.rb ; do
+			    install -m 0755 mounttools/"${i}" ${TGTDIR}/usr/bin/
+			    # touch ${TGTDIR}/usr/bin/"${i}"
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>

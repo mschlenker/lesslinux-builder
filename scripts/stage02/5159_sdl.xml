@@ -1,0 +1,94 @@
+<llpackages>
+	<package 
+		name="SDL"
+		version="1.2.15"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>           
+				<pkg sha1="0c5f193ced810b0d7ce3ab06d808cbb5eef03a2c">SDL-1.2.15.tar.gz</pkg>
+				<mirror>http://www.libsdl.org/release/</mirror>
+			</file>
+			<manualcheck date="20130501" interval="1" page="http://www.libsdl.org/release/" />
+			<check>
+				<page html="http://www.libsdl.org/release/">
+					<atext linktext="SDL-1.2.16.tar.gz" />
+					<atext linktext="SDL-1.2.17.tar.gz" />
+					<atext linktext="SDL-1.2.18.tar.gz" />
+					<atext linktext="SDL-1.4.tar.gz" />
+					<atext linktext="SDL-1.4.0.tar.gz" />
+					<atext linktext="SDL-1.4.1.tar.gz" />
+					<atext linktext="SDL-2.0.tar.gz" />
+					<atext linktext="SDL-2.0.0.tar.gz" />
+					
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Mesa</dep><dep>glu</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libusb</dep><dep>libusb-compat</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>nasm</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<!-- soft -->
+			<dep>imake</dep>
+			<dep>yasm</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

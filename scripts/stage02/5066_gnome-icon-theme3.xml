@@ -1,0 +1,75 @@
+<llpackages>
+	<package 
+		name="gnome-icon-theme3"
+		version="3.10.0"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>             
+				<pkg sha1="45fac73ad9852ce25b45cf82e75a1ed4860f090b">gnome-icon-theme-3.10.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gnome-icon-theme/3.10/</mirror>
+			</file>
+			<manualcheck date="20131129" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-icon-theme/" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-icon-theme/2.30/">
+					<atext linktext="gnome-icon-theme-2.30.4" />
+					<atext linktext="gnome-icon-theme-2.30.5" />
+					<atext linktext="gnome-icon-theme-2.30.6" />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-icon-theme/">
+					<atext linktext="2.32" />
+					<atext linktext="3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/gnome-icon-theme-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gnome-icon-theme-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gnome-icon-theme-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gnome-icon-theme-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

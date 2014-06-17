@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="antibot3"
+		version="20140612-00"
+		class="user"
+		install="destdir">
+		<license>proprietary</license>
+		<sources>
+			<file>                                                                                        
+				<pkg sha1="c4bac27e28773969d1ea54c33c57f297da4b2986">antibot3-20140612-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>qt-everywhere-opensource-src</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xvjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			mkdir -p -m 0755 ${TGTDIR}/etc/avira
+			mkdir -p -m 0755 ${TGTDIR}/usr/share/lesslinux/antibot3/icons
+			mkdir -p -m 0755 ${TGTDIR}/usr/bin
+			mkdir -p -m 0755 ${TGTDIR}/usr/share/applications
+			
+			for f in *.css *.js *.png *.txt ; do
+				install -m 0644 $f ${TGTDIR}/usr/share/lesslinux/antibot3
+			done
+			for f in *.rb *.sh ; do
+				install -m 0755 $f ${TGTDIR}/usr/share/lesslinux/antibot3
+			done
+			for f in switch2assistant.sh switch2desktop.sh ; do
+				install -m 0755 $f ${TGTDIR}/usr/bin
+			done
+			install -m 0755 avupdate ${TGTDIR}/usr/share/lesslinux/antibot3
+			install -m 0644 scancl.conf ${TGTDIR}/etc/avira			
+			install -m 0644 avupdate.conf ${TGTDIR}/etc/avira
+			install -m 0644 avupdate.conf.cbavgui ${TGTDIR}/etc/avira
+			cd icons
+			for f in *.png ; do
+				install -m 0644 $f ${TGTDIR}/usr/share/lesslinux/antibot3/icons
+			done
+			
+cat > ${TGTDIR}/usr/share/applications/switch2assistant.desktop << DESKTOP
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Avira
+Name[de]=Avira
+Comment=Switch back to the assistant
+Comment[de]=Wechseln Sie zurück zum Assistenten
+Categories=CB-Rescue;
+Exec=bash /usr/share/lesslinux/antibot3/switch2assistant.sh
+Icon=emblem-system
+Terminal=false
+StartupNotify=true
+
+DESKTOP
+
+			
+			
+			]]>
+		</install>
+	</package>
+</llpackages>

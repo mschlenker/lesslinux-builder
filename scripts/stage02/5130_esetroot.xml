@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="Esetroot"
+		version="20030422"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>             
+				<pkg sha1="b59118422ad046b2a228fcf33b777a867a9ac95d">Esetroot-20030422.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20140112" interval="365" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>imlib2</dep>
+                        <dep>libX11</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch>
+		<![CDATA[
+cat << EOF > patch
+--- Esetroot-20030422.orig/Makefile	2004-09-17 01:37:48.000000000 +0000
++++ Esetroot-20030422/Makefile	2014-01-14 11:55:32.318143667 +0000
+@@ -1,5 +1,5 @@
+ IMLIB_CFLAGS	= \$(shell imlib2-config --cflags)
+-IMLIB_LIBS	= \$(shell imlib2-config --libs)
++IMLIB_LIBS	= -L/usr/lib -lImlib2 -ldl -lX11
+ DEFINES		= -DPIXMAP_SUPPORT -DHAVE_UNISTD_H
+ 
+ VERSION	= 20030422
+
+EOF
+cd ${PKGNAME}-${PKGVERSION}
+cat ../patch | patch -p1
+
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			install -m 0755 Esetroot ${TGTDIR}/usr/bin
+			ln -s Esetroot ${TGTDIR}/usr/bin/esetroot
+			]]>
+		</install>
+	</package>
+</llpackages>

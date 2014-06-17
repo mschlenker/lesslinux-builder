@@ -1,0 +1,19 @@
+<llpackages>
+	<package  name="thunderbird-source" class="user" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/thunderbird" mode="0440" group="0" owner="0">
+		<![CDATA[
+ssurfer   ALL = NOPASSWD: /opt/thunderbird50/thunderbird_smack
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/thunderbird" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer   ALL = NOPASSWD: /opt/thunderbird50/thunderbird_smack
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

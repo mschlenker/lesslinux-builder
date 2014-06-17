@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="compton"
+		version="20130717"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                           
+				<pkg sha1="1c4330fa1196f3b29e34d725409aee97eec01923">compton-20130717.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file><!-- -cCGbf -->
+			<manualcheck date="20130717" interval="120" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>compositeproto</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libX11</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libconfig</dep>
+                        <dep>libdrm</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pcre</dep>
+                        <dep>pkg-config</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/bin
+			install -m 0755 ${PKGNAME}/compton ${TGTDIR}/usr/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}
+			]]>
+		</clean>
+	</package>
+</llpackages>

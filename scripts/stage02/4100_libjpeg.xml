@@ -1,0 +1,84 @@
+<llpackages>
+	<package 
+		name="jpegsrc"
+		version="1.3.1"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                    
+				<pkg sha1="5fa19252e5ca992cfa40446a0210ceff55fbe468">libjpeg-turbo-1.3.1.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/libjpeg-turbo/</mirror>
+			</file>
+			<manualcheck date="20140518" interval="90" page="http://downloads.sourceforge.net/libjpeg-turbo/" />
+			<check>
+				<page html="http://sourceforge.net/projects/libjpeg-turbo/files/">
+					<atext linktext="libusb-compat-1.3.2" />
+					<atext linktext="libusb-compat-1.3.3" />
+					<atext linktext="libusb-compat-1.3.4" />
+					<atext linktext="libusb-compat-1.3.5" />
+					<atext linktext="libusb-compat-1.3.6" />
+					<atext linktext="libusb-compat-1.3.7" />
+					<atext linktext="libusb-compat-1.3.8" />
+					<atext linktext="libusb-compat-1.3.9" />
+					<atext linktext="libusb-compat-1.4." />
+					<atext linktext="libusb-compat-1.5." />
+					<atext linktext="libusb-compat-1.6." />
+					<atext linktext="libusb-compat-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+			<dep>nasm</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/libjpeg-turbo-${PKGVERSION}.tar.gz
+			
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd libjpeg-turbo-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			
+			./configure --prefix=/usr --mandir=/usr/share/man --with-jpeg8 --enable-static --enable-shared 
+			
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount 
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd  libjpeg-turbo-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf libjpeg-turbo-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

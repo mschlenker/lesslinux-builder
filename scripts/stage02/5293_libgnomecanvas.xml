@@ -1,0 +1,105 @@
+<llpackages>
+	<package 
+		name="libgnomecanvas"
+		version="2.30.3"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                           
+				<pkg sha1="a5b07f33c44c460434dd0dad457d2fffb8a1baf9">libgnomecanvas-2.30.3.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libgnomecanvas/2.30/</mirror>
+			</file>
+			<manualcheck date="20130504" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/libgnomecanvas/2.30/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libgnomecanvas/2.30/">
+					<atext linktext="libgnomecanvas-2.30.4." />
+					<atext linktext="libgnomecanvas-2.30.5." />
+					<atext linktext="libgnomecanvas-2.30.6." />
+					<atext linktext="libgnomecanvas-2.30.7." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libgnomecanvas/">
+					<atext linktext="2.32" />
+					<atext linktext="2.34" />
+					<atext linktext="3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libart_lgpl</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

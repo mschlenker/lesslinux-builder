@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="strace"
+		version="4.8"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                         
+				<pkg sha1="88c19b900d9cb2931e6ea4cf36e0ae3838f2f698">strace-4.8.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/strace/strace/4.8/</mirror>
+			</file>
+			<file>    
+				<pkg sha1="aa6f6edbd5ae84556536a7ec0f322ea3a02355b8">strace-4.8-glibc_2.18_build_fix-1.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20130910" interval="180" page="http://sourceforge.net/projects/strace/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/strace/files/">
+					<atext linktext="strace-4.8.1." />
+					<atext linktext="strace-4.9." />
+					<atext linktext="strace-5.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glibc_2.18_build_fix-1.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make LDFLAGS="-static"
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			install -m 0755 strace ${TGTDIR}/usr/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[ 
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

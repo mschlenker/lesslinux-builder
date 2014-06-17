@@ -1,0 +1,91 @@
+<llpackages>
+	<package 
+		name="libcanberra"
+		version="0.30"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                  
+				<pkg sha1="fd4c16e341ffc456d688ed3462930d17ca6f6c20">libcanberra-0.30.tar.xz</pkg>
+				<mirror>http://0pointer.de/lennart/projects/libcanberra/</mirror>
+			</file>
+			<manualcheck date="20130129" interval="120" page="http://0pointer.de/lennart/projects/libcanberra/" />
+			<check>
+				<page html="http://0pointer.de/lennart/projects/libcanberra/">
+					<atext linktext="0.33" />
+					<atext linktext="0.34" />
+					<atext linktext="0.31" />
+					<atext linktext="0.32" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep> 
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libogg</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libtool</dep>
+                        <dep>libvorbis</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>libogg</dep>
+			<dep>libvorbis</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig 
+			./configure --sysconfdir=/etc --prefix=/usr --disable-oss --enable-alsa && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

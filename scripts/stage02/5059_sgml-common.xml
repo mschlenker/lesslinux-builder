@@ -1,0 +1,91 @@
+<llpackages>
+	<package 
+		name="sgml-common"
+		version="0.6.3"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>   
+				<pkg sha1="b7d211c19b83accb92dcb51719de65227fb4c27c">sgml-common-0.6.3.tgz</pkg>
+				<mirror>http://gd.tuwien.ac.at/hci/kde/devel/docbook/SOURCES/</mirror>
+			</file>
+			<file>     
+				<pkg sha1="5c29c2eb931507f9d9feeba9ad1ecfaec2220bf8">sgml-common-0.6.3-manpage-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/sgml-common-0.6.3-manpage-1.patch</mirror>
+			</file>
+			<manualcheck date="20130504" interval="365" page="http://gd.tuwien.ac.at/hci/kde/devel/docbook/SOURCES/" />
+			<check>
+				<page html="http://gd.tuwien.ac.at/hci/kde/devel/docbook/SOURCES/">
+					<atext linktext="sgml-common-0.6.4.tgz" />
+					<atext linktext="sgml-common-0.6.5.tgz" />
+					<atext linktext="sgml-common-0.7.tgz" />
+					<atext linktext="sgml-common-0.7.0.tgz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>font-util</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libtool</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xtrans</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tgz
+			fi
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-manpage-1.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			autoreconf -f -i
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install && install-catalog --add /etc/sgml/sgml-ent.cat /usr/share/sgml/sgml-iso-entities-8879.1986/catalog && install-catalog --add /etc/sgml/sgml-docbook.cat /etc/sgml/sgml-ent.cat
+			]]>
+		</install>
+	</package>
+</llpackages>

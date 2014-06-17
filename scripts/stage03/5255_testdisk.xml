@@ -1,0 +1,31 @@
+<llpackages>
+	<package 
+		name="testdisk"
+		class="user"
+		>
+	</package>
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/testdisk" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/sbin/testdisk
+surfer  ALL = NOPASSWD: /usr/sbin/photorec
+surfer  ALL = NOPASSWD: /usr/bin/qphotorec
+surfer  ALL = NOPASSWD: /usr/bin/testdisk
+surfer  ALL = NOPASSWD: /usr/bin/photorec
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/testdisk" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = /usr/sbin/testdisk
+surfer  ALL = /usr/sbin/photorec
+surfer  ALL = /usr/bin/qphotorec
+surfer  ALL = /usr/bin/testdisk
+surfer  ALL = /usr/bin/photorec
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

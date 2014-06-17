@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llpackages>
+	<links>
+		<!-- blue theme used in Sicher Surfen 2009 -->
+		<!-- <softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+		<!-- green theme used in Notfall-CD 2.0 -->
+		<!-- <softlink target="/usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+	</links>
+	<scripts>
+		<scriptdata location="/etc/rc.d/0900-gtk3theme.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides gtk3theme
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	printf "$bold===> Copy Adwaita theme for root $normal\n"
+	mkdir -p /root/.config
+	tar -C /usr/share/themes/Adwaita -cvf - gtk-3.0 gtk-2.0 | tar -C /root/.config -xf - 
+    ;;
+esac
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/inittab" mode="0644" group="0" owner="0">
+		<![CDATA[::sysinit:/etc/rc
+tty1::respawn:/static/bin/show_placeholder
+tty2::askfirst:/static/sbin/getty -l /static/bin/login 38400 tty2
+tty3::askfirst:/static/sbin/getty -l /static/bin/login 38400 tty3
+tty4::respawn:/static/bin/ash
+tty5::askfirst:/bin/bash
+tty6::respawn:/static/bin/x_user_start
+tty8::respawn:/static/bin/show_placeholder
+::ctrlaltdel:/static/sbin/reboot
+::shutdown:/etc/rc.shutdown]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/placeholder_monitor" mode="0644" group="0" owner="0">
+		<![CDATA[
+Wenn Sie dies sehen koennen...
+
+ * ... haben Sie vom Assistenten in den Expertenmodus oder zurueck 
+   gewechselt. Bitte haben Sie einen Moment Geduld!
+
+ * ... oder Sie haben mit der Tastenkombination Strg+Alt+F1 auf die
+   Systemkonsole gewechselt - mit Strg+Alt+F7 wechseln Sie zurueck in die
+   grafische Oberflaeche, oder...
+   
+ * ... die grafische Oberflaeche konnte nicht richtig gestartet werden.
+   In diesem Fall starten Sie das System bitte mit der Tastenkombination
+   Strg+Alt+Entf neu.
+   
+Im Startmenue der Antibot-CD 3.6 koennen Sie ueber den "abgesicherten Start"
+gegebenenfalls mit Einstellungen fuer problematische Hardware starten.
+
+Sollte das Problem erneut auftreten, wenden Sie sich mit moeglicht detail-
+lierten Angaben zur Hardware per Email an ms@mattiasschlenker.de.
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/placeholder_container" mode="0644" group="0" owner="0">
+		<![CDATA[
+System nicht gefunden
+
+Ein Fehler ist aufgetreten: Das Systemlaufwerk wurde nicht gefunden! Die wahr-
+scheinlichsten Ursachen sind ein nicht unterstuetzter Chipsatz oder ein bes-
+chaedigtes Startmedium. Bitte gehen Sie wie folgt vor:
+
+ * Falls Sie von einer selbst gebrannten CD starten: Brennen Sie die CD
+   erneut, verwenden Sie den Brennmodus DAO und brennen Sie langsamer
+   
+ * Bei Start von USB-Stick: Moeglicherweise ist der Stick defekt, verwenden
+   Sie einen anderen oder lesen Sie die Hinweise zur Erstellung eines 
+   ISO-Hybrid-Sticks
+   
+ * Bei Start von CD: Probieren Sie ein anderes Laufwerk, beispielsweise ein
+   per USB statt per SATA angebundenes
+   
+Sollte das Problem erneut auftreten, wenden Sie sich mit moeglicht detail-
+lierten Angaben zur Hardware per Email an support@mattiasschlenker.de.
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+. /etc/lesslinux/branding/branding.en.sh
+	
+if [ -f /home/surfer/.ll_requested_desktop ] ; then
+	rm /home/surfer/.ll_requested_desktop
+	exec bash /etc/lesslinux/xinitrc_desktop
+else
+	exec bash /etc/lesslinux/xinitrc_assistant
+fi
+	
+	
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc_desktop" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+. /etc/lesslinux/branding/branding.en.sh
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+# Set DPI value 
+if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
+	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+else
+	mkdir -p /home/surfer/.lesslinux
+	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+fi
+
+xfsettingsd 
+sleep 1
+xfsettingsd --replace
+xfconf-query -c xsettings -s Adwaita -p /Net/ThemeName
+
+sed -i 's%avfrontend-avira.sh%/usr/share/lesslinux/antibot3/switch2assistant.sh%g' "${HOME}/.config/openbox/menu.xml"
+
+# Uncomment to debug
+# /usr/bin/Terminal &
+# /usr/bin/xterm &
+# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+
+setxkbmap -layout "$xkbmap"
+esetroot -scale /etc/lesslinux/branding/lesslinux.jpg
+Thunar --daemon &
+if xdpyinfo | grep -q -i composite ; then
+	sed -i 's/fake transparency=true/fake transparency=false/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+	compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
+fi
+xbindkeys &
+if [ -f /home/surfer/.dont_show_welcome ] ; then
+	echo "Welcome screen already shown"
+else
+	ruby /usr/share/lesslinux/antibot3/welcome_desktop.rb &
+	touch /home/surfer/.dont_show_welcome
+fi
+cairo-dock -c &
+openbox &
+# Weird hack!
+xfct=0
+while true ; do
+	sleep 15
+	if [ "$xfct" -lt 5 ] ; then
+		xfsettingsd --replace
+		xfct=` expr $xfct + 1 ` 
+		sleep 15
+	else
+		sleep 9999999
+	fi
+done
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc_assistant" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash	
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+
+# if [ -f /home/surfer/.ll_requested_desktop ] ; then
+#	rm /home/surfer/.ll_requested_desktop
+#	exec bash /etc/lesslinux/xinitrc
+# else
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+# Set DPI value 
+if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
+	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+else
+	mkdir -p /home/surfer/.lesslinux
+	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+fi
+
+xset s off
+xset -dpms
+
+screensize=` xrandr | grep '*' | awk '{print $1}' `
+hori=` echo $screensize | awk -F 'x' '{print $1}' `
+vert=` echo $screensize | awk -F 'x' '{print $2}' `
+ratio=` expr ${hori}00 / $vert ` 
+background=/etc/lesslinux/branding/desktop.png
+[ "$ratio" -lt 147 ] && [ -f /etc/lesslinux/branding/desktop4x3.png ] && background=/etc/lesslinux/branding/desktop4x3.png
+esetroot -s "$background"
+
+# ln -sf /usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc /home/surfer/.gtkrc
+# ln -sf /usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc /home/surfer/.gtkrc-2.0
+sed -i 's/avfrontend-clamav.sh/avfrontend-avira.sh/g' /home/surfer/.config/openbox/menu.xml 
+
+setxkbmap -layout "$xkbmap"
+if xdpyinfo | grep -q -i composite ; then
+	sed -i 's/fake transparency=true/fake transparency=false/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+	compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
+fi
+xfsettingsd
+xfwm4 &
+xfconf-query -c xfwm4 -s 1 -p /general/workspace_count
+xfconf-query -c xsettings -s Adwaita -p /Net/ThemeName 
+
+( cd /usr/share/lesslinux/antibot3 ; ruby disclaimer.rb )
+esetroot -s "$background"
+# wicd-gtk &
+Thunar --daemon &
+# Try twice...
+xfconf-query -c xfwm4 -s 1 -p /general/workspace_count
+/etc/lesslinux/updater/update_wrapper.sh --quiet
+infloop=1
+while [ "$infloop" -gt 0 ] ; do
+	sudo /usr/share/lesslinux/antibot3/antibot.sh
+	if [ -f /var/run/lesslinux/reboot_requested ] ; then
+		sudo reboot
+	else
+		zenity --question --text 'DEBUG: Der Assistent wurde abgebrochen oder ist abgestürzt. Assistent erneut starten?' || infloop=0
+	fi
+done
+
+# Unless the X server or the startup script gets killed: Reboot the computer!
+# sudo reboot
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+. /etc/rc.subr/progressbar
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
+. /etc/rc.lang/en/messages.sh
+[ -f "/etc/rc.lang/$lang/messages.sh" ] && . /etc/rc.lang/$lang/messages.sh
+		
+mkdir -p /lesslinux/data/antibot3/Protokolle
+tar -C /lesslinux/cdrom/antibot3 -cf - antivir avupdate avupdate.bat shutdown.bat | tar -C /lesslinux/data/antibot3 -xf - 
+tar -C /lesslinux/cdrom -cf -  shutdown.bat autorun.inf autorun.ico liesmich.html Antibot.3.0.pdf Antibot.3.5.pdf | tar -C /lesslinux/data -xf - 
+
+# Create a swap file
+freeblocks=` df -k /lesslinux/data | tail -n1 | awk '{print $4}' ` 
+# Swap files smaller than 256MB or larger than 1024MB do not make sense
+swapsize=0
+if [ "$freeblocks" -lt 393216 ] ; then
+	swapsize=0
+elif [ "$freeblocks" -gt 1572864 ] ; then
+	swapsize=1024
+else
+	swapsize=` expr $freeblocks / 1536 ` 
+fi
+# Use our swap partition!
+swapsize=0
+if [ "$swapsize" -gt 0 ] ; then
+	echo '---> Creating swap' > /dev/tty8
+	echo -n '0%' > /dev/tty8
+	lastct=` expr $swapsize - 1 ` 
+	for i in ` seq 0 $lastct ` ; do
+		percentage=` expr ${i}00 / ${swapsize} `
+		printf '\033[10D' > /dev/tty8 
+		printf "${percentage}" > /dev/tty8
+		echo -n '%' > /dev/tty8
+		[ "$ultraquiet" -gt 1 ] && genericpgbar $percentage 32 "$convert_head" "Erstelle Auslagerungsdatei - ${percentage}%" "" tty1
+		dd if=/dev/zero bs=1048576 count=1 seek=$i of=/lesslinux/data/antibot3/swap.sys 
+		mod=` expr $i % 16 ` 
+		[ "$mod" -lt 1 ] && sync
+	done
+	printf '\033[10D' > /dev/tty8 
+	echo '100%' > /dev/tty8
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 100 32 "$convert_head" "Erstelle Auslagerungsdatei - 100%" "" tty1
+fi
+
+#		]]>
+		</scriptdata>
+	</scripts> 
+	<package name="initramfs-cbavgui" version="20130701-00" allowfail="yes">
+		<sources>
+			<file>                                                                         
+				<pkg sha1="fc09ef0c1f17aed0ae7c41f8a934ce49c08d86b1">surfer-antibot3-20130701-00.tgz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+install -m 0644 ${SRCDIR}/surfer-antibot3-${PKGVERSION}.tgz ${INITRAMFS}/etc/lesslinux/skel/surfer.tgz
+		
+		]]>
+		</install>
+	</package>
+</llpackages>

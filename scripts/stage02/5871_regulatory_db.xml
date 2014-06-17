@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="regulatory.bin"
+		version="2013.01.11"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="a152577246d35299ff195dc650d1097935bda830">2013.01.11-regulatory.bin</pkg>
+				<mirror>http://wireless.kernel.org/download/wireless-regdb/regulatory.bins/</mirror>
+			</file>
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/xchat/files/">
+					<atext linktext="xchat-2.8.9." />
+					<atext linktext="xchat-2.8.10." />
+					<atext linktext="xchat-2.8.11." />
+					<atext linktext="xchat-2.8.12." />
+					<atext linktext="xchat-2.9." />
+					<atext linktext="xchat-2.10." />
+					<atext linktext="xchat-3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>coreutils</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			echo 'Nothing to unpack!'
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			
+			echo 'Nothing to build!'
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/usr/lib/crda
+			install -m 0644 ${SRCDIR}/${PKGVERSION}-${PKGNAME} ${TGTDIR}/usr/lib/crda/regulatory.bin
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			
+			echo 'Nothing to clean!'
+			
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,131 @@
+<llpackages>
+	<package 
+		name="qt-everywhere-opensource-src"
+		version="4.8.6"
+		class="user">
+		<license>GPLv2</license>
+		<sources>                                                                                                
+			<file>
+				<pkg sha1="ddf9c20ca8309a116e0466c42984238009525da6">qt-everywhere-opensource-src-4.8.6.tar.gz</pkg>
+				<mirror>http://download.qt-project.org/official_releases/qt/4.8/4.8.6/</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="5b85c6127b22d0c1c25a21dcb147ad3c023f8196">qt-everywhere-opensource-src-4.8.1-gcc_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<!-- <file>
+				<pkg sha1="c2b2b4f20bc76f298171e35af10866094f60d574">qt-everywhere-opensource-src-4.8.2-glib_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20131204" interval="120" page="http://qt-project.org/downloads" />
+			<check>
+				<page html="http://releases.qt-project.org/qt4/source/">
+					<atext linktext="qt-everywhere-opensource-src-4.8.8." />
+					<atext linktext="qt-everywhere-opensource-src-4.8.5." />
+					<atext linktext="qt-everywhere-opensource-src-4.8.6." />
+					<atext linktext="qt-everywhere-opensource-src-4.9."/>
+					<atext linktext="qt-everywhere-opensource-src-4.10." />
+					<atext linktext="qt-everywhere-opensource-src-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Mesa</dep><dep>glu</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXi</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXv</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tiff</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<dep>sqlite</dep>
+			<!-- soft -->
+			 <dep>makedepend</dep>
+			 <dep>gst-plugins-base</dep>
+			 <dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glib_fix-1.patch | patch -p1
+			sed -i '/-Werror/d' src/3rdparty/webkit/Source/WebKit.pri
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC='distcc gcc'
+				export CXX='distcc g++'
+				./configure -prefix /usr -gtkstyle -opensource -release -system-sqlite \
+				-silent -no-nis -confirm-license -nomake examples -nomake demos -no-pch
+				pump make -j $jobcount 
+			else
+				./configure -prefix /usr -gtkstyle -opensource -release -system-sqlite \
+				-silent -no-nis -confirm-license -nomake examples -nomake demos
+				make -j 6
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

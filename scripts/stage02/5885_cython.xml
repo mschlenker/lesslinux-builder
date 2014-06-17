@@ -1,0 +1,49 @@
+<llpackages>
+	<package 
+		name="Cython"
+		version="0.20.1"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="e0f2c2094722bada54f24c33f5c792411778ba4f">Cython-0.20.1.tar.gz</pkg>
+				<mirror>http://www.cython.org/release/</mirror>
+			</file>
+			<manualcheck date="20140519" interval="60" page="http://www.cython.org/release/" />
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>openssl</dep>
+                        <dep>pygobject</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			python setup.py build
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			python setup.py install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

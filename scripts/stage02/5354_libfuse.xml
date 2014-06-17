@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="fuse"
+		version="2.9.3"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                          
+				<pkg sha1="94bd1974a9f2173ac3c2cf122f9fa3c35996b88e">fuse-2.9.3.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/fuse/fuse-2.X/2.9.3/</mirror>
+			</file>  
+			<!-- <file>                          
+				<pkg sha1="215917455d1927cf552c5b8c2a535232b841a3c7">fuse-2.8.6.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<check>
+				<page html="http://sourceforge.net/projects/fuse/files/">
+					<atext linktext="fuse-2.9.4." />
+					<atext linktext="fuse-2.9.5." />
+					<atext linktext="fuse-2.9.6." />
+					<atext linktext="fuse-2.11." />
+					<atext linktext="fuse-2.10." />
+					<atext linktext="fuse-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --sysconfdir=/etc --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,47 @@
+<llpackages>
+	<package 
+		name="cobi-chromiumos-installer"
+		version="20140305-00"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                    
+				<pkg sha1="640edb669b976304573e638f8ec72b797eddb08f">cobi-chromiumos-installer-20140305-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -m 0755 -p ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			mkdir -m 0755 -p ${TGTDIR}/usr/bin
+			cd cobi-chromiumos-installer
+			install -m 0755 *.rb ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0755 *.sh ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0644 *.png ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0644 *.txt ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0644 *.xml ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0644 *.exe ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0644 *.conf ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0644 *.ptb ${TGTDIR}/usr/share/lesslinux/cobi-chromiumos-installer
+			install -m 0755 crosinst.sh ${TGTDIR}/usr/bin
+			]]>
+		</install>
+	</package>
+</llpackages>

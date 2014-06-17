@@ -1,0 +1,127 @@
+<llpackages>
+	<package 
+		name="truecrypt"
+		version="7.1a"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="d43e0dbe05c04e316447d87413c4f74c68f5de24">truecrypt-7.1a.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                         
+				<pkg sha1="191d313d540c2735172a53199a997c52d4eef31b">wxWidgets-2.8.12.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/wxwindows/2.8.12/</mirror>
+			</file>
+			<!-- <file>                         
+				<pkg sha1="5b0e985afd77153e8e4b9e14987d4b1a9de53acc">wxWidgets-2.8.10-glib.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<file>  
+				<pkg sha1="417d38d4cdab6b75b26082c8a94bb981e4e6dd80">truecrypt-6.3a-pkcs.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>    
+				<pkg sha1="8bbb22898c84e35efb29524a4daca3ca16082141">truecrypt-6.3a-exo-open.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20120624" interval="120" page="http://www.truecrypt.org/" />
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>fuse</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>nasm</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>wxWidgets</dep>
+			<dep>ImageMagick</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}-source
+			cat ${SRCDIR}/${PKGNAME}-6.3a-pkcs.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-6.3a-exo-open.patch | patch -p1
+			sed -i 's%export LFLAGS :=%export LFLAGS := -ldl%g' Makefile
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}-source
+			make
+			convert Mount/Logo_288dpi.bmp -resize '48x48!' truecrypt.png
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/icons
+			mkdir -p ${TGTDIR}/usr/share/applications
+			install -m 0755 ${PKGNAME}-${PKGVERSION}-source/Main/truecrypt ${TGTDIR}/usr/bin
+			install -m 0644 ${PKGNAME}-${PKGVERSION}-source/truecrypt.png ${TGTDIR}/usr/share/icons
+			paxctl -m ${TGTDIR}/usr/bin/truecrypt
+			
+cat >> ${TGTDIR}/usr/share/applications/truecrypt.desktop << TCDESKTOP
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=TrueCrypt
+Comment=
+Categories=Utility;
+Exec=/usr/bin/truecrypt
+Icon=/usr/share/icons/truecrypt.png
+Terminal=false
+StartupNotify=true
+
+TCDESKTOP
+
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}-source
+			]]>
+		</clean>
+	</package>
+</llpackages>

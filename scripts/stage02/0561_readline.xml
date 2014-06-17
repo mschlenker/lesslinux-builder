@@ -1,0 +1,83 @@
+<llpackages>
+	<package 
+		name="readline"
+		version="6.3"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                     
+				<pkg sha1="017b92dc7fd4e636a2b5c9265a77ccc05798c9e1">readline-6.3.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/readline/</mirror>
+			</file>
+			<file>                                     
+				<pkg sha1="d6e300cd6f7ffbe680af400b98895a2abeaedd10">readline-6.3-upstream_fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20130503" interval="365" page="http://ftp.gnu.org/gnu/readline/" />
+			<!-- <check>
+				<page html="http://ftp.gnu.org/gnu/readline/">
+					<atext linktext="readline-6.2.1." />
+					<atext linktext="readline-6.3." />
+					<atext linktext="readline-6.4." />
+					<atext linktext="readline-7." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+			<dep>ncurses</dep>
+			<dep>ncurses-8bit</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-1.patch | patch -p1
+			sed -i '/MV.*old/d' Makefile.in
+			sed -i '/{OLDSUFF}/c:' support/shlib-install
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --libdir=/lib && make SHLIB_LIBS=-lncurses
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/lib
+			mv -v ${TGTDIR}/lib/lib{readline,history}.a ${TGTDIR}/usr/lib
+			rm -v ${TGTDIR}/lib/lib{readline,history}.so
+			ln -sfv ../../lib/libreadline.so.6 ${TGTDIR}/usr/lib/libreadline.so
+			ln -sfv ../../lib/libhistory.so.6 ${TGTDIR}/usr/lib/libhistory.so
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

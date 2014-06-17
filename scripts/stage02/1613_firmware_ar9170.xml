@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="firmware_ar9170"
+		version="20130213"
+		class="user"
+		install="destdir">
+		<license>proprietary</license>
+		<sources>
+			<file>    
+				<pkg sha1="6e5250498b815c2940d97242de31e054ae44e079">ar9170.fw</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/people/mcgrof/firmware/ar9170/</mirror>
+			</file>
+			<file>                                                      
+				<pkg sha1="83a3e00de61ced68b7129a3c82803e6f07840b21">carl9170-1.fw-1.9.2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>  
+			<file>                                                      
+				<pkg sha1="2948cbe6eee745e6a4911b71d27eac4f1a787c46">carl9170-1.fw-1.9.5</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> 
+			<file>                                                      
+				<pkg sha1="26ef27909e2fc7773dbad95d4e5979d114134b97">carl9170-1.fw-1.9.7</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> 
+			<manualcheck date="20130213" interval="45" page="http://linuxwireless.org/en/users/Drivers/carl9170" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>unzip</dep>
+			<dep>coreutils</dep>
+                        <dep>diffutils</dep>
+			 <dep>rsync</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/lib/firmware
+			install -m 0755 ${SRCDIR}/ar9170.fw ${TGTDIR}/lib/firmware/
+			install -m 0755 ${SRCDIR}/carl9170-1.fw-1.9.2 ${TGTDIR}/lib/firmware/
+			install -m 0755 ${SRCDIR}/carl9170-1.fw-1.9.5 ${TGTDIR}/lib/firmware/
+			install -m 0755 ${SRCDIR}/carl9170-1.fw-1.9.7 ${TGTDIR}/lib/firmware/carl9170-1.fw
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</clean>
+	</package>
+</llpackages>

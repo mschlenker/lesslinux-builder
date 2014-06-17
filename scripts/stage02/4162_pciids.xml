@@ -1,0 +1,44 @@
+<llpackages>
+	<package 
+		name="pciids"
+		version="20140516"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="f80d2690faf7a95c666306d1c09c8e76f622966c">pciids-20140516.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20140516" interval="3" page="http://pciids.sourceforge.net/v2.2/pci.ids" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>pciutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			echo 'Nothing to do!'
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/var/lib/misc/
+			bunzip2 -c ${SRCDIR}/pciids-${PKGVERSION}.bz2 > ${TGTDIR}/var/lib/misc/pci.ids
+			bunzip2 -c ${SRCDIR}/pciids-${PKGVERSION}.bz2 | gzip -c > /usr/share/pci.ids.gz
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</clean>
+	</package>
+</llpackages>

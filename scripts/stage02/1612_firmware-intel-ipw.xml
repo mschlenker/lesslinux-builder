@@ -1,0 +1,44 @@
+<llpackages>
+	<package 
+		name="firmware_intel_ipw"
+		version="3.1"
+		class="user"
+		install="destdir">
+		<license>proprietary</license>
+		<sources>
+			<!-- 2200 -->
+			<file>            
+				<pkg sha1="7fd3a2dacc20d2b7a8fa4fa223cb330844cec947">ipw2200-fw-3.1.tgz</pkg>
+				<mirror>http://bughost.org/firmware/</mirror>
+			</file>
+			<manualcheck date="20120102" interval="365" page="http://bughost.org/firmware/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>unzip</dep>
+			<dep>coreutils</dep>
+                        <dep>diffutils</dep>
+			<dep>rsync</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[
+			tar xvzf ${SRCDIR}/ipw2200-fw-${PKGVERSION}.tgz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/lib/firmware
+			for f in  ipw2200-sniffer.fw  ipw2200-bss.fw ipw2200-ibss.fw ; do
+				install -m 0755 ipw2200-fw-${PKGVERSION}/$f ${TGTDIR}/lib/firmware/
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>

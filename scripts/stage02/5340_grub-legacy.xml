@@ -1,0 +1,54 @@
+<llpackages>
+	<package 
+		name="grub-legacy"
+		version="0.97"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                       
+				<pkg sha1="2580626c4579bd99336d3af4482c346c95dac4fb">grub-0.97.tar.gz</pkg>
+				<mirror>ftp://alpha.gnu.org/gnu/grub/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/grub-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/grub-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/grub-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd grub-${PKGVERSION}
+			./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd grub-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

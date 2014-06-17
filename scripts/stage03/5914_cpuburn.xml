@@ -1,0 +1,48 @@
+<llpackages>
+	<package name="cpuburn">
+	</package>
+	<scripts>
+		<scriptdata location="/etc/rc.d/0500-cpuburn.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides cpuburn
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+start_cpuburn=0 
+
+for i in `cat /proc/cmdline`
+do
+   case "$i" in
+     cpuburn=*)
+	cpuburn=`echo "$i" | awk -F '=' '{print $2}'`
+	if [ "$cpuburn" -gt 0 ] ; then
+	    start_cpuburn=1
+	fi
+     ;;
+   esac
+done   
+
+case $1 in 
+    start)
+	if [ "$start_cpuburn" -gt 0 ] ; then
+		printf "$bold===> Stress testing the CPU $normal\n"
+		ruby /usr/share/lesslinux/cpuburn/cpuburn.rb
+	fi
+    ;;
+    stop)
+	killall -9 cpuburn 
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+
+</llpackages>

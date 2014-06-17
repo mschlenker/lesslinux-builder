@@ -1,0 +1,118 @@
+<llpackages>
+	<package 
+		name="gnome-themes-standard"
+		version="3.10.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                       
+				<pkg sha1="98fc640bff92a126b747b22137f6e343ee476382">gnome-themes-standard-3.10.0.tar.xz</pkg>
+				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gnome-themes-standard/3.10/</mirror>
+			</file>
+			<manualcheck date="20131129" interval="365" page="http://www.libarchive.org/" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/2.32/">
+					<atext linktext="file-roller-2.32.3." />
+					<atext linktext="file-roller-2.32.4." />
+					<atext linktext="file-roller-2.32.5." />
+					<atext linktext="file-roller-2.32.6." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/">
+					<atext linktext="2.34" />
+					<atext linktext="2.36" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>gtk</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libcroco</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng15</dep>
+                        <dep>librsvg</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>procps</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xz</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			paxctl -m ${TGTDIR}/usr/bin/file-roller
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

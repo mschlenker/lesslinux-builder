@@ -1,0 +1,97 @@
+<llpackages>
+	<package 
+		name="pango"
+		version="1.36.2"
+		class="lib"
+		>
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                           
+				<pkg sha1="e40bcca999102a93528b4e278aca3996f8c06f92">pango-1.36.2.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/pango/1.36/</mirror>
+			</file>
+			<manualcheck date="20140216" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/pango/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pango/1.36/">
+					<atext linktext="pango-1.36.5" />
+					<atext linktext="pango-1.36.3" />
+					<atext linktext="pango-1.36.4" />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pango/">
+					<atext linktext="1.40" />
+					<atext linktext="1.38" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXft</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>gobject-introspection</dep>
+			<dep>imake</dep>
+			<dep>harfbuzz</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			# tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

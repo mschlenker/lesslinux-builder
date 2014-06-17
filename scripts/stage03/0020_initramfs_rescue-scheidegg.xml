@@ -1,0 +1,154 @@
+<llpackages>
+	<dirs>
+		<dir mode="0755">/etc</dir>
+		<dir mode="0755">/etc/default</dir>
+		<dir mode="0755">/etc/samba</dir>
+	</dirs>
+	<links>
+		<!-- blue theme used in Sicher Surfen 2009 -->
+		<!-- <softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
+		<!-- green theme used in Notfall-CD 2.0 -->
+		<softlink target="/usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
+		<softlink target="/usr/share/themes/Xfce-dawn/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink>
+	</links>
+	<scripts>
+		<scriptdata location="/etc/samba/smb.conf" mode="0644" group="0" owner="0">
+		<![CDATA[
+		
+[global]
+	workgroup = WORKGROUP
+	server string = Notfall-Paket (Samba, LessLinux)
+	netbios name = NOTFALL-DVD
+	dns proxy = No
+	log file = /var/log/samba.log
+	max log size = 1000
+	syslog = No
+	security = user
+	encrypt passwords = true
+	passdb backend = tdbsam
+	map to guest = Bad User
+	guest account = surfer
+	invalid users = root
+	follow symlinks= yes 
+	wide links= yes
+	unix extensions = no
+
+[Laufwerke]
+	path = /media/disk
+	comment = Alle eingebundenen Laufwerke
+	writeable = No
+	browseable = Yes
+	guest ok = Yes
+	
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/default/browser" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+	
+DEFAULT_HOMEPAGE='about:home' 
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+. /etc/lesslinux/branding/branding.en.sh
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+# Adjust the themes for Polish Rescue CD
+if [ "$brandshort" = "plyta-ratunkowa" ] && [ "$lang" = "pl" ] ; then
+	xfsettingsd --replace
+	# sed -i 's/Clearlooks/Natura/g' /home/surfer/.config/openbox/rc.xml
+	# xfconf-query -c xsettings -p /Net/ThemeName -s Xfce-saltlake  
+fi
+
+# Uncomment to debug
+# /usr/bin/Terminal &
+# /usr/bin/xterm &
+# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+setxkbmap -layout "$xkbmap"
+esetroot -scale /etc/lesslinux/branding/desktop.jpg
+Thunar --daemon &
+if xdpyinfo | grep -q -i composite ; then
+	sed -i 's/fake transparency=true/fake transparency=false/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+	compton -cCGbf 
+	xcompmgr -c &
+fi
+xbindkeys &
+cairo-dock -c &
+openbox &
+# Weird hack!
+xfct=0
+while true ; do
+	sleep 15
+	if [ "$xfct" -lt 5 ] ; then
+		xfsettingsd --replace
+		xfct=` expr $xfct + 1 ` 
+		sleep 15
+	else
+		sleep 9999999
+	fi
+done
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0100-files.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+		
+# check, if the files needed exist - some of those directories are defaults of customers
+# and not used on normal LessLinux builds
+
+for d in Data Runtime Software Programme Windows-Programme Programs Windows-Programs Lizenzen lizenzen licenses legal ; do
+	[ -d /lesslinux/cdrom/${d} ] && tar -C /lesslinux/cdrom -cf - ${d} | tar -C /lesslinux/data -xf -
+done
+for f in liesmich.html readme.html LIESMICH.html README.html Start.exe Start.inf ; do 
+	[ -f /lesslinux/cdrom/${f} ] && tar -C /lesslinux/cdrom -cf - ${f} | tar -C /lesslinux/data -xf -
+done
+
+		]]>
+		</scriptdata>
+	</scripts> 
+	<package name="initramfs-rescue-scheidegg" version="20130519-00" allowfail="yes">
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="77cc85af148f1b83de5e3671b4fb8fa6e6dc4a0c">surfer-neutral-20130519-00.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+install -m 0644 ${SRCDIR}/surfer-neutral-${PKGVERSION}.tar.gz ${INITRAMFS}/etc/lesslinux/skel/surfer.tgz
+		
+		]]>
+		</install>
+	</package>
+</llpackages>

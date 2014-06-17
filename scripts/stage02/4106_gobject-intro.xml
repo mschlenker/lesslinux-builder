@@ -1,0 +1,122 @@
+<llpackages>
+	<package 
+		name="gobject-introspection"
+		version="1.40.0"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                             
+				<pkg sha1="6eb5476838650f8b3cdd14100081f3416eebf6b7">gobject-introspection-1.40.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/1.40/</mirror>
+			</file>
+			<manualcheck date="20140518" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/1.40/">
+					<atext linktext="gobject-introspection-1.40.1." />
+					<atext linktext="gobject-introspection-1.40.2." />
+					<atext linktext="gobject-introspection-1.40.3." />
+					<atext linktext="gobject-introspection-1.40.4" />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/">
+					<atext linktext="1.42." />
+					<atext linktext="1.44" />
+					<atext linktext="2." />
+				</page>
+			</check>
+		</sources>
+		<!-- <builddeps>
+                        <dep>GConf</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib-networking</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+			<dep>gobject-introspection</dep>
+                        <dep>inetutils</dep>
+                        <dep>libffi</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                </builddeps> -->
+		<builddeps>
+                        <!-- <dep>GConf</dep> -->
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libffi</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>procps</dep>
+                       <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>unzip</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/gobject-introspection-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gobject-introspection-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gobject-introspection-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gobject-introspection-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

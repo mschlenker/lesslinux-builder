@@ -1,0 +1,58 @@
+<llpackages>
+	<package 
+		name="flashinstall"
+		version="20131111-00"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="4a833cbb9cc8a591d54ad0c98ba92ce7e230e772">flashinstall-20131111-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20131110" interval="120" page="http://distfiles.lesslinux.org/" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xset-1.2.3." />
+					<atext linktext="xset-1.2.4." />
+					<atext linktext="xset-1.2.5." />
+					<atext linktext="xset-1.2.6." />
+					<atext linktext="xset-1.3." />
+					<atext linktext="xset-1.4." />
+					<atext linktext="xset-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do here!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/applications
+			mkdir -p ${TGTDIR}/usr/share/icons
+			install -m 0755 flashinstall-downloader.sh ${TGTDIR}/usr/bin
+			install -m 0755 flashinstall-wrapper.sh ${TGTDIR}/usr/bin
+			install -m 0644 flashinstall.desktop ${TGTDIR}/usr/share/applications
+			for n in 16 32 48 ; do
+				install -m 0644 flash${n}.png ${TGTDIR}/usr/share/icons
+			done 
+			]]>
+		</install>
+	</package>
+</llpackages>
