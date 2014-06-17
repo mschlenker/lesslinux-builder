@@ -1,0 +1,306 @@
+<filetypes>
+	<!-- Override some filetypes by path, for example .../info/... .../man/... .../include/...*.h 
+	     Last match wins -->
+	<pathoverride short="ignore" subpackage="ignore">
+		<pathregexp>^/etc/ld.so.cache$</pathregexp>
+		<pathregexp>^/var/cache/ldconfig/aux-cache$</pathregexp>
+		<pathregexp>^/etc/lesslinux/pkglist.txt$</pathregexp>
+		<pathregexp>^/etc/lesslinux/pkglist.d</pathregexp>
+	</pathoverride>
+	<pathoverride short="kernel_module" subpackage="bin" fileoutput="ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), not stripped">
+		<pathregexp>^/lib/modules/</pathregexp>
+	</pathoverride>
+	<pathoverride short="header" subpackage="devel" fileoutput="ASCII C program text">
+		<pathregexp>^/usr/include/</pathregexp>
+		<pathregexp>^/usr/local/include/</pathregexp>
+		<pathregexp>^/opt/include/</pathregexp>
+		<pathregexp>^/usr/local/crosstools/i486-linux-uclibc/include/</pathregexp>
+		<pathregexp>^/usr/local/crosstools-amd64/amd64-linux-uclibc/include/</pathregexp>
+		<pathregexp>^/usr/local/gcc[0-9][0-9]/include/</pathregexp>
+		<pathregexp>^/usr/compat.old/include/</pathregexp>
+		<pathregexp>^/usr/compat.new/include/</pathregexp>
+	</pathoverride>
+	<pathoverride short="pkgconfig" subpackage="devel" fileoutput="ASCII text">
+		<pathregexp>^/lib/pkgconfig/</pathregexp>
+		<pathregexp>^/usr/lib/pkgconfig/</pathregexp>
+		<pathregexp>^/usr/local/lib/pkgconfig/</pathregexp>
+		<pathregexp>^/opt/lib/pkgconfig/</pathregexp>
+		<pathregexp>^/usr/compat.new/lib/pkgconfig/</pathregexp>
+		<pathregexp>^/usr/compat.old/lib/pkgconfig/</pathregexp>
+	</pathoverride>
+	<pathoverride short="info" subpackage="doc" fileoutput="gzip compressed data">
+		<pathregexp>^/usr/share/info/</pathregexp>
+		<pathregexp>^/usr/local/share/info/</pathregexp>
+		<pathregexp>^/usr/compat.new/share/info/</pathregexp>
+		<pathregexp>^/usr/compat.old/share/info/</pathregexp>
+	</pathoverride>
+	<pathoverride short="man" subpackage="doc" fileoutput="gzip compressed data">
+		<pathregexp>^/usr/man/</pathregexp>
+		<pathregexp>^/usr/share/man/</pathregexp>
+		<pathregexp>^/usr/local/share/man/</pathregexp>
+		<pathregexp>^/usr/compat.old/share/man/</pathregexp>
+		<pathregexp>^/usr/compat.new/share/man/</pathregexp>
+		<pathregexp>^/usr/local/gcc[0-9][0-9]/share/man/</pathregexp>
+	</pathoverride>
+	<pathoverride short="doc" subpackage="doc" fileoutput="gzip compressed data">
+		<pathregexp>^/usr/doc/</pathregexp>
+		<pathregexp>^/usr/share/doc/</pathregexp>
+		<pathregexp>^/usr/local/share/doc/</pathregexp>
+		<pathregexp>^/usr/compat.new/share/doc/</pathregexp>
+		<pathregexp>^/usr/compat.old/share/doc/</pathregexp>
+		<pathregexp>^/usr/share/gtk-doc/</pathregexp>
+	</pathoverride>
+	<pathoverride short="config" subpackage="config">
+		<pathregexp>^/etc/</pathregexp>
+		<pathregexp>^/usr/etc/</pathregexp>
+		<pathregexp>^/usr/local/etc/</pathregexp>
+	</pathoverride>
+	<pathoverride short="localization" subpackage="localization">
+		<pathregexp>^/usr/share/X11/locale/</pathregexp>
+	</pathoverride>
+	<pathoverride short="font" subpackage="uncategorized">
+		<pathregexp>.pcf.gz$</pathregexp>
+	</pathoverride>
+	<pathoverride short="themefile" subpackage="uncategorized">
+		<pathregexp>^/usr/share/themes/</pathregexp>
+	</pathoverride>
+	<pathoverride short="iconfile" subpackage="uncategorized">
+		<pathregexp>^/usr/share/icons/</pathregexp>
+	</pathoverride>
+	<!-- <pathoverride short="c_source" subpackage="devel">
+		<pathregexp>^/usr/include/(.*)\.hpp$</pathregexp>
+		<pathregexp>^/usr/include/(.*)\.h$</pathregexp>
+	</pathoverride>
+	<pathoverride short="png_image" subpackage="doc">
+		<pathregexp>^/usr/share/doc/(.*)\.png$</pathregexp>
+		<pathregexp>^/usr/share/gtk-doc/(.*)\.png$</pathregexp>
+	</pathoverride>
+	<pathoverride short="html" subpackage="doc">
+		<pathregexp>^/usr/share/doc/(.*)\.html$</pathregexp>
+		<pathregexp>^/usr/share/doc/(.*)\.htm$</pathregexp>
+		<pathregexp>^/usr/share/gtk-doc/(.*)\.html$</pathregexp>
+		<pathregexp>^/usr/share/gtk-doc/(.*)\.htm$</pathregexp>
+	</pathoverride> -->
+	<!-- Identify filetypes by output retrieved from file -->
+	<ftype short="gnu_message_catalog" subpackage="localization">
+		<fileout>GNU message catalog (little endian), revision</fileout>
+	</ftype>
+	<ftype short="gzip_compressed_data">
+		<fileout>gzip compressed data</fileout>
+	</ftype>
+	<ftype short="perl_script" subpackage="bin">
+		<fileout>a /usr/bin/perl</fileout>
+		<fileout>a /tools/bin/perl</fileout>
+		<fileout>a /usr/local/bin/perl</fileout>
+		<fileout>a /usr/local/perl</fileout>
+		<fileout>a /bin/perl</fileout>
+		<fileout>a perl script text</fileout>
+		<fileout>a /usr/old/bin/perl</fileout>
+		<fileout>script text executable for perl</fileout>
+		<fileout>Perl5 module source text</fileout>
+		<fileout>Perl POD document text</fileout>
+	</ftype>
+	<ftype short="postscript" subpackage="doc">
+		<fileout>PostScript document text</fileout>
+	</ftype>
+	<ftype short="gif_image">
+		<fileout>GIF image data</fileout>
+	</ftype>
+	<ftype short="pdf" subpackage="doc">
+		<fileout>PDF document</fileout>
+	</ftype>
+	<ftype short="gif_image">
+		<fileout>GIF image data, version</fileout>
+	</ftype>
+	<ftype short="png_image">
+		<fileout>PNG image</fileout>
+	</ftype>
+	<ftype short="ar_archive" subpackage="devel">
+		<fileout>current ar archive</fileout>
+	</ftype>
+	<ftype short="ascii_english_text">
+		<fileout>ASCII English text</fileout>
+	</ftype>
+	<ftype short="utf_english_text">
+		<fileout>UTF-8 Unicode English text</fileout>
+	</ftype>
+	<ftype short="xml">
+		<fileout>XML</fileout>
+	</ftype>
+	<ftype short="tzdata">
+		<fileout>timezone data</fileout>
+	</ftype>
+	<ftype short="terminfo">
+		<fileout>Compiled terminfo entry</fileout>
+	</ftype>
+	<ftype short="bash_script">
+		<fileout>Bourne-Again shell script text executable</fileout>
+	</ftype>
+	<ftype short="shell_script">
+		<fileout>shell script text executable</fileout>
+	</ftype>
+	<ftype short="sgml" subpackage="doc">
+		<fileout>exported SGML document text</fileout>
+	</ftype>
+	<ftype short="sed_script">
+		<fileout>a /bin/sed -f script text executable</fileout>
+	</ftype>
+	<ftype short="po_gettext_message" subpackage="localization">
+		<fileout>PO (gettext message catalogue) text</fileout>
+	</ftype>
+	<ftype short="pascal_source">
+		<fileout>Pascal program text</fileout>
+	</ftype>
+	<ftype short="mbox_text">
+		<fileout>mail text</fileout>
+		<fileout>news or mail text</fileout>
+		<fileout>news text</fileout>
+	</ftype>
+	<ftype short="makefile">
+		<fileout>make commands text</fileout>
+	</ftype>
+	<ftype short="m4_macro">
+		<fileout>M4 macro language pre-processor text</fileout>
+	</ftype>	
+	<ftype short="linux_x86_so_unstripped" subpackage="bin">
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, dynamically linked (uses shared libs), not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, dynamically linked, not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.0, not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, for GNU/Linux 2.6.0, not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, for GNU/Linux 2.6.18, not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.18, not stripped</fileout>
+		<fileout>ELF 32-bit LSB relocatable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.18, not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (GNU/Linux), dynamically linked, not stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV)</fileout>
+		<fileout>ELF 32-bit LSB relocatable</fileout>
+		<fileout>ELF 32-bit LSB shared object</fileout>
+	</ftype>
+	<ftype short="linux_x86_so_stripped" subpackage="bin">
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, dynamically linked, stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, dynamically linked (uses shared libs), stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.0, stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, for GNU/Linux 2.6.0, stripped</fileout>
+		<fileout>ELF 32-bit LSB shared object, Intel 80386, version 1 (GNU/Linux), dynamically linked, stripped</fileout>
+	</ftype>
+	<ftype short="linux_x86_exe_unstripped" subpackage="bin">
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, dynamically linked (uses shared libs), not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.8, dynamically linked (uses shared libs), not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.0, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.8, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.9, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.15, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.18, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (GNU/Linux), dynamically linked (uses shared libs), for GNU/Linux 2.6.22, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (GNU/Linux), dynamically linked</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV)</fileout>
+		<fileout>ELF 32-bit LSB executable</fileout>
+	</ftype>
+	<ftype short="linux_x86_exe_stripped" subpackage="bin">
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, dynamically linked (uses shared libs), stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.8, dynamically linked (uses shared libs), stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.0, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.8, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.9, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.15, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.18, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.18, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.22, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), stripped</fileout>
+	</ftype>
+	<ftype short="linux_x86_exe_static_stripped" subpackage="bin">
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, statically linked, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.8, statically linked, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.0, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.8, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.9, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.15, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.18, stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.22, stripped</fileout>
+	</ftype>
+	<ftype short="linux_x86_exe_static_unstripped" subpackage="bin">
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.0, statically linked, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.8, statically linked, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.0, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.8, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.9, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.15, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.18, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, for GNU/Linux 2.6.22, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (GNU/Linux), statically linked, for GNU/Linux 2.6.22, not stripped</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked</fileout>
+		<fileout>ELF 32-bit LSB executable, Intel 80386, version 1 (GNU/Linux), statically linked</fileout>
+	</ftype>
+	<ftype short="libtool_library" subpackage="devel">
+		<fileout>libtool library file</fileout>
+	</ftype>
+	<ftype short="linux_kernel_x86">
+		<fileout>Linux kernel x86 boot executable</fileout>
+	</ftype>
+	<ftype short="lex_script">
+		<fileout>lex description text</fileout>
+	</ftype>
+	<ftype short="latex" subpackage="doc">
+		<fileout>TeX document text</fileout>
+	</ftype>
+	<ftype short="dvi" subpackage="doc">
+		<fileout>TeX DVI</fileout>
+	</ftype>
+	<ftype short="jpeg_image">
+		<fileout>JPEG image data</fileout>
+	</ftype>
+	<ftype short="file_magic">
+		<fileout>magic binary file for file</fileout>
+	</ftype>
+	<ftype short="font_metrics">
+		<fileout>ASCII font metrics</fileout>
+	</ftype>
+	<ftype short="html" subpackage="doc">
+		<fileout>HTML document text</fileout>
+	</ftype>
+	<ftype short="c++_source" subpackage="devel">
+		<fileout>C++ program text</fileout>
+	</ftype>
+	<ftype short="java_source" subpackage="devel">
+		<fileout>Java program text</fileout>
+	</ftype>
+	<ftype short="awk_script" subpackage="devel">
+		<fileout>awk script text</fileout>
+	</ftype>
+	<ftype short="c_source">
+		<fileout>C program text</fileout>
+	</ftype>
+	<ftype short="empty">
+		<fileout>empty</fileout>
+	</ftype>
+	<!-- finally text matches -->
+	<ftype short="iso_english_text">
+		<fileout>ISO-8859 English text</fileout>
+	</ftype>
+	<ftype short="iso_text">
+		<fileout>ISO-8859 text</fileout>
+	</ftype>
+	<ftype short="ascii_text">
+		<fileout>ASCII text</fileout>
+	</ftype>
+	<!-- Identify languages -->
+	<flang short="de">
+		<path>/share/locale/de</path>
+	</flang>
+	<flang short="en">
+		<path>/share/locale/en</path>
+	</flang>
+</filetypes>
+
+
+
+
+
+
+
+
