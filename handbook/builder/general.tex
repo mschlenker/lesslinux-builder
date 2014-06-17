@@ -1,0 +1,52 @@
+
+The build system used by LessLinux is closely based on Linux from scratch. Building is done in three stages. The first stage is used to cross compile a toolchain that resides under \texttt{/tools}. In the second stage we use this toolchain to build all LessLinux packages in a chroot environment. Stage three is the assembly of the final boot image by taking the required files from the second stage. Although the fiirst stage involves cross compiling, the rest of the build process has to be done on the target architecture -- which currently only is i686. This means you should be able to build on any recent 32 Bit linux. Our preferred build environment  are the ,,FULL'' ISO images of LessLinux Search and Rescue that are self containing, you should also get good results using the latest Ubuntu LTS version. The next sections in this chapter tell you how to build using the LessLinux ,,FULL'' live ISO.
+
+The examples in this chapter use the ,,FULL'' ISO image with it's defaults. We assume that you can leave the defaults, although some might seem odd: The build partition is mounted at \texttt{/mnt/archiv} (german diction without trailing ,e') and the unprivileged user for stage01  is called ,,mattias''. You can adjust these values in the settings contained in the \texttt{config} directory, but we do not recommend so for the first steps.
+
+\section{Preparation}
+
+\subsection{Prepare a drive}
+
+We strongly recommend building LessLinux on a SSD with at least 40 Gigabyte you can dedicate to LessLinux - random access to small files is the most costly operation when building LessLinux. However, for the fist steps a notebook and a 32 Gigabyte USB thumb drive might do -- albeit much slower. Building on a virtual machine also works very good as long as you try to avoid fragmented hard disk images on rotational drives.
+
+Prepare two partitions for the LessLinux build. They do not necessarily have to reside on the same hard disk, nor is a special partition scheme necessary - GPT and MBR will both work. Recommended size for the swap partition is 4 Gigabyte, the build partition itself should be between 20 and 60 Gigabytes. Larger sizes do not make any sense. Format them using a label that will be used to identify them when mounting:
+
+\begin{verbatim}mkswap -L LessLinux_swap /dev/sdb1
+mkfs.btrfs -L LessLinux_build /dev/sdb2
+\end{verbatim} 
+
+After preparing the disk(s), either reboot LessLinux with the ,,FULL'' ISO or run the following command:
+
+\begin{verbatim}/usr/share/lesslinux/auxiliary-scripts/prepare-lesslinux-build.sh\end{verbatim}
+
+This command will be run everytime upon boot in the ,,FULL'' ISO, so with the right labels you do not have to care about mounting anymore.
+
+\subsection{Create some directories}
+
+Some directories are not automatically created during the build process. This is intentional since you might want to share the sources directory between several machines building LessLinux. Create them manually as soon as \texttt{/mnt/archiv/LessLinux} is available: 
+
+\begin{verbatim}mkdir -p /mnt/archiv/LessLinux/src
+mkdir -p /mnt/archiv/LessLinux/llbuild
+mkdir -p /mnt/archiv/LessLinux/llbuilder\end{verbatim}
+
+\subsection{Download the ,,sources''}
+
+The ,,sources'' are really just build definitions - shell script fragments embedded in XML files - and download locations. Currently those download locations are also backed up at \texttt{http://distfiles.lesslinux.org/}. This location is provided for build convenience and satisfaction of the GPL/LGPL only. If you distribute modified builds of LessLinux you have to provide your own sets of build definitions and sources (either downloads or physically), so do not count on me.
+
+Build definitions are currently just available as tarballs that unpack in \texttt{/mnt/archiv/LessLinux/llbuilder}, subversion access might or might not follow. Just take the build definitions that seem to fit best to your planned LessLinux derivative. If unsure, take the latest source used to build LessLinux Search and Rescue:
+
+\begin{verbatim}wget -O /tmp/llsrc.tar.xz \
+http://download.lesslinux.org/src/\
+lesslinux-search-and-rescue-uluru-YYYYMMDD-HHMMSS-buildscripts.tar.xz\end{verbatim}
+
+Unpack the build scripts in the newly created directory llbuilder:
+
+\begin{verbatim}cd /mnt/archiv/LessLinux/llbuilder
+tar xvJf /tmp/llsrc.tar.xz\end{verbatim}
+
+
+
+
+
+
+

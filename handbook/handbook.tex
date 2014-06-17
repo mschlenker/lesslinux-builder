@@ -1,0 +1,203 @@
+%Dies ist das Hauptdokument!
+
+%Dieses Hauptdokument bearbeitet nur der Redakteur.
+%Die einzelnen Autoren müssen sich überhaupt nicht um den gewöhnungsbedürftigen
+%Vorspann kümmern sondern nur ASCII-Text schreiben und ihren Text mit
+%einigen wenigen Befehlen logisch gliedern. Um Schriftarten, -größen, Kopf- und
+%Fußzeilen kümmert sich ausschließlich die Redaktion.
+
+\documentclass[titlepage,a4paper,twoside,11pt]{report}
+
+% \input{parameter.tex}
+
+%
+% Spezielle Header/Footer verwenden
+%
+
+\usepackage{fancyhdr}
+% \usepackage{ngerman} % neue deutsche Rechtschreibung
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[pdftex]{graphics}
+\usepackage[pdftex]{rotating}
+%\usepackage{europs} %EURO-Zeichen mit \EUR\ oder \EURofc\
+\sloppy
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{color}
+\usepackage{makeidx}
+\makeindex
+%\usepackage{dropping} % Initialen verwenden
+\DeclareGraphicsRule{.tif}{.bmp}{.jpg}{}
+%\DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png,.eps}
+
+%Includefiles festlegen
+%\includeonly{2302linpro}
+%------------------------
+% einige Variablen für Seitenumbrüche anpassen
+%
+
+\renewcommand{\floatpagefraction}{.9}% vorher: .5
+\renewcommand{\textfraction}{.02} % vorher: .2
+\renewcommand{\topfraction}{.8}     % vorher: .7
+\renewcommand{\bottomfraction}{.5}  % vorher: .3
+
+%
+% Neue Befehle von Mattias für eigene Absatzformate
+%
+
+\newcommand{\zpgsection}[1]{\section*{\raggedright \huge \sffamily {#1}}
+\addcontentsline{toc}{section}{#1} \def\pagetitle{#1}}
+\newcommand{\zpgsubsection}[1]{\subsection*{\mdseries \textbf {#1}}
+\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\zpgsubsubsection}[1]{\subsubsection*{\mdseries \textbf {#1}}
+\addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\zpgleit}[1]{\noindent \emph{#1}}
+
+% ...dann geht es mit \zpgsection{Artikelueberschrift} und
+% \zpgsubsection{Unterueberschrift}!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aenderungen von Mattias
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Echten Euro nur verwenden falls vorhanden
+
+\IfFileExists{europs.sty}{\usepackage{europs}\newcommand\euro{\EUR}}
+			{\newcommand\euro{{\sffamily C%
+    			\makebox[0pt][l]{\kern-.70em\mbox{--}}%
+    			\makebox[0pt][l]{\kern-.68em\raisebox{.25ex}{--}}}}}
+% andernfalls: erzeugt provisorisches EURO-Symbol
+
+\usepackage{colortbl}
+\usepackage{pifont}
+\newcommand{\Achtung}{\subsubsection*{\textcolor{red}{Achtung:}}}
+\newcommand{\Warning}{\subsubsection*{\textcolor{red}{Warning:}}}
+\newcommand{\Beispiele}{\subsubsection*{Beispiele:}}
+%\newcommand{\Parameter}{\subsubsection*{Parameter:}}
+\definecolor{darkblue}{rgb}{0.15,0.15,0.57}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setlength{\paperwidth}{29.7cm}
+%\setlength{\paperheight}{21cm}
+%\setlength{\textwidth}{27cm}
+%\setlength{\textheight}{18cm}
+
+%
+% Bedruckten Bereich vergrößern
+%
+
+\setlength{\textheight}{24cm} \setlength{\textwidth}{16cm}
+\setlength{\oddsidemargin}{0.0cm} \setlength{\topmargin}{0cm}
+\setlength{\evensidemargin}{0.0cm} \setlength{\columnsep}{18pt}
+\setcounter{topnumber}{8} % vorher: 2
+\setcounter{bottomnumber}{5} % vorher: 1
+\setcounter{totalnumber}{10} % vorher: 3
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Änderungen von Andrea:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Der folgende Befehl definiert die Verwendung von \url ...
+\IfFileExists{url.sty}{\usepackage{url}}
+                      {\newcommand{\url}{\texttt}}
+%kein Einrücken, wenn ein neuer Absatz beginnt:
+%\parindent0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Anpassungen für Seitenkopf
+%
+
+
+%\def\pagetitle{}
+
+    \pagestyle{fancy}
+        \fancyhead[LE,RO]{\thepage}
+        \fancyhead[RE]{\textsf {LessLinux Handbook}}
+        \fancyhead[LO]{\textsf {\pagetitle}}
+
+     \fancyfoot[C]{}
+%
+% Ende - Anpassungen für Seitenkopf
+%
+
+
+% \usepackage{ae}       % zur Suche nach Worten mit Umlaut
+                           % noetig
+
+%
+% PDF-Optionen:
+%
+
+%%%% Zur PDF-Erzeugung (Hyperlinks) benötigte Optionen
+%%%% Details siehe Dokumentation von hyperref, bei jeder
+%%%% teTeX-Distribution >= 1.0.6 dabei.
+
+%%%% Bitte ganz am Schluß unterbringen,
+%%%% da viele Befehle neu definiert werden
+
+\usepackage{ae}       % zur Suche nach Worten mit Umlaut
+                      % noetig
+\usepackage{palatino}
+%\usepackage{times}   % Type-1-Schriften
+                      % (nicht immer notwendig)
+\usepackage[
+   a4paper,      % A4
+   pdftex,        % Erzeugung durch dvips
+   pdftitle={LessLinux Handbook},
+       pdfauthor={Mattias Schlenker},
+   bookmarks=true,
+       bookmarksopen=true,     % Bookmarks anzeigen...
+       bookmarksnumbered=true, % ...und numerieren
+   colorlinks,   % Farbige Links
+	linkcolor=darkblue,
+     urlcolor=darkblue]{hyperref}
+
+
+\newcommand{\Parameter}[1]{\subsubsection*{\hypertarget{#1}{Parameter}}}
+
+%\usepackage[dvips]{thumbpdf}
+%Beginn des Inhalts der Zeitschrift
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title {}
+
+\author{Mattias Schlenker}
+\date  {\today}
+%\maketitle
+\def\pagetitle{}
+\include{title}
+\def\pagetitle{Inhaltsverzeichnis}
+\tableofcontents
+\newpage
+\def\pagetitle{lesslinux.com Documentation}
+%Angabe der Schriftart
+%\sffamily                 %serifenlos
+\normalfont                %normal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Eingefügte Artikel
+
+\begin{abstract}
+LessLinux is a free Linux system designed to be light and easily modifiable. It is based on \href{http://www.linuxfromscratch.org}{Linux from Scratch}  and was started by Mattias Schlenker in 2009. Since then it has been used as a base for dozens of security and rescue systems published by computer magazines all over the world. It's simple architecture makes it easy to build LessLinux based systems for use as thinclient, software deployment or the demonstration of software. This book covers the possibilities of LessLinux and tells you how small changes can make LessLinux the lever you need to move your world.  
+\end{abstract}
+
+\chapter{About LessLinux and this handbook}
+\chapter{LessLinux for users}
+\chapter{LessLinux for admins}
+\input{admin/admin}
+\input{admin/remote}
+\input{admin/netboot}
+\input{admin/thinclient}
+\chapter{LessLinux for builders and contributors}
+\input{builder/general}
+\input{builder/stage1} 
+
+\printindex 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

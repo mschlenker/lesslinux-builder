@@ -1,0 +1,59 @@
+
+
+\section{Netbooting LessLinux}
+
+Netbooting LessLinux is a convenient way of providing a rescue system to medium scale networks or converting existing machines to thin clients. To maximize the possiblities you might want to combine netboot with \hyperlink{remote}{remote access} or \hyperlink{thinclient}{LessLinux as thin client}.  
+
+This chapter will not describe how to completely setup a netboot environment. Please view the respective documentation of your preferred DHCP server and TFTP daemon to see how to get kernel and initramfs delivered to your PXE capable clients. For the system's boot command line boot LessLinux from CD and then run
+
+\begin{verbatim}
+cat /proc/cmdline
+\end{verbatim}
+
+to retrieve a command line that can be used as a basis for the the following examples. Make sure that \texttt{earlynet} is not included in the list of services to skip, since this brings up network interfaces before the system image is found. To speed up boot you might add \texttt{dhcpcd} and \texttt{wicd} to the list of services to skip.
+
+\Warning{Builds after 20130717 use the variable \texttt{defermods} to mount a tmpfs over all module directories specified here. To speed up start and make firmware loading more reliable this delegates loading of ethernet drivers to after the containers are mounted. So if you want to still be able to netboot, set
+
+\begin{verbatim}
+defermods=|drivers/net/wireless|drivers/gpu/drm|sound|
+\end{verbatim}
+
+at the boot command line.}
+
+\subsection{CIFS or NFS boot}
+
+With the command line
+
+\begin{verbatim}
+nfs=12.34.56.78:/path/to/share
+\end{verbatim}
+
+respectively
+
+\begin{verbatim}
+cifs=//12.34.56.78/share
+\end{verbatim}
+
+the specified share will be mounted during boot. The share will then be recursively searched for an ISO image that matches the LessLinux build running. This ISO will then be loopback mounted. Please note that when using  \texttt{cifs} the share must be mountable as User \texttt{guest} with an empty password. 
+
+Depending on speed and reliability of your network and RAM of your clients you might want to use \texttt{toram=1} to force loading the system completely to memory upon boot. This might cost about one minute during startup, but will accelerate the start of programs considerably in congested networks.
+
+This boot method is defined in \texttt{/etc/rc.d/0107-nfssys.sh}.
+
+\subsection{HTTP, FTP or TFTP boot}
+
+Use the command line parameter 
+
+\begin{verbatim}
+wgetiso=http://12.34.56.78/path/to/image.iso
+\end{verbatim}
+
+to use BusyBox' \texttt{wget} to download LessLinux' ISO image. The complete ISO image will be saved in memory, so this option requires sufficient RAM. Using \texttt{tftp} as alternative protocol allows netbooting without having to setup another daemon on your server. However \texttt{tftp} is far less reliable, so this should be just used as an option if no other protocol is available. 
+
+This boot method is defined in \texttt{/etc/rc.d/0108-wgetsys.sh}.
+
+\Warning{Always make sure the parameter \texttt{toram=0} prevents that LessLinux will be copied to RAM again. Activated \texttt{toram} would double the amount of RAM used for the system!}
+
+
+
+
