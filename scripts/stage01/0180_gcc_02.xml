@@ -86,7 +86,7 @@
 			cp -v gcc/Makefile.in{,.tmp}
 			sed 's/^T_CFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in.tmp > gcc/Makefile.in
 			for file in \
-			$(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
+			$(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h -o -name linux-eabi.h )
 do
   cp -uv $file{,.orig}
   sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&@g' \
