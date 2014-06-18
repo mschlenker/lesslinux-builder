@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- executable
+     name: The name of the commandline program
+     label: The title of the GUI -->
+<executable name="/opt/bin/clamscan" label="Virus scan with ClamAV">
+<!-- info: An option which prints out some information
+           this entry will show up in the menu "Info"
+     name: The name of this entry
+     commandline: the argument which is passed to the program TODO: Handle spaces in arguments
+     description: some descriptive text
+     menu: the label that shows up in the menu -->
+  <info name="version" commandline="--version" description="Show version information" menu="Show version information">
+<!-- returncodes: optional keyword, just used for grouping -->
+    <returncodes>
+<!-- retcode:
+     value: the returncode that the program ends with.
+            The special value '*' means 'all other codes' and should be the last entry
+     description: some textual description
+     level: one of okay, warning and error -->
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+<!-- WARNING: THIS ONE CREATES 6MB OF OUTPUT AND TAKES VERY LONG
+              If you really want this command, the remove the
+              text 'PleaseRemoveThis' below ... ask Trolltech why ...
+  <info name="info" commandline="-PleaseRemoveThis-info" description="show list of recognized forms" menu="Show viruslist">
+    <returncodes>
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+-->
+  <info executable="freshclam" name="check" commandline=" " description="Check for signature updates" menu="Check for updates">
+    <returncodes>
+     <retcode value="0" description="No update necessary." level="okay"/>
+     <retcode value="1" description="An update is available." level="warning"/>
+     <retcode value="*" description="Check failed." level="error"/>
+    </returncodes>
+  </info>
+  <info executable="freshclam" name="update" commandline=" " description="Update virus signatures" menu="Update signatures">
+    <returncodes>
+     <retcode value="0" description="No update necessary." level="okay"/>
+     <retcode value="1" description="Update succesful." level="okay"/>
+     <retcode value="*" description="Update failed." level="error"/>
+    </returncodes>
+  </info>
+  <returncodes>
+    <retcode value="0" description="Exited normally: 'No virus/potentially unwanted software, no error" level="okay"/>
+    <retcode value="1" description="Virus or potentially unwanted software found in file or boot record" level="warning"/>
+    <retcode value="40" description="Unknown option" level="error"/>
+    <retcode value="50" description="Database could not be opened" level="error"/>
+    <retcode value="52" description="Unknown filetype" level="error"/>
+    <retcode value="53" description="Could not open directory" level="error"/>
+    <retcode value="54" description="Could not open file" level="error"/>
+    <retcode value="55" description="Could not open file" level="error"/>
+    <retcode value="56" description="Could not open file" level="error"/>
+    <retcode value="57" description="Could not determine current working directory" level="error"/>
+    <retcode value="58" description="I/O Error, please check filesystem/network connection" level="error"/>
+    <retcode value="59" description="Could not get current user" level="error"/>
+    <retcode value="60" description="Could not get UID for user clamav (configuration error)" level="error"/>
+    <retcode value="61" description="Could not fork. Check your resource limits" level="error"/>
+    <retcode value="62" description="Could not initialise logger" level="error"/>
+    <retcode value="63" description="Could not create temporary files" level="error"/>
+    <retcode value="64" description="Could not create temporary files" level="error"/>
+    <retcode value="70" description="Could not reserve enough memory. Check your resource limits" level="error"/>
+    <retcode value="71" description="Could not reserve enough memory. Check your resource limits" level="error"/>
+    <retcode value="*" description="" level="error"/>
+  </returncodes>
+  <tab name="Quick start" defaultarguments="">
+    <options>
+      <option type="checkbox" commandline="-i" name="Show only infected" key="r" row="3" column="1" default="on"/>
+      <option type="checkbox" commandline="--recursive" name="Scan subdirectories" key="u" row="4" column="1" default="on"/>
+      <option type="dir" commandline=" " name="Directory to scan" default="/media" key="v" row="5" column="1"/>
+    </options>
+  </tab>
+  <tab name="Experts">
+  <options>
+      <option type="checkbox" commandline="-i" name="Show only infected" key="r" row="3" column="1" default="on"/>
+      <option type="checkbox" commandline="--recursive" name="Scan subdirectories" key="u" row="4" column="1" default="on"/>
+      <option type="checkbox" commandline="--bell" name="Ring bell when found" key="a" row="5" column="1" />
+      <option type="checkbox" commandline="--remove" name="Delete infected files" key="l" row="6" column="1" />
+      <option type="checkbox" commandline="--move=/tmp/infected" name="Move infected files to /tmp/infected" key="v" row="7" column="1" />
+      <option type="checkbox" commandline="--detect-pua" name="Find potentially unwanted software" key="z" row="8" column="1" />
+      <option type="checkbox" commandline="--no-archive" name="Ignore archives" key="i" row="9" column="1" />
+      <option type="dir" commandline=" " name="Directory to scan" default="/media" key="v" row="25" column="1"/>
+    </options>
+  </tab>
+</executable>

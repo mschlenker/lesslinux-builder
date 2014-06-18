@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- executable
+     name: The name of the commandline program
+     label: The title of the GUI -->
+<executable name="/AntiVir/scancl" label="Virensuche mit Avira">
+<!-- info: An option which prints out some information
+           this entry will show up in the menu "Info"
+     name: The name of this entry
+     commandline: the argument which is passed to the program TODO: Handle spaces in arguments
+     description: some descriptive text
+     menu: the label that shows up in the menu -->
+  <info name="version" commandline="--version" description="Versionsinformationen ausgeben" menu="Version anzeigen">
+<!-- returncodes: optional keyword, just used for grouping -->
+    <returncodes>
+<!-- retcode:
+     value: the returncode that the program ends with.
+            The special value '*' means 'all other codes' and should be the last entry
+     description: some textual description
+     level: one of okay, warning and error -->
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="1" description="" level="warning"/>
+     <retcode value="2" description="" level="warning"/>
+     <retcode value="3" description="" level="warning"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+<!-- WARNING: THIS ONE CREATES 6MB OF OUTPUT AND TAKES VERY LONG
+              If you really want this command, the remove the
+              text 'PleaseRemoveThis' below ... ask Trolltech why ...
+  <info name="info" commandline="-PleaseRemoveThis-info" description="show list of recognized forms" menu="Show viruslist">
+    <returncodes>
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+-->
+  <!-- <info executable="/AntiVirUpdate/avupdate" name="check" commandline=" " description="Auf vorhandene Aktualisierungen überprüfen" menu="Aktualisierungen überprüfen">
+    <returncodes>
+     <retcode value="1" description="Kein Update erforderlich." level="okay"/>
+     <retcode value="0" description="Ein Update ist verfügbar." level="warning"/>
+     <retcode value="*" description="Update ist misslungen" level="error"/>
+    </returncodes>
+  </info> -->
+  <info executable="/AntiVirUpdate/avupdate" name="update" commandline=" " description="Die Signaturdateien aktualisieren" menu="Aktualisieren">
+    <returncodes>
+     <retcode value="1" description="Kein Update erforderlich." level="okay"/>
+     <retcode value="0" description="Update war erfolgreich." level="warning"/>
+     <retcode value="*" description="Update ist misslungen" level="error"/>
+    </returncodes>
+  </info>
+  <returncodes>
+    <retcode value="0" description="Normales Programmende: kein Virus bzw. unerwünschtes Programm, kein Fehler" level="okay"/>
+    <retcode value="1" description="Virus bzw. unerwünschtes Programm in Datei oder Bootsektor gefunden" level="warning"/>
+    <retcode value="2" description="Virus bzw. unerwünschtes Programm im Arbeitsspeicher gefunden" level="warning"/>
+    <retcode value="3" description="Verdächtige Datei gefunden gefunden" level="warning"/>
+    <retcode value="101" description="Verdächtiges Office-Makro gefunden" level="warning"/>
+    <retcode value="203" description="Unbekannte Option angegeben" level="error"/>
+    <retcode value="204" description="Konnte Startverzeichnis nicht öffnen" level="error"/>
+    <retcode value="205" description="Protokolldatei konnte nicht zum Schreiben geöffnet werden" level="error"/>
+    <retcode value="210" description="Fehlende Bibliotheksdateien" level="error"/>
+    <retcode value="211" description="Selbsttest fehlgeschlagen" level="error"/>
+    <retcode value="212" description="Virensignaturen konnten nicht gelesen werden" level="error"/>
+    <retcode value="213" description="Beschädigte Installation (möglicherweise zu alte Avira-Version)" level="error"/>
+    <retcode value="214" description="Keine gültige Lizenz gefunden" level="error"/>
+    <retcode value="215" description="Selbsttest fehlgeschlagen" level="error"/>
+    <retcode value="216" description="Dateizugriff fehlgeschlagen (nicht ausreicehnde Rechte)" level="error"/>
+    <retcode value="217" description="Ordnerzugriff fehlgeschlagen (nicht ausreicehnde Rechte)" level="error"/>
+    <retcode value="*" description="" level="error"/>
+  </returncodes>
+  <tab name="Schnellstart" defaultarguments="">
+    <options>
+      <option type="checkbox" commandline="--showall" name="Alle überprüften Dateien anzeigen" key="r" row="3" column="1" default="off"/>
+      <option type="checkbox" commandline="--recursion" name="Mit Unterverzeichnissen" key="u" row="4" column="1" default="on"/>
+      <option type="dir" commandline=" " name="Zu scannendes Verzeichnis" default="/media" key="v" row="5" column="1"/>
+    </options>
+  </tab>
+  <tab name="Expertenmodus">
+  <options>
+      <option type="checkbox" commandline="--showall" name="Alle überprüften Dateien anzeigen" key="r" row="3" column="1" default="off"/>
+      <option type="checkbox" commandline="--recursion" name="Mit Unterverzeichnissen" key="u" row="4" column="1" default="on"/>
+      <option type="checkbox" commandline="--allfiles" name="Alle Dateien prüfen" key="a" row="5" column="1" default="off"/>
+      <option type="checkbox" commandline="--scaninarchive" name="Archivdateien prüfen" key="z" row="6" column="1" default="off"/>
+      <option type="checkbox" commandline="--scanmbox" name="Mailboxen prüfen" key="m" row="7" column="1" default="off"/>
+      <option type="checkbox" commandline="--heurlevel=3" name="Heuristik aktivieren" key="h" row="8" column="1" default="off"/>
+      <option type="radio" commandline=" " name="Aktion bei Fund" row="9" column="1" key="f">
+        <item name="nur anzeigen" value="--defaultaction=ignore" default="1" key="0"/>
+        <item name="desinfizieren/umbenennen" value="--defaultaction=clean,rename" key="1"/>
+        <item name="löschen" value="--defaultaction=delete,rename" key="2"/>
+      </option>
+      <option type="checkbox" commandline="--log=/tmp/avira.log" name="Protokolldatei /tmp/avira.log erzeugen" key="r" row="10" column="1" default="off"/>
+      <option type="dir" commandline=" " name="Zu scannendes Verzeichnis" default="/media" key="v" row="25" column="1"/>
+    </options>
+  </tab>
+</executable>

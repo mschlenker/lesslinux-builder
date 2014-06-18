@@ -1,0 +1,7 @@
+#!/bin/bash
+
+BG=/etc/lesslinux/branding/desktop.png
+ALTBG=${HOME}/.lesslinux/branding/desktop.png
+[ -f "$ALTBG" ] && BG=$ALTBG
+
+xrandr --size "$1" && Esetroot -s "$BG"

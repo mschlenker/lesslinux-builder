@@ -1,0 +1,67 @@
+#!/static/bin/ash
+	
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
+
+#if [ -n "$xkbmap" ] ; then
+#	/usr/bin/setxkbmap -layout "$xkbmap"
+#fi
+
+if [ "$lang" = "ru" ] ; then
+	setxkbmap -rules xorg -model pc105 -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+else
+	setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+fi
+if  [ -n "$xrandr" ] ; then
+	/usr/bin/xrandr --size "$xrandr"
+fi
+
+if [ "$installer" = "5in1" ] ; then
+	/usr/bin/Esetroot -scale /etc/lesslinux/branding/5in1.png
+	/usr/bin/matchbox-window-manager -force_dialogs "Installation" &
+	if [ -d /lesslinux/cdrom/5in1 ] ; then
+		ln -sf /lesslinux/cdrom /lesslinux/5in1
+	else
+		zenity --error --text "Die 5in1 DVD wurde nicht gefunden. Öffne Shell zur manuellen Einbindung."
+		Terminal
+	fi
+	rebootme=0
+	while [ "$rebootme" -lt 1 ] ; do 
+		if [ -f /lesslinux/5in1/5in1/5in1install.rb ] ; then
+			/usr/bin/ruby /lesslinux/5in1/5in1/5in1install.rb 
+		else
+			/usr/bin/ruby /usr/local/xconfgui/5in1install.rb
+		fi
+		[ -f /var/run/lesslinux/reboot_me_now ] && rebootme=1
+	done
+	reboot
+elif [ "$installer" = "windows" ] ; then
+	/usr/bin/Esetroot -scale /etc/lesslinux/branding/5in1.png
+	/usr/bin/matchbox-window-manager -force_dialogs "Installation" &
+	if [ -d /lesslinux/cdrom/5in1 ] ; then
+		ln -sf /lesslinux/cdrom /lesslinux/5in1
+	else
+		zenity --error --text "Die 5in1 DVD wurde nicht gefunden. Öffne Shell zur manuellen Einbindung."
+		Terminal
+	fi
+	rebootme=0
+	while [ "$rebootme" -lt 1 ] ; do 
+		if [ -f /lesslinux/5in1/5in1/5in1windows.rb ] ; then
+			/usr/bin/ruby /lesslinux/5in1/5in1/5in1windows.rb 
+		else
+			/usr/bin/ruby /usr/local/xconfgui/5in1windows.rb
+		fi
+		[ -f /var/run/lesslinux/reboot_me_now ] && rebootme=1
+	done
+	reboot
+else
+	/usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.png
+	/usr/bin/matchbox-window-manager -force_dialogs "Install: $brandlong" &
+	/usr/bin/ruby /usr/local/xconfgui/installer.rb
+fi

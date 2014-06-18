@@ -1,0 +1,14 @@
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Share drives
+Name[de]=Laufwerke freigeben
+Comment=Start a samba server to make all drives under /media/disk available as windows shares
+Comment[de]=Starten Sie einen Samba Server, um alle Laufwerke unter /media/disk als Windows-Freigabe verfügbar zu machen
+Categories=Utility;
+Exec=sudo /usr/bin/runsmbd.sh
+Icon=network_fs
+Terminal=false
+StartupNotify=true

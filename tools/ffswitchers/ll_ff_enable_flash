@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+msg="The Adobe Flash plugin is enabled now. Please restart Firefox"'!'
+act="Adobe Flash is already active. No restart of Firefox required"'!'
+[ "$lang" = "de" ] && \
+	msg="Das Adobe Flash-Plugin ist nun aktiv. Bitte starten Sie Firefox neu"'!' && \
+	act="Adobe Flash ist bereits aktiv. Kein Neustart von Firefox erforderlich"'!'
+[ "$lang" = "pl" ] && \
+	msg="Wtyczka Adobe Flash jest teraz aktywna. Zrestartuj Firefoksa. " && \
+	act="Wtyczka Adobe Flash jest już aktywna. Nie trzeba restartować Firefoksa."
+
+if [ -L /opt/firefox35/lib/firefox/plugins/libflashplayer.so ] ; then
+	zenity --info --text "$act"
+else
+	rm /opt/firefox35/lib/firefox/plugins/libgnashplugin.so
+	ln -sf /usr/lib/browserplugins/libflashplayer.so /opt/firefox35/lib/firefox/plugins/libflashplayer.so
+	echo -n libflashplayer.so > /etc/lesslinux/flashplugin
+	zenity --info --text "$msg"
+fi

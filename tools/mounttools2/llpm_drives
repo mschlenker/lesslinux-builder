@@ -1,0 +1,10 @@
+#!/bin/bash
+# encoding: utf-8
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+ruby -I/usr/share/lesslinux/drivetools /usr/share/lesslinux/drivetools/llpm_drives.rb

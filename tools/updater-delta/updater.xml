@@ -1,0 +1,11 @@
+<llupdate target="area51-20090817-105335" applies="area51-20090802-200946" >
+	<info>Dieses wichtige Sicherheits-Update korrigiert eine Lücke im Linux-Kernel durch die ein Angreifer möglicherweise die Kontrolle über das System erlangen kann. Zusätzlich wurde eine Sicherheitslücke in Mozilla Firefox geschlossen. Der aktualisierte Linux-Kernel bringt außerdem bessere Hardware-Unterstützung für Ralink- und Intel-WLAN-Karten mit.
+	</info>
+	<modules target="m2630px.sqs" replaces="m2629px.sqs" end="bj" />
+	<overlay end="ab" />
+	<deltas end="ae" />
+	<delete>
+		<file name="/boot/isolinux/i2629px.img" />
+		<file name="/boot/isolinux/l2629px" />
+	</delete>
+</llupdate>

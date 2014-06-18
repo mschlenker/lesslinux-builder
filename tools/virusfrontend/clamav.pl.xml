@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- executable
+     name: The name of the commandline program
+     label: The title of the GUI -->
+<executable name="/opt/bin/clamscan" label="Virus scan with ClamAV">
+<!-- info: An option which prints out some information
+           this entry will show up in the menu "Info"
+     name: The name of this entry
+     commandline: the argument which is passed to the program TODO: Handle spaces in arguments
+     description: some descriptive text
+     menu: the label that shows up in the menu -->
+  <info name="Wersja" commandline="--version" description="Pokaż informacje o wersji" menu="Informacje o wersji">
+<!-- returncodes: optional keyword, just used for grouping -->
+    <returncodes>
+<!-- retcode:
+     value: the returncode that the program ends with.
+            The special value '*' means 'all other codes' and should be the last entry
+     description: some textual description
+     level: one of okay, warning and error -->
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+<!-- WARNING: THIS ONE CREATES 6MB OF OUTPUT AND TAKES VERY LONG
+              If you really want this command, the remove the
+              text 'PleaseRemoveThis' below ... ask Trolltech why ...
+  <info name="info" commandline="-PleaseRemoveThis-info" description="show list of recognized forms" menu="Show viruslist">
+    <returncodes>
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+-->
+  <info executable="freshclam" name="sprawdź" commandline=" " description="Sprawdź dostępność baz sygnatur wirusów" menu="Sprawdzanie aktualizacji">
+    <returncodes>
+     <retcode value="0" description="Aktualizacja niepotrzebna." level="okay"/>
+     <retcode value="1" description="Uaktualnienie dostępne." level="warning"/>
+     <retcode value="*" description="Sprwadź nieudane." level="error"/>
+    </returncodes>
+  </info>
+  <info executable="freshclam" name="aktualizacja" commandline=" " description="Aktualizuj bazy sygnatur wirusów" menu="Aktualizacja sygnatur">
+    <returncodes>
+     <retcode value="0" description="Aktualizacja niepotrzebna." level="okay"/>
+     <retcode value="1" description="Aktualizacja udana." level="okay"/>
+     <retcode value="*" description="Aktualizacja nieudana." level="error"/>
+    </returncodes>
+  </info>
+  <returncodes>
+    <retcode value="0" description="Zakończono poprawnie: to nie wirus, ani nie szkodliwe oprogramowanie, ani żaden błąd" level="okay"/>
+    <retcode value="1" description="Wirus lub inne złośliwe oprogramowanie znalezione w pliku lub w bootsektorze" level="warning"/>
+    <retcode value="40" description="Nieznana opcja" level="error"/>
+    <retcode value="50" description="Baza danych nie może zostać otworzona" level="error"/>
+    <retcode value="52" description="Nieznany format pliku" level="error"/>
+    <retcode value="53" description="Nie można otworzyć katalogu" level="error"/>
+    <retcode value="54" description="Nie można otworzyć pliku" level="error"/>
+    <retcode value="55" description="Nie można otworzyć pliku" level="error"/>
+    <retcode value="56" description="Nie można otworzyć pliku" level="error"/>
+    <retcode value="57" description="Nie można sprawdzić katalogu roboczego" level="error"/>
+    <retcode value="58" description="Błąd I/O, proszę sprawdzić system plików/połączenie z internetem" level="error"/>
+    <retcode value="59" description="Nie można pobrać informacji o użytkowniku" level="error"/>
+    <retcode value="60" description="Nie można odczytać UID dla procesu (błąd konfiguracji)" level="error"/>
+    <retcode value="61" description="Nie można powielić procesu. Sprawdź zasoby komputera" level="error"/>
+    <retcode value="62" description="Nie można uaktywnić modułu logującego" level="error"/>
+    <retcode value="63" description="Nie można stworzyć plików tymczasowych" level="error"/>
+    <retcode value="64" description="Nie można stworzyć plików tymczasowych" level="error"/>
+    <retcode value="70" description="Nie można zarezerwować wystarczającej ilości pamięci. Sprawdź zasoby komputera" level="error"/>
+    <retcode value="71" description="Nie można zarezerwować wystarczającej ilości pamięci. Sprawdź zasoby komputera" level="error"/>
+    <retcode value="*" description="" level="error"/>
+  </returncodes>
+  <tab name="Szybki start" defaultarguments="">
+    <options>
+      <option type="checkbox" commandline="-i" name="Pokaż tylko zainfekowane" key="r" row="3" column="1" default="on"/>
+      <option type="checkbox" commandline="--recursive" name="Skanuj podkatalogi" key="u" row="4" column="1" default="on"/>
+      <option type="dir" commandline=" " name="Folder do skanowania" default="/media" key="v" row="5" column="1"/>
+    </options>
+  </tab>
+  <tab name="Tryb ekspercki">
+  <options>
+      <option type="checkbox" commandline="-i" name="Pokaż tylko zainfekowane" key="r" row="3" column="1" default="on"/>
+      <option type="checkbox" commandline="--recursive" name="Skanuj podkatalogi" key="u" row="4" column="1" default="on"/>
+      <option type="checkbox" commandline="--bell" name="Dźwięk po znalezieniu wirusa" key="a" row="5" column="1" />
+      <option type="checkbox" commandline="--remove" name="Skasuj zainfekowane pliki" key="l" row="6" column="1" />
+      <option type="checkbox" commandline="--move=/tmp/infected" name="Przenieś zakażone pliki do /tmp/infected" key="v" row="7" column="1" />
+      <option type="checkbox" commandline="--detect-pua" name="Znajdź potencjalnie złośliwe oprogramowanie" key="z" row="8" column="1" />
+      <option type="checkbox" commandline="--no-archive" name="Nie sprawdzaj archiwów" key="i" row="9" column="1" />
+      <option type="dir" commandline=" " name="Folder do skanowania" default="/media" key="v" row="25" column="1"/>
+    </options>
+  </tab>
+</executable>
+

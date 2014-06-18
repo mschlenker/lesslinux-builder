@@ -1,0 +1,68 @@
+DEFAULT /boot/isolinux/menu.c32
+TIMEOUT 300
+
+PROMPT 0
+
+# MENU TITLE COMPUTERBILD Safer Surfing
+# MENU TABMSG  
+# MENU AUTOBOOT Automatic boot in # second{,s}...
+
+# MENU TITLE KOMPUTER SWIAT Bezpiecznie w internecie
+# MENU TABMSG  
+# MENU AUTOBOOT Automatyczny start za # sekund{,y}...
+
+MENU TITLE COMPUTERBILD Sicher Surfen
+MENU TABMSG  
+MENU AUTOBOOT Automatischer Start in # Sekunde{,n}...
+
+################################
+
+LABEL deutsch
+MENU LABEL Deutsch
+MENU DISABLE
+
+LABEL 0de
+MENU LABEL Komplettstart
+MENU INDENT 2
+KERNEL /boot/isolinux/l2632px
+APPEND initrd=/boot/isolinux/devs.img,/boot/isolinux/initram.img,/boot/isolinux/i2632px.img ramdisk_size=100000 vga=788 ultraquiet=1 security=smack skipcheck=1 quiet lang=de  toram=999999999 skipservices=|mountcdrom|loadata|installer|xconfgui|roothash|  hwid=unknown 
+TEXT HELP
+  Mit dieser Auswahl laesst sich die Darstellung optimal an Ihren Monitor
+  anpassen. Ausserdem haben Sie Zugriff auf Ihre Laufwerke, etwa um Dateien
+  aus dem Internet zu speichern.
+ENDTEXT
+
+LABEL 1de
+MENU LABEL Schnellstart
+MENU INDENT 2
+KERNEL /boot/isolinux/l2632px
+APPEND initrd=/boot/isolinux/devs.img,/boot/isolinux/initram.img,/boot/isolinux/i2632px.img ramdisk_size=100000 vga=788 ultraquiet=1 security=smack skipcheck=1 quiet lang=de  toram=999999999 skipservices=|mountcdrom|loadata|hwproto|xconfgui|installer|runtimeconf|roothash|  hwid=unknown 
+TEXT HELP
+  Moechten Sie einfach nur im Internet surfen, waehlen Sie diese Option.
+  Die Surf-CD startet dann mit einer Standard-Einstellung fuer alle
+  Monitore und ohne Laufwerkszugriff.
+ENDTEXT
+
+LABEL 3de
+MENU LABEL Installation
+MENU INDENT 2
+MENU HIDE
+KERNEL /boot/isolinux/l2632px
+APPEND initrd=/boot/isolinux/devs.img,/boot/isolinux/initram.img,/boot/isolinux/i2632px.img ramdisk_size=100000 vga=788 ultraquiet=1 security=smack skipcheck=1 quiet lang=de toram=9999999999  skipservices=|mountcdrom|loadata|xconfgui|dbus|wicd|runtimeconf|alsaprepare|ffprep|roothash|  hwid=unknown 
+TEXT HELP
+  Installieren Sie die Surf-CD auf einem USB-Laufwerk (Speicherstift,
+  Speicherkarte, Festplatte). Ihre Einstellungen, E-Mails und Dateien
+  werden dann in einem Datentresor sicher verwahrt.
+ENDTEXT
+
+LABEL 3de
+MENU LABEL -> Safe startup
+MENU INDENT 2
+KERNEL /boot/isolinux/menu.c32
+APPEND /boot/isolinux/safeu_de.cfg
+TEXT HELP
+  This submenu contains settings for problematic hardware.
+ENDTEXT
+
+#######################
+

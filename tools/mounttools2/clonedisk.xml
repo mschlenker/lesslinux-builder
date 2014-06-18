@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lltranslation>
+	<language id="en">
+		<string id="head" translation="Clone disk drive" />
+		<string id="frame_source" translation="Drive to clone (source)" />
+		<string id="frame_target" translation="Target drive" />
+		<string id="source_target_title" translation="Identical drives" />
+		<string id="source_target_text" translation="Source and target drives must not be identical. Please select different drives!" />
+		<string id="different_type_title" translation="Different types selected" />
+		<string id="different_type_text" translation="Cloning from partition to disk or vice versa might cause problems. You will probably be able to mount under Linux, using the command line. Other operating systems will not be able to access the cloned drive. Do you really want to continue?" />
+		<string id="too_small_title" translation="Target smaller than source" />
+		<string id="too_small_text" translation="The target device is smaller than the source device. Please make sure that no partition ends beyond the end of the target device. Do you really want to continue?" />
+		<string id="source_mounted_title" translation="Source mounted" />
+		<string id="source_mounted_text" translation="The source device is still mounted. Read-only mounts are no problem, but make sure that the source is not mounted read-write. Do you really want to continue?" />
+		<string id="target_mounted_title" translation="Target mounted" />
+		<string id="target_mounted_text" translation="The target device is still mounted. Neither read-only nor read-write mounts are allowed. Cloning is not possible." />
+		<string id="clone_warn_title" translation="Do you really want to clone?" />
+		<string id="clone_warn_text" translation="Do you really want to clone the selected source drive and effectively overwrite all data stored on the target drive?" />
+		<string id="stop_title" translation="Confirm stop" />
+		<string id="stop_text" translation="The cloning is interrupted. If you stop cloning, the the target drive will be in inconsistent state. Do you really want to stop and exit?" />
+		<string id="done_title" translation="Done!" />
+		<string id="done_text" translation="The selected drive was successfully cloned." />
+		<string id="error_title" translation="Errors encountered!" />
+		<string id="error_text" translation="When cloning the selected drive ERRORCOUNT errors were encountered. Depending on the data stored in this area, some files might be lost. You might use &quot;ddrescue&quot; (from a terminal) to clone as much data as possible in the bad sectors." />
+		<string id="partition" translation="Partition" />
+		<string id="disk" translation="Full disk" />
+		<string id="no_usable" translation="No usable drives found!" />
+		<string id="frame_progress" translation="Progress of cloning" />
+		<string id="go" translation="Start" />
+		<string id="stop" translation="Stop" />
+		<string id="reread" translation="Reread" />
+		<string id="confirm_title" translation="Confirm clone" />
+		<string id="confirm_text" translation="Do you really want to clone the selected drive and overwrite all data on the selected target?" />
+		<string id="mounted_text" translation="The selected drive could not be unmounted. Please stop all programs that have access to the selected drive, unmount manually and try again." />
+		<string id="mounted_title" translation="Target is mounted!" />
+		<string id="remaining" translation="remaining" />
+		<string id="click_start" translation="Click &quot;Start&quot; to begin" />
+		<string id="starting" translation="Initializing..." />
+	</language>
+	<language id="de">
+		<string id="head" translation="Laufwerk klonen" />
+		<string id="frame_source" translation="Quelllaufwerk" />
+		<string id="frame_target" translation="Ziellaufwerk" />
+		<string id="source_target_title" translation="Identische Laufwerke" />
+		<string id="source_target_text" translation="Quell- und Ziellaufwerk müssen sich unterscheiden. Bitte wählen Sie die Laufwerke erneut." />
+		<string id="different_type_title" translation="Verschiedene Typen gewählt" />
+		<string id="different_type_text" translation="Das Klonen einer Partition auf eine Festplatte oder umgekehrt wird zu Problemen führen. Der Zugriff ist zwar unter Linux auf der Kommandozeile möglich, nicht jedoch unter anderen Betriebssystemen wie Windows. Wollen Sie wirklich mit dem Klonen beginnen?" />
+		<string id="too_small_title" translation="Ziel kleiner als Quelle" />
+		<string id="too_small_text" translation="Das Ziellaufwerk ist kleiner als das Quelllaufwerk. Bitte stellen Sie sicher, dass das Partitionsende der letzten Partition innerhalb des gültigen Bereichs liegt. Wollen Sie wirklich mit dem Klonen beginnen?" />
+		<string id="source_mounted_title" translation="Quelllaufwerk eingebunden" />
+		<string id="source_mounted_text" translation="Das Quelllaufwerk befindet sich im Zugriff. Der nur-lesbare Zugriff stellt kein Problem dar, doch stellen Sie sicher, dass kein Schreibzugriff erfolgt. Wollen Sie wirklich mit dem Klonen beginnen?" />
+		<string id="target_mounted_title" translation="Ziellaufwerk eingebunden" />
+		<string id="target_mounted_text" translation="Das Ziellaufwerk befindet sich im Zugriff. Weder nur-lesbarer noch schreibbarer Zugriff sind erlaubt. Klonen nicht möglich." />
+		<string id="clone_warn_title" translation="Wollen Sie wirklich klonen?" />
+		<string id="clone_warn_text" translation="Wollen Sie das Quelllaufwerk wirklich klonen und damit alle Daten auf dem Ziellaufwerk überschreiben?" />
+		<string id="stop_title" translation="Abbrechen bestätigen" />
+		<string id="stop_text" translation="Das Klonen wurde angehalten. Wenn Sie das Klonen abbrechen, wird das Ziellaufwerk nicht benutzbar sein. Wollen Sie wirklich abbrechen?" />
+		<string id="done_title" translation="Fertig!" />
+		<string id="done_text" translation="Das ausgewählte Laufwerk wurde erfolgreich geklont." />
+		<string id="error_title" translation="Fehler beim Klonen!" />
+		<string id="error_text" translation="Während des Klonens traten ERRORCOUNT Fehler auf. Dies bedeutet, dass - je nach Belegung dieser Sektoren - Daten verloren gegangen sind. Sie können den Befehl &quot;ddrescue&quot; (im Terminal) verwenden, um größtmögliche Teile defekter Sektoren zu klonen." />
+		<string id="partition" translation="Partition" />
+		<string id="disk" translation="Gesamte Festplatte" />
+		<string id="no_usable" translation="Keine Laufwerke gefunden!" />
+		<string id="frame_progress" translation="Fortschritt des Klonens" />
+		<string id="go" translation="Starten" />
+		<string id="stop" translation="Stop" />
+		<string id="reread" translation="Neu einlesen" />
+		<string id="confirm_title" translation="Löschen bestätigen" />
+		<string id="confirm_text" translation="Wollen Sie wirklich alle Daten auf dem ausgewählten Laufwerk löschen?" />
+		<string id="mounted_text" translation="Die Einbindung des ausgewählten Laufwerkes konnte nicht gelöst werden. Beenden Sie alle Programme, die auf das Laufwerk zugreifen, lösen Sie die Einbindung manuell und versuchen Sie es erneut." />
+		<string id="mounted_title" translation="Laufwerk ist eingebunden!" />
+		<string id="remaining" translation="verbleibend" />
+		<string id="click_start" translation="Klicken Sie auf &quot;Start&quot; um mit dem Klonen zu beginnen" />
+		<string id="starting" translation="Initialisiere..." />
+	</language>
+	<language id="pl">
+		<string id="head" translation="Klonuj dysk" />
+		<string id="frame_source" translation="Napęd źródłowy" />
+		<string id="frame_target" translation="Napęd docelowy" />
+		<string id="source_target_title" translation="Identyczne napędy" />
+		<string id="source_target_text" translation="Napęd źródłowy i docelowy muszą być różne. Proszę ponownie wybrać napędy." />
+		<string id="different_type_title" translation="Wybrano różne typy" />
+		<string id="different_type_text" translation="Klonowanie partycji na twardy dysk albo odwrotnie będzie skutkować problemami. Dostęp jest wprawdzie możliwy w wierszu poleceń Linuksa, ale nie w innych systemach jak Windows. Czy na pewno chcesz rozpocząć klonowanie?" />
+		<string id="too_small_title" translation="Napęd docelowy jest mniejszy od źródłowego" />
+		<string id="too_small_text" translation="Napęd docelowy jest mniejszy niż źródłowy. Upewnij się, czy któraś z partycji nie przekracza rozmiaru wybranego dysku. Czy na pewno chcesz kontynuować?" />
+		<string id="source_mounted_title" translation="Napęd źródłowy zamontowany" />
+		<string id="source_mounted_text" translation="Urządzenie źródłowe jest nadal zamontowane. Dostęp w trybie do odczytu nie stanowi problemu, ale upewnij się, że źródło nie jest zamontowane z opcją zapisu. Czy na pewno chcesz kontynuować?" />
+		<string id="target_mounted_title" translation="Napęd docelowy zamontowany" />
+		<string id="target_mounted_text" translation="Urządzenie źródłowe jest nadal zamontowane. Nie jest dozwolony  dostęp w trybie do odczytu, ani zapisu. Klonowanie nie jest niemożliwe." />
+		<string id="clone_warn_title" translation="Czy na pewno chcesz klonować?" />
+		<string id="clone_warn_text" translation="Czy na pewno chcesz klonować napęd źródłowy i tym samym nadpisać wszystkie dane na napędzie docelowym?" />
+		<string id="stop_title" translation="Potwierdź przerwanie" />
+		<string id="stop_text" translation="Klonowanie zostało zatrzymane. Jeśli anulujesz klonowanie, napęd docelowy będzie nieużyteczny. Czy naprawdę chcesz przerwać i wyjść?" />
+		<string id="done_title" translation="Gotowe!" />
+		<string id="done_text" translation="Wybrany napęd został sklonowany z powodzeniem." />
+		<string id="error_title" translation="Błąd podczas klonowania!" />
+		<string id="error_text" translation="Podczas klonowania wystąpił błąd ERRORCOUNT. W zależności od danych zapisanych w tym miejscu, niektóre pliki mogą zostać utracone. Możesz użyć polecenia &quot;ddrescue&quot; (w terminalu), aby sklonować jak najwięcej możliwych danych z uszkodzonych sektorów." />
+		<string id="partition" translation="Partycja" />
+		<string id="disk" translation="Cały dysk" />
+		<string id="no_usable" translation="Nie znaleziono napędów!" />
+		<string id="frame_progress" translation="Postęp klonowania" />
+		<string id="go" translation="Start" />
+		<string id="stop" translation="Stop" />
+		<string id="reread" translation="Wczytaj ponownie" />
+		<string id="confirm_title" translation="Potwierdź kasowanie" />
+		<string id="confirm_text" translation="Czy na pewno chcesz skasować wszystkie dane na wybranym napędzie?" />
+		<string id="mounted_text" translation="Odmontowanie wybranego napędu nie powiodło się. Zakończ wszystkie programy, które korzystają z napędu, odmontuj napęd ręcznie i spróbuj ponownie." />
+		<string id="mounted_title" translation="Napęd jest zamontowany!" />
+		<string id="remaining" translation="pozostało" />
+		<string id="click_start" translation="Kliknij na &quot;Start&quot; aby rozpocząć klonowanie" />
+		<string id="starting" translation="Inicjacja..." />
+	</language>
+</lltranslation>

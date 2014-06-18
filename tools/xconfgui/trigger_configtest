@@ -1,0 +1,22 @@
+#!/bin/bash
+
+XINITRC="/usr/local/xconfgui/configtest"
+
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+if [ -f /var/run/lesslinux/xorg_vars.test ] ; then
+    . /var/run/lesslinux/xorg_vars.test
+fi
+
+dpi="75"
+
+if [ -n "$xorgconf" ] && [ -f "$xorgconf" ] ; then
+    cp -f  "$xorgconf" /etc/X11/xorg.conf
+else
+    cp -f /etc/X11/xorg.conf.xorg /etc/X11/xorg.conf
+fi
+
+/usr/bin/xinit $XINITRC -- /usr/bin/Xorg -br -screen "$xorgscreen" -dpi "$dpi" :1

@@ -1,0 +1,69 @@
+#!/bin/bash
+# encoding: utf-8
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+subcmd="$1"
+device="$2"
+fstype="$3"
+echo "$subcmd $device $fstype"
+
+if [ "$subcmd" = "umount" ] ; then
+	sudo umount /dev/${device} || zenity --error --text "Unmounting ${device} failed. Usually this happens when a process still accesses this disk."
+elif [ "$subcmd" = "show" ] ; then
+	mntpoint=` cat /proc/mounts | grep '^/dev/'${device} | awk '{print $2}' `
+	if [ -z "$mntpoint" ] ; then
+		zenity --error --text "The drive ${device} is currently not mounted."
+		exit 1
+	fi
+	Thunar "$mntpoint" &
+elif [ "$subcmd" = "mount-rw" -o "$subcmd" = "mount-ro" ] ; then
+	rwopt="ro"
+	[ "$subcmd" = "mount-rw" ] && rwopt="rw"
+	case $fstype in 
+		ext*)
+			sudo mount -t ext4 -o ${rwopt},noexec,nodev,nosuid /dev/${device} /media/disk/${device}
+		;;
+		vfat*)
+			sudo mount -t vfat -o ${rwopt},noexec,nodev,nosuid,gid=1000,uid=1000,iocharset=utf8 /dev/${device} /media/disk/${device}
+		;;
+		ntfs*)
+			sudo mount -t ntfs-3g -o ${rwopt},noexec,nodev,nosuid,gid=1000,uid=1000,utf8 /dev/${device} /media/disk/${device}
+			retval=$?
+			if [ "$retval" -eq 14 -o "$retval" -eq 19 ] ; then
+				zenity --error --text "The drive ${device} seems to contain a hibernated Windows installation. Please shut down Windows correctly or manually mount the drive with the option \"remove_hiberfile\"."
+			fi
+		;;
+		crypto_LUKS*)
+			zenity --info --text "Mounting crypto_LUKS drives is not supported yet." ; exit 1
+		;;
+		iso9660*)
+			sudo mount -t iso9660 -o ro,noexec,nodev,nosuid,gid=1000,uid=1000 /dev/${device} /media/disk/${device}
+		;;
+		*)
+			sudo mount -o ${rwopt},noexec,nodev,nosuid /dev/${device} /media/disk/${device}
+		;;
+	esac
+	if mountpoint -q /media/${device} ; then
+		Thunar /media/${device} &
+	else
+		zenity --error --text "Mounting ${device} failed."
+	fi
+elif [ "$subcmd" = "remount-rw" -o "$subcmd" = "remount-ro" ] ; then
+	rwopt="ro"
+	[ "$subcmd" = "remount-rw" ] && rwopt="rw"
+	case $fstype in 
+		ntfs*)
+			sudo umount /dev/${device} || zenity --error --text "Unmounting ${device} failed. Usually this happens when a process still accesses this disk."
+			cat /proc/mounts | grep '^/dev/'${device} && exit 1
+			sudo mount -t ntfs-3g -o ${rwopt},noexec,nodev,nosuid,gid=1000,uid=1000,utf8 /dev/${device} /media/disk/${device}
+		;;
+		*)
+			sudo mount -o remount,${rwopt} /media/disk/${device}
+		;;
+	esac
+fi

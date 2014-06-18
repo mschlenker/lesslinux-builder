@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- executable
+     name: The name of the commandline program
+     label: The title of the GUI -->
+<executable name="/AntiVir/scancl" label="Virus removal with Avira">
+<!-- info: An option which prints out some information
+           this entry will show up in the menu "Info"
+     name: The name of this entry
+     commandline: the argument which is passed to the program TODO: Handle spaces in arguments
+     description: some descriptive text
+     menu: the label that shows up in the menu -->
+  <info name="version" commandline="--version" description="Show version information" menu="Show version">
+<!-- returncodes: optional keyword, just used for grouping -->
+    <returncodes>
+<!-- retcode:
+     value: the returncode that the program ends with.
+            The special value '*' means 'all other codes' and should be the last entry
+     description: some textual description
+     level: one of okay, warning and error -->
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="1" description="" level="warning"/>
+     <retcode value="2" description="" level="warning"/>
+     <retcode value="3" description="" level="warning"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+<!-- WARNING: THIS ONE CREATES 6MB OF OUTPUT AND TAKES VERY LONG
+              If you really want this command, the remove the
+              text 'PleaseRemoveThis' below ... ask Trolltech why ...
+  <info name="info" commandline="-PleaseRemoveThis-info" description="show list of recognized forms" menu="Show viruslist">
+    <returncodes>
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+-->
+  <!-- <info executable="/AntiVirUpdate/avupdate" name="check" commandline=" " description="Auf vorhandene Aktualisierungen überprüfen" menu="Aktualisierungen überprüfen">
+    <returncodes>
+     <retcode value="1" description="Kein Update erforderlich." level="okay"/>
+     <retcode value="0" description="Ein Update ist verfügbar." level="warning"/>
+     <retcode value="*" description="Update ist misslungen" level="error"/>
+    </returncodes>
+  </info> -->
+  <info executable="/AntiVirUpdate/avupdate" name="update" commandline=" " description="Update signatures" menu="Update">
+    <returncodes>
+     <retcode value="1" description="No update necessary." level="okay"/>
+     <retcode value="0" description="Update successful." level="warning"/>
+     <retcode value="*" description="Update failed." level="error"/>
+    </returncodes>
+  </info>
+  <returncodes>
+    <retcode value="0" description="Terminated normally, no malware or virus found, no error" level="okay"/>
+    <retcode value="1" description="Virus or malware found in file or boot sector" level="warning"/>
+    <retcode value="2" description="Virus or malware found in memory" level="warning"/>
+    <retcode value="3" description="Found suspicious files" level="warning"/>
+    <retcode value="101" description="Found suspicious office macro" level="warning"/>
+    <retcode value="203" description="Command line options do not work together" level="error"/>
+    <retcode value="204" description="Could not open start directory" level="error"/>
+    <retcode value="205" description="Could not open log file for writing" level="error"/>
+    <retcode value="210" description="Missing library files" level="error"/>
+    <retcode value="211" description="Self test failed" level="error"/>
+    <retcode value="212" description="Virus signatures could not be read" level="error"/>
+    <retcode value="213" description="Damaged installation (Avira version too old?)" level="error"/>
+    <retcode value="214" description="No valid license found" level="error"/>
+    <retcode value="215" description="Self test failed" level="error"/>
+    <retcode value="216" description="File access denied" level="error"/>
+    <retcode value="217" description="Directory access denied" level="error"/>
+    <retcode value="*" description="" level="error"/>
+  </returncodes>
+  <tab name="Quick start" defaultarguments="">
+    <options>
+      <option type="checkbox" commandline="--showall" name="Show all checked files" key="r" row="3" column="1" default="off"/>
+      <option type="checkbox" commandline="--recursion" name="Scan recursively" key="u" row="4" column="1" default="on"/>
+      <option type="dir" commandline=" " name="Directory to scan" default="/media" key="v" row="5" column="1"/>
+    </options>
+  </tab>
+  <tab name="Experts">
+  <options>
+      <option type="checkbox" commandline="--showall" name="Show all checked files" key="r" row="3" column="1" default="off"/>
+      <option type="checkbox" commandline="--recursion" name="Scan recursively" key="u" row="4" column="1" default="on"/>
+      <option type="checkbox" commandline="--allfiles" name="Scan all files" key="a" row="5" column="1" default="off"/>
+      <option type="checkbox" commandline="--scaninarchive" name="Scan archives" key="z" row="6" column="1" default="off"/>
+      <option type="checkbox" commandline="--scanmbox" name="Scan mailboxes" key="m" row="7" column="1" default="off"/>
+      <option type="checkbox" commandline="--heurlevel=3" name="Use heuristics" key="h" row="8" column="1" default="off"/>
+      <option type="radio" commandline=" " name="Action on detection" row="9" column="1" key="f">
+        <item name="just show" value="--defaultaction=ignore" default="1" key="0"/>
+        <item name="disinfect/rename" value="--defaultaction=clean,rename" key="1"/>
+        <item name="delete" value="--defaultaction=delete,rename" key="2"/>
+      </option>
+      <option type="checkbox" commandline="--log=/tmp/avira.log" name="Create log file /tmp/avira.log" key="r" row="10" column="1" default="off"/>
+      <option type="dir" commandline=" " name="Directory to scan" default="/media" key="v" row="25" column="1"/>
+    </options>
+  </tab>
+</executable>

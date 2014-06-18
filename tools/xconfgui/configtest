@@ -1,0 +1,18 @@
+#!/static/bin/ash
+	
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+DISPLAY=:1
+export DISPLAY
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+if [ -f /var/run/lesslinux/xconfgui_xorg ] && [ -n "$xkbmap" ] ; then
+	/usr/bin/setxkbmap -layout "$xkbmap"
+fi
+
+/usr/bin/Esetroot /usr/local/xconfgui/testbild.png
+/usr/bin/matchbox-window-manager -force_dialogs Monitortest &
+/usr/bin/ruby /usr/local/xconfgui/conftest.rb

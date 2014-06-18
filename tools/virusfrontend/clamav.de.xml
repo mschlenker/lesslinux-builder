@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- executable
+     name: The name of the commandline program
+     label: The title of the GUI -->
+<executable name="/opt/bin/clamscan" label="Virensuche mit ClamAV">
+<!-- info: An option which prints out some information
+           this entry will show up in the menu "Info"
+     name: The name of this entry
+     commandline: the argument which is passed to the program TODO: Handle spaces in arguments
+     description: some descriptive text
+     menu: the label that shows up in the menu -->
+  <info name="version" commandline="--version" description="Versionsinformationen ausgeben" menu="Version anzeigen">
+<!-- returncodes: optional keyword, just used for grouping -->
+    <returncodes>
+<!-- retcode:
+     value: the returncode that the program ends with.
+            The special value '*' means 'all other codes' and should be the last entry
+     description: some textual description
+     level: one of okay, warning and error -->
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+<!-- WARNING: THIS ONE CREATES 6MB OF OUTPUT AND TAKES VERY LONG
+              If you really want this command, the remove the
+              text 'PleaseRemoveThis' below ... ask Trolltech why ...
+  <info name="info" commandline="-PleaseRemoveThis-info" description="show list of recognized forms" menu="Show viruslist">
+    <returncodes>
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+-->
+  <info executable="freshclam" name="check" commandline=" " description="Auf vorhandene Aktualisierungen überprüfen" menu="Aktualisierungen überprüfen">
+    <returncodes>
+     <retcode value="0" description="Kein Update erforderlich." level="okay"/>
+     <retcode value="1" description="Ein Update ist verfügbar." level="warning"/>
+     <retcode value="*" description="Update ist misslungen." level="error"/>
+    </returncodes>
+  </info>
+  <info executable="freshclam" name="update" commandline=" " description="Die Signaturdateien aktualisieren" menu="Aktualisieren">
+    <returncodes>
+     <retcode value="0" description="Kein Update erforderlich." level="okay"/>
+     <retcode value="1" description="Update erfolgreich." level="okay"/>
+     <retcode value="*" description="Update ist misslungen." level="error"/>
+    </returncodes>
+  </info>
+  <returncodes>
+    <retcode value="0" description="Normales Programmende: kein Virus bzw. unerwünschtes Programm, kein Fehler" level="okay"/>
+    <retcode value="1" description="Virus bzw. unerwünschtes Programm in Datei oder Bootsektor gefunden" level="warning"/>
+    <retcode value="40" description="Unbekannte Option angegeben" level="error"/>
+    <retcode value="50" description="Datenbank konnte nicht gelesen werden" level="error"/>
+    <retcode value="52" description="Unbekannter Dateityp" level="error"/>
+    <retcode value="53" description="Konnte Verzeichnis nicht öffnen" level="error"/>
+    <retcode value="54" description="Konnte Datei nicht öffnen" level="error"/>
+    <retcode value="55" description="Konnte Datei nicht lesen" level="error"/>
+    <retcode value="56" description="Konnte Datei nicht lesen" level="error"/>
+    <retcode value="57" description="Konnte Arbeitsverzeichnis nicht ermitteln" level="error"/>
+    <retcode value="58" description="I/O Error, bitte Dateisystem/Festplatte prüfen" level="error"/>
+    <retcode value="59" description="Konnte aktuellen Nutzer nicht ermitteln" level="error"/>
+    <retcode value="60" description="Konnte Nutzer clamav nicht ermitteln (Fehlkonfiguration)" level="error"/>
+    <retcode value="61" description="Konnte nicht forken. Speichermangel?" level="error"/>
+    <retcode value="62" description="Konnte Logger nicht initialisieren" level="error"/>
+    <retcode value="63" description="Konnte keine temporären Dateien anlegen" level="error"/>
+    <retcode value="64" description="Konnte keine temporären Dateien anlegen" level="error"/>
+    <retcode value="70" description="Konnte keinen/nicht genug Speicher reservieren" level="error"/>
+    <retcode value="71" description="Konnte keinen/nicht genug Speicher reservieren" level="error"/>
+    <retcode value="*" description="" level="error"/>
+  </returncodes>
+  <tab name="Schnellstart" defaultarguments="">
+    <options>
+      <option type="checkbox" commandline="-i" name="Nur infizierte anzeigen" key="r" row="3" column="1" default="on"/>
+      <option type="checkbox" commandline="--recursive" name="Mit Unterverzeichnissen" key="u" row="4" column="1" default="on"/>
+      <option type="dir" commandline=" " name="Zu scannendes Verzeichnis" default="/media/disk" key="v" row="5" column="1"/>
+    </options>
+  </tab>
+  <tab name="Expertenmodus">
+  <options>
+      <option type="checkbox" commandline="-i" name="Nur infizierte anzeigen" key="r" row="3" column="1" default="on"/>
+      <option type="checkbox" commandline="--recursive" name="Mit Unterverzeichnissen" key="u" row="4" column="1" default="on"/>
+      <option type="checkbox" commandline="--bell" name="Akustische Rückmeldung bei Fund" key="a" row="5" column="1" />
+      <option type="checkbox" commandline="--remove" name="Infizierte Dateien löschen" key="l" row="6" column="1" />
+      <option type="checkbox" commandline="--move=/tmp/infiziert" name="Infizierte Dateien nach /tmp/infiziert verschieben" key="v" row="7" column="1" />
+      <option type="checkbox" commandline="--detect-pua" name="Zeitfresser, Spyware etc. finden" key="z" row="8" column="1" />
+      <option type="checkbox" commandline="--no-archive" name="Archivdateien ignorieren" key="i" row="9" column="1" />
+      <option type="dir" commandline=" " name="Zu scannendes Verzeichnis" default="/media/disk" key="v" row="25" column="1"/>
+    </options>
+  </tab>
+</executable>

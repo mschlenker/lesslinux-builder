@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- executable
+     name: The name of the commandline program
+     label: The title of the GUI -->
+<executable name="kav4ws-kavscanner" label="Virensuche mit Kaspersky">
+<!-- info: An option which prints out some information
+           this entry will show up in the menu "Info"
+     name: The name of this entry
+     commandline: the argument which is passed to the program TODO: Handle spaces in arguments
+     description: some descriptive text
+     menu: the label that shows up in the menu -->
+  <info name="version" commandline="-v" description="Versionsinformationen ausgeben" menu="Version anzeigen">
+<!-- returncodes: optional keyword, just used for grouping -->
+    <returncodes>
+<!-- retcode:
+     value: the returncode that the program ends with.
+            The special value '*' means 'all other codes' and should be the last entry
+     description: some textual description
+     level: one of okay, warning and error -->
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+<!-- WARNING: THIS ONE CREATES 6MB OF OUTPUT AND TAKES VERY LONG
+              If you really want this command, the remove the
+              text 'PleaseRemoveThis' below ... ask Trolltech why ...
+  <info name="info" commandline="-PleaseRemoveThis-info" description="show list of recognized forms" menu="Show viruslist">
+    <returncodes>
+     <retcode value="0" description="" level="okay"/>
+     <retcode value="*" description="" level="error"/>
+    </returncodes>
+  </info>
+-->
+  <info name="check" executable="kav4ws-keepup2date" commandline="-k" description="Auf vorhandene Aktualisierungen überprüfen" menu="Aktualisierungen überprüfen">
+    <returncodes>
+     <retcode value="0" description="Kein Update erforderlich." level="okay"/>
+     <retcode value="1" description="Ein Update ist verfügbar." level="warning"/>
+     <retcode value="*" description="Update ist misslungen." level="error"/>
+    </returncodes>
+  </info>
+  <info name="update" executable="kav4ws-keepup2date" commandline="-k" description="Die Signaturdateien aktualisieren" menu="Aktualisieren">
+    <returncodes>
+     <retcode value="0" description="Kein Update erforderlich." level="okay"/>
+     <retcode value="1" description="Update erfolgreich." level="okay"/>
+     <retcode value="*" description="Update ist misslungen." level="error"/>
+    </returncodes>
+  </info>
+  <returncodes>
+    <retcode value="0" description="Normales Programmende: Bitte beachten Sie die Ausgabe im Protokollfenster oder in der Logdatei" level="okay"/>
+    <retcode value="25" description="Es ist ein Fehler aufgetreten oder es wurde ein Virus gefunden. Wiederholen Sie den Scan ggf. im Expertenmodus mit Logging" level="warning"/>
+    <retcode value="*" description="Es ist ein Fehler aufgetreten" level="error"/>
+  </returncodes>
+  <tab name="Schnellstart" defaultarguments="-i0 -s">
+    <options>
+      <option type="checkbox" commandline="-xn -xp -mn" name="Ausgabe: nur infizierte" key="r" row="3" column="1" default="on"/>
+      <option type="dir" commandline=" " name="Zu scannendes Verzeichnis" default="/media" key="v" row="5" column="1"/>
+    </options>
+  </tab>
+  <tab name="Expertenmodus">
+  <options>
+      <option type="checkbox" commandline="-xn -xp -mn" name="Ausgabe: nur infizierte" key="r" row="3" column="1" default="on"/>
+      <option type="checkbox" commandline="-ep" name="Gepackte Dateien ignorieren" key="r" row="4" column="1" default="off"/>
+      <option type="checkbox" commandline="-ea -es" name="Archive ignorieren" key="r" row="5" column="1" default="off"/>
+      <option type="checkbox" commandline="-ee" name="Heuristik deaktivieren" key="r" row="6" column="1" default="off"/>
+      <option type="checkbox" commandline="-s" name="Symbolische Verweise ignorieren" key="r" row="7" column="1" default="on"/>
+      <option type="radio" commandline=" " name="Aktion bei Fund" row="11" column="1" key="w">
+        <item name="anzeigen" value="-i0" default="1" key="0"/>
+        <item name="desinfizieren/löschen" value="-i2" key="2"/>
+        <item name="löschen" value="-i4" key="4"/>
+      </option>
+      <option type="checkbox" commandline="-pi/tmp/kav-infiziert.txt" name="Liste infizierter Dateien in /tmp/kav-infiziert.txt erzeugen" 
+           key="r" row="12" column="1" default="off"/>
+      <option type="checkbox" commandline="-ps/tmp/kav-verdacht.txt" name="Liste verdächtiger Dateien in /tmp/kav-verdacht.txt erzeugen" 
+           key="r" row="13" column="1" default="off"/>
+      <option type="checkbox" commandline="-pc/tmp/kav-beschaedigt.txt" name="Liste beschädigter Dateien in /tmp/kav-beschaedigt.txt erzeugen" 
+           key="r" row="14" column="1" default="off"/>
+      <option type="checkbox" commandline="-pw/tmp/kav-warnung.txt" name="Liste mit Warnungen in /tmp/kav-warnung.txt erzeugen" 
+           key="r" row="15" column="1" default="off"/>
+      <option type="dir" commandline=" " name="Zu scannendes Verzeichnis" default="/media" key="v" row="17" column="1"/>
+
+    </options>
+  </tab>
+</executable>

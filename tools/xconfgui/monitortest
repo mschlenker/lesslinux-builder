@@ -1,0 +1,40 @@
+#!/bin/bash
+	
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+HOME=/root
+export HOME
+mkdir -p -m 0600 /home 
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+if [ "$lang" = "ru" ] ; then
+	setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+else
+	setxkbmap -layout "$xkbmap"
+fi
+
+if xdpyinfo | grep -q -i composite ; then
+	compton -cCGbf 
+	xcompmgr -c &
+fi
+
+if  [ -n "$xrandr" ] ; then
+	/usr/bin/xrandr --size "$xrandr"
+fi
+
+/usr/bin/Esetroot /usr/local/xconfgui/testbild.png > /dev/null 2>&1
+/usr/bin/matchbox-window-manager -force_dialogs Monitortest > /dev/null 2>&1 &
+# /usr/bin/xfwm4 > /dev/null 2>&1 &
+/usr/bin/ruby /usr/local/xconfgui/monitortest.rb > /dev/null 2>&1

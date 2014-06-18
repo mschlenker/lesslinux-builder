@@ -1,0 +1,23 @@
+#!/static/bin/ash
+	
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+#if [ -n "$xkbmap" ] ; then
+#	/usr/bin/setxkbmap -layout "$xkbmap"
+#fi
+
+if [ "$lang" = "ru" ] ; then
+	setxkbmap -rules xorg -model pc105 -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+else
+	setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+fi
+
+# /usr/bin/Esetroot /usr/local/xconfgui/testbild.png
+/usr/bin/matchbox-window-manager -force_dialogs xconfgui &
+/usr/bin/ruby /usr/local/xconfgui/xconfgui.rb
+

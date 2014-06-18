@@ -1,0 +1,13 @@
+#!/bin/bash
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+msg="Do you want to allow the installation of Firefox extensions?"
+[ "$lang" = "de" ] && msg="Soll die Installation von Firefox-Erweiterungen erlaubt werden?"
+[ "$lang" = "ru" ] && msg="Вы хотите разрешить установку дополнений Firefox?"
+[ "$lang" = "es" ] && msg="¿Quieres permitir la instalación de extensiones para Firefox?"
+[ "$lang" = "pl" ] && msg="Czy chcesz zezwolić na instalację rozszerzeń Firefoxa?"
+
+if /usr/bin/zenity --question --text "$msg" ; then
+	/bin/ln -sf /etc/lesslinux/firefox/firefox_allow_xpi.cfg /etc/lesslinux/firefox/firefox_defaults.cfg 
+fi
