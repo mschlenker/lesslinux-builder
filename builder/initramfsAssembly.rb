@@ -20,12 +20,14 @@ class InitramfsAssembly
 		system("ln -s /etc/rc " + @builddir  + "/stage03/switch/init")
 		system("rsync -avP "  + @builddir + "/stage03/squash/firmware.sqs " + @builddir  + "/stage03/initramfs/lesslinux/modules/" )
 		create_sha1list(@builddir + "/stage03/initramfs", @builddir + "/stage03/initramfs/initramfs.sha", ignoredirs ) 
-		puts "-> creating list of files"
-		system("bash ./bin/scripts/gen_initramfs_list.sh " + @builddir + "/stage03/initramfs > " + @builddir + "/tmp/initramfs.list." + @tstamp.to_s )
-		system("bash ./bin/scripts/gen_initramfs_list.sh " + @builddir + "/stage03/switch > " + @builddir + "/tmp/switch.list." + @tstamp.to_s )
+		# puts "-> creating list of files"
+		# system("bash ./bin/scripts/gen_initramfs_list.sh " + @builddir + "/stage03/initramfs > " + @builddir + "/tmp/initramfs.list." + @tstamp.to_s )
+		# system("bash ./bin/scripts/gen_initramfs_list.sh " + @builddir + "/stage03/switch > " + @builddir + "/tmp/switch.list." + @tstamp.to_s )
 		puts "-> packing initramfs"
-		system("./bin/i686/gen_init_cpio " + @builddir + "/tmp/initramfs.list." +  @tstamp.to_s + " | gzip -c > " + @builddir + "/stage03/initramfs.gz" )
-		system("./bin/i686/gen_init_cpio " + @builddir + "/tmp/switch.list." +  @tstamp.to_s + " | gzip -c > " + @builddir + "/stage03/switch.gz" )
+		# system("./bin/i686/gen_init_cpio " + @builddir + "/tmp/initramfs.list." +  @tstamp.to_s + " | gzip -c > " + @builddir + "/stage03/initramfs.gz" )
+		# system("./bin/i686/gen_init_cpio " + @builddir + "/tmp/switch.list." +  @tstamp.to_s + " | gzip -c > " + @builddir + "/stage03/switch.gz" )
+		system("/bin/bash notes/create_initramfs.sh " + @builddir + "/stage03/initramfs " + @builddir + "/stage03/initramfs.gz")
+		system("/bin/bash notes/create_initramfs.sh " + @builddir + "/stage03/switch    " + @builddir + "/stage03/switch.gz")
 		return @builddir + "/stage03/initramfs.gz"
 	end
 
@@ -43,10 +45,11 @@ class InitramfsAssembly
 					@builddir + "/stage03/cpio-" + kname + "/lesslinux/modules/" + klong + ".sqs")
 			end
 			create_sha1list(@builddir + "/stage03/cpio-" + kname, @builddir + "/stage03/cpio-#{kname}/modules.sha", [] )
-			puts '-> creating list of files '
-			system("bash ./bin/scripts/gen_initramfs_list.sh " + @builddir + "/stage03/cpio-" + kname + " > " + @builddir + "/tmp/cpio-" + kname + ".list." + @tstamp.to_s )
+			# puts '-> creating list of files '
+			# system("bash ./bin/scripts/gen_initramfs_list.sh " + @builddir + "/stage03/cpio-" + kname + " > " + @builddir + "/tmp/cpio-" + kname + ".list." + @tstamp.to_s )
 			puts '-> packing initramfs for ' +  klong
-			system("./bin/i686/gen_init_cpio " + @builddir + "/tmp/cpio-" + kname + ".list." +  @tstamp.to_s + " | gzip -c " + rsyncable + " > " + @builddir + "/stage03/cpio-" + kname + ".gz" )
+			# system("./bin/i686/gen_init_cpio " + @builddir + "/tmp/cpio-" + kname + ".list." +  @tstamp.to_s + " | gzip -c " + rsyncable + " > " + @builddir + "/stage03/cpio-" + kname + ".gz" )
+			system("/bin/bash notes/create_initramfs.sh " + @builddir + "/stage03/cpio-" + kname + " " + @builddir + "/stage03/cpio-" + kname + ".gz")
 		}
 	end
 
