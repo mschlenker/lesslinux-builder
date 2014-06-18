@@ -134,7 +134,10 @@ unless system("which sha1sum")
 	raise "MissingPrerequisite"
 end
 
-
+unless system("which cpio") 
+	puts "Command cpio needed for generation of the boot initramfs is missing"
+	raise "MissingPrerequisite"
+end
 
 arch = ` uname -m `.strip
 unless arch =~ /i(4|5|6)86/ || @ignore_arch == true 
