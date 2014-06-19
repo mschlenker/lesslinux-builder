@@ -40,6 +40,7 @@ class BootdiskAssembly
 		system("rsync -avHP #{@overlaydir}/efiimage/ #{@builddir}/stage03/efiimage/")
 		randstr = create_grubx64
 		efi_sha = File.new(@builddir  + "/stage03/efiimage/efi.sha", "w")
+		system("mkdir -p #{@builddir}/stage03/efiimage/EFI/BOOT")
 		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubx64.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GRUBX64.EFI") 
 		kcfg = REXML::Document.new(File.new(kconfig))
 		kcfg.elements.each("kernels/kernel") { |k|
