@@ -156,10 +156,11 @@ class BootdiskAssembly
 		puts "-> adding kernel independent ramdisk"
 		system( "rsync -vP " + @builddir + "/stage03/initramfs.gz " + @builddir  + "/stage03/cdmaster/boot/kernel/initram.img" )
 		system( "rsync -vP " + @builddir + "/stage03/switch.gz " + @builddir  + "/stage03/cdmaster/boot/kernel/switch.img" )
-		system( "rsync -vP ./bin/initramfs/devs.img " + @builddir  + "/stage03/cdmaster/boot/kernel/devs.img" )
+		# system( "rsync -vP ./bin/initramfs/devs.img " + @builddir  + "/stage03/cdmaster/boot/kernel/devs.img" )
 		# FIXME: remove hardcoded overlay!
 		# system( "rsync -vP ./bin/initramfs/home.img " + @builddir  + "/stage03/cdmaster/boot/isolinux/home.img" )
-		[ "initram.img", "devs.img" ].each { |r|
+		# [ "initram.img", "devs.img" ].each { |r|
+		[ "initram.img" ].each { |r|
 			tmphash = Digest::SHA1.hexdigest(File.read(@builddir  + "/stage03/cdmaster/boot/kernel/" + r ))
 			boot_sha.write( tmphash.to_s + "  " + r + "\n")
 		}
