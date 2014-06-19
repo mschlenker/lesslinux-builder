@@ -101,6 +101,68 @@ done
 		
 		]]>
 		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc_minimal" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+xfsettingsd
+
+# Set DPI value 
+if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
+	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+else
+	mkdir -p /home/surfer/.lesslinux
+	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+fi
+
+xsetroot -solid darkgray
+setxkbmap -layout "$xkbmap"
+
+if xdpyinfo | grep -q -i composite ; then
+	sleep 1
+	compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
+	# xcompmgr -c &
+fi
+
+wm2 &
+# terminal=/usr/bin/xterm
+# [ -x "$terminal" ] || terminal=/usr/bin/Terminal
+# "$terminal" &
+/usr/bin/Terminal &
+sudo /usr/bin/Terminal &
+
+# conky -d 
+# Weird hack!
+xfct=0
+while true ; do
+	sleep 5
+	if [ "$xfct" -lt 3 ] ; then
+		killall -9 compton
+		xfsettingsd --replace
+		compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
+		xfct=` expr $xfct + 1 ` 
+		sleep 5
+	else
+		sleep 9999999
+	fi
+done
+		
+		]]>
+		</scriptdata>
 		<scriptdata location="/etc/lesslinux/xinitrc_lxqt" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash	
 

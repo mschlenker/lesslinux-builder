@@ -1,0 +1,18 @@
+<lesslinux>
+	<builddir>/mnt/archiv/LessLinux/llbuild</builddir>
+	<sourcedir>/mnt/archiv/LessLinux/src</sourcedir>
+	<overlays>overlays/neutral_fulliso</overlays> 
+	<!-- <overlays>/mnt/archiv/LessLinux/overlays_neutral_rescue_linuxintern</overlays> -->
+	<unpriv>mattias</unpriv>
+	<build>
+		<!-- how to treat modules
+		old: modules are squashfs container along the regular containers
+		new: modules are squashfs container loaded with initramfs -->
+		<modmodel>new</modmodel>
+	</build>
+	<database>
+		<dbname>llbuild</dbname>
+		<user>llbuilder</user>
+		<pass>lesslinux</pass>
+	</database>
+</lesslinux>

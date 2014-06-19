@@ -1,0 +1,94 @@
+<branding>
+	<brandshort>lesslinux-bigfatfull</brandshort>
+	<!-- default language for bootmenu -->
+	<buildlang>de</buildlang>
+	<!-- the clean language strings just contain 7 Bit ASCII characters -->
+	<!-- english must be always present and more complete, it is used as fallback --> 
+	<strings lang="en">
+		<brandstr id="brandlong">LessLinux Big Fat Full</brandstr>
+		<brandstr id="brandlong_clean">LessLinux Big Fat Full</brandstr>
+	</strings>
+	<strings lang="de">
+		<brandstr id="brandlong">LessLinux Big Fat Full</brandstr>
+		<brandstr id="brandlong_clean">LessLinux Big Fat Full</brandstr>
+	</strings>
+	<files>
+		<!-- 
+		some files will be softlinked during the startup procedure,
+		so of any file named here at least an "english" version 
+		must be present as fallback:
+		
+		desktop.png -> desktop.png.en
+		
+		The files defined here must be included via overlay, only
+		minimal defaults are contained in the LessLinux build
+		environment.
+		
+		all ids are converted to shell variables that are used in
+		some scripts, so be careful not to overwite existing vars
+		when defining your own files.
+		-->
+		<file id="desktop_background_png">/etc/lesslinux/branding/desktop.png</file>
+		<file id="desktop_background_jpg">/etc/lesslinux/branding/desktop.jpg</file>
+		<file id="install_background_png">/etc/lesslinux/branding/desktop.png</file>
+		<file id="startup_background_png">/etc/lesslinux/branding/desktop.png</file>
+		<!-- 
+		those are hardcoded in some scripts, so changing here does not
+		make sense yet. Maybe later.
+		-->
+		<file id="browser_startup_file">/etc/lesslinux/branding/browser_startup.html</file>
+		<file id="browser_too_old_file">/etc/lesslinux/branding/browser_too_old.html</file>
+		<file id="browser_about_file">/etc/lesslinux/branding/about.html</file>
+	</files>
+	<installer>
+		<syssize>900_000_000</syssize>
+		<forcesinglepart>true</forcesinglepart>
+		<!-- <forcenocontainer>true</forcenocontainer>
+		<additionaldirs>
+			<dir>Anleitungen</dir>
+			<dir>Windows-Programme</dir>
+		</additionaldirs> -->
+	</installer>
+	<updater>
+		<buildidentifier>jabba-</buildidentifier>
+		<baseurl>http://download.lesslinux.org/updater/</baseurl>
+		<!-- write the key to /etc/lesslinux/updater/updatekey.asc, mode 0600 -->
+		<key>
+		<![CDATA[
+		
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.4.6 (GNU/Linux)
+
+mQGiBEpWE3ARBAC2h0Yy6WM+fr7uJUbkOJmjQlS9Xr9FOpbcH7MtsIphgYGFzZw7
+10CnG72ni4IW0epW+IpbP1kAdPm9u1GPC/c2s1/QyLJZFXx4rZa2I9d8MfHWraDi
+bRwJd0VF8XvlsS3bK7XcCBezjDK2P3pvR7V7MS36ZPVHAAmif/VjRpKBfwCgjooF
+c9Aq/rdJMXW74MzUnKPdT1UD/iHV9wvjcGgxzev0BISfvxg49ON8pUpJGpkTnt+f
+S0r++4TC6VKnWsAzTe+uFKySrI5COyKTpFpLp9lU4qWQrq/Nzxu4neiCP7cUovWs
+Ry3BJ6zPr5pLmQcSByA+TqSeOgvRlPDSYD8DyMCqboaexL4tO8BW7QgzJOfZ0YgR
+8ZTvA/0WMxmmUdG2Yy3U5sXprSAtG1Ns2pHopP+8aqvD++GALArXtw//lxtetnO8
+8aOd9/aA8TnLw1s4Ix44W0CNpXta9AP7CNB5QqGWOc8PuNUVq4nOLBtgmuS2C6WV
+DS3xKYbZOyKLGE9N2giuq5bLbHGJNol7Mj//JrVMqe/0CZzS5rQqTWF0dGlhcyBT
+Y2hsZW5rZXIgPG1zQG1hdHRpYXNzY2hsZW5rZXIuZGU+iGAEExECACAFAkpWE3AC
+GwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAAKCRAKTy8oGnVeptYfAJ4yeLhZes2k
+Gj7e2IEXOMgeoujRvgCfTsSEJgEPw2hXDde6+Z97WKszS765Ag0ESlYTcxAIALUF
+qpzbSSSBy0GUS7auc2KD6JTkV5aYzviDK4Y0fP8kMal9CniMZtH73osOCAeyxBRe
+5emcjpcmV9IgK6de8i8eeiRTzikJvgM4Ce1lKMeSIeodNDDj0Ca6QaSzcuQT4JN5
+/DPdbUctY1iQaJAVBQTZnDQk7ubXNA4kcK/Zr0LNiu9OW3/NNc2iQWgJCZtdX4nU
+FsThlzifcCJagamNN64vU5wAYSoPCHqDOGyzT349oaMrkjCMWNRUYkbbSIprlusJ
+2xVEeVSRMP6E2azYvlKm5nA8fj4RKYq6cvEmJhJd9HpgWIWEXtFXoDmqqyzu92Eg
+d5Znkk5bdxSbpxdb/fMAAwYIAJ366rBB8AdfiuTafGQgXUnkAFVCpmTsV1Imbi3Z
+cNuuu6EXJ8lO8K5sU1NDGcHns3QyDKwkhkYQdQEvrOHcdF61Ej83FEQuhoPzgoKg
+M1LncyK9UiF/dDGCExRXWDLrW+Q0FkB1jQs3Pyz4CE9wIOg+g22yD1/E7hCKlNzH
+qdTO+UdBq8z3veBVmIIQ07dp/cv7LO9dpxbGIGAnJ6XsWtLPAic77n5Y9ZsnpgW6
+fJi83ai5PqWF5xHQVNFpxG1Sr0X+Qwp29zqGxnfkd0mfTxsj6xBe+eO92pxBuvzE
+go5YzT081VQUkOsq9OY+fHqaXj91FfinIfwfhBbck3xhUY+ISQQYEQIACQUCSlYT
+cwIbDAAKCRAKTy8oGnVeps1UAKCIYALgjkWkAPG2sU7oTE4UROopjwCfYbxKMj6s
+TnG6ymmwTvBX9Hic9ms=
+=O/iU
+-----END PGP PUBLIC KEY BLOCK-----
+		
+		]]>
+		</key>
+	</updater>
+</branding>
+
