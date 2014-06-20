@@ -22,7 +22,6 @@ arch=` uname -m`
 if [ -z "$mounted" ] ; then 
 	echo "Please mount an ext4 or btrfs formatted partition with sufficient space"
 	echo "(40GB recommended) at /mnt/archiv or /mnt/archiv/LessLinux."
-	echo ""
 	echo -n "Then press Enter to continue - or press Ctrl+C to cancel"
 	read mnt
 	mounted=""
@@ -36,7 +35,6 @@ fi
 
 if [ ` cat /proc/swaps | wc -l ` -lt 2 ] ; then
 	echo "We recommend adding some swap."
-	echo ""
         echo -n "Press enter to continue - or press Ctrl+C to cancel"
 	read swap
 fi
