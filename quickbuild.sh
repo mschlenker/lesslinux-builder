@@ -40,6 +40,9 @@ if [ ` cat /proc/swaps | wc -l ` -lt 2 ] ; then
 	read swap
 fi
 
+mkdir -p /mnt/archiv/LessLinux/llbuild
+mkdir -p /mnt/archiv/LessLinux/src
+
 if [ -f /mnt/archiv/LessLinux/llbuild/stage01.tar.xz ] ; then
 	echo "Stage01 seems to be ready."
 	echo ""
@@ -48,7 +51,7 @@ if [ -f /mnt/archiv/LessLinux/llbuild/stage01.tar.xz ] ; then
 else
 	echo "Building stage01 -please be patient."
 	touch /mnt/archiv/LessLinux/llbuild/stage01.log
-	Terminal --hide-meubar -t "LOG: stage01" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage01.log" &
+	Terminal --hide-menubar -t "LOG: stage01" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage01.log" &
 	ruby -I. builder.rb -s 2,3 -n -l -t 3 -u --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage01.log 2>&1 
 fi
 
