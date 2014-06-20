@@ -8,5 +8,5 @@ comp="$3"
 [ -z "$comp" ] && comp="gzip" 
 
 cd "$wdir" || exit 1
-find . | cpio --dereference -o -H newc | "$comp" -c > "$ofile" 
+find . | cpio -o -H newc | "$comp" -c > "$ofile" 
 
