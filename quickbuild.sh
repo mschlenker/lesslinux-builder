@@ -49,7 +49,7 @@ else
 	echo "Building stage01 -please be patient."
 	touch /mnt/archiv/LessLinux/llbuild/stage01.log
 	Terminal --hide-meubar -t "LOG: stage01" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage01.log" &
-	ruby -I. builder.rb -s 2,3 -n -l -t 3 -u --no-stracalyze  >> /mnt/archiv/LessLinux/llbuild/stage01.log 2>&1 
+	ruby -I. builder.rb -s 2,3 -n -l -t 3 -u --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage01.log 2>&1 
 fi
 
 
