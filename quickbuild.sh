@@ -17,6 +17,7 @@ fi
 mounted=""
 mountpoint -q /mnt/archiv && mounted="/mnt/archiv"
 mountpoint -q /mnt/archiv/LessLinux && mounted="/mnt/archiv/LessLinux"
+arch=` uname -m` 
 
 if [ -z "$mounted" ] ; then 
 	echo "Please mount an ext4 or btrfs formatted partition with sufficient space"
@@ -70,7 +71,11 @@ else
 	echo "Building stage01 - please be patient."
 	touch /mnt/archiv/LessLinux/llbuild/stage01.log
 	Terminal --hide-menubar -T "LOG: stage01" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage01.log" &
-	ruby -I. builder.rb -s 2,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage01.log 2>&1 
+	if [ "$arch" = x86_64 ] ; then
+		linux32 ruby -I. builder.rb -s 2,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage01.log 2>&1
+	else
+		ruby -I. builder.rb -s 2,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage01.log 2>&1 
+	fi	
 	echo '' >> /mnt/archiv/LessLinux/llbuild/stage01.log
 	echo 'You might close the log.' >> /mnt/archiv/LessLinux/llbuild/stage01.log
 fi
@@ -80,8 +85,12 @@ if [ -f /mnt/archiv/LessLinux/llbuild/stage01.tar.xz ] ; then
 	echo "Building stage02 - please be patient."
         touch /mnt/archiv/LessLinux/llbuild/stage02.log
         Terminal --hide-menubar -T "LOG: stage02" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage02.log" &
-        ruby -I. builder.rb -s 1,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage02.log 2>&1
-        echo 'Done! Please check the log. Did everything succeed?'
+        if [ "$arch" = x86_64 ] ; then
+		linux32 ruby -I. builder.rb -s 1,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage02.log 2>&1
+	else
+		ruby -I. builder.rb -s 1,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage02.log 2>&1
+        fi
+	echo 'Done! Please check the log. Did everything succeed?'
 	echo 'If it did: Read the instructions on how to build a bootable ISO image!'
 else
 	echo "Oops. Stage01 seems to have failed. Cannot build stage02."
