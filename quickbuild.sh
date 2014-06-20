@@ -23,7 +23,7 @@ if [ -z "$mounted" ] ; then
 	echo "Please mount an ext4 or btrfs formatted partition with sufficient space"
 	echo "(40GB recommended) at /mnt/archiv or /mnt/archiv/LessLinux."
 	echo ""
-	echo "Then press Enter to continue - or press Ctrl+C to cancel"
+	echo -n "Then press Enter to continue - or press Ctrl+C to cancel"
 	read mnt
 	mounted=""
 	mountpoint -q /mnt/archiv && mounted="/mnt/archiv"
@@ -37,18 +37,18 @@ fi
 if [ ` cat /proc/swaps | wc -l ` -lt 2 ] ; then
 	echo "We recommend adding some swap."
 	echo ""
-        echo "Press enter to continue - or press Ctrl+C to cancel"
+        echo -n "Press enter to continue - or press Ctrl+C to cancel"
 	read swap
 fi
 
-echo "How many threads do you wand to use? Default: 4"
+echo -n "How many threads do you wand to use? Default is 4: "
 read numthreads
 if [ "$numthreads" -gt 0 ] ; then 
 	echo "Valid input..."
 else
 	numthreads=4
 fi
-echo "Do you want to build the unstable branch? Default: Y"
+echo -n "Do you want to build the unstable branch? Default is Yes: "
 read unstbl
 case $unstbl in
 	[Nn]*)
@@ -64,8 +64,7 @@ mkdir -p /mnt/archiv/LessLinux/src
 
 if [ -f /mnt/archiv/LessLinux/llbuild/stage01.tar.xz ] ; then
 	echo "Stage01 seems to be ready."
-	echo ""
-        echo "Press enter to continue - or press Ctrl+C to cancel"
+        echo -n "Press enter to continue - or press Ctrl+C to cancel"
         read sone
 else
 	echo "Building stage01 - please be patient."
