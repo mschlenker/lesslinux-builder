@@ -43,7 +43,7 @@ fi
 
 echo "How many threads do you wand to use? Default: 4"
 read numthreads
-if [ "$numthreads" -gt 0 ] ; 
+if [ "$numthreads" -gt 0 ] ; then 
 	echo "Valid input..."
 else
 	numthreads=4
