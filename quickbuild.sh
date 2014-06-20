@@ -70,7 +70,7 @@ if [ -f /mnt/archiv/LessLinux/llbuild/stage01.tar.xz ] ; then
 else
 	echo "Building stage01 - please be patient."
 	touch /mnt/archiv/LessLinux/llbuild/stage01.log
-	Terminal --hide-menubar -T "LOG: stage01" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage01.log" &
+	Terminal --hide-menubar -T "LOG: stage01" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage01.log" 2> /dev/null &
 	if [ "$arch" = x86_64 ] ; then
 		linux32 ruby -I. builder.rb -s 2,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage01.log 2>&1
 	else
@@ -84,7 +84,7 @@ if [ -f /mnt/archiv/LessLinux/llbuild/stage01.tar.xz ] ; then
         echo "Stage01 seems to be ready."
 	echo "Building stage02 - please be patient."
         touch /mnt/archiv/LessLinux/llbuild/stage02.log
-        Terminal --hide-menubar -T "LOG: stage02" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage02.log" &
+        Terminal --hide-menubar -T "LOG: stage02" -e "tail -f /mnt/archiv/LessLinux/llbuild/stage02.log" 2> /dev/null &
         if [ "$arch" = x86_64 ] ; then
 		linux32 ruby -I. builder.rb -s 1,3 -n -l -t 4 $unstable --no-stracalyze --ignore-arch  >> /mnt/archiv/LessLinux/llbuild/stage02.log 2>&1
 	else
