@@ -530,6 +530,11 @@ class ThirdStage < AnyStage
 		isouuid = File.new(builddir + "/stage03/initramfs/etc/lesslinux/updater/isouuid.txt", "w")
 		isouuid.write("#{build_timestamp[0..3]}-#{build_timestamp[4..5]}-#{build_timestamp[6..7]}-#{build_timestamp[9..10]}-#{build_timestamp[11..12]}-#{build_timestamp[13..14]}-00")
 		isouuid.close
+		# Write git commit ID
+		gitcommit = ` git log | head -n1 `.strip.split[1] 
+		commitid = File.new(builddir + "/stage03/initramfs/etc/lesslinux/updater/gicommitid.txt", "w")
+		commitid.write(gitcommit)
+		commitid.close
 		# system("cp -v " + builddir + "/stage03/initramfs/etc/lesslinux/updater/version.txt " + builddir + "/stage03/cdmaster/lesslinux/version.txt")
 	end
 	
