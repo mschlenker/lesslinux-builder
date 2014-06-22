@@ -532,10 +532,28 @@ class ThirdStage < AnyStage
 		isouuid.close
 		# Write git commit ID
 		gitcommit = ` git log | head -n1 `.strip.split[1] 
-		commitid = File.new(builddir + "/stage03/initramfs/etc/lesslinux/updater/gicommitid.txt", "w")
+		commitid = File.new(builddir + "/stage03/initramfs/etc/lesslinux/updater/version.git", "w")
 		commitid.write(gitcommit)
 		commitid.close
 		# system("cp -v " + builddir + "/stage03/initramfs/etc/lesslinux/updater/version.txt " + builddir + "/stage03/cdmaster/lesslinux/version.txt")
+		# Write command:
+		lnum = 0
+		scol = 0
+		IO.popen("ps wax") { |l|
+			while l.gets    
+				if lnum < 1 
+					scol = $_.index("COMMAND")
+				elsif scol > 0
+					pid = $_.strip.split[0].to_i
+					if pid == $$
+						buildcli = File.new(builddir + "/stage03/initramfs/etc/lesslinux/updater/command.sh", "w")
+						buildcli.write(gitcommit)
+						buildcli.close
+					end                                             
+				end
+				lnum += 1 
+			end
+		}
 	end
 	
 	def ThirdStage.full_install(builddir)
