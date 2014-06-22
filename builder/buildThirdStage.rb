@@ -547,7 +547,7 @@ class ThirdStage < AnyStage
 					pid = $_.strip.split[0].to_i
 					if pid == $$
 						buildcli = File.new(builddir + "/stage03/initramfs/etc/lesslinux/updater/command.sh", "w")
-						buildcli.write(gitcommit)
+						buildcli.write($_[27..-2])
 						buildcli.close
 					end                                             
 				end
