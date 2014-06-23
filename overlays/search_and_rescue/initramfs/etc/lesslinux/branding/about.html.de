@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>LessLinux Search and Rescue</title>
+		<style type="text/css">
+		body { 
+		background-color: whitesmoke;
+		font-size: 13px;
+		}
+		div.layoutbox {
+		width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		border-style: solid;
+		border-color: lightgray;
+		border-width: 1px;
+		background-color: white;
+		padding: 10px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="layoutbox">
+			<h2>Über LessLinux Search and Rescue</h2>
+			<h3>Lizenz und Warenzeichen</h3>
+			<p>
+			LessLinux Search and Rescue verwendet viele unter der GNU General Public License
+			und weiteren Open Source Lizenzen vertriebene Software-Komponenten. Aus Platzgründen 
+			ist es nicht möglich, die betreffenden Quelltexte auf CD beizulegen. Sie	
+			können jedoch Quellcodes und verwendete Patches bei der Redaktion
+			COMPUTERBILD oder dem verantwortlichen Entwickler Mattias Schlenker direkt 
+			(Email: <a href="mailto:gpl@lesslinux.org">gpl@lesslinux.org</a>) anfordern.
+			</p>
+			<p>Falls Sie sich für die technischen Hintergründe und den Aufbau des Systems  
+			interessieren, sollten Sie einen Blick auf die Webseite
+			<a href="http://www.lesslinux.org/">www.lesslinux.org</a> 
+			beziehungsweise <a href="http://blog.lesslinux.org/">blog.lesslinux.org</a> werfen. 
+			Dort erhalten Sie auch Versionen der Quelltexte und Build-Scripte, die <i>keine 
+			Warenzeichen</i> enthalten und so als Basis für eigene
+			Erweiterungen des Live-Systems dienen können.
+			</p>
+			<h3>Verwendete Komponenten</h3>
+			<p>LessLinux basiert nicht auf bekannten 
+			Desktop-Distributionen und verwenden kein gängiges Paketmanagementsystem. 
+			Jedes Image wird von Grund auf neu gebaut und vom Buildsystem zusammen gefügt.
+			Wesentliche Komponenten (neben Linux-Kernel, glibc und Xorg) sind:</p>
+			<ul>
+				<li><p><b>BusyBox</b> (<a href="http://www.busybox.net/">Projektseite</a>): 
+				Vereint viele Linux-Befehle in einem Binary und hält so die Zahl der enthaltenen Programme 
+				und damit die Größe des Gesamtsystems gering.</p></li>
+				<li><p><b>XFCE</b> (<a href="http://www.xfce.org/">Projektseite</a>): 
+				Die schlanke Desktop-Umgebung überzeugt mit konsistenter Nutzerführung und ansprechender
+				grafischer Gestaltung.</p></li>
+				<li><p><b>Ruby</b> (<a href="http://www.ruby-lang.org/">Projektseite</a>): 
+				Eine objektorientierte Scriptsprache und Bindungen an die Gtk+-Bibliothek erleichterten
+				sowohl die Entwicklung der Build-Umgebung als auch die Prgrammierung von Installer
+				und kleineren enthaltenen Werkzeugen.</p></li>
+				<li><p><b>SMACK</b> (<a href="http://schaufler-ca.com/">Projektseite</a>):
+				Casey Schauflers <i>Simple Mandatory Access Control Kernel</i> stellt eine einfacher als SELinux
+				zu konfigurierende &#151; aber dennoch sehr effiziente &#151; 
+				Mandatory Access Control Erweiterung bereit.</p></li>
+			</ul>
+			<h3>Support</h3>
+			<p>
+			Sollten Fragen zum Betrieb des Systems auftauchen, kontaktieren Sie bitte die Redaktion der Zeitschrift, auf dessen Beileger 
+			diese Version von LessLinux enthalten war. </p>
+			<p>
+			Sollten Sie es für notwendig erachten, die Entwickler von LessLinux zu kontaktieren, verwenden Sie bitte die Email-Adresse 
+			<a href="mailto:support@lesslinux.org">support@lesslinux.org</a> und legen Sie die Datei <tt>/etc/lesslinux/updater/version.txt</tt>
+			bei. Sollten Sie Screenshots von einem auffälligen Verhalten machen wollen, verwenden Sie die Tastenkombination <tt>[Shift]+[F12]</tt>. 
+			Die Screenshots werden ohne weitere Benachrichtigung im Ordner <tt>/tmp/gespeichert</tt>.
+			</p>
+			<p>Viel Spaß mit LessLinux wünscht</p>
+			<p><i>Ihr Mattias Schlenker</i></p>
+
+		</div>
+	</body>
+</html>
+
