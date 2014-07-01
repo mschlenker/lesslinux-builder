@@ -86,7 +86,7 @@
 			for target in depmod insmod modinfo modprobe rmmod; do
 				ln -sv ../bin/kmod ${TGTDIR}/sbin/$target
 			done
-			ln -sv kmod /bin/lsmod
+			ln -sv kmod ${TGTDIR}/bin/lsmod
 			]]>
 		</install>
 		<clean>
