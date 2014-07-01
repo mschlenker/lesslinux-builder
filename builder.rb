@@ -52,6 +52,7 @@ include ObjectSpace
 @buildonly = Array.new
 @buildpkgs = Array.new
 @ignore_arch = false
+@nonfree = nil 
 
 # look for some commands
 #
@@ -94,6 +95,7 @@ opts.on('--distcc-potential-hosts', :REQUIRED ) { |i| @distcchosts = i.strip.spl
 # Specify the name of one package: Build will take the quickest path to this package and exit afterwards
 opts.on('--shortest-path-to', :REQUIRED) { |i| @buildonly =  i.strip.split(',') }
 opts.on('--ignore-arch') { @ignore_arch = true }
+opts.on('--nonfree', :REQUIRED) { |i| @nonfree =  i.strip }
 
 opts.parse!
 
@@ -226,13 +228,27 @@ Dir.foreach("scripts/stage02") { |f|
 	if (f =~ /\d+.*\.xml$/ )
 		if  @unstable == true && File.exists?("scripts/stage02.unstable/" + f)
 			@stage_two_scripts.push(f)
-		elsif @legacy == true && File.exists?("scripts/stage02.unstable/" + f)
+		elsif @legacy == true && File.exists?("scripts/stage02.legacy/" + f)
 			@stage_two_scripts.push(f)
 		else
 			@stage_two_scripts.push(f)
 		end
 	end
 }
+unless @nonfree.nil? 
+	Dir.foreach("#{@nonfree}/scripts/stage02") { |f|
+		if (f =~ /\d+.*\.xml$/ )
+			if  @unstable == true && File.exists?("#{@nonfree}/scripts/stage02.unstable/" + f)
+				@stage_two_scripts.push(f)
+			elsif @legacy == true && File.exists?("#{@nonfree}/scripts/stage02.legacy/" + f)
+				@stage_two_scripts.push(f)
+			else
+				@stage_two_scripts.push(f)
+			end
+		end
+	}
+end
+
 @stage_two_scripts.sort.each { |i| 
 	@stage_two_objs.push(SecondStage.new(i, @srcdir, @builddir, @unpriv, "stage02", @dbh, @unstable, @sqlite, nil, @legacy, @allowfail, @distcchosts, @check_sources))
 }
