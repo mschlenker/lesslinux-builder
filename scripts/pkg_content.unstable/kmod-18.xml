@@ -1,0 +1,54 @@
+<pkgdesc name='kmod' version='18'>
+    <subpackage name='skel'>
+        <softlink group='0' owner='0' path='/bin/lsmod'/>
+        <softlink group='0' owner='0' path='/lib/libkmod.so.2'/>
+        <softlink group='0' owner='0' path='/lib/libkmod.so'/>
+        <softlink group='0' owner='0' path='/sbin/depmod'/>
+        <softlink group='0' owner='0' path='/sbin/insmod'/>
+        <softlink group='0' owner='0' path='/sbin/modinfo'/>
+        <softlink group='0' owner='0' path='/sbin/modprobe'/>
+        <softlink group='0' owner='0' path='/sbin/rmmod'/>
+        <directory group='0' owner='0' path='/bin'/>
+        <directory group='0' owner='0' path='/lib'/>
+        <directory group='0' owner='0' path='/lib/pkgconfig'/>
+        <directory group='0' owner='0' path='/sbin'/>
+        <directory group='0' owner='0' path='/usr'/>
+        <directory group='0' owner='0' path='/usr/share'/>
+        <directory group='0' owner='0' path='/usr/share/bash-completion'/>
+        <directory group='0' owner='0' path='/usr/share/bash-completion/completions'/>
+        <directory group='0' owner='0' path='/usr/share/man'/>
+        <directory group='0' owner='0' path='/usr/share/man/man5'/>
+        <directory group='0' owner='0' path='/usr/share/man/man8'/>
+        <directory group='0' owner='0' path='/usr/include'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file group='0' mode='100755' owner='0' path='/bin/kmod'/>
+	<file group='0' mode='100755' owner='0' path='/lib/libkmod.so.2.2.8'/>
+    </subpackage>
+    <subpackage name='bin'>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man5/depmod.d.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man5/modprobe.d.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man5/modules.dep.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man5/modules.dep.bin.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man8/depmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man8/insmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man8/lsmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man8/rmmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man8/modprobe.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man/man8/modinfo.8'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file group='0' mode='100755' owner='0' path='/lib/libkmod.la'/>
+        <file group='0' mode='100644' owner='0' path='/lib/pkgconfig/libkmod.pc'/>
+        <file group='0' mode='100644' owner='0' path='/usr/include/libkmod.h'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100644' owner='0' path='/usr/share/bash-completion/completions/kmod'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
