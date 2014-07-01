@@ -250,7 +250,7 @@ unless @nonfree.nil?
 end
 
 @stage_two_scripts.sort.each { |i| 
-	@stage_two_objs.push(SecondStage.new(i, @srcdir, @builddir, @unpriv, "stage02", @dbh, @unstable, @sqlite, nil, @legacy, @allowfail, @distcchosts, @check_sources))
+	@stage_two_objs.push(SecondStage.new(i, @srcdir, @builddir, @unpriv, "stage02", @dbh, @unstable, @sqlite, nil, @legacy, @allowfail, @distcchosts, @check_sources, @nonfree))
 }
 
 puts sprintf("%015.4f", Time.now.to_f) + " info  > Number of threads requested " + @thread_count.to_s

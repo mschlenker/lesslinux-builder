@@ -125,11 +125,15 @@ class ThirdStage < AnyStage
 		# FIXME: Add prepared/modified versions later
 		# FIXME: Add possibility to skip later
 		pfile = nil
-		if File.exists?("scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml" )
-			if @unstable == true && File.exists?("scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml" )
-				pfile = REXML::Document.new(File.new("scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
+		searchdir = "./"
+		unless nonfree.nil?
+			searchdir = "#{@nonfree}/" 
+		end
+		if File.exists?(searchdir + "scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml" )
+			if @unstable == true && File.exists?(searchdir + "scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml" )
+				pfile = REXML::Document.new(File.new(searchdir + "scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
 			else
-				pfile = REXML::Document.new(File.new("scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
+				pfile = REXML::Document.new(File.new(searchdir + "scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
 			end
 		elsif File.exists?(@builddir + "/stage02/build/" + @pkg_name + "-" + pkg_version + ".xml" ) 
 			# $stderr.puts("***> be careful: no exactly matching pkg_list found for " + @pkg_name + "-" + pkg_version) 
