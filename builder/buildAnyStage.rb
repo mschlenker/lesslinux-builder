@@ -32,9 +32,18 @@ class AnyStage
 		elsif File.exists?(searchdir + "scripts/" + @stage + ".unstable/" + @buildfile) && @unstable == true
 			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + ".unstable/" + @buildfile, @srcdir, @check_sources)
 			@xfile = REXML::Document.new(File.new(searchdir + "scripts/" + @stage + ".unstable/" + @buildfile))
-		else
+		elsif File.exists?(searchdir + "scripts/" + @stage + "/" + @buildfile)
 			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + "/" + @buildfile, @srcdir, @check_sources)
 			@xfile = REXML::Document.new(File.new(searchdir + "scripts/" + @stage + "/" + @buildfile))
+		elsif File.exists?("scripts/" + @stage + ".legacy/" + @buildfile) && @legacy == true
+			@downloader = FileDownLoader.new("scripts/" + @stage + ".legacy/" + @buildfile, @srcdir, @check_sources)
+			@xfile = REXML::Document.new(File.new("scripts/" + @stage + ".legacy/" + @buildfile))
+		elsif File.exists?("scripts/" + @stage + ".unstable/" + @buildfile) && @unstable == true
+			@downloader = FileDownLoader.new("scripts/" + @stage + ".unstable/" + @buildfile, @srcdir, @check_sources)
+			@xfile = REXML::Document.new(File.new("scripts/" + @stage + ".unstable/" + @buildfile))
+		else
+			@downloader = FileDownLoader.new("scripts/" + @stage + "/" + @buildfile, @srcdir, @check_sources)
+			@xfile = REXML::Document.new(File.new("scripts/" + @stage + "/" + @buildfile))
 		end
 		@pkg_name = @xfile.elements["llpackages/package"].attributes["name"]
 		@pkg_version = @xfile.elements["llpackages/package"].attributes["version"]
