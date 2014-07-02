@@ -31,7 +31,7 @@ class SecondStage < AnyStage
 	def read_known
 		pfile = nil
 		searchdir = "./"
-		unless nonfree.nil?
+		unless @nonfree.nil?
 			searchdir = "#{@nonfree}/" 
 		end
 		if File.exists?(searchdir + "scripts/pkg_content/" + @pkg_name + "-" + @pkg_version + ".xml" )
