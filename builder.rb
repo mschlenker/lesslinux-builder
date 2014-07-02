@@ -775,13 +775,13 @@ def run_stage_three
 	}
 	unless @nonfree.nil?
 		Dir.foreach(@nonfree + "/scripts/stage03") { |f|
-		if (f =~ /\d+.*\.xml$/ )
-			if @unstable == true && File.exists?(@nonfree + "scripts/stage03.unstable/" + f)
-				stage_three_scripts.push(f)
-			else
-				stage_three_scripts.push(f)
+			if (f =~ /\d+.*\.xml$/ )
+				if @unstable == true && File.exists?(@nonfree + "scripts/stage03.unstable/" + f)
+					stage_three_scripts.push(f)
+				else
+					stage_three_scripts.push(f)
+				end
 			end
-		end
 		}
 	end
 	pkg_list = nil
@@ -791,7 +791,7 @@ def run_stage_three
 	stage_three_scripts.sort.each { |i| 
 		# puts sprintf("%015.4f", Time.now.to_f) + " info   > Parsing " + i
 		# $stdout.flush
-		this_stage_three_obj = ThirdStage.new(i, @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, @nonfree)
+		this_stage_three_obj = ThirdStage.new(i, @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, Array.new, Array.new, true, @nonfree)
 		if this_stage_three_obj.pkg_version.nil?
 			fvers = nil
 			@stage_two_objs.each { |i| fvers = i.pkg_version if this_stage_three_obj.pkg_name.strip == i.pkg_name.strip }
