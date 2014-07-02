@@ -40,6 +40,12 @@ class SecondStage < AnyStage
 			else
 				pfile = REXML::Document.new(File.new(searchdir + "scripts/pkg_content/" + @pkg_name + "-" + @pkg_version + ".xml", "r"))
 			end
+		elsif File.exists?("scripts/pkg_content/" + @pkg_name + "-" + @pkg_version + ".xml" )
+			if @unstable == true && File.exists?("scripts/pkg_content.unstable/" + @pkg_name + "-" + @pkg_version + ".xml" )
+				pfile = REXML::Document.new(File.new("scripts/pkg_content.unstable/" + @pkg_name + "-" + @pkg_version + ".xml", "r"))
+			else
+				pfile = REXML::Document.new(File.new("scripts/pkg_content/" + @pkg_name + "-" + @pkg_version + ".xml", "r"))
+			end
 		else
 			puts sprintf("%015.4f", Time.now.to_f) + " build  > No cached file output for " + @pkg_name + " " + @pkg_version + " (no pkg_content file found)"
 			$stdout.flush

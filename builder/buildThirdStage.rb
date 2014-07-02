@@ -135,6 +135,12 @@ class ThirdStage < AnyStage
 			else
 				pfile = REXML::Document.new(File.new(searchdir + "scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
 			end
+		elsif File.exists?("scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml" )
+			if @unstable == true && File.exists?("scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml" )
+				pfile = REXML::Document.new(File.new("scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
+			else
+				pfile = REXML::Document.new(File.new("scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
+			end
 		elsif File.exists?(@builddir + "/stage02/build/" + @pkg_name + "-" + pkg_version + ".xml" ) 
 			# $stderr.puts("***> be careful: no exactly matching pkg_list found for " + @pkg_name + "-" + pkg_version) 
 			puts sprintf("%015.4f", Time.now.to_f) + " warn   > No exactly matching pkg_content found for " + @pkg_name + "-" + pkg_version 
