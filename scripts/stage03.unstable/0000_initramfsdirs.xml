@@ -2231,7 +2231,7 @@ case $1 in
 		    done
 		else
 		    for modname in \
-			` grep -i 'alias pci:v0000'${vend}d0000${prod}sv /lib/modules/${kversion}/modules.alias | awk '{print $3}' `
+			` grep -Ei 'alias pci:v0000'${vend}d0000${prod}'sv|alias pci:v\*d0000'${prod}'sv|alias pci:v0000'${vend}'d\*sv' /lib/modules/${kversion}/modules.alias | awk '{print $3}' | uniq ` ; do
 			if echo "$alreadyloaded" | grep -qv "$modname " ; then
 			    modprobe.static -q -b $modname
 			    alreadyloaded="$alreadyloaded $modname "
@@ -2248,6 +2248,14 @@ case $1 in
 			alreadyloaded="$alreadyloaded $modname "
 		    fi
 		done
+	    else
+		for modname in \
+		    ` cat /lib/modules/${kversion}/modules.alias |  grep -Ei 'alias pci:v\*d\*sv' | awk '{print $3}' | uniq ` ; do
+			if echo "$alreadyloaded" | grep -qv "$modname " ; then
+			    modprobe.static -q -b $modname
+			    alreadyloaded="$alreadyloaded $modname "
+			fi
+		    done
 	    fi
 	    printf "$bold===> Loading USB drivers $normal\n"
 	    for i in /sys/bus/usb/devices/* ; do 
@@ -2265,7 +2273,7 @@ case $1 in
 			done
 		    else	
 			for modname in \
-			   ` grep -i 'alias usb:v'${vend}p${prod}d /lib/modules/${kversion}/modules.alias | awk '{print $3}' `
+			   ` grep -Ei 'alias usb:v'${vend}p${prod}'d|alias usb:v\*p'${prod}'d|alias usb:v'${vend}'p\*d' /lib/modules/${kversion}/modules.alias | awk '{print $3}' | uniq ` ; do
 			    if echo "$alreadyloaded" | grep -qv "$modname " ; then
 				modprobe.static -q -b $modname
 				alreadyloaded="$alreadyloaded $modname "
@@ -2283,6 +2291,14 @@ case $1 in
 			alreadyloaded="$alreadyloaded $modname "
 		    fi
 		done
+	    else
+		for modname in \
+		    ` grep -Ei 'alias usb:v\*p\*d' /lib/modules/${kversion}/modules.alias | awk '{print $3}' | uniq ` ; do
+		    if echo "$alreadyloaded" | grep -qv "$modname " ; then
+			modprobe.static -q -b $modname
+			alreadyloaded="$alreadyloaded $modname "
+		    fi
+		done   
 	    fi
 	    mountpoint -q /proc/bus/usb || mount -t usbfs usbfs /proc/bus/usb
 	    if cat /sys/hypervisor/properties/capabilities | grep -q xen ; then
