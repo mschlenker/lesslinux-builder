@@ -773,6 +773,17 @@ def run_stage_three
 			end
 		end
 	}
+	unless @nonfree.nil?
+		Dir.foreach(@nonfree + "/scripts/stage03") { |f|
+		if (f =~ /\d+.*\.xml$/ )
+			if @unstable == true && File.exists?(@nonfree + "scripts/stage03.unstable/" + f)
+				stage_three_scripts.push(f)
+			else
+				stage_three_scripts.push(f)
+			end
+		end
+		}
+	end
 	pkg_list = nil
 	pkg_list = read_pkglist(@pkg_list_file) unless @pkg_list_file.nil?
 	debug_pkglist = File.new(@builddir + "/tmp/lesslinux_" + @build_timestamp + "_all_packages.txt", 'w') 
@@ -919,7 +930,7 @@ def run_stage_three
 	# Create temporary buildscripts for stage02 packages not yet included
 	additional_deps.uniq.each { |a|
 		a.dump_stage03_script
-		dep = ThirdStage.new("added-dependency-" + a.pkg_name + ".xml", @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy)
+		dep = ThirdStage.new("added-dependency-" + a.pkg_name + ".xml", @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, @nonfree)
 		dep.unpack
 		### Dir.chdir(@workdir)
 		dep.install
