@@ -930,7 +930,7 @@ def run_stage_three
 	# Create temporary buildscripts for stage02 packages not yet included
 	additional_deps.uniq.each { |a|
 		a.dump_stage03_script
-		dep = ThirdStage.new("added-dependency-" + a.pkg_name + ".xml", @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, @nonfree)
+		dep = ThirdStage.new("added-dependency-" + a.pkg_name + ".xml", @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, Array.new, Array.new, true, @nonfree)
 		dep.unpack
 		### Dir.chdir(@workdir)
 		dep.install
