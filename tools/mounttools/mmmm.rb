@@ -586,8 +586,10 @@ def scan_parted
 					parttype = "superfloppy"
 				elsif $_ =~ /^Partition Table: msdos/ 
 					parttype = "msdos"
+				elsif $_ =~ /^Partition Table: gpt/ 
+					parttype = "gpt"
 				end
-				if $_ =~ /^Number/ 
+				if $_ =~ /^Number/ && parttype == "msdos"
 					line = $_.chomp
 					# puts line
 					nstart = $_.index("Number")
@@ -596,18 +598,29 @@ def scan_parted
 					bstart = $_.index("Size")
 					fstart = $_.index("File system")
 					zstart =  $_.index("Flags")
-					# puts line[0]
+					fend = $_.index("Flags") - 1
+				elsif
+					$_ =~ /^Number/ && parttype == "gpt"
+					nstart = $_.index("Number")
+					sstart = $_.index("Start")
+					estart = $_.index("End")
+					bstart = $_.index("Size")
+					fstart = $_.index("File system")
+					dstart = $_.index("Name")
+					zstart =  $_.index("Flags")
+					fend = $_.index("Name") - 1
 				end
 				unless $_.strip == "" || nstart.nil?
 					# puts $_
 					pnum = $_[0.. sstart-1].strip.to_i
 					psize = $_[bstart .. fstart-1].strip.gsub("B", "").to_i
-					fsyst = $_[fstart .. zstart.to_i-1]
+					fsyst = $_[fstart .. fend]
+					# puts pnum.to_s
 					unless fsyst.nil? || fsyst.strip.to_s == "" || pnum.to_i < 1
 						mounted = "clean"
 						readwrite = false
 						mountpoint = nil
-						if pnum > 0 && parttype == "msdos"
+						if pnum > 0 && ( parttype == "msdos" || parttype == "gpt")
 							device =  "/dev/sd" + j + pnum.to_s
 						elsif pnum > 0
 							device =  "/dev/sd" + j
