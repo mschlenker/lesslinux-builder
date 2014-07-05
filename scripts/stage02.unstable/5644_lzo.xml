@@ -1,0 +1,57 @@
+<llpackages>
+	<package 
+		name="lzo"
+		version="2.08"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                            
+				<pkg sha1="64c3e44843a44ffc4533aa89e41516f42bfefa76">lzo-2.08.tar.gz</pkg>
+				<mirror>http://www.oberhumer.com/opensource/lzo/download/</mirror>
+			</file>
+			<manualcheck date="20140705" interval="180" page="http://www.oberhumer.com/opensource/lzo/download/" />
+			<!--<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.1.2." />
+					<atext linktext="grsync-1.2." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>-->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --enable-shared
+			make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
