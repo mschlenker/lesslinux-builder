@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-nopae"
-		version="3.15.3"
+		version="3.15.4"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,15 +19,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="821fcb6aecfef922ee3ed11b02d85bfd9e064056">patch-3.15.3.xz</pkg>
+				<pkg sha1="0d7c129934c0b1309f5fc6e7941b5fdc47c9f7b6">patch-3.15.4.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20140701" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20140707" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-3.15.5." />
 					<atext linktext="patch-3.15.6." />
-					<atext linktext="patch-3.15.4." />
+					<atext linktext="patch-3.15.7." />
 					<atext linktext="patch-3.16." />
 					<atext linktext="patch-3.17." />
 					<atext linktext="patch-3.18." />
