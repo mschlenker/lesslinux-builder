@@ -30,9 +30,10 @@ or
 
 To build the ISO you have to specify some config paths - you might use modified versions of those config files outside the LessLinux tree - copy the command from `/etc/lesslinux/updater/command.sh` mentioned above:
 
-`ruby -I. builder.rb -n -s 1,2,bootconf \
-	-p config/pkglist_neutral_rescue_GTK3.txt \
-	--skip-files config/skiplist_neutral_rescue.txt \
-	-c config/general_neutral_rescue.xml \
-	-b config/branding_neutral_rescue.xml \
-	-k config/kernels_rescue_experimental.xml -u` 
+	ruby -I. builder.rb -n -s 1,2,bootconf \
+	  -p config/pkglist_neutral_rescue_GTK3.txt \
+	  --skip-files config/skiplist_neutral_rescue.txt \
+	  -c config/general_neutral_rescue.xml \
+	  -b config/branding_neutral_rescue.xml \
+	  -k config/kernels_rescue_experimental.xml -u
+ 
