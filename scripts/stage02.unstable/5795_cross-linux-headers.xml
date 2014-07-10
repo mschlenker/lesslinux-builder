@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="cross-linux-headers"
-		version="3.15.4"
+		version="3.15.5"
 		class="devel"
 		install="destdir"
 		>
@@ -12,13 +12,13 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="0d7c129934c0b1309f5fc6e7941b5fdc47c9f7b6">patch-3.15.4.xz</pkg>
+				<pkg sha1="20f4be9fd46ee98edcc0adf206325e97555cc245">patch-3.15.4.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20140707" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20140710" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.15.5." />
+					<atext linktext="patch-3.15.8." />
 					<atext linktext="patch-3.15.6." />
 					<atext linktext="patch-3.15.7." />
 					<atext linktext="patch-3.16." />
