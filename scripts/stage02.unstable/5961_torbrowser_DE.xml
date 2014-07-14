@@ -48,8 +48,9 @@
 		<test />
 		<install>
 			<![CDATA[
-			mkdir -p ${TGTDIR}/opt
+			mkdir -p ${TGTDIR}/opt/bin
 			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/applications
 			# tar -cf - tor-browser_de | tar -C ${TGTDIR}/opt -xf - 
 			# unxz -c 
 			install -m 0644 tor-browser_de.tar ${TGTDIR}/opt/
@@ -81,8 +82,8 @@ chmod a+rx ${TGTDIR}/usr/bin/tor-browser
 
 ######### Create starter for TOR browser using smack
 
-echo -n '' > ${TGTDIR}/opt/tor-browser_de/tor-browser_smack
-cat >> ${TGTDIR}/opt/tor-browser_de/tor-browser_smack << FFSMACK
+echo -n '' > ${TGTDIR}/opt/bin/tor-browser_smack
+cat >> ${TGTDIR}/opt/bin/tor-browser_smack << FFSMACK
 #!/static/bin/ash
 
 export PATH=$PATH:/opt/bin:/opt/sbin
@@ -93,7 +94,8 @@ FFSMACK
 
 ########## Create desktop file
 
-cat >> /usr/share/applications/torbrowser.desktop << DESKFILE
+echo -n '' > ${TGTDIR}/usr/share/applications/torbrowser.desktop
+cat >> ${TGTDIR}/usr/share/applications/torbrowser.desktop << DESKFILE
 
 [Desktop Entry]
 Version=1.0
@@ -112,7 +114,7 @@ DESKFILE
 
 ########## Set some permissions
 
-chmod a+rx ${TGTDIR}/opt/tor-browser_de/tor-browser_smack
+chmod a+rx ${TGTDIR}/opt/bin/tor-browser_smack
 chmod a+rx ${TGTDIR}/opt/tor-browser_de/start-tor-browser
 chown -R 1000:1000 ${TGTDIR}/opt/tor-browser_de
 
