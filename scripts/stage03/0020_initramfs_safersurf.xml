@@ -86,6 +86,9 @@ else
 	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
+sed -i 's/29\.0\.1/30.0/g' /home/surfer/Desktop/010_firefox.desktop  
+install -m 0755 /usr/share/applications/torbrowser.desktop "${HOME}/Desktop/" 
+
 # Uncomment to debug
 # /usr/bin/Terminal &
 # /usr/bin/xterm &
