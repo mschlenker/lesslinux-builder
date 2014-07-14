@@ -91,6 +91,25 @@ cd /opt/tor-browser_de
 
 FFSMACK
 
+########## Create desktop file
+
+cat >> /usr/share/applications/torbrowser.desktop << DESKFILE
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Tor Bowser
+Name[de]=Tor Browser
+Categories=Network;
+Exec=/usr/bin/tor-browser
+Icon=/opt/tor-browser_de/Browser/browser/chrome/icons/default/default48.png
+Terminal=false
+StartupNotify=true
+Path=
+
+DESKFILE
+
 ########## Set some permissions
 
 chmod a+rx ${TGTDIR}/opt/tor-browser_de/tor-browser_smack
