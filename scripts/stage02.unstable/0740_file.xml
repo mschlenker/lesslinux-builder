@@ -1,0 +1,87 @@
+<llpackages>
+	<package 
+		name="file"
+		version="5.19"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                   
+				<pkg sha1="0dff09eb44fde1998be79e8d312e9be4456d31ee">file-5.19.tar.gz</pkg>
+				<mirror>ftp://ftp.astron.com/pub/file/</mirror>
+			</file>
+			<manualcheck date="20140717" interval="180" page="ftp://ftp.astron.com/pub/file/" />
+			<check>
+				<page html="ftp://ftp.astron.com/pub/file/">
+					<atext linktext="file-5.32." />
+					<atext linktext="file-5.33." />
+					<atext linktext="file-5.20." />
+					<atext linktext="file-5.21." />
+					<atext linktext="file-5.22." />
+					<atext linktext="file-5.23." />
+					<atext linktext="file-5.24." />
+					<atext linktext="file-5.25." />
+					<atext linktext="file-5.26." />
+					<atext linktext="file-5.27." />
+					<atext linktext="file-5.28." />
+					<atext linktext="file-5.29." />
+					<atext linktext="file-5.30." />
+					<atext linktext="file-5.31." />
+					<atext linktext="file-6." />
+					<atext linktext="file-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			# cd ${PKGNAME}-${PKGVERSION}
+			# sed -i -e '197,+1d' \
+			#	-e '189,+1d' \
+			#	-e 's/token$/tokens/' doc/file.man
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,95 @@
+<llpackages>
+	<package 
+		name="clamav"
+		version="0.98.4"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                           
+				<pkg sha1="f1003d04f34efb0aede05395d3c7cc22c944e4ef">clamav-0.98.4.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/clamav/clamav/0.98.4/</mirror>
+			</file>
+			<manualcheck date="20140718" interval="90" page="http://sourceforge.net/projects/clamav/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/clamav/files/">
+					<atext linktext="clamav-0.98.7." />
+					<atext linktext="clamav-0.98.5." />
+					<atext linktext="clamav-0.98.6." />
+					<atext linktext="clamav-0.99." />
+					<atext linktext="clamav-0.100." />
+					<atext linktext="clamav-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libtool</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			<dep>zip</dep>
+			<dep>llvm</dep>
+			<dep>distcc</dep>
+			<dep>clamav-prep</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/opt --sysconfdir=/etc  # CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount 
+			else
+				./configure --prefix=/opt --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			rm /opt/share/clamav/main.cvd
+			rm /opt/share/clamav/daily.cvd
+			mkdir -p /opt/share/clamav/
+			touch /opt/share/clamav/keep_this_directory
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
