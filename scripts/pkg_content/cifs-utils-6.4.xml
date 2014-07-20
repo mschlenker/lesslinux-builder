@@ -1,0 +1,28 @@
+<pkgdesc name='cifs-utils' version='6.4'>
+    <subpackage name='skel'>
+        <directory owner='0' group='0' path='/sbin'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/bin'/>
+        <directory owner='0' group='0' path='/usr/sbin'/>
+        <directory owner='0' group='0' path='/usr/share'/>
+        <directory owner='0' group='0' path='/usr/share/man'/>
+        <directory owner='0' group='0' path='/usr/share/man/man1'/>
+        <directory owner='0' group='0' path='/usr/share/man/man8'/>
+        <directory owner='0' group='0' path='/usr/include'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file owner='0' mode='100755' group='0' path='/usr/sbin/mount.cifs'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man8/mount.cifs.8'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file owner='0' mode='100644' group='0' path='/usr/include/cifsidmap.h'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,29 @@
+<pkgdesc name='kexec-tools' version='2.0.7'>
+    <subpackage name='skel'>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/sbin'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/kexec-tools'/>
+        <directory owner='0' group='0' path='/usr/share'/>
+        <directory owner='0' group='0' path='/usr/share/man'/>
+        <directory owner='0' group='0' path='/usr/share/man/man8'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file owner='0' mode='100755' group='0' path='/usr/sbin/kexec'/>
+        <file owner='0' mode='100755' group='0' path='/usr/sbin/kdump'/>
+        <file owner='0' mode='100755' group='0' path='/usr/sbin/vmcore-dmesg'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/kexec-tools/kexec_test'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man8/kexec.8'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man8/kdump.8'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man8/vmcore-dmesg.8'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>
