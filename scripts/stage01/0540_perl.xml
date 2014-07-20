@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="perl"
-		version="5.18.2"
+		version="5.20.0"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                             
-				<pkg sha1="b8b87ef46630b5a2287b86b6e0c69088da36adfd">perl-5.18.2.tar.bz2</pkg>
+				<pkg sha1="e925e4fc36e90eace19a1ca850f912618ba6788f">perl-5.20.0.tar.bz2</pkg>
 				<mirror>http://www.cpan.org/src/5.0/</mirror>
 			</file>
-			<file>                                                                           
+			<!-- <file>                                                                           
 				<pkg sha1="0b09be49bb6eb90453975bc2028d8f512b6b1ee0">perl-5.18.1-libc-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20140109" interval="180" page="http://www.cpan.org/" />
+			</file> -->
+			<manualcheck date="20140617" interval="180" page="http://www.cpan.org/" />
 			<check>
 				<page html="http://www.cpan.org/src/5.0/">
-					<atext linktext="perl-5.18.5." />
-					<atext linktext="perl-5.18.3." />
-					<atext linktext="perl-5.18.4." />
-					<atext linktext="perl-5.20." />
+					<atext linktext="perl-5.20.1." />
+					<atext linktext="perl-5.20.2." />
+					<atext linktext="perl-5.20.3." />
 					<atext linktext="perl-5.22." />
 					<atext linktext="perl-5.24." />
+					<atext linktext="perl-5.26." />
 					<atext linktext="perl-6." />
 				</page>
 			</check>
@@ -34,19 +34,19 @@
 			]]>
 		</unpack>
 		<patch />
-		<patch>
+		<!-- <patch>
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}-5.18.1-libc-1.patch | patch -p1
 			
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
-			sh Configure -des -Dprefix=/tools
+			sh Configure -des -Dprefix=/tools  -Dlibs=-lm
 			make
 			
 			]]>

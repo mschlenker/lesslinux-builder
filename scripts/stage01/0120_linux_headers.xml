@@ -1,44 +1,44 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="3.14.4"
+		version="3.15.6"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="fc777520e5976caf0d5513502b8156f73748e379">linux-3.14.tar.xz</pkg>
+				<pkg sha1="f21a27b36ad7169596b0b809707f1442e6d2bb89">linux-3.15.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="2b53c1bfed4fe977bcc8832b3b1fc8c1b8486e26">patch-3.14.4.xz</pkg>
+				<pkg sha1="3d5673d60a32d9c4af35647b3405bdfd8080898a">patch-3.15.6.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20140511" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20140719" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.14.7." />
-					<atext linktext="patch-3.14.5." />
-					<atext linktext="patch-3.14.6." />
-					<atext linktext="patch-3.15." />
+					<atext linktext="patch-3.15.8." />
+					<atext linktext="patch-3.15.9." />
+					<atext linktext="patch-3.15.7." />
 					<atext linktext="patch-3.16." />
 					<atext linktext="patch-3.17." />
+					<atext linktext="patch-3.18." />
 				</page>
 			</check>
 		</sources>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
+			unxz -c ${SRCDIR}/linux-3.15.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
 			
-			cd linux-3.14
+			cd linux-3.15
 			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
 				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			fi
 			cd ..
-			mv -v linux-3.14 linux-${PKGVERSION}
+			mv -v linux-3.15 linux-${PKGVERSION}
 			
 			]]>
 		</patch>

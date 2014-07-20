@@ -54,7 +54,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/ --enable-zlib-dynamic --mandir=/usr/share/man && make DOCBOOKTOMAN=true
+			./configure --prefix=/ --enable-zlib-dynamic --mandir=/usr/share/man.old && make DOCBOOKTOMAN=true
 			]]>
 		</build>
 		<test />
@@ -62,6 +62,10 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make INSTALL=install DESTDIR=$TGTDIR install
+			for target in depmod insmod modinfo modprobe rmmod; do
+				mv $TGTDIR/sbin/$target $TGTDIR/sbin/${target}.old 
+			done
+			mv $TGTDIR/bin/lsmod $TGTDIR/bin/lsmod.old
 			]]>
 		</install>
 	</package>

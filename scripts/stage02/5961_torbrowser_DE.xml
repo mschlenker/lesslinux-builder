@@ -1,19 +1,15 @@
 <llpackages>
 	<package 
 		name="tor-browser-de"
-		version="3.6.1"
+		version="3.6.2"
 		class="user" providedeps="no"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                          
-				<pkg sha1="86572e17b71b08d7c9e17b90c49bfdb97eb0f6ed">tor-browser-linux32-3.6.1_de.tar.xz</pkg>
-				<mirror>https://www.torproject.org/dist/torbrowser/3.6.1/</mirror>
+				<pkg sha1="03957e99300d93cd5e3ee3414d9118ff41f09070">tor-browser-linux32-3.6.2_de.tar.xz</pkg>
+				<mirror>https://www.torproject.org/dist/torbrowser/3.6.2/</mirror>
 			</file>  
-			<file>                          
-				<pkg sha1="8d1299062b8c5251889dc7d167316fba14b66805">tor-browser-linux32-3.6.1_de.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -35,7 +31,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/tor-browser-linux32-${PKGVERSION}_de.tar.xz
+			unxz -c ${SRCDIR}/tor-browser-linux32-${PKGVERSION}_de.tar.xz > tor-browser_de.tar
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -52,9 +48,12 @@
 		<test />
 		<install>
 			<![CDATA[
-			mkdir -p ${TGTDIR}/opt
+			mkdir -p ${TGTDIR}/opt/bin
 			mkdir -p ${TGTDIR}/usr/bin
-			tar -cf - tor-browser_de | tar -C ${TGTDIR}/opt -xf - 
+			mkdir -p ${TGTDIR}/usr/share/applications
+			# tar -cf - tor-browser_de | tar -C ${TGTDIR}/opt -xf - 
+			# unxz -c 
+			install -m 0644 tor-browser_de.tar ${TGTDIR}/opt/
 			mkdir -p ${TGTDIR}/opt/tor-browser_de/.config 
 			touch ${TGTDIR}/opt/tor-browser_de/.config/empty_by_intention 
 
@@ -83,8 +82,8 @@ chmod a+rx ${TGTDIR}/usr/bin/tor-browser
 
 ######### Create starter for TOR browser using smack
 
-echo -n '' > ${TGTDIR}/opt/tor-browser_de/tor-browser_smack
-cat >> ${TGTDIR}/opt/tor-browser_de/tor-browser_smack << FFSMACK
+echo -n '' > ${TGTDIR}/opt/bin/tor-browser_smack
+cat >> ${TGTDIR}/opt/bin/tor-browser_smack << FFSMACK
 #!/static/bin/ash
 
 export PATH=$PATH:/opt/bin:/opt/sbin
@@ -93,9 +92,29 @@ cd /opt/tor-browser_de
 
 FFSMACK
 
+########## Create desktop file
+
+echo -n '' > ${TGTDIR}/usr/share/applications/torbrowser.desktop
+cat >> ${TGTDIR}/usr/share/applications/torbrowser.desktop << DESKFILE
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Tor Bowser
+Name[de]=Tor Browser
+Categories=Network;
+Exec=/usr/bin/tor-browser
+Icon=/opt/tor-browser_de/Browser/browser/chrome/icons/default/default48.png
+Terminal=false
+StartupNotify=true
+Path=
+
+DESKFILE
+
 ########## Set some permissions
 
-chmod a+rx ${TGTDIR}/opt/tor-browser_de/tor-browser_smack
+chmod a+rx ${TGTDIR}/opt/bin/tor-browser_smack
 chmod a+rx ${TGTDIR}/opt/tor-browser_de/start-tor-browser
 chown -R 1000:1000 ${TGTDIR}/opt/tor-browser_de
 

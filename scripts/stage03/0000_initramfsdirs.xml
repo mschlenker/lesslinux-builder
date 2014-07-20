@@ -2220,31 +2220,18 @@ case $1 in
 	    for i in /sys/bus/pci/devices/* ; do 
 		prod=` cat $i/device | sed 's/0x//' `
 		vend=` cat $i/vendor | sed 's/0x//' `
-		for modname in \
+		if [ -f /lib/modules/${kversion}/modules.pcimap ] ; then
+		    for modname in \
 		        ` cat /lib/modules/${kversion}/modules.pcimap | awk '{print $1, $2, $3}' | \
 			    grep -Ei ' 0x0000'${vend}' 0x0000'${prod}'$| 0x0000'${vend}' 0xffffffff$| 0xffffffff 0x0000'${prod}'$' | awk '{print $1}' ` ; do
-		    if echo "$alreadyloaded" | grep -qv "$modname " ; then
-			modprobe.static -q -b $modname
-			alreadyloaded="$alreadyloaded $modname "
-		    fi
-		done
-	    done
-	    for modname in \
-		` cat /lib/modules/${kversion}/modules.pcimap | awk '{print $1, $2, $3}' | \
-		    grep -i ' 0xffffffff 0xffffffff$' | awk '{print $1}' ` ; do
-		if echo "$alreadyloaded" | grep -qv "$modname " ; then
-		    modprobe.static -q -b $modname
-		    alreadyloaded="$alreadyloaded $modname "
-		fi
-	    done
-	    printf "$bold===> Loading USB drivers $normal\n"
-	    for i in /sys/bus/usb/devices/* ; do 
-		if [ -f $i/idVendor ] ; then
-		    prod=` cat $i/idProduct `
-		    vend=` cat $i/idVendor `
+			if echo "$alreadyloaded" | grep -qv "$modname " ; then
+			    modprobe.static -q -b $modname
+			    alreadyloaded="$alreadyloaded $modname "
+		        fi
+		    done
+		else
 		    for modname in \
-			    ` cat /lib/modules/${kversion}/modules.usbmap | awk '{print $1, $3, $4}' | \
-			        grep -Ei ' 0x'${vend}' 0x'${prod}'$| 0x'${vend}' 0xffff$| 0xffff 0x'${prod}'$' | awk '{print $1}' ` ; do 
+			` grep -Ei 'alias pci:v0000'${vend}d0000${prod}'sv|alias pci:v\*d0000'${prod}'sv|alias pci:v0000'${vend}'d\*sv' /lib/modules/${kversion}/modules.alias | awk '{print $3}' | uniq ` ; do
 			if echo "$alreadyloaded" | grep -qv "$modname " ; then
 			    modprobe.static -q -b $modname
 			    alreadyloaded="$alreadyloaded $modname "
@@ -2252,14 +2239,67 @@ case $1 in
 		    done
 		fi
 	    done
-	    for modname in \
-		` cat /lib/modules/${kversion}/modules.usbmap | awk '{print $1, $3, $4}' | \
-		    grep -i ' 0xffff 0xffff$' | awk '{print $1}' ` ; do 
-		if echo "$alreadyloaded" | grep -qv "$modname " ; then
-		    modprobe.static -q -b $modname
-		    alreadyloaded="$alreadyloaded $modname "
+	    if [ -f /lib/modules/${kversion}/modules.pcimap ] ; then
+		for modname in \
+		    ` cat /lib/modules/${kversion}/modules.pcimap | awk '{print $1, $2, $3}' | \
+			grep -i ' 0xffffffff 0xffffffff$' | awk '{print $1}' ` ; do
+		    if echo "$alreadyloaded" | grep -qv "$modname " ; then
+			modprobe.static -q -b $modname
+			alreadyloaded="$alreadyloaded $modname "
+		    fi
+		done
+	    else
+		for modname in \
+		    ` cat /lib/modules/${kversion}/modules.alias |  grep -Ei 'alias pci:v\*d\*sv' | awk '{print $3}' | uniq ` ; do
+			if echo "$alreadyloaded" | grep -qv "$modname " ; then
+			    modprobe.static -q -b $modname
+			    alreadyloaded="$alreadyloaded $modname "
+			fi
+		    done
+	    fi
+	    printf "$bold===> Loading USB drivers $normal\n"
+	    for i in /sys/bus/usb/devices/* ; do 
+		if [ -f $i/idVendor ] ; then
+		    prod=` cat $i/idProduct `
+		    vend=` cat $i/idVendor `
+		    if [ -f /lib/modules/${kversion}/modules.usbmap ] ; then
+			for modname in \
+			    ` cat /lib/modules/${kversion}/modules.usbmap | awk '{print $1, $3, $4}' | \
+			        grep -Ei ' 0x'${vend}' 0x'${prod}'$| 0x'${vend}' 0xffff$| 0xffff 0x'${prod}'$' | awk '{print $1}' ` ; do 
+			    if echo "$alreadyloaded" | grep -qv "$modname " ; then
+				modprobe.static -q -b $modname
+				alreadyloaded="$alreadyloaded $modname "
+		            fi
+			done
+		    else	
+			for modname in \
+			   ` grep -Ei 'alias usb:v'${vend}p${prod}'d|alias usb:v\*p'${prod}'d|alias usb:v'${vend}'p\*d' /lib/modules/${kversion}/modules.alias | awk '{print $3}' | uniq ` ; do
+			    if echo "$alreadyloaded" | grep -qv "$modname " ; then
+				modprobe.static -q -b $modname
+				alreadyloaded="$alreadyloaded $modname "
+		            fi
+			done
+		    fi
 		fi
-	    done
+	    done 
+	    if [ -f /lib/modules/${kversion}/modules.usbmap ] ; then
+		for modname in \
+		    ` cat /lib/modules/${kversion}/modules.usbmap | awk '{print $1, $3, $4}' | \
+		    grep -i ' 0xffff 0xffff$' | awk '{print $1}' ` ; do 
+		    if echo "$alreadyloaded" | grep -qv "$modname " ; then
+			modprobe.static -q -b $modname
+			alreadyloaded="$alreadyloaded $modname "
+		    fi
+		done
+	    else
+		for modname in \
+		    ` grep -Ei 'alias usb:v\*p\*d' /lib/modules/${kversion}/modules.alias | awk '{print $3}' | uniq ` ; do
+		    if echo "$alreadyloaded" | grep -qv "$modname " ; then
+			modprobe.static -q -b $modname
+			alreadyloaded="$alreadyloaded $modname "
+		    fi
+		done   
+	    fi
 	    mountpoint -q /proc/bus/usb || mount -t usbfs usbfs /proc/bus/usb
 	    if cat /sys/hypervisor/properties/capabilities | grep -q xen ; then
 		printf "$bold===> Loading Xen specific drivers $normal \n"

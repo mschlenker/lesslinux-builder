@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="3.14.7"
+		version="3.15.6"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="df28ba2ba00baabe50e7bc0de522690e07106547">config-3.14-lesslinux-20140513-1438</pkg> 
+				<pkg sha1="95d05eb18d8f414011732abde9f52095bf6def07">config-3.15-lesslinux-20140618-1030</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="fc777520e5976caf0d5513502b8156f73748e379">linux-3.14.tar.xz</pkg>
+				<pkg sha1="f21a27b36ad7169596b0b809707f1442e6d2bb89">linux-3.15.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="5fe2dd64bd03945ec0df16c66af512e64cb086a4">patch-3.14.7.xz</pkg>
+				<pkg sha1="3d5673d60a32d9c4af35647b3405bdfd8080898a">patch-3.15.6.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20140608" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20140719" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.14.10." />
-					<atext linktext="patch-3.14.8." />
-					<atext linktext="patch-3.14.9." />
-					<atext linktext="patch-3.15." />
+					<atext linktext="patch-3.15.8." />
+					<atext linktext="patch-3.15.9." />
+					<atext linktext="patch-3.15.7." />
 					<atext linktext="patch-3.16." />
 					<atext linktext="patch-3.17." />
+					<atext linktext="patch-3.18." />
 				</page>
 			</check>
 		</sources>
@@ -60,21 +60,22 @@
 			<!-- <dep>linux-pax</dep> -->
 			<dep>bc</dep>
 			<dep>distcc</dep>
+			<dep>kmod</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
+			unxz -c ${SRCDIR}/linux-3.15.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			cd linux-3.14
+			cd linux-3.15
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/config-3.14-lesslinux-20140513-1438 .config 
+			cp -v ${SRCDIR}/config-3.15-lesslinux-20140618-1030  .config 
 			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
 			cd ..
-			mv linux-3.14 linux-${PKGVERSION}
+			mv linux-3.15 linux-${PKGVERSION}
 			]]>
 		</patch>
 		<build>

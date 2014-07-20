@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="kmod"
-		version="17"
+		version="18"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>              
-				<pkg sha1="d283d2a1b4bd4b630df82e706b53f969f1c13a7b">kmod-17.tar.xz</pkg>
+				<pkg sha1="6cadc3b088fa5874f712d3bbe4df75ece59c4b77">kmod-18.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/utils/kernel/kmod/</mirror>
 			</file>
-			<manualcheck date="20140224" interval="60" page="http://www.kernel.org/pub/linux/utils/kernel/kmod/" />
+			<manualcheck date="20140701" interval="60" page="http://www.kernel.org/pub/linux/utils/kernel/kmod/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/kernel/kmod/">
 					<atext linktext="kmod-33." />
-					<atext linktext="kmod-18." />
+					<atext linktext="kmod-34." />
 					<atext linktext="kmod-19." />
 					<atext linktext="kmod-20." />
 					<atext linktext="kmod-21." />
@@ -81,7 +81,12 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/sbin
 			make install DESTDIR=${TGTDIR}
+			for target in depmod insmod modinfo modprobe rmmod; do
+				ln -sv ../bin/kmod ${TGTDIR}/sbin/$target
+			done
+			ln -sv kmod ${TGTDIR}/bin/lsmod
 			]]>
 		</install>
 		<clean>
