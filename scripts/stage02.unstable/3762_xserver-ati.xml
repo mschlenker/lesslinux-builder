@@ -1,0 +1,98 @@
+<llpackages>
+	<package 
+		name="xf86-video-ati"
+		version="7.4.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                                                                                   
+				<pkg sha1="65ebadef558608beba878d64fc3d10c5a3c706e7">xf86-video-ati-7.4.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
+			</file>
+			<manualcheck date="20140719" interval="120" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
+					<atext linktext="xf86-video-ati-7.4.1" />
+					<atext linktext="xf86-video-ati-7.4.2" />
+					<atext linktext="xf86-video-ati-7.4.3" />
+					<atext linktext="xf86-video-ati-7.6." />
+					<atext linktext="xf86-video-ati-7.5." />
+					<atext linktext="xf86-video-ati-8." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Mesa</dep>
+			<dep>glu</dep>
+			<dep>glamor-egl</dep><dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libdrm</dep>
+                        <dep>libpciaccess</dep>
+                        <dep>libxcb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libdrm</dep>
+                        <dep>libpciaccess</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# bash ./autogen.sh
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
