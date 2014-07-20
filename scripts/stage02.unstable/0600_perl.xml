@@ -1,0 +1,114 @@
+<llpackages>
+	<package 
+		name="perl"
+		version="5.20.0"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                             
+				<pkg sha1="e925e4fc36e90eace19a1ca850f912618ba6788f">perl-5.20.0.tar.bz2</pkg>
+				<mirror>http://www.cpan.org/src/5.0/</mirror>
+			</file>
+			<!-- <file>                                                                           
+				<pkg sha1="0b09be49bb6eb90453975bc2028d8f512b6b1ee0">perl-5.18.1-libc-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20140617" interval="180" page="http://www.cpan.org/" />
+			<check>
+				<page html="http://www.cpan.org/src/5.0/">
+					<atext linktext="perl-5.20.1." />
+					<atext linktext="perl-5.20.2." />
+					<atext linktext="perl-5.20.3." />
+					<atext linktext="perl-5.22." />
+					<atext linktext="perl-5.24." />
+					<atext linktext="perl-5.26." />
+					<atext linktext="perl-6." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>binutils</dep>
+			<dep>bison</dep>
+			<dep>coreutils</dep>
+			<dep>gcc</dep>
+			<dep>glibc</dep>
+			<dep>grep</dep>
+			<dep>inetutils</dep>
+			<dep>linux_headers</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>zlib</dep>
+			<dep>gdbm</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e "s|BUILD_ZLIB\s*= True|BUILD_ZLIB = False|"           \
+				-e "s|INCLUDE\s*= ./zlib-src|INCLUDE    = /usr/include|" \
+				-e "s|LIB\s*= ./zlib-src|LIB        = /usr/lib|"         \
+				cpan/Compress-Raw-Zlib/config.in
+			exit 0
+			]]>
+		</patch> -->
+		<patch>
+			<![CDATA[
+
+cd ${PKGNAME}-${PKGVERSION}
+sed -i -e "s|BUILD_ZLIB\s*= True|BUILD_ZLIB = False|"            \
+	-e "s|INCLUDE\s*= ./zlib-src|INCLUDE    = /usr/include|" \
+	-e "s|LIB\s*= ./zlib-src|LIB        = /usr/lib|"         \
+	cpan/Compress-Raw-Zlib/config.in
+	
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			sh Configure -des -Dprefix=/usr \
+				-Dvendorprefix=/usr           \
+				-Dman1dir=/usr/share/man/man1 \
+				-Dman3dir=/usr/share/man/man3 \
+				-Dpager="/usr/bin/less -isR" \
+                                -Duseshrplib 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ]   ; then 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++"  
+			fi
+			make
+				
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make test
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			# ln -sf /usr/bin/perl /bin/perl
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
