@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="libstdcplusplus"
+		version="4.9.1"
+		buildas="unpriv"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="3f303f403053f0ce79530dae832811ecef91197e">gcc-4.9.1.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.1/</mirror>
+			</file>
+			<manualcheck date="20140719" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-4.9.4" />
+					<atext linktext="gcc-4.9.2" />
+					<atext linktext="gcc-4.9.3" />
+					<atext linktext="gcc-4.10."/>
+					<atext linktext="gcc-4.11." />
+					<atext linktext="gcc-5." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+		
+			tar xjf ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2
+			mkdir gcc-build 
+		
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			
+			echo "Nothing to patch."
+			
+			]]>
+		</patch>
+		<chown>
+			<![CDATA[ 
+			
+			chown -R ${UNPRIV} gcc-build
+			chown -R ${UNPRIV} gcc-${PKGVERSION}
+			
+			]]>
+		</chown>
+		<build>
+			<![CDATA[ 
+		
+cd gcc-build
+../gcc-${PKGVERSION}/libstdc++-v3/configure \
+    --host=$LFS_TGT                      \
+    --prefix=/tools                      \
+    --disable-multilib                   \
+    --disable-shared                     \
+    --disable-nls                        \
+    --disable-libstdcxx-threads          \
+    --disable-libstdcxx-pch              \
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/${PKGVERSION}
+make
+
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd gcc-build
+			make install
+			
+			]]>
+		</install>
+	</package>
+</llpackages>
