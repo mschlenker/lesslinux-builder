@@ -1,25 +1,16 @@
 <llpackages>
 	<package 
-		name="xf86-input-evdev"
-		version="2.9.0"
+		name="libevdev"
+		version="1.2.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                
-				<pkg sha1="e5e196719c09a02ca275b8eab534753408518e05">xf86-input-evdev-2.9.0.tar.bz2</pkg>
-				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
+				<pkg sha1="6c8efb28e084e4ec9ff099591b6cef4457550fc8">libevdev-1.2.2.tar.gz</pkg>
+				<mirror>http://cgit.freedesktop.org/libevdev/snapshot/</mirror>
 			</file>
-			<manualcheck date="20140718" interval="180" page="http://xorg.freedesktop.org/archive/individual/driver/" />
-			<check>
-				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
-					<atext linktext="xf86-input-evdev-2.9.1." />
-					<atext linktext="xf86-input-evdev-2.9.2." />
-					<atext linktext="xf86-input-evdev-2.9.3." />
-					<atext linktext="xf86-input-evdev-2.10." />
-					<atext linktext="xf86-input-evdev-3." />
-				</page>
-			</check>
+			<manualcheck date="20140718" interval="180" page="http://cgit.freedesktop.org/libevdev/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -41,7 +32,6 @@
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
-			<dep>libevdev</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
