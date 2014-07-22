@@ -159,12 +159,13 @@ done
 			find tb-build -type f -name libxul.so
 			
 			ccount=0
-			while [ '!' -f tb-build/mozilla/toolkit/library/libxul.so -a $ccount -lt 5 ] ; do
+			while [ '!' -f tb-build/mozilla/toolkit/library/libxul.so -a $ccount -lt 2 ] ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
+			[ -f tb-build/mozilla/toolkit/library/libxul.so ] || exit 1 
 			
 			# Now try to build the language packs
 			for packlang in de es-ES pl ru fr it nl pt-PT ; do
