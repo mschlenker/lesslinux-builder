@@ -143,7 +143,7 @@ done
 			export SHELL=/bin/bash
 			echo $SHELL
 			mkdir tb-build
-			sed -i 's%PWD%'${workdir}'/l10n%g' mozilla-release/.mozconfig 
+			sed -i 's%PWD%'${workdir}'/l10n%g' com-esr31/.mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j2\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
