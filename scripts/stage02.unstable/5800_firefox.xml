@@ -190,7 +190,8 @@ done
 			done
 			
 			make -C ff-build package
-			
+			echo '==> Searching Tarballs'
+			find ff-build -name '*.tar.bz2' | sort 
 			echo '==> Searching XPIs'
 			find ff-build -name '*.xpi' | sort 
 			]]>
@@ -198,10 +199,8 @@ done
 		<test />
 		<install>
 			<![CDATA[
-LIBXUL=mozilla-release/ff-build/toolkit/library/libxul.so
 TARFILE=mozilla-release/ff-build/dist/firefox-${PKGVERSION}.en-US.linux-i686.tar.bz2
 [ -f "$TARFILE" ] || exit 1
-[ -f "$LIBXUL" ] || exit 1
 			
 mkdir -p ${TGTDIR}/opt
 mkdir -p ${TGTDIR}/usr/share/mozilla-addons
