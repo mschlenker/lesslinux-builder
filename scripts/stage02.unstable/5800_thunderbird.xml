@@ -143,6 +143,7 @@ done
 			export SHELL=/bin/bash
 			echo $SHELL
 			mkdir tb-build
+			mkdir -p mozilla/tb-build
 			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
