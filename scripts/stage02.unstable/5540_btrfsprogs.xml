@@ -34,10 +34,10 @@
 		</unpack>
 		<build>
 			<![CDATA[ 
+			cd ${PKGNAME}
 			sed -i 's/ build-Documentation//g' Makefile 
 			sed -i 's/ install-Documentation//g' Makefile
-			cd ${PKGNAME}
-				if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
