@@ -143,7 +143,7 @@ done
 			export SHELL=/bin/bash
 			echo $SHELL
 			mkdir tb-build
-			sed -i 's%PWD%'${workdir}'/l10n%g' .mozconfig 
+			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j2\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
