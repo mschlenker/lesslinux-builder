@@ -1,0 +1,265 @@
+<pkgdesc name='xorg-server' version='1.16.0'>
+    <subpackage name='skel'>
+        <softlink owner='0' group='0' path='/usr/bin/X'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/share'/>
+        <directory owner='0' group='0' path='/usr/share/man'/>
+        <directory owner='0' group='0' path='/usr/share/man/man1'/>
+        <directory owner='0' group='0' path='/usr/share/man/man4'/>
+        <directory owner='0' group='0' path='/usr/share/man/man5'/>
+        <directory owner='0' group='0' path='/usr/share/X11'/>
+        <directory owner='0' group='0' path='/usr/share/X11/xkb'/>
+        <directory owner='0' group='0' path='/usr/share/X11/xkb/compiled'/>
+        <directory owner='0' group='0' path='/usr/share/X11/xorg.conf.d'/>
+        <directory owner='0' group='0' path='/usr/share/aclocal'/>
+        <directory owner='0' group='0' path='/usr/include'/>
+        <directory owner='0' group='0' path='/usr/include/xorg'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/xorg'/>
+        <directory owner='0' group='0' path='/usr/lib/xorg/modules'/>
+        <directory owner='0' group='0' path='/usr/lib/xorg/modules/multimedia'/>
+        <directory owner='0' group='0' path='/usr/lib/xorg/modules/extensions'/>
+        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
+        <directory owner='0' group='0' path='/usr/bin'/>
+        <directory owner='0' group='0' path='/var'/>
+        <directory owner='0' group='0' path='/var/log'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libint10.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libvgahw.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libvbe.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/bt829_drv.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/fi1236_drv.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/msp3430_drv.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/tda8425_drv.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/tda9850_drv.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/tda9885_drv.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/uda1380_drv.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/extensions/libglx.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libfb.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libwfb.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libshadow.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libfbdevhw.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libshadowfb.so'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libexa.so'/>
+        <file owner='0' mode='104755' group='0' path='/usr/bin/Xorg'/>
+        <file owner='0' mode='100755' group='0' path='/usr/bin/gtf'/>
+        <file owner='0' mode='100755' group='0' path='/usr/bin/cvt'/>
+        <file owner='0' mode='100755' group='0' path='/usr/bin/Xvfb'/>
+        <file owner='0' mode='100755' group='0' path='/usr/bin/Xnest'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/Xserver.1'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/cvt.1'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/gtf.1'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/Xorg.1'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/Xvfb.1'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man1/Xnest.1'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man4/fbdevhw.4'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man4/exa.4'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man5/xorg.conf.5'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man5/xorg.conf.d.5'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xorg-server.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/XIstubs.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/Xprintf.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/callback.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/client.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/closestr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/closure.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/colormap.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/colormapst.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/hotplug.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/cursor.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/cursorstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dix.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dixaccess.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dixevents.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dixfont.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dixfontstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dixgrabs.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dixstruct.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/events.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/exevents.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/extension.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/extinit.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/extnsionst.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/gc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/gcstruct.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/globals.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/glx_extinit.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/input.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/inputstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/list.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/misc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/miscstruct.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/opaque.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/optionstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/os.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/pixmap.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/pixmapstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/privates.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/property.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/propertyst.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/ptrveloc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/region.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/regionstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/registry.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/resource.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/rgb.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/screenint.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/scrnintstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/selection.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/servermd.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/site.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/swaprep.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/swapreq.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/validate.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/window.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/windowstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xkbfile.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xkbsrv.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xkbstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xkbrules.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xserver-properties.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/fb.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/fbrop.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/fboverlay.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/wfbrename.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/fbpict.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/micmap.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/miline.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mipointer.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mi.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/migc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mipointrst.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mizerarc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/micoord.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mifillarc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mispans.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/miwideline.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mistruct.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mifpoly.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mioverlay.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xvdix.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xvmcext.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/geext.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/geint.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/shmint.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/syncsdk.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/panoramiXsrv.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/panoramiX.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xace.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xacestr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/misync.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/misyncstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/misyncshm.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/misyncfd.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/damage.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/damagestr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/shadow.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/randrstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/rrtransform.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/picture.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/mipict.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/glyphstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/picturestr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dbestruct.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xfixes.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/compositeext.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/present.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/presentext.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dri3.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/exa.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/compiler.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/fourcc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Module.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Opt.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86PciInfo.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Priv.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Privstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86cmap.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86fbman.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86str.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Xinput.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xisb.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86xv.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86xvmc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86xvpriv.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/vidmodeproc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dgaproc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xorgVersion.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86sbusBus.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86VGAarbiter.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Optionstr.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86platformBus.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xaarop.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/edid.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86DDC.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86int10.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Pci.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86_OSproc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86_OSlib.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Parser.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Optrec.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/BT.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/IBM.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/TI.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Cursor.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86RamDac.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/vgaHW.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Crtc.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86Modes.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86RandR12.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dri.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/sarea.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dristruct.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/dri2.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/vbe.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/vbeModes.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/xf86i2c.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/bt829.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/fi1236.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/msp3430.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/tda8425.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/tda9850.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/tda9885.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/uda1380.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/i2c_def.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/fbdevhw.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/xorg/shadowfb.h'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libint10.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libvgahw.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libvbe.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/bt829_drv.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/fi1236_drv.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/msp3430_drv.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/tda8425_drv.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/tda9850_drv.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/tda9885_drv.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/multimedia/uda1380_drv.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/extensions/libglx.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libfb.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libwfb.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libshadow.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libfbdevhw.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libshadowfb.la'/>
+        <file owner='0' mode='100755' group='0' path='/usr/lib/xorg/modules/libexa.la'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/pkgconfig/xorg-server.pc'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file owner='0' mode='100644' group='0' path='/usr/share/X11/xkb/compiled/README.compiled'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/X11/xorg.conf.d/10-evdev.conf'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/X11/xorg.conf.d/10-quirks.conf'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/aclocal/xorg-server.m4'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/xorg/protocol.txt'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>
