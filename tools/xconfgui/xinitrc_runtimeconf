@@ -39,6 +39,7 @@ mount -t tmpfs -o mode=0755 tmpfs /root/.config
 mount -t tmpfs -o mode=0755 tmpfs /root/.icewm
 rsync -avHP /home/surfer/.icewm/ /root/.icewm/
 rsync -avHP /home/surfer/.config/ /root/.config/
+
 chown -R root:root /root/.icewm/ 
 chown -R root:root /root/.config/
 

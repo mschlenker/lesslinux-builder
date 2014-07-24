@@ -86,15 +86,14 @@ else
 	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
-sed -i 's/29\.0\.1/30.0/g' /home/surfer/Desktop/010_firefox.desktop  
+sed -i 's/29\.0\.1/31.0/g' /home/surfer/Desktop/010_firefox.desktop  
 install -m 0755 /usr/share/applications/torbrowser.desktop "${HOME}/Desktop/" 
 
 # Uncomment to debug
 # /usr/bin/Terminal &
 # /usr/bin/xterm &
 # setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
-
-[ -f  "${HOME}/Desktop/tarnmailer.desktop" ] || install -m 0755 /usr/share/applications/tarnmailer.desktop "${HOME}/Desktop"
+# [ -f  "${HOME}/Desktop/tarnmailer.desktop" ] || install -m 0755 /usr/share/applications/tarnmailer.desktop "${HOME}/Desktop"
 
 if [ -f "${HOME}/.mozilla/plugins/libflashplayer.so" ] ; then
 	echo "Found Flash"
