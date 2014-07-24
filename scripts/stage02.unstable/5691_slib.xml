@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="slib"
+		version="3b4"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                    
+				<pkg sha1="dda1ed78ff7164738a1a8c51f1f7c08ec1db79eb">slib-3b4.zip</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<mirror>http://groups.csail.mit.edu/mac/ftpdir/scm/</mirror>
+			</file>
+			<manualcheck date="20140724" interval="180" page="http://people.csail.mit.edu/jaffer/SLIB" />
+			<check>
+				<page html="http://groups.csail.mit.edu/mac/ftpdir/scm/">
+					<atext linktext="slib-3b5." />
+					<atext linktext="slib-3b6." />
+					<atext linktext="slib-3b7." />
+					<atext linktext="slib-3b8." />
+					<atext linktext="slib-4" />
+				</page>
+			</check>
+		</sources> 
+		<builddeps>
+                        <dep>bash</dep>
+			<dep>guile</dep>
+			<dep>rsync</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unzip ${SRCDIR}/${PKGNAME}-${PKGVERSION}.zip
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			echo 'Nothing to do...'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			rsync -avHP slib/ /usr/share/guile/slib/
+			touch /usr/share/guile/slib/*
+			chown -R root:root /usr/share/guile/slib/
+			chmod 0644 /usr/share/guile/slib/*
+			]]>
+		</install>
+	</package>
+</llpackages>
