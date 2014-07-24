@@ -317,15 +317,19 @@ class AnyStage
 		dir = ptoks.join("/")
 		ftp = Net::FTP.new # open(server)
 		# ftp.open_timeout = 10
-		ftp.passive = true
-		ftp.connect(server)
-		ftp.login
-		ftp.chdir(dir)
-		ftp.list('*').each { |l|
-			ltoks = l.strip.split
-			items.push(ltoks[8]) if ltoks.size > 0 && ltoks[0] =~ /^.r..r..r..$/
-		}
-		ftp.close 
+		begin
+			ftp.passive = true
+			ftp.connect(server)
+			ftp.login
+			ftp.chdir(dir)
+			ftp.list('*').each { |l|
+				ltoks = l.strip.split
+				items.push(ltoks[8]) if ltoks.size > 0 && ltoks[0] =~ /^.r..r..r..$/
+			}
+			ftp.close
+		rescue
+			puts sprintf("%015.4f", Time.now.to_f) + " check  > VERSION CHECK: " + @buildfile + " current: " + @pkg_name + " " + @pkg_version + " FAILED!"
+		end
 		items.each { |i|
 			versions.each { |v|
 				unless i[v].nil?
