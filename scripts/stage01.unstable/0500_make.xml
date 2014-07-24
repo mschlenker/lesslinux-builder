@@ -1,0 +1,43 @@
+<llpackages>
+	<package 
+		name="make"
+		version="4.0"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                              
+				<pkg sha1="c819622dc84e2290c351646b8a0ec4df0df12bb6">make-4.0.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/make/</mirror>
+			</file>
+			<manualcheck date="20140724" interval="180" page="ftp://ftp.gnu.org/gnu/make/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/make/">
+					<atext linktext="make-4.0.1." />
+					<atext linktext="make-4.0.2." />
+					<atext linktext="make-4.0.3." />
+					<atext linktext="make-4.1." />
+					<atext linktext="make-4.2." />
+					<atext linktext="make-5." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools --without-guile && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
