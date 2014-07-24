@@ -1,71 +1,73 @@
 <llpackages>
 	<package 
-		name="brasero"
-		version="2.32.1"
+		name="gtkhtml"
+		version="3.32.2"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
-			<file>                         
-				<pkg sha1="56141108561f2b8d45998662b86cf6e20f0ff4f2">brasero-2.32.1.tar.bz2</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/brasero/2.32/</mirror>
+			<file>                       
+				<pkg sha1="db8a943ddeec0b86766e671e8f8c427706dbcdd4">gtkhtml-3.32.2.tar.bz2</pkg>
+				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gtkhtml/3.32/</mirror>
 			</file>
-			<manualcheck date="20140724" interval="180" page="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/" />
+			<manualcheck date="20140724" interval="180" page="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/gtkhtml/" />
 			<check>
-				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/2.32/">
-					<atext linktext="brasero-2.32.2." />
-					<atext linktext="brasero-2.32.3." />
-					<atext linktext="brasero-2.32.4." />
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/gtkhtml/3.32/">
+					<atext linktext="gtkhtml-3.32.3." />
+					<atext linktext="gtkhtml-3.32.4." />
+					<atext linktext="gtkhtml-3.32.5." />
+					<atext linktext="gtkhtml-3.32.6." /> 
+				</page>
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/gtkhtml/">
+					<atext linktext="3.34" />
+					<atext linktext="3.36" />
+					<atext linktext="4." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-			<dep>GConf</dep>
+                        <dep>GConf</dep>
                         <dep>ORBit2</dep>
-                        <dep>Python</dep>
                         <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
                         <dep>coreutils</dep>
-                        <dep>dbus-glib</dep>
-                        <dep>dbus</dep>
                         <dep>diffutils</dep>
-                        <dep>docbook-xml</dep>
+                        <dep>enchant</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
-                        <dep>gir-repository</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gnome-doc-utils</dep>
-                        <dep>gobject-introspection</dep>
+                        <dep>gnome-icon-theme</dep>
+                        <dep>gnutls</dep>
                         <dep>grep</dep>
-                        <dep>gst-plugins-base</dep>
-                        <dep>gstreamer</dep>
+			<dep>gst-plugins-base1</dep>
+                        <dep>gstreamer1</dep>
                         <dep>gtk</dep>
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
-                        <dep>libICE</dep>
-                        <dep>libSM</dep>
+                        <dep>iso-codes</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrandr</dep>
                         <dep>libXrender</dep>
-                        <dep>libburn</dep>
-                        <dep>libcanberra</dep>
-                        <dep>libisofs</dep>
-                        <dep>libogg</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
                         <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
                         <dep>libpthread-stubs</dep>
-                        <dep>libtool</dep>
-                        <dep>libunique</dep><dep>libunique3</dep>
-                        <dep>libvorbis</dep>
+                        <dep>libsoup</dep>
                         <dep>libxcb</dep>
                         <dep>libxml2</dep>
-                        <dep>libxslt</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>p5-xml</dep>
@@ -73,24 +75,16 @@
                         <dep>perl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
-                        <dep>pygobject</dep>
-                        <dep>scrollkeeper</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>which</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
-		</builddeps>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
@@ -101,7 +95,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old
+			./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --disable-deprecated-warning-flags
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else
