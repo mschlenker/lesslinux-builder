@@ -1,0 +1,88 @@
+<llpackages>
+	<package 
+		name="grsync"
+		version="1.2.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                       
+				<pkg sha1="98d13f6cff2a16fed596d9ad496b49f47ecac2c2">grsync-1.2.4.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/grsync/</mirror>
+			</file>
+			<manualcheck date="20140724" interval="180" page="http://sourceforge.net/projects/grsync/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.2.6." />
+					<atext linktext="grsync-1.2.5." />
+					<atext linktext="grsync-1.3." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --enable-unity=no && make LDFLAGS="-lm"
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			paxctl -m ${TGTDIR}/usr/bin/grsync
+
+# Modify grsync desktop entry
+
+sed -i 's/Categories=Application/Categories=CB-Other;Application/g' ${TGTDIR}/usr/share/applications/grsync.desktop 
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

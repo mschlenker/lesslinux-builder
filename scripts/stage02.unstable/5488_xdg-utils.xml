@@ -1,0 +1,52 @@
+<llpackages>
+	<package 
+		name="xdg-utils"
+		version="1.0.2"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>   
+				<pkg sha1="e41a04cbf9ff8d743397a2bc23c6ca82e8b59d2c">xdg-utils-1.0.2.tgz</pkg>
+				<mirror>http://portland.freedesktop.org/download/</mirror>
+			</file>
+			<manualcheck date="20140724" interval="180" page="http://portland.freedesktop.org/download/" />
+			<check>
+				<page html="http://portland.freedesktop.org/download/">
+					<atext linktext="xdg-utils-1.0.3." />
+					<atext linktext="xdg-utils-1.0.4." />
+					<atext linktext="xdg-utils-1.1.0." />
+					<atext linktext="xdg-utils-1.2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tgz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
