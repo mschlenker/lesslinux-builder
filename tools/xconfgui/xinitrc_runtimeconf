@@ -24,6 +24,15 @@ for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	fi
 done
 
+# Set DPI value 
+if [ -f /root/.lesslinux/xstuff.xrdb ] ; then
+	xrdb -load /root/.lesslinux/xstuff.xrdb
+else
+	mkdir -p /root/.lesslinux
+	echo "Xft.dpi: ${dpi}" >> /root/.lesslinux/xstuff.xrdb
+	xrdb -load /root/.lesslinux/xstuff.xrdb
+fi
+
 mkdir -p /root/.config
 mkdir -p /root/.icewm
 mount -t tmpfs -o mode=0755 tmpfs /root/.config
@@ -40,7 +49,7 @@ else
 fi
 
 if xdpyinfo | grep -q -i composite ; then
-	compton -cCGbf 
+	compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
 	xcompmgr -c &
 fi
 
@@ -58,6 +67,10 @@ if [ "$RUNTIMECONFWM" = "icewm" ] ; then
 else
 	/usr/bin/matchbox-window-manager -force_dialogs "Startup: $brandlong" &
 fi
+
+sleep 2
+xfsettingsd --replace 
+
 /usr/bin/ruby /usr/local/xconfgui/runtimeconf.rb
 umount /root/.config
 umount /root/.icewm
