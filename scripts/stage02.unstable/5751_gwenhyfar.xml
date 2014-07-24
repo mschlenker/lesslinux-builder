@@ -1,0 +1,103 @@
+<llpackages>
+	<package 
+		name="gwenhywfar"
+		version="4.3.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                               
+				<pkg sha1="c2ba4c45f1eeb379db6c2ae09122c592893f3bd0">gwenhywfar-4.3.3.tar.gz</pkg>
+				<mirror>http://www.aquamaniac.de/</mirror>
+			</file>
+			<manualcheck date="20140724" interval="180" page="http://www.aquamaniac.de/" />
+			<!-- <check>
+				<page html="http://download.enlightenment.org/releases/">
+					<atext linktext="eina-1.0.1." />
+					<atext linktext="eina-1.0.2." />
+					<atext linktext="eina-1.0.3." />
+					<atext linktext="eina-1.1." />
+					<atext linktext="eina-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXrender</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libtasn1</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+                </builddeps> 
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export LIBGNUTLS_CFLAGS=` PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --cflags gnutls `
+			export LIBGNUTLS_LIBS=`   PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --libs   gnutls `
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC='distcc gcc'
+				export CXX='distcc g++'
+				./configure --sysconfdir=/etc --prefix=/usr 
+				pump make -j $jobcount 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="libchipcard"
+		version="5.0.2"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="7d3d2cc4292287825935fefa10953e771a3d9d02">libchipcard-5.0.2.tar.gz</pkg>
+				<mirror>http://www.aquamaniac.de/</mirror>
+			</file>
+			<manualcheck date="20140724" interval="180" page="http://www.aquamaniac.de/" />
+			<!-- <check>
+				<page html="http://download.enlightenment.org/releases/">
+					<atext linktext="eina-1.0.1." />
+					<atext linktext="eina-1.0.2." />
+					<atext linktext="eina-1.0.3." />
+					<atext linktext="eina-1.1." />
+					<atext linktext="eina-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>grep</dep>
+                        <dep>gwenhywfar</dep>
+                        <dep>inetutils</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libtasn1</dep>
+                        <dep>linux_headers</dep>
+			<dep>libusb</dep><dep>libusb-compat</dep>
+                        <dep>make</dep>
+                        <dep>pcsc-lite</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>zlib</dep>
+                </builddeps> 
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
