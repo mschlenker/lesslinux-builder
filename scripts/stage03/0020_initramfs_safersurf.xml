@@ -12,30 +12,11 @@
 		<softlink target="/usr/share/themes/Xfce-basic/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink>  -->
 	</links>
 	<scripts>
-		<!-- <scriptdata location="/etc/smack/user" mode="0644" group="0" owner="0">
-		<![CDATA[root _ +
-surfer _ internet netmgr
-]]>
-		</scriptdata> -->
 		<scriptdata location="/etc/smack/user" mode="0644" group="0" owner="0">
 		<![CDATA[root _ +
 surfer _ internet torbrowser
 ]]>
 		</scriptdata>
-		<!-- <scriptdata location="/etc/smack/accesses" mode="0644" group="0" owner="0">
-		<![CDATA[internet	_		rwxa
-netmgr          _		rwxa
-netmgr		internet	rwxa
-_ 		internet	rwxa
-internet	usrbin		r---
-_		usrbin		r-x-
-netmgr		usrbin		r-x-
-_		netmgr		rwx-
-internet	outgoing	rw--
-netmgr		outgoing	rw--
-outgoing	internet	rw--
-outgoing	netmgr          rw--]]>
-		</scriptdata> -->
 		<scriptdata location="/etc/smack/accesses" mode="0644" group="0" owner="0">
 		<![CDATA[internet	_		rwxa
 _ 		internet	rwxa
@@ -76,11 +57,6 @@ case $1 in
 esac
 		]]>
 		</scriptdata>
-		<!-- <scriptdata location="/etc/default/windowmanager" mode="0755" group="0" owner="0">
-		<![CDATA[#!/static/bin/ash	
-RUNTIMECONFWM=icewm
-		]]>
-		</scriptdata> -->
 		<scriptdata location="/etc/lesslinux/xinitrc" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash	
 
