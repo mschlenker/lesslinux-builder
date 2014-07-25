@@ -109,13 +109,13 @@
                         <dep>slib</dep>
                         <dep>sqlite</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>webkit</dep>
 			<dep>gtkhtml</dep>
                         <dep>which</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
 			<dep>libdbi-drivers</dep>
+			<dep>webkit1</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -154,6 +154,11 @@
 			
 			( cd /usr/share/guile/slib ; ln -s mklibcat.scm mklibcat )
 			guile -c "(use-modules (ice-9 slib)) (require 'new-catalog)"
+
+ln -s /opt/share/applications/gnucash.desktop /usr/share/applications/gnucash.desktop
+
+sed -i 's%Exec=gnucash%Exec=/opt/bin/gnucash_wrapper%g' /opt/share/applications/gnucash.desktop
+sed -i 's%Icon=gnucash-icon%Icon=/opt/share/icons/hicolor/48x48/apps/gnucash-icon.png%g' /opt/share/applications/gnucash.desktop
 
 /sbin/paxctl -m -r /opt/bin/gnucash
 
