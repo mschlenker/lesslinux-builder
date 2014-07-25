@@ -4486,8 +4486,8 @@ format_and_mount_swap() {
 	dd if=/dev/urandom bs=1M count=4 of=${swapkey} 
 	chmod 0600 ${swapkey} 
 	cryptsetup luksFormat --uuid=${auxuuid} -c aes-cbc-essiv:sha256 -s 256 -q ${auxpart} ${swapkey} 
-	cryptsetup luksOpen --key-file ${swapkey} ${auxpart} cryptoswap
-	rm ${swapkey} 
+	cryptsetup luksOpen --key-file ${swapkey} ${auxpart} cryptoswap && ln -s /dev/mapper/cryptoswap ${auxpart}.child 
+ 	rm ${swapkey} 
 	mkswap /dev/mapper/cryptoswap
 	swapon /dev/mapper/cryptoswap
 }

@@ -549,11 +549,10 @@ def mount_crypt_container(container, pw)
 			system("umount /lesslinux/cryptpart") unless contisdev == true
 			return false, extract_lang_string("container_fs_damaged")
 		end
-	else
-		system("rsync -avHP /home/.overlay/ /")
-		return true, "Access to encrypted container successful!"
 	end
-	return false, "This should not happen!"
+	system("rsync -avHP /home/.overlay/ /")
+	system("ln -s /dev/mapper/lesslinux_crypt #{container}.child") if contisdev == true 
+	return true, "Access to encrypted container successful!"
 end
 
 def mount_fat_container(container, pw)
