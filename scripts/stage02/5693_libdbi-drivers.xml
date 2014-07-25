@@ -52,7 +52,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc && make
+			./configure --prefix=/usr --sysconfdir=/etc --with-sqlite3 && make
 			]]>
 		</build>
 		<test />
