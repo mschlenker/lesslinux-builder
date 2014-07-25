@@ -1,0 +1,56 @@
+<pkgdesc name='pcsc-lite' version='1.8.11'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/usr/lib/libpcscspy.so.0' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpcscspy.so' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpcsclite.so.1' owner='0'/>
+        <softlink group='0' path='/usr/lib/libpcsclite.so' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/bin' owner='0'/>
+        <directory group='0' path='/usr/lib' owner='0'/>
+        <directory group='0' path='/usr/lib/pkgconfig' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/man5' owner='0'/>
+        <directory group='0' path='/usr/share/man/man8' owner='0'/>
+        <directory group='0' path='/usr/share/doc' owner='0'/>
+        <directory group='0' path='/usr/share/doc/pcsc-lite' owner='0'/>
+        <directory group='0' path='/usr/sbin' owner='0'/>
+        <directory group='0' path='/usr/include' owner='0'/>
+        <directory group='0' path='/usr/include/PCSC' owner='0'/>
+        <directory group='0' path='/usr/pcsc' owner='0'/>
+        <directory group='0' path='/usr/pcsc/drivers' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file group='0' mode='100755' path='/usr/lib/libpcscspy.so.0.0.0' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/libpcsclite.so.1.0.0' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/pcscd' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'>
+        <file group='0' mode='100644' path='/usr/share/man/man1/pcsc-spy.1' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man5/reader.conf.5' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/man/man8/pcscd.8' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/doc/pcsc-lite/README.DAEMON' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/doc/pcsc-lite/README.polkit' owner='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file group='0' mode='100755' path='/usr/lib/libpcscspy.la' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/libpcsclite.la' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/pkgconfig/libpcsclite.pc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/PCSC/debuglog.h' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/PCSC/ifdhandler.h' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/PCSC/reader.h' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/PCSC/winscard.h' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/PCSC/wintypes.h' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/PCSC/pcsclite.h' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100755' path='/usr/bin/pcsc-spy' owner='0'/>
+        <file group='0' mode='100644' path='/usr/pcsc/drivers/.intentionally_empty' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
