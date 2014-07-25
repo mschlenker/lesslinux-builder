@@ -37,7 +37,7 @@ surfer  ALL = NOPASSWD: /opt/tor-browser_de/tor-browser_smack
 surfer  ALL = NOPASSWD: /opt/tor-browser_de/tor-browser_smack
 		]]>
 		</scriptdata>
-		<scriptdata location="/etc/rc.d/0515-torbrowser.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0610-torbrowser.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash
 		
 #lesslinux provides torbrowser
@@ -61,11 +61,19 @@ case $1 in
 		tar -C /opt -xvf /opt/tor-browser_de.tar
 		install -m 0755 /opt/bin/tor-browser_smack /opt/tor-browser_de
 		chown -R surfer:surfer /opt/tor-browser_de
+		if [ -d /home/surfer/.torbrowser ] ; then
+			mount --bind /home/surfer/.torbrowser /opt/tor-browser_de/Data
+		else
+			mkdir -p /home/surfer/.torbrowser
+			rsync -avHP /opt/tor-browser_de/Data/ /home/surfer/.torbrowser/
+			mount --bind /home/surfer/.torbrowser /opt/tor-browser_de/Data
+		fi
 	fi
     ;;
     stop)
 	printf "$bold===> Unmounting TOR browser overlay $normal\n"
 	umount -f /opt/tor-browser_de
+	umount -f /opt/tor-browser_de/Data
     ;;
 esac
 
