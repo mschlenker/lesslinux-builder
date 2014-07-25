@@ -227,6 +227,33 @@ class AnyStage
 
 	# Check if updates are available
 
+	def check_rss_updates(page, versions)
+		resp = Net::HTTP.get_response(URI.parse(page.attributes["html"]), :read_timeout => 10  )
+		pagecontent = resp.body
+		doc = REXML::Document.new(pagecontent)
+		items = 0
+		begin
+			versions.each { |v|
+				doc.elements.each("/rss/item/link") { |e| 
+					items += 1
+					# puts e.text 
+					unless e.text.strip[v].nil?
+						update_found = true
+						version_found = e.text.strip
+						puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
+							" current: " + @pkg_name + " " + @pkg_version + " found: " + version_found
+						$stdout.flush
+					end
+				}
+			}
+		rescue
+		end
+		if items < 1
+			return false
+		end
+		return true
+	end
+
 	def check_http_updates(page)
 		begin
 			resp = Net::HTTP.get_response(URI.parse(page.attributes["html"]), :read_timeout => 10  )
@@ -244,6 +271,7 @@ class AnyStage
 				rescue
 				end
 			}
+			return true if check_rss_updates(page, versions) 
 			hdoc = Hpricot.parse(pagecontent)
 			(hdoc/:a).each { |a|
 				version_check = true
