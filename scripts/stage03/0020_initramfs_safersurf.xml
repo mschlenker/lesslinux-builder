@@ -86,7 +86,9 @@ else
 	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
-sed -i 's/29\.0\.1/31.0/g' /home/surfer/Desktop/010_firefox.desktop  
+# sed -i 's/29\.0\.1/31.0/g' /home/surfer/Desktop/010_firefox.desktop  
+install -m 0755  /usr/share/applications/010_firefox.desktop  "${HOME}/Desktop/" 
+install -m 0755  /usr/share/applications/020_thunderbird.desktop  "${HOME}/Desktop/" 
 install -m 0755 /usr/share/applications/torbrowser.desktop "${HOME}/Desktop/" 
 
 # Uncomment to debug
