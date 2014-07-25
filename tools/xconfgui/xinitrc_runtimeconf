@@ -39,7 +39,8 @@ mount -t tmpfs -o mode=0755 tmpfs /root/.config
 mount -t tmpfs -o mode=0755 tmpfs /root/.icewm
 rsync -avHP /home/surfer/.icewm/ /root/.icewm/
 rsync -avHP /home/surfer/.config/ /root/.config/
-
+# FIXME: Do not hardcode theme here!
+# tar -C /usr/share/themes/Adwaita -cvf - gtk-3.0 gtk-2.0 | tar -C /root/.config -xf -
 chown -R root:root /root/.icewm/ 
 chown -R root:root /root/.config/
 
@@ -59,6 +60,8 @@ if  [ -n "$xrandr" ] ; then
 fi
 
 xfsettingsd 
+sleep 1
+xfsettingsd --replace 
 
 /usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.png
 if [ "$RUNTIMECONFWM" = "icewm" ] ; then
@@ -69,12 +72,8 @@ else
 	/usr/bin/matchbox-window-manager -force_dialogs "Startup: $brandlong" &
 fi
 
-sleep 2
-xfsettingsd --replace 
-
 /usr/bin/ruby /usr/local/xconfgui/runtimeconf.rb
 umount /root/.config
 umount /root/.icewm
 umount -f /root/.config
 umount -f /root/.icewm
-
