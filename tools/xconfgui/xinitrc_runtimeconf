@@ -59,11 +59,13 @@ if  [ -n "$xrandr" ] ; then
 	/usr/bin/xrandr --size "$xrandr"
 fi
 
+zenity --info --text 'Hallo Welt' &
+
 xfsettingsd 
-sleep 1
-xfsettingsd --replace 
-sleep 2
-xfsettingsd --replace 
+for n in ` seq 5 ` ; do
+	sleep 1
+	xfsettingsd --replace 
+done
 
 /usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.png
 if [ "$RUNTIMECONFWM" = "icewm" ] ; then
