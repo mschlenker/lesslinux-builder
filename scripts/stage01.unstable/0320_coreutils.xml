@@ -1,0 +1,53 @@
+<llpackages>
+	<package 
+		name="coreutils"
+		version="8.23"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                           
+				<pkg sha1="adead02839225218b85133fa57b4dba02af2291d">coreutils-8.23.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
+			</file>
+			<manualcheck date="20140726" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/coreutils/">
+					<atext linktext="coreutils-8.23.1" />
+					<atext linktext="coreutils-8.24." />
+					<atext linktext="coreutils-8.25." />
+					<atext linktext="coreutils-9." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xvf - 
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			# echo 'Nothing to do!'
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-i18n-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-uname-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			export FORCE_UNSAFE_CONFIGURE=1
+			./configure --prefix=/tools --enable-install-program=hostname && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			cp -v src/su /tools/bin/su-tools
+			for i in cat echo pwd stty ; do
+				ln -sfv /tools/bin/$i ${CHROOTDIR}/bin/$i
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>
