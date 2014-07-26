@@ -228,7 +228,7 @@ class AnyStage
 	# Check if updates are available
 
 	def check_rss_updates(page, versions)
-		resp = Net::HTTP.get_response(URI.parse(page.attributes["html"]), :read_timeout => 10  )
+		resp = Net::HTTP.get_response(URI(page.attributes["html"]))
 		pagecontent = resp.body
 		doc = REXML::Document.new(pagecontent)
 		items = 0
