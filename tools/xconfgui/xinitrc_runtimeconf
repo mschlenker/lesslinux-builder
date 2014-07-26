@@ -59,7 +59,7 @@ if  [ -n "$xrandr" ] ; then
 	/usr/bin/xrandr --size "$xrandr"
 fi
 
-zenity --info --text 'Hallo Welt' &
+Terminal &
 
 /usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.png
 if [ "$RUNTIMECONFWM" = "icewm" ] ; then
