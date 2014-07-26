@@ -33,16 +33,16 @@ else
 	xrdb -load /root/.lesslinux/xstuff.xrdb
 fi
 
-mkdir -p /root/.config
-mkdir -p /root/.icewm
-mount -t tmpfs -o mode=0755 tmpfs /root/.config
-mount -t tmpfs -o mode=0755 tmpfs /root/.icewm
-rsync -avHP /home/surfer/.icewm/ /root/.icewm/
-rsync -avHP /home/surfer/.config/ /root/.config/
+#mkdir -p /root/.config
+#mkdir -p /root/.icewm
+#mount -t tmpfs -o mode=0755 tmpfs /root/.config
+#mount -t tmpfs -o mode=0755 tmpfs /root/.icewm
+#rsync -avHP /home/surfer/.icewm/ /root/.icewm/
+#rsync -avHP /home/surfer/.config/ /root/.config/
 # FIXME: Do not hardcode theme here!
-tar -C /usr/share/themes/Adwaita -cvf - gtk-3.0 gtk-2.0 | tar -C /root/.config -xf -
-chown -R root:root /root/.icewm/ 
-chown -R root:root /root/.config/
+#tar -C /usr/share/themes/Adwaita -cvf - gtk-3.0 gtk-2.0 | tar -C /root/.config -xf -
+#chown -R root:root /root/.icewm/ 
+#chown -R root:root /root/.config/
 
 if [ "$lang" = "ru" ] ; then
 	setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
@@ -59,7 +59,7 @@ if  [ -n "$xrandr" ] ; then
 	/usr/bin/xrandr --size "$xrandr"
 fi
 
-Terminal &
+# Terminal &
 
 /usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.png
 if [ "$RUNTIMECONFWM" = "icewm" ] ; then
@@ -72,12 +72,12 @@ fi
 
 xfsettingsd 
 ( for n in ` seq 5 ` ; do
-	sleep 3
+	sleep 1
 	xfsettingsd --replace 
 done ) &
 
 /usr/bin/ruby /usr/local/xconfgui/runtimeconf.rb
-umount /root/.config
-umount /root/.icewm
-umount -f /root/.config
-umount -f /root/.icewm
+#umount /root/.config
+#umount /root/.icewm
+#umount -f /root/.config
+#umount -f /root/.icewm
