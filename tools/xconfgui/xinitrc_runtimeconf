@@ -61,12 +61,6 @@ fi
 
 zenity --info --text 'Hallo Welt' &
 
-xfsettingsd 
-for n in ` seq 5 ` ; do
-	sleep 1
-	xfsettingsd --replace 
-done
-
 /usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.png
 if [ "$RUNTIMECONFWM" = "icewm" ] ; then
 	echo 'ShowTaskBar=0' >> /root/.icewm/preferences 
@@ -75,6 +69,12 @@ if [ "$RUNTIMECONFWM" = "icewm" ] ; then
 else
 	/usr/bin/matchbox-window-manager -force_dialogs "Startup: $brandlong" &
 fi
+
+xfsettingsd 
+( for n in ` seq 5 ` ; do
+	sleep 3
+	xfsettingsd --replace 
+done ) &
 
 /usr/bin/ruby /usr/local/xconfgui/runtimeconf.rb
 umount /root/.config
