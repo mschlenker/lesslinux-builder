@@ -751,6 +751,10 @@ def build_panel(alldisks)
 						# dev_desc + " (" + p[0].gsub("/dev/", "") + ", " + p[1] + ") freigeben"
 					end
 				end
+				if p[1] =~  /luks/i 
+					mount_button.sensitive = false
+					show_button.sensitive = false
+				end
 				show_button.signal_connect( "clicked" ) { |w|
 					if p[3].nil?
 						system("Thunar " + get_mount_point(p[0]))
