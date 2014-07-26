@@ -227,9 +227,7 @@ class AnyStage
 
 	# Check if updates are available
 
-	def check_rss_updates(page, versions)
-		resp = Net::HTTP.get_response(URI(page.attributes["html"]))
-		pagecontent = resp.body
+	def check_rss_updates(pagecontent, versions)
 		doc = REXML::Document.new(pagecontent)
 		items = 0
 		begin
@@ -256,7 +254,7 @@ class AnyStage
 
 	def check_http_updates(page)
 		begin
-			resp = Net::HTTP.get_response(URI.parse(page.attributes["html"]), :read_timeout => 10  )
+			resp = Net::HTTP.get_response(URI(page.attributes["html"]))
 			pagecontent = resp.body
 			## pagecontent = `wget -O -  #{page.attributes["html"]}`  
 			versions = Array.new
@@ -271,7 +269,7 @@ class AnyStage
 				rescue
 				end
 			}
-			return true if check_rss_updates(page, versions) 
+			return true if check_rss_updates(pagecontent, versions) 
 			hdoc = Hpricot.parse(pagecontent)
 			(hdoc/:a).each { |a|
 				version_check = true
