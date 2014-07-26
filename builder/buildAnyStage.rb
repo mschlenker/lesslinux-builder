@@ -230,7 +230,7 @@ class AnyStage
 	def check_rss_updates(pagecontent, versions)
 		doc = REXML::Document.new(pagecontent)
 		items = 0
-		#begin
+		begin
 			versions.each { |v|
 				doc.elements.each("/rss/item/link") { |e| 
 					items += 1
@@ -244,8 +244,8 @@ class AnyStage
 					end
 				}
 			}
-		#rescue
-		#end
+		rescue
+		end
 		if items < 1
 			return false
 		end
