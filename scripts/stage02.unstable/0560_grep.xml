@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="grep"
+		version="2.20"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                                                         
+				<pkg sha1="55aac6158b51baa505669cf8f86440bcc106ec65">grep-2.20.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/grep/</mirror>
+			</file>
+			<manualcheck date="20140726" interval="180" page="http://ftp.gnu.org/gnu/grep/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/grep/">
+					<atext linktext="grep-2.20.1.t" />
+					<atext linktext="grep-2.20.2.t" />
+					<atext linktext="grep-2.20.3.t" />
+					<atext linktext="grep-2.21." />
+					<atext linktext="grep-2.22." />
+					<atext linktext="grep-3." />
+				</page>
+			</check>
+			<!-- <file>
+				<pkg sha1="77b5967bc0aa25fa827f892cd0f4625e18d0361f">grep-2.5.4-debian_fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-debian_fixes-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --bindir=/bin && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
