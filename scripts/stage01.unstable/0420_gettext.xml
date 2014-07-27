@@ -37,7 +37,10 @@
 			
 			cd ${PKGNAME}-${PKGVERSION}/gettext-tools
 			EMACS="no" ./configure --prefix=/tools --disable-shared
-			make -C gnulib-lib && make -C src msgfmt
+			make -C gnulib-lib
+			make -C src msgfmt
+			make -C src msgmerge
+			make -C src xgettext
 			
 			]]>
 		</build>
