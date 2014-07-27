@@ -10,18 +10,19 @@
 				<pkg sha1="21eadf5f1d64120649f3390346253c6bc8a5103c">screen-4.2.1.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/screen/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://ftp.gnu.org/gnu/screen/">
-					<atext linktext="screen-4.0.4" />
-					<atext linktext="screen-4.0.5" />
-					<atext linktext="screen-4.0.6" />
-					<atext linktext="screen-4.0.7" />
-					<atext linktext="screen-4.1." />
-					<atext linktext="screen-4.2." />
+			<manualcheck date="20140724" interval="365" page="http://ftp.gnu.org/gnu/screen/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/screen/">
+					<atext linktext="screen-4.2.2" />
+					<atext linktext="screen-4.2.2" />
+					<atext linktext="screen-4.2.3" />
+					<atext linktext="screen-4.2.4" />
 					<atext linktext="screen-4.3." />
+					<atext linktext="screen-4.4." />
+					<atext linktext="screen-4.5." />
 					<atext linktext="screen-5." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
