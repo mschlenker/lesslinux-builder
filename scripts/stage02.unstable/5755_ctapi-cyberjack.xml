@@ -49,7 +49,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/pcsc-cyberjack_3.99.5final.SP05.tar.gz
+			tar xjf ${SRCDIR}/pcsc-cyberjack-3.99.5final.SP05.tar.bz2
 			]]>
 		</unpack>
 		<build>
@@ -70,7 +70,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd pcsc-cyberjack-3.99.5final.SP03
+			cd pcsc-cyberjack-3.99.5final.SP05
 			make install DESTDIR=${TGTDIR}
 			install -m 0644 ${TGTDIR}/etc/cyberjack.conf{.default,}
 			]]>
