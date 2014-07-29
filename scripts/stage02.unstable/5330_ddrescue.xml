@@ -1,21 +1,22 @@
 <llpackages>
 	<package 
 		name="ddrescue"
-		version="1.17"
+		version="1.18.1"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                          
-				<pkg sha1="a69367924ec1437b7b1634df8f55c54bc1e6b853">ddrescue-1.17.tar.gz</pkg>
+				<pkg sha1="97cd3c6c783f3dc5685f0147dc83f3c94fb36b4c">ddrescue-1.18.1.tar.lz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/ddrescue/</mirror>
 			</file>
-			<manualcheck date="20130716" interval="180" page="http://ftp.gnu.org/gnu/ddrescue/" />
+			<manualcheck date="20140716" interval="180" page="http://ftp.gnu.org/gnu/ddrescue/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/ddrescue/">
 					<atext linktext="ddrescue-1.19." />
 					<atext linktext="ddrescue-1.20." />
-					<atext linktext="ddrescue-1.18." />
+					<atext linktext="ddrescue-1.21." />
+					<atext linktext="ddrescue-1.18.2." />
 					<atext linktext="ddrescue-2." />
 				</page>
 			</check>
@@ -32,11 +33,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			lunzip -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.lz | tar xf - 
 			]]>
 		</unpack>
 		<patch />
@@ -50,7 +47,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 	</package>
