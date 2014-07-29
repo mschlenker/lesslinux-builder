@@ -1,0 +1,83 @@
+<llpackages>
+	<package 
+		name="gettext"
+		version="0.19.2"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="3a8e0627290216d695661a748261eacda5cec8aa">gettext-0.19.2.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gettext/</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="7383a7714033854d6cea586ba81bc95bbc384a77">gettext_0.17-8ubuntu2.diff.gz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/g/gettext/</mirror>
+			</file> -->
+			<manualcheck date="20140726" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gettext/">
+					<atext linktext="gettext-0.19.4." />
+					<atext linktext="gettext-0.19.5." />
+					<atext linktext="gettext-0.19.3." />
+					<atext linktext="gettext-0.20." />
+					<atext linktext="gettext-0.21." />
+					<atext linktext="gettext-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}/
+			sed -i -e '/gets is a/d' gettext-*/*/stdio.in.h
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			EMACS="no" ./configure --prefix=/usr --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
