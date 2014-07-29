@@ -1,0 +1,82 @@
+<llpackages>
+	<package 
+		name="tar"
+		version="1.28"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                              
+				<pkg sha1="668ea52014ef7e70afc4ff7324410ee32f2970ef">tar-1.28.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/tar/</mirror>
+			</file>
+			<manualcheck date="20140729" interval="180" page="http://ftp.gnu.org/gnu/tar/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/tar/">
+					<atext linktext="tar-1.28.1." />
+					<atext linktext="tar-1.30." />
+					<atext linktext="tar-1.31." />
+					<atext linktext="tar-1.29." />
+					<atext linktext="tar-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e '/gets is a/d' gnu/stdio.in.h
+
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			export FORCE_UNSAFE_CONFIGURE=1
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --bindir=/bin --libexecdir=/usr/sbin && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i '35 i\
+AT_UNPRIVILEGED_PREREQ' tests/remfiles01.at
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
