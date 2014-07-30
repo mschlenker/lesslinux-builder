@@ -1,0 +1,73 @@
+<pkgdesc version='1.6.5' name='cryptsetup'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libcryptsetup.so.4' group='0' owner='0'/>
+        <softlink path='/usr/lib/libcryptsetup.so' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/pkgconfig' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/usr/sbin' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/man' group='0' owner='0'/>
+        <directory path='/usr/share/man/man8' group='0' owner='0'/>
+        <directory path='/usr/share/locale' group='0' owner='0'/>
+        <directory path='/usr/share/locale/cs' group='0' owner='0'/>
+        <directory path='/usr/share/locale/cs/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/de' group='0' owner='0'/>
+        <directory path='/usr/share/locale/de/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/es' group='0' owner='0'/>
+        <directory path='/usr/share/locale/es/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fi' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fi/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fr' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fr/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/id' group='0' owner='0'/>
+        <directory path='/usr/share/locale/id/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/it' group='0' owner='0'/>
+        <directory path='/usr/share/locale/it/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/nl' group='0' owner='0'/>
+        <directory path='/usr/share/locale/nl/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/pl' group='0' owner='0'/>
+        <directory path='/usr/share/locale/pl/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/sv' group='0' owner='0'/>
+        <directory path='/usr/share/locale/sv/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/uk' group='0' owner='0'/>
+        <directory path='/usr/share/locale/uk/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/vi' group='0' owner='0'/>
+        <directory path='/usr/share/locale/vi/LC_MESSAGES' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/sbin/cryptsetup' mode='100755' group='0' owner='0'/>
+	<file path='/usr/lib/libcryptsetup.so.4.6.0' mode='100755' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/sbin/veritysetup' mode='100755' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man8/cryptsetup.8' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/man/man8/veritysetup.8' mode='100644' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libcryptsetup.la' mode='100755' group='0' owner='0'/>
+        <file path='/usr/lib/pkgconfig/libcryptsetup.pc' mode='100644' group='0' owner='0'/>
+        <file path='/usr/include/libcryptsetup.h' mode='100644' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/cs/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/fi/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/id/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/nl/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/uk/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+        <file path='/usr/share/locale/vi/LC_MESSAGES/cryptsetup.mo' mode='100644' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>
