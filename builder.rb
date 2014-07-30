@@ -54,19 +54,6 @@ include ObjectSpace
 @ignore_arch = false
 @nonfree = nil 
 
-# look for some commands
-#
-# perl
-# unzip
-# gunzip
-# tar
-# bunzip2
-# mkisofs
-# xorriso
-# mksquashfs
-# xz
-# mkfs.msdos
-
 opts = OptionParser.new 
 opts.on('-n', '--no-test')    { @run_tests = false }
 opts.on('-s', '--skip-stages', :REQUIRED )    { |i| @skip_stages = i.split(",") }
@@ -98,48 +85,14 @@ opts.on('--ignore-arch') { @ignore_arch = true }
 opts.on('--nonfree', :REQUIRED) { |i| @nonfree =  i.strip }
 
 opts.parse!
-
 puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"  
 
-unless system("which m4") 
-	puts "Command m4 needed for building first stage is missing"
-	raise "MissingPrerequisite"
-end
-
-unless system("which makeinfo") 
-	puts "Command makeinfo needed for building first stage is missing"
-	raise "MissingPrerequisite"
-end
-
-unless system("which gawk") 
-	puts "Command gawk needed for building first stage is missing"
-	raise "MissingPrerequisite"
-end
-
-unless system("which autoconf") 
-	puts "Command autoconf needed for building first stage is missing"
-	raise "MissingPrerequisite"
-end
-
-unless system("which mkfs.msdos") 
-	puts "Command mkfs.msdos needed for generation of the EFI boot image is missing"
-	raise "MissingPrerequisite"
-end
-
-unless system("which mksquashfs") 
-	puts "Command mksquashfs needed for generation of the compressed containers is missing"
-	raise "MissingPrerequisite"
-end
-
-unless system("which sha1sum") 
-	puts "Command sha1sum needed for generation of the final ISO image is missing"
-	raise "MissingPrerequisite"
-end
-
-unless system("which cpio") 
-	puts "Command cpio needed for generation of the boot initramfs is missing"
-	raise "MissingPrerequisite"
-end
+[ "m4", "makeinfo", "gawk", "autoconf", "mkfs.msdos", "mksquashfs", "sha1sum", "cpio", "unxz", "lunzip", "perl" ].each { |p|
+	unless system("which #{p}") 
+		puts "Command #{p} needed for building is missing"
+		raise "MissingPrerequisite"
+	end
+}
 
 arch = ` uname -m `.strip
 unless arch =~ /i(4|5|6)86/ || @ignore_arch == true 
