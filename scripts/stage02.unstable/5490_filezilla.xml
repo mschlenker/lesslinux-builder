@@ -1,0 +1,160 @@
+<llpackages>
+	<package 
+		name="FileZilla"
+		version="3.9.0.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="b9b798c9fa6043970888ab93e5b236ae718bf6e6">FileZilla_3.9.0.1_src.tar.bz2</pkg>
+				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.9.0.1/</mirror>
+			</file>
+			<manualcheck date="20140729" interval="90" page="http://filezilla-project.org/" />
+			<!-- <check>
+				<page html="http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/">
+					<atext linktext="3.9.0.7/" />
+					<atext linktext="3.9.0.2/" />
+					<atext linktext="3.9.0.3/" />
+					<atext linktext="3.9.0.4/" />
+					<atext linktext="3.9.0.5/" />
+					<atext linktext="3.9.0.6/" />
+					<atext linktext="3.9.1/" />
+					<atext linktext="3.9.2/" />
+					<atext linktext="3.9.3/" />
+					<atext linktext="3.10.0/" />
+					<atext linktext="3.11.0/" />
+					<atext linktext="4.0.0/" />
+					<atext linktext="4.1.0/" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libidn</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tiff</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>wxWidgets</dep>
+                        <dep>xdg-utils</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}_src.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd filezilla-${PKGVERSION}
+				if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc --with-tinyxml=builtin  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc --with-tinyxml=builtin
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd filezilla-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/opt/bin
+			paxctl -m ${TGTDIR}/opt/bin/filezilla
+			
+echo -n '' > ${TGTDIR}/usr/bin/filezilla
+cat >> ${TGTDIR}/usr/bin/filezilla << FZRUN
+#!/bin/sh
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+[ "\$security" '!=' "smack" ] && exec /opt/bin/filezilla \$@
+exec sudo /opt/bin/filezilla_smack \$@
+
+FZRUN
+			
+echo -n '' > ${TGTDIR}/opt/bin/filezilla_smack
+cat >> ${TGTDIR}/opt/bin/filezilla_smack << FZSMACK
+#!/static/bin/ash
+
+/static/sbin/newsmack internet /static/bin/su surfer -c "/opt/bin/filezilla \$@"
+
+FZSMACK
+
+chmod 0755 ${TGTDIR}/usr/bin/filezilla
+chmod 0755 ${TGTDIR}/opt/bin/filezilla_smack
+
+# Icon erstellen
+#			
+#cat >> /usr/share/applications/filezilla.desktop << FZICON
+#
+#[Desktop Entry]
+#Version=1.0
+#Encoding=UTF-8
+#Type=Application
+#Name=FileZilla
+#Comment=
+#Categories=CB-Other;
+#Exec=/opt/bin/filezilla
+#Icon=gnome-fs-network
+#Terminal=false
+#StartupNotify=true
+#
+#
+#FZICON
+
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf filezilla-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
