@@ -1,5 +1,11 @@
 This repository contains the scripts used for building LessLinux. They are not complete yet since I am cleaning up during the move from subversion to git. See the documentation on http://blog.lesslinux.org/ for details. 
 
+**Checking out**
+
+Checking out under LessLinux Jabba Builds may fail due to missing certificates, use the command: 
+
+`git -c http.sslVerify=false clone https://github.com/mschlenker/lesslinux-builder` 
+
 **Building the Toolchain**
 
 Scripts for the toolchain reside in stage01. This basically builds cross compile tools that are native to the host architecture. It is later used to chroot to. For details read http://www.linuxfromscratch.org/lfs/view/development/chapter05/introduction.html.
