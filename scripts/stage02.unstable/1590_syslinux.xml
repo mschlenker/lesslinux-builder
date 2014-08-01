@@ -1,0 +1,116 @@
+<llpackages>
+	<package 
+		name="syslinux"
+		version="6.03-pre19"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                  
+				<pkg sha1="b2b8a09f81834eef34ac1323eef3a23d783791c2">syslinux-6.03-pre19.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/utils/boot/syslinux/</mirror>
+			</file>
+			<manualcheck date="20140801" interval="60" page="http://www.kernel.org/pub/linux/utils/boot/syslinux/" />
+			<check>
+				<page html="http://www.kernel.org/pub/linux/utils/boot/syslinux/">
+					<atext linktext="syslinux-6.03." />
+					<atext linktext="syslinux-6.04." />
+					<atext linktext="syslinux-6.05." />
+					<atext linktext="syslinux-6.06." />
+					<atext linktext="syslinux-6.1" />
+					<atext linktext="syslinux-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>nasm</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make -k clean
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				pump make -k -j $jobcount CC="distcc gcc" 
+				pump make -k -j $jobcount bios CC="distcc gcc" 
+			fi
+			make -k
+			make -k bios
+			mv bios/extlinux/extlinux ../extlinux.dynamic
+			mv bios/mtools/syslinux   ../syslinux.dynamic
+			make -k bios LDFLAGS=-static
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/share/syslinux
+			mkdir -p ${TGTDIR}/static/sbin
+			mkdir -p ${TGTDIR}/usr/sbin
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/etc/syslinux
+			
+			install -m 0755 syslinux.dynamic 	  			  ${TGTDIR}/usr/sbin/syslinux
+			install -m 0755 extlinux.dynamic                                  ${TGTDIR}/usr/sbin/extlinux
+			
+			install -m 0755 ${PKGNAME}-${PKGVERSION}/bios/extlinux/extlinux        ${TGTDIR}/static/sbin/extlinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/core/isolinux.bin        ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/core/pxelinux.bin        ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/gpxe/pxelinux.gpxe       ${TGTDIR}/usr/share/syslinux
+			
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/menu/menu.c32      ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/menu/vesamenu.c32  ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/modules/ifcpu.c32  ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/modules/ifcpu64.c32  ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/modules/reboot.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/chain/chain.c32    ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/elflink/ldlinux/ldlinux.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/libutil/libutil.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/cmenu/libmenu/libmenu.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/cmenu/libmenu/complex.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/lib/libcom32.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/lib/libbios/com32.c32   ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/lua/src/liblua.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/gpllib/libgpl.c32  ${TGTDIR}/usr/share/syslinux
+			
+			install -m 0755 ${PKGNAME}-${PKGVERSION}/bios/utils/isohybrid          ${TGTDIR}/usr/bin
+			install -m 0755 ${PKGNAME}-${PKGVERSION}/bios/utils/isohybrid.pl       ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/mbr/mbr.bin              ${TGTDIR}/etc/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/mbr/gptmbr.bin           ${TGTDIR}/etc/syslinux
+			for f in ${PKGNAME}-${PKGVERSION}/bios/mbr/*.bin ; do
+				install -m 0644 ${f} ${TGTDIR}/usr/share/syslinux/
+			done
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm syslinux.dynamic extlinux.dynamic
+			
+			]]>
+		</clean>
+	</package>
+</llpackages>
