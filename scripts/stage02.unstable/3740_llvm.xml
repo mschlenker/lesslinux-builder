@@ -73,8 +73,7 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.gz
 			tar xzf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.gz
 			tar xzf ${SRCDIR}/compiler-rt-3.4.src.tar.gz
-			mv cfe-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.src/tools/cfe
-			ln -s cfe ${PKGNAME}-${PKGVERSION}.src/tools/clang 
+			mv cfe-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.src/tools/clang
 			mv compiler-rt-3.4 ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
 			]]>
 		</unpack>
@@ -82,6 +81,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}.src
+			sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
 				export CC='distcc gcc'
@@ -111,6 +111,12 @@
 			for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
 				test -f $file && chmod -v 644 $file
 			done
+			install -v -dm755 ${TGTDIR}/usr/lib/clang-analyzer
+			for prog in scan-build scan-view ; do
+				cp -rfv tools/clang/tools/$prog ${TGTDIR}/usr/lib/clang-analyzer/
+				ln -sfv ../lib/clang-analyzer/$prog/$prog ${TGTDIR}/usr/bin/
+			done
+			ln -sfv /usr/bin/clang ${TGTDIR}/usr/lib/clang-analyzer/scan-build/
 			]]>
 		</install>
 		<clean>
