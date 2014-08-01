@@ -64,5 +64,10 @@
 			install -m 0755 unsquashfs /usr/bin
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  squashfs${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

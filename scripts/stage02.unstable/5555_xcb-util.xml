@@ -3,8 +3,7 @@
 		name="xcb-util"
 		version="0.3.9"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                   
@@ -63,5 +62,10 @@
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

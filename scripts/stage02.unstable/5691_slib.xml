@@ -46,5 +46,10 @@
 			chmod 0644 /usr/share/guile/slib/*
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  slib
+			]]>
+		</clean>
 	</package>
 </llpackages>
