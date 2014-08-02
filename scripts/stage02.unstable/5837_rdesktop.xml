@@ -58,7 +58,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			export LIBS="-ldl"
-			 ./configure --prefix=/usr --sysconfdir=/etc && make
+			 ./configure --prefix=/usr --sysconfdir=/etc --disable-credssp && make
 			]]>
 		</build>
 		<test />
