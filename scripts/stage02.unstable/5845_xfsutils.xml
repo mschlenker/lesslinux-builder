@@ -1,29 +1,28 @@
 <llpackages>
 	<package 
-		name="util-keysyms"
-		version="20130206"
+		name="xfsprogs"
+		version="3.2.1"
 		class="user"
-		install="destdir">
+		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="f86bd4dd3a735040780969025d7ad6155757bf38">util-keysyms-20130206.tar.bz2</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="9926245f0dafc0f19fd698a065b5384d5e305926">xfsprogs-3.2.1.tar.gz</pkg>
+				<mirror>ftp://oss.sgi.com/projects/xfs/cmd_tars/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="90" page="http://cgit.freedesktop.org/xcb/util-keysyms/" />
-			<!-- <manualcheck date="20120822" interval="120" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<manualcheck date="20140801" interval="120" page="ftp://oss.sgi.com/projects/xfs/cmd_tars/" />
 			<check>
-				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
-					<atext linktext="1.42.7." />
-					<atext linktext="1.42.8." />
-					<atext linktext="1.42.6." />
-					<atext linktext="1.43." />
-					<atext linktext="1.44." />
-					<atext linktext="1.45." />
-					<atext linktext="2.0." />
-					<atext linktext="2.00." />
+				<page html="ftp://oss.sgi.com/projects/xfs/cmd_tars/">
+					<atext linktext="xfsprogs-3.2.2." />
+					<atext linktext="xfsprogs-3.2.3." />
+					<atext linktext="xfsprogs-3.2.4." />
+					<atext linktext="xfsprogs-3.2.5." />
+					<atext linktext="xfsprogs-3.3." />
+					<atext linktext="xfsprogs-3.4." />
+					<atext linktext="xfsprogs-3.5." />
+					<atext linktext="xfsprogs-4." />
 				</page>
-			</check> -->
+			</check> 
 		</sources>
 		<builddeps>
                         <dep>GConf</dep>
@@ -39,27 +38,25 @@
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
+                        <dep>findutils</dep>
                         <dep>font-util</dep>
                         <dep>freetype</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>gettext</dep>
-                        <dep>git</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
                         <dep>gnome-doc-utils</dep>
                         <dep>gobject-introspection</dep>
                         <dep>grep</dep>
-                        <dep>gstreamer1</dep>
                         <dep>gstreamer</dep>
                         <dep>gtk</dep>
                         <dep>gtkglext</dep>
                         <dep>guile</dep>
                         <dep>gwenhywfar</dep>
+                        <dep>gzip</dep>
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
-                        <dep>libXau</dep>
-                        <dep>libXdmcp</dep>
                         <dep>libchipcard</dep>
                         <dep>libdvdread</dep>
                         <dep>libgcrypt15</dep>
@@ -67,7 +64,6 @@
                         <dep>libogg</dep>
                         <dep>libtool</dep>
                         <dep>libvorbis</dep>
-                        <dep>libxcb</dep>
                         <dep>libxml2</dep>
                         <dep>libxslt</dep>
                         <dep>linux_headers</dep>
@@ -84,34 +80,35 @@
                         <dep>vala</dep>
                         <dep>wxWidgets</dep>
                         <dep>xorg-server</dep>
-                        <dep>xproto-base</dep>
                         <dep>xtrans</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[ 
 			
-			cd ${PKGNAME}
-			sh autogen.sh
-			./configure --prefix=/usr --sysconfdir=/etc 
+			cd ${PKGNAME}-${PKGVERSION}
 			make
+			
 			]]>
 		</build>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
-			make install DESTDIR=${TGTDIR} 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			make install-dev 
+			
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

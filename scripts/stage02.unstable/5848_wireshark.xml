@@ -1,0 +1,131 @@
+<llpackages>
+	<package 
+		name="wireshark"
+		version="1.10.9"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<!-- <file>                                                           
+				<pkg sha1="ebbf4f8382fc8961c1fb7959727b3e6792e597c1">wireshark-1.10.5.tar.bz2</pkg>
+				<mirror>http://wiresharkdownloads.riverbed.com/wireshark/src/</mirror>
+			</file> -->
+			<file>                                                           
+				<pkg sha1="902b0eb6f3e007c9ffcf6f76c02403bd90319f96">wireshark-1.10.9.tar.bz2</pkg>
+				<mirror>http://wiresharkdownloads.riverbed.com/wireshark/src/</mirror>
+			</file>
+			<file>                                                           
+				<pkg sha1="36f1f053eaadaa20294082605d179091b24b1d72">wireshark-1.8.4-init-root.lua</pkg>
+				<mirror> http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20140413" interval="120" page="http://wiresharkdownloads.riverbed.com/" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
+					<atext linktext="1.42.7." />
+					<atext linktext="1.42.8." />
+					<atext linktext="1.42.6." />
+					<atext linktext="1.43." />
+					<atext linktext="1.44." />
+					<atext linktext="1.45." />
+					<atext linktext="2.0." />
+					<atext linktext="2.00." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>inetutils</dep>
+                        <dep>libcap</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libpcap</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>lua51</dep>
+                        <dep>make</dep>
+			<dep>openssl</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xdg-utils</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			# export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
+			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			# ./configure --without-libnl --prefix=/usr --sysconfdir=/etc --with-ssl
+			# ./configure --prefix=/usr --sysconfdir=/etc --with-ssl --with-lua=/usr/compat.old
+			./configure --prefix=/usr --sysconfdir=/etc --with-ssl
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount # LIBS='-llua -lz' # -lnl-3 -lnl-route-3 -lnl-genl-3'
+			else
+				make # LIBS='-llua -lz' # -lnl-3 -lnl-route-3 -lnl-genl-3'
+			fi
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			mv ${TGTDIR}/usr/share/wireshark/init.lua{,.orig} 
+			install -m 0644 ${SRCDIR}/${PKGNAME}-1.8.4-init-root.lua ${TGTDIR}/usr/share/wireshark/init.lua
+			mkdir -p ${TGTDIR}/usr/share/applications
+			cat > ${TGTDIR}/usr/share/applications/wireshark.desktop  << EOF
+			
+[Desktop Entry]
+frame_maininfo=
+Name=Wireshark
+Icon=wireshark
+Exec=sudo /usr/bin/wireshark
+Type=Application
+Categories=CB-Other;
+
+EOF
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

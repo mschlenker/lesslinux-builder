@@ -1,16 +1,15 @@
 <llpackages>
 	<package 
-		name="crda"
-		version="1.1.3"
-		class="user"
-		install="destdir">
+		name="M2Crypto"
+		version="0.21.1"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                                          
-				<pkg sha1="6e0adbfc0f5418a03d7d708bd39d52cd1325b511">crda-1.1.3.tar.bz2</pkg>
-				<mirror>http://wireless.kernel.org/download/crda/</mirror>
+			<file>                                                                                         
+				<pkg sha1="3c7135b952092e4f2eee7a94c5153319cccba94e">M2Crypto-0.21.1.tar.gz</pkg>
+				<mirror>http://pypi.python.org/packages/source/M/M2Crypto/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://wireless.kernel.org/download/crda/" />
+			<manualcheck date="20140731" interval="30" page="http://pypi.python.org/packages/source/M/M2Crypto/" />
 			<!-- <check>
 				<page html="http://sourceforge.net/projects/xchat/files/">
 					<atext linktext="xchat-2.8.9." />
@@ -24,38 +23,33 @@
 			</check> -->
 		</sources>
 		<builddeps>
-                        <dep>M2Crypto</dep>
                         <dep>Python</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
-                        <dep>libgcrypt15</dep>
-                        <dep>libgpg-error</dep>
-                        <dep>libnl</dep><dep>libnl3</dep>
                         <dep>linux_headers</dep>
-                        <dep>make</dep>
                         <dep>openssl</dep>
-                        <dep>pkg-config</dep>
                         <dep>pygobject</dep>
-                        <dep>regulatory.bin</dep>
+                        <dep>swig</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make
+			python setup.py config
+			python setup.py build
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			python setup.py install
 			]]>
 		</install>
 		<clean>

@@ -1,0 +1,117 @@
+<llpackages>
+	<package 
+		name="VirtualBox"
+		version="4.3.14"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="443291d7d8cf80590eb4dcee06c72c8846d43f76">VirtualBox-4.3.14.tar.bz2</pkg>
+				<mirror>http://download.virtualbox.org/virtualbox/4.3.14/</mirror>
+			</file>
+			<file>                                                                        
+				<pkg sha1="98ee451bdda51736d279c5655101145f9ff364ac">open-watcom-c-linux-1.9</pkg>
+				<mirror>http://ftp.heanet.ie/pub/openwatcom/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="120" page="http://www.virtualbox.org/" />
+			<!-- <check>
+				<page html="http://www.hyperrealm.com/libconfig/">
+					<atext linktext="libconfig-1.4.10." />
+					<atext linktext="libconfig-1.4.11." />
+					<atext linktext="libconfig-1.4.12." />
+					<atext linktext="libconfig-1.4.13." />
+					<atext linktext="libconfig-1.4.14." />
+					<atext linktext="libconfig-1.5." />
+					<atext linktext="libconfig-1.6." />
+					<atext linktext="libconfig-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Linux-PAM</dep>
+                        <dep>Mesa</dep>
+                        <dep>Python</dep>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cdrkit</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>device-mapper</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>glu</dep>
+                        <dep>grep</dep>
+                        <dep>grub-legacy</dep>
+                        <dep>gzip</dep>
+                        <dep>iasl</dep>
+                        <dep>libICE</dep>
+                        <dep>libIDL</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXext</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libcap</dep>
+                        <dep>libpng15</dep>
+                        <dep>libvpx</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>makeself</dep>
+                        <dep>openssl</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>sed</dep>
+                        <dep>subversion</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<dep>gcc48</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			install -m 0755 ${SRCDIR}/open-watcom-c-linux-1.9 ./
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			export USER=root
+			OWPWD=` pwd ` 
+			ls -lah
+			echo $OWPWD
+			./open-watcom-c-linux-1.9 -i -dDstDir=${OWPWD}/ow19 -dFullInstall=1
+			ls -lah
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening --disable-java --disable-python --disable-pulse --disable-kmods --disable-docs --with-gcc=/usr/local/gcc48/bin/gcc48 --with-g++=/usr/local/gcc48/bin/g++48
+			source env.sh
+			kmk
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/local/${PKGNAME}-${PKGVERSION}
+			ln -s ${PKGNAME}-${PKGVERSION} ${TGTDIR}/usr/local/${PKGNAME} 
+			tar -C ${PKGNAME}-${PKGVERSION}/out/linux.x86/release/bin -cf - . | tar -C ${TGTDIR}/usr/local/${PKGNAME}-${PKGVERSION} -xf - 		
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ow19
+			rm open-watcom-c-linux-1.9
+			]]>
+		</clean>
+	</package>
+</llpackages>

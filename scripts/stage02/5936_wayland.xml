@@ -10,19 +10,19 @@
 				<pkg sha1="bace08b4a531ea4b80b4cf4e953320bc48ed7efe">wayland-1.5.0.tar.xz</pkg>
 				<mirror>http://wayland.freedesktop.org/releases/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
-					<atext linktext="gnome-calculator-3.10.6." />
-					<atext linktext="gnome-calculator-3.10.3." />
-					<atext linktext="gnome-calculator-3.10.4." />
-					<atext linktext="gnome-calculator-3.10.5." />
+			<manualcheck date="20140731" interval="90" page="http://wayland.freedesktop.org/releases/" />
+			<check>
+				<page html="http://wayland.freedesktop.org/releases/">
+					<atext linktext="wayland-1.5.1." />
+					<atext linktext="wayland-1.5.2." />
+					<atext linktext="wayland-1.5.3." />
+					<atext linktext="wayland-1.5.4." />
+					<atext linktext="wayland-1.6." />
+					<atext linktext="wayland-1.7." />
+					<atext linktext="wayland-1.8." />
+					<atext linktext="wayland-2." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Mesa</dep>

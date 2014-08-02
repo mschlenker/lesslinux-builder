@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
-		name="five-or-more"
-		version="3.12.2"
+		name="gnome-calculator"
+		version="3.12.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="3646282453d2726a3d2a67283eca4c35826626b3">five-or-more-3.12.2.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/five-or-more/3.12/</mirror>
+				<pkg sha1="33c977c6180402dcf9501dc45226001aa89ffe59">gnome-calculator-3.12.3.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.12/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/five-or-more/3.12/" />
+			<manualcheck date="20140731" interval="180" page="http://ftp.acc.umu.se/pub/gnome/sources/gnome-calculator/3.12/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/five-or-more/3.12/">
-					<atext linktext="five-or-more-3.12.6." />
-					<atext linktext="five-or-more-3.12.3." />
-					<atext linktext="five-or-more-3.12.4." />
-					<atext linktext="five-or-more-3.12.5." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.12/">
+					<atext linktext="gnome-calculator-3.12.4." />
+					<atext linktext="gnome-calculator-3.12.5." />
+					<atext linktext="gnome-calculator-3.12.6." />
+					<atext linktext="gnome-calculator-3.12.7." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/five-or-more/">
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
 					<atext linktext="3.16" />
 					<atext linktext="3.14" />
 					<atext linktext="4." />
@@ -45,7 +45,6 @@
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
                         <dep>itstool</dep>
-                        <dep>librsvg</dep>
                         <dep>libxml2</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
@@ -56,7 +55,6 @@
                         <dep>pkg-config</dep>
                         <dep>pygobject</dep>
                         <dep>sed</dep>
-			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -71,17 +69,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-			fi
-			./configure --prefix=/usr --sysconfdir=/etc 
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount
-			else
-				make
-			fi
+			# ./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old && make
+			./configure --sysconfdir=/etc --prefix=/usr && make
 			]]>
 		</build>
 		<test />
@@ -89,6 +78,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
+			
 			]]>
 		</install>
 		<clean>
