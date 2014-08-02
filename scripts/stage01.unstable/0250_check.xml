@@ -1,0 +1,52 @@
+<llpackages>
+	<package 
+		name="check"
+		version="0.9.14"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                              
+				<pkg sha1="4b79e2d485d014ddb438e322b64235347d57b0ff">check-0.9.14.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/check/check/0.9.14/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="180" page="http://downloads.sourceforge.net/project/check/" />
+			<!-- <file>
+				<pkg sha1="9c2c7cfc83c58db25d3751b9429c1b94e5893852">dejagnu-1.4.4-consolidated-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<!-- <manualcheck date="20110601" interval="90" page="http://ftp.gnu.org/gnu/dejagnu/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/dejagnu/">
+					<atext linktext="dejagnu-1.5.1" />
+					<atext linktext="dejagnu-1.5.2" />
+					<atext linktext="dejagnu-1.6." />
+					<atext linktext="dejagnu-1.7." />
+					<atext linktext="dejagnu-2." />
+				</page>
+			</check> -->
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-consolidated-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

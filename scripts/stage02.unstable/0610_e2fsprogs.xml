@@ -1,0 +1,83 @@
+<llpackages>
+	<package 
+		name="e2fsprogs"
+		version="1.42.11"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="3d30eb40f3ca69dcef373a505a061b582e1026c2">e2fsprogs-1.42.11.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.42.11/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="180" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<check>
+				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
+					<atext linktext="1.42.12." />
+					<atext linktext="1.42.13." />
+					<atext linktext="1.42.14." />
+					<atext linktext="1.43." />
+					<atext linktext="1.44." />
+					<atext linktext="1.45." />
+					<atext linktext="2.0." />
+					<atext linktext="2.00." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>ncurses-8bit</dep>
+			<dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			mkdir ${PKGNAME}-${PKGVERSION}/build
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}/build
+			../configure --prefix=/usr --with-root-prefix="" \
+			--enable-elf-shlibs --disable-libblkid --disable-libuuid \
+			--disable-uuidd --disable-fsck
+			
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			make install DESTDIR=${TGTDIR}
+			make install-libs DESTDIR=${TGTDIR}
+			
+			chmod -v u+w ${TGTDIR}/usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
+			gunzip -v ${TGTDIR}/usr/share/info/libext2fs.info.gz
+			install-info --dir-file=${TGTDIR}/usr/share/info/dir ${TGTDIR}/usr/share/info/libext2fs.info
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

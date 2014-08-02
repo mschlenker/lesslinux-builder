@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="pcre"
+		version="8.35"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                  
+				<pkg sha1="a10e0040475644bfc97f7d0c0556988acfc52c6f">pcre-8.35.tar.bz2</pkg>
+				<mirror>ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="180" page="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/" />
+			<check>
+				<page html="http://mirror.switch.ch/ftp/pool/1/mirror/exim/pcre/">
+					<atext linktext="pcre-8.36." />
+					<atext linktext="pcre-8.37." />
+					<atext linktext="pcre-8.38." />
+					<atext linktext="pcre-8.39." />
+					<atext linktext="pcre-8.40." />
+					<atext linktext="pcre-8.4" />
+					<atext linktext="pcre-8.5" />
+					<atext linktext="pcre-9" />
+					<atext linktext="pcre-10" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+			<dep>grep</dep>
+			<dep>inetutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --sysconfdir=/etc --prefix=/usr --enable-utf8 && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
