@@ -1,49 +1,48 @@
 <llpackages>
 	<package 
-		name="ghex"
-		version="3.10.1"
+		name="audacious-plugins"
+		version="3.5.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="f7bafd4f0e8374064810af75f21a257f02b8bbb5">ghex-3.10.1.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/ghex/3.10/</mirror>
+				<pkg sha1="c066f79ca1f213c998b651250d02a84982556946">audacious-plugins-3.5.1.tar.bz2</pkg>
+				<mirror>http://distfiles.audacious-media-player.org/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/ghex/3.10/" />
+			<manualcheck date="20140731" interval="180" page="http://distfiles.audacious-media-player.org/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/ghex/3.10/">
-					<atext linktext="ghex-3.10.2." />
-					<atext linktext="ghex-3.10.3." />
-					<atext linktext="ghex-3.10.4." />
-					<atext linktext="ghex-3.10.5." />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/ghex/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="3.16" />
-					<atext linktext="3.18" />
-					<atext linktext="4." />
+				<page html="http://distfiles.audacious-media-player.org/">
+					<atext linktext="audacious-plugins-3.5.2." />
+					<atext linktext="audacious-plugins-3.5.3." />
+					<atext linktext="audacious-plugins-3.5.4." />
+					<atext linktext="audacious-plugins-3.5.5." />
+					<atext linktext="audacious-plugins-3.5.6." />
+					<atext linktext="audacious-plugins-3.6." />
+					<atext linktext="audacious-plugins-3.7." />
+					<atext linktext="audacious-plugins-4." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
+                        <dep>Mesa</dep>
                         <dep>Python</dep>
-                        <dep>acl</dep>
-                        <dep>at-spi2-atk</dep>
-                        <dep>at-spi2-core</dep>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
                         <dep>atk</dep>
+                        <dep>audacious</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
+                        <dep>compositeproto</dep>
                         <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>dbus-glib</dep>
                         <dep>dbus</dep>
-                        <dep>desktop-file-utils</dep>
                         <dep>diffutils</dep>
-                        <dep>expat</dep>
-                        <dep>fontconfig</dep>
-                        <dep>freetype</dep>
-                        <dep>gawk</dep>
+                        <dep>faad2</dep>
+                        <dep>ffmpeg</dep>
+                        <dep>findutils</dep>
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
@@ -51,39 +50,29 @@
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>gtk3</dep>
-                        <dep>harfbuzz</dep>
                         <dep>inetutils</dep>
-                        <dep>intltool</dep>
-                        <dep>itstool</dep>
-                        <dep>libICE</dep>
-                        <dep>libSM</dep>
+                        <dep>lame</dep>
                         <dep>libX11</dep>
-                        <dep>libXau</dep>
                         <dep>libXcomposite</dep>
-                        <dep>libXcursor</dep>
-                        <dep>libXdamage</dep>
-                        <dep>libXdmcp</dep>
-                        <dep>libXext</dep>
                         <dep>libXfixes</dep>
-                        <dep>libXi</dep>
-                        <dep>libXinerama</dep>
-                        <dep>libXrandr</dep>
                         <dep>libXrender</dep>
-                        <dep>libffi</dep>
-                        <dep>libpng15</dep>
-                        <dep>libxcb</dep>
+                        <dep>libnotify</dep>
+                        <dep>libogg</dep>
+                        <dep>libsndfile</dep>
+                        <dep>libvorbis</dep>
                         <dep>libxml2</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
-                        <dep>openssl</dep>
-                        <dep>p5-xml</dep>
+                        <dep>mpg123</dep>
+                        <dep>ms-sys</dep>
+                        <dep>ncurses</dep>
+                        <dep>neon</dep>
                         <dep>pango</dep>
-                        <dep>perl</dep>
-                        <dep>pixman</dep>
                         <dep>pkg-config</dep>
                         <dep>pygobject</dep>
                         <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
 			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
@@ -117,7 +106,6 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			sed -i 's%;Development;%;CB-Other;%g' ${TGTDIR}/usr/share/applications/ghex.desktop
 			]]>
 		</install>
 		<clean>

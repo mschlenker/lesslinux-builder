@@ -1,56 +1,62 @@
 <llpackages>
 	<package 
-		name="cabextract"
-		version="1.4"
+		name="audacious"
+		version="3.5.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="b1d5dd668d2dbe95b47aad6e92c0b7183ced70f1">cabextract-1.4.tar.gz</pkg>
-				<mirror>http://www.cabextract.org.uk/</mirror>
+				<pkg sha1="6931871277f188eb2297842e76222be66dd7bbbe">audacious-3.5.1.tar.bz2</pkg>
+				<mirror>http://distfiles.audacious-media-player.org/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://www.cabextract.org.uk/" />
-			<!-- <check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
-					<atext linktext="gnome-calculator-3.10.6." />
-					<atext linktext="gnome-calculator-3.10.3." />
-					<atext linktext="gnome-calculator-3.10.4." />
-					<atext linktext="gnome-calculator-3.10.5." />
+			<manualcheck date="20140731" interval="180" page="http://distfiles.audacious-media-player.org/" />
+			<check>
+				<page html="http://distfiles.audacious-media-player.org/">
+					<atext linktext="audacious-3.5.2." />
+					<atext linktext="audacious-3.5.3." />
+					<atext linktext="audacious-3.5.4." />
+					<atext linktext="audacious-3.5.5." />
+					<atext linktext="audacious-3.5.6." />
+					<atext linktext="audacious-3.6." />
+					<atext linktext="audacious-3.7." />
+					<atext linktext="audacious-4." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
-                        <dep>Python</dep>
+                        <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
+                        <dep>cairo</dep>
                         <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
                         <dep>diffutils</dep>
-                        <dep>distcc</dep>
-                        <dep>gawk</dep>
+                        <dep>findutils</dep>
                         <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gnome-icon-theme</dep>
                         <dep>grep</dep>
+                        <dep>gtk3</dep>
                         <dep>inetutils</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
-                        <dep>openssl</dep>
-                        <dep>procps</dep>
-                        <dep>pygobject</dep>
+                        <dep>ms-sys</dep>
+                        <dep>ncurses</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>
@@ -63,7 +69,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc 
+			./configure --prefix=/usr --sysconfdir=/etc --enable-thunar 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount
 			else

@@ -1,74 +1,72 @@
 <llpackages>
 	<package 
-		name="gnome-chess"
-		version="3.12.2"
+		name="qemu"
+		version="2.1.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="881a8dbe1a89756365e9428cc1c93920a3167afd">gnome-chess-3.12.2.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gnome-chess/3.12/</mirror>
+				<pkg sha1="b2829491e4c2f3d32f7bc2860c3a19fb31f5e989">qemu-2.1.0.tar.bz2</pkg>
+				<mirror>http://wiki.qemu-project.org/download/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-chess/3.12/" />
-			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-chess/3.12/">
-					<atext linktext="gnome-chess-3.12.6." />
-					<atext linktext="gnome-chess-3.12.3." />
-					<atext linktext="gnome-chess-3.12.4." />
-					<atext linktext="gnome-chess-3.12.5." />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-chess/">
-					<atext linktext="3.16" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check>
+			<manualcheck date="20140731" interval="60" page="http://wiki.qemu-project.org/download/" />
 		</sources>
 		<builddeps>
                         <dep>Mesa</dep>
                         <dep>Python</dep>
-                        <dep>acl</dep>
+                        <dep>SDL</dep>
                         <dep>atk</dep>
+                        <dep>attr</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
+                        <dep>bison</dep>
                         <dep>cairo</dep>
                         <dep>coreutils</dep>
+                        <dep>curl</dep>
                         <dep>diffutils</dep>
-                        <dep>gawk</dep>
+                        <dep>distcc</dep>
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
-                        <dep>gettext</dep>
+                        <dep>git</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>glu</dep>
-			<dep>gnuchess</dep>
+                        <dep>gnome-icon-theme</dep>
+                        <dep>gnutls3</dep>
                         <dep>grep</dep>
-                        <dep>gtk3</dep>
-                        <dep>inetutils</dep>
-                        <dep>intltool</dep>
-                        <dep>itstool</dep>
+                        <dep>gtk</dep>
+                        <dep>iasl</dep>
+                        <dep>jpegsrc</dep>
                         <dep>libX11</dep>
-                        <dep>librsvg</dep>
-                        <dep>libxml2</dep>
+                        <dep>libcap</dep>
+                        <dep>libpng15</dep>
+                        <dep>libssh2</dep>
+                        <dep>libtool</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
+                        <dep>ncurses</dep>
                         <dep>openssl</dep>
-                        <dep>p5-xml</dep>
                         <dep>pango</dep>
                         <dep>perl</dep>
+                        <dep>pixman</dep>
                         <dep>pkg-config</dep>
+                        <dep>procps</dep>
                         <dep>pygobject</dep>
+                        <dep>readline</dep>
                         <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>vte</dep>
+                        <dep>xfsprogs</dep>
                         <dep>xproto-base</dep>
-			<dep>distcc</dep>
+                        <dep>zlib</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			fi
 			]]>
 		</unpack>
@@ -81,7 +79,8 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc 
+			./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/qemu --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \
+				--target-list=x86_64-softmmu,arm-softmmu,arm-linux-user,armeb-linux-user,i386-linux-user,x86_64-linux-user
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount
 			else

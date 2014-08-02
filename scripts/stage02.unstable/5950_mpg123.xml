@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
-		name="hdparm"
-		version="9.43"
+		name="mpg123"
+		version="1.20.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                            
-				<pkg sha1="3ffbcf46237245868a569125a6d5c92a0e07e7ce">hdparm-9.43.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/hdparm/hdparm/</mirror>
+			<file>                           
+				<pkg sha1="5d7f9c27cbf258f258cb3ad7c17ebe5cda292bce">mpg123-1.20.1.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/mpg123/mpg123/1.20.1/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://downloads.sourceforge.net/project/hdparm/hdparm/" />
+			<manualcheck date="20140731" interval="90" page="http://downloads.sourceforge.net/project/mpg123/mpg123/" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -26,33 +26,49 @@
 			</check> -->
 		</sources>
 		<builddeps>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>findutils</dep>
-                        <dep>fuse</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
-                        <dep>gettext</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
+			 <dep>lame</dep>
+                        <dep>libtool</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
 			]]>
 		</build>
 		<test />
