@@ -76,16 +76,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
-				pump make -j $jobcount
-			else
-				./configure --prefix=/usr --sysconfdir=/etc
-				make
-			fi
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
 			]]>
 		</build>
 		<test />

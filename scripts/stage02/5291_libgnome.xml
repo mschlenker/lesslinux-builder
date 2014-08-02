@@ -85,16 +85,10 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
 			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
-				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
-				pump make -j $jobcount
-			else
-				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
-				make
-			fi
+			
+			./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
+			make
+		
 			]]>
 		</build>
 		<test />
