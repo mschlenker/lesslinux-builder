@@ -9,19 +9,21 @@
 		<sources>
 			<file>                                                  
 				<pkg sha1="601abf7cc2b5ab186f40d8790e542f86afca86b7">vim-7.4.tar.bz2</pkg>
-				<mirror> ftp://ftp.vim.org/pub/vim/unix/</mirror>
+				<mirror>ftp://ftp.vim.org/pub/vim/unix/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://xorg.freedesktop.org/archive/individual/app/">
-					<atext linktext="xset-1.2.3." />
-					<atext linktext="xset-1.2.4." />
-					<atext linktext="xset-1.2.5." />
-					<atext linktext="xset-1.2.6." />
-					<atext linktext="xset-1.3." />
-					<atext linktext="xset-1.4." />
-					<atext linktext="xset-2." />
+			<manualcheck date="20140731" interval="180" page="ftp://ftp.vim.org/pub/vim/unix/" />
+			<check>
+				<page html="ftp://ftp.vim.org/pub/vim/unix/">
+					<atext linktext="vim-7.5." />
+					<atext linktext="vim-7.6." />
+					<atext linktext="vim-7.7." />
+					<atext linktext="vim-7.8." />
+					<atext linktext="vim-7.9." />
+					<atext linktext="vim-8." />
+					<atext linktext="vim-9." />
+					<atext linktext="vim-10." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>acl</dep>

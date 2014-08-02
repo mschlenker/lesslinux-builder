@@ -11,17 +11,19 @@
 				<pkg sha1="723482b3fc627d7cc6124fec43dd1c21d102daaa">xdriinfo-1.0.4.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/app/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://xorg.freedesktop.org/archive/individual/app/">
-					<atext linktext="xset-1.2.3." />
-					<atext linktext="xset-1.2.4." />
-					<atext linktext="xset-1.2.5." />
-					<atext linktext="xset-1.2.6." />
-					<atext linktext="xset-1.3." />
-					<atext linktext="xset-1.4." />
-					<atext linktext="xset-2." />
+			<manualcheck date="20140731" interval="180" page="ftp://ftp.x.org/pub/individual/app/" />
+			<check>
+				<page html="ftp://ftp.x.org/pub/individual/app/">
+					<atext linktext="xdriinfo-1.0.5." />
+					<atext linktext="xdriinfo-1.0.6." />
+					<atext linktext="xdriinfo-1.0.7." />
+					<atext linktext="xdriinfo-1.0.8." />
+					<atext linktext="xdriinfo-1.1." />
+					<atext linktext="xdriinfo-1.2." />
+					<atext linktext="xdriinfo-1.3." />
+					<atext linktext="xdriinfo-2." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Mesa</dep><dep>glu</dep>

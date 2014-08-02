@@ -11,17 +11,19 @@
 				<pkg sha1="f2689c4e91326efa2f0904eebcd920cf5fc9988e">xdpyinfo-1.3.1.tar.gz</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/app/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://xorg.freedesktop.org/archive/individual/app/">
-					<atext linktext="xset-1.2.3." />
-					<atext linktext="xset-1.2.4." />
-					<atext linktext="xset-1.2.5." />
-					<atext linktext="xset-1.2.6." />
-					<atext linktext="xset-1.3." />
-					<atext linktext="xset-1.4." />
-					<atext linktext="xset-2." />
+			<manualcheck date="20140731" interval="180" page="ftp://ftp.x.org/pub/individual/app/" />
+			<check>
+				<page html="ftp://ftp.x.org/pub/individual/app/">
+					<atext linktext="xdpyinfo-1.3.2." />
+					<atext linktext="xdpyinfo-1.3.3." />
+					<atext linktext="xdpyinfo-1.3.4." />
+					<atext linktext="xdpyinfo-1.3.5." />
+					<atext linktext="xdpyinfo-1.3.6." />
+					<atext linktext="xdpyinfo-1.4." />
+					<atext linktext="xdpyinfo-1.5." />
+					<atext linktext="xdpyinfo-2." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
