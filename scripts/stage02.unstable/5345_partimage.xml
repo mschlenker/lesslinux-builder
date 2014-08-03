@@ -3,7 +3,7 @@
 		name="partimage"
 		version="0.6.9"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
@@ -49,6 +49,7 @@
                         <dep>slang</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>openssl</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -68,14 +69,14 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr --disable-ssl && make
+			./configure --sysconfdir=/etc --prefix=/usr && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>

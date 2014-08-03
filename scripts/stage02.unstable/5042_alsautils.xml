@@ -3,7 +3,7 @@
 		name="alsa-utils"
 		version="1.0.28"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                             
@@ -72,10 +72,10 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			mkdir -p /lib/udev/rules.d/
+			make install DESTDIR=$TGTDIR
+			mkdir -p ${TGTDIR}/lib/udev/rules.d/
 			
-cat >> /lib/udev/rules.d/77-sound-permissions.rules  << ALSAEND
+cat >> ${TGTDIR}/lib/udev/rules.d/77-sound-permissions.rules  << ALSAEND
 
 # ALSA devices
 SUBSYSTEM=="sound", 		GROUP="audio"
@@ -92,5 +92,10 @@ ALSAEND
 			
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

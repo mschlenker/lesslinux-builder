@@ -3,7 +3,7 @@
 		name="xfburn"
 		version="0.5.2"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
@@ -112,8 +112,8 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			paxctl -m /usr/bin/xfburn
+			make install DESTDIR=${TGTDIR}
+			paxctl -m ${TGTDIR}/usr/bin/xfburn
 			]]>
 		</install>
 		<clean>

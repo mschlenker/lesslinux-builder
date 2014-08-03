@@ -2,7 +2,7 @@
 	<package 
 		name="fuse"
 		version="2.9.3"
-		class="user">
+		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                          
@@ -65,7 +65,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install 
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>

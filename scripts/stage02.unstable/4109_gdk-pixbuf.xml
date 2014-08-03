@@ -3,7 +3,7 @@
 		name="gdk-pixbuf"
 		version="2.30.8"
 		class="lib"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                    
@@ -57,45 +57,6 @@
 			 <dep>xz</dep>
 			 <dep>distcc</dep>
 		</builddeps>
-		<!-- <builddeps>
-                        <dep>GConf</dep>
-                        <dep>Python</dep>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>brasero</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>gawk</dep>
-                        <dep>gcc</dep>
-                        <dep>gettext</dep>
-                        <dep>glib-networking</dep>
-                        <dep>glib</dep>
-                        <dep>glibc</dep>
-                        <dep>gobject-introspection</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>jpegsrc</dep>
-                        <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXdmcp</dep>
-                        <dep>libffi</dep>
-			<dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
-                        <dep>libxcb</dep>
-                        <dep>linux_headers</dep>
-                        <dep>make</dep>
-                        <dep>openssl</dep>
-                        <dep>perl</dep>
-                        <dep>pkg-config</dep>
-			<dep>pygobject</dep>
-                        <dep>sed</dep>
-                        <dep>tar</dep>
-                        <dep>tiff</dep>
-                        <dep>xproto-base</dep>
-                        <dep>xz</dep>
-			<dep>libpthread-stubs</dep>
-                        <dep>zlib</dep>
-			<dep>distcc</dep>
-                </builddeps> -->
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
@@ -121,7 +82,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>

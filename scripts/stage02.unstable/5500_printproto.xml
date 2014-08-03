@@ -3,7 +3,7 @@
 		name="printproto"
 		version="1.0.5"
 		class="lib"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                
@@ -54,7 +54,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR 
 			]]>
 		</install>
 		<clean>

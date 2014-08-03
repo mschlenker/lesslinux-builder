@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
 		name="squashfs-tools"
-		version="4.2"
+		version="4.3"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<!-- <file>           
@@ -11,13 +11,13 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
 			<file>                      
-				<pkg sha1="e0944471ff68e215d3fecd464f30ea6ceb635fd7">squashfs4.2.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/squashfs/squashfs/squashfs4.2/</mirror>
+				<pkg sha1="a615979db9cee82e4a934a1455577f597d290b41">squashfs4.3.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/squashfs/squashfs/squashfs4.3/</mirror>
 			</file>
-			<file>                                              
+			<!-- <file>                                              
 				<pkg sha1="4e849a45d38f7ef8e82b3e4a7fbf5cd91ea45ffe">squashfs-20110330-lzo-lzma.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
+			</file> -->
 			<manualcheck date="20140724" interval="180" page="http://squashfs.sourceforge.net/" />
 			<!--<check>
 				<page html="http://sourceforge.net/projects/grsync/files/">
@@ -47,7 +47,7 @@
 		<patch>
 			<![CDATA[
 			cd squashfs${PKGVERSION}
-			cat ${SRCDIR}/squashfs-20110330-lzo-lzma.patch | patch -p1
+			# cat ${SRCDIR}/squashfs-20110330-lzo-lzma.patch | patch -p1
 			]]>
 		</patch>
 		<build>
@@ -60,8 +60,9 @@
 		<install>
 			<![CDATA[
 			cd squashfs${PKGVERSION}/${PKGNAME}
-			install -m 0755 mksquashfs /usr/bin
-			install -m 0755 unsquashfs /usr/bin
+			mkdir -p ${TGTDIR}/usr/bin 
+			install -m 0755 mksquashfs ${TGTDIR}/usr/bin
+			install -m 0755 unsquashfs ${TGTDIR}/usr/bin
 			]]>
 		</install>
 		<clean>

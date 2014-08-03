@@ -3,7 +3,7 @@
 		name="ms-sys"
 		version="2.4.0"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                         
@@ -58,7 +58,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make PREFIX=/usr install
+			make install PREFIX=/usr DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
