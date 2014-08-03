@@ -1,40 +1,47 @@
 <llpackages>
 	<package 
-		name="libmad"
-		version="0.15.1b"
-		class="user"
+		name="imake"
+		version="1.0.7"
+		class="lib"
+		install="destdir"
 		>
 		<license>GPLv2</license>
 		<sources>
-			<file>   
-				<pkg sha1="cac19cd00e1a907f3150cc040ccc077783496d76">libmad-0.15.1b.tar.gz</pkg>
-				<mirror>ftp://ftp.mars.org/pub/mpeg/</mirror>
+			<file>                            
+				<pkg sha1="52e236776133f217d438622034b8603d201a6ec5">imake-1.0.7.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/util/</mirror>
 			</file>
-			<file>   
-				<pkg sha1="8e6f56a84446a7b0a353fbe5bd5c48758ad8b54d">libmad-0.15.1b-lesslinux-20090625.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<manualcheck date="20140802" interval="365" page="ftp://ftp.mars.org/pub/mpeg/" />
+			<manualcheck date="20140802" interval="180" page="http://xorg.freedesktop.org/archive/individual/util/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/util/">
+					<atext linktext="imake-1.0.9." />
+					<atext linktext="imake-1.0.10." />
+					<atext linktext="imake-1.0.11." />
+					<atext linktext="imake-1.0.8." />
+					<atext linktext="imake-1.1." />
+					<atext linktext="imake-1.2." />
+					<atext linktext="imake-2." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
-			<dep>autoconf</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>findutils</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
                         <dep>linux_headers</dep>
-                        <dep>m4</dep>
                         <dep>make</dep>
                         <dep>perl</dep>
+                        <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-		</builddeps>
+                        <dep>xproto-base</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
@@ -44,28 +51,24 @@
 			fi
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[ 
-			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-lesslinux-20090625.patch | patch -p1
-			true
-			]]>
-		</patch>
+		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr 
-			sed -i 's/-fforce-mem//g' Makefile
-			sed -i 's/-fforce-mem//g' msvc++/Makefile
-			make
+			./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[ 
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>
