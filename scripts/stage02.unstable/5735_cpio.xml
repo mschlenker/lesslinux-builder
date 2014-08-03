@@ -50,6 +50,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e '/gets is a/d' gnu/stdio.in.h
 			./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
