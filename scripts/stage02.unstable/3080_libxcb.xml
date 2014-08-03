@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="libxcb"
+		version="1.11"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>      
+				<pkg sha1="8343b417d7eeb2a2c6b6c4a87a03a4fd0fc65c46">libxcb-1.11.tar.bz2</pkg>
+				<mirror>http://xcb.freedesktop.org/dist/</mirror>
+			</file>
+			<manualcheck date="20140803" interval="180" page="http://xcb.freedesktop.org/dist/" />
+			<check>
+				<page html="http://xcb.freedesktop.org/dist/">
+					<atext linktext="libxcb-1.11.1" />
+					<atext linktext="libxcb-1.11.2" />
+					<atext linktext="libxcb-1.12" />
+					<atext linktext="libxcb-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libXau</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf ${PKGNAME}-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>

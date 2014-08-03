@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="xproto-base"
-		version="20140719"
+		version="20140803"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -22,12 +22,8 @@
 				<pkg sha1="07f6ab3e1e1efe71c51f50e95851d93d2a1de773">fontcacheproto-0.1.3.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
-			<!-- <file>  
-				<pkg sha1="538f0880faa6981cb1a348ced93dc715c42840f7">fontsproto-2.1.2.tar.bz2</pkg>
-				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
-			</file> -->
 			<file>  
-				<pkg sha1="28c108bd6438c332122c10871c1fc6415591755f">fontsproto-2.1.3.tar.bz2</pkg>
+				<pkg sha1="538f0880faa6981cb1a348ced93dc715c42840f7">fontsproto-2.1.2.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
 			<file>                                                                                   
@@ -35,7 +31,7 @@
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
 			<file>                                                                                                    
-				<pkg sha1="126b6ad57b5432e154485f900920765eae8fda45">inputproto-2.3.1.tar.bz2</pkg>
+				<pkg sha1="4eacc1883593d3f0040e410be3afc8483c7d2409">inputproto-2.3.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
 			<!-- <file>
@@ -71,7 +67,7 @@
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
 			<file>      
-				<pkg sha1="4595edfab6ab38f1f42f02f1caab5891fe114db3">xcb-proto-1.10.tar.bz2</pkg>
+				<pkg sha1="608bd60663e223464d38acec0183ddb827776401">xcb-proto-1.11.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/x11</mirror>
 				<mirror>http://xcb.freedesktop.org/dist/</mirror>
 			</file>
@@ -120,7 +116,7 @@
 				<pkg sha1="11d54c3210887631ea71e8f8030a77692e964fc4">xf86vidmodeproto-2.3.1.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
-			<manualcheck date="20140518" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
+			<manualcheck date="20140803" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
 					<atext linktext="xf86vidmodeproto-2.3.2." />
@@ -173,8 +169,8 @@
 					<atext linktext="kbproto-1.1." />
 					<atext linktext="kbproto-1.2." />
 					<atext linktext="kbproto-1.2." />
+					<atext linktext="inputproto-2.3.1." />
 					<atext linktext="inputproto-2.3.2." />
-					<atext linktext="inputproto-2.3.3." />
 					<atext linktext="inputproto-2.4." />
 					<atext linktext="inputproto-2.5." />
 					<atext linktext="glproto-1.4.18." />
@@ -215,11 +211,11 @@
 					<atext linktext="bigreqsproto-2." />
 				</page>
 				<page html="http://xcb.freedesktop.org/dist/">
-					<atext linktext="xcb-proto-1.10.1." />
-					<atext linktext="xcb-proto-1.10.2." />
-					<atext linktext="xcb-proto-1.10.3." />
-					<atext linktext="xcb-proto-1.11." />
+					<atext linktext="xcb-proto-1.11.1." />
+					<atext linktext="xcb-proto-1.11.2." />
+					<atext linktext="xcb-proto-1.11.3." />
 					<atext linktext="xcb-proto-1.12." />
+					<atext linktext="xcb-proto-1.13." />
 				</page>
 			</check>
 		</sources>
@@ -247,15 +243,15 @@
 				damageproto-1.2.1 \
 				fixesproto-5.0 \
 				fontcacheproto-0.1.3 \
-				fontsproto-2.1.3 \
-				inputproto-2.3.1 \
+				fontsproto-2.1.2 \
+				inputproto-2.3 \
 				kbproto-1.0.6 \
 				randrproto-1.4.0 \
 				renderproto-0.11 \
 				resourceproto-1.2.0 \
 				scrnsaverproto-1.2.2 \
 				videoproto-2.3.2 \
-				xcb-proto-1.10 \
+				xcb-proto-1.11 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
 				xproto-7.0.26 \
@@ -275,15 +271,15 @@
 				damageproto-1.2.1 \
 				fixesproto-5.0 \
 				fontcacheproto-0.1.3 \
-				fontsproto-2.1.3 \
-				inputproto-2.3.1 \
+				fontsproto-2.1.2 \
+				inputproto-2.3 \
 				kbproto-1.0.6 \
 				randrproto-1.4.0 \
 				renderproto-0.11 \
 				resourceproto-1.2.0 \
 				scrnsaverproto-1.2.2 \
 				videoproto-2.3.2 \
-				xcb-proto-1.10 \
+				xcb-proto-1.11 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
 				xproto-7.0.26 \
@@ -303,15 +299,15 @@
 				damageproto-1.2.1 \
 				fixesproto-5.0 \
 				fontcacheproto-0.1.3 \
-				fontsproto-2.1.3 \
-				inputproto-2.3.1 \
+				fontsproto-2.1.2 \
+				inputproto-2.3 \
 				kbproto-1.0.6 \
 				randrproto-1.4.0 \
 				renderproto-0.11 \
 				resourceproto-1.2.0 \
 				scrnsaverproto-1.2.2 \
 				videoproto-2.3.2 \
-				xcb-proto-1.10 \
+				xcb-proto-1.11 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
 				xproto-7.0.26 \
@@ -330,15 +326,15 @@
 				damageproto-1.2.1 \
 				fixesproto-5.0 \
 				fontcacheproto-0.1.3 \
-				fontsproto-2.1.3 \
-				inputproto-2.3.1 \
+				fontsproto-2.1.2 \
+				inputproto-2.3 \
 				kbproto-1.0.6 \
 				randrproto-1.4.0 \
 				renderproto-0.11 \
 				resourceproto-1.2.0 \
 				scrnsaverproto-1.2.2 \
 				videoproto-2.3.2 \
-				xcb-proto-1.10 \
+				xcb-proto-1.11 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
 				xproto-7.0.26 \
