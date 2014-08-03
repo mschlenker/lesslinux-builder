@@ -1,0 +1,106 @@
+<llpackages>
+	<package 
+		name="nmap"
+		version="6.46"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="e19dd4d35d76b24b084665b90c423f53bc7fdcfe">nmap-6.46.tar.bz2</pkg>
+				<mirror>http://nmap.org/dist/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="120" page="http://nmap.org/dist/" />
+			<check>
+				<page html="http://nmap.org/dist/">
+					<atext linktext="nmap-6.41.t" />
+					<atext linktext="nmap-6.42.t" />
+					<atext linktext="nmap-6.43.t" />
+					<atext linktext="nmap-6.44.t" />
+					<atext linktext="nmap-6.45.t" />
+					<atext linktext="nmap-6.46.t" />
+					<atext linktext="nmap-6.47.t" />
+					<atext linktext="nmap-6.48.t" />
+					<atext linktext="nmap-6.49.t" />
+					<atext linktext="nmap-6.5" />
+					<atext linktext="nmap-6.6" />
+					<atext linktext="nmap-8." />
+					<atext linktext="nmap-9." />
+					<atext linktext="nmap-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>apr</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libpcap</dep>
+                        <dep>linux_headers</dep>
+                        <dep>lua</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pcre</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>subversion</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			# sed -i 's%Exec=zenmap%Exec=sudo /usr/bin/zenmap%' ${TGTDIR}/usr/share/applications/zenmap.desktop
+			# sed -i 's%Categories=%Categories=CB-Other;%' ${TGTDIR}/usr/share/applications/zenmap.desktop
+			rm ${TGTDIR}/usr/share/applications/zenmap*.desktop
+			
+			cat > ${TGTDIR}/usr/share/applications/zenmap.desktop  << EOF
+			
+			
+[Desktop Entry]
+Encoding=UTF-8
+Name=Zenmap
+GenericName=GUI Port Scanner
+Exec=sudo /usr/bin/zenmap
+Terminal=false
+Icon=/usr/share/zenmap/pixmaps/zenmap.png
+Type=Application
+Categories=CB-Other;
+Comment=A cross-platform GUI for the Nmap Security Scanner.
+
+EOF
+
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

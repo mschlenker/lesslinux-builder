@@ -1,0 +1,98 @@
+<llpackages>
+	<package 
+		name="NetworkManager"
+		version="0.9.10.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="f670d871d0115d8b4c0bc035245cb309510c7377">NetworkManager-0.9.10.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/NetworkManager/0.9/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="90" page="http://www.gnu.org/software/xorriso/" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/xchat/files/">
+					<atext linktext="xchat-2.8.9." />
+					<atext linktext="xchat-2.8.10." />
+					<atext linktext="xchat-2.8.11." />
+					<atext linktext="xchat-2.8.12." />
+					<atext linktext="xchat-2.9." />
+					<atext linktext="xchat-2.10." />
+					<atext linktext="xchat-3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>dhcpcd</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib-networking</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>gnutls3</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libffi</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libnl3</dep>
+                        <dep>libsoup</dep>
+                        <dep>libtasn1</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p11-kit</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>polkit</dep>
+                        <dep>ppp</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>udev</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xz</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --with-crypto=gnutls  --localstatedir=/var 
+			find . -name Makefile -exec sed -i 's/-Werror$//g' {} \; 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

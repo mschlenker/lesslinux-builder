@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
-		name="plzip"
-		version="1.1"
+		name="lunzip"
+		version="1.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="22d3bba78b9219e7976372e24773d3abc0ff4563">plzip-1.1.tar.gz</pkg>
-				<mirror>http://download.savannah.gnu.org/releases/lzip/</mirror>
+				<pkg sha1="830adef302242ffba4078be236322187dae72e15">lunzip-1.6.tar.gz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/lzip/lunzip/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="120" page="http://download.savannah.gnu.org/releases/lzip/" />
+			<manualcheck date="20140802" interval="180" page="http://download.savannah.gnu.org/releases/lzip/" />
 			<!-- <check>
 				<page html="http://www.hyperrealm.com/libconfig/">
 					<atext linktext="libconfig-1.4.10." />
@@ -31,7 +31,6 @@
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>linux_headers</dep>
-                        <dep>lzlib</dep>
                         <dep>make</dep>
                         <dep>sed</dep>
 			<dep>distcc</dep>
@@ -61,7 +60,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
