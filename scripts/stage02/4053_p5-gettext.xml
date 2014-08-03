@@ -1,0 +1,49 @@
+<llpackages>
+	<package 
+		name="p5-gettext"
+		version="1.05"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file> 
+				<pkg sha1="705f519ad61b4a8c522d8aaf98425e0bd21709f2">gettext-1.05.tar.gz</pkg>
+				<mirror>http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="365" page="http://ftp.gwdg.de/pub/languages/perl/CPAN/authors/id/G/GR/GRANTM/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>gettext</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/gettext-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gettext-${PKGVERSION}
+			/usr/bin/perl Makefile.PL 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gettext-${PKGVERSION}
+			make install DESTDIR="${TGTDIR}"
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gettext-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
