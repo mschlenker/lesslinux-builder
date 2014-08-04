@@ -73,8 +73,8 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.gz
 			tar xzf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.gz
 			tar xzf ${SRCDIR}/compiler-rt-3.4.src.tar.gz
-			mv cfe-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.src/tools/clang
-			mv compiler-rt-3.4 ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
+			mv -v cfe-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/tools/clang
+			mv -v compiler-rt-3.4 ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
 			]]>
 		</unpack>
 		<patch />
