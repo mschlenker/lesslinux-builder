@@ -2,8 +2,7 @@
 	<package 
 		name="gdk-pixbuf"
 		version="2.30.8"
-		class="lib"
-		install="destdir">
+		class="lib">
 		<license>GPLv2</license>
 		<sources>
 			<file>                    
@@ -81,8 +80,9 @@
 		<test />
 		<install>
 			<![CDATA[
+			# Do not install to destdir! Otherwise cache is missing!
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=$TGTDIR
+			make install # DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>
