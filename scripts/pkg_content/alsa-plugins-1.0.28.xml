@@ -1,0 +1,36 @@
+<pkgdesc name='alsa-plugins' version='1.0.28'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/alsa-lib/libasound_module_rate_speexrate_medium.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/alsa-lib/libasound_module_rate_speexrate_best.so' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/alsa-lib' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_oss.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_speex.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_upmix.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_ctl_arcam_av.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_ctl_oss.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_usb_stream.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_vdownmix.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_rate_speexrate.so' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/alsa-lib/libasound_module_ctl_oss.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_rate_speexrate.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_upmix.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_oss.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_speex.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_usb_stream.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_ctl_arcam_av.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/libasound_module_pcm_vdownmix.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

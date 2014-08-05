@@ -1,0 +1,103 @@
+<pkgdesc name='alsa-utils' version='1.0.28'>
+    <subpackage name='skel'>
+        <softlink path='/usr/bin/arecord' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man1/arecord.1' owner='0' group='0'/>
+        <directory path='/lib' owner='0' group='0'/>
+        <directory path='/lib/udev' owner='0' group='0'/>
+        <directory path='/lib/udev/rules.d' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/fr' owner='0' group='0'/>
+        <directory path='/usr/share/man/fr/man8' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+        <directory path='/usr/share/man/man7' owner='0' group='0'/>
+        <directory path='/usr/share/alsa' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/speaker-test' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/init' owner='0' group='0'/>
+        <directory path='/usr/share/locale' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/sounds' owner='0' group='0'/>
+        <directory path='/usr/share/sounds/alsa' owner='0' group='0'/>
+        <directory path='/var' owner='0' group='0'/>
+        <directory path='/var/lib' owner='0' group='0'/>
+        <directory path='/var/lib/alsa' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/bin/arecordmidi' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/aplay' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/alsaucm' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/aseqnet' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/amixer' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/alsaloop' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/aconnect' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/speaker-test' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/aplaymidi' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/amidi' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/alsamixer' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/iecset' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/aseqdump' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/alsactl' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/fr/man8/alsaconf.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/speaker-test.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/alsactl.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/amixer.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/amidi.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/alsaloop.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/arecordmidi.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/aseqnet.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/iecset.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/aplaymidi.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/aseqdump.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/aconnect.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/alsamixer.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/aplay.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/alsaconf.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'/>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/alsa-utils.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ja/LC_MESSAGES/alsaconf.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ja/LC_MESSAGES/alsa-utils.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ru/LC_MESSAGES/alsaconf.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/alsa-utils.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/lib/udev/rules.d/77-sound-permissions.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/90-alsa-restore.rules' owner='0' group='0' mode='100644'/>
+        <file path='/usr/sbin/alsaconf' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/alsa/speaker-test/sample_map.csv' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/init/hda' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/init/00main' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/init/test' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/init/ca0106' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/init/help' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/init/info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/init/default' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Front_Center.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Rear_Left.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Front_Right.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Rear_Center.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Side_Left.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Side_Right.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Rear_Right.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Noise.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/sounds/alsa/Front_Left.wav' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

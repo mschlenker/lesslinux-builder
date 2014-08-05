@@ -1,0 +1,39 @@
+<pkgdesc name='libwebp' version='0.4.1'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libwebp.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libwebp.so.5' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/webp' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/libwebp.so.5.0.1' owner='0' group='0' mode='100755'/>
+     </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/cwebp' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/dwebp' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/cwebp.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/dwebp.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/webp/encode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/webp/types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/webp/decode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libwebp.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libwebp.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libwebp.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

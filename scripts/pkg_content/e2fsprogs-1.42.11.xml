@@ -1,0 +1,190 @@
+<pkgdesc name='e2fsprogs' version='1.42.11'>
+    <subpackage name='skel'>
+        <softlink path='/lib/libss.so.2' owner='0' group='0'/>
+        <softlink path='/lib/libe2p.so.2' owner='0' group='0'/>
+        <softlink path='/lib/libcom_err.so.2' owner='0' group='0'/>
+        <softlink path='/lib/libext2fs.so.2' owner='0' group='0'/>
+        <softlink path='/usr/lib/libcom_err.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libext2fs.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libe2p.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libss.so' owner='0' group='0'/>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/lib' owner='0' group='0'/>
+        <directory path='/sbin' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/et' owner='0' group='0'/>
+        <directory path='/usr/include/e2p' owner='0' group='0'/>
+        <directory path='/usr/include/ss' owner='0' group='0'/>
+        <directory path='/usr/include/ext2fs' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/et' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man5' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+        <directory path='/usr/share/man/man3' owner='0' group='0'/>
+        <directory path='/usr/share/locale' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eo' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eo/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/cs' owner='0' group='0'/>
+        <directory path='/usr/share/locale/cs/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/vi' owner='0' group='0'/>
+        <directory path='/usr/share/locale/vi/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/ss' owner='0' group='0'/>
+        <directory path='/usr/share/info' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/lib/libcom_err.so.2.1' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libss.so.2.0' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libe2p.so.2.3' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libext2fs.so.2.4' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/sbin/fsck.ext4' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/fsck.ext2' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/mkfs.ext4dev' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/debugfs' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/mkfs.ext3' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/mkfs.ext4' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/mke2fs' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/e2image' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/dumpe2fs' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/resize2fs' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/tune2fs' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/e2label' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/logsave' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/fsck.ext4dev' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/mkfs.ext2' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/fsck.ext3' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/badblocks' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/e2fsck' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/e2undo' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/e2initrd_helper' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/lsattr' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/mk_cmds' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/chattr' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/compile_et' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/mklost+found' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/e4defrag' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/filefrag' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/e2freefrag' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man5/ext4.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/e2fsck.conf.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/mke2fs.conf.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/ext3.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/ext2.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/lsattr.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/chattr.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/mk_cmds.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/compile_et.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mke2fs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/badblocks.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/fsck.ext3.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mklost+found.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/fsck.ext4.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/e2undo.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mkfs.ext2.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mkfs.ext4.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mkfs.ext3.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/logsave.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/dumpe2fs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/debugfs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/e2freefrag.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/e2label.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/fsck.ext4dev.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/fsck.ext2.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/filefrag.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mkfs.ext4dev.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/tune2fs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/e4defrag.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/e2fsck.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/e2image.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/resize2fs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/com_err.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/dir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/libext2fs.info' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/mke2fs.conf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/et/com_err.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/com_err.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/e2p/e2p.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ss/ss.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ss/ss_err.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/ext2_err.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/tdb.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/ext2_io.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/ext2_types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/ext3_extents.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/qcow2.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/ext2_ext_attr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/bitops.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/ext2_fs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ext2fs/ext2fs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libe2p.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libext2fs.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/ss.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/ext2fs.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/e2p.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/com_err.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libss.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libcom_err.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/et/et_c.awk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/et/et_h.awk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/uk/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/eo/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nl/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/cs/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ca/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/tr/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/vi/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/id/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/e2fsprogs.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/ss/ct_c.sed' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/ss/ct_c.awk' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

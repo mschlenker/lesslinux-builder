@@ -1,0 +1,34 @@
+<pkgdesc name='libvdpau' version='0.8'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libvdpau.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libvdpau.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/vdpau/libvdpau_trace.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/vdpau/libvdpau_trace.so' owner='0' group='0'/>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/vdpau' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/lib/vdpau' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/etc/vdpau_wrapper.cfg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libvdpau.so.1.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/vdpau/libvdpau_trace.so.1.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/vdpau/vdpau.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/vdpau/vdpau_x11.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libvdpau.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/vdpau.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/vdpau/libvdpau_trace.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

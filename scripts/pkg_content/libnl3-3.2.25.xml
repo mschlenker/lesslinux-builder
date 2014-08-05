@@ -1,0 +1,231 @@
+<pkgdesc name='libnl3' version='3.2.25'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libnl-cli-3.so.200' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-genl-3.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-idiag-3.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-3.so.200' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-nf-3.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-idiag-3.so.200' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-genl-3.so.200' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-nf-3.so.200' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-route-3.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-3.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-cli-3.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libnl-route-3.so.200' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/etc' owner='0' group='0'/>
+        <directory path='/usr/etc/libnl' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/genl' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/netfilter' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/fib_lookup' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/route' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/route/act' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/route/cls' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/route/cls/ematch' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/route/qdisc' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/route/link' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/cli' owner='0' group='0'/>
+        <directory path='/usr/include/libnl3/netlink/idiag' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/libnl' owner='0' group='0'/>
+        <directory path='/usr/lib/libnl/cli' owner='0' group='0'/>
+        <directory path='/usr/lib/libnl/cli/cls' owner='0' group='0'/>
+        <directory path='/usr/lib/libnl/cli/qdisc' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libnl/cli/cls/basic.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/cls/cgroup.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/ingress.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/pfifo.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/bfifo.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/fq_codel.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/blackhole.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/plug.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/htb.so' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libnl-nf-3.so.200.20.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-genl-3.so.200.20.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-route-3.so.200.20.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-idiag-3.so.200.20.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-3.so.200.20.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-cli-3.so.200.20.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/sbin/nl-classid-lookup' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-qdisc-delete' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-qdisc-add' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-class-delete' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-cls-delete' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-class-add' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/genl-ctrl-list' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-qdisc-list' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-cls-add' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-link-list' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-class-list' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-pktloc-lookup' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/nl-cls-list' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man8/nl-pktloc-lookup.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/genl-ctrl-list.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/nl-qdisc-add.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/nl-qdisc-list.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/nl-classid-lookup.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/nl-qdisc-delete.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/usr/etc/libnl/pktloc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/etc/libnl/classid' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/libnl3/netlink/attr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/msg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/handlers.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/genl/family.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/genl/mngt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/genl/ctrl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/genl/genl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cache-api.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/addr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/hash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netlink.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/list.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/nfnl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/ct.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/log_msg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/exp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/log.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/queue.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/queue_msg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netfilter/netfilter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/version.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/fib_lookup/lookup.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/fib_lookup/request.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cache.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/object.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/utils.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/data.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/socket.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/hashtable.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/object-api.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/errno.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netlink-kernel.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/act/mirred.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/pktloc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/u32.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/basic.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/ematch.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/cgroup.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/fw.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/police.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/ematch/nbyte.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/ematch/text.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/ematch/meta.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/cls/ematch/cmp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/class.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/neightbl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/rtnl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/classifier.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/addr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/nexthop.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/netem.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/plug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/fifo.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/tbf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/cbq.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/fq_codel.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/sfq.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/red.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/prio.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/htb.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc/dsmark.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/route.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/neighbour.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/action.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/tc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/qdisc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/info-api.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/bonding.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/api.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/macvlan.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/ipvti.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/ip6tnl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/vxlan.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/can.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/ipgre.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/vlan.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/veth.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/bridge.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/inet.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/ipip.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/link/sit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/tc-api.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/route/rule.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/netlink-compat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/class.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/ct.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/addr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/route.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/exp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/link.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/cls.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/tc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/utils.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/neigh.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/qdisc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/cli/rule.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/idiag/msg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/idiag/idiagnl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/idiag/vegasinfo.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/idiag/meminfo.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libnl3/netlink/idiag/req.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-idiag-3.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-cli-3.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-route-3.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-genl-3.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/cls/basic.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/cls/basic.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/cls/cgroup.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/cls/cgroup.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/fq_codel.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/ingress.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/bfifo.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/ingress.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/qdisc/blackhole.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/qdisc/plug.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/qdisc/blackhole.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/plug.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/bfifo.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/qdisc/htb.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/htb.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/qdisc/pfifo.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl/cli/qdisc/fq_codel.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl/cli/qdisc/pfifo.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-route-3.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-3.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/libnl-route-3.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libnl-genl-3.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libnl-nf-3.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libnl-3.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libnl-cli-3.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-cli-3.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-3.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-nf-3.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnl-nf-3.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-idiag-3.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnl-genl-3.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

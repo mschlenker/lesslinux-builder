@@ -1,0 +1,196 @@
+<pkgdesc name='alsa-lib' version='1.0.28'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libasound.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libasound.so.2' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/alsa' owner='0' group='0'/>
+        <directory path='/usr/include/alsa/sound' owner='0' group='0'/>
+        <directory path='/usr/include/sys' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/lib/alsa-lib' owner='0' group='0'/>
+        <directory path='/usr/lib/alsa-lib/smixer' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/aclocal' owner='0' group='0'/>
+        <directory path='/usr/share/alsa' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/alsa.conf.d' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/cards' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/cards/SI7018' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/ucm' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/ucm/PandaBoardES' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/ucm/PandaBoard' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/ucm/DAISY-I2S' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/ucm/tegraalc5632' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/ucm/SDP4430' owner='0' group='0'/>
+        <directory path='/usr/share/alsa/pcm' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libasound.so.2.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-sbase.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-hda.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-ac97.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-python.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/aserver' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'>
+        <file path='/usr/share/alsa/alsa.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/sndo-mixer.alisp' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/Audigy2.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ATIIXP.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ATIIXP-SPDMA.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/Aureon51.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ICE1712.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/CS46xx.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/PMac.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/GUS.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/USB-Audio.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/TRID4DWAVENX.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/SI7018.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ICH.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/VXPocket440.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/PS3.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/PC-Speaker.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ENS1370.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/VX222.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/CMI8338.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/FM801.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/CMI8788.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/PMacToonie.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/RME9636.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/CMI8338-SWIEC.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ATIIXP-MODEM.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ICH-MODEM.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/VIA8233A.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/EMU10K1X.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/CMI8738-MC6.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/VIA8237.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/SB-XFi.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/VIA8233.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/AU8820.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/CMI8738-MC8.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/EMU10K1.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ENS1371.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ICH4.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/CA0106.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ICE1724.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/aliases.alisp' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/NFORCE.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/Maestro3.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/AU8810.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/HDA-Intel.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/aliases.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/VIA686A.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/SI7018/sndop-mixer.alisp' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/SI7018/sndoc-mixer.alisp' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/Aureon71.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/AACI.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/VXPocket.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/RME9652.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/YMF744.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/AU8830.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/Audigy.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/ES1968.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/smixer.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/front.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/surround41.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/iec958.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/surround40.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/surround71.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/rear.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/modem.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/surround51.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/dmix.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/dsnoop.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/default.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/surround50.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/hdmi.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/side.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/dpl.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/center_lfe.conf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/alsa/error.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/pcm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/seq_event.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/pcm_rate.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/seq_midi_event.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/control.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/pcm_old.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/pcm_extplug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/seq.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/mixer_abst.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/alisp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/seqmid.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/hwdep.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/rawmidi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/version.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/timer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/output.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/control_external.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/pcm_external.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/asoundlib.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/iatomic.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/sound/emu10k1.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/sound/hdspm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/sound/type_compat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/sound/sscape_ioctl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/sound/sb16_csp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/sound/hdsp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/sound/asound_fm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/global.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/asoundef.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/pcm_plugin.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/conf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/input.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/use-case.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/mixer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/alsa/pcm_ioplug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sys/asoundlib.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libasound.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/alsa.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-ac97.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-hda.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-python.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/alsa-lib/smixer/smixer-sbase.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/aclocal/alsa.m4' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/share/alsa/alsa.conf.d/README' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/Echo_Echo3G.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/FireWave.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/FWSpeakers.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/cards/Loopback.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoardES/hifi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoardES/voiceCall' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoardES/hifiLP' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoardES/FMAnalog' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoardES/PandaBoardES.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoardES/record' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoardES/voice' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoard/hifi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoard/voiceCall' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoard/hifiLP' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoard/FMAnalog' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoard/PandaBoard.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoard/record' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/PandaBoard/voice' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/DAISY-I2S/DAISY-I2S.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/DAISY-I2S/HiFi.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/tegraalc5632/tegraalc5632.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/SDP4430/hifi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/SDP4430/voiceCall' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/SDP4430/hifiLP' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/SDP4430/FMAnalog' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/SDP4430/SDP4430.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/SDP4430/record' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/ucm/SDP4430/voice' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/alsa/pcm/surround21.conf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
