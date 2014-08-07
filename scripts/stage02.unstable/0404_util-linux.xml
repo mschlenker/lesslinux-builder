@@ -30,7 +30,6 @@
 		<builddeps>
 			<dep>linux_headers</dep>
 			<dep>glibc</dep>
-			<dep>man-pages</dep>
 			<dep>readjust</dep>
 			<dep>zlib</dep>
 			<dep>binutils</dep>
@@ -39,8 +38,8 @@
 			<dep>mpc</dep>
 			<dep>gcc</dep>
 			<dep>sed</dep>
-			<dep>ncurses</dep>
-			<dep>ncurses-8bit</dep>
+			<dep>autoconf213</dep>
+			<dep>automake113</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -56,6 +55,7 @@
 		<build>
 			<![CDATA[
 			cd util-linux-${PKGVERSION}
+			export PATH=/usr/local/automake113/bin:/usr/local/autoconf213/bin:$PATH
 			# export AL_OPTS="-I/tools/share/aclocal-1.13"
 			./configure --enable-arch --enable-partx --enable-write --disable-login --disable-su && make
 			]]>
@@ -64,6 +64,7 @@
 		<install>
 			<![CDATA[
 			# export PATH=/usr/local/autoconf213/bin:$PATH
+			export PATH=/usr/local/automake113/bin:/usr/local/autoconf213/bin:$PATH
 			cd util-linux-${PKGVERSION}
 			mkdir -pv ${TGTDIR}/var/lib/hwclock
 			make install DESTDIR=${TGTDIR}
