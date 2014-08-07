@@ -56,9 +56,9 @@
 			mkdir -p ${TGTDIR}/usr/bin
 			ln -sf /usr/local/automake113/bin/automake ${TGTDIR}/usr/bin/automake-1.13
 			cd ..
-			mkdir -p ${TGTDIR}/usr/share/aclocal-1.13
-			install -m 0644 pkg-config-0.28/aclocal.m4 ${TGTDIR}/usr/share/aclocal-1.13
-			install -m 0644 pkg-config-0.28/pkg.m4 ${TGTDIR}/usr/share/aclocal-1.13
+			mkdir -p ${TGTDIR}/usr/local/automake113/share/aclocal-1.13
+			install -m 0644 pkg-config-0.28/aclocal.m4 ${TGTDIR}/usr/local/automake113/share/aclocal-1.13
+			install -m 0644 pkg-config-0.28/pkg.m4 ${TGTDIR}/usr/local/automake113/share/aclocal-1.13
 			]]>
 		</install>
 		<clean>

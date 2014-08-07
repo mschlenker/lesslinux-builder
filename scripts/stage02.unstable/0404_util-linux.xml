@@ -56,7 +56,7 @@
 			<![CDATA[
 			cd util-linux-${PKGVERSION}
 			export PATH=/usr/local/automake113/bin:/usr/local/autoconf213/bin:$PATH
-			export AL_OPTS="-I/usr/share/aclocal-1.13"
+			export AL_OPTS="-I/usr/local/automake113/share/aclocal-1.13"
 			./configure --enable-arch --enable-partx --enable-write --disable-login --disable-su && make
 			]]>
 		</build>
