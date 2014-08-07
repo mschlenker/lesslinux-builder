@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="autoconf"
+		version="2.69"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>      
+				<pkg sha1="e891c3193029775e83e0534ac0ee0c4c711f6d23">autoconf-2.69.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/autoconf/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="365" page="http://ftp.gnu.org/gnu/autoconf/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/autoconf/">
+					<atext linktext="autoconf-2.72." />
+					<atext linktext="autoconf-2.70." />
+					<atext linktext="autoconf-2.71." />
+					<atext linktext="autoconf-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>m4</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
