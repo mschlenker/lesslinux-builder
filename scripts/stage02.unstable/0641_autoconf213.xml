@@ -23,8 +23,17 @@
 			</check>
 		</sources>
 		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
                         <dep>gcc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
                         <dep>m4</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>autoconf</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 

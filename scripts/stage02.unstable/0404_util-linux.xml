@@ -28,8 +28,19 @@
 			</check>
 		</sources>
 		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
 			<dep>gcc</dep>
-			<dep>autoconf213</dep>
+			<dep>sed</dep>
+			<dep>ncurses</dep>
+			<dep>ncurses-8bit</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
