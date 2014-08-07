@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="openssl"
+		version="1.0.1i"
+		class="devel"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                         
+				<pkg sha1="74eed314fa2c93006df8d26cd9fc630a101abd76">openssl-1.0.1i.tar.gz</pkg>
+				<mirror>http://www.openssl.org/source/</mirror>
+			</file>
+			<!-- <file>                         
+				<pkg sha1="99ba88a953970aab83890fb98f2ea761dd71407b">openssl-1.0.1h-fix_parallel_build-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<!-- <file>                         
+				<pkg sha1="e77dcfc75393108579d6f7d164faafd84dc17820">openssl-1.0.1h-fix_pod_syntax-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20140802" interval="180" page="http://www.openssl.org/source/" />
+			<check>
+				<page html="http://artfiles.org/openssl.org/source/">
+					<atext linktext="openssl-1.0.1k" />
+					<atext linktext="openssl-1.0.1l" />
+					<atext linktext="openssl-1.0.1j" />
+					<atext linktext="openssl-1.0.2." />
+					<atext linktext="openssl-1.0.3." />
+					<atext linktext="openssl-1.1." />
+					<atext linktext="openssl-1.2." />
+					<atext linktext="openssl-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fix_parallel_build-1.patch | patch -p1
+			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fix_pod_syntax-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib shared zlib-dynamic
+			make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
