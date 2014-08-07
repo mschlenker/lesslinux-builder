@@ -42,6 +42,7 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			make install
 			cd ..
+			mkdir -p /tools/share/aclocal-1.13
 			install -m 0644 pkg-config-0.28/aclocal.m4 /tools/share/aclocal-1.13
 			install -m 0644 pkg-config-0.28/pkg.m4 /tools/share/aclocal-1.13
 			]]>
