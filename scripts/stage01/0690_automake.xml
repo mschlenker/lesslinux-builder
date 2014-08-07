@@ -1,0 +1,42 @@
+<llpackages>
+	<package 
+		name="automake"
+		version="1.13.4">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+                                <pkg sha1="20dac46d2699cb32c8102584db67e964c472b03e">automake-1.13.4.tar.xz</pkg>
+                                <mirror>http://ftp.gnu.org/gnu/automake/</mirror>
+                        </file>
+                        <manualcheck date="20140802" interval="3650" page="http://ftp.gnu.org/gnu/automake/" />
+                        <check>
+                                <page html="http://ftp.gnu.org/gnu/automake/">
+                                        <atext linktext="automake-1.13.5" />
+                                        <atext linktext="automake-1.13.6" />
+                                        <atext linktext="automake-1.13.7" />
+                                        <atext linktext="automake-1.13.8" />
+                                        <atext linktext="automake-1.13.9" />
+                                </page>
+                        </check>
+
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools --program-suffix=-1.13 && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
