@@ -44,6 +44,8 @@
 		<build>
 			<![CDATA[
 			cd util-linux-${PKGVERSION}
+			export PATH=/usr/local/automake113/bin:$PATH
+			export AL_OPTS="-I/usr/local/automake113/share/aclocal-1.13"
 			./configure --enable-arch --enable-partx --enable-write --disable-login --disable-su
 			make blkid  LDFLAGS=-all-static
 			]]>
@@ -52,6 +54,7 @@
 		<install>
 			<![CDATA[
 			cd util-linux-${PKGVERSION}
+			export PATH=/usr/local/automake113/bin:/usr/local/autoconf213/bin:$PATH
 			mkdir -p $TGTDIR/static/sbin
 			install -m 0755 blkid $TGTDIR/static/sbin/blkid.static
 			]]>
