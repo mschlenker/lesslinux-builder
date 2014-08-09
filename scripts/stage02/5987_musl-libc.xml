@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="musl"
+		version="1.1.4"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="1e49b4e65e071d0abdd9d8eb555fd7e84dc92838">musl-1.1.4.tar.gz</pkg>
+				<mirror>http://www.musl-libc.org/releases/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+                     <dep>cross-gcc-musl1</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			
+cd ${PKGNAME}-${PKGVERSION}
+for f in utmp paths ; do
+        sed -i 's%/dev/null/wtmp%/var/log/wtmp%g' include/${f}.h
+        sed -i 's%/dev/null/utmp%/var/run/utmp%g' include/${f}.h
+done
+
+export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export CLFS_TARGET=i386-linux-musl
+export CLFS_CPU=i686
+			
+CFLAGS=-fno-toplevel-reorder \
+CC=${CLFS_TARGET}-gcc \
+./configure \
+  --prefix=/ \
+  --target=${CLFS_TARGET}
+CFLAGS=-fno-toplevel-reorder CC=${CLFS_TARGET}-gcc make
+
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+cd ${PKGNAME}-${PKGVERSION}
+
+export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export CLFS_TARGET=i386-linux-musl
+export CLFS_CPU=i686
+
+DESTDIR=${TGTDIR}/usr/local/crosstools-ia32-musl/${CLFS_TARGET} make install || exit 1
+${CLFS}/cross-tools/bin/${CLFS_TARGET}-strip ${TGTDIR}/usr/local/crosstools-ia32-musl/${CLFS_TARGET}/lib/*.so*
+${CLFS}/cross-tools/bin/${CLFS_TARGET}-strip ${TGTDIR}/usr/local/crosstools-ia32-musl/${CLFS_TARGET}/lib64/*.so*
+
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
