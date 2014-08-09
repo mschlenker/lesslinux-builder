@@ -45,7 +45,7 @@ CFLAGS=-fno-toplevel-reorder CC=${CLFS_TARGET}-gcc make
 		<install>
 			<![CDATA[
 			
-cd ${PKGNAME}-${PKGVERSION}
+cd musl-${PKGVERSION}
 
 export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
 export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
@@ -60,7 +60,7 @@ ${CLFS}/cross-tools/bin/${CLFS_TARGET}-strip ${TGTDIR}/usr/local/crosstools-amd6
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf musl-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
