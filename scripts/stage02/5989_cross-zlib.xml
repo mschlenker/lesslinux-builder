@@ -43,7 +43,7 @@
 			cd zlib-${PKGVERSION}
 			export PATH=/usr/local/crosstools-ia32-musl/i386-linux-musl/bin:/usr/local/crosstools-ia32-musl/bin:$PATH
 			export CC=i386-linux-musl-gcc
-			make prefix=/usr/local/crosstools-ia32-musl/i386-linux-musl install
+			make prefix=${TGTDIR}/usr/local/crosstools-ia32-musl/i386-linux-musl install
 			]]>
 		</install>
 		<clean>
