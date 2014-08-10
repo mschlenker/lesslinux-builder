@@ -1,23 +1,25 @@
 <llpackages>
 	<package 
-		name="xf86-input-synaptics"
-		version="1.8.0"
+		name="xf86-input-vmmouse"
+		version="13.0.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                
-				<pkg sha1="8b92d9990dfc4b5dc923a4405623024d623d75b1">xf86-input-synaptics-1.8.0.tar.bz2</pkg>
+			<file>                                             
+				<pkg sha1="0fa67d2ca9b2b26d32b93cc030fc3ea28964fe81">xf86-input-vmmouse-13.0.0.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
 			</file>
-			<manualcheck date="20140719" interval="180" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<manualcheck date="20140802" interval="365" page="http://xorg.freedesktop.org/archive/individual/driver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
-					<atext linktext="xf86-input-synaptics-1.8.1" />
-					<atext linktext="xf86-input-synaptics-1.8.2" />
-					<atext linktext="xf86-input-synaptics-1.9." />
-					<atext linktext="xf86-input-synaptics-1.10." />
-					<atext linktext="xf86-input-synaptics-2." />
+					<atext linktext="xf86-input-vmmouse-13.0.1." />
+					<atext linktext="xf86-input-vmmouse-13.0.2." />
+					<atext linktext="xf86-input-vmmouse-13.1." />
+					<atext linktext="xf86-input-vmmouse-13.2." />
+					<atext linktext="xf86-input-vmmouse-13.3." />
+					<atext linktext="xf86-input-vmmouse-14." />
+					<atext linktext="xf86-input-vmmouse-15." />
 				</page>
 			</check>
 		</sources>
@@ -31,13 +33,7 @@
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
-                        <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXext</dep>
-                        <dep>libXi</dep>
                         <dep>libpciaccess</dep>
-                        <dep>libpthread-stubs</dep>
-                        <dep>libxcb</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>pixman</dep>
@@ -46,9 +42,7 @@
                         <dep>util-linux-ng</dep>
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
-			<dep>mtdev</dep>
 			<dep>distcc</dep>
-			<dep>libevdev</dep>
 			<dep>dri3proto</dep>
 			<dep>presentproto</dep>
 			<dep>xineramaproto</dep>
@@ -87,7 +81,7 @@
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf  ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
