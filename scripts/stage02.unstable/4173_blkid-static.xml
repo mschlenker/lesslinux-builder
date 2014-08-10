@@ -28,8 +28,29 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>util-linux-ng</dep>
-		</builddeps>
+                        <dep>Linux-PAM</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk-doc</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xJf ${SRCDIR}/util-linux-${PKGVERSION}.tar.xz
