@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="cross-busybox-musl"
+		version="1.22.1"
+		class="lib"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="d6e96fefb6f0fb8079f27468b9bf22d8dd96108e">busybox-1.22.1.tar.bz2</pkg>
+				<mirror>http://busybox.net/downloads/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="180" page="http://busybox.net/downloads/" />
+		</sources>
+		<builddeps>
+			<dep>cross-gcc-musl2</dep>
+			<dep>cross-zlib</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/busybox-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+			cd busybox-${PKGVERSION}
+			ARCH=x86 make defconfig
+			sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
+			sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config
+			sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/g'  .config
+			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make 
+			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make install
+			i386-linux-musl-strip _install/bin/busybox
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/share/staticstuff
+			tar cvjf ${TGTDIR}/usr/share/staticstuff/busybox-static-musl-i686-${PKGVERSION}.tar.bz2 busybox-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf busybox-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
