@@ -72,9 +72,9 @@
 			
 			for tgt in crosstools/i486-linux-uclibc crosstools-amd64/amd64-linux-uclibc \
 				crosstools-ia32-musl/i386-linux-musl crosstools-amd64-musl/x86_64-linux-musl ; do
-				ln -s . ${TGTDIR}/usr/local/${tgt}/usr
 				mkdir -p ${TGTDIR}/usr/local/${tgt}/include
 				cp -rv dest/include/* ${TGTDIR}/usr/local/${tgt}/include
+				ln -s . ${TGTDIR}/usr/local/${tgt}/usr
 			done
 			
 			]]>
