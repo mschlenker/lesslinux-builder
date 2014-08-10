@@ -130,7 +130,6 @@
 				export CXX="distcc g++"
 			fi
 			# crosstools-ia32-musl/i386-linux-musl
-			export CLFS=i386-linux-musl
 			export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
 			export CLFS_TARGET=i386-linux-musl
 			export CLFS_CPU=i686
