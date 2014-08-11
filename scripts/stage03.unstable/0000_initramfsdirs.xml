@@ -5212,7 +5212,7 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>
-	<package name="busybox" version="1.21.1" allowfail="yes">
+	<package name="busybox" version="1.22.1" allowfail="yes">
 		<sources>
 			<file>
 				<pkg sha1="1c79e0eb88281bf4f734ab934a2d9f1d1b00de60">busybox-1.7.2-smack-static-ulibc-i686.tar.gz</pkg>
@@ -5257,7 +5257,7 @@ esac
 		</sources>
 		<unpack>
 		<![CDATA[ 
-		tar xjf ${CHROOT}/usr/share/staticstuff/busybox-static-uClibc-i686-${PKGVERSION}.tar.bz2
+		tar xjf ${CHROOT}/usr/share/staticstuff/busybox-static-musl-i686-${PKGVERSION}.tar.bz2
 		tar xzf ${SRCDIR}/${PKGNAME}-1.7.2-smack-static-ulibc-i686.tar.gz
 		]]>
 		</unpack>
