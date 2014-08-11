@@ -26,11 +26,11 @@
 			<![CDATA[ 
 			export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
 			cd busybox-${PKGVERSION}
-			ARCH=x86 make defconfig
+			ARCH=x86_64 make defconfig
 			sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
 			sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config
 			sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/g'  .config
-			ARCH=x86 CROSS_COMPILE="x86_64-linux-musl-" make 
+			ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" make 
 			make install
 			x86_64-linux-musl- _install/bin/busybox
 			]]>
