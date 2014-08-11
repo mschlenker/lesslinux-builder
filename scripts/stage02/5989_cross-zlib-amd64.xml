@@ -1,0 +1,55 @@
+<llpackages>
+	<package 
+		name="cross-zlib-amd64"
+		version="1.2.8"
+		class="lib"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="b598beb7acc96347cbd1020b71aef7871d374677">zlib-1.2.8.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libpng/zlib/1.2.8/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="180" page="http://sourceforge.net/projects/libpng/files/zlib/" />
+			<check>
+				<page html="http://sourceforge.net/projects/libpng/files/zlib/">
+					<atext linktext="1.2.10" />
+					<atext linktext="1.2.9" />
+					<atext linktext="1.3." />
+					<atext linktext="2.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>cross-gcc-musl2</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/zlib-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			export PATH=/usr/local/crosstools-amd64-musl/x86_64-linux-musl/bin:/usr/local/crosstools-amd64-musl/bin:$PATH
+			export CC=x86_64-linux-musl-gcc
+			cd zlib-${PKGVERSION}
+			./configure --shared
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd zlib-${PKGVERSION}
+			export PATH=/usr/local/crosstools-amd64-musl/x86_64-linux-musl/bin:/usr/local/crosstools-amd64-musl/bin:$PATH
+			export CC=x86_64-linux-musl-gcc
+			make prefix=${TGTDIR}/usr/local/crosstools-amd64-musl/x86_64-linux-musl install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf zlib-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
