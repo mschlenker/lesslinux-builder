@@ -1,2 +1,23 @@
+
+\section{Getting the source code}
+
+Use git to checkout the latest source code. Until now Jabba builds do not include matching vertificates, so disable SSL verification:
+
+\begin{verbatim}
+git -c http.sslVerify=false clone https://github.com/mschlenker/lesslinux-builder 
+\end{verbatim}
+
+If you do not want to check out the latest revision but instead take the revision of a certain build, look at \texttt{/etc/lesslinux/updater/version.git} and check out this SHA1SUM.
+
 \section{Build the first stage}
+
+Make sure that a file system with enough space is mounted at \texttt{/mnt/archiv} - this directory might by changed in \texttt{config/general.xml}. I usually prefer ext4 or btrfs, using an SSD can significantly speed up building. To build, run 
+
+\begin{verbatim}
+ruby -I. builder.rb -n -l -s 2,3
+\end{verbatim}
+
+Add the parameter \texttt{-u} if you want to build unstable. Building the first stage (toolchain only) usually takes one to five hours. Afterwards, a tarball \texttt{/mnt/archiv/lesslinux/llbuild/stage01.tar.xz} is created. This contains the chroot for the second stage and the lesslinux.sqlite database. The tarball can be unpacked to skip building stage01 on other machines or after a failed second stage.
+
+
 
