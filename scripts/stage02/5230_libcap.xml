@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="libcap"
-		version="2.22"
+		version="2.24"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>	
 			<file>                                                    
-				<pkg sha1="2136bc24fa35cdcbd00816fbbf312b727150256b">libcap-2.22.tar.bz2</pkg>
+				<pkg sha1="b2754cddb614567de445ffdaac7a00b9671b858a">libcap-2.24.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/</mirror>
 			</file>
-			<manualcheck date="20130504" interval="120" page="http://ftp.de.debian.org/debian/pool/main/libc/libcap2/" />
+			<manualcheck date="20140802" interval="120" page="http://ftp.de.debian.org/debian/pool/main/libc/libcap2/" />
 			<check>
-				<page html="http://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/">
-					<atext linktext="libcap-2.23.tar.bz2" />
-					<atext linktext="libcap-2.24.tar.bz2" />
-					<atext linktext="libcap-2.25.tar.bz2" />
-					<atext linktext="libcap-2.26.tar.bz2" />
-					<atext linktext="libcap-2.27.tar.bz2" />
+				<page html="rsync://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/">
+					<atext linktext="libcap-2.28." />
+					<atext linktext="libcap-2.29." />
+					<atext linktext="libcap-2.25." />
+					<atext linktext="libcap-2.26." />
+					<atext linktext="libcap-2.27." />
 				</page>
 			</check>
 		</sources>
@@ -38,7 +38,7 @@
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>
@@ -56,5 +56,10 @@
 			make PREFIX=/usr LIBATTR=no install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="gcc"
-		version="4.9.0"
+		version="4.9.1"
 		install="destdir"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="fbde8eb49f2b9e6961a870887cf7337d31cd4917">gcc-4.9.0.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.0/</mirror>
+				<pkg sha1="3f303f403053f0ce79530dae832811ecef91197e">gcc-4.9.1.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.1/</mirror>
 			</file>
-			<file>                                                                         
+			<!-- <file>                                                                         
 				<pkg sha1="73f3bd0ad74c173f480f268c035bdffa6302e2c7">gcc-4.9.0-upstream_fixes-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20140517" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			</file> -->
+			<manualcheck date="20140727" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
-					<atext linktext="gcc-4.9.1" />
+					<atext linktext="gcc-4.9.4" />
 					<atext linktext="gcc-4.9.2" />
 					<atext linktext="gcc-4.9.3" />
 					<atext linktext="gcc-4.10."/>
@@ -43,12 +43,12 @@
 			mkdir ${PKGNAME}-build
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			patch -Np1 -i ${SRCDIR}/gcc-4.9.0-upstream_fixes-1.patch
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-build

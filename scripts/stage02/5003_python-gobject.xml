@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="pygobject"
-		version="2.21.3"
+		version="2.21.5"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<!-- pygobject 2.21.4 or higher needs gobject-introspection 1.36 which in turn needs an update to glib! -->
 			<file>          
-				<pkg sha1="5630a0cdef2db48d5e8cbdd5cdb822684ebf7fa3">pygobject-2.21.3.tar.bz2</pkg>
+				<pkg sha1="8017d5dba28278727501194d45310d3156937c70">pygobject-2.21.5.tar.bz2</pkg>
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/pygobject/2.21/</mirror>
 			</file>
-			<manualcheck date="20121205" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/pygobject/" />
+			<manualcheck date="20140802" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/pygobject/" />
 			<check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pygobject/2.21/">
 					<atext linktext="pygobject-2.21.6." />
@@ -20,10 +20,10 @@
 					<atext linktext="pygobject-2.21.9." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pygobject/">
-					<atext linktext="2.22" />
-					<atext linktext="2.23" />
-					<atext linktext="2.24" />
-					<atext linktext="2.25" />
+					<atext linktext="2.26" />
+					<atext linktext="2.27" />
+					<atext linktext="2.28" />
+					<atext linktext="2.29" />
 					<atext linktext="2.30" />
 					<atext linktext="3." />
 				</page>
@@ -83,7 +83,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR 
 			]]>
 		</install>
 		<clean>

@@ -2,7 +2,7 @@
 	<package 
 		name="fuse"
 		version="2.9.3"
-		class="user">
+		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                          
@@ -13,14 +13,15 @@
 				<pkg sha1="215917455d1927cf552c5b8c2a535232b841a3c7">fuse-2.8.6.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
+			<manualcheck date="20140724" interval="180" page="http://sourceforge.net/projects/fuse/files/fuse-2.X/" />
 			<check>
-				<page html="http://sourceforge.net/projects/fuse/files/">
-					<atext linktext="fuse-2.9.4." />
-					<atext linktext="fuse-2.9.5." />
-					<atext linktext="fuse-2.9.6." />
-					<atext linktext="fuse-2.11." />
-					<atext linktext="fuse-2.10." />
-					<atext linktext="fuse-3." />
+				<page html="http://sourceforge.net/projects/fuse/files/fuse-2.X/">
+					<atext linktext="2.9.4" />
+					<atext linktext="2.9.5" />
+					<atext linktext="2.9.6" />
+					<atext linktext="2.11." />
+					<atext linktext="2.10." />
+					<atext linktext="3.0." />
 				</page>
 			</check>
 		</sources>
@@ -64,8 +65,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install 
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

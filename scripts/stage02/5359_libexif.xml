@@ -10,6 +10,7 @@
 				<pkg sha1="a52219b12dbc8d33fc096468591170fda71316c0">libexif-0.6.21.tar.bz2</pkg>
 				<mirror>http://downloads.sourceforge.net/project/libexif/libexif/0.6.21/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://sourceforge.net/projects/libexif/files/libexif/" />
 			<check>
 				<page html="http://sourceforge.net/projects/libexif/files/libexif/">
 					<atext linktext="0.6.26" />
@@ -62,5 +63,10 @@
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

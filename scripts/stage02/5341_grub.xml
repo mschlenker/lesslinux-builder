@@ -8,8 +8,18 @@
 		<sources>
 			<file>                         
 				<pkg sha1="274d91e96b56a5b9dd0a07accff69dbb6dfb596b">grub-2.00.tar.xz</pkg>
-				<mirror>ftp://alpha.gnu.org/gnu/grub/</mirror>
+				<mirror>ftp://ftp.gnu.org/gnu/grub/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="ftp://ftp.gnu.org/gnu/grub/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/grub/">
+					<atext linktext="grub-2.01." />
+					<atext linktext="grub-2.02." />
+					<atext linktext="grub-2.03." />
+					<atext linktext="grub-2.04." />
+					<atext linktext="grub-2.05." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

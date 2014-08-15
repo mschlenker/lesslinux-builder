@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="lesslinux-mounttools"
-		version="20140705-00"
+		version="20140726-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                 
-				<pkg sha1="29a5d7d64571516742c66aa46e382eddb0694f54">lesslinux-mounttools-20140705-00.tar.bz2</pkg>
+				<pkg sha1="ca9bb8be707e82df2672d84ecec3551eaad35cc3">lesslinux-mounttools-20140726-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140705" interval="120" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20140726" interval="120" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -37,5 +37,10 @@
 			done
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  mounttools
+			]]>
+		</clean>
 	</package>
 </llpackages>

@@ -1,26 +1,16 @@
 <llpackages>
 	<package 
 		name="dc3dd"
-		version="7.1.614"
+		version="7.2.641"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                               
-				<pkg sha1="d9ea859cc9c0d70d6ea2b7b28f3cbc9e5e2c2e51">dc3dd-7.1.614.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/dc3dd/dc3dd/7.1.0/</mirror>
+				<pkg sha1="18a697b53cfc8470fca2a24a0820f65e9057f79a">dc3dd-7.2.641.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/dc3dd/dc3dd/7.2/</mirror>
 			</file>
-			<manualcheck date="20130504" interval="180" page="http://sourceforge.net/projects/dc3dd/files/" />
-			<check>
-				<page html="http://sourceforge.net/projects/dc3dd/files/dc3dd/">
-					<atext linktext="7.1.7" />
-					<atext linktext="7.1.8" />
-					<atext linktext="7.1.9" />
-					<atext linktext="7.2." />
-					<atext linktext="7.3." />
-					<atext linktext="8.0." />
-				</page>
-			</check>
+			<manualcheck date="20140804" interval="180" page="http://sourceforge.net/projects/dc3dd/files/" />
 		</sources>
 		<builddeps>
 			<dep>autoconf</dep>
@@ -42,6 +32,7 @@
                         <dep>perl</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
+			 <dep>p5-gettext</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -63,7 +54,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>

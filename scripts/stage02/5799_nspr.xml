@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="nspr"
-		version="4.10.5"
+		version="4.10.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="891de2b62ad42f9b38808a0aa58c95e8cbd5c9a9">nspr-4.10.5.tar.gz</pkg>
-				<mirror>https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v4.10.5/src/</mirror>
+				<pkg sha1="9f3f278f7f31574b2cdbb99d9703c58e51cd3e1c">nspr-4.10.6.tar.gz</pkg>
+				<mirror>https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v4.10.6/src/</mirror>
 			</file>
-			<manualcheck date="20130504" interval="90" page="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/" />
+			<manualcheck date="20140802" interval="90" page="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -57,5 +57,10 @@
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

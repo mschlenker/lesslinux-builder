@@ -1,17 +1,32 @@
 <llpackages>
 	<package 
 		name="ImageMagick"
-		version="6.8.9-1"
+		version="6.8.9-6"
 		class="user"
 		install="destdir"
 		>
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                              
-				<pkg sha1="02f0a38ed50a2f807675cfd17b788f0c50ad4daa">ImageMagick-6.8.9-1.tar.xz</pkg>
+				<pkg sha1="d2e30cdc0e3becb781ac011f0452171926a72a2a">ImageMagick-6.8.9-6.tar.xz</pkg>
 				<mirror>ftp://ftp.imagemagick.org/pub/ImageMagick/</mirror>
 			</file>
-			<manualcheck date="20140519" interval="180" page="ftp://ftp.imagemagick.org/pub/ImageMagick/" />
+			<manualcheck date="20140731" interval="180" page="ftp://ftp.imagemagick.org/pub/ImageMagick/" />
+			<check>
+				<page html="ftp://ftp.imagemagick.org/pub/ImageMagick/">
+					<atext linktext="ImageMagick-6.8.9-7." />
+					<atext linktext="ImageMagick-6.8.9-8." />
+					<atext linktext="ImageMagick-6.8.9-9." />
+					<atext linktext="ImageMagick-6.8.9-10." />
+					<atext linktext="ImageMagick-6.8.10" />
+					<atext linktext="ImageMagick-6.8.11" />
+					<atext linktext="ImageMagick-6.9" />
+					<atext linktext="ImageMagick-6.10" />
+					<atext linktext="ImageMagick-6.11" />
+					<atext linktext="ImageMagick-7" />
+					<atext linktext="ImageMagick-8" />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

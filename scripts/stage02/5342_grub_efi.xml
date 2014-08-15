@@ -1,15 +1,16 @@
 <llpackages>
 	<package 
 		name="grub-efi-amd64"
-		version="20140308"
+		version="20140724"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="e7716ad48b0108329661941dd0d09fd22ca5ecbd">grub-20140308.tar.bz2</pkg>
+				<pkg sha1="577ca2470a9924e7334bd2a7c3647220e3d9dfe2">grub-20140724.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="120" page="http://www.gnu.org/software/grub/grub-download.html" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

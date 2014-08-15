@@ -3,13 +3,14 @@
 		name="enchant"
 		version="1.6.0"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                    
 				<pkg sha1="321f9cf0abfa1937401676ce60976d8779c39536">enchant-1.6.0.tar.gz</pkg>
 				<mirror>http://www.abisource.com/downloads/enchant/1.6.0/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://www.abisource.com/downloads/enchant/" />
 			<check>
 				<page html="http://www.abisource.com/downloads/enchant/">
 					<atext linktext="1.6.1" />
@@ -54,8 +55,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

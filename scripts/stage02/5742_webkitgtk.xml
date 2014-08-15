@@ -1,16 +1,16 @@
-w<llpackages>
+<llpackages>
 	<package 
 		name="webkit"
-		version="2.4.2"
+		version="2.4.4"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="74faecd6b0a82cd8f92b571e593c95c5afae5e2c">webkitgtk-2.4.2.tar.xz</pkg>
+				<pkg sha1="0f7690bbaef69946c64793c8aa23cd2f00eac9ae">webkitgtk-2.4.4.tar.xz</pkg>
 				<mirror>http://webkitgtk.org/releases/</mirror>
 			</file>
-			<manualcheck date="20140517" interval="180" page="http://webkitgtk.org/releases/" />
+			<manualcheck date="20140725" interval="90" page="http://webkitgtk.org/releases/" />
 			<!-- <check>
 				<page html="http://webkitgtk.org/releases/">
 					<atext linktext="webkitgtk-2.2.6." />
@@ -125,7 +125,7 @@ w<llpackages>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}gtk-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>

@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="xf86-video-intel"
-		version="2.21.15"
+		version="2.99.914"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="6952e6e1deff1c4580ddee472dbc2223c3248d0f"
-				>xf86-video-intel-2.21.15.tar.bz2</pkg>
+				<pkg sha1="a2d8415dd4be514720b8470399d5d22d9fb4caa8"
+				>xf86-video-intel-2.99.914.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
 			</file>
-			<manualcheck date="20130910" interval="120" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<manualcheck date="20140809" interval="120" page="http://xorg.freedesktop.org/archive/individual/driver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
 					<atext linktext="xf86-video-intel-2.21.16." />
@@ -25,36 +25,55 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>Mesa</dep><dep>glu</dep>
+                        <dep>Python</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>dri3proto</dep>
+                        <dep>findutils</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <dep>glamor-egl</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
                         <dep>libXext</dep>
                         <dep>libXfixes</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXtst</dep>
                         <dep>libXv</dep>
                         <dep>libXvMC</dep>
                         <dep>libdrm</dep>
                         <dep>libpciaccess</dep>
-                        <dep>libpthread-stubs</dep>
+			<dep>libpthread-stubs</dep>
                         <dep>libxcb</dep>
+                        <dep>libxshmfence</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
+                        <dep>openssl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
+                        <dep>presentproto</dep>
+                        <dep>procps</dep>
+                        <dep>pygobject</dep>
+                        <dep>recordproto</dep>
                         <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
+                        <dep>udev</dep>
+			<dep>util-linux-ng</dep>
+                        <dep>xcb-util</dep>
+                        <dep>xineramaproto</dep>
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
-			<dep>distcc</dep>
-		</builddeps>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then

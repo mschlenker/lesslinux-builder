@@ -1,28 +1,16 @@
 <llpackages>
 	<package 
 		name="smartmontools"
-		version="6.2"
+		version="6.3"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="37848ff5103d68b672463a30cd99e7d23d6696a5">smartmontools-6.2.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/smartmontools/smartmontools/6.2/</mirror>
+				<pkg sha1="716c5dc339d408d628c55dbe69028b1561df4c7e">smartmontools-6.3.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/smartmontools/smartmontools/6.3/</mirror>
 			</file>
-			<manualcheck date="20130910" interval="180" page="http://sourceforge.net/projects/smartmontools/files/" />
-			<check>
-				<page html="http://sourceforge.net/projects/smartmontools/files/">
-					<atext linktext="smartmontools-6.2.1." />
-					<atext linktext="smartmontools-6.2.2." />
-					<atext linktext="smartmontools-6.2.3." />
-					<atext linktext="smartmontools-6.5." />
-					<atext linktext="smartmontools-6.6." />
-					<atext linktext="smartmontools-6.3." />
-					<atext linktext="smartmontools-6.4." />
-					<atext linktext="smartmontools-7." />
-				</page>
-			</check>
+			<manualcheck date="20140802" interval="180" page="http://sourceforge.net/projects/smartmontools/files/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -69,7 +57,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>

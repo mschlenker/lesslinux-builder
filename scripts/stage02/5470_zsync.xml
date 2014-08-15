@@ -3,15 +3,16 @@
 		name="zsync"
 		version="0.6.2"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>   
 				<pkg sha1="5e69f084c8adaad6a677b68f7388ae0f9507617a">zsync-0.6.2.tar.bz2</pkg>
 				<mirror>http://zsync.moria.org.uk/download/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://zsync.moria.org.uk/downloads/" />
 			<check>
-				<page html="http://zsync.moria.org.uk/downloads">
+				<page html="http://zsync.moria.org.uk/downloads/">
 					<atext linktext="zsync-0.6.3." />
 					<atext linktext="zsync-0.6.4." />
 					<atext linktext="zsync-0.6.5." />
@@ -51,8 +52,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

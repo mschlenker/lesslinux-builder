@@ -1,22 +1,21 @@
 <llpackages>
 	<package 
 		name="e2fsprogs"
-		version="1.42.9"
+		version="1.42.11"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="fb8e3662302bcab1682d567d6ee0ff051faa1bbd">e2fsprogs-1.42.9.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.42.9/</mirror>
+				<pkg sha1="3d30eb40f3ca69dcef373a505a061b582e1026c2">e2fsprogs-1.42.11.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.42.11/</mirror>
 			</file>
-			<manualcheck date="20140109" interval="120" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<manualcheck date="20140802" interval="180" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
 			<check>
 				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
-					<atext linktext="1.42.10." />
-					<atext linktext="1.42.11." />
 					<atext linktext="1.42.12." />
+					<atext linktext="1.42.13." />
+					<atext linktext="1.42.14." />
 					<atext linktext="1.43." />
 					<atext linktext="1.44." />
 					<atext linktext="1.45." />

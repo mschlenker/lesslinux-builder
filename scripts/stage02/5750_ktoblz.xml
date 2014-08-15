@@ -1,24 +1,26 @@
 <llpackages>
 	<package 
 		name="ktoblzcheck"
-		version="1.43"
+		version="1.45"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="9b03780f17c5e4ef6a821cd9d819cb39e4fb559f">ktoblzcheck-1.43.tar.gz</pkg>
+				<pkg sha1="a552012bb219ac24dcdbac977cf94c951bfe31bc">ktoblzcheck-1.45.tar.gz</pkg>
 				<mirror>http://downloads.sourceforge.net/project/ktoblzcheck/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://download.enlightenment.org/releases/">
-					<atext linktext="eina-1.0.1." />
-					<atext linktext="eina-1.0.2." />
-					<atext linktext="eina-1.0.3." />
-					<atext linktext="eina-1.1." />
-					<atext linktext="eina-1.2." />
+			<manualcheck date="20140724" interval="180" page="http://downloads.sourceforge.net/project/ktoblzcheck/" />
+			<check>
+				<page html="http://sourceforge.net/projects/ktoblzcheck/files/">
+					<atext linktext="ktoblzcheck-1.44." />
+					<atext linktext="ktoblzcheck-1.45." />
+					<atext linktext="ktoblzcheck-1.46." />
+					<atext linktext="ktoblzcheck-1.47." />
+					<atext linktext="ktoblzcheck-1.48." />
+					<atext linktext="ktoblzcheck-1.49." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Python</dep>

@@ -3,13 +3,24 @@
 		name="icu"
 		version="53.1"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                   
 				<pkg sha1="7eca017fdd101e676d425caaf28ef862d3655e0f">icu4c-53_1-src.tgz</pkg>
 				<mirror>http://download.icu-project.org/files/icu4c/53.1/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://download.icu-project.org/files/icu4c/" />
+			<check>
+				<page html="http://download.icu-project.org/files/icu4c/">
+					<atext linktext="53.2/" />
+					<atext linktext="53.3/" />
+					<atext linktext="53.4/" />
+					<atext linktext="54." />
+					<atext linktext="55." />
+					<atext linktext="56." />
+				</page>
+			</check>
 			<!-- <check>
 				<page html="http://ftp.gnu.org/gnu/cpio/">
 					<atext linktext="cpio-2.11.1." />
@@ -36,6 +47,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
 			<dep>distcc</dep>
+			<dep>llvm</dep>
                 </builddeps> 
 		<unpack>
 			<![CDATA[ 
@@ -65,7 +77,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}/source
-			make install
+			make install DESTDIR=$TGTDIR 
 			]]>
 		</install>
 		<clean>

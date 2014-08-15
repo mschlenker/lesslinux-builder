@@ -1,22 +1,28 @@
 <llpackages>
 	<package 
 		name="ms-sys"
-		version="2.3.0"
+		version="2.4.0"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                         
-				<pkg sha1="1544bf031522428238415eb43a7e4b72cc7a9214">ms-sys-2.3.0.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/ms-sys/ms-sys%20development/2.3.0/</mirror>
+				<pkg sha1="09da17de95f9c6e8bd400432898fd99053b7408e">ms-sys-2.4.0.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/ms-sys/ms-sys%20stable/2.4.0</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://sourceforge.net/projects/ms-sys/files/ms-sys%20stable/" />
 			<check>
-				<page html="http://sourceforge.net/projects/ms-sys/files/">
-					<atext linktext="ms-sys-2.3.1." />
-					<atext linktext="ms-sys-2.3.2." />
-					<atext linktext="ms-sys-2.4." />
-					<atext linktext="ms-sys-2.5." />
-					<atext linktext="ms-sys-3." />
+				<page html="http://sourceforge.net/projects/ms-sys/files/ms-sys%20stable/">
+					<atext linktext="2.4.0" />
+					<atext linktext="2.4.1" />
+					<atext linktext="2.4.2" />
+					<atext linktext="2.4.3" />
+					<atext linktext="2.4.4" />
+					<atext linktext="2.4.5" />
+					<atext linktext="2.5." />
+					<atext linktext="2.6." />
+					<atext linktext="2.7." />
+					<atext linktext="3.0." />
 				</page>
 			</check>
 		</sources>
@@ -52,8 +58,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make PREFIX=/usr install
+			make install PREFIX=/usr DESTDIR=${TGTDIR} 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

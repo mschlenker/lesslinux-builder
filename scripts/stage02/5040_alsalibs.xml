@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="alsa-lib"
-		version="1.0.27.2"
+		version="1.0.28"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                              
-				<pkg sha1="9cd50f4b5f07d5e7213dd1277b8673e677804cf8">alsa-lib-1.0.27.2.tar.bz2</pkg>
+				<pkg sha1="3130b50835ce5e9ce061dd7916eac1121e1a83e3">alsa-lib-1.0.28.tar.bz2</pkg>
 				<mirror>ftp://ftp.alsa-project.org/pub/lib/</mirror>
 			</file>
 			<!-- <file>                                           
 				<pkg sha1="ebda37d18379466ca9d843e7a80d10bb706a6b04">alsa-driver-1.0.25.tar.bz2</pkg>
 				<mirror>ftp://ftp.alsa-project.org/pub/driver/</mirror>
 			</file> -->
-			<manualcheck date="20130504" interval="120" page="ftp://ftp.alsa-project.org/pub/lib/" />
+			<manualcheck date="20140802" interval="180" page="ftp://ftp.alsa-project.org/pub/lib/" />
 			<check>
 				<page html="http://ftp.silug.org/pub/alsa/lib/">
-					<atext linktext="alsa-lib-1.0.27.1." />
-					<atext linktext="alsa-lib-1.0.27.2." />
-					<atext linktext="alsa-lib-1.0.28." />
+					<atext linktext="alsa-lib-1.0.28.1." />
+					<atext linktext="alsa-lib-1.0.28.2." />
+					<atext linktext="alsa-lib-1.0.29." />
 					<atext linktext="alsa-lib-1.1." />
 					<atext linktext="alsa-lib-1.2." />
 					<atext linktext="alsa-lib-2." />
@@ -74,15 +74,12 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			# cd ../alsa-driver-1.0.25
-			# install -m 0744 snddevices /usr/sbin
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}-${PKGVERSION}
-			# rm -rf  alsa-driver-1.0.25
 			]]>
 		</clean>
 	</package>

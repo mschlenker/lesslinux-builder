@@ -1,28 +1,16 @@
 <llpackages>
 	<package 
 		name="libvshadow"
-		version="20140323"
+		version="20140731"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="9ed608f4cc8ab20126daad65e03e78e4d49bb4f0">libvshadow-alpha-20140323.tar.gz</pkg>
+				<pkg sha1="88fd718f7a74100cfa57335455fdddf65349944e">libvshadow-alpha-20140731.tar.gz</pkg>
 				<mirror>https://googledrive.com/host/0B3fBvzttpiiSZDZXRFVMdnZCeHc/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
-					<atext linktext="gnome-calculator-3.10.6." />
-					<atext linktext="gnome-calculator-3.10.3." />
-					<atext linktext="gnome-calculator-3.10.4." />
-					<atext linktext="gnome-calculator-3.10.5." />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check> -->
+			<manualcheck date="20140731" interval="120" page="https://googledrive.com/host/0B3fBvzttpiiSZDZXRFVMdnZCeHc/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

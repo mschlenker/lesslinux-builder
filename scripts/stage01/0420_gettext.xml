@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="gettext"
-		version="0.18.3.2"
+		version="0.19.2"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="a2dc46d788edb0078ab20da7bd194bdb6da2f0d9">gettext-0.18.3.2.tar.gz</pkg>
+				<pkg sha1="3a8e0627290216d695661a748261eacda5cec8aa">gettext-0.19.2.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/gettext/</mirror>
 			</file>
 			<!-- <file>
 				<pkg sha1="7383a7714033854d6cea586ba81bc95bbc384a77">gettext_0.17-8ubuntu2.diff.gz</pkg>
 				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/g/gettext/</mirror>
 			</file> -->
-			<manualcheck date="20140109" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
+			<manualcheck date="20140726" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gettext/">
-					<atext linktext="gettext-0.18.4." />
-					<atext linktext="gettext-0.18.3.3" />
-					<atext linktext="gettext-0.18.3.4" />
-					<atext linktext="gettext-0.19." />
+					<atext linktext="gettext-0.19.4." />
+					<atext linktext="gettext-0.19.5." />
+					<atext linktext="gettext-0.19.3." />
 					<atext linktext="gettext-0.20." />
+					<atext linktext="gettext-0.21." />
 					<atext linktext="gettext-1." />
 				</page>
 			</check>
@@ -37,7 +37,10 @@
 			
 			cd ${PKGNAME}-${PKGVERSION}/gettext-tools
 			EMACS="no" ./configure --prefix=/tools --disable-shared
-			make -C gnulib-lib && make -C src msgfmt
+			make -C gnulib-lib
+			make -C src msgfmt
+			make -C src msgmerge
+			make -C src xgettext
 			
 			]]>
 		</build>
@@ -45,7 +48,7 @@
 			<![CDATA[
 			
 			cd ${PKGNAME}-${PKGVERSION}/gettext-tools
-			cp -v src/msgfmt /tools/bin
+			cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin
 			
 			]]>
 		</install>

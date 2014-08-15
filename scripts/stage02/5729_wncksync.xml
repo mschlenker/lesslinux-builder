@@ -3,24 +3,14 @@
 		name="wncksync"
 		version="0.2.8"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
 				<pkg sha1="dcb8bead8d75bd7dfcbd50e598ec457e0073b2aa">wncksync-0.2.8.tar.gz</pkg>
 				<mirror>http://launchpad.net/wncksync/0.2/0.2.8/+download/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://sourceforge.net/projects/xchat/files/">
-					<atext linktext="xchat-2.8.9." />
-					<atext linktext="xchat-2.8.10." />
-					<atext linktext="xchat-2.8.11." />
-					<atext linktext="xchat-2.8.12." />
-					<atext linktext="xchat-2.9." />
-					<atext linktext="xchat-2.10." />
-					<atext linktext="xchat-3." />
-				</page>
-			</check> -->
+			<manualcheck date="20140724" interval="180" page="http://launchpad.net/wncksync/0.2/0.2.8/+download/" />
 		</sources> 
 		<builddeps>
                         <dep>atk</dep>
@@ -78,7 +68,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR 
 			]]>
 		</install>
 		<clean>

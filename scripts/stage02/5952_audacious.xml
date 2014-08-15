@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="audacious"
-		version="3.5"
+		version="3.5.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="dda830fe0f8a2fabd94db9554ac05e6880d0d370">audacious-3.5.tar.bz2</pkg>
+				<pkg sha1="6931871277f188eb2297842e76222be66dd7bbbe">audacious-3.5.1.tar.bz2</pkg>
 				<mirror>http://distfiles.audacious-media-player.org/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
-					<atext linktext="gnome-calculator-3.10.6." />
-					<atext linktext="gnome-calculator-3.10.3." />
-					<atext linktext="gnome-calculator-3.10.4." />
-					<atext linktext="gnome-calculator-3.10.5." />
+			<manualcheck date="20140731" interval="180" page="http://distfiles.audacious-media-player.org/" />
+			<check>
+				<page html="http://distfiles.audacious-media-player.org/">
+					<atext linktext="audacious-3.5.2." />
+					<atext linktext="audacious-3.5.3." />
+					<atext linktext="audacious-3.5.4." />
+					<atext linktext="audacious-3.5.5." />
+					<atext linktext="audacious-3.5.6." />
+					<atext linktext="audacious-3.6." />
+					<atext linktext="audacious-3.7." />
+					<atext linktext="audacious-4." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>atk</dep>

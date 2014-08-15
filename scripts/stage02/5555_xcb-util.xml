@@ -3,14 +3,14 @@
 		name="xcb-util"
 		version="0.3.9"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                   
 				<pkg sha1="02060d8e2e70838fc41cd3a27c7f2909090d8c20">xcb-util-0.3.9.tar.bz2</pkg>
 				<mirror>http://xcb.freedesktop.org/dist/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://xcb.freedesktop.org/dist/" />
 			<check>
 				<page html="http://xcb.freedesktop.org/dist/">
 					<atext linktext="xcb-util-0.3.13." />
@@ -62,5 +62,10 @@
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

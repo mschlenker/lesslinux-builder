@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="btrfs-progs"
-		version="20140519"
+		version="20140719"
 		class="user"
 		install="destdir"
 		>
 		<license>GPLv2</license>
 		<sources>                                                          
 			<file>	<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/mason/btrfs-progs.git  -->         
-				<pkg sha1="98569487e0f7326ded1ebc293065b29a740f720c">btrfs-progs-20140519.tar.bz2</pkg>
+				<pkg sha1="8c6778467a8e5c583e0d19272ba6895a08e2661e">btrfs-progs-20140719.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140519" interval="60" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20140719" interval="60" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -34,9 +34,10 @@
 		</unpack>
 		<build>
 			<![CDATA[ 
-			
 			cd ${PKGNAME}
-				if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			sed -i 's/ build-Documentation//g' Makefile 
+			sed -i 's/ install-Documentation//g' Makefile
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 

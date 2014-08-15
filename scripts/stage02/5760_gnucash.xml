@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="gnucash"
-		version="2.6.1"
+		version="2.6.3"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="726ee08e95206ec3746a92efaa5281f27d6eacc8">gnucash-2.6.1.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/gnucash/gnucash%20%28stable%29/2.6.1/</mirror>
+				<pkg sha1="40ea9c069d0ad0a811b74f00c2b32faad6108a6a">gnucash-2.6.3.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/gnucash/gnucash%20%28stable%29/2.6.3/</mirror>
 			</file>
 			<manualcheck date="20140215" interval="180" page="http://sourceforge.net/projects/gnucash/files/gnucash%20%28stable%29/" />
 			<check>
@@ -109,12 +109,13 @@
                         <dep>slib</dep>
                         <dep>sqlite</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>webkit</dep>
 			<dep>gtkhtml</dep>
                         <dep>which</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
+			<dep>libdbi-drivers</dep>
+			<dep>webkit1</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -148,8 +149,16 @@
 			export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
 			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
 			make install
+
+[ -x /opt/bin/gnucash ] || exit 1
+			
 			( cd /usr/share/guile/slib ; ln -s mklibcat.scm mklibcat )
 			guile -c "(use-modules (ice-9 slib)) (require 'new-catalog)"
+
+ln -s /opt/share/applications/gnucash.desktop /usr/share/applications/gnucash.desktop
+
+sed -i 's%Exec=gnucash%Exec=/opt/bin/gnucash_wrapper%g' /opt/share/applications/gnucash.desktop
+sed -i 's%Icon=gnucash-icon%Icon=/opt/share/icons/hicolor/48x48/apps/gnucash-icon.png%g' /opt/share/applications/gnucash.desktop
 
 /sbin/paxctl -m -r /opt/bin/gnucash
 
@@ -203,8 +212,12 @@ esac
 
 export LANGUAGE
 
-exec /static/sbin/newsmack hbci /static/bin/su surfer -c "/opt/bin/gnucash"
-
+# Find the SMACK context we can run run gnucash in
+if grep hbci /etc/smack/user ; then
+	exec /static/sbin/newsmack hbci /static/bin/su surfer -c "/opt/bin/gnucash"
+else
+	exec /static/sbin/newsmack internet /static/bin/su surfer -c "/opt/bin/gnucash"
+fi
 SMACK
 
 chmod 0755 /opt/bin/gnucash_wrapper

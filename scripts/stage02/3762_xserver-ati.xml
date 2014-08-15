@@ -1,31 +1,44 @@
 <llpackages>
 	<package 
 		name="xf86-video-ati"
-		version="7.3.0"
+		version="7.4.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                                                                                   
-				<pkg sha1="946bcfcb892088a9ffecc00856a1c8e6bd47a088">xf86-video-ati-7.3.0.tar.bz2</pkg>
+				<pkg sha1="65ebadef558608beba878d64fc3d10c5a3c706e7">xf86-video-ati-7.4.0.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
 			</file>
-			<manualcheck date="20140215" interval="120" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<manualcheck date="20140719" interval="120" page="http://xorg.freedesktop.org/archive/individual/driver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
-					<atext linktext="xf86-video-ati-7.3.1" />
-					<atext linktext="xf86-video-ati-7.3.2" />
-					<atext linktext="xf86-video-ati-7.3.3" />
-					<atext linktext="xf86-video-ati-7.4." />
+					<atext linktext="xf86-video-ati-7.4.1" />
+					<atext linktext="xf86-video-ati-7.4.2" />
+					<atext linktext="xf86-video-ati-7.4.3" />
+					<atext linktext="xf86-video-ati-7.6." />
 					<atext linktext="xf86-video-ati-7.5." />
 					<atext linktext="xf86-video-ati-8." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-			<dep>Mesa</dep>
-			<dep>glu</dep>
-			<dep>glamor-egl</dep><dep>libX11</dep>
+                        <dep>Mesa</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>dri3proto</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glamor-egl</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-icon-theme</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
                         <dep>libXau</dep>
                         <dep>libXdamage</dep>
                         <dep>libXdmcp</dep>
@@ -35,27 +48,22 @@
                         <dep>libdrm</dep>
                         <dep>libpciaccess</dep>
                         <dep>libxcb</dep>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>gawk</dep>
-                        <dep>gcc</dep>
-                        <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>libdrm</dep>
-                        <dep>libpciaccess</dep>
+                        <dep>libxshmfence</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
+                        <dep>openssl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
+                        <dep>presentproto</dep>
+                        <dep>procps</dep>
+                        <dep>pygobject</dep>
                         <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
+                        <dep>udev</dep>
+			 <dep>util-linux-ng</dep>
+                        <dep>xineramaproto</dep>
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
-			<dep>distcc</dep>
-		</builddeps>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then

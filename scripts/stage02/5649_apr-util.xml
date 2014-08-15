@@ -3,20 +3,26 @@
 		name="apr-util"
 		version="1.5.3"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                         
 				<pkg sha1="de0184ee03dfdc6dec4d013970d1862251e86925">apr-util-1.5.3.tar.bz2</pkg>
-				<mirror>http://apache.easy-webs.de/apr/</mirror>
+				<mirror>http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/apr/</mirror>
 			</file>
-			<!--<check>
-				<page html="http://sourceforge.net/projects/grsync/files/">
-					<atext linktext="grsync-1.1.2." />
-					<atext linktext="grsync-1.2." />
-					<atext linktext="grsync-2." />
+			<manualcheck date="20140724" interval="180" page="https://apr.apache.org/" />
+			<check>
+				<page html="http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/apr/">
+					<atext linktext="apr-util-1.5.4." />
+					<atext linktext="apr-util-1.5.5." />
+					<atext linktext="apr-util-1.5.6." />
+					<atext linktext="apr-util-1.5.7." />
+					<atext linktext="apr-util-1.5.8." />
+					<atext linktext="apr-1.6." />
+					<atext linktext="apr-1.7." />
+					<atext linktext="apr-1.8." />
 				</page>
-			</check>-->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>apr</dep>
@@ -51,8 +57,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

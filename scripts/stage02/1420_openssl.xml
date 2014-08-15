@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="openssl"
-		version="1.0.1h"
+		version="1.0.1i"
 		class="devel"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="b2239599c8bf8f7fc48590a55205c26abe560bf8">openssl-1.0.1h.tar.gz</pkg>
+				<pkg sha1="74eed314fa2c93006df8d26cd9fc630a101abd76">openssl-1.0.1i.tar.gz</pkg>
 				<mirror>http://www.openssl.org/source/</mirror>
 			</file>
-			<file>                         
+			<!-- <file>                         
 				<pkg sha1="99ba88a953970aab83890fb98f2ea761dd71407b">openssl-1.0.1h-fix_parallel_build-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
-			</file>
-			<file>                         
+			</file> -->
+			<!-- <file>                         
 				<pkg sha1="e77dcfc75393108579d6f7d164faafd84dc17820">openssl-1.0.1h-fix_pod_syntax-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
-			</file>
+			</file> -->
 			<manualcheck date="20140802" interval="180" page="http://www.openssl.org/source/" />
 			<check>
 				<page html="http://artfiles.org/openssl.org/source/">
 					<atext linktext="openssl-1.0.1k" />
-					<atext linktext="openssl-1.0.1i" />
+					<atext linktext="openssl-1.0.1l" />
 					<atext linktext="openssl-1.0.1j" />
 					<atext linktext="openssl-1.0.2." />
 					<atext linktext="openssl-1.0.3." />
@@ -50,33 +50,17 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fix_parallel_build-1.patch | patch -p1
 			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fix_pod_syntax-1.patch | patch -p1
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-			#	DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
-			#	export DISTCC_HOSTS
-			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	export CC="distcc gcc"
-			#	export CXX="distcc g++" 
-			#fi
-			
 			./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib shared zlib-dynamic
-			
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-			#	make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			#else
-			#	make
-			#fi
-			
 			make 
 			]]>
 		</build>

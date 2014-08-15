@@ -3,21 +3,22 @@
 		name="gtkhtml"
 		version="3.32.2"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                       
 				<pkg sha1="db8a943ddeec0b86766e671e8f8c427706dbcdd4">gtkhtml-3.32.2.tar.bz2</pkg>
 				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gtkhtml/3.32/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/gtkhtml/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gtkhtml/3.32/">
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/gtkhtml/3.32/">
 					<atext linktext="gtkhtml-3.32.3." />
 					<atext linktext="gtkhtml-3.32.4." />
 					<atext linktext="gtkhtml-3.32.5." />
 					<atext linktext="gtkhtml-3.32.6." /> 
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gtkhtml/">
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/gtkhtml/">
 					<atext linktext="3.34" />
 					<atext linktext="3.36" />
 					<atext linktext="4." />
@@ -106,7 +107,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>

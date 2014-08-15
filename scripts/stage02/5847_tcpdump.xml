@@ -1,28 +1,29 @@
 <llpackages>
 	<package 
 		name="tcpdump"
-		version="4.5.1"
+		version="4.6.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="46d5ec107c6a1b262ad8da799f74c5d01cce8815">tcpdump-4.5.1.tar.gz</pkg>
+				<pkg sha1="437da017589a33d8b936adfe121d720fb8e74b38">tcpdump-4.6.1.tar.gz</pkg>
 				<mirror>http://www.tcpdump.org/release/</mirror>
 			</file>
-			<!-- <manualcheck date="20120822" interval="120" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<manualcheck date="20140802" interval="120" page="http://www.tcpdump.org/release/" />
 			<check>
-				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
-					<atext linktext="1.42.7." />
-					<atext linktext="1.42.8." />
-					<atext linktext="1.42.6." />
-					<atext linktext="1.43." />
-					<atext linktext="1.44." />
-					<atext linktext="1.45." />
-					<atext linktext="2.0." />
-					<atext linktext="2.00." />
+				<page html="http://www.tcpdump.org/release/">
+					<atext linktext="tcpdump-4.6.2." />
+					<atext linktext="tcpdump-4.6.3." />
+					<atext linktext="tcpdump-4.6.4." />
+					<atext linktext="tcpdump-4.6.5." />
+					<atext linktext="tcpdump-4.6.6." />
+					<atext linktext="tcpdump-4.7." />
+					<atext linktext="tcpdump-4.8." />
+					<atext linktext="tcpdump-4.9." />
+					<atext linktext="tcpdump-5." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

@@ -3,15 +3,16 @@
 		name="cpio"
 		version="2.11"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
 				<pkg sha1="6f1934b0079dc1e85ddff89cabdf01adb3a74abb">cpio-2.11.tar.bz2</pkg>
 				<mirror>http://ftp.gnu.org/gnu/cpio/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="ftp://ftp.gnu.org/gnu/cpio/" />
 			<check>
-				<page html="http://ftp.gnu.org/gnu/cpio/">
+				<page html="ftp://ftp.gnu.org/gnu/cpio/">
 					<atext linktext="cpio-2.11.1." />
 					<atext linktext="cpio-2.11.2." />
 					<atext linktext="cpio-2.12." />
@@ -49,6 +50,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e '/gets is a/d' gnu/stdio.in.h
 			./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
@@ -56,7 +58,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>

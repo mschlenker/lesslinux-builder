@@ -3,13 +3,14 @@
 		name="libXp"
 		version="1.0.2"
 		class="lib"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                            
 				<pkg sha1="bac586283c089536e526529de21b13778a428c07">libXp-1.0.2.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
 					<atext linktext="libXp-1.0.6." />
@@ -62,8 +63,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

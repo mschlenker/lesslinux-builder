@@ -3,13 +3,16 @@
 		name="automake113"
 		version="1.13.4"
 		class="devel"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
 				<pkg sha1="20dac46d2699cb32c8102584db67e964c472b03e">automake-1.13.4.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/automake/</mirror>
+			</file>
+			<file>                                                                  
+				<pkg sha1="71853779b12f958777bffcb8ca6d849b4d3bed46">pkg-config-0.28.tar.gz</pkg>
+				<mirror>http://pkgconfig.freedesktop.org/releases/</mirror>
 			</file>
 			<manualcheck date="20140802" interval="3650" page="http://ftp.gnu.org/gnu/automake/" />
 			<check>
@@ -23,21 +26,14 @@
 			</check>
 		</sources>
 		<builddeps>
+			<dep>autoconf213</dep>
 			<dep>autoconf</dep>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>coreutils</dep>
-                        <dep>gcc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
                         <dep>m4</dep>
-                        <dep>perl</dep>
-                        <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/automake-${PKGVERSION}.tar.xz | tar xf - 
+			tar xzf ${SRCDIR}/pkg-config-0.28.tar.gz
 			]]>
 		</unpack>
 		<patch />
@@ -59,11 +55,16 @@
 			make install DESTDIR=${TGTDIR} 
 			mkdir -p ${TGTDIR}/usr/bin
 			ln -sf /usr/local/automake113/bin/automake ${TGTDIR}/usr/bin/automake-1.13
+			cd ..
+			mkdir -p ${TGTDIR}/usr/local/automake113/share/aclocal-1.13
+			install -m 0644 pkg-config-0.28/aclocal.m4 ${TGTDIR}/usr/local/automake113/share/aclocal-1.13
+			install -m 0644 pkg-config-0.28/pkg.m4 ${TGTDIR}/usr/local/automake113/share/aclocal-1.13
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
 			rm -rf automake-${PKGVERSION}
+			rm -rf pkg-config-0.28
 			]]>
 		</clean>
 	</package>

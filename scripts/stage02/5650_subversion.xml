@@ -3,20 +3,25 @@
 		name="subversion"
 		version="1.8.9"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                
 				<pkg sha1="424ee12708f39a126efd905886666083dcc4eeaf">subversion-1.8.9.tar.bz2</pkg>
 				<mirror>http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/subversion/</mirror>
 			</file>
-			<!--<check>
-				<page html="http://sourceforge.net/projects/grsync/files/">
-					<atext linktext="grsync-1.1.2." />
-					<atext linktext="grsync-1.2." />
-					<atext linktext="grsync-2." />
+			<manualcheck date="20140724" interval="180" page="https://apr.apache.org/" />
+			<check>
+				<page html="http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/subversion/">
+					<atext linktext="subversion-1.8.10." />
+					<atext linktext="subversion-1.8.11." />
+					<atext linktext="subversion-1.8.12." />
+					<atext linktext="subversion-1.8.13." />
+					<atext linktext="subversion-1.9.0." />
+					<atext linktext="subversion-1.9.1." />
+					<atext linktext="subversion-1.10." />
 				</page>
-			</check>-->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Python</dep>
@@ -68,7 +73,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>

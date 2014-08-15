@@ -1,18 +1,19 @@
 <llpackages>
 	<package 
 		name="gccmakedep"
-		version="1.0.2"
+		version="1.0.3"
 		class="lib"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                            
-				<pkg sha1="a3d971a507a460233afd8ed46e9f06135fed634d">gccmakedep-1.0.2.tar.bz2</pkg>
+				<pkg sha1="03018e2fb9d7df4fec1623cedb1c090bc224f971">gccmakedep-1.0.3.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/util/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="ftp://ftp.gnu.org/gnu/patch/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/util/">
-					<atext linktext="gccmakedep-1.0.3." />
+					<atext linktext="gccmakedep-1.0.7." />
 					<atext linktext="gccmakedep-1.0.4." />
 					<atext linktext="gccmakedep-1.0.5." />
 					<atext linktext="gccmakedep-1.0.6." />
@@ -54,8 +55,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

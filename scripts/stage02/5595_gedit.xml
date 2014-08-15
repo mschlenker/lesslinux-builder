@@ -3,25 +3,20 @@
 		name="gedit"
 		version="2.30.4"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>       
 				<pkg sha1="ff7f4088d0b89224b84406557a7d9970323fdcc3">gedit-2.30.4.tar.bz2</pkg>
 				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gedit/2.30/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://ftp.acc.umu.se/pub/gnome/sources/gedit/2.30/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gedit/2.30/">
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/gedit/2.30/">
 					<atext linktext="gedit-2.30.5." />
 					<atext linktext="gedit-2.30.6." />
 					<atext linktext="gedit-2.30.7." />
 					<atext linktext="gedit-2.30.8." />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gedit/">
-					<atext linktext="2.32" />
-					<atext linktext="2.34" />
-					<atext linktext="2.36" />
-					<atext linktext="3." />
 				</page>
 			</check>
 		</sources>
@@ -107,7 +102,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR 
 			]]>
 		</install>
 		<clean>

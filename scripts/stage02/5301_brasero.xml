@@ -3,23 +3,19 @@
 		name="brasero"
 		version="2.32.1"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
 				<pkg sha1="56141108561f2b8d45998662b86cf6e20f0ff4f2">brasero-2.32.1.tar.bz2</pkg>
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/brasero/2.32/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/brasero/2.32/">
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/2.32/">
 					<atext linktext="brasero-2.32.2." />
 					<atext linktext="brasero-2.32.3." />
 					<atext linktext="brasero-2.32.4." />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/brasero/">
-					<atext linktext="2.34" />
-					<atext linktext="2.36" />
-					<atext linktext="3." />
 				</page>
 			</check>
 		</sources>
@@ -117,7 +113,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>

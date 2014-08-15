@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="libXft"
-		version="2.3.1"
+		version="2.3.2"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                        
-				<pkg sha1="c7ec1361e3d4f095910f8c58988ab42e32f314d9">libXft-2.3.1.tar.bz2</pkg>
+				<pkg sha1="e025d790a7b6c4d283a78d8df06615cb10278e2d">libXft-2.3.2.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file>
-			<manualcheck date="20130430" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20140719" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
 					<atext linktext="libXft-2.3.5." />
-					<atext linktext="libXft-2.3.2." />
+					<atext linktext="libXft-2.3.6." />
 					<atext linktext="libXft-2.3.3." />
 					<atext linktext="libXft-2.3.4." />
 					<atext linktext="libXft-2.4." />
@@ -76,5 +76,10 @@
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

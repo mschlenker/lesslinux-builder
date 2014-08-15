@@ -10,6 +10,7 @@
 				<pkg sha1="8678d0a3bcf7c16520bdcebbe75fe7c618a6c7da">tor-browser-linux32-3.6.3_de.tar.xz</pkg>
 				<mirror>https://www.torproject.org/dist/torbrowser/3.6.3/</mirror>
 			</file>  
+			<manualcheck date="20140801" interval="60" page="https://www.torproject.org/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -88,7 +89,7 @@ cat >> ${TGTDIR}/opt/bin/tor-browser_smack << FFSMACK
 
 export PATH=$PATH:/opt/bin:/opt/sbin
 cd /opt/tor-browser_de
-/static/sbin/newsmack netmgr /static/bin/su surfer -c "/opt/tor-browser_de/start-tor-browser"
+/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_de/start-tor-browser"
 
 FFSMACK
 

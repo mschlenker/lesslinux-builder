@@ -1,41 +1,41 @@
 <pkgdesc name='module-init-tools' version='3.16'>
     <subpackage name='skel'>
-        <directory group='0' path='/bin' owner='0'/>
-        <directory group='0' path='/sbin' owner='0'/>
-        <directory group='0' path='/usr' owner='0'/>
-        <directory group='0' path='/usr/share' owner='0'/>
-        <directory group='0' path='/usr/share/man' owner='0'/>
-        <directory group='0' path='/usr/share/man/man5' owner='0'/>
-        <directory group='0' path='/usr/share/man/man8' owner='0'/>
+        <directory group='0' owner='0' path='/bin'/>
+        <directory group='0' owner='0' path='/sbin'/>
+        <directory group='0' owner='0' path='/usr'/>
+        <directory group='0' owner='0' path='/usr/share'/>
+        <directory group='0' owner='0' path='/usr/share/man.old'/>
+        <directory group='0' owner='0' path='/usr/share/man.old/man5'/>
+        <directory group='0' owner='0' path='/usr/share/man.old/man8'/>
     </subpackage>
     <subpackage name='minimal'/>
     <subpackage name='bin'>
-        <file group='0' mode='100755' path='/bin/lsmod' owner='0'/>
-        <file group='0' mode='100755' path='/sbin/depmod' owner='0'/>
-        <file group='0' mode='100755' path='/sbin/insmod' owner='0'/>
-        <file group='0' mode='100755' path='/sbin/insmod.static' owner='0'/>
-        <file group='0' mode='100755' path='/sbin/modinfo' owner='0'/>
-        <file group='0' mode='100755' path='/sbin/modprobe' owner='0'/>
-        <file group='0' mode='100755' path='/sbin/rmmod' owner='0'/>
+        <file group='0' mode='100755' owner='0' path='/bin/lsmod.old'/>
+        <file group='0' mode='100755' owner='0' path='/sbin/insmod.static'/>
+        <file group='0' mode='100755' owner='0' path='/sbin/depmod.old'/>
+        <file group='0' mode='100755' owner='0' path='/sbin/insmod.old'/>
+        <file group='0' mode='100755' owner='0' path='/sbin/modinfo.old'/>
+        <file group='0' mode='100755' owner='0' path='/sbin/modprobe.old'/>
+        <file group='0' mode='100755' owner='0' path='/sbin/rmmod.old'/>
     </subpackage>
-    <subpackage name='doc'>
-        <file group='0' mode='100644' path='/usr/share/man/man5/depmod.conf.5' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man5/depmod.d.5' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man5/modprobe.conf.5' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man5/modprobe.d.5' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man5/modules.dep.5' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man5/modules.dep.bin.5' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man8/depmod.8' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man8/insmod.8' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man8/lsmod.8' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man8/modinfo.8' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man8/modprobe.8' owner='0'/>
-        <file group='0' mode='100644' path='/usr/share/man/man8/rmmod.8' owner='0'/>
-    </subpackage>
+    <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'/>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man5/depmod.conf.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man5/depmod.d.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man5/modprobe.conf.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man5/modprobe.d.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man5/modules.dep.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man5/modules.dep.bin.5'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man8/depmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man8/insmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man8/lsmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man8/rmmod.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man8/modprobe.8'/>
+        <file group='0' mode='100644' owner='0' path='/usr/share/man.old/man8/modinfo.8'/>
+    </subpackage>
     <subpackage name='ignore'/>
 </pkgdesc>

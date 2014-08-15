@@ -14,19 +14,14 @@
 				<pkg sha1="56d6f486850ebd31f9fbc70c25967a1f647ee0ec">libgnome-2.32.1-patch01.diff</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/libgnome/2.32/" />
+			<manualcheck date="20140724" interval="180" page="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/libgnome/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libgnome/2.32/">
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/libgnome/2.32/">
 					<atext linktext="libgnome-2.32.2." />
 					<atext linktext="libgnome-2.32.3." />
 					<atext linktext="libgnome-2.32.4." />
 					<atext linktext="libgnome-2.32.5." />
 					<atext linktext="libgnome-2.32.6." />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libgnome/">
-					<atext linktext="2.34" />
-					<atext linktext="2.36" />
-					<atext linktext="3." />
 				</page>
 			</check>
 		</sources>
@@ -86,10 +81,16 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
 			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
-			
-			./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
-			make
-		
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
+				make
+			fi
 			]]>
 		</build>
 		<test />

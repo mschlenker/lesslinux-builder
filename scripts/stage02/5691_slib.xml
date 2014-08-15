@@ -11,6 +11,16 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 				<mirror>http://groups.csail.mit.edu/mac/ftpdir/scm/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://people.csail.mit.edu/jaffer/SLIB" />
+			<check>
+				<page html="http://groups.csail.mit.edu/mac/ftpdir/scm/">
+					<atext linktext="slib-3b5." />
+					<atext linktext="slib-3b6." />
+					<atext linktext="slib-3b7." />
+					<atext linktext="slib-3b8." />
+					<atext linktext="slib-4" />
+				</page>
+			</check>
 		</sources> 
 		<builddeps>
                         <dep>bash</dep>
@@ -36,5 +46,10 @@
 			chmod 0644 /usr/share/guile/slib/*
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  slib
+			]]>
+		</clean>
 	</package>
 </llpackages>

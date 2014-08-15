@@ -3,22 +3,23 @@
 		name="xchat"
 		version="2.8.8"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
 				<pkg sha1="a4ac161e4e40f4bbabc492675a1ff4380dba8d68">xchat-2.8.8.tar.bz2</pkg>
 				<mirror>http://downloads.sourceforge.net/project/xchat/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://sourceforge.net/projects/xchat/files/" />
 			<check>
 				<page html="http://sourceforge.net/projects/xchat/files/">
-					<atext linktext="xchat-2.8.9." />
-					<atext linktext="xchat-2.8.10." />
-					<atext linktext="xchat-2.8.11." />
-					<atext linktext="xchat-2.8.12." />
-					<atext linktext="xchat-2.9." />
-					<atext linktext="xchat-2.10." />
-					<atext linktext="xchat-3." />
+					<atext linktext="2.8.9." />
+					<atext linktext="2.8.10." />
+					<atext linktext="2.8.11." />
+					<atext linktext="2.8.12." />
+					<atext linktext="2.9." />
+					<atext linktext="2.10." />
+					<atext linktext="3.0." />
 				</page>
 			</check>
 		</sources> 
@@ -81,7 +82,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=$TGTDIR 
 			]]>
 		</install>
 		<clean>

@@ -1,29 +1,34 @@
 <llpackages>
 	<package 
 		name="cryptsetup"
-		version="1.6.4"
+		version="1.6.5"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                      
-				<pkg sha1="cf4c4ea68e50e2756a824fa90645ad38eab7895c">cryptsetup-1.6.4.tar.xz</pkg>
-				<mirror>http://cryptsetup.googlecode.com/files/</mirror>
+				<pkg sha1="2ce6e183b9483b46b702f24791a680f14847ab8c">cryptsetup-1.6.5.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/cryptsetup/v1.6/</mirror>
 			</file>
-			<manualcheck date="20140518" interval="60" page="http://code.google.com/p/cryptsetup/" />
-			<!-- <check>
-				<page html="http://code.google.com/p/cryptsetup/">
+			<manualcheck date="20140729" interval="60" page="http://code.google.com/p/cryptsetup/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/utils/cryptsetup/v1.6/">
 					<atext linktext="cryptsetup-1.6.6." />
 					<atext linktext="cryptsetup-1.6.7." />
 					<atext linktext="cryptsetup-1.6.8." />
 					<atext linktext="cryptsetup-1.6.9." />
-					<atext linktext="cryptsetup-1.6.5." />
+					<atext linktext="cryptsetup-1.6.10." />
 					<atext linktext="cryptsetup-1.7." />
 					<atext linktext="cryptsetup-1.8." />
 					<atext linktext="cryptsetup-2." />
 				</page>
-			</check> -->
+				<page html="rsync://www.kernel.org/pub/linux/utils/cryptsetup/">
+					<atext linktext="v1.7" />
+					<atext linktext="v1.8" />
+					<atext linktext="v1.9" />
+					<atext linktext="v2.0" />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -46,6 +51,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
 			<dep>distcc</dep>
+			<dep>nettle</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 

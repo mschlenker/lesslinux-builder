@@ -3,8 +3,7 @@
 		name="autoconf"
 		version="2.69"
 		class="devel"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>      
@@ -22,16 +21,7 @@
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>coreutils</dep>
-                        <dep>gcc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
                         <dep>m4</dep>
-                        <dep>perl</dep>
-                        <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 

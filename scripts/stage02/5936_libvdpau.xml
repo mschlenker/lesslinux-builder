@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="libvdpau"
-		version="0.7"
+		version="0.8"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="d9686b095e6b34231c37b54c895f610a9ac3d5b8">libvdpau-0.7.tar.gz</pkg>
+				<pkg sha1="5618c2708cfa4c55e1c7acf74e5220a0acda4ea4">libvdpau-0.8.tar.bz2</pkg>
 				<mirror>http://people.freedesktop.org/~aplattner/vdpau/</mirror>
 			</file>
-			<!-- <check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
-					<atext linktext="gnome-calculator-3.10.6." />
-					<atext linktext="gnome-calculator-3.10.3." />
-					<atext linktext="gnome-calculator-3.10.4." />
-					<atext linktext="gnome-calculator-3.10.5." />
+			<manualcheck date="20140731" interval="180" page="http://people.freedesktop.org/~aplattner/vdpau/" />
+			<check>
+				<page html="http://people.freedesktop.org/~aplattner/vdpau/">
+					<atext linktext="libvdpau-0.8.1." />
+					<atext linktext="libvdpau-0.8.2." />
+					<atext linktext="libvdpau-0.8.1." />
+					<atext linktext="libvdpau-0.9." />
+					<atext linktext="libvdpau-0.10." />
+					<atext linktext="libvdpau-0.11." />
+					<atext linktext="libvdpau-0.12." />
+					<atext linktext="libvdpau-1." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

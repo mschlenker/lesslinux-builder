@@ -3,7 +3,7 @@
 		name="partimage"
 		version="0.6.9"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
@@ -14,17 +14,19 @@
 				<pkg sha1="334bcf8dc2665b01df31f1f843f16daa35922797">partimage-0.6.9-ftbfs-debian.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
+			<manualcheck date="20140724" interval="180" page="http://sourceforge.net/projects/partimage/files/stable/" />
 			<check>
-				<page html="http://sourceforge.net/projects/partimage/files/">
-					<atext linktext="partimage-0.6.10.tar.bz2" />
-					<atext linktext="partimage-0.6.11.tar.bz2" />
-					<atext linktext="partimage-0.6.12.tar.bz2" />
-					<atext linktext="partimage-0.7.3.tar.bz2" />
-					<atext linktext="partimage-0.7.4.tar.bz2" />
-					<atext linktext="partimage-0.7.5.tar.bz2" />
-					<atext linktext="partimage-0.8.0.tar.bz2" />
-					<atext linktext="partimage-0.8.1.tar.bz2" />
-					<atext linktext="partimage-0.8.2.tar.bz2" />
+				<page html="http://sourceforge.net/projects/partimage/files/stable/">
+					<atext linktext="0.6.10" />
+					<atext linktext="0.6.11" />
+					<atext linktext="0.6.12" />
+					<atext linktext="0.6.13" />
+					<atext linktext="0.6.14" />
+					<atext linktext="0.6.15" />
+					<atext linktext="0.7." />
+					<atext linktext="0.8." />
+					<atext linktext="0.9." />
+					<atext linktext="1.0." />
 				</page>
 			</check>
 		</sources>
@@ -47,6 +49,7 @@
                         <dep>slang</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>openssl</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -66,15 +69,20 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr --disable-ssl && make
+			./configure --sysconfdir=/etc --prefix=/usr && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

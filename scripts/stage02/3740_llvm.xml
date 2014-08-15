@@ -1,30 +1,30 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.4"
+		version="3.4.2"
 		class="user"
 		install="destdir"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="10b1fd085b45d8b19adb9a628353ce347bc136b8">llvm-3.4.src.tar.gz</pkg>
-				<mirror>http://llvm.org/releases/3.4/</mirror>
+				<pkg sha1="c5287384d0b95ecb0fd7f024be2cdfb60cd94bc9">llvm-3.4.2.src.tar.gz</pkg>
+				<mirror>http://llvm.org/releases/3.4.2/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="a6a3c815dd045e9c13c7ae37d2cfefe65607860d">clang-3.4.src.tar.gz</pkg>
-				<mirror>http://llvm.org/releases/3.4/</mirror>
+				<pkg sha1="add5420b10c3c3a38c4dc2322f8b64ba0a5def97">cfe-3.4.2.src.tar.gz</pkg>
+				<mirror>http://llvm.org/releases/3.4.2/</mirror>
 			</file>
 			<file>                                                                                     
 				<pkg sha1="d644b1e4f306f7ad35df0a134d14a1123cd9f082">compiler-rt-3.4.src.tar.gz</pkg>
 				<mirror>http://llvm.org/releases/3.4/</mirror>
 			</file>
-			<manualcheck date="20140109" interval="180" page="http://www.llvm.org/" />
+			<manualcheck date="20140731" interval="180" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="llvm-3.4.src." />
-					<atext href="llvm-3.4.1src." />
-					<atext href="llvm-3.4.2.src." />
+					<atext href="llvm-3.4.3.src." />
+					<atext href="llvm-3.4.4.src." />
+					<atext href="llvm-3.4.5.src." />
 					<atext href="llvm-3.5.src." />
 					<atext href="llvm-3.6.src." />
 					<atext href="llvm-3.7.src." />
@@ -71,16 +71,17 @@
 		<unpack>
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.gz
-			tar xzf ${SRCDIR}/clang-${PKGVERSION}.src.tar.gz
-			tar xzf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.gz
-			mv clang-${PKGVERSION} ${PKGNAME}-${PKGVERSION}/tools/clang
-			mv compiler-rt-${PKGVERSION} ${PKGNAME}-${PKGVERSION}/projects/compiler-rt
+			tar xzf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.gz
+			tar xzf ${SRCDIR}/compiler-rt-3.4.src.tar.gz
+			mv -v cfe-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/tools/clang
+			mv -v compiler-rt-3.4 ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}.src
+			sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
 				export CC='distcc gcc'
@@ -105,16 +106,22 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}.src
 			make install DESTDIR=${TGTDIR}
 			for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
 				test -f $file && chmod -v 644 $file
 			done
+			install -v -dm755 ${TGTDIR}/usr/lib/clang-analyzer
+			for prog in scan-build scan-view ; do
+				cp -rfv tools/clang/tools/$prog ${TGTDIR}/usr/lib/clang-analyzer/
+				ln -sfv ../lib/clang-analyzer/$prog/$prog ${TGTDIR}/usr/bin/
+			done
+			ln -sfv /usr/bin/clang ${TGTDIR}/usr/lib/clang-analyzer/scan-build/
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-${PKGVERSION}.src
 			]]>
 		</clean>
 	</package>

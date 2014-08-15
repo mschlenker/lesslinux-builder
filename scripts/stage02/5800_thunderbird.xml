@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="thunderbird"
-		version="24.6.0"
+		version="31.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="f3b5abd9f9012c4cc4275b9b6bebd1c285e5c15a">thunderbird-24.6.0.source.tar.bz2</pkg>
-				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/24.6.0/source/</mirror>
+				<pkg sha1="0fe6666fddd4db82ec2e389f30c5ea11d4f72be5">thunderbird-31.0.source.tar.bz2</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/31.0/source/</mirror>
 			</file>  
 			<!-- 
-tbtag=THUNDERBIRD_24_6_0_RELEASE
+tbtag=THUNDERBIRD_31_0_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT ; do
 echo '==> Cloning: '"$l"
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
@@ -20,32 +20,32 @@ done
 			
 			-->
 			<file>                                                                                                                
-				<pkg sha1="dfe87e08604cfd624e3b0c8740d30c52361ad844">thunderbird-24.6.0.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="8eb65a779ca2b43a53fe0d1b0b49c26440587930">thunderbird-31.0.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                           
-				<pkg sha1="2945d1d26511939a7fa9cdf49a673febb2207d49">mozconfig-thunderbird-13.0-20120715</pkg>
+				<pkg sha1="194b71c84261531c35a44cdbe49d041982fc3111">mozconfig-thunderbird-31.0-20140723</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<!-- <file>                                                               
 				<pkg sha1="6f9d3be09e3858cfa65795389aa4d79ec2d1a4a9">enigmail-1.5.2.tar.gz</pkg>
 				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
 			</file> -->
-			<file>                                                               
+			<!-- <file>                                                               
 				<pkg sha1="51a7eb7d86ce24d8199f741a0079f0d56ecd6368">enigmail-1.6.tar.gz</pkg>
 				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
-			</file>
-			<manualcheck date="20140611" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
+			</file> -->
+			<manualcheck date="20140722" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
-					<atext linktext="24.6.1" />
-					<atext linktext="24.6.2" />
-					<atext linktext="24.7." />
-					<atext linktext="24.8." />
-					<atext linktext="24.9." />
-					<atext linktext="30." />
-					<atext linktext="31." />
+					<atext linktext="31.0.1" />
+					<atext linktext="31.0.2" />
+					<atext linktext="31.0.3" />
+					<atext linktext="31.1." />
+					<atext linktext="31.2." />
 					<atext linktext="32." />
+					<atext linktext="33." />
+					<atext linktext="34." />
 				</page>
 			</check>
 		</sources>
@@ -128,22 +128,23 @@ done
 			tar xjf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.bz2
 			mkdir l10n
 			tar -C l10n -xJf ${SRCDIR}/thunderbird-${PKGVERSION}.source.de-es-pl-ru.tar.xz
-			tar xzf ${SRCDIR}/enigmail-1.6.tar.gz
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[
-			cp ${SRCDIR}/mozconfig-thunderbird-13.0-20120715 comm-esr24/.mozconfig
+			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20140723 comm-esr31/.mozconfig
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			workdir=` pwd ` 
-			cd comm-esr24
+			cd comm-esr31
 			echo $SHELL
 			export SHELL=/bin/bash
 			echo $SHELL
-			sed -i "s%with-l10n-base=\.\.%with-l10n-base=${workdir}/l10n%g" .mozconfig 
+			mkdir tb-build
+			mkdir -p mozilla/tb-build
+			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j2\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
@@ -159,13 +160,13 @@ done
 			find tb-build -type f -name libxul.so
 			
 			ccount=0
-			while [ '!' -f tb-build/mozilla/toolkit/library/libxul.so -a $ccount -lt 2 ] ; do
+			while [ '!' -f tb-build/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ] ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
-			[ -f tb-build/mozilla/toolkit/library/libxul.so ] || exit 1 
+			[ -f tb-build/mozilla/toolkit/library/build/libxul.so ] || exit 1 
 			
 			# Now try to build the language packs
 			for packlang in de es-ES pl ru fr it nl pt-PT ; do
@@ -173,16 +174,18 @@ done
 			done
 			
 			# Now try to build the xpi of thunderbird
-			mv mail/installer/removed-files.in{,.orig}
-			cat mail/installer/removed-files.in.orig | sed 's%hyphenation/hyph%# hyphenation/hyph%g' > mail/installer/removed-files.in
+			# mv mail/installer/removed-files.in{,.orig}
+			# cat mail/installer/removed-files.in.orig | sed 's%hyphenation/hyph%# hyphenation/hyph%g' > mail/installer/removed-files.in
 			make -C tb-build package  
 			
 			# Now build Enigmail and package Enigmail
-			mv ../enigmail mailnews/extensions/
-			( cd mailnews/extensions/enigmail/ ; perl makemake -r )
-			make -C tb-build/mailnews/extensions/enigmail/  
-			make -C tb-build/mailnews/extensions/enigmail/ xpi
+			# mv ../enigmail mailnews/extensions/
+			# ( cd mailnews/extensions/enigmail/ ; perl makemake -r )
+			# make -C tb-build/mailnews/extensions/enigmail/  
+			# make -C tb-build/mailnews/extensions/enigmail/ xpi
 			
+			echo '==> Searching Tarballs'
+			find tb-build -name '*.tar.bz2' | sort 
 			echo '==> Searching XPIs'
 			find tb-build -name '*.xpi' | sort 
 			
@@ -192,11 +195,8 @@ done
 		<install>
 			<![CDATA[
 
-TARFILE=comm-esr24/tb-build/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-i686.tar.bz2
-LIBXUL=comm-esr24/tb-build/mozilla/toolkit/library/libxul.so
-ENIGMAILVERSION=1.6
+TARFILE=comm-esr31/tb-build/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-i686.tar.bz2
 [ -f "$TARFILE" ] || exit 1
-[ -f "$LIBXUL" ] || exit 1
 
 mkdir -p ${TGTDIR}/opt
 mkdir -p ${TGTDIR}/usr/share/mozilla-addons
@@ -204,35 +204,19 @@ tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/thunderbird ${TGTDIR}/opt/thunderbird-${PKGVERSION}
 
 echo '====> Installing XPIs'
-install -m 0644 comm-esr24/tb-build/mozilla/dist/xpi-stage/gdata-provider-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
-install -m 0644 comm-esr24/tb-build/mozilla/dist/xpi-stage/lightning-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
-
-# for xpi in gdata-provider lightning calendar-timezones ; do
-#	install -m 0644 comm-esr24/tb-build/mozilla/dist/xpi-stage/${xpi}.xpi ${TGTDIR}/usr/share/mozilla-addons 
-#	mkdir -p ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/${xpi}
-#	( cd ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/${xpi} ; unzip ${TGTDIR}/usr/share/mozilla-addons/${xpi}.xpi )
-# done
-# mv ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/lightning          ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/'{e2fda1a4-762b-4020-b5ad-a41df1933103}'
-# mv ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/gdata-provider     ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/'{a62ef8ec-5fdc-40c2-873c-223b8a6925cc}'
-# mv ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/calendar-timezones ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/'calendar-timezones@mozilla.org'
+install -m 0644 comm-esr31/tb-build/mozilla/dist/xpi-stage/gdata-provider-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
+install -m 0644 comm-esr31/tb-build/mozilla/dist/xpi-stage/lightning-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
 
 echo '====> Installing Langpacks'
 mkdir -m 0755 -p ${TGTDIR}/usr/share/mozilla-localization
 for packlang in de es-ES pl ru fr it nl pt-PT ; do
-	# mkdir -p  ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/langpack-${packlang}'@thunderbird.mozilla.org'
-	install -m 0644 comm-esr24/tb-build/mozilla/dist/linux-i686/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
+	install -m 0644 comm-esr31/tb-build/mozilla/dist/linux-i686/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
 		${TGTDIR}/usr/share/mozilla-localization
-	# ( cd ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/langpack-${packlang}'@thunderbird.mozilla.org' ;
-	#	unzip ${TGTDIR}/usr/share/mozilla-localization/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi )
 done
 
-echo '====> Installing Enigmail'
-# mkdir -p ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/'{847b3a00-7ab1-11d4-8f02-006008948af5}'
-mkdir -m 0755 -p ${TGTDIR}/usr/share/mozilla-addons
-install -m 0644 comm-esr24/tb-build/mozilla/dist/bin/enigmail-${ENIGMAILVERSION}-linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons/
-
-# ( cd ${TGTDIR}/opt/thunderbird-${PKGVERSION}/extensions/'{847b3a00-7ab1-11d4-8f02-006008948af5}' ; 
-#	unzip ${TGTDIR}/usr/share/mozilla-addons/enigmail-${ENIGMAILVERSION}-linux-i686.xpi )
+# echo '====> Installing Enigmail'
+# mkdir -m 0755 -p ${TGTDIR}/usr/share/mozilla-addons
+# install -m 0644 comm-esr31/tb-build/mozilla/dist/bin/enigmail-${ENIGMAILVERSION}-linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons/
 
 mkdir -p ${TGTDIR}/usr/bin/	
 mkdir -p ${TGTDIR}/usr/share/icons
@@ -297,7 +281,7 @@ chmod a+rx ${TGTDIR}/opt/thunderbird-${PKGVERSION}/thunderbird_smack
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf comm-esr24  l10n
+			rm -rf comm-esr31  l10n
 			]]>
 		</clean>
 	</package>
