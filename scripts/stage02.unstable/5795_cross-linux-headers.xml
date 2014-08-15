@@ -47,10 +47,10 @@
 		<patch>
 			<![CDATA[ 
 			
-			cd linux-3.15
+			cd linux-3.16
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cd ..
-			mv -v linux-3.15 linux-${PKGVERSION}
+			mv -v linux-3.16 linux-${PKGVERSION}
 			
 			]]>
 		</patch>
