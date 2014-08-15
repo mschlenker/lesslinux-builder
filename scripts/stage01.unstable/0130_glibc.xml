@@ -1,0 +1,95 @@
+<llpackages>
+	<package 
+		name="glibc_pass1"
+		version="20140815"
+		buildas="unpriv"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                
+				<pkg sha1="72ad979a5fe1a8645590f419572b781136b19cea">glibc-20140815.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
+			</file>
+			<!-- <file>                                                                                  
+				<pkg sha1="3fd9d2ba6684ac65112a570e10095b41ca349c50">glibc-2.16-fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<file>                                                                                            
+				<pkg sha1="41a88bf6a20926a4a1e9792ae5eb2a9854dc44af">glibc-2.16-gcc_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20140518" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/glibc/">
+					<atext linktext="glibc-2.19.1." />
+					<atext linktext="glibc-2.19.2." />
+					<atext linktext="glibc-2.19.3." />
+					<atext linktext="glibc-2.19.4." />
+					<atext linktext="glibc-2.20." />
+					<atext linktext="glibc-2.21." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/glibc-${PKGVERSION}.tar.xz | tar xvf -
+			mkdir glibc-build
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+
+			cd glibc-${PKGVERSION}
+			sed -i -e 's/static __m128i/inline &/' sysdeps/x86_64/multiarch/strstr.c
+			
+			]]>
+		</patch>  -->
+		<chown>
+			<![CDATA[ 
+			chown -R ${UNPRIV} glibc-build
+			]]>
+		</chown>
+		<build>
+			<![CDATA[ 
+			
+			if [ '!' -r /usr/include/rpc/types.h ]; then
+				echo 'RPC headers missing in host system!' 
+				exit 1
+			fi
+			
+			cd glibc-build
+			
+			case `uname -m` in
+				i?86) 
+					echo "CFLAGS += -march=i486 -mtune=native" > configparms 
+				;;
+			esac
+			
+			../glibc/configure --prefix=/tools \
+			--host=${LFS_TGT} \
+			--build=$(../glibc/scripts/config.guess) \
+			--disable-profile \
+			--enable-kernel=2.6.34 --with-headers=/tools/include \
+			libc_cv_forced_unwind=yes\
+			libc_cv_c_cleanup=yes \
+			libc_cv_ctors_header=yes && make
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			if [ '!' -r /usr/include/rpc/types.h ]; then
+				echo 'RPC headers missing in host system!' 
+				exit 1
+			fi
+			
+			cd glibc-build
+			make install
+			echo 'main(){}' > dummy.c
+			$LFS_TGT-gcc dummy.c
+			readelf -l a.out | grep ': /tools'
+			]]>
+		</install>
+	</package>
+</llpackages>
