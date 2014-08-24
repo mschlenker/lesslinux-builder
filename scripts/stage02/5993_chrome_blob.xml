@@ -27,6 +27,7 @@
 			mkdir -p ${TGTDIR}/usr/share/applications
 			ln -sf /opt/google/chrome/google-chrome ${TGTDIR}/usr/bin/google-chrome-stable
 			touch ${TGTDIR}/opt/google/chrome/.keep_this_directory
+			touch ${TGTDIR}/opt/google/chrome/google-chrome
 			cat > ${TGTDIR}/usr/share/applications/google-chrome.desktop << EOF
 
 [Desktop Entry]
