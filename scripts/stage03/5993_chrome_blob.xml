@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llpackages>
+	<package name="chrome" />
+	<scripts>
+		<scriptdata location="/etc/rc.d/0600-google-chrome.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides google-chrome
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	if mountpoint -q /opt/google/chrome ; then
+	    printf "$bold===> Skipping Chrome, already mounted $normal\n"
+	else
+	    printf "$bold===> Preparing Chrome $normal\n"
+	    if [ -f /lesslinux/blob/google-chrome.sqs ] ; then
+		mount -o loop /lesslinux/blob/google-chrome.sqs /opt/google/chrome
+	    elif [ -f /lesslinux/blob/google-chrome-stable_current_i386.deb ] ; then
+		mount -o size=200M,mode=0755 -t tmpfs tmpfs /opt/google/chrome
+		ar -p /lesslinux/blob/google-chrome-stable_current_i386.deb data.tar.lzma \
+			| unlzma -c | tar -C / -x ./opt/google/chrome
+	    else
+		mount --bind /dev/null /usr/share/applications/google-chrome.desktop
+	    fi
+	fi
+    ;;
+    stop)
+	printf "$bold===> Removing Chrome, freeing memory $normal\n"
+	umount /opt/google/chrome && mount --bind /dev/null /usr/share/applications/google-chrome.desktop
+    ;;
+]]>
+		</scriptdata>
+	</scripts>
+</llpackages>
