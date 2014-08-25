@@ -1,0 +1,60 @@
+<llpackages>
+	<package 
+		name="cups"
+		version="1.7.5"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="7cd1a18fe2988b4375e9276af313a53e1caf5a27">cups-1.7.5-source.tar.bz2</pkg>
+				<mirror>http://www.cups.org/software/1.7.5/</mirror>
+			</file>
+			<file>                           
+				<pkg sha1="7ba815ed60f2a6fcb22675c8687d1b8130387941">cups-1.7.5-blfs-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<file>                           
+				<pkg sha1="de34d90c46585185c240890298692cdb7b2c4a20">cups-1.7.5-content_type-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<manualcheck date="20140825" interval="90" page="http://www.cups.org/" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-blfs-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-content_type-1.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			CC=gcc ./configure --libdir=/usr/lib \
+				--with-rcdir=/tmp/cupsinit --with-docdir=/usr/share/cups/doc \
+				--with-system-groups=lpadmin && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/etc/cups
+			echo "ServerName /var/run/cups/cups.sock" >  ${TGTDIR}/etc/cups/client.conf
+			rm -rf ${TGTDIR}/usr/share/cups/banners
+			rm -rf ${TGTDIR}/usr/share/cups/data/testprint
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

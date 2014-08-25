@@ -1,0 +1,39 @@
+<llpackages>
+	<package 
+		name="cups-prep"
+		version="20140825"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<manualcheck date="20140825" interval="365" page="http://sourceforge.net/projects/clamav/files/" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			echo 'Nothing to unpack!'
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to build!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			if grep -E '^lp:' /etc/passwd ; then
+				echo 'User lp found in /etc/passwd'
+			else
+				useradd -c "Print Service User" -d /var/spool/cups -g lp -s /bin/false -u 9 lp
+			fi
+			if grep -E '^lpadmin:' /etc/group ; then
+				echo 'Group lpadmin found in /etc/group'
+			else
+				groupadd -g 19 lpadmin
+			fi
+			mkdir -p /etc/lesslinux/packages
+			touch /etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_just_prepares_passwd_for_cups
+			]]>
+		</install>
+	</package>
+</llpackages>
