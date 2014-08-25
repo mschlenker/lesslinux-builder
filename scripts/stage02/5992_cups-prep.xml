@@ -7,6 +7,13 @@
 		<sources>
 			<manualcheck date="20140825" interval="365" page="http://sourceforge.net/projects/clamav/files/" />
 		</sources>
+		<builddeps>
+                        <dep>coreutils</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>shadow</dep>
+			<dep>bash</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			echo 'Nothing to unpack!'
