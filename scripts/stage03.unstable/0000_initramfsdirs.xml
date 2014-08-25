@@ -1801,7 +1801,13 @@ do
 		# Find modprobe command
 		MODPROBE=modprobe
 		# Statically linked modprobe/kmod in initramfs
-		[ -x /static/kmod/bin/kmod ] && MODPROBE=/static/kmod/bin/modprobe
+		if [ -x /static/kmod/bin/kmod ] ; then
+			ln -sf /static/kmod/bin/kmod /static/kmod/bin/modprobe
+			ln -sf /static/kmod/bin/kmod /static/kmod/bin/insmod
+			MODPROBE=/static/kmod/bin/modprobe
+			PATH=/static/kmod/bin:$PATH
+			export PATH
+		fi
 		# Modprobe provided by kmod in complete system
 		[ -x /bin/kmod ] && MODPROBE=/sbin/modprobe
 		# Modprobe provided by kmod in complete system - alternative path
@@ -2187,7 +2193,13 @@ export PATH
 # Find modprobe command
 MODPROBE=modprobe
 # Statically linked modprobe/kmod in initramfs
-[ -x /static/kmod/bin/kmod ] && MODPROBE=/static/kmod/bin/modprobe
+if [ -x /static/kmod/bin/kmod ] ; then
+	ln -sf /static/kmod/bin/kmod /static/kmod/bin/modprobe
+	ln -sf /static/kmod/bin/kmod /static/kmod/bin/insmod
+	MODPROBE=/static/kmod/bin/modprobe
+	PATH=/static/kmod/bin:$PATH
+	export PATH
+fi
 # Modprobe provided by kmod in complete system
 [ -x /bin/kmod ] && MODPROBE=/sbin/modprobe
 # Modprobe provided by kmod in complete system - alternative path
