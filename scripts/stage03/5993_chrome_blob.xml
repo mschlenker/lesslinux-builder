@@ -36,6 +36,8 @@ case $1 in
 	printf "$bold===> Removing Chrome, freeing memory $normal\n"
 	umount /opt/google/chrome && mount --bind /dev/null /usr/share/applications/google-chrome.desktop
     ;;
+esac
+
 ]]>
 		</scriptdata>
 	</scripts>
