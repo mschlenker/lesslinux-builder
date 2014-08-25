@@ -94,7 +94,7 @@
 			mkdir -pv /lib/udev/rules.d
 			mkdir -pv /etc/udev/rules.d
 			make -C e${PKGNAME}-${PKGVERSION} install
-			ln -sf libudev.so.1 /lib/libudev.so.0
+			ln -sf libudev.so.1.4.1 /lib/libudev.so.0
 			make -f udev-lfs-20140408/Makefile.lfs install
 			]]>
 		</install>
