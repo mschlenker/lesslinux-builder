@@ -23,10 +23,12 @@ case $1 in
 	    printf "$bold===> Preparing Chrome $normal\n"
 	    if [ -f /lesslinux/blob/google-chrome.sqs ] ; then
 		mount -o loop /lesslinux/blob/google-chrome.sqs /opt/google/chrome
+		umount /usr/share/applications/google-chrome.desktop
 	    elif [ -f /lesslinux/blob/google-chrome-stable_current_i386.deb ] ; then
 		mount -o size=200M,mode=0755 -t tmpfs tmpfs /opt/google/chrome
 		ar -p /lesslinux/blob/google-chrome-stable_current_i386.deb data.tar.lzma \
 			| unlzma -c | tar -C / -x ./opt/google/chrome
+		umount /usr/share/applications/google-chrome.desktop
 	    else
 		mount --bind /dev/null /usr/share/applications/google-chrome.desktop
 	    fi
