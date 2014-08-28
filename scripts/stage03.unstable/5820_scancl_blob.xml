@@ -1,0 +1,223 @@
+<llpackages>
+	<package 
+		name="scancl-blob"
+		class="user">
+	</package>
+	<scripts>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0300-scancl-blob.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
+. /etc/rc.lang/en/messages.sh
+[ -f "/etc/rc.lang/$lang/messages.sh" ] && . /etc/rc.lang/$lang/messages.sh
+. /etc/rc.subr/progressbar
+
+# Exit if the scancl folder does not exist on the ISO filesystem
+[ -d /lesslinux/cdrom/scancl ] || exit 0
+
+mkdir -p /lesslinux/data/scancl/Protokolle
+tar -C /lesslinux/cdrom/scancl -cf - antivir avupdate | tar -C /lesslinux/data/scancl -xf - 
+cp /etc/avira/avupdate.bat /lesslinux/data/scancl
+
+# Create a swap file
+freeblocks=` df -k /lesslinux/data | tail -n1 | awk '{print $4}' ` 
+# Swap files smaller than 256MB or larger than 1024MB do not make sense
+swapsize=0
+if [ "$freeblocks" -lt 393216 ] ; then
+	swapsize=0
+elif [ "$freeblocks" -gt 1572864 ] ; then
+	swapsize=1024
+else
+	swapsize=` expr $freeblocks / 1536 ` 
+fi
+if [ "$swapsize" -gt 0 ] ; then
+	echo '---> Creating swap' > /dev/tty8
+	echo -n '0%' > /dev/tty8
+	lastct=` expr $swapsize - 1 ` 
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "Creating swap file - 0%" "" tty1
+	for i in ` seq 0 $lastct ` ; do
+		percentage=` expr ${i}00 / ${swapsize} `
+		printf '\033[10D' > /dev/tty8 
+		printf "${percentage}" > /dev/tty8
+		echo -n '%' > /dev/tty8
+		dd if=/dev/zero bs=1048576 count=1 seek=$i of=/lesslinux/data/scancl/swap.sys 
+		mod=` expr $i % 16 ` 
+		[ "$mod" -lt 1 ] && sync
+		[ "$mod" -lt 1 ] && [ "$ultraquiet" -gt 1 ] && genericpgbar $percentage 32 "$convert_head" "Creating swap file - ${percentage}%" "" tty1
+	done
+	printf '\033[10D' > /dev/tty8 
+	echo '100%' > /dev/tty8
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 100 32 "$convert_head" "Creating swap file - 100%" "" tty1
+fi
+
+#		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.lax.d/scancl-blob" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /AntiVir/scancl
+surfer  ALL = NOPASSWD: /AntiVir/avupdate
+surfer  ALL = NOPASSWD: /AntiVirUpdate/avupdate
+surfer  ALL = NOPASSWD: /usr/bin/chvt
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0611-scancl-blob.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides scancl-blob
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+# Change this to force or skip updates for a certain time
+keydate='197001010300'
+
+case $1 in 
+    start)
+	if mountpoint -q /AntiVir ; then
+	    printf "$bold===> Skipping Avira, already mounted $normal\n"
+	else
+	    printf "$bold===> Preparing Avira $normal\n"
+	    mkdir -m 0755 -p /AntiVir
+	    mkdir -m 0755 -p /AntiVirUpdate
+	    mkdir -m 0755 -p /var/log/AntiVir
+	    mkdir -m 0755 -p /var/log/scancl-blob
+	    ln -sf /dev/null /var/log/scancl-blob/scancl.log
+	    mkdir -m 0755 -p /media
+	    mkdir -m 0755 -p /lesslinux/scancl-blob 
+	    mkdir -m 0700 -p /tmp/.empty # dummy directory for scan of boot sectors
+	    mount -o mode=755 -t tmpfs tmpfs /AntiVirUpdate
+	    mount -o mode=755 -t tmpfs tmpfs /AntiVir
+	    
+	    forcecd=false
+	    if cat /proc/cmdline | grep ' scancl=' | grep -q '|forcecd|' ; then
+		forcecd=true
+	    fi
+	    
+	    # First try:
+	    # Find Avira directories on first partition of the boot drive - this should be VFAT
+	    
+	    if [ "$forcecd" = false ] && cat /proc/mounts | grep '/lesslinux/cdrom' | awk '{print $1}' | grep -q '[1-9]$' ; then
+		sysdev=` cat /proc/mounts | grep '/lesslinux/cdrom' | awk '{print $1}' | grep -q '[1-9]$' `
+		rawdev=` echo -n $sysdev | sed 's/[1-9]$//g' `
+		fstype=` blkid.static -o udev ${rawdev}1 | grep FS_TYPE | grep fat `
+		if [ -n "$fstype" ] ; then
+			mount -t vfat -o rw,iocharset=utf8 ${rawdev}1 /lesslinux/scancl-blob
+		fi
+		[ -d /lesslinux/scancl-blob/scancl ] || umount /lesslinux/scancl-blob > /dev/null 2>&1 
+	    fi
+	    
+	    # Second try:
+	    # Find Avira directories on any first partition or any superfloppy that is FAT or NTFS
+	    # We might later further narrow this down to only USB or removable drives
+	    if mountpoint -q /lesslinux/scancl-blob ; then
+		echo "Antibot directory already mounted, skipping..."
+	    elif [ "$forcecd" = false ] ; then
+		devices=` cat /proc/partitions | awk '{print $4}' | grep -v '^name$' | grep '[a-z]$' `
+		for dev in $devices ; do
+			device=/dev/${dev}1
+			fstype=` blkid.static -o udev ${device} | grep FS_TYPE | awk -F '=' '{print $2}' `
+			if [ -z "$fstype" ] ; then
+				device=/dev/${dev}
+				fstype=` blkid.static -o udev ${device} | grep FS_TYPE | awk -F '=' '{print $2}' `
+			fi
+			case $fstype in 
+				[Ee][Xx][Ff][Aa][Tt]*)
+					echo "Ingnoring EXFAT for now"
+				;;
+				*[Ff][Aa][Tt]*)
+					mountpoint -q /lesslinux/scancl-blob || mount -t vfat -o rw,iocharset=utf8 ${device} /lesslinux/scancl-blob
+				;;
+				[Nn][Tt][Ff][Ss]*)
+					mountpoint -q /lesslinux/scancl-blob || mount -t ntfs-3g -o rw ${device} /lesslinux/scancl-blob
+				;;
+			esac
+			[ -d /lesslinux/scancl-blob/scancl ] || umount /lesslinux/scancl-blob > /dev/null 2>&1 
+		done
+	    fi
+	    
+	    upddir=''
+	    avdir=''
+	    pdfdir=''
+	    disclaimer=''
+	    if [ -d /lesslinux/scancl-blob/scancl/antivir -a -d /lesslinux/scancl-blob/scancl/avupdate ] ; then
+		updir='/lesslinux/scancl-blob/scancl/avupdate'
+		avdir='/lesslinux/scancl-blob/scancl/antivir'
+		method='bind'	
+	    else
+		for d in cdrom isoloop toram ; do
+			if [ -d /lesslinux/$d/scancl/antivir -a -d /lesslinux/$d/scancl/avupdate ] ; then
+				updir=/lesslinux/$d/scancl/avupdate
+				avdir=/lesslinux/$d/scancl/antivir
+				method='copy'
+				[ "$d" = toram ] && method='bind'
+			fi
+		done
+	    fi
+	    if [ -z "$avdir" ] ; then
+		printf "$bold***> ERROR: No folders avupdate/antivir found, you might $normal\n"
+		printf "$bold     force copying by specifying toramdirs=|dir1|dir2|...| $normal\n"
+		printf "$bold     to the boot command line. $normal\n"
+		exit 1
+	    fi
+		
+	    if [ "$method" = "bind" ] ; then
+		umount /AntiVir
+	        mount -o bind "$avdir" /AntiVir
+		chmod -R 0755 /AntiVir
+	    elif [ "$method" = "copy" ] ; then
+		tar -C "$avdir" -cvf - . | tar -C /AntiVir -xf -
+		chmod -R 0755 /AntiVir
+		[ "$avdir" = /lesslinux/toram/scancl/antivir ] && rm -rf "$avdir"
+	    fi
+	    
+	    for i in avupdate avupdate.bin avupdate_msg.avr ; do
+		install -m 0755 "$updir/unix/$i" /AntiVirUpdate
+	    done
+	    
+	    if [ -f /lesslinux/scancl-blob/scancl/swap.sys ] ; then
+		mkswap /lesslinux/scancl-blob/scancl/swap.sys > /dev/null 2>&1
+		swapon /lesslinux/scancl-blob/scancl/swap.sys
+	    fi
+	    
+	    install -m 0644 /etc/avira/avupdate.conf.lesslinux /AntiVirUpdate/avupdate.conf
+	    install -m 0644 /etc/avira/scancl.conf.lesslinux /AntiVir/scancl.conf
+	    
+	    if [ -f /AntiVir/hbedv.key ] ; then
+		echo "skipping key file"
+	    else
+		install -m 0644 /etc/avira/hbedv.key /AntiVir
+		touch -t "$keydate" /AntiVir/hbedv.key
+	    fi
+	    install -m 0755 /usr/share/lesslinux/scancl-blob/avupdate /AntiVirUpdate
+	    mkdir /tmp/quarantine
+	fi
+    ;;
+    stop)
+	printf "$bold===> Unmounting Avira $normal\n"
+	for f in ` cat /proc/swaps | awk '{print $1}' | grep scancl/swap.sys ` ; do 
+		swapoff "$f" 
+	done
+	if cat /proc/mounts | grep -q /AntiVir ; then
+		umount /AntiVir
+		umount /AntiVirUpdate
+	fi
+	mountpoint -q /lesslinux/scancl-blob && umount /lesslinux/scancl-blob
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>
