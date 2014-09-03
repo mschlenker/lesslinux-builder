@@ -1,0 +1,84 @@
+<llpackages>
+	<package 
+		name="libgcrypt15"
+		version="1.6.2"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>   
+				<pkg sha1="cc31aca87e4a3769cb86884a3f5982b2cc8eb7ec">libgcrypt-1.6.2.tar.bz2</pkg>
+				<mirror>ftp://ftp.gnupg.org/gcrypt/libgcrypt/</mirror>
+			</file>
+			<manualcheck date="20140902" interval="180" page="ftp://ftp.gnupg.org/gcrypt/libgcrypt/" />
+			<check>
+				<page html="ftp://ftp.gnupg.org/gcrypt/libgcrypt/">
+					<atext linktext="libgcrypt-1.6.12." />
+					<atext linktext="libgcrypt-1.6.3." />
+					<atext linktext="libgcrypt-1.6.4." />
+					<atext linktext="libgcrypt-1.6.5." />
+					<atext linktext="libgcrypt-1.6.6." />
+					<atext linktext="libgcrypt-1.6.7." />
+					<atext linktext="libgcrypt-1.6.8." />
+					<atext linktext="libgcrypt-1.6.9." />
+					<atext linktext="libgcrypt-1.6.10." />
+					<atext linktext="libgcrypt-1.6.11." />
+					<atext linktext="libgcrypt-1.7." />
+					<atext linktext="libgcrypt-1.8." />
+					<atext linktext="libgcrypt-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/libgcrypt-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd libgcrypt-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd libgcrypt-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf libgcrypt-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

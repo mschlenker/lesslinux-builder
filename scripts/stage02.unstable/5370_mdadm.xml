@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="mdadm"
+		version="3.3.2"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                           
+				<pkg sha1="c649601d84553501c2f3b452cf93d1fbc53f976a">mdadm-3.3.2.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/utils/raid/mdadm/</mirror>
+			</file>
+			<manualcheck date="20140903" interval="60" page="http://www.kernel.org/pub/linux/utils/raid/mdadm/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/utils/raid/mdadm/">
+					<atext linktext="mdadm-3.3.5." />
+					<atext linktext="mdadm-3.3.3." />
+					<atext linktext="mdadm-3.3.4." />
+					<atext linktext="mdadm-3.4." />
+					<atext linktext="mdadm-3.5." />
+					<atext linktext="mdadm-3.6." />
+					<atext linktext="mdadm-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>groff</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/-Werror //g' Makefile
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make RUN_DIR=/var/run
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install RUN_DIR=/var/run
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
