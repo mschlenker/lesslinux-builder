@@ -1,0 +1,96 @@
+<llpackages>
+	<package 
+		name="kmod-static"
+		version="18"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>              
+				<pkg sha1="6cadc3b088fa5874f712d3bbe4df75ece59c4b77">kmod-18.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/utils/kernel/kmod/</mirror>
+			</file>
+			<manualcheck date="20140701" interval="60" page="http://www.kernel.org/pub/linux/utils/kernel/kmod/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/utils/kernel/kmod/">
+					<atext linktext="kmod-33." />
+					<atext linktext="kmod-34." />
+					<atext linktext="kmod-19." />
+					<atext linktext="kmod-20." />
+					<atext linktext="kmod-21." />
+					<atext linktext="kmod-22." />
+					<atext linktext="kmod-23." />
+					<atext linktext="kmod-24." />
+					<atext linktext="kmod-25." />
+					<atext linktext="kmod-26." />
+					<atext linktext="kmod-27." />
+					<atext linktext="kmod-28." />
+					<atext linktext="kmod-29." />
+					<atext linktext="kmod-30." />
+					<atext linktext="kmod-31." />
+					<atext linktext="kmod-32." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>acl</dep>
+                        <dep>attr</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gperf</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libusb</dep><dep>libusb-compat</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>usbutils</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+			<dep>cross-gcc-musl2</dep>
+			<dep>cross-zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/kmod-${PKGVERSION}.tar.xz | tar -xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd kmod-${PKGVERSION}
+			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+			./configure --prefix=/static/kmod --bindir=/static/kmod/bin --libdir=/static/lib --sysconfdir=/etc --with-zlib --host=i386-linux-musl 
+			make  LDFLAGS=-all-static
+			i386-linux-musl-strip tools/kmod
+  			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd kmod-${PKGVERSION}
+			mkdir -p ${TGTDIR}/static/kmod/bin
+			mkdir -p ${TGTDIR}/static/kmod/sbin
+			install -m 0755 tools/kmod  ${TGTDIR}/static/kmod/bin
+			for target in depmod insmod modinfo modprobe rmmod; do
+				ln -sv kmod ${TGTDIR}/static/kmod/bin/$target
+				ln -sv ../bin/kmod ${TGTDIR}/static/kmod/sbin/$target
+			done
+			ln -sv kmod ${TGTDIR}/bin/lsmod
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf kmod-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
