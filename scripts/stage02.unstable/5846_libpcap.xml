@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="libpcap"
+		version="1.6.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="7efc7d56f4959de8bb33a92de2e15d92105eac32">libpcap-1.6.2.tar.gz</pkg>
+				<mirror>http://www.tcpdump.org/release/</mirror>
+			</file>
+			<manualcheck date="20140902" interval="120" page="http://www.tcpdump.org/release/" />
+			<check>
+				<page html="http://www.tcpdump.org/release/">
+					<atext linktext="libpcap-1.6.7." />
+					<atext linktext="libpcap-1.6.3." />
+					<atext linktext="libpcap-1.6.4." />
+					<atext linktext="libpcap-1.6.5." />
+					<atext linktext="libpcap-1.6.6." />
+					<atext linktext="libpcap-1.7." />
+					<atext linktext="libpcap-1.8." />
+					<atext linktext="libpcap-1.9." />
+					<atext linktext="libpcap-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libnl</dep><dep>libnl3</dep>
+                        <dep>libusb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
