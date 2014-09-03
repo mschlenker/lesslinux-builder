@@ -4592,15 +4592,12 @@ case $1 in
 	if [ -n "$blobdev" ] ; then
 		mountpoint -q /lesslinux/blobpart && exit 0
 		mkdir -p /lesslinux/blobpart
-		fstype=` blkid -o udev | grep 'FS_TYPE=ext' | awk -F '=' '{print $2}' `
+		fstype=` blkid -o udev "$blobdev" | grep 'FS_TYPE=ext' | awk -F '=' '{print $2}' `
 		if [ "$fstype" = ext2 ] ; then
 			tune2fs -O extents,uninit_bg,dir_index ${blobdev}
 			fsck -fCVD ${blobdev}
 		fi
 		mount -t ext4 -o relatime $blobdev /lesslinux/blobpart
-		find /lesslinux/blobpart -maxdepth 1 | grep -v '/lesslinux/blobpart$' | while read fname ; do
-			ln -sf "$fname" /lesslinux/blob/` basename "$fname" ` 
-		done
 	fi
     ;;
     stop)
@@ -5084,44 +5081,22 @@ case $1 in
 			done
 		fi
 	done
-	mountpoint -q /lesslinux/cryptpart && exit 0
-	mountpoint -q /lesslinux/blobpart  && exit 0
-	
-	# printf "$bold===> Searching BLOBs "
-	# sysdev=` cat /proc/mounts | grep '/lesslinux/cdrom ' | awk '{print $1}' | sed 's/[0-9]*$//g' | sed -s 's%/dev/%%g' `  
-	# [ "$sysdev"  = sr ] && exit 0
-	# mkdir -p /lesslinux/blobpart
-	# cat /proc/partitions | grep "${sysdev}[0-9]" | awk '{print $4}' | while read devname ; do
-	#	fstype=` blkid -o udev /dev/${devname} | grep  ID_FS_TYPE | awk -F '=' '{print $2}' `
-	#	case $fstype in
-	#		ext*)
-	#			mount -t ext4 -o relatime,rw /dev/${devname} /lesslinux/blobpart
-	#		;;
-	#		btrfs)
-	#			mount -t btrfs -o relatime,rw /dev/${devname} /lesslinux/blobpart
-	#		;;
-	#		*fat*)
-	#			mount -t vfat -o relatime,rw,uid=0,gid=0 /dev/${devname} /lesslinux/blobpart
-	#		;;
-	#	esac
-	#	if mountpoint -q /lesslinux/blobpart ; then
-	#		if [ -d /lesslinux/blobpart/${contdir}/blob ] ; then
-	#			mkdir -p /lesslinux/blob
-	#			find "/lesslinux/blobpart/${contdir}/blob/" -maxdepth 1 | while read fname ; do
-	#				if [ -f "$fname" -o -d "$fname" ] && [ "$fname" '!=' "/lesslinux/blobpart/${contdir}/blob/" ] ; then
-	#					ln -sf "$fname" /lesslinux/blob/` basename "$fname" ` 
-	#				fi
-	#			done
-	#			exit 0
-	#		else
-	#			umount /lesslinux/blobpart
-	#		fi
-	#	fi
-	# done
+	if mountpoint -q /lesslinux/cryptpart ; then
+		if [ -d /lesslinux/cryptpart/blob ] ; then
+			find "/lesslinux/cryptpart/blob" -maxdepth 1 | grep -v '/lesslinux/cryptpart/blob$' | while read fname ; do
+				[ -f "$fname" -o -d "$fname" ] && \
+					ln -sf "$fname" /lesslinux/blob/` basename "$fname" ` 
+			done
+		fi
+	fi
+	if  mountpoint -q /lesslinux/blobpart ; then
+		find "/lesslinux/blobpart" -maxdepth 1 | grep -v '/lesslinux/blobpart$' | while read fname ; do
+			[ -f "$fname" -o -d "$fname" ] && \
+					ln -sf "$fname" /lesslinux/blob/` basename "$fname" ` 
+			done
+		fi
+	fi
     ;;
-    # stop)
-    #	mountpoint -q /lesslinux/blobpart  && umount /lesslinux/blobpart
-    # ;;
 esac
 ]]>
 		</scriptdata>
