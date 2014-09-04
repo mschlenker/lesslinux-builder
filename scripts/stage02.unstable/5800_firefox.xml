@@ -199,7 +199,8 @@ done
 		<test />
 		<install>
 			<![CDATA[
-TARFILE=mozilla-release/ff-build/dist/firefox-${PKGVERSION}.en-US.linux-i686.tar.bz2
+shortvers=` echo ${PKGVERSION} | sed 's/esr//g' ` 
+TARFILE=mozilla-release/ff-build/dist/firefox-${shortvers}.en-US.linux-i686.tar.bz2
 [ -f "$TARFILE" ] || exit 1
 			
 mkdir -p ${TGTDIR}/opt
@@ -211,7 +212,7 @@ mv ${TGTDIR}/opt/firefox ${TGTDIR}/opt/firefox-${PKGVERSION}
 # Install language packs
 mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}-extensions
 for packlang in de es-ES pl ru fr it nl pt-PT ; do
-	install -m 0644 mozilla-release/ff-build/dist/linux-i686/xpi/firefox-${PKGVERSION}.${packlang}.langpack.xpi \
+	install -m 0644 mozilla-release/ff-build/dist/linux-i686/xpi/firefox-${shortvers}.${packlang}.langpack.xpi \
 	${TGTDIR}/opt/firefox-${PKGVERSION}-extensions/ 
 done
 
