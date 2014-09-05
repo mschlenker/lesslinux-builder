@@ -4,8 +4,8 @@
 require "rexml/document"
 require 'glib2'
 require 'gtk2'
-require 'MfsDiskDrive.rb'
-require 'MfsSinglePartition.rb'
+# require 'MfsDiskDrive.rb'
+# require 'MfsSinglePartition.rb'
 require 'MmmmDriveList.rb'
 
 #============================================================================
@@ -112,11 +112,9 @@ LOCSTRINGS = {
 
 
 
-
-
-
-d = MmmmDriveList.new
-
+# xmldrives = ` sudo xmldrivelist.sh ` 
+xmldrives = ` ruby -I. xmldrivelist.rb ` 
+d = MmmmDriveList.new(REXML::Document.new(xmldrives), LOCSTRINGS[LANGUAGE])
 window = Gtk::Window.new(Gtk::Window::TOPLEVEL)
 window.set_title("Disks")
 window.border_width = 10

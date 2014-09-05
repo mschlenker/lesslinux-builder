@@ -6,7 +6,7 @@ require 'MfsSinglePartition'
 require "rexml/document"
 include REXML
 
-class MmmmDriveList
+class XmlDriveList
 	
 	def initialize
 		@drives = nil
@@ -61,7 +61,3 @@ class MmmmDriveList
 	end
 	
 end
-
-# x = MmmmDriveList.new
-# x.dump_xml
-

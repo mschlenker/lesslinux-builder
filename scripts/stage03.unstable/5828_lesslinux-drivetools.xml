@@ -1,0 +1,62 @@
+<llpackages>
+	<package name="lesslinux-drivetools" class="user" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/xinitrc.d/0015-initial-check.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides initialcheck
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+skipflash=0
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors 
+
+case $1 in 
+    start)
+	xfsettingsd --replace
+	matchbox-window-manager -force_dialogs Warnung &
+	sudo /usr/bin/initial_system_check.sh 
+	killall -9 matchbox-window-manager 
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.lax.d/drivetools" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/llpm_drives
+surfer  ALL = NOPASSWD: /sbin/blkid
+surfer  ALL = NOPASSWD: /usr/bin/initial_system_check.sh
+surfer  ALL = NOPASSWD: /usr/bin/deletedisk.sh
+surfer  ALL = NOPASSWD: /usr/bin/clonedisk.sh
+surfer  ALL = NOPASSWD: /usr/bin/chntpwgui.sh
+surfer  ALL = NOPASSWD: /usr/bin/resetshell.sh
+surfer  ALL = NOPASSWD: /usr/bin/usbinstall.sh
+surfer  ALL = NOPASSWD: /usr/bin/mountall.sh
+surfer  ALL = NOPASSWD: /usr/bin/mountnet.sh
+surfer  ALL = NOPASSWD: /usr/bin/runsmbd.sh
+surfer  ALL = NOPASSWD: /usr/bin/xmldrivelist.sh
+surfer  ALL = NOPASSWD: /usr/bin/llmounthelper.sh
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/drivetools" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/llpm_drives
+surfer  ALL = NOPASSWD: /sbin/blkid
+surfer  ALL = NOPASSWD: /usr/bin/initial_system_check.sh
+surfer  ALL = NOPASSWD: /usr/bin/xmldrivelist.sh
+surfer  ALL = NOPASSWD: /usr/bin/llmounthelper.sh umount
+surfer  ALL = /usr/bin/llmounthelper.sh
+surfer  ALL = /usr/bin/usbinstall.sh
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>

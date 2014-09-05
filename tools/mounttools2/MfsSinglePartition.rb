@@ -201,6 +201,7 @@ class MfsSinglePartition
 			system("mkdir -p /media/" + @uuid)
 		else
 			mountpoint = mntpnt
+			system("mkdir -p \"#{mntpnt}\"")
 		end
 		type = ""
 		opts = [ mode ]
