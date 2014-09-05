@@ -31,13 +31,13 @@ class MfsDiskDrive
 	def read_partitions
 		fullblocks = 0
 		skiplist = Array.new
-		if system("which parted") 
+		if system("which parted > /dev/null") 
 			IO.popen("parted -s '/dev/#{@device}' print") { |line|
 				while line.gets
 					ltoks = $_.strip.split
 					if ltoks[0].to_i > 0 && ltoks[4] =~ /extended/i 
 						skiplist.push(@device + ltoks[0])
-						puts "Adding #{ltoks[0]} to skiplist"
+						$stderr.puts "Adding #{ltoks[0]} to skiplist"
 					end
 				end
 			}
@@ -198,14 +198,14 @@ class MfsDiskDrive
 	def trim?
 		return @trim unless @trim.nil?
 		trim = false
-		return nil unless system("which hdparm")
+		return nil unless system("which hdparm > /dev/null")
 		IO.popen("hdparm -I /dev/#{device}") { | l| 
 			while l.gets
 				begin
 					line = $_.strip
 					trim = true if line =~ /data set management trim supported/i
 				rescue
-					puts "Failed to parse line..."
+					$stderr.puts "Failed to parse line..."
 				end
 			end
 		}

@@ -27,7 +27,7 @@ class MfsSinglePartition
 		@trim = trim
 		blkid
 	end
-	attr_reader :device, :blocks, :fs, :uuid, :label, :size, :extended, :parent, :trim
+	attr_reader :device, :blocks, :fs, :uuid, :label, :size, :extended, :parent, :trim, :free
 	
 	def blkid
 		@size = File.new("/sys/block/" + @parent + "/size").read.to_i * 512
