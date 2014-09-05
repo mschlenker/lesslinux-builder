@@ -1873,7 +1873,7 @@ case $1 in
 	true
     else
 	if [ "$tmpsize" -gt 0 ] ; then
-		mount -t tmpfs tmpfs -o noexec,nosuid,nodev,size=${tmpsize}m /tmp
+		mount -t tmpfs -o noexec,nosuid,nodev,size=${tmpsize}m tmpfs /tmp
 	else
 		# calculate the size of /tmp
 		# if total memory is 1536MB or larger -> take total memory minus 768MB
@@ -1887,7 +1887,7 @@ case $1 in
 		else
 			tmpmeg=` expr $memmeg / 2 `
 		fi
-		mount -t tmpfs tmpfs -o noexec,nosuid,nodev,size=${tmpmeg}m /tmp
+		mount -t tmpfs -o noexec,nosuid,nodev,size=${tmpmeg}m tmpfs /tmp
 	fi
     fi
     mountpoint -q /home || mount -t tmpfs tmpfs -o mode=0755,nosuid,nodev,size=${homesize}m /home
@@ -2247,7 +2247,7 @@ case $1 in
 	    
 	    defmods=` echo $defermods | sed 's%|% %g' `
 	    for dir in $defmods ; do
-		mount -t tmpfs tmpfs -o mode=0755 /lib/modules/${kversion}/kernel/${dir}
+		mount -t tmpfs -o mode=0755 tmpfs /lib/modules/${kversion}/kernel/${dir}
 	    done
 	    
 	    printf "$bold===> Loading PCI drivers $normal\n"
@@ -3164,7 +3164,7 @@ case $1 in
 				/static/bin/mount -t nfs -o ro,nolock,noatime,proto=tcp "$nfs" /lesslinux/cdrom
 			else
 				unc=` echo -n "$cifs" | sed 's%/%\\\\%g' ` 
-				/static/bin/mount -t cifs "$cifs" -o ro,sec=ntlm,user=guest,unc="$unc" /lesslinux/cdrom
+				/static/bin/mount -t cifs  -o ro,sec=ntlm,user=guest,unc="$unc" "$cifs" /lesslinux/cdrom
 			fi
 			find /lesslinux/cdrom -type f -name '*.iso' -maxdepth 3 | while read isofile ; do
 				printf "$bold...> Checking ISOLOOP $isofile $normal\n"
@@ -3263,7 +3263,7 @@ case $1 in
 		elif [ -n "$wgetiso" ] ; then
 			[ "$wgetsize" -lt 1 ] && wgetsize=1048576
 			mkdir -p /lesslinux/ramiso
-			mount -t tmpfs tmpfs -o mode=0755,size=${wgetsize}k /lesslinux/ramiso 
+			mount -t tmpfs -o mode=0755,size=${wgetsize}k  tmpfs  /lesslinux/ramiso 
 			thisversion=` cat /etc/lesslinux/updater/version.txt `
 			printf "$bold===> Downloading LESSLINUX System $normal\n"
 			mkdir -p /lesslinux/cdrom
@@ -4270,7 +4270,7 @@ case $1 in
 		copyblocks=` expr $isoblocks / 2 ` 
 		mkdir -p /lesslinux/ramiso
 		kblocks=`expr $isoblocks + 8192 ` 
-		mount -t tmpfs tmpfs -o mode=0755,size=${kblocks}k /lesslinux/ramiso 
+		mount -t tmpfs -o mode=0755,size=${kblocks}k tmpfs /lesslinux/ramiso 
 		if [ "$ultraquiet" -gt 1 ] ; then
 			genericpgbar 0 32 "$copying_toram" "0%" "" tty1
 			largeblocks=` expr $copyblocks / 2048 ` 

@@ -32,11 +32,19 @@ class MmmmDriveList
 		@doc.root.elements.each("drive") {|d|
 			@drivetabs[d] = Gtk::HBox.new(false, 1)
 			$stderr.puts d.attributes["dev"] + " " + d.attributes["vendor"] + " " + d.attributes["size"].to_s
-			pixbuf = icon_theme.load_icon("gnome-dev-harddisk", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
+			if (d.attributes["dev"] =~  /$sr/ )
+				pixbuf = icon_theme.load_icon("gnome-dev-dvd", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
+			elsif (d.attributes["usb"].to_s == true )
+				pixbuf = icon_theme.load_icon("gnome-dev-media-sdmmc", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
+			else
+				pixbuf = icon_theme.load_icon("gnome-dev-harddisk", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
+			end
 			img = Gtk::Image.new(pixbuf)
 			@drivetabs[d].pack_start_defaults img
 			@outer_vbox.pack_start_defaults @drivetabs[d]
 			inner_vbox = Gtk::VBox.new(false, 1)
+			desctext = d.attributes['vendor'] + " " d.attributes['model']
+			# desctect = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless 
 			ddesc = Gtk::Label.new("#{d.attributes['vendor']} #{d.attributes['model']} (#{d.attributes['hsize'].to_s})")
 			ddesc.modify_font fat_font
 			inner_vbox.pack_start_defaults ddesc 
