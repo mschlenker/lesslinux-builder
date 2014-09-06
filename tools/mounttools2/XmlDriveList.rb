@@ -56,6 +56,12 @@ class XmlDriveList
 				m.add_attribute("label", p.label) unless p.label.nil?
 				m.add_attribute("fs", p.fs) unless p.fs.nil?
 			}
+			if (d.device =~  /^sr[0-9]/ && d.partitions.size < 1)
+				m = n.add_element("partition")
+				m.add_attribute("dev", d.device)
+				m.add_attribute("fs", "iso9660")
+				m.add_attribute("label", "no media")
+			end
 		}
 		doc.write( $stdout, 2 )
 	end

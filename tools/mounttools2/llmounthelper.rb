@@ -23,6 +23,7 @@ Dir.entries("/sys/block").each { |l|
 	drives.push(MfsDiskDrive.new(l, true)) if l =~ /sr[0-9]$/ 
 }
 
+retval = 0
 drives.each { |d|
 	d.partitions.each { |p|
 		if p.device == ARGV[1] && subcommand == "mount"
@@ -31,10 +32,22 @@ drives.each { |d|
 			else
 				p.mount("ro", "/media/disk/" + p.device, 1000, 1000)
 			end
+			retval = 1 if p.mount_point.nil?			
 		elsif p.device == ARGV[1] && subcommand == "umount"
 			unless p.umount
 				p.force_umount
 			end
+			retval = 1 unless p.mount_point.nil? 
 		end
 	}
+	if (d.device == ARGV[1] && ARGV[1] =~ /^sr[0-9]$/ && d.partitions.size < 1)
+		if subcommand == "mount"
+			system("mkdir -p /media/disk/#{ARGV[1]}")
+			retval = 1 unless system("mount /dev/#{ARGV[1]} /media/disk/#{ARGV[1]}")
+		else
+			retval = 1 unless system("umount /dev/#{ARGV[1]}") 
+		end
+	end
 }
+
+exit retval

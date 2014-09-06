@@ -14,6 +14,7 @@ class MmmmDriveList
 		@doc = doc
 		@langstrings = langstrings
 		# reread_drives
+		@mountpoints = Hash.new
 		populate_vbox
 	end
 	attr_reader :outer_vbox
@@ -43,9 +44,9 @@ class MmmmDriveList
 			@drivetabs[d].pack_start_defaults img
 			@outer_vbox.pack_start_defaults @drivetabs[d]
 			inner_vbox = Gtk::VBox.new(false, 1)
-			desctext = d.attributes['vendor'] + " " d.attributes['model']
-			# desctect = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless 
-			ddesc = Gtk::Label.new("#{d.attributes['vendor']} #{d.attributes['model']} (#{d.attributes['hsize'].to_s})")
+			desctext = d.attributes['vendor'] + " " + d.attributes['model']
+			desctect = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless d.attributes.size < 1
+			ddesc = Gtk::Label.new(desctext)
 			ddesc.modify_font fat_font
 			inner_vbox.pack_start_defaults ddesc 
 			d.elements.each("partition") { |p|
@@ -100,12 +101,17 @@ class MmmmDriveList
 				mount_button.label = extract_lang_string("pan_layout").gsub("%ACTION%", extract_lang_string("pan_umount")).gsub("%DRIVE%", dev_details)
 				# dev_desc + " (" + p[0].gsub("/dev/", "") + ", " + p[1] + ") freigeben"
 			end
+			@mountpoints[p.attributes["dev"]] = p.attributes["mountpoint"]
 		end
 		show_button.signal_connect( "clicked" ) { |w|
-			system("Thunar " + p.attributes["mountpoint"] + " &")
+			unless p.attributes["mountpoint"].nil?
+				system("Thunar \"" + p.attributes["mountpoint"] + "\" &")
+			else
+				system("Thunar /media/disk/#{p.attributes['dev']} &" )
+			end
 		}
 		mount_button.signal_connect( "clicked" ) {|w|
-			if p.attributes["mountpoint"].nil?
+			unless @mountpoints.has_key?(p.attributes["dev"]) 
 				laxsudo = system("check_lax_sudo")
 				success = false
 				password = ""
@@ -120,15 +126,17 @@ class MmmmDriveList
 					writeable.sensitive = false
 					show_button.sensitive = true
 					mount_button.label = extract_lang_string("pan_layout").gsub("%ACTION%", extract_lang_string("pan_umount")).gsub("%DRIVE%", dev_details)
-					system("Thunar " + p.mount_point[0] + " &" )
+					system("Thunar /media/disk/#{p.attributes['dev']} &" )
+					@mountpoints[p.attributes["dev"]] = "/media/disk/" + p.attributes['dev'] 
 				else
 					error_dialog(extract_lang_string("pan_mount_error"))
 				end
 			else
 				if system("sudo /usr/bin/llmounthelper.sh umount #{p.attributes['dev']}")
-					writeable.sensitive = true unless p.fs == "iso9660" 
+					writeable.sensitive = true unless p.attributes["fs"] == "iso9660" 
 					show_button.sensitive = false
 					mount_button.label = extract_lang_string("pan_layout").gsub("%ACTION%", extract_lang_string("pan_mount")).gsub("%DRIVE%", dev_details)
+					@mountpoints.delete(p.attributes["dev"]) 
 				else
 					error_dialog(extract_lang_string("pan_umount_error"))
 				end

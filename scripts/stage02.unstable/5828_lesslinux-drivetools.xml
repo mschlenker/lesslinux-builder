@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="lesslinux-drivetools"
-		version="20140905-00"
+		version="20140906-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="78e6bfba79e15591228d22e2f265ecf3a1d9c1a2">lesslinux-drivetools-20140905-00.tar.bz2</pkg>
+				<pkg sha1="2f95aa4896312ba68b1086f4269c110e2e5e11f1">lesslinux-drivetools-20140906-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20140905" interval="120" page="http://distfiles.lesslinux.org/" />
@@ -48,7 +48,7 @@
 			install -m 0644 winfiles.txt ${TGTDIR}/usr/share/lesslinux/drivetools
 			for f in llpm_drives llpm_mount mmmm2.sh initial_system_check.sh deletedisk.sh \
 				clonedisk.sh chntpwgui.sh resetshell.sh usbinstall.sh mountall.sh \
-				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh ; do
+				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh mmmmng.sh ; do
 					install -m 0755 ${f}  ${TGTDIR}/usr/bin
 			done
 			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui \
