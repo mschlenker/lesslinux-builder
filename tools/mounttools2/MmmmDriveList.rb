@@ -45,7 +45,7 @@ class MmmmDriveList
 			@outer_vbox.pack_start_defaults @drivetabs[d]
 			inner_vbox = Gtk::VBox.new(false, 1)
 			desctext = d.attributes['vendor'] + " " + d.attributes['model']
-			desctect = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless d.attributes.size < 1
+			desctect = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless d.attributes["size"].to_i < 1
 			ddesc = Gtk::Label.new(desctext)
 			ddesc.modify_font fat_font
 			inner_vbox.pack_start_defaults ddesc 
