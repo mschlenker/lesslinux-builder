@@ -101,7 +101,7 @@ skipflash=0
 
 expiration=20130101
 ffversion=` grep -E '\sfirefox\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
-shortversion=31.1.0
+shortversion=` echo $ffversion | sed 's%esr%%g' ` 
 
 case $1 in 
     start)
