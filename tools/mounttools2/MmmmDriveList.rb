@@ -88,7 +88,7 @@ class MmmmDriveList
 		end
 		if p.attributes["mountpoint"].nil?
 			show_button.sensitive = false
-			if p.attributes["fs"].nil?
+			if p.attributes["fs"].nil? || p.attributes["fs"] == "crypto_LUKS" || p.attributes["fs"] == "swap" 
 				mount_button.sensitive = false
 				writeable.sensitive = false
 			end
