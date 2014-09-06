@@ -1,0 +1,84 @@
+<llpackages>
+	<dirs>
+		<dir mode="0755">/etc/lesslinux</dir>
+		<dir mode="0755">/etc/lesslinux/firefox</dir>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<!-- FIXME: Dubletten entfernen -->
+	<scripts>
+		<!-- <scriptdata location="/etc/lesslinux/firefox/firefox_common.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/firefox_common.cfg
+pref("startup.homepage_welcome_url", "file:///etc/lesslinux/branding/browser_startup.html");
+// END /etc/lesslinux/firefox/firefox_common.cfg
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/firefox/force_startpage.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/force_startpage.cfg
+pref("browser.startup.homepage", "file:///etc/lesslinux/branding/browser_too_old.html");
+lockPref("browser.startup.homepage", "file:///etc/lesslinux/branding/browser_too_old.html");
+// END /etc/lesslinux/firefox/force_startpage.cfg
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/firefox/prevent_xpi.cfg" mode="0644" group="0" owner="0">
+		<![CDATA[// START /etc/lesslinux/firefox/prevent_xpi.cfg
+pref("xpinstall.enabled", false);
+lockPref("xpinstall.enabled", false);
+// END /etc/lesslinux/firefox/prevent_xpi.cfg
+		]]>
+		</scriptdata> -->
+		<scriptdata location="/etc/sudoers.lax.d/torbrowser" mode="0640" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /opt/tor-browser_de/tor-browser_smack
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/torbrowser" mode="0640" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /opt/tor-browser_de/tor-browser_smack
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0610-torbrowser.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides torbrowser
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+skipflash=0
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	printf "$bold===> Preparing TOR browser $normal\n"
+	if mountpoint -q /opt/tor-browser_de ; then
+		echo 'Skipping, already mounted!'
+	else
+		mount -t tmpfs -o mode=0700,uid=1000,gid=1000 tmpfs /opt/tor-browser_de
+		tar -C /opt -xvf /opt/tor-browser_de.tar
+		install -m 0755 /opt/bin/tor-browser_smack /opt/tor-browser_de
+		chown -R surfer:surfer /opt/tor-browser_de
+		if [ -d /home/surfer/.torbrowser ] ; then
+			mount --bind /home/surfer/.torbrowser /opt/tor-browser_de/Data
+		else
+			mkdir -p /home/surfer/.torbrowser
+			rsync -avHP /opt/tor-browser_de/Data/ /home/surfer/.torbrowser/
+			mount --bind /home/surfer/.torbrowser /opt/tor-browser_de/Data
+		fi
+	fi
+    ;;
+    stop)
+	printf "$bold===> Unmounting TOR browser overlay $normal\n"
+	umount -f /opt/tor-browser_de
+	umount -f /opt/tor-browser_de/Data
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+	<package  name="tor-browser-de" />
+</llpackages>
