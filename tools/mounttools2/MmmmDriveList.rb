@@ -35,7 +35,7 @@ class MmmmDriveList
 			$stderr.puts d.attributes["dev"] + " " + d.attributes["vendor"] + " " + d.attributes["size"].to_s
 			if (d.attributes["dev"] =~  /$sr/ )
 				pixbuf = icon_theme.load_icon("gnome-dev-dvd", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
-			elsif (d.attributes["usb"].to_s == true )
+			elsif (d.attributes["usb"].to_s == true || d.attributes["device"] =~ /mmcblk/ )
 				pixbuf = icon_theme.load_icon("gnome-dev-media-sdmmc", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
 			else
 				pixbuf = icon_theme.load_icon("gnome-dev-harddisk", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
@@ -45,7 +45,7 @@ class MmmmDriveList
 			@outer_vbox.pack_start_defaults @drivetabs[d]
 			inner_vbox = Gtk::VBox.new(false, 1)
 			desctext = d.attributes['vendor'] + " " + d.attributes['model']
-			desctect = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless d.attributes["size"].to_i < 1
+			desctext = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless d.attributes["hsize"].nil?
 			ddesc = Gtk::Label.new(desctext)
 			ddesc.modify_font fat_font
 			inner_vbox.pack_start_defaults ddesc 
@@ -66,7 +66,7 @@ class MmmmDriveList
 		elsif p.attributes["dev"] =~ /^sd[a-z][0-9]$/ 
 			part_num = p.attributes["dev"].split(/sd[a-z]/)
 			dev_desc = extract_lang_string("pan_part") + " " + part_num[1].to_s
-		elsif p.attributes["dev"] =~ /^sr[0-9]$/ || p.device =~ /^scd[0-9]$/ || p.device =~ /^cdrom/ 
+		elsif p.attributes["dev"] =~ /^sr[0-9]$/
 			dev_desc = extract_lang_string("pan_optical")
 		else
 			dev_desc = extract_lang_string("pan_part")

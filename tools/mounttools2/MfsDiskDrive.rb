@@ -46,8 +46,9 @@ class MfsDiskDrive
 			while line.gets
 				ltoks = $_.strip.split
 				pmatch = Regexp.new("^" + @device + "\\d+$")
+				qmatch = Regexp.new("^" + @device + "p\\d+$")
 				rmatch = Regexp.new("^" + @device + "$")
-				if ltoks[3] =~ pmatch
+				if ltoks[3] =~ pmatch || ltoks[3] =~ qmatch
 					blocks = ltoks[2].to_i
 					@partitions.push(MfsSinglePartition.new(@device, ltoks[3], blocks, true,@trim)) unless skiplist.include?(ltoks[3]) 
 				elsif ltoks[3] =~ rmatch

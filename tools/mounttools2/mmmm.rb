@@ -112,14 +112,18 @@ LOCSTRINGS = {
 
 
 
-# xmldrives = ` sudo xmldrivelist.sh ` 
-xmldrives = ` ruby -I. xmldrivelist.rb ` 
+xmldrives = ` sudo xmldrivelist.sh ` 
+# xmldrives = ` ruby -I. xmldrivelist.rb ` 
 d = MmmmDriveList.new(REXML::Document.new(xmldrives), LOCSTRINGS[LANGUAGE])
 window = Gtk::Window.new(Gtk::Window::TOPLEVEL)
 window.set_title("Disks")
 window.border_width = 10
 window.set_size_request(600, 400)
-window.add d.outer_vbox
+scroll_pane = Gtk::ScrolledWindow.new
+scroll_pane.set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC)
+scroll_pane.add_with_viewport(d.outer_vbox)
+# window.add d.outer_vbox
+window.add scroll_pane
 window.signal_connect('delete_event') { Gtk.main_quit  }
 window.show_all
 Gtk.main

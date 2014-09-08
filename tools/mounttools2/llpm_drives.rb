@@ -33,11 +33,6 @@ require 'MfsTranslator.rb'
 #  </item>
 #</menu>
 
-lang = ENV['LANGUAGE'][0..1]
-lang = ENV['LANG'][0..1] if lang.nil?
-lang = "en" if lang.nil?
-tl = MfsTranslator.new(lang, "/usr/share/lesslinux/drivetools/llpm_drives.xml")
-
 def get_item(label, action) 
 	item = REXML::Element.new "item"
 	item.add_attribute("label", label) 
@@ -50,63 +45,59 @@ def get_item(label, action)
 	return item
 end
 
-doc = REXML::Document.new # (nil, { :respect_whitespace => %w{ script style } } )
+lang = ENV['LANGUAGE'][0..1]
+lang = ENV['LANG'][0..1] if lang.nil?
+lang = "en" if lang.nil?
+tl = MfsTranslator.new(lang, "/usr/share/lesslinux/drivetools/llpm_drives.xml")
+xmldrives = ` sudo xmldrivelist.sh ` 
+# xmldrives = ` ruby -I. xmldrivelist.rb ` 
+indoc = REXML::Document.new(xmldrives)
+
+outdoc = REXML::Document.new # (nil, { :respect_whitespace => %w{ script style } } )
 root = REXML::Element.new "openbox_pipe_menu"
 mct = 0
 
-drives = Array.new
-Dir.entries("/sys/block").each { |l|
-	drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
-}
-Dir.entries("/sys/block").each { |l|
-	drives.push(MfsDiskDrive.new(l, true)) if l =~ /sr[0-9]$/ 
-}
 internal_items = Array.new
 external_items = Array.new
-drives.each { |d|
+
+indoc.root.elements.each("drive") {|d|
 	partcount = 0
-	d.partitions.each { |p|
+	d.elements.each("partition") { |p|
 		drive = REXML::Element.new "menu"
-		filesys = p.fs.to_s
-		filesys = "iso9660" if filesys == "" && p.device =~ /sr[0-9]/
+		filesys = p.attributes["fs"].to_s
 		filesys = "unknown" if filesys == ""
-		label = "#{p.device} (#{p.human_size}, #{filesys})"
-		label = "#{p.device} (#{p.human_size}, #{filesys}, #{p.label.to_s})" unless p.label.to_s == ""
-		label = "#{p.device} (#{p.human_size}, #{tl.get_translation('system_drive')})" if p.system_partition?
+		label = "#{p.attributes['dev']} (#{p.attributes['hsize'].to_s}, #{filesys})"
+		label = "#{p.attributes['dev']} (CD/DVD)" if p.attributes['dev'] =~ /sr[0-9]/ 
+		label = "#{p.attributes['dev']} (#{p.attributes['hsize'].to_s}, #{filesys}, #{p.attributes['label'].to_s})" unless p.attributes['label'].to_s == ""
+		label = "#{p.attributes['dev']} (#{p.attributes['hsize'].to_s}, #{tl.get_translation('system_drive')})" if p.attributes['system'].to_s == "true" 
 		drive.add_attribute("label", label)
-		drive.add_attribute("id", "lldrive-" + p.device)
-		if p.mount_point.nil?
-			drive.add_element get_item(tl.get_translation("mount_ro"), "llpm_mount mount-ro #{p.device} #{filesys}")
-			unless p.fs.to_s == "iso9660"
-				drive.add_element get_item(tl.get_translation("mount_rw"),"llpm_mount mount-rw #{p.device} #{filesys}" )
+		drive.add_attribute("id", "lldrive-" + p.attributes['dev'])
+		if p.attributes['mountpoint'].nil?
+			drive.add_element get_item(tl.get_translation("mount_ro"), "llmountandopen.sh mount #{p.attributes['dev']} ro")
+			unless p.attributes['dev'] =~ /sr[0-9]/  || p.attributes['fs'].to_s == "iso9660" || p.attributes['fs'].to_s == "udf" 
+				drive.add_element get_item(tl.get_translation("mount_ro"), "llmountandopen.sh mount #{p.attributes['dev']} rw")
 			end
-		elsif p.system_partition?
-			drive.add_element get_item(tl.get_translation("show"),"llpm_mount show #{p.device}" )
+		elsif p.attributes['system'].to_s == true
+			drive.add_element get_item(tl.get_translation("show"),"thunar #{p.attributes['mountpoint']}" )
 		else
-			drive.add_element get_item(tl.get_translation("show"),"llpm_mount show #{p.device}" )
-			drive.add_element get_item(tl.get_translation("unmount"),"llpm_mount umount #{p.device}" )
-			unless p.fs.to_s == "iso9660"
-				if p.mount_point[1].include?("ro") 
-					drive.add_element get_item(tl.get_translation("mount_rw"), "llpm_mount remount-rw #{p.device} #{filesys}")
-				else
-					drive.add_element get_item(tl.get_translation("mount_ro"), "llpm_mount remount-ro #{p.device} #{filesys}")
-				end
-			end
+			drive.add_element get_item(tl.get_translation("show"),"thunar #{p.attributes['mountpoint']}" )
+			drive.add_element get_item(tl.get_translation("unmount"),"llmountandopen.sh umount #{p.attributes['dev']}" )
 		end
-		# root.add drive
-		if p.fs.to_s != "" || p.label.to_s != "" || p.device =~ /sr[0-9]/ 
-			internal_items.push drive unless d.usb == true
-			external_items.push drive if d.usb == true
-			if p.mount_point.nil?
-				system("mkdir -p /media/disk/#{p.device}") 
-				system("chown 1000:1000 /media/disk/#{p.device}")
+		unless p.attributes['fs'].to_s =~  /swap/ || p.attributes['fs'].to_s =~ /crypto_LUKS/ 
+			if d.attributes['usb'].to_s == "true" 
+				external_items.push drive
+			else
+				internal_items.push drive
 			end
-			partcount += 1
+			partcount += 1 
 		end
 	}
 	if partcount > 0
-		internal_items.push REXML::Element.new "separator" unless d.usb == true
-		external_items.push REXML::Element.new "separator" if d.usb == true
+		unless d.attributes['usb'].to_s == 'true'
+			internal_items.push REXML::Element.new "separator" 
+		else
+			external_items.push REXML::Element.new "separator"
+		end
 	end
 }
 if internal_items.size > 0
@@ -122,5 +113,5 @@ if external_items.size > 0
 	external_items.each{ |i| root.add i }
 end
 
-doc.add root
-doc.write($stdout, 4)
+outdoc.add root
+outdoc.write($stdout, 4)

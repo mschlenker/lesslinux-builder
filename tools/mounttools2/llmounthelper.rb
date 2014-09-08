@@ -20,12 +20,17 @@ Dir.entries("/sys/block").each { |l|
 	drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
 }
 Dir.entries("/sys/block").each { |l|
+	drives.push(MfsDiskDrive.new(l, true)) if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
+}
+Dir.entries("/sys/block").each { |l|
 	drives.push(MfsDiskDrive.new(l, true)) if l =~ /sr[0-9]$/ 
 }
 
 retval = 0
 drives.each { |d|
+	# puts d.device 
 	d.partitions.each { |p|
+		# puts p.device 
 		if p.device == ARGV[1] && subcommand == "mount"
 			if ARGV[2].to_s == "rw" 
 				p.mount("rw", "/media/disk/" + p.device, 1000, 1000)
