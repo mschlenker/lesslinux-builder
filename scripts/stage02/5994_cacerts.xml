@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="cacerts"
+		version="20140908"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="7cd1a18fe2988b4375e9276af313a53e1caf5a27">cups-1.7.5-source.tar.bz2</pkg>
+				<mirror>http://www.cups.org/software/1.7.5/</mirror>
+			</file>
+			<manualcheck date="20140825" interval="90" page="http://www.cups.org/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+			<dep>perl</dep>
+			<dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+			<dep>openssl</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/lesslinux-${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}
+			bash make-ca.sh
+			bash remove-expired-certs.sh certs
+			c_rehash certs
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/share/ca-certificates 
+			mkdir -p ${TGTDIR}/etc/ssl
+			tar -C ${PKGNAME}/certs -cvf - . | tar -C ${TGTDIR}/usr/share/ca-certificates  -xf -
+			install ${PKGNAME}/BLFS-ca-bundle*.crt ${TGTDIR}/usr/share/ca-certificates/ca-bundle.crt
+			ln -sf /usr/share/ca-certificates/ca-bundle.crt ${TGTDIR}/etc/ssl/ca-bundle.crt
+			ln -sf /usr/share/ca-certificates ${TGTDIR}/etc/ssl/certs
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}
+			]]>
+		</clean>
+	</package>
+</llpackages>
