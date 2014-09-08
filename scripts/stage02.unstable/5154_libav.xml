@@ -1,0 +1,91 @@
+<llpackages>
+	<package 
+		name="libav"
+		version="10.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                            
+				<pkg sha1="22e4787dbab68fe2b1ec2d80d32a77b542a002ac">libav-10.3.tar.xz</pkg>
+				<mirror>http://libav.org/releases/</mirror>
+			</file>
+			<manualcheck date="20140902" interval="60" page="http://libav.org/releases/" />
+			<!-- <check>
+				<page html="http://libav.org/releases/">
+					<atext linktext="libav-9.12." />
+					<atext linktext="libav-9.13." />
+					<atext linktext="libav-9.14." />
+					<atext linktext="libav-9.15." />
+					<atext linktext="libav-9.16." />
+					<atext linktext="libav-9.17." />
+					<atext linktext="libav-10." />
+					<atext linktext="libav-11." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>libXext</dep>
+                        <dep>libXv</dep>
+                        <dep>libXvMC</dep>
+                        <dep>linux_headers</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>xproto-base</dep>
+                        <dep>yasm</dep>
+                        <dep>zlib</dep>
+			<dep>openjpeg</dep>
+			<dep>openssl</dep>
+			<dep>x264</dep>
+			<dep>gnutls</dep>
+			<dep>gnutls3</dep>
+			<dep>libX11</dep>
+			<dep>libxcb</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION} 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --prefix=/usr/compat.new --enable-shared --enable-runtime-cpudetect --enable-gpl --enable-x11grab --enable-libopenjpeg --enable-libx264 --enable-libfreetype --enable-gnutls
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
