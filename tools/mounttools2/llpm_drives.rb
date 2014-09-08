@@ -75,9 +75,9 @@ indoc.root.elements.each("drive") {|d|
 		if p.attributes['mountpoint'].nil?
 			drive.add_element get_item(tl.get_translation("mount_ro"), "llmountandopen.sh mount #{p.attributes['dev']} ro")
 			unless p.attributes['dev'] =~ /sr[0-9]/  || p.attributes['fs'].to_s == "iso9660" || p.attributes['fs'].to_s == "udf" 
-				drive.add_element get_item(tl.get_translation("mount_ro"), "llmountandopen.sh mount #{p.attributes['dev']} rw")
+				drive.add_element get_item(tl.get_translation("mount_rw"), "llmountandopen.sh mount #{p.attributes['dev']} rw")
 			end
-		elsif p.attributes['system'].to_s == true
+		elsif p.attributes['system'].to_s == 'true'
 			drive.add_element get_item(tl.get_translation("show"),"thunar #{p.attributes['mountpoint']}" )
 		else
 			drive.add_element get_item(tl.get_translation("show"),"thunar #{p.attributes['mountpoint']}" )

@@ -31,6 +31,7 @@ class MmmmDriveList
 			@separators.delete k
 		}
 		@doc.root.elements.each("drive") {|d|
+			partcount = 0
 			@drivetabs[d] = Gtk::HBox.new(false, 1)
 			$stderr.puts d.attributes["dev"] + " " + d.attributes["vendor"] + " " + d.attributes["size"].to_s
 			if (d.attributes["dev"] =~  /$sr/ )
@@ -41,8 +42,6 @@ class MmmmDriveList
 				pixbuf = icon_theme.load_icon("gnome-dev-harddisk", 48, Gtk::IconTheme::LOOKUP_GENERIC_FALLBACK)
 			end
 			img = Gtk::Image.new(pixbuf)
-			@drivetabs[d].pack_start_defaults img
-			@outer_vbox.pack_start_defaults @drivetabs[d]
 			inner_vbox = Gtk::VBox.new(false, 1)
 			desctext = d.attributes['vendor'] + " " + d.attributes['model']
 			desctext = desctext + " (" +  d.attributes['hsize'].to_s + ")" unless d.attributes["hsize"].nil?
@@ -51,10 +50,15 @@ class MmmmDriveList
 			inner_vbox.pack_start_defaults ddesc 
 			d.elements.each("partition") { |p|
 				inner_vbox.pack_start(create_button_box(p, d), false, false, 2)
+				partcount += 1
 			}
-			@drivetabs[d].pack_start_defaults inner_vbox
-			@separators[d] = Gtk::HSeparator.new
-			@outer_vbox.pack_start_defaults @separators[d]
+			if partcount > 0
+				@drivetabs[d].pack_start_defaults img
+				@drivetabs[d].pack_start_defaults inner_vbox
+				@outer_vbox.pack_start_defaults @drivetabs[d]
+				@separators[d] = Gtk::HSeparator.new
+				@outer_vbox.pack_start_defaults @separators[d]
+			end
 		}
 		
 	end
@@ -104,7 +108,7 @@ class MmmmDriveList
 			@mountpoints[p.attributes["dev"]] = p.attributes["mountpoint"]
 		end
 		show_button.signal_connect( "clicked" ) { |w|
-			unless p.attributes["mountpoint"].nil?
+			if ( p.attributes["mountpoint"].nil? == false && system("mountpoint -q \"" + p.attributes["mountpoint"] + "\"") )
 				system("Thunar \"" + p.attributes["mountpoint"] + "\" &")
 			else
 				system("Thunar /media/disk/#{p.attributes['dev']} &" )
