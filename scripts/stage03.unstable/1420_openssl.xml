@@ -1,6 +1,7 @@
 <llpackages>
 	<package name="openssl" />
-	<scriptdata location="/etc/rc.d/0200-openssl.sh" mode="0755" group="0" owner="0">
+	<scripts>
+		<scriptdata location="/etc/rc.d/0200-openssl.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides openssl
@@ -28,4 +29,5 @@ esac
 
 		]]>
 		</scriptdata>
+	</scripts>
 </llpackages>
