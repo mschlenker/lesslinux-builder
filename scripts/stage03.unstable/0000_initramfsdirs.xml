@@ -5097,8 +5097,7 @@ case $1 in
 		find "/lesslinux/blobpart" -maxdepth 1 | grep -v '/lesslinux/blobpart$' | while read fname ; do
 			[ -f "$fname" -o -d "$fname" ] && \
 					ln -sf "$fname" /lesslinux/blob/` basename "$fname" ` 
-			done
-		fi
+		done
 	fi
     ;;
 esac
