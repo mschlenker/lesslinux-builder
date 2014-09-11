@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llpackages>
+	<package 
+		name="avgfree"
+		version="20140911"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<manualcheck date="20140911" interval="60" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			echo 'Nothing to unpack!'
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to build!'
+  			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/opt/avg/av/bin
+			mkdir -p ${TGTDIR}/usr/bin
+			
+			cat > ${TGTDIR}/opt/avg/av/bin/avgwrapper.sh << EOF
+#!/bin/bash
+zenity --info --text 'Please install the AVG free BLOB!' || echo 'Please install the AVG free BLOB!' 
+
+EOF
+			chmod 0755 ${TGTDIR}/opt/avg/av/bin/avgwrapper.sh
+			for f in avgcfgctl avgctl avgdiag avgdump avgevtlog \
+				avgscan avgsetup avgupdate avgvvctl ; do
+				ln -sf /opt/avg/av/bin/avgwrapper.sh ${TGTDIR}/usr/bin/${f} 
+			done
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			echo 'Nothing to clean!'
+			]]>
+		</clean>
+	</package>
+</llpackages>
