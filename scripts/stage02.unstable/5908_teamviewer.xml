@@ -45,13 +45,13 @@
 			cd ${PKGNAME}
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/applications
-			mkdir -p ${TGTDIR}/opt/teamviewer/teamviewer8
+			mkdir -p ${TGTDIR}/opt/teamviewer/teamviewer9
 			install -m 0644 teamviewer.desktop ${TGTDIR}/usr/share/applications
 			sed -i 's%TeamViewer 8%TeamViewer 9%g' ${TGTDIR}/usr/share/applications/teamviewer.desktop
 			sed -i 's%teamviewer/teamviewer8%teamviewer/teamviewer9%g' ${TGTDIR}/usr/share/applications/teamviewer.desktop
 			install -m 0755 teamviewer.sh ${TGTDIR}/usr/bin
 			sed -i 's%teamviewer/teamviewer8%teamviewer/teamviewer9%g' ${TGTDIR}/usr/bin/teamviewer.sh
-			touch ${TGTDIR}/opt/teamviewer/teamviewer8/.intentionally_left_empty
+			touch ${TGTDIR}/opt/teamviewer/teamviewer9/.intentionally_left_empty
 			touch ${TGTDIR}/usr/share/applications/teamviewer.desktop.missing
 			]]>
 		</install>
