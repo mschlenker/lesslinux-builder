@@ -29,6 +29,15 @@ case $1 in
 		ar -p /lesslinux/blob/google-chrome-stable_current_i386.deb data.tar.lzma \
 			| unlzma -c | tar -C / -x ./opt/google/chrome
 		umount /usr/share/applications/google-chrome.desktop
+		if mountpoint -q /lesslinux/blobpart ; then
+		    ( cd /opt/google ; mksquashfs chrome /lesslinux/blobpart/google-chrome.sqs )
+		    ln -sf /lesslinux/blobpart/google-chrome.sqs /lesslinux/blob/google-chrome.sqs
+		    if [ -f /lesslinux/blob/google-chrome.sqs ] ; then
+			umount /opt/google/chrome
+			mount -o loop /lesslinux/blob/google-chrome.sqs /opt/google/chrome
+			rm /lesslinux/blobpart/google-chrome-stable_current_i386.deb
+		    fi
+		fi
 	    else
 		mount --bind /dev/null /usr/share/applications/google-chrome.desktop
 	    fi
