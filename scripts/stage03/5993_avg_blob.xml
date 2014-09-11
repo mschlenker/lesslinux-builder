@@ -21,7 +21,9 @@ case $1 in
 	    printf "$bold===> Skipping AVG, already mounted $normal\n"
 	else
 	    printf "$bold===> Preparing AVG $normal\n"
-	    if [ -f /lesslinux/blob/avg-free.tgz ] ; then
+	    if [ -d /lesslinux/blob/avg-free ] ; then
+		mount --bind /lesslinux/blob/avg-free /opt/avg
+	    elif [ -f /lesslinux/blob/avg-free.tgz ] ; then
 		if mountpoint -q /lesslinux/blobpart ; then
 			mkdir -p /lesslinux/blobpart/avg-free
 			ln -sf /lesslinux/blobpart/avg-free /lesslinux/blob/avg-free 
@@ -30,13 +32,11 @@ case $1 in
 			mount -t tmpfs -o mode=0755,size=512M tmpfs /opt/avg
 		fi
 		tar -C /opt/avg -xzf /lesslinux/blob/avg-free.tgz
-		chown -R 0:0 avg20*
-		mv avg20*/opt/avg/av .
-		install -m 0644 avg20*/etc/avg.conf /etc/
-		rm -rf avg20*
+		chown -R 0:0 /opt/avg/avg20*
+		mv /opt/avg/avg20*/opt/avg/av /opt/avg/
+		install -m 0644 /opt/avg/avg20*/etc/avg.conf /etc/
+		rm -rf /opt/avg/avg20*
 		[ -d /lesslinux/blobpart/avg-free ] && rm /lesslinux/blobpart/avg-free.tgz 
-	    elif [ -d /lesslinux/blob/avg-free ] ; then
-		mount --bind /lesslinux/blob/avg-free /opt/avg
 	    fi
 	fi
 	if [ -f /opt/avg/av/etc/init.d/avgd.all ] ; then
@@ -44,6 +44,7 @@ case $1 in
 	    export AVGINSTDIR=${DST_TREE}
 	    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$AVGINSTDIR/lib
 	    export HOME=${HOME:-$AVGINSTDIR}
+	    mkdir -p /var/lock/subsys 
 	    bash /opt/avg/av/etc/init.d/avgd.all start
 	fi
     ;;
@@ -56,6 +57,7 @@ case $1 in
 	bash /opt/avg/av/etc/init.d/avgd.all stop
 	unset LD_LIBRARY_PATH
 	unset HOME
+	sleep 2
 	umount /opt/avg
     ;;
 esac
