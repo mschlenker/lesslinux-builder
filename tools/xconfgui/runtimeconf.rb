@@ -534,23 +534,24 @@ def mount_crypt_container(container, pw)
 	contisdev = true if File.stat(container).blockdev? 
 	system("losetup " + free_loop.to_s + " " + container.to_s ) unless contisdev == true
 	free_loop = container if contisdev == true
-	unless system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksOpen -q " + free_loop + " lesslinux_crypt" )
-		system( "cryptsetup luksClose lesslinux_crypt" )
+	unless system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksOpen -q " + free_loop + " " + free_loop.gsub("/dev/", ""))
+		system( "cryptsetup luksClose " + free_loop.gsub("/dev/", "") )
 		system( "losetup -d " + free_loop ) unless contisdev == true
 		system( "umount /lesslinux/cryptpart" ) unless contisdev == true
 		return false, extract_lang_string("container_wrong_pass")
 	end
-	unless system("mount -t ext4 -o nodev,nosuid /dev/mapper/lesslinux_crypt /home")
+	unless system("mount -t ext4 -o nodev,nosuid /dev/mapper/" + free_loop.gsub("/dev/", "") + " /home")
 		# try to repair fs, preen should be safe enough
-		system("/sbin/fsck.ext4 -p /dev/mapper/lesslinux_crypt") 
-		unless system("mount -o nodev,nosuid /dev/mapper/lesslinux_crypt /home")
-			system("cryptsetup luksClose lesslinux_crypt")
+		system("/sbin/fsck.ext4 -p /dev/mapper/" + free_loop.gsub("/dev/", "") ) 
+		unless system("mount -o nodev,nosuid /dev/mapper/" + free_loop.gsub("/dev/", "") + " /home")
+			system("cryptsetup luksClose " + free_loop.gsub("/dev/", "") )
 			system("losetup -d " + free_loop) unless contisdev == true
 			system("umount /lesslinux/cryptpart") unless contisdev == true
 			return false, extract_lang_string("container_fs_damaged")
 		end
 	end
 	system("rsync -avHP /home/.overlay/ /")
+	system("ln -s /dev/mapper/" +  free_loop.gsub("/dev/", "") + " /dev/mapper/lesslinux_crypt") 
 	system("ln -s /dev/mapper/lesslinux_crypt #{container}.child") if contisdev == true 
 	return true, "Access to encrypted container successful!"
 end
@@ -596,7 +597,6 @@ def reinit_container(container, pw, convert=false)
 	contisdev = true if File.stat(container).blockdev? 
 	system("losetup " + free_loop.to_s + " " + container.to_s ) unless contisdev == true
 	free_loop = container if contisdev == true
-	
 	uuid=''
 	if contisdev == true
 		uuid = ` blkid -o udev -s UUID #{container} | head -n1 `.split("=")[1].strip 
@@ -609,12 +609,11 @@ def reinit_container(container, pw, convert=false)
 		system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksFormat -c aes-cbc-essiv:sha256 -s 256 -q " + free_loop ) 
 	end
 	# open the container
-	system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksOpen -q " + free_loop + " lesslinux_crypt" )
+	system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksOpen -q " + free_loop + " " + free_loop.gsub("/dev/", "") )
 	system("mdev -s")
-	# system("mkfs.ext4 /dev/mapper/lesslinux_crypt")
-	run_with_progress("mkfs.ext4 /dev/mapper/lesslinux_crypt")
+	run_with_progress("mkfs.ext4 /dev/mapper/" + free_loop.gsub("/dev/", "") )
 	system("mkdir  /lesslinux/tmp_home")
-	system("mount -t ext4 /dev/mapper/lesslinux_crypt /lesslinux/tmp_home")
+	system("mount -t ext4 /dev/mapper/" + free_loop.gsub("/dev/", "") +  " /lesslinux/tmp_home")
 	system("rsync -avHP /home/ /lesslinux/tmp_home/")
 	system("mkdir -m 0755 -p /lesslinux/tmp_home/.overlay/etc")
 	system("rsync -avHP /etc/shadow /lesslinux/tmp_home/.overlay/etc")
@@ -648,7 +647,7 @@ def reinit_container(container, pw, convert=false)
 		system("umount /lesslinux/convertold")
 	end
 	system("umount /lesslinux/tmp_home/")
-	system("cryptsetup luksClose /dev/mapper/lesslinux_crypt")
+	system("cryptsetup luksClose /dev/mapper/" + free_loop.gsub("/dev/", "") )
 	system("losetup -d " + free_loop) unless contisdev == true
 	# system("umount /lesslinux/install_target")
 end
