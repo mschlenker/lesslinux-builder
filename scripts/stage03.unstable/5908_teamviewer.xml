@@ -38,6 +38,7 @@ case $1 in
 			tar -C /opt/teamviewer -cvf - teamviewer9 | tar -C /lesslinux/blobpart -xf - 
 			sync
 			umount /opt/teamviewer
+			ln -sf /lesslinux/blobpart/teamviewer9 /lesslinux/blob/
 			mount --bind  /lesslinux/blob/teamviewer9 /opt/teamviewer/teamviewer9
 		fi
 		mount -o loop /opt/teamviewer/teamviewer9/tv_bin.sqs /opt/teamviewer/teamviewer9/tv_bin
