@@ -149,6 +149,9 @@ def fill_combo(srccombo, tgtcombo, gobutton)
 	Dir.entries("/sys/block").each { |l|
 		@drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
 	}
+	Dir.entries("/sys/block").each { |l|
+		@drives.push(MfsDiskDrive.new(l, true)) if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ ) 
+	}
 	itemcount = 0
 	@drives.each{ |d|
 		type = "(S)ATA/SCSI" 
