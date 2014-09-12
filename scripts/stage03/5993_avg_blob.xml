@@ -32,11 +32,12 @@ case $1 in
 			mount -t tmpfs -o mode=0755,size=512M tmpfs /opt/avg
 		fi
 		tar -C /opt/avg -xzf /lesslinux/blob/avg-free.tgz
+		retval=$?
 		chown -R 0:0 /opt/avg/avg20*
 		mv /opt/avg/avg20*/opt/avg/av /opt/avg/
 		install -m 0644 /opt/avg/avg20*/etc/avg.conf /etc/
 		rm -rf /opt/avg/avg20*
-		[ -d /lesslinux/blobpart/avg-free ] && rm /lesslinux/blobpart/avg-free.tgz 
+		[ -d /lesslinux/blobpart/avg-free -a "$retval" -lt 1 ] && rm /lesslinux/blobpart/avg-free.tgz 
 	    fi
 	fi
 	if [ -f /opt/avg/av/etc/init.d/avgd.all ] ; then
