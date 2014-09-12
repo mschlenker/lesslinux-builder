@@ -92,7 +92,7 @@ class MmmmDriveList
 		end
 		if p.attributes["mountpoint"].nil?
 			show_button.sensitive = false
-			if p.attributes["fs"].nil? || p.attributes["fs"] == "crypto_LUKS"
+			if p.attributes["fs"].nil? # || p.attributes["fs"] == "crypto_LUKS"
 				mount_button.sensitive = false
 				writeable.sensitive = false
 			elsif p.attributes["fs"] == "swap"
@@ -111,7 +111,7 @@ class MmmmDriveList
 			@mountpoints[p.attributes["dev"]] = p.attributes["mountpoint"]
 		end
 		show_button.sensitive = false if p.attributes["fs"] == "swap"
-		
+		show_button.sensitive = false if p.attributes["mountpoint"] == "/media/swap"
 		show_button.signal_connect( "clicked" ) { |w|
 			if ( p.attributes["mountpoint"].nil? == false && system("mountpoint -q \"" + p.attributes["mountpoint"] + "\"") )
 				system("Thunar \"" + p.attributes["mountpoint"] + "\" &")
@@ -135,14 +135,14 @@ class MmmmDriveList
 					writeable.sensitive = false
 					show_button.sensitive = true unless p.attributes['fs'] == "swap"
 					mount_button.label = extract_lang_string("pan_layout").gsub("%ACTION%", extract_lang_string("pan_umount")).gsub("%DRIVE%", dev_details)
-					system("Thunar /media/disk/#{p.attributes['dev']} &" )
+					system("Thunar /media/disk/#{p.attributes['dev']} &" ) unless p.attributes['fs'] == "swap"
 					@mountpoints[p.attributes["dev"]] = "/media/disk/" + p.attributes['dev'] 
 				else
 					error_dialog(extract_lang_string("pan_mount_error"))
 				end
 			else
 				if system("sudo /usr/bin/llmounthelper.sh umount #{p.attributes['dev']}")
-					writeable.sensitive = true unless p.attributes["fs"] == "iso9660" 
+					writeable.sensitive = true unless p.attributes["fs"] == "iso9660" || p.attributes["fs"] == "swap"
 					show_button.sensitive = false
 					mount_button.label = extract_lang_string("pan_layout").gsub("%ACTION%", extract_lang_string("pan_mount")).gsub("%DRIVE%", dev_details)
 					@mountpoints.delete(p.attributes["dev"]) 

@@ -28,10 +28,12 @@ drives.each { |d|
 	d.partitions.each { |p|
 		# puts p.device 
 		if p.device == ARGV[1] && subcommand == "mount"
+			password = nil
+			password = ` llaskpass-mount.rb ` if p.fs =~ /crypto_LUKS/ 
 			if ARGV[2].to_s == "rw" 
-				p.mount("rw", "/media/disk/" + p.device, 1000, 1000)
+				p.mount("rw", "/media/disk/" + p.device, 1000, 1000, nil, password)
 			else
-				p.mount("ro", "/media/disk/" + p.device, 1000, 1000)
+				p.mount("ro", "/media/disk/" + p.device, 1000, 1000, nil, password)
 			end
 			retval = 1 if p.mount_point.nil?
 		elsif p.device == ARGV[1] && subcommand == "swapon"

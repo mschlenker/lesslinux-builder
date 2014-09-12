@@ -83,7 +83,7 @@ indoc.root.elements.each("drive") {|d|
 			drive.add_element get_item(tl.get_translation("show"),"thunar #{p.attributes['mountpoint']}" )
 			drive.add_element get_item(tl.get_translation("unmount"),"llmountandopen.sh umount #{p.attributes['dev']}" )
 		end
-		unless p.attributes['fs'].to_s =~  /swap/ || p.attributes['fs'].to_s =~ /crypto_LUKS/ 
+		unless p.attributes['fs'].to_s =~  /swap/ || ( p.attributes['fs'].to_s =~ /crypto_LUKS/ && p.attributes['mountpoint'] == "/media/swap" ) || p.attributes['fs'].to_s == "" 
 			if d.attributes['usb'].to_s == "true" 
 				external_items.push drive
 			else

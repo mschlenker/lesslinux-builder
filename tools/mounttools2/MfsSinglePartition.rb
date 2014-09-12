@@ -194,7 +194,7 @@ class MfsSinglePartition
 		return regobj
 	end
 	
-	def mount(mode="ro", mntpnt=nil, uid=nil, gid=nil, extopts=nil)
+	def mount(mode="ro", mntpnt=nil, uid=nil, gid=nil, extopts=nil, lukspw=nil)
 		if @fs =~ /swap/
 			return false unless mode == "rw"
 			return true if system("swapon /dev/" + @device)
@@ -210,7 +210,14 @@ class MfsSinglePartition
 		end
 		type = ""
 		opts = [ mode ]
-		if @fs =~ /fat/
+		if @fs =~ /crypto_LUKS/
+			return false if lukspw.nil?
+			return false unless system("echo '" + lukspw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksOpen -q /dev/" + @device + " " + @device )
+			# Just mount without further specifying arguments - this is suboptimal
+			# for ext2/ext3 since those are better mounted using the ext4 driver
+			return true if system("mount /dev/mapper/" + @device + " -o #{mode} '" +  mountpoint + "'" )
+			return false
+		elsif @fs =~ /fat/
 			type = "-t vfat"
 			opts.push "iocharset=utf8"
 			opts.push("uid=#{uid.to_s}") unless uid.nil?
@@ -235,6 +242,11 @@ class MfsSinglePartition
 		if @fs =~ /swap/
 			return true if system("swapoff /dev/" + @device)
 			return false
+		elsif @fs =~ /crypto_LUKS/ 
+			system("sync")
+			system("umount /dev/mapper/" + @device) 
+			return true if system("cryptsetup luksClose /dev/mapper/" + @device) 
+			return false 
 		end
 		return true if system("umount /dev/" + @device)
 		return false
@@ -294,11 +306,13 @@ class MfsSinglePartition
 			end
 		}
 		IO.popen("cat /proc/swaps") { |line|
-			ltoks = $_.strip.split 
-			device = ltoks[0]
-			if device == "/dev/" + @device || device == @device || device == "/dev/mapper/" + @device
-				# $stderr.puts @device + " is mounted on " + ltoks[1].gsub('\040', '').gsub('\134', '\\')
-				return [ "/media/swap", Array.new ]
+			while line.gets 
+				ltoks = $_.strip.split 
+				device = ltoks[0]
+				if device == "/dev/" + @device || device == @device || device == "/dev/mapper/" + @device
+					# $stderr.puts @device + " is mounted on " + ltoks[1].gsub('\040', '').gsub('\134', '\\')
+					return [ "/media/swap", [ "rw" ] ]
+				end
 			end
 		}
 		return nil
@@ -394,7 +408,7 @@ class MfsSinglePartition
 		mnt = mount_point
 		return false if mnt.nil?
 		# Every drive mounted at /home or under /lesslinux is considered as system drive
-		return true if mnt[0] =~ /^\/lesslinux\// || mnt[0] =~ /^\/home\// 
+		return true if mnt[0] =~ /^\/lesslinux\// || mnt[0] =~ /^\/home$/ 
 		# Consider all encrypted swap space as system drive
 		return true if @fs =~ /crypto_LUKS/i && mnt[0] =~  /^\/media\/swap/ 
 		return false
