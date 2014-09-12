@@ -278,10 +278,14 @@ def fill_combo(combo, gobutton, default=nil)
 	Dir.entries("/sys/block").each { |l|
 		@drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
 	}
+	Dir.entries("/sys/block").each { |l|
+		@drives.push(MfsDiskDrive.new(l, true)) if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ ) 
+	}
 	itemcount = 0
 	@drives.each{ |d|
 		type = "(S)ATA/SCSI" 
-		type = "USB" if d.usb == true 
+		type = "MMC (int/ext)" if d.device =~ /mmcblk/ 
+		type = "USB" if d.usb == true
 		nicename = @tl.get_translation("disk") + " - #{type} - /dev/#{d.device} - #{d.vendor} #{d.model} (#{d.human_size})"
 		combo.append_text(nicename) 
 		@devices.push(d)

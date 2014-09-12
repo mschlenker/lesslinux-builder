@@ -155,7 +155,8 @@ def fill_combo(srccombo, tgtcombo, gobutton)
 	itemcount = 0
 	@drives.each{ |d|
 		type = "(S)ATA/SCSI" 
-		type = "USB" if d.usb == true 
+		type = "MMC (int/ext)" if d.device =~ /mmcblk/ 
+		type = "USB" if d.usb == true
 		nicename = @tl.get_translation("disk") + " - #{type} - /dev/#{d.device} - #{d.vendor} #{d.model} (#{d.human_size})"
 		srccombo.append_text(nicename) 
 		tgtcombo.append_text(nicename) 

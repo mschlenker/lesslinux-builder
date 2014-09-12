@@ -19,6 +19,7 @@ show_dialog = false
 
 Dir.entries("/sys/block").each { |l|
         drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
+	drives.push(MfsDiskDrive.new(l, true)) if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ ) 
 }
 
 is_hibernated = false

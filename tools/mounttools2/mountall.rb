@@ -106,14 +106,18 @@ def reread_drives(combo, go)
 		end
 	}
 	Dir.entries("/sys/block").each { |l|
-		drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ # || l =~  
+		drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
+	}
+	Dir.entries("/sys/block").each { |l|
+		drives.push(MfsDiskDrive.new(l, true)) if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
 	}
 	drives.each { |d|
 		d.partitions.each { |p|
 			@allparts.push p
 			if ( p.fs =~ /ntfs/ || p.fs =~ /fat/ ) && p.hibernated? == false && p.mount_point.nil? 
 				type = "(S)ATA/SCSI" 
-				type = "USB" if d.usb == true 
+				type = "MMC (int/ext)" if d.device =~ /mmcblk/ 
+				type = "USB" if d.usb == true
 				@mountableparts.push p 
 				desc = " (#{p.label})" unless p.label == ""
 				desc = ""

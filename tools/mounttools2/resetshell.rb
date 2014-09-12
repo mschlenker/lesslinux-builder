@@ -111,6 +111,7 @@ def fill_win_combo(wincombo, shelllabel, gobutton)
 	}
 	Dir.entries("/sys/block").each { |l|
 		@drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
+		@drives.push(MfsDiskDrive.new(l, true)) if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
 	}
 	# Now fill each combo box with the respective 
 	@drives.each { |d|
