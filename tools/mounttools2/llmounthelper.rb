@@ -33,7 +33,9 @@ drives.each { |d|
 			else
 				p.mount("ro", "/media/disk/" + p.device, 1000, 1000)
 			end
-			retval = 1 if p.mount_point.nil?			
+			retval = 1 if p.mount_point.nil?
+		elsif p.device == ARGV[1] && subcommand == "swapon"
+			p.mount("rw", "/media/disk/" + p.device) 
 		elsif p.device == ARGV[1] && subcommand == "umount"
 			unless p.umount
 				p.force_umount

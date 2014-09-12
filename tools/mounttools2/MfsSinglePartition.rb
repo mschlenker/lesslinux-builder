@@ -195,6 +195,11 @@ class MfsSinglePartition
 	end
 	
 	def mount(mode="ro", mntpnt=nil, uid=nil, gid=nil, extopts=nil)
+		if @fs =~ /swap/
+			return false unless mode == "rw"
+			return true if system("swapon /dev/" + @device)
+			return false
+		end
 		mountpoint = ""
 		if mntpnt.nil?
 			mountpoint = "/media/" + @uuid
@@ -205,17 +210,17 @@ class MfsSinglePartition
 		end
 		type = ""
 		opts = [ mode ]
-		if fs =~ /fat/
+		if @fs =~ /fat/
 			type = "-t vfat"
 			opts.push "iocharset=utf8"
 			opts.push("uid=#{uid.to_s}") unless uid.nil?
 			opts.push("gid=#{gid.to_s}") unless uid.nil?
-		elsif fs =~ /ntfs/
+		elsif @fs =~ /ntfs/
 			type = "-t ntfs-3g"
 			opts.push "utf8"
 			opts.push("uid=#{uid.to_s}") unless uid.nil?
 			opts.push("gid=#{gid.to_s}") unless uid.nil?
-		elsif fs =~ /ext/
+		elsif @fs =~ /ext/
 			type = "-t ext4"
 		else
 			type = ""
@@ -227,11 +232,16 @@ class MfsSinglePartition
 	end
 	
 	def umount
+		if @fs =~ /swap/
+			return true if system("swapoff /dev/" + @device)
+			return false
+		end
 		return true if system("umount /dev/" + @device)
 		return false
 	end
 	
 	def force_umount
+		return umount if @fs =~ /swap/ 
 		return true if mount_point.nil?
 		return true if umount
 		mnt_point = mount_point
@@ -277,10 +287,18 @@ class MfsSinglePartition
 						device = File.realpath(abspath)
 					end
 				end
-				if device == "/dev/" + @device || device == @device
+				if device == "/dev/" + @device || device == @device || device == "/dev/mapper/" + @device
 					# $stderr.puts @device + " is mounted on " + ltoks[1].gsub('\040', '').gsub('\134', '\\')
 					return [ ltoks[1].gsub('\040', ' ').gsub('\134', '\\'), ltoks[3].split(',') ]
 				end
+			end
+		}
+		IO.popen("cat /proc/swaps") { |line|
+			ltoks = $_.strip.split 
+			device = ltoks[0]
+			if device == "/dev/" + @device || device == @device || device == "/dev/mapper/" + @device
+				# $stderr.puts @device + " is mounted on " + ltoks[1].gsub('\040', '').gsub('\134', '\\')
+				return [ "/media/swap", Array.new ]
 			end
 		}
 		return nil
@@ -375,7 +393,10 @@ class MfsSinglePartition
 	def system_partition?
 		mnt = mount_point
 		return false if mnt.nil?
-		return true if mnt[0] =~ /^\/lesslinux\//
+		# Every drive mounted at /home or under /lesslinux is considered as system drive
+		return true if mnt[0] =~ /^\/lesslinux\// || mnt[0] =~ /^\/home\// 
+		# Consider all encrypted swap space as system drive
+		return true if @fs =~ /crypto_LUKS/i && mnt[0] =~  /^\/media\/swap/ 
 		return false
 	end
 	

@@ -92,9 +92,12 @@ class MmmmDriveList
 		end
 		if p.attributes["mountpoint"].nil?
 			show_button.sensitive = false
-			if p.attributes["fs"].nil? || p.attributes["fs"] == "crypto_LUKS" || p.attributes["fs"] == "swap" 
+			if p.attributes["fs"].nil? || p.attributes["fs"] == "crypto_LUKS"
 				mount_button.sensitive = false
 				writeable.sensitive = false
+			elsif p.attributes["fs"] == "swap"
+				writeable.sensitive = false
+				writeable.active = true
 			end
 		else
 			writeable.sensitive = false
@@ -107,6 +110,8 @@ class MmmmDriveList
 			end
 			@mountpoints[p.attributes["dev"]] = p.attributes["mountpoint"]
 		end
+		show_button.sensitive = false if p.attributes["fs"] == "swap"
+		
 		show_button.signal_connect( "clicked" ) { |w|
 			if ( p.attributes["mountpoint"].nil? == false && system("mountpoint -q \"" + p.attributes["mountpoint"] + "\"") )
 				system("Thunar \"" + p.attributes["mountpoint"] + "\" &")
@@ -128,7 +133,7 @@ class MmmmDriveList
 				end
 				if system(mountcommand)
 					writeable.sensitive = false
-					show_button.sensitive = true
+					show_button.sensitive = true unless p.attributes['fs'] == "swap"
 					mount_button.label = extract_lang_string("pan_layout").gsub("%ACTION%", extract_lang_string("pan_umount")).gsub("%DRIVE%", dev_details)
 					system("Thunar /media/disk/#{p.attributes['dev']} &" )
 					@mountpoints[p.attributes["dev"]] = "/media/disk/" + p.attributes['dev'] 
