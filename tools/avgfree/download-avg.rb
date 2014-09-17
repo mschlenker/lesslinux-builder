@@ -38,3 +38,5 @@ else
 		exit 1
 	end
 end
+
+system("/etc/rc.d/0600-avg-antivirus.sh start") 
