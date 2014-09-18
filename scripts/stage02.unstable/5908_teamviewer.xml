@@ -46,8 +46,8 @@
 			mkdir -p ${TGTDIR}/usr/share/applications
 			mkdir -p ${TGTDIR}/opt/teamviewer/teamviewer8
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
-			install -m 0755 ${PKGNAME}/download-teamviewer.rb ${TGTDIR}/usr/share/lesslinux/blob/
-			install -m 0644 ${PKGNAME}/teamviewer.xml ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0755 download-teamviewer.rb ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0644 teamviewer.xml ${TGTDIR}/usr/share/lesslinux/blob/
 			install -m 0644 teamviewer.desktop ${TGTDIR}/usr/share/applications
 			install -m 0755 teamviewer.sh ${TGTDIR}/usr/bin
 			touch ${TGTDIR}/opt/teamviewer/teamviewer8/.intentionally_left_empty
