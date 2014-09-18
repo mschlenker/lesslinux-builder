@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="teamviewer"
-		version="20140918-00"
+		version="20140918-01"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="0e3be3bf51d0d41011c54b3381f55d54f040811c">teamviewer-20140918-00.tar.bz2</pkg>
+				<pkg sha1="a215dd44fb5fff63a6841064070a00c873600e57">teamviewer-20140918-01.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20130817" interval="120" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20130819" interval="120" page="http://distfiles.lesslinux.org/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -44,13 +44,13 @@
 			cd ${PKGNAME}
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/applications
-			mkdir -p ${TGTDIR}/opt/teamviewer/teamviewer8
+			mkdir -p ${TGTDIR}/opt/teamviewer/teamviewer9
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
 			install -m 0755 download-teamviewer.rb ${TGTDIR}/usr/share/lesslinux/blob/
 			install -m 0644 teamviewer.xml ${TGTDIR}/usr/share/lesslinux/blob/
 			install -m 0644 teamviewer.desktop ${TGTDIR}/usr/share/applications
 			install -m 0755 teamviewer.sh ${TGTDIR}/usr/bin
-			touch ${TGTDIR}/opt/teamviewer/teamviewer8/.intentionally_left_empty
+			touch ${TGTDIR}/opt/teamviewer/teamviewer9/.intentionally_left_empty
 			touch ${TGTDIR}/usr/share/applications/teamviewer.desktop.missing
 			]]>
 		</install>
