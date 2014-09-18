@@ -4,6 +4,7 @@ require 'rexml/document'
 require 'glib2'
 require 'gtk2'
 require 'vte'
+require 'MfsTranslator.rb'
 
 def is_installed?(dirs, files) 
 	dirs.each { |d|
@@ -43,6 +44,9 @@ end
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
 lang = "en" if lang.nil?
+tlfile = "blobinstall.xml"
+tlfile = "/usr/share/lesslinux/drivetools/blobinstall.xml" if File.exists?("/usr/share/lesslinux/drivetools/blobinstall.xml")
+tl = MfsTranslator.new(lang, tlfile)
 
 blobxmls = Array.new
 checkboxes = Array.new
@@ -57,7 +61,7 @@ Dir.entries("/usr/share/lesslinux/blob").each { |f|
 # Build a window
 
 # Frame for selection of Blobs
-bframe = Gtk::Frame.new("Select BLOBs")
+bframe = Gtk::Frame.new(tl.get_translation("select"))
 bbox = Gtk::VBox.new(false, 5)
 blobxmls.each { |x|
 	name = nil
@@ -86,7 +90,7 @@ blobxmls.each { |x|
 bframe.add(bbox)
 
 # Frame for installation progress
-iframe = Gtk::Frame.new("Installation progress")
+iframe = Gtk::Frame.new(tl.get_translation("progress"))
 vte = Vte::Terminal.new
 vte.height_request = 150
 iframe.add(vte)
@@ -140,20 +144,20 @@ apply.signal_connect("clicked") {
 				c.sensitive = false
 			else
 				name = x.root.elements["pkg"].attributes["name"]
-				info_dialog("Installation failed", "Installation of #{name} failed!")
+				info_dialog(tl.get_translation("failed"), tl.get_translation("failed_long").gsub("NAME",name) )
 			end
 		end
 	}
 	if instcount == 0
-		info_dialog("No packages selected", "No packages were selected or all packages are already installed")
+		info_dialog( tl.get_translation("noselect"), tl.get_translation("noselect_long") )
 		apply.sensitive = true
         	cancel.sensitive = true
 	elsif instcount > successful
-		info_dialog("Installation failed", "Installation of one or more packages failed")
+		info_dialog( tl.get_translation("instfailed"), tl.get_translation("instfailed_long") )
                 apply.sensitive = true
                 cancel.sensitive = true
 	else
-		info_dialog("Installation successful", "All selected packages were sucessfully installed")
+		info_dialog( tl.get_translation("successful"), tl.get_translation("successful_long"))
 		Gtk.main_quit
 	end
 }
@@ -166,8 +170,12 @@ window.border_width = 10
 window.width_request = 600 
 window.set_title("LessLinux BLOB installer")
 window.window_position = Gtk::Window::POS_CENTER_ALWAYS
-
 window.add lvb
+
+unless system("mountpoint -q /lesslinux/blobpart")
+	info_dialog( tl.get_translation("usb"), tl.get_translation("usb_long"))
+end
+
 window.show_all
 Gtk.main
 

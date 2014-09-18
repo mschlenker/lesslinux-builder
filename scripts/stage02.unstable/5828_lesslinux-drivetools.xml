@@ -49,11 +49,11 @@
 			for f in llpm_drives llpm_mount mmmm2.sh initial_system_check.sh deletedisk.sh \
 				clonedisk.sh chntpwgui.sh resetshell.sh usbinstall.sh mountall.sh \
 				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh \
-				mmmmng.sh llmountandopen.sh ; do
+				mmmmng.sh llmountandopen.sh blobinstall.sh ; do
 					install -m 0755 ${f}  ${TGTDIR}/usr/bin
 			done
 			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui \
-				resetshell usbinstall mountall mountnet runx11vnc runsmbd ; do
+				resetshell usbinstall mountall mountnet runx11vnc runsmbd blobinstall ; do
 					install -m 0644 ${f}.xml  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			for f in llpm_drives MfsDiskDrive MfsSinglePartition MfsTranslator MfsSamDatabase \
