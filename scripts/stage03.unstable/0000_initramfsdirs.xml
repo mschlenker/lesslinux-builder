@@ -3410,14 +3410,24 @@ iso_gpt_convert() {
 	else
 		swapblocks=1
 	fi
-	# Now check for minimum free space - FIXME: 320MB are not good to be hard coded
-	neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $efiblocks + $hcminblocks + $blobblocks + $swapblocks + 40 `
+	# Now check for minimum free space - FIXME: 128MB are not good to be hard coded
+	neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $efiblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
 	# echo "Neededblocks: $neededblocks"
 	if [ "$deviceblocks" -lt "$neededblocks" ] ; then
-		echo "===> FAILED. Device too small." > /dev/tty8
-		echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
-		chvt 1
-		return 1
+		# Try without swap:
+		swapblocks=1
+		neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $efiblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+		if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+			hcminblocks=0
+			hcmaxblocks=0 
+			neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $efiblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+			if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+				echo "===> FAILED. Device too small." > /dev/tty8
+				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
+				chvt 1
+				return 1
+			fi
+		fi
 	fi
 	
 	# Delete some MB at the end of the disk to remove remaining GUID backup table
@@ -3470,20 +3480,6 @@ iso_gpt_convert() {
 	parted -s $device unit B mklabel gpt
 	cat /etc/syslinux/gptmbr.bin > "$device"
 	mdev -s
-	# Recalculate the size of the boot partition for Sicher Surfen
-	# contonbootsize=0
-	# if [ "$homecontmax" -gt 0 ] ; then
-	#	hcmaxblocks=` expr $homecontmax / 8 ` 
-	#	hcminblocks=` expr $homecontmin / 8 ` 
-	#	partoneblocks=` expr $deviceblocks - $bootblocks - $isoblocks `
-	#	mvblocks=` expr $partoneblocks / 2 `
-	#	if [ "$mvblocks" -gt "$hcmaxblocks" -o "$mvblocks" -eq "$hcmaxblocks" ] ; then
-	#		contonbootsize=$hcmaxblocks
-	#	elif [ "$mvblocks" -gt "$hcminblocks" -a "$mvblocks" -lt "$hcmaxblocks" ] ; then
-	#		contonbootsize=$mvblocks
-	#	fi
-	#	bootblocks=` expr $bootblocks + $mvblocks ` 
-	# fi
 	
 	# Recalculate the possible size of the partition for the encrypted home container
 	hcblocks=1
