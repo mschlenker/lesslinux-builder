@@ -51,6 +51,7 @@ tl = MfsTranslator.new(lang, tlfile)
 blobxmls = Array.new
 checkboxes = Array.new
 checkxmls = Hash.new
+installable = 0
 
 Dir.entries("/usr/share/lesslinux/blob").each { |f|
 	if f =~ /\.xml$/
@@ -82,6 +83,7 @@ blobxmls.each { |x|
 		butt.sensitive = false
 	else
 		checkxmls[butt] = x
+		installable += 1
 	end
 	# butt.tooltip(ttip)
 	checkboxes.push(butt)
@@ -172,8 +174,13 @@ window.set_title("LessLinux BLOB installer")
 window.window_position = Gtk::Window::POS_CENTER_ALWAYS
 window.add lvb
 
-unless system("mountpoint -q /lesslinux/blobpart")
-	info_dialog( tl.get_translation("usb"), tl.get_translation("usb_long"))
+if installable < 1
+	info_dialog( tl.get_translation("nothing"), tl.get_translation("nothing_long"))
+	apply.sensitive = false
+else
+	unless system("mountpoint -q /lesslinux/blobpart")
+		info_dialog( tl.get_translation("usb"), tl.get_translation("usb_long"))
+	end
 end
 
 window.show_all
