@@ -177,6 +177,8 @@ window.add lvb
 if installable < 1
 	info_dialog( tl.get_translation("nothing"), tl.get_translation("nothing_long"))
 	apply.sensitive = false
+	exit 0
+	# Gtk.main_quit
 else
 	unless system("mountpoint -q /lesslinux/blobpart")
 		info_dialog( tl.get_translation("usb"), tl.get_translation("usb_long"))
