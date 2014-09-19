@@ -95,7 +95,7 @@
 			<![CDATA[ 
 			cd linux-${PKGVERSION}
 			export PATH=/usr/local/crosstools-amd64/bin:$PATH
-			make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- oldconfig
+			yes n | make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- oldconfig
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				pump make -j $jobcount ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- CC='distcc /usr/local/crosstools-amd64/bin/amd64-linux-uclibc-gcc'
