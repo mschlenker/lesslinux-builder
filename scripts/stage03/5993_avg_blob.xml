@@ -22,12 +22,18 @@ case $1 in
 	else
 	    printf "$bold===> Preparing AVG $normal\n"
 	    if [ -d /lesslinux/blob/avg-free ] ; then
+		mkdir -p /lesslinux/blob/avg-free/dotavg
+		mkdir -p /root/.avg
 		mount --bind /lesslinux/blob/avg-free /opt/avg
+		mount --bind /lesslinux/blob/avg-free/dotavg /root/.avg
 	    elif [ -f /lesslinux/blob/avg-free.tgz ] ; then
 		if mountpoint -q /lesslinux/blobpart ; then
 			mkdir -p /lesslinux/blobpart/avg-free
 			ln -sf /lesslinux/blobpart/avg-free /lesslinux/blob/avg-free 
+			mkdir -p /lesslinux/blob/avg-free/dotavg
+			mkdir -p /root/.avg
 			mount --bind /lesslinux/blob/avg-free /opt/avg
+			mount --bind /lesslinux/blob/avg-free/dotavg /root/.avg
 		else
 			mount -t tmpfs -o mode=0755,size=512M tmpfs /opt/avg
 		fi
@@ -59,6 +65,7 @@ case $1 in
 	unset LD_LIBRARY_PATH
 	unset HOME
 	sleep 2
+	umount /root/.avg
 	umount /opt/avg
     ;;
 esac
