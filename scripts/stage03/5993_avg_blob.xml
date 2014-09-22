@@ -43,6 +43,7 @@ case $1 in
 		mv /opt/avg/avg20*/opt/avg/av /opt/avg/
 		install -m 0644 /opt/avg/avg20*/etc/avg.conf /etc/
 		rm -rf /opt/avg/avg20*
+		touch -t 201301010000 /opt/avg/av/var/data/incavi.avm
 		[ -d /lesslinux/blobpart/avg-free -a "$retval" -lt 1 ] && rm /lesslinux/blobpart/avg-free.tgz 
 	    fi
 	fi
