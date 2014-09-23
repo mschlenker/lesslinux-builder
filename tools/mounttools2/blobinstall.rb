@@ -94,6 +94,7 @@ bframe.add(bbox)
 # Frame for installation progress
 iframe = Gtk::Frame.new(tl.get_translation("progress"))
 vte = Vte::Terminal.new
+vte.set_font("Fixed 13", Vte::TerminalAntiAlias::FORCE_DISABLE)
 vte.height_request = 150
 iframe.add(vte)
 # vte.fork_command("top")
