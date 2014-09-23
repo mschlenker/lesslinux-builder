@@ -163,7 +163,18 @@ class MfsDiskDrive
 			end
 		}
 		return @smart_test_types, @smart_test_results, @smart_bad_sectors, @smart_reallocated, @smart_seek_error
-		
+	end
+	
+	def smart_short_test
+		tremain = nil
+		IO.popen("smartctl -s on -t short /dev/#{@device}") { |l|
+			while l.gets
+				if $_ =~ /^Please wait\s*?(\d*?)\s*?minutes/ 
+					tremain = $1.to_i
+				end
+			end
+		}
+		return tremain
 	end
 	
 	def mounted
