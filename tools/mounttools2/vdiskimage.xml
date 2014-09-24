@@ -3,7 +3,7 @@
 	<language id="en">
 		<string id="head" translation="Clone disk drive" />
 		<string id="frame_source" translation="Drive to clone (source)" />
-		<string id="frame_target" translation="Target drive" />
+		<string id="frame_target" translation="Target directory" />
 		<string id="source_target_title" translation="Identical drives" />
 		<string id="source_target_text" translation="Source and target drives must not be identical. Please select different drives!" />
 		<string id="different_type_title" translation="Different types selected" />
@@ -25,7 +25,7 @@
 		<string id="partition" translation="Partition" />
 		<string id="disk" translation="Full disk" />
 		<string id="no_usable" translation="No usable drives found!" />
-		<string id="frame_progress" translation="Progress of cloning" />
+		<string id="frame_progress" translation="Progress of conversion" />
 		<string id="go" translation="Start" />
 		<string id="stop" translation="Stop" />
 		<string id="reread" translation="Reread" />
@@ -36,11 +36,26 @@
 		<string id="remaining" translation="remaining" />
 		<string id="click_start" translation="Click &quot;Start&quot; to begin" />
 		<string id="starting" translation="Initializing..." />
+		<string id="conversion_running" translation="Conversion running - PERCENTAGE% done" />
+		<string id="cancel" translation="Cancel" />
+		<string id="failed" translation="Conversion failed" />
+		<string id="failed_long" translation="The conversion failed. A possible cause might be a too small target directory." />
+		<string id="failed_pgbar" translation="Conversion failed" />
+		<string id="frame_format" translation="Format of the image file" />
+		<string id="success" translation="Conversion successful" />
+		<string id="success_long" translation="The conversion was successful. You can yuse the disk image with your virtual machine now." />
+		<string id="success_pgbar" translation="Conversion successful" />
+		<string id="target_exists" translation="Target file exists" />
+		<string id="target_exists_long" translation="The selected target file FILENAME already exists, please delete the file or select a different target folder." />
+		<string id="target_too_small" translation="Target too small" />
+		<string id="target_too_small_long" translation="Depending on the occupied space of the source drive, the target directory might  have not enough space. Try anyway?" />
+		<string id="targetdir" translation="Target directory" />
+		<string id="title" translation="Convert disk to VM image" />
 	</language>
 	<language id="de">
 		<string id="head" translation="Laufwerk klonen" />
 		<string id="frame_source" translation="Quelllaufwerk" />
-		<string id="frame_target" translation="Ziellaufwerk" />
+		<string id="frame_target" translation="Zielverzeichnis" />
 		<string id="source_target_title" translation="Identische Laufwerke" />
 		<string id="source_target_text" translation="Quell- und Ziellaufwerk müssen sich unterscheiden. Bitte wählen Sie die Laufwerke erneut." />
 		<string id="different_type_title" translation="Verschiedene Typen gewählt" />
@@ -62,7 +77,7 @@
 		<string id="partition" translation="Partition" />
 		<string id="disk" translation="Gesamte Festplatte" />
 		<string id="no_usable" translation="Keine Laufwerke gefunden!" />
-		<string id="frame_progress" translation="Fortschritt des Klonens" />
+		<string id="frame_progress" translation="Fortschritt der Umwandlung" />
 		<string id="go" translation="Starten" />
 		<string id="stop" translation="Stop" />
 		<string id="reread" translation="Neu einlesen" />
@@ -73,11 +88,25 @@
 		<string id="remaining" translation="verbleibend" />
 		<string id="click_start" translation="Klicken Sie auf &quot;Start&quot; um mit dem Klonen zu beginnen" />
 		<string id="starting" translation="Initialisiere..." />
+		<string id="conversion_running" translation="Umwandlung läuft - ca. PERCENTAGE% abgeschlossen" />
+		<string id="cancel" translation="Abbrechen" />
+		<string id="failed" translation="Umwandlung fehlgeschlagen" />
+		<string id="failed_long" translation="Die Umwandlung ist fehlgeschlagen. Ein möglicher Grund ist nicht ausreichender Platz im Zielordner." />
+		<string id="failed_pgbar" translation="Umwandlung fehlgeschlagen" />
+		<string id="frame_format" translation="Format der Image-Datei" />
+		<string id="success" translation="Umwandlung erfolgreich" />
+		<string id="success_long" translation="Die Umwandlung war erfolgreich. Sie können das Festplattenimage nun mit Ihrer virtuellen Maschine verwenden." />
+		<string id="success_pgbar" translation="Umwandlung erfolgreich" />
+		<string id="target_exists" translation="Zieldatei existiert bereits" />
+		<string id="target_exists_long" translation="Die Zieldatei FILENAME existiert bereits, bitte löschen Sie die Datei oder wählen Sie einen anderen Zielordner." />
+		<string id="target_too_small" translation="Zu wenig Platz im Zielordner" />
+		<string id="target_too_small_long" translation="Je nach Zahl der belegten Blöcke des Quellaufwerkes ist im Zielordner möglicherweise nicht genügend Platz. Dennoch versuchen?" />
+		<string id="targetdir" translation="Zielverzeichnis" />
+		<string id="title" translation="Festplatte in Image für VM umwandeln" />
 	</language>
 	<language id="pl">
 		<string id="head" translation="Klonuj dysk" />
 		<string id="frame_source" translation="Napęd źródłowy" />
-		<string id="frame_target" translation="Napęd docelowy" />
 		<string id="source_target_title" translation="Identyczne napędy" />
 		<string id="source_target_text" translation="Napęd źródłowy i docelowy muszą być różne. Proszę ponownie wybrać napędy." />
 		<string id="different_type_title" translation="Wybrano różne typy" />
@@ -99,7 +128,6 @@
 		<string id="partition" translation="Partycja" />
 		<string id="disk" translation="Cały dysk" />
 		<string id="no_usable" translation="Nie znaleziono napędów!" />
-		<string id="frame_progress" translation="Postęp klonowania" />
 		<string id="go" translation="Start" />
 		<string id="stop" translation="Stop" />
 		<string id="reread" translation="Wczytaj ponownie" />
@@ -110,5 +138,22 @@
 		<string id="remaining" translation="pozostało" />
 		<string id="click_start" translation="Kliknij na &quot;Start&quot; aby rozpocząć klonowanie" />
 		<string id="starting" translation="Inicjacja..." />
+		<string id="cancel" translation="Cancel" />
+		<string id="failed" translation="Conversion failed" />
+		<string id="failed_long" translation="The conversion failed. A possible cause might be a too small target directory." />
+		<string id="failed_pgbar" translation="Conversion failed" />
+		<string id="frame_format" translation="Format of the image file" />
+		<string id="success" translation="Conversion successful" />
+		<string id="success_long" translation="The conversion was successful. You can yuse the disk image with your virtual machine now." />
+		<string id="success_pgbar" translation="Conversion successful" />
+		<string id="target_exists" translation="Target file exists" />
+		<string id="target_exists_long" translation="The selected target file FILENAME already exists, please delete the file or select a different target folder." />
+		<string id="target_too_small" translation="Target too small" />
+		<string id="target_too_small_long" translation="Depending on the occupied space of the source drive, the target directory might  have not enough space. Try anyway?" />
+		<string id="targetdir" translation="Target directory" />
+		<string id="title" translation="Convert disk to VM image" />
+		<string id="frame_progress" translation="Progress of conversion" />
+		<string id="conversion_running" translation="Conversion running - PERCENTAGE% done" />
+		<string id="frame_target" translation="Target directory" />
 	</language>
 </lltranslation>
