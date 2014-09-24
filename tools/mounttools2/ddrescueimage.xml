@@ -42,15 +42,17 @@
 		<string id="failed_long" translation="The conversion failed. A possible cause might be a too small target directory." />
 		<string id="failed_pgbar" translation="Conversion failed" />
 		<string id="frame_format" translation="Format of the image file" />
-		<string id="success" translation="Conversion successful" />
-		<string id="success_long" translation="The conversion was successful. You can yuse the disk image with your virtual machine now." />
-		<string id="success_pgbar" translation="Conversion successful" />
+		<string id="success" translation="Imaging successful" />
+		<string id="success_long" translation="The imaging was successful. You can now rescue data from the image with PhotoRec, mount the image or use dd to transfer it to a new drive." />
+		<string id="success_pgbar" translation="Imaging successful" />
 		<string id="target_exists" translation="Target file exists" />
 		<string id="target_exists_long" translation="The selected target file FILENAME already exists, please delete the file or select a different target folder." />
 		<string id="target_too_small" translation="Target too small" />
 		<string id="target_too_small_long" translation="Depending on the occupied space of the source drive, the target directory might  have not enough space. Try anyway?" />
 		<string id="targetdir" translation="Target directory" />
 		<string id="title" translation="Create emergency image (ddrescue)" />
+		<string id="frame_vte" translation="Output" />
+		<string id="pgbar_second_run" translation="Second run - trying to rescue from bad blocks" />
 	</language>
 	<language id="de">
 		<string id="head" translation="Laufwerk klonen" />
@@ -86,23 +88,25 @@
 		<string id="mounted_text" translation="Die Einbindung des ausgewählten Laufwerkes konnte nicht gelöst werden. Beenden Sie alle Programme, die auf das Laufwerk zugreifen, lösen Sie die Einbindung manuell und versuchen Sie es erneut." />
 		<string id="mounted_title" translation="Laufwerk ist eingebunden!" />
 		<string id="remaining" translation="verbleibend" />
-		<string id="click_start" translation="Klicken Sie auf &quot;Start&quot; um mit dem Klonen zu beginnen" />
+		<string id="click_start" translation="Klicken Sie auf &quot;Start&quot; um mit der Rettung zu beginnen" />
 		<string id="starting" translation="Initialisiere..." />
-		<string id="conversion_running" translation="Umwandlung läuft - ca. PERCENTAGE% abgeschlossen" />
+		<string id="conversion_running" translation="Rettung läuft - ca. PERCENTAGE% abgeschlossen" />
 		<string id="cancel" translation="Abbrechen" />
-		<string id="failed" translation="Umwandlung fehlgeschlagen" />
-		<string id="failed_long" translation="Die Umwandlung ist fehlgeschlagen. Ein möglicher Grund ist nicht ausreichender Platz im Zielordner." />
-		<string id="failed_pgbar" translation="Umwandlung fehlgeschlagen" />
+		<string id="failed" translation="Rettung fehlgeschlagen" />
+		<string id="failed_long" translation="Die Rettung ist fehlgeschlagen. Ein möglicher Grund ist nicht ausreichender Platz im Zielordner." />
+		<string id="failed_pgbar" translation="Rettung fehlgeschlagen" />
 		<string id="frame_format" translation="Format der Image-Datei" />
-		<string id="success" translation="Umwandlung erfolgreich" />
-		<string id="success_long" translation="Die Umwandlung war erfolgreich. Sie können das Festplattenimage nun mit Ihrer virtuellen Maschine verwenden." />
-		<string id="success_pgbar" translation="Umwandlung erfolgreich" />
+		<string id="success" translation="Rettung erfolgreich" />
+		<string id="success_long" translation="Die Rettung war erfolgreich. Sie können das Festplattenimage nun mit dd auf eine neue Platte übertragen, mit PhotoRec nach Dateien suchen oder das Image mounten." />
+		<string id="success_pgbar" translation="Rettung erfolgreich" />
 		<string id="target_exists" translation="Zieldatei existiert bereits" />
 		<string id="target_exists_long" translation="Die Zieldatei FILENAME existiert bereits, bitte löschen Sie die Datei oder wählen Sie einen anderen Zielordner." />
 		<string id="target_too_small" translation="Zu wenig Platz im Zielordner" />
 		<string id="target_too_small_long" translation="Je nach Zahl der belegten Blöcke des Quellaufwerkes ist im Zielordner möglicherweise nicht genügend Platz. Dennoch versuchen?" />
 		<string id="targetdir" translation="Zielverzeichnis" />
 		<string id="title" translation="Notfall-Image erstellen (ddrescue)" />
+		<string id="frame_vte" translation="Ausgabe von ddrescue" />
+		<string id="pgbar_second_run" translation="Zweiter Lauf - rette Daten von defekten Blöcken" />
 	</language>
 	<language id="pl">
 		<string id="head" translation="Klonuj dysk" />
@@ -143,17 +147,19 @@
 		<string id="failed_long" translation="The conversion failed. A possible cause might be a too small target directory." />
 		<string id="failed_pgbar" translation="Conversion failed" />
 		<string id="frame_format" translation="Format of the image file" />
-		<string id="success" translation="Conversion successful" />
-		<string id="success_long" translation="The conversion was successful. You can yuse the disk image with your virtual machine now." />
-		<string id="success_pgbar" translation="Conversion successful" />
+		<string id="success" translation="Imaging successful" />
+		<string id="success_long" translation="The imaging was successful. You can use PhotoRec to rescue data from the image, mount the image or use dd to transfer it to a new hard disk." />
+		<string id="success_pgbar" translation="Imaging successful" />
 		<string id="target_exists" translation="Target file exists" />
 		<string id="target_exists_long" translation="The selected target file FILENAME already exists, please delete the file or select a different target folder." />
 		<string id="target_too_small" translation="Target too small" />
 		<string id="target_too_small_long" translation="Depending on the occupied space of the source drive, the target directory might  have not enough space. Try anyway?" />
 		<string id="targetdir" translation="Target directory" />
 		<string id="title" translation="Create emergency image" />
-		<string id="frame_progress" translation="Progress of conversion" />
-		<string id="conversion_running" translation="Conversion running - PERCENTAGE% done" />
+		<string id="frame_progress" translation="Progress of imaging" />
+		<string id="conversion_running" translation="Imaging running - PERCENTAGE% done" />
 		<string id="frame_target" translation="Target directory" />
+		<string id="frame_vte" translation="Output" />
+		<string id="pgbar_second_run" translation="Second run - trying to rescue from bad blocks" />
 	</language>
 </lltranslation>

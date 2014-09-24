@@ -166,11 +166,10 @@ def check_mounted_source(combo)
 	return question_dialog(@tl.get_translation("source_mounted_title"), @tl.get_translation("source_mounted_text"), false)
 end
 
-def create_image(device, targetfile, pgbar)
-	vte = Vte::Terminal.new
+def create_image(device, targetfile, pgbar, vte)
 	running = true
 	vte.signal_connect("child_exited") { running = false }
-	@pid = vte.fork_command("/bin/bash", [ "/bin/bash", "ddrescueimage-wrapper.sh", "/dev/"+ device.device, targetfile, 1] )
+	@pid = vte.fork_command("/bin/bash", [ "/bin/bash", "ddrescueimage-wrapper.sh", "/dev/"+ device.device, targetfile, "1"] )
 	pgbar.text = @tl.get_translation("conversion_running").gsub("PERCENTAGE", "0")
 	n = 0
 	while running == true
@@ -196,7 +195,8 @@ def create_image(device, targetfile, pgbar)
 		error_dialog(@tl.get_translation("failed"), @tl.get_translation("failed_long"))
 	else
 		pgbar.text = @tl.get_translation("pgbar_second_run")
-		@pid = vte.fork_command("/bin/bash", [ "/bin/bash", "ddrescueimage-wrapper.sh", "/dev/"+ device.device, targetfile, 2] )
+		running = true
+		@pid = vte.fork_command("/bin/bash", [ "/bin/bash", "ddrescueimage-wrapper.sh", "/dev/"+ device.device, targetfile, "2"] )
 		while running == true
 			pgbar.pulse
 			while (Gtk.events_pending?)
@@ -205,9 +205,9 @@ def create_image(device, targetfile, pgbar)
 			sleep 0.2 
 		end
 		pgbar.text = @tl.get_translation("success_pgbar")
+		pgbar.fraction = 1.0
 		info_dialog(@tl.get_translation("success"), @tl.get_translation("success_long"))
 	end
-	vte.destroy
 end
 
 @drives = Array.new
@@ -241,7 +241,7 @@ window.signal_connect("destroy") {
 
 drivebox = Gtk::HBox.new(false, 5)
 drivecombo = Gtk::ComboBox.new
-drivecombo.width_request = 400
+# drivecombo.width_request = 400
 go = Gtk::Button.new(tl.get_translation("go"))
 go.sensitive = false 
 
@@ -262,6 +262,16 @@ targetbutton = Gtk::FileChooserButton.new(tl.get_translation("targetdir"), Gtk::
 targetbutton.current_folder = "/media/disk"
 targetframe.add(targetbutton) 
 lvb.pack_start_defaults targetframe
+
+# VTE
+
+vteframe = Gtk::Frame.new(tl.get_translation("frame_vte"))
+vte = Vte::Terminal.new
+vte.set_font("Fixed 13", Vte::TerminalAntiAlias::FORCE_DISABLE)
+vte.height_request = 130
+vte.width_request = 540
+vteframe.add(vte) 
+lvb.pack_start_defaults vteframe
 
 # Progress
 
@@ -295,7 +305,7 @@ go.signal_connect("clicked") {
 			[  drivecombo, targetbutton, reread].each { |w| w.sensitive = false } 
 			@running = true
 			go.label = @tl.get_translation("cancel")
-			create_image(disk, targetfile, pgbar)
+			create_image(disk, targetfile, pgbar, vte)
 			@running = false
 			go.label = tl.get_translation("go")
 			[  drivecombo, targetbutton, reread].each { |w| w.sensitive = true } 
