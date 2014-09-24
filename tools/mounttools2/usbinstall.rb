@@ -254,13 +254,13 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	cfgfiles.each { |fname|
 		puts "Editing: " + fname 
 		system("cp -v #{fname}.#{language} #{fname}") if File.exists?("#{fname}.#{language}") 
-		system("sed -i 's/homecont=0000-00000/homecont=#{contsizes.min.to_s}-#{contsizes.max.to_s}/g' #{fname}") if contsizes.max > 0 
+		system("sed -i 's/homecont=[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9]/homecont=#{contsizes.min.to_s}-#{contsizes.max.to_s}/g' #{fname}") if contsizes.max > 0 
 		if tgt.size > 7_000_000_000
-			system("sed -i 's/swapsize=0000/swapsize=1024/g' #{fname}")
-			system("sed -i 's/blobsize=0000/blobsize=1536/g' #{fname}")
+			system("sed -i 's/swapsize=[0-9][0-9][0-9][0-9]/swapsize=1024 /g' #{fname}")
+			system("sed -i 's/blobsize=[0-9][0-9][0-9][0-9]/blobsize=1536 /g' #{fname}")
 		elsif tgt.size > 3_000_000_000
-			system("sed -i 's/swapsize=0000/swapsize=512/g' #{fname}")
-			system("sed -i 's/blobsize=0000/blobsize=768/g' #{fname}")
+			system("sed -i 's/swapsize=[0-9][0-9][0-9][0-9]/swapsize=512 /g' #{fname}")
+			system("sed -i 's/blobsize=[0-9][0-9][0-9][0-9]/blobsize=768 /g' #{fname}")
 		end
 		system("rm #{fname}") if fname =~ /boot0x80\.cfg$/ 
 	}
