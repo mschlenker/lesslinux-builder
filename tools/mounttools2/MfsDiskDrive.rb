@@ -167,6 +167,7 @@ class MfsDiskDrive
 	
 	def smart_short_test
 		tremain = nil
+		system("smartctl -X /dev/#{@device}")
 		IO.popen("smartctl -s on -t short /dev/#{@device}") { |l|
 			while l.gets
 				if $_ =~ /^Please wait\s*?(\d*?)\s*?minutes/ 
