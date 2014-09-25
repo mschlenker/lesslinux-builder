@@ -5,6 +5,7 @@ require 'glib2'
 require 'gtk2'
 require 'vte'
 require 'MfsTranslator.rb'
+require 'optparse'
 
 def is_installed?(dirs, files) 
 	dirs.each { |d|
@@ -48,6 +49,10 @@ tlfile = "blobinstall.xml"
 tlfile = "/usr/share/lesslinux/drivetools/blobinstall.xml" if File.exists?("/usr/share/lesslinux/drivetools/blobinstall.xml")
 tl = MfsTranslator.new(lang, tlfile)
 
+checkedblobs = Array.new
+opts = OptionParser.new 
+opts.on('-c', '--check', :REQUIRED )    { |i| checkedblobs = i.split(",") }
+
 blobxmls = Array.new
 checkboxes = Array.new
 checkxmls = Hash.new
@@ -83,6 +88,7 @@ blobxmls.each { |x|
 		butt.sensitive = false
 	else
 		checkxmls[butt] = x
+		butt.active = true if checkeditems.include?(name) 
 		installable += 1
 	end
 	# butt.tooltip(ttip)
