@@ -44,6 +44,20 @@ case $1 in
 		install -m 0644 /opt/avg/avg20*/etc/avg.conf /etc/
 		rm -rf /opt/avg/avg20*
 		touch -t 201301010000 /opt/avg/av/var/data/incavi.avm
+		if [ -n "$DISPLAY" ] ; then
+			if zenity --text-info --title 'Lizenzbedingungen AVG Antivirus' \
+				--filename=/opt/avg/av/doc/license_us.txt \
+				--checkbox='Ich bin mit den Lizenzbedingungen einverstanden' ; then
+				echo 'OK, license accepted'
+			else
+				rm -rf /opt/avg/av 
+				umount /opt/avg
+				umount /root/.avg
+				rm -rf /lesslinux/blob/avg-free
+				rm -rf /lesslinux/blobpart/avg-free
+				exit 1
+			fi
+		fi
 		[ -d /lesslinux/blobpart/avg-free -a "$retval" -lt 1 ] && rm /lesslinux/blobpart/avg-free.tgz 
 	    fi
 	fi
