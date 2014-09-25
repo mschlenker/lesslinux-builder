@@ -52,6 +52,7 @@ tl = MfsTranslator.new(lang, tlfile)
 checkedblobs = Array.new
 opts = OptionParser.new 
 opts.on('-c', '--check', :REQUIRED )    { |i| checkedblobs = i.split(",") }
+opts.parse!
 
 blobxmls = Array.new
 checkboxes = Array.new
@@ -88,7 +89,7 @@ blobxmls.each { |x|
 		butt.sensitive = false
 	else
 		checkxmls[butt] = x
-		butt.active = true if checkeditems.include?(name) 
+		butt.active = true if checkedblobs.include?(x.root.elements["pkg"].attributes["name"]) 
 		installable += 1
 	end
 	# butt.tooltip(ttip)
