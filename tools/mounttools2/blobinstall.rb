@@ -50,8 +50,10 @@ tlfile = "/usr/share/lesslinux/drivetools/blobinstall.xml" if File.exists?("/usr
 tl = MfsTranslator.new(lang, tlfile)
 
 checkedblobs = Array.new
+hiddenblobs = Array.new
 opts = OptionParser.new 
 opts.on('-c', '--check', :REQUIRED )    { |i| checkedblobs = i.split(",") }
+opts.on('-h', '--hide', :REQUIRED )    { |i| hiddenblobs = i.split(",") }
 opts.parse!
 
 blobxmls = Array.new
@@ -71,30 +73,32 @@ Dir.entries("/usr/share/lesslinux/blob").each { |f|
 bframe = Gtk::Frame.new(tl.get_translation("select"))
 bbox = Gtk::VBox.new(false, 5)
 blobxmls.each { |x|
-	name = nil
-	ttip = nil
-	x.root.elements.each("name") { |n|
-		name = n.text if n.attributes["lang"] == lang
-	}
-	x.root.elements.each("description") { |n|
-                ttip = n.text if n.attributes["lang"] == lang
-        }
-	name = x.root.elements["name[@lang='en']"].text if name.nil?
-	ttip = x.root.elements["description[@lang='en']"].text if ttip.nil?
-	checkfiles = x.root.elements["pkg"].attributes["checkfiles"].split
-	checkdirs = x.root.elements["pkg"].attributes["checkdirs"].split
-	butt = Gtk::CheckButton.new(name, false)
-	if is_installed?(checkdirs, checkfiles)
-		butt.active = true 
-		butt.sensitive = false
-	else
-		checkxmls[butt] = x
-		butt.active = true if checkedblobs.include?(x.root.elements["pkg"].attributes["name"]) 
-		installable += 1
+	unless hiddenblobs.include?(x.root.elements["pkg"].attributes["name"])
+		name = nil
+		ttip = nil
+		x.root.elements.each("name") { |n|
+			name = n.text if n.attributes["lang"] == lang
+		}
+		x.root.elements.each("description") { |n|
+			ttip = n.text if n.attributes["lang"] == lang
+		}
+		name = x.root.elements["name[@lang='en']"].text if name.nil?
+		ttip = x.root.elements["description[@lang='en']"].text if ttip.nil?
+		checkfiles = x.root.elements["pkg"].attributes["checkfiles"].split
+		checkdirs = x.root.elements["pkg"].attributes["checkdirs"].split
+		butt = Gtk::CheckButton.new(name, false)
+		if is_installed?(checkdirs, checkfiles)
+			butt.active = true 
+			butt.sensitive = false
+		else
+			checkxmls[butt] = x
+			butt.active = true if checkedblobs.include?(x.root.elements["pkg"].attributes["name"]) 
+			installable += 1
+		end
+		# butt.tooltip(ttip)
+		checkboxes.push(butt)
+		bbox.pack_start_defaults(butt)
 	end
-	# butt.tooltip(ttip)
-	checkboxes.push(butt)
-	bbox.pack_start_defaults(butt) 
 }
 bframe.add(bbox)
 
