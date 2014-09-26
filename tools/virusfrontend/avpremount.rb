@@ -109,7 +109,7 @@ end
 def mount_all(rw=false)
 	drives = Array.new
 	Dir.entries("/sys/block").each { |l|
-		drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ # || l =~  
+		drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/   
 	}
 	rwmode = "ro"
 	rwmode = "rw" if rw == true
@@ -158,10 +158,10 @@ go.signal_connect("clicked") {
 		mount_all(rwauto.active?)
 		if count_mount < 1
 			error_dialog(@tl.get_translation("stillnohead"), @tl.get_translation("stillnobody"))
-			system("nohup su surfer -c mmmm.rb &")
+			system("nohup su surfer -c /usr/bin/mmmmng.sh &")
 		end
 	else
-		system("nohup su surfer -c mmmm.rb &")
+		system("nohup su surfer -c /usr/bin/mmmmng.sh &")
 	end
 	Gtk.main_quit
 }
