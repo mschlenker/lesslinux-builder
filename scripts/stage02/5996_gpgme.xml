@@ -1,0 +1,41 @@
+<llpackages>
+	<package 
+		name="gpgme"
+		version="1.51"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="a91c258e79acf30ec86a667e07f835e5e79342d8">gpgme-1.5.1.tar.bz2</pkg>
+				<mirror>ftp://ftp.gnupg.org/gcrypt/gpgme/</mirror>
+			</file>
+			<manualcheck date="20140710" interval="90" page="ftp://ftp.gnupg.org/gcrypt/libassuan/" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --disable-gpgsm-test
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
