@@ -28,6 +28,7 @@ case $1 in
 	elif [ -d /lesslinux/blob/teamviewer9 ] ; then
 		mount --bind  /lesslinux/blob/teamviewer9 /opt/teamviewer/teamviewer9
 		mount -o loop /opt/teamviewer/teamviewer9/tv_bin.sqs /opt/teamviewer/teamviewer9/tv_bin
+		umount /usr/share/applications/teamviewer.desktop
 	elif [ -f /lesslinux/blob/teamviewer_linux.tar.gz ] ; then
 		mount -t tmpfs -o mode=0755,size=256M tmpfs /opt/teamviewer
 		tar -C /opt/teamviewer -xvzf /lesslinux/blob/teamviewer_linux.tar.gz
@@ -43,6 +44,7 @@ case $1 in
 			mount --bind  /lesslinux/blob/teamviewer9 /opt/teamviewer/teamviewer9
 		fi
 		mount -o loop /opt/teamviewer/teamviewer9/tv_bin.sqs /opt/teamviewer/teamviewer9/tv_bin
+		umount /usr/share/applications/teamviewer.desktop
 	else
 		mount --bind /usr/share/applications/teamviewer.desktop.missing /usr/share/applications/teamviewer.desktop
 	fi
