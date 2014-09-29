@@ -19,7 +19,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make -DCMAKE_INSTALL_PREFIX=/usr  .
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make
 			]]>
 		</build>
