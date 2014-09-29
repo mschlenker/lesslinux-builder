@@ -1,0 +1,39 @@
+<llpackages>
+	<package 
+		name="openvas-cli"
+		version="1.3.0"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="f96ec790eb6290b1dfccf4c18ef6836d26702325">openvas-cli-1.3.0.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/1633/</mirror>
+			</file>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make -DCMAKE_INSTALL_PREFIX=/usr  .
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
