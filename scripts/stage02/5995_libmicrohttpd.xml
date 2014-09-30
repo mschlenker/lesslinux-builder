@@ -1,0 +1,41 @@
+<llpackages>
+	<package 
+		name="libmicrohttpd"
+		version="0.9.37"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="20af66ef99ecdbf426828df6256cb9742a5bce59">libmicrohttpd-0.9.37.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/libmicrohttpd/</mirror>
+			</file>
+			<manualcheck date="20140710" interval="90" page="ftp://ftp.gnupg.org/gcrypt/libassuan/" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
