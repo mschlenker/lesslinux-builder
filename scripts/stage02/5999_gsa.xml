@@ -1,0 +1,39 @@
+<llpackages>
+	<package 
+		name="greenbone-security-assistant"
+		version="5.0.3"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="e926223f8c919a1fd6ddf2877dd56c1452b5146a">greenbone-security-assistant-5.0.3.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/1734/</mirror>
+			</file>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
