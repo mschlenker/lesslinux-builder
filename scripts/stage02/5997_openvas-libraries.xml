@@ -54,7 +54,9 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			mkdir -p ${TGTDIR}/usr/var/lib/openvas
+			mkdir -p ${TGTDIR}/usr/var/log/openvas
 			touch ${TGTDIR}/usr/var/lib/openvas/.keep_this_directory
+			touch ${TGTDIR}/usr/var/log/openvas/.keep_this_directory
 			]]>
 		</install>
 		<clean>
