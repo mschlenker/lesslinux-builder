@@ -40,8 +40,10 @@ case $1 in
 	printf "$bold===> Removing OPENVAS, freeing memory $normal\n"
 	killall openvassd
 	killall openvasmd 
+	killall openvasad
 	killall -9 openvassd
 	killall -9 openvasmd
+	killall -9 openvasad
 	for d in CA private ; do
 	    umount /usr/var/lib/openvas/${d}
 	done
