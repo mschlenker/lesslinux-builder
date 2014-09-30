@@ -1,0 +1,56 @@
+<llpackages>
+	<package name="openvas-libraries" />
+	<scripts>
+		<scriptdata location="/etc/rc.d/0610-openvas.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides openvas
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	if mountpoint -q /usr/var/lib/openvas ; then
+	    printf "$bold===> Skipping OPENVAS, already mounted $normal\n"
+	else
+	    printf "$bold===> Preparing OPENVAS $normal\n"
+	    if mountpoint -q /lesslinux/blobpart ; then
+		mkdir -p /lesslinux/blobpart/openvas
+		mount --bind /lesslinux/blobpart/openvas /usr/var/lib/openvas
+	    else
+		mount -t tmpfs -o mode=0755,size=1536M tmpfs /usr/var/lib/openvas
+	    fi
+	    for d in CA private ; do
+		mkdir -p /usr/var/lib/openvas/${d}
+		mount -t tmpfs -o mode=0755,size=32M tmpfs /usr/var/lib/openvas/${d}
+	    done
+	    mkdir -p /var/log/openvas
+	    mount --bind /var/log/openvas /usr/var/log/openvas
+	    yes '' | openvas-mkcert
+	    openvas-mkcert-client -n -i 
+	fi
+    ;;
+    stop)
+	printf "$bold===> Removing OPENVAS, freeing memory $normal\n"
+	killall openvassd
+	killall openvasmd 
+	killall -9 openvassd
+	killall -9 openvasmd
+	for d in CA private ; do
+	    umount /usr/var/lib/openvas/${d}
+	done
+	umount /usr/var/lib/openvas
+	umount /usr/var/log/openvas
+    ;;
+esac
+
+]]>
+		</scriptdata>
+	</scripts>
+</llpackages>
