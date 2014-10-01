@@ -629,7 +629,8 @@ messagebus:x:60000:60000:messagebus:/dev/null:/bin/false
 clamav:x:60002:60002:ClamAV:/dev/null:/bin/false
 haldaemon:x:60005:60005:Hal Daemon:/dev/null:/bin/false
 sshd:x:60026:60026:Secure Shell Daemon:/dev/null:/bin/false
-davfs2:x:60027:60027:DAVFS2 Daemon:/dev/null:/bin/false]]>
+davfs2:x:60027:60027:DAVFS2 Daemon:/dev/null:/bin/false
+nobody:x:65534:65534:nobody:/dev/null:/bin/false]]>
 		</scriptdata>
 		<scriptdata location="/etc/shadow" mode="0600" group="0" owner="0">
 		<![CDATA[root:!:10933:0:99999:7:::
@@ -639,7 +640,8 @@ messagebus:!:10933:60000:99999:7:::
 clamav:!:10933:60002:99999:7:::
 haldaemon:!:10933:60005:99999:7:::
 sshd:!:10933:60026:99999:7:::
-davfs2:!:10933:60027:99999:7:::]]>
+davfs2:!:10933:60027:99999:7:::
+nobody:*:16165:0:99999:7:::]]>
 		</scriptdata>
 		<scriptdata location="/etc/group" mode="0644" group="0" owner="0">
 		<![CDATA[root:x:0:
@@ -679,7 +681,8 @@ messagebus:!:10933:60000:99999:7:::
 clamav:!:10933:60002:99999:7:::
 haldaemon:!:10933:60005:99999:7:::
 sshd:!:10933:60026:99999:7:::
-davfs2:!:10933:60027:99999:7:::]]>
+davfs2:!:10933:60027:99999:7:::
+nobody:*:16165:0:99999:7:::]]>
 		</scriptdata>
 		<!--<scriptdata location="/etc/inittab" mode="0644" group="0" owner="0">
 		<![CDATA[::sysinit:/etc/rc
