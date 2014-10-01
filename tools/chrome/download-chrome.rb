@@ -18,3 +18,5 @@ else
 end
 
 system("/etc/rc.d/0600-google-chrome.sh start") 
+system("install -m 0755 /usr/share/applications/google-chrome.desktop /home/surfer/Desktop/")
+system("chown surfer:surfer /home/surfer/Desktop/google-chrome.desktop") 

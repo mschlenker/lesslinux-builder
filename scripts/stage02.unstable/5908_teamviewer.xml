@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="teamviewer"
-		version="20140918-01"
+		version="20141001-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="a215dd44fb5fff63a6841064070a00c873600e57">teamviewer-20140918-01.tar.bz2</pkg>
+				<pkg sha1="20b00a65ec790b190b9eafa3f2e0ba7f8a7f4985">teamviewer-20141001-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20130819" interval="120" page="http://distfiles.lesslinux.org/" />
@@ -51,7 +51,6 @@
 			install -m 0644 teamviewer.desktop ${TGTDIR}/usr/share/applications
 			install -m 0755 teamviewer.sh ${TGTDIR}/usr/bin
 			touch ${TGTDIR}/opt/teamviewer/teamviewer9/.intentionally_left_empty
-			touch ${TGTDIR}/usr/share/applications/teamviewer.desktop.missing
 			]]>
 		</install>
 	</package>
