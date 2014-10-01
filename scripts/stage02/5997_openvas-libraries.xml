@@ -13,6 +13,10 @@
 				<pkg sha1="917913955040e5a312178f838c71ef74645dac6b">openvas-check-setup-20140930.sh</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
+			<file>            
+				<pkg sha1="5265580b146ebe4841383a6288b39eab66c7775b">openvas-wrapper-20141001.sh</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -59,6 +63,7 @@
 			make install DESTDIR=${TGTDIR}
 			mkdir -p ${TGTDIR}/usr/bin
 			install -m 0755 ${SRCDIR}/openvas-check-setup-20140930.sh ${TGTDIR}/usr/bin/openvas-check-setup
+			install -m 0755 ${SRCDIR}/openvas-wrapper-20141001.sh ${TGTDIR}/usr/bin/openvas-wrapper
 			mkdir -p ${TGTDIR}/usr/var/lib/openvas
 			mkdir -p ${TGTDIR}/usr/var/log/openvas
 			touch ${TGTDIR}/usr/var/lib/openvas/.keep_this_directory

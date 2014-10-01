@@ -20,6 +20,9 @@ case $1 in
 	    printf "$bold===> Skipping OPENVAS, already mounted $normal\n"
 	else
 	    printf "$bold===> Preparing OPENVAS $normal\n"
+	    for d in lib log cache ; do
+		mkdir -p /usr/var/${d}/openvas
+	    done
 	    if mountpoint -q /lesslinux/blobpart ; then
 		mkdir -p /lesslinux/blobpart/openvas
 		mount --bind /lesslinux/blobpart/openvas /usr/var/lib/openvas
@@ -30,8 +33,6 @@ case $1 in
 		mkdir -p /usr/var/lib/openvas/${d}
 		mount -t tmpfs -o mode=0755,size=32M tmpfs /usr/var/lib/openvas/${d}
 	    done
-	    mkdir -p /var/log/openvas
-	    mount --bind /var/log/openvas /usr/var/log/openvas
 	    yes '' | openvas-mkcert
 	    openvas-mkcert-client -n -i 
 	fi
@@ -40,10 +41,8 @@ case $1 in
 	printf "$bold===> Removing OPENVAS, freeing memory $normal\n"
 	killall openvassd
 	killall openvasmd 
-	killall openvasad
 	killall -9 openvassd
 	killall -9 openvasmd
-	killall -9 openvasad
 	for d in CA private ; do
 	    umount /usr/var/lib/openvas/${d}
 	done
