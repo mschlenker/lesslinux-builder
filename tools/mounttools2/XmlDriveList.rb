@@ -17,13 +17,34 @@ class XmlDriveList
 	def reread_drives
 		@drives = Array.new
 		Dir.entries("/sys/block").each { |l|
-			@drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
+			if l =~ /[a-z]$/ 
+				begin
+					d =  MfsDiskDrive.new(l, true)
+					@drives.push(d) 
+				rescue 
+					$stderr.puts "Failed adding: #{l}"
+				end
+			end
 		}
 		Dir.entries("/sys/block").each { |l|
-			@drives.push(MfsDiskDrive.new(l, true)) if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
+			if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
+				begin 
+					d =  MfsDiskDrive.new(l, true)
+					@drives.push(d) 
+				rescue 
+					$stderr.puts "Failed adding: #{l}"
+				end
+			end
 		}
 		Dir.entries("/sys/block").each { |l|
-			@drives.push(MfsDiskDrive.new(l, true)) if l =~ /sr[0-9]$/ 
+			if l =~ /sr[0-9]$/ 
+				begin 
+					d =  MfsDiskDrive.new(l, true)
+					@drives.push(d) 
+				rescue 
+					$stderr.puts "Failed adding: #{l}"
+				end
+			end
 		}
 	end
 	

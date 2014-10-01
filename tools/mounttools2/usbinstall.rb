@@ -108,8 +108,15 @@ def fill_drive_combo(combobox, gobutton, tl)
         }
 	drives = Array.new
 	Dir.entries("/sys/block").each { |l|
-                drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ 
-        }
+			if l =~ /[a-z]$/ 
+				begin
+					d =  MfsDiskDrive.new(l, true)
+					drives.push(d) 
+				rescue 
+					$stderr.puts "Failed adding: #{l}"
+				end
+			end
+	}
 	drives.each { |d|
 		unless d.mounted == true
 			@drives.push d if d.usb == true && d.size > sizes[0] 

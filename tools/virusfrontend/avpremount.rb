@@ -109,7 +109,14 @@ end
 def mount_all(rw=false)
 	drives = Array.new
 	Dir.entries("/sys/block").each { |l|
-		drives.push(MfsDiskDrive.new(l, true)) if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/   
+			if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/
+				begin
+					d =  MfsDiskDrive.new(l, true)
+					drives.push(d) 
+				rescue 
+					$stderr.puts "Failed adding: #{l}"
+				end
+			end
 	}
 	rwmode = "ro"
 	rwmode = "rw" if rw == true
