@@ -1,5 +1,9 @@
 <llpackages>
 	<package name="openvas-libraries" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
 	<scripts>
 		<scriptdata location="/etc/sudoers.lax.d/openvas" mode="0440" group="0" owner="0">
 		<![CDATA[
