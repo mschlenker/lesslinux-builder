@@ -46,7 +46,7 @@ case $1 in
 		mount -o loop /opt/teamviewer/teamviewer9/tv_bin.sqs /opt/teamviewer/teamviewer9/tv_bin
 		umount /usr/share/applications/teamviewer.desktop
 	else
-		mount --bind /usr/share/applications/teamviewer.desktop.missing /usr/share/applications/teamviewer.desktop
+		mount --bind /dev/null /usr/share/applications/teamviewer.desktop
 	fi
     ;;
     stop)
