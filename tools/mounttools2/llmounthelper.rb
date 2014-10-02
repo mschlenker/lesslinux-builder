@@ -17,18 +17,16 @@ if ARGV.size < 2
 end
 
 Dir.entries("/sys/block").each { |l|
-	Dir.entries("/sys/block").each { |l|
-		if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ || l =~ /sr[0-9]$/ 
-			unless  ARGV[1][l].nil?
-				begin
-					d =  MfsDiskDrive.new(l, true)
-					drives.push(d) 
-				rescue 
-					$stderr.puts "Failed adding: #{l}"
-				end
+	if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ || l =~ /sr[0-9]$/ 
+		unless  ARGV[1][l].nil?
+			begin
+				d =  MfsDiskDrive.new(l, true)
+				drives.push(d) 
+			rescue 
+				$stderr.puts "Failed adding: #{l}"
 			end
 		end
-	}
+	end
 }
 
 retval = 0
