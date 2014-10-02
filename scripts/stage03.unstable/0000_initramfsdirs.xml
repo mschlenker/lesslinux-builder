@@ -4596,10 +4596,17 @@ case $1 in
 		mkdir -p /lesslinux/blobpart
 		fstype=` blkid -o udev "$blobdev" | grep 'FS_TYPE=ext' | awk -F '=' '{print $2}' `
 		if [ "$fstype" = ext2 ] ; then
-			tune2fs -O extents,uninit_bg,dir_index ${blobdev}
-			fsck -fCVD ${blobdev}
+			# tune2fs -O extents,uninit_bg,dir_index ${blobdev}
+			# fsck -fCVD ${blobdev}
+			# fsck -fCV ${blobdev}
+			# btrfs-convert ${blobdev}
+			mkfs.btrfs -f -L LessLinuxBlob ${blobdev}
+			mount -t btrfs -o relatime,compress $blobdev /lesslinux/blobpart
+		elif [ "$fstype" = ext4 ] ; then
+			mount -t ext4 -o relatime $blobdev /lesslinux/blobpart
+		else
+			mount -t btrfs -o relatime,compress $blobdev /lesslinux/blobpart
 		fi
-		mount -t ext4 -o relatime $blobdev /lesslinux/blobpart
 	fi
     ;;
     stop)
