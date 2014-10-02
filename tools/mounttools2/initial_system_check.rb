@@ -18,26 +18,14 @@ drives = Array.new
 show_dialog = false
 
 Dir.entries("/sys/block").each { |l|
-       Dir.entries("/sys/block").each { |l|
-			if l =~ /[a-z]$/ 
-				begin
-					d =  MfsDiskDrive.new(l, true)
-					drives.push(d) 
-				rescue 
-					$stderr.puts "Failed adding: #{l}"
-				end
-			end
-	}
-	Dir.entries("/sys/block").each { |l|
-			if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
-				begin 
-					d =  MfsDiskDrive.new(l, true)
-					drives.push(d) 
-				rescue 
-					$stderr.puts "Failed adding: #{l}"
-				end
-			end
-	} 
+	if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ 
+		begin
+			d =  MfsDiskDrive.new(l, true)
+			drives.push(d) 
+		rescue 
+			$stderr.puts "Failed adding: #{l}"
+		end
+	end
 }
 
 is_hibernated = false

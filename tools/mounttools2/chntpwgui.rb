@@ -110,26 +110,24 @@ def fill_win_combo(wincombo, usercombo, gobutton)
 		end
 	}
 	Dir.entries("/sys/block").each { |l|
-		Dir.entries("/sys/block").each { |l|
-			if l =~ /[a-z]$/ 
-				begin
-					d =  MfsDiskDrive.new(l, true)
-					@drives.push(d) 
-				rescue 
-					$stderr.puts "Failed adding: #{l}"
-				end
+		if l =~ /[a-z]$/ 
+			begin
+				d =  MfsDiskDrive.new(l, true)
+				@drives.push(d) 
+			rescue 
+				$stderr.puts "Failed adding: #{l}"
 			end
-		}
-		Dir.entries("/sys/block").each { |l|
-			if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
-				begin 
-					d =  MfsDiskDrive.new(l, true)
-					@drives.push(d) 
-				rescue 
-					$stderr.puts "Failed adding: #{l}"
-				end
+		end
+	}
+	Dir.entries("/sys/block").each { |l|
+		if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
+			begin 
+				d =  MfsDiskDrive.new(l, true)
+				@drives.push(d) 
+			rescue 
+				$stderr.puts "Failed adding: #{l}"
 			end
-		}
+		end
 	}
 	# Now fill each combo box with the respective 
 	@drives.each { |d|
