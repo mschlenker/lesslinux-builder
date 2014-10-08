@@ -17,10 +17,10 @@ class FileDownLoader
 		dltokens = []
 		@xfile = REXML::Document.new(File.new(@buildfile))
 		@xfile.elements.each("llpackages/package/sources/file") { |f|
-			pkgname = f.elements["pkg"].text
+			pkgname = f.elements["pkg"].text.strip
 			shahash = f.elements["pkg"].attributes["sha1"]
 			dllocations = Array.new
-			f.elements.each("mirror") { |m| dllocations.push(m.text) }
+			f.elements.each("mirror") { |m| dllocations.push(m.text.strip) }
 			dllocations = dllocations + [ "http://distfiles.lesslinux.org/", "http://distfiles.lesslinux.org/old/" ]
 			srctoken = SingleSourceFile.new(@srcdir, pkgname, shahash, dllocations, @check_sources)
 			dltokens.push(srctoken)
