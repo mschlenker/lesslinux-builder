@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='antlr_python_runtime' version='3.1.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='dc095863a254cdf9606784dbd6efb43cf56a6804'>
+                    antlr_python_runtime-3.1.3.tar.gz
+                </pkg>
+                <mirror>
+                    http://antlr3.org/download/Python/
+                </mirror>
+            </file>
+            <manualcheck date='20141008' interval='60' mirror='http://antlr3.org/download/Python/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
