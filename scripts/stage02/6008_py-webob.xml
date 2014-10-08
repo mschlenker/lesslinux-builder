@@ -1,0 +1,38 @@
+<llpackages>
+    <package pkgname='WebOb' pkgversion='0.9' install='chroot' class='user'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='469ad2f36b487e605b7ccca2b71ff77e447cc9ef'>
+                    WebOb-0.9.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/W/WebOb/
+                </mirror>
+            </file>
+            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/W/WebOb/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,38 @@
+<llpackages>
+    <package pkgname='py-dateutil' pkgversion='2.2' install='chroot' class='user'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='bd6ea7fa97bf3c900d1147b979b74a53beced44f'>
+                    py-dateutil-2.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/p/py-dateutil/
+                </mirror>
+            </file>
+            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/p/py-dateutil/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,38 @@
+<llpackages>
+    <package pkgname='fusepy' pkgversion='2.0.2' install='chroot' class='user'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d838388a122006614cd699cbcc5aa681194a5ae1'>
+                    fusepy-2.0.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/f/fusepy/
+                </mirror>
+            </file>
+            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/f/fusepy/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

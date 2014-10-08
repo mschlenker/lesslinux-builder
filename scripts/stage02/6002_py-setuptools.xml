@@ -1,0 +1,38 @@
+<llpackages>
+    <package pkgname='setuptools' pkgversion='6.0.2' install='chroot' class='user'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a29a81b7913151697cb15b069844af75d441408f'>
+                    setuptools-6.0.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/s/setuptools/
+                </mirror>
+            </file>
+            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/s/setuptools/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

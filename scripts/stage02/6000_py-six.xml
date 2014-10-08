@@ -1,0 +1,38 @@
+<llpackages>
+    <package pkgname='six' pkgversion='1.8.0' install='chroot' class='user'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='aa3b0659cbc85c6c7a91efc51f2d1007040070cd'>
+                    six-1.8.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/s/six/
+                </mirror>
+            </file>
+            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/s/six/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
