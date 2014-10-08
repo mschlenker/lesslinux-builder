@@ -89,7 +89,7 @@ if pkgname.nil?
 else
 	package.add_attribute("name", pkgname)
 end
-package.add_attribute("pkgversion", pkgversion)
+package.add_attribute("version", pkgversion)
 package.add_attribute("install", "chroot")
 lic = package.add_element("license")
 lic.text = "unknown"
