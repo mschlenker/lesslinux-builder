@@ -20,7 +20,7 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${SRCDIR}/${PKGNAME}-${PKGVERSION}
 python setup.py config
 python setup.py build
 ]]>

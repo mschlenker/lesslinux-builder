@@ -111,7 +111,7 @@ install = package.add_element("install")
 clean = package.add_element("clean")
 chdir = nil
 unless pkgname.nil? 
-	unpack.add(REXML::CData.new("tar xf " + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
+	unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
 	clean.add(REXML::CData.new("rm -rf " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
 	chdir = "cd " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}")
 else
