@@ -85,13 +85,12 @@ doc = REXML::Document.new
 llpack = doc.add_element("llpackages")
 package = llpack.add_element("package")
 if pkgname.nil? 
-	package.add_attribute("pkgname", archname)
+	package.add_attribute("name", archname)
 else
-	package.add_attribute("pkgname", pkgname)
+	package.add_attribute("name", pkgname)
 end
 package.add_attribute("pkgversion", pkgversion)
 package.add_attribute("install", "chroot")
-package.add_attribute("class", "user")
 lic = package.add_element("license")
 lic.text = "unknown"
 src = package.add_element("sources")
