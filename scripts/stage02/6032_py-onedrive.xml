@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='python-onedrive' version='14.09.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='5afa14f103bad644fd002f802d59e00c44e6c97c'>
+                    python-onedrive-14.09.3.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/p/python-onedrive/
+                </mirror>
+            </file>
+            <manualcheck date='20141009' interval='60' mirror='https://pypi.python.org/packages/source/p/python-onedrive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
