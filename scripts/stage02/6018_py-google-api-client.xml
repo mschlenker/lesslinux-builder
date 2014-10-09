@@ -14,6 +14,28 @@
             </file>
             <manualcheck date='20141008' interval='60' mirror='http://distfiles.lesslinux.org/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>cairo-dock-plugins</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>distribute</dep>
+                        <dep>docutils</dep>
+                        <dep>ez_setup</dep>
+                        <dep>fusepy</dep>
+                        <dep>google-appengine</dep>
+                        <dep>httplib2</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>py-dateutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>PyYAML</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                        <dep>WebOb</dep>
+                        <dep>xpra</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>

@@ -14,6 +14,23 @@
             </file>
             <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/h/httplib2/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>cairo-dock-plugins</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>docutils</dep>
+                        <dep>fusepy</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>openssl</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                        <dep>WebOb</dep>
+                        <dep>xpra</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
