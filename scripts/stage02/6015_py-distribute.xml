@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='distribute' version='0.6' install='chroot'>
+    <package name='distribute' version='0.6.14' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='0422b0ab9922fbe61c4f5b3246e1626714865a13'>
-                    distribute-0.6.tar.gz
+                <pkg sha1='bae11a8276a98acc7e2bb5eaaa3ba1344e376d9b'>
+                    distribute-0.6.14.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/d/distribute/
                 </mirror>
             </file>
-            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/d/distribute/'/>
+            <manualcheck date='20141009' interval='60' mirror='https://pypi.python.org/packages/source/d/distribute/'/>
         </sources>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -20,7 +20,7 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${SRCDIR}/${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py config
 python setup.py build
 ]]>
