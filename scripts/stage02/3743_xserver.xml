@@ -10,6 +10,10 @@
 				<pkg sha1="0b5ce3868c1c617c21e19ce863aab1ede6e154c4">xorg-server-1.16.0.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/xserver/</mirror>
 			</file>
+			<file>                                                                                                        
+				<pkg sha1="dd016593ea04b07847b9ba6218ad65ed824b20da">xorg-server-1.16.0-glibc-2.20.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
 			<manualcheck date="20140719" interval="90" page="http://xorg.freedesktop.org/archive/individual/xserver/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/xserver/">
@@ -92,7 +96,12 @@
 			fi
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glibc-2.20.patch | patch -p1 
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}

@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="iproute2"
-		version="3.15.0"
+		version="3.16.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="82dce736488dac5af0f4b5659ae905fef87ed308">iproute2-3.15.0.tar.xz</pkg>
+				<pkg sha1="25bb97f68d3f474e599bb97367670b31b3e96add">iproute2-3.16.0.tar.xz</pkg>
 				<mirror>https://www.kernel.org/pub/linux/utils/net/iproute2/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="90" page="https://www.kernel.org/pub/linux/utils/net/iproute2/" />
+			<manualcheck date="20140903" interval="90" page="https://www.kernel.org/pub/linux/utils/net/iproute2/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/net/iproute2/">
-					<atext linktext="iproute2-3.15.1" />
-					<atext linktext="iproute2-3.15.2" />
-					<atext linktext="iproute2-3.16" />
+					<atext linktext="iproute2-3.16.1" />
+					<atext linktext="iproute2-3.16.2" />
 					<atext linktext="iproute2-3.17" />
 					<atext linktext="iproute2-3.18" />
 					<atext linktext="iproute2-3.19" />
+					<atext linktext="iproute2-3.20" />
 				</page>
 			</check>
 		</sources>

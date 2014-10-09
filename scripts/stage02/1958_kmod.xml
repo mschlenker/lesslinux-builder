@@ -82,10 +82,12 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			mkdir -p ${TGTDIR}/sbin
+			mkdir -p ${TGTDIR}/usr/lib
 			make install DESTDIR=${TGTDIR}
 			for target in depmod insmod modinfo modprobe rmmod; do
 				ln -sv ../bin/kmod ${TGTDIR}/sbin/$target
 			done
+			mv ${TGTDIR}/lib/pkgconfig ${TGTDIR}/usr/lib/
 			ln -sv kmod ${TGTDIR}/bin/lsmod
 			]]>
 		</install>

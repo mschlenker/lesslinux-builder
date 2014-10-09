@@ -2,15 +2,19 @@
 <llpackages>
 	<package 
 		name="chrome"
-		version="20140824"
+		version="20141001-00"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
+			<file>                                                                                            
+				<pkg sha1="f85bbf8af4bbb017cefe04e80b9ad1e17034f146">chrome-20141001-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
 			<manualcheck date="20140824" interval="60" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<unpack>
 			<![CDATA[ 
-			echo 'Nothing to unpack!'
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<patch />
@@ -25,6 +29,11 @@
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/opt/google/chrome
 			mkdir -p ${TGTDIR}/usr/share/applications
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
+
+			install -m 0755 ${PKGNAME}/download-chrome.rb ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0644 ${PKGNAME}/chrome.xml ${TGTDIR}/usr/share/lesslinux/blob/
+						
 			ln -sf /opt/google/chrome/google-chrome ${TGTDIR}/usr/bin/google-chrome-stable
 			touch ${TGTDIR}/opt/google/chrome/.keep_this_directory
 			touch ${TGTDIR}/opt/google/chrome/google-chrome

@@ -1,20 +1,19 @@
 <llpackages>
 	<package 
 		name="libgcrypt15"
-		version="1.6.1"
+		version="1.6.2"
 		class="lib"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>   
-				<pkg sha1="f03d9b63ac3b17a6972fc11150d136925b702f02">libgcrypt-1.6.1.tar.bz2</pkg>
+				<pkg sha1="cc31aca87e4a3769cb86884a3f5982b2cc8eb7ec">libgcrypt-1.6.2.tar.bz2</pkg>
 				<mirror>ftp://ftp.gnupg.org/gcrypt/libgcrypt/</mirror>
 			</file>
-			<manualcheck date="20140221" interval="180" page="ftp://ftp.gnupg.org/gcrypt/libgcrypt/" />
+			<manualcheck date="20140902" interval="180" page="ftp://ftp.gnupg.org/gcrypt/libgcrypt/" />
 			<check>
 				<page html="ftp://ftp.gnupg.org/gcrypt/libgcrypt/">
-					<atext linktext="libgcrypt-1.6.2." />
+					<atext linktext="libgcrypt-1.6.12." />
 					<atext linktext="libgcrypt-1.6.3." />
 					<atext linktext="libgcrypt-1.6.4." />
 					<atext linktext="libgcrypt-1.6.5." />

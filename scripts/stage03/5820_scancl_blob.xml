@@ -1,8 +1,7 @@
 <llpackages>
 	<package 
 		name="scancl-blob"
-		class="user"
-		>
+		class="user">
 	</package>
 	<scripts>
 		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0300-scancl-blob.sh" mode="0755" group="0" owner="0">
@@ -195,11 +194,11 @@ case $1 in
 	    install -m 0644 /etc/avira/avupdate.conf.lesslinux /AntiVirUpdate/avupdate.conf
 	    install -m 0644 /etc/avira/scancl.conf.lesslinux /AntiVir/scancl.conf
 	    
-	    if [ -f /AntiVir/rescue_cd.key ] ; then
+	    if [ -f /AntiVir/hbedv.key ] ; then
 		echo "skipping key file"
 	    else
-		install -m 0644 /etc/avira/rescue_cd.key /AntiVir
-		touch -t "$keydate" /AntiVir/rescue_cd.key
+		install -m 0644 /etc/avira/hbedv.key /AntiVir
+		touch -t "$keydate" /AntiVir/hbedv.key
 	    fi
 	    install -m 0755 /usr/share/lesslinux/scancl-blob/avupdate /AntiVirUpdate
 	    mkdir /tmp/quarantine
@@ -220,7 +219,5 @@ esac
 
 		]]>
 		</scriptdata>
-		
-	
 	</scripts>
 </llpackages>

@@ -1,17 +1,16 @@
 <llpackages>
 	<package 
 		name="lesslinux-drivetools"
-		version="20140515-01"
+		version="20141002-02"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="bc300cba58480554ab1cdcd4aeb660e345246da2">lesslinux-drivetools-20140515-01.tar.bz2</pkg>
+				<pkg sha1="f1664c3869613ca6432b5f383b1ce5d3678df011">lesslinux-drivetools-20141002-02.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140515" interval="120" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20140905" interval="120" page="http://distfiles.lesslinux.org/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -47,14 +46,23 @@
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/drivetools
 			mkdir -p ${TGTDIR}/usr/share/applications
 			install -m 0644 winfiles.txt ${TGTDIR}/usr/share/lesslinux/drivetools
-			for f in llpm_drives llpm_mount mmmm2.sh initial_system_check.sh deletedisk.sh clonedisk.sh chntpwgui.sh resetshell.sh usbinstall.sh mountall.sh mountnet.sh runx11vnc.sh runsmbd.sh ; do
-				install -m 0755 ${f}  ${TGTDIR}/usr/bin
+			install -m 0755 vdiskimage-wrapper.sh ${TGTDIR}/usr/share/lesslinux/drivetools
+			install -m 0755 ddrescueimage-wrapper.sh ${TGTDIR}/usr/share/lesslinux/drivetools
+			for f in llpm_drives llpm_mount mmmm2.sh initial_system_check.sh deletedisk.sh \
+				clonedisk.sh chntpwgui.sh resetshell.sh usbinstall.sh mountall.sh \
+				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh \
+				mmmmng.sh llmountandopen.sh blobinstall.sh vdiskimage.sh ddrescueimage.sh  ; do
+					install -m 0755 ${f}  ${TGTDIR}/usr/bin
 			done
-			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui resetshell usbinstall mountall mountnet runx11vnc runsmbd ; do
-				install -m 0644 ${f}.xml  ${TGTDIR}/usr/share/lesslinux/drivetools
+			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui \
+				resetshell usbinstall mountall mountnet runx11vnc runsmbd blobinstall vdiskimage ddrescueimage ; do
+					install -m 0644 ${f}.xml  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
-			for f in llpm_drives MfsDiskDrive MfsSinglePartition MfsTranslator MfsSamDatabase MfsRegistryDatabase MmmmDriveList mmmm initial_system_check deletedisk clonedisk chntpwgui resetshell usbinstall mountall mountnet runx11vnc runsmbd ; do
-				install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
+			for f in llpm_drives MfsDiskDrive MfsSinglePartition MfsTranslator MfsSamDatabase \
+				MfsRegistryDatabase MmmmDriveList mmmm initial_system_check deletedisk \
+				clonedisk chntpwgui resetshell usbinstall mountall mountnet runx11vnc llmounthelper ddrescueimage \
+				runsmbd XmlDriveList xmldrivelist blobinstall vdiskimage ; do
+					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			for f in *.desktop ; do
 				install -m 0644 $f ${TGTDIR}/usr/share/applications

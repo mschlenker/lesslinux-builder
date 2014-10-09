@@ -57,7 +57,7 @@ case $1 in
 	if mountpoint -q /opt/tor-browser_de ; then
 		echo 'Skipping, already mounted!'
 	else
-		mount -t tmpfs tmpfs -o mode=0700,uid=1000,gid=1000 /opt/tor-browser_de
+		mount -t tmpfs -o mode=0700,uid=1000,gid=1000 tmpfs /opt/tor-browser_de
 		tar -C /opt -xvf /opt/tor-browser_de.tar
 		install -m 0755 /opt/bin/tor-browser_smack /opt/tor-browser_de
 		chown -R surfer:surfer /opt/tor-browser_de

@@ -13,7 +13,7 @@
 		<dir mode="0755">/etc/default</dir>
 	</dirs>
 	<scripts>
-		<scriptdata location="/etc/rc.d/0900-gtk3theme.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0500-gtk3theme.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash
 		
 #lesslinux provides gtk3theme
@@ -62,6 +62,10 @@ else
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
 	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
 fi
+
+for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
+	sed -i 's/mmmm\.rb/mmmmng.sh/g' /home/surfer/${f} 
+done
 
 # Uncomment to debug
 # /usr/bin/Terminal &

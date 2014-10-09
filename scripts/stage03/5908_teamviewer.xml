@@ -13,7 +13,7 @@ surfer  ALL = NOPASSWD: /usr/bin/teamviewer.sh
 #lesslinux provides teamviewer
 #lesslinux license BSD
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
 export PATH
 
 . /etc/rc.defaults
@@ -23,34 +23,46 @@ export PATH
 case $1 in 
     start)
 	printf "$bold===> Preparing TeamViewer $normal\n"
-	if [ -f /lesslinux/blob/teamviewer_linux.sqs ] ; then
-		freeloop=` losetup -f ` 
-		losetup $freeloop /lesslinux/blob/teamviewer_linux.sqs
-		mount $freeloop /opt/teamviewer/teamviewer8
-		mount -t tmpfs -o mode=0755 tmpfs /opt/teamviewer/teamviewer8/profile
-		mount -t tmpfs -o mode=0755 tmpfs /opt/teamviewer/teamviewer8/config
-		mount -t tmpfs -o mode=0755 tmpfs /opt/teamviewer/teamviewer8/logfiles
+	if mountpoint -q /opt/teamviewer ; then
+		printf "$bold---> Seems to be mounted, skipping $normal\n"
+	elif [ -d /lesslinux/blob/teamviewer9 ] ; then
+		mount --bind  /lesslinux/blob/teamviewer9 /opt/teamviewer/teamviewer9
+		mount -o loop /opt/teamviewer/teamviewer9/tv_bin.sqs /opt/teamviewer/teamviewer9/tv_bin
+		umount /usr/share/applications/teamviewer.desktop
 	elif [ -f /lesslinux/blob/teamviewer_linux.tar.gz ] ; then
-		mount -t tmpfs -o mode=0755 tmpfs /opt/teamviewer
+		mount -t tmpfs -o mode=0755,size=256M tmpfs /opt/teamviewer
 		tar -C /opt/teamviewer -xvzf /lesslinux/blob/teamviewer_linux.tar.gz
 		chown -R root:root /opt/teamviewer
+		( cd /opt/teamviewer/teamviewer9 ; mksquashfs tv_bin tv_bin.sqs )
+		rm -rf /opt/teamviewer/teamviewer9/tv_bin
+		mkdir -p /opt/teamviewer/teamviewer9/tv_bin
+		if mountpoint /lesslinux/blobpart && mkdir /lesslinux/blobpart/teamviewer9 ; then
+			tar -C /opt/teamviewer -cvf - teamviewer9 | tar -C /lesslinux/blobpart -xf - 
+			sync
+			umount /opt/teamviewer
+			ln -sf /lesslinux/blobpart/teamviewer9 /lesslinux/blob/
+			mount --bind  /lesslinux/blob/teamviewer9 /opt/teamviewer/teamviewer9
+		fi
+		mount -o loop /opt/teamviewer/teamviewer9/tv_bin.sqs /opt/teamviewer/teamviewer9/tv_bin
+		umount /usr/share/applications/teamviewer.desktop
 	else
-		mount --bind /usr/share/applications/teamviewer.desktop.missing /usr/share/applications/teamviewer.desktop
+		mount --bind /dev/null /usr/share/applications/teamviewer.desktop
 	fi
     ;;
     stop)
 	printf "$bold===> Removing TeamViewer $normal\n"
-	if [ -f /opt/teamviewer/teamviewer8/teamviewer ] ; then
+	if [ -f /opt/teamviewer/teamviewer9/teamviewer ] ; then
 		killall TeamViewer.exe
 		killall teamviewerd
 		killall -9 TeamViewer.exe
 		killall -9 teamviewerd 
 	fi
 	umount /usr/share/applications/teamviewer.desktop
-	umount /opt/teamviewer/teamviewer8/logfiles
-	umount /opt/teamviewer/teamviewer8/profile
-	umount /opt/teamviewer/teamviewer8/config
-	umount /opt/teamviewer/teamviewer8
+	umount /opt/teamviewer/teamviewer9/logfiles
+	umount /opt/teamviewer/teamviewer9/profile
+	umount /opt/teamviewer/teamviewer9/config
+	umount /opt/teamviewer/teamviewer9/tv_bin
+	umount /opt/teamviewer/teamviewer9
 	umount /opt/teamviewer
 	tvloop=` losetup -a | grep teamviewer | awk -F ':' '{print $1}' ` 
 	[ -n "$tvloop" ] && losetup -d "$tvloop" 

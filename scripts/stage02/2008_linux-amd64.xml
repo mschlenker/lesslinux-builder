@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="3.15.9"
+		version="3.16.4"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="84d59d74b8aadb706efb1674d1d2cc94822211ab">config-3.15-amd64-lesslinux-20140618-1030</pkg> 
+				<pkg sha1="8cdbf5add8deb2fc909f44f88e5097b5a8a165c8">config-3.16-amd64-lesslinux-20140815-1425</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="f21a27b36ad7169596b0b809707f1442e6d2bb89">linux-3.15.tar.xz</pkg>
+				<pkg sha1="bce412286eaac9765b45d445e63c19047fca1ab5">linux-3.16.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="f5e3ce187394601a074d6a624f8773bf1245509d">patch-3.15.9.xz</pkg>
+				<pkg sha1="03c9ff9f28487650fa0446a6b4dbaa47e1e25111">patch-3.16.4.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20140808" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20141006" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.15.11." />
-					<atext linktext="patch-3.15.12." />
-					<atext linktext="patch-3.15.10." />
-					<atext linktext="patch-3.16." />
+					<atext linktext="patch-3.16.5." />
+					<atext linktext="patch-3.16.6." />
+					<atext linktext="patch-3.16.7." />
 					<atext linktext="patch-3.17." />
 					<atext linktext="patch-3.18." />
+					<atext linktext="patch-3.19." />
 				</page>
 			</check>
 		</sources>
@@ -67,15 +67,15 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/linux-3.15.tar.xz | tar xf -
+			unxz -c ${SRCDIR}/linux-3.16.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			cd linux-3.15
+			cd linux-3.16
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/config-3.15-amd64-lesslinux-20140618-1030 .config 
+			cp -v ${SRCDIR}/config-3.16-amd64-lesslinux-20140815-1425 .config 
 			sed -i 's/lesslinux-000/lesslinux-amd64-000/g' .config 
 			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
 			
@@ -88,14 +88,14 @@
 			# echo 'CONFIG_IA32_AOUT=m' >> .config
 			
 			cd ..
-			mv linux-3.15 linux-${PKGVERSION}
+			mv linux-3.16 linux-${PKGVERSION}
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
 			cd linux-${PKGVERSION}
 			export PATH=/usr/local/crosstools-amd64/bin:$PATH
-			make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- oldconfig
+			yes n | make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- oldconfig
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				pump make -j $jobcount ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- CC='distcc /usr/local/crosstools-amd64/bin/amd64-linux-uclibc-gcc'

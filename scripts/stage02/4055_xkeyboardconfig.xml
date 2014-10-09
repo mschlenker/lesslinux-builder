@@ -1,25 +1,24 @@
 <llpackages>
 	<package 
 		name="xkeyboard-config"
-		version="2.0"
-		class="user"
-		>
+		version="20140819"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>          
-				<pkg sha1="9fb0d83fba3da66345a3ed6e0f06accd56186ea9">xkeyboard-config-2.0.tar.bz2</pkg>
-				<mirror>http://xlibs.freedesktop.org/xkbdesc/</mirror>
+				<pkg sha1="11b92717b84bb6b0644f4c72ff42767840794660">xkeyboard-config-20140819.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://xlibs.freedesktop.org/xkbdesc/" />
-			<check>
-				<page html="http://xlibs.freedesktop.org/xkbdesc/">
+			<manualcheck date="20140819" interval="180" page="http://cgit.freedesktop.org/xkeyboard-config/log/" />
+			<!-- <check>
+				<page html="http://cgit.freedesktop.org/xkeyboard-config/log/">
 					<atext linktext="xkeyboard-config-2.0.1." />
 					<atext linktext="xkeyboard-config-2.0.2." />
 					<atext linktext="xkeyboard-config-2.1." />
 					<atext linktext="xkeyboard-config-2.2." />
 					<atext linktext="xkeyboard-config-3." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -49,14 +48,15 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME} # -${PKGVERSION}
+			bash autogen.sh
 			./configure --prefix=/usr --sysconfdir=/etc  --with-xkb-rules-symlink=xorg && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME} # -${PKGVERSION}
 			make install
 			]]>
 		</install>

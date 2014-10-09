@@ -46,6 +46,11 @@ case $1 in
 	else
 	    ssh-keygen -N '' -t ecdsa -f /etc/openssh/ssh_host_ecdsa_key
 	fi
+	if [ -f /etc/openssh/ssh_host_ed25519_key ] ; then
+	    printf "$bold---> Skipping ED25519 key $normal\n"
+	else
+	    ssh-keygen -N '' -t ed25519 -f /etc/openssh/ssh_host_ed25519_key
+	fi
 	/usr/sbin/sshd
     ;;
     stop)

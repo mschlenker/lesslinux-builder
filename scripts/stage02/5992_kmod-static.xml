@@ -55,6 +55,8 @@
                         <dep>usbutils</dep>
                         <dep>util-linux-ng</dep>
 			<dep>distcc</dep>
+			<dep>cross-gcc-musl2</dep>
+			<dep>cross-zlib</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -68,6 +70,7 @@
 			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
 			./configure --prefix=/static/kmod --bindir=/static/kmod/bin --libdir=/static/lib --sysconfdir=/etc --with-zlib --host=i386-linux-musl 
 			make  LDFLAGS=-all-static
+			i386-linux-musl-strip tools/kmod
   			]]>
 		</build>
 		<test />
