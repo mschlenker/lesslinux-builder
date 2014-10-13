@@ -57,11 +57,11 @@ done
 
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
 for f in shutdown ; do # wicd ; do
@@ -112,11 +112,11 @@ done
 
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
 for f in shutdown wicd ; do
@@ -177,11 +177,11 @@ done
 
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
 for f in shutdown wicd ; do

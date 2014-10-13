@@ -56,11 +56,11 @@ done
 
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
 for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
@@ -126,11 +126,11 @@ xfsettingsd
 
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
 xsetroot -solid darkgray
@@ -190,11 +190,11 @@ sed -i 's/gap_y 20/gap_y 50/g' /home/surfer/.conkyrc
 
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
 # Uncomment to debug

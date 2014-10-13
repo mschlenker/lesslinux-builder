@@ -78,11 +78,11 @@ done
 
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -load /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
 fi
 
 # sed -i 's/29\.0\.1/31.0/g' /home/surfer/Desktop/010_firefox.desktop  
