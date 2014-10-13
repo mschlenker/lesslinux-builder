@@ -1,7 +1,7 @@
 
 class BootdiskAssembly 
 	
-	def initialize (srcdir, builddir, dbh, cfgfile, build_timestamp, branding, overlaydir=nil, full_image=false)
+	def initialize (srcdir, builddir, dbh, cfgfile, build_timestamp, branding, overlaydir=nil, full_image=false, grub=true)
 		@srcdir =srcdir
 		@builddir = builddir
 		@dbh = dbh
@@ -12,10 +12,12 @@ class BootdiskAssembly
 		@build_timestamp = build_timestamp
 		@overlaydir = overlaydir
 		@full_image = full_image
+		@grub = grub
 	end
 	
 	def create_grubx64
 		randstr = sprintf("%08d", rand(100_000_000))
+		return randstr unless @grub == true
 		system("mkdir -p #{@builddir}/stage03/grub.tmp/boot/grub/x86_64-efi")
 		[ "lst", "mod"].each { |suff|
 			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools-amd64/lib/grub/x86_64-efi/*.#{suff} #{@builddir}/stage03/grub.tmp/boot/grub/x86_64-efi/")
@@ -41,7 +43,7 @@ class BootdiskAssembly
 		randstr = create_grubx64
 		efi_sha = File.new(@builddir  + "/stage03/efiimage/efi.sha", "w")
 		system("mkdir -p #{@builddir}/stage03/efiimage/EFI/BOOT")
-		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubx64.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GRUBX64.EFI") 
+		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubx64.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GRUBX64.EFI") if @grub == true
 		kcfg = REXML::Document.new(File.new(kconfig))
 		kcfg.elements.each("kernels/kernel") { |k|
 			if k.attributes["efi"].to_s == "true"
@@ -89,9 +91,9 @@ class BootdiskAssembly
 		system("rsync -a --inplace #{@builddir}/stage03/efiimage/ #{@builddir}/stage03/efiimage.mnt/")
 		system("umount #{freeloop}")
 		system("losetup -d #{freeloop}")
-		system("mkdir -p #{@builddir}/stage03/cdmaster/boot/grub/x86_64-efi")
+		system("mkdir -p #{@builddir}/stage03/cdmaster/boot/grub/x86_64-efi") if @grub == true
 		[ "lst", "mod"].each { |suff|
-			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools-amd64/lib/grub/x86_64-efi/*.#{suff} #{@builddir}/stage03/cdmaster/boot/grub/x86_64-efi/")
+			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools-amd64/lib/grub/x86_64-efi/*.#{suff} #{@builddir}/stage03/cdmaster/boot/grub/x86_64-efi/") if @grub == true
 		}
 		system("touch #{@builddir}/stage03/cdmaster/boot/grub/#{randstr}.cd") 
 	end

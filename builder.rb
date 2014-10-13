@@ -53,6 +53,7 @@ include ObjectSpace
 @buildpkgs = Array.new
 @ignore_arch = false
 @nonfree = nil 
+@grub = true
 
 opts = OptionParser.new 
 opts.on('-n', '--no-test')    { @run_tests = false }
@@ -83,6 +84,7 @@ opts.on('--distcc-potential-hosts', :REQUIRED ) { |i| @distcchosts = i.strip.spl
 opts.on('--shortest-path-to', :REQUIRED) { |i| @buildonly =  i.strip.split(',') }
 opts.on('--ignore-arch') { @ignore_arch = true }
 opts.on('--nonfree', :REQUIRED) { |i| @nonfree =  i.strip }
+opts.on("--no-grub") { @grub = false } 
 
 opts.parse!
 puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"  
@@ -916,7 +918,7 @@ def run_stage_three
 
 	# Synchronize Kernel and initramfs for modules to the CD build directory 
 	# Build the ISO-Image
-	bootable = BootdiskAssembly.new(@srcdir, @builddir, @dbh, "config/initramfs.xml", @build_timestamp, @branding, @overlays, @full_image)
+	bootable = BootdiskAssembly.new(@srcdir, @builddir, @dbh, "config/initramfs.xml", @build_timestamp, @branding, @overlays, @full_image, @grub)
 	BootdiskAssembly.sync_overlay(@builddir, @overlays + "/bootdisk")
 	BootdiskAssembly.copy_version(@builddir)
 	#raise "DebugBreakPoint"
