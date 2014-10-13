@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='onedrive-fuse-fs' version='20141013' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>  
+                <pkg sha1='e5b57af7238bd2c9a36b2239925584b9b4551159'>
+                    onedrive-fuse-fs-20141013.tar.bz2
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20141009' interval='60' mirror='https://github.com/mk-fg/onedrive-fuse-fs'/>
+        </sources>
+	<builddeps>
+                        <dep>python-onedrive</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}
+echo 'Nothing to build!'
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}
+mkdir -p ${TGTDIR}/usr/sbin
+install -m 0755 onedrivefs ${TGTDIR}/usr/sbin
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
