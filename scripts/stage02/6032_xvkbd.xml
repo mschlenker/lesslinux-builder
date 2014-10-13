@@ -1,0 +1,60 @@
+<llpackages>
+    <package name='xvkbd' version='3.5' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='11b38c7eb89281e692bdf339550b2c751efd8335'>
+                    xvkbd-3.5.tar.gz
+                </pkg>
+                <mirror>
+                    http://homepage3.nifty.com/tsato/xvkbd/
+                </mirror>
+            </file>
+            <manualcheck date='20141013' interval='60' mirror='http://homepage3.nifty.com/tsato/xvkbd/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch>
+		<![CDATA[cd ${PKGNAME}-${PKGVERSION}
+		sed -i 's/#define XAW3D/XCOMM #define XAW3D/g' Imakefile
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    xmkmf
+	    make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    mkdir -p {TGTDIR}/usr/share/applications
+	    make install DESTDIR=${TGTDIR}
+cat >> ${TGTDIR}/usr/share/applications/xvkbd.desktop << DESKFILE
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Virtual Keyboard
+Name[de]=Bildschirmtastatur
+Categories=Utility;
+Exec=/usr/bin/xvkbd
+Icon=input-keyboard
+Terminal=false
+StartupNotify=true
+Path=
+
+DESKFILE
+	    
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
