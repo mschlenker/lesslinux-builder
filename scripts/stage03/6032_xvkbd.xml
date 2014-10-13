@@ -1,0 +1,49 @@
+<llpackages>
+	<package name="xvkbd" />
+	<scripts>
+		<scriptdata location="/etc/xinitrc.d/0050-xvkbd.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides xrandr
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors 
+
+case $1 in 
+    start)
+	# Set DPI value 
+	if [ -f /home/surfer/.lesslinux/xvkbd.xrdb ] ; then
+		xrdb -merge /home/surfer/.lesslinux/xvkbd.xrdb
+	elif [ "$lang" = de ] ; then
+		mkdir -p /home/surfer/.lesslinux
+		echo 'xvkbd.customization: -german' >> /home/surfer/.lesslinux/xvkbd.xrdb
+		xrdb -merge /home/surfer/.lesslinux/xvkbd.xrdb
+	elif [ "$lang" = fr ] ; then
+		mkdir -p /home/surfer/.lesslinux
+		echo 'xvkbd.customization: -french' >> /home/surfer/.lesslinux/xvkbd.xrdb
+		xrdb -merge /home/surfer/.lesslinux/xvkbd.xrdb
+	elif [ "$lang" = es ] ; then
+		mkdir -p /home/surfer/.lesslinux
+		echo 'xvkbd.customization: -spanish' >> /home/surfer/.lesslinux/xvkbd.xrdb
+		xrdb -merge /home/surfer/.lesslinux/xvkbd.xrdb	
+	elif [ "$lang" = ru ] ; then
+		mkdir -p /home/surfer/.lesslinux
+		echo 'xvkbd.customization: -russian' >> /home/surfer/.lesslinux/xvkbd.xrdb
+		xrdb -merge /home/surfer/.lesslinux/xvkbd.xrdb	
+	elif [ "$lang" = pt ] ; then
+		mkdir -p /home/surfer/.lesslinux
+		echo 'xvkbd.customization: -portuguese' >> /home/surfer/.lesslinux/xvkbd.xrdb
+		xrdb -merge /home/surfer/.lesslinux/xvkbd.xrdb	
+	fi
+    ;;
+esac
+
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>
