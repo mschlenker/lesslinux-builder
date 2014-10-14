@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='florence' version='0.6.2' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='db763ffd5e2eb65096daa27f0e4b221cea7d1014'>
+                    florence-0.6.2.tar.bz2
+                </pkg>
+                <mirror>
+                    http://downloads.sourceforge.net/project/florence/florence/0.6.2/
+                </mirror>
+            </file>
+            <manualcheck date='20141014' interval='60' mirror='http://downloads.sourceforge.net/project/florence/florence/0.6.2/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
