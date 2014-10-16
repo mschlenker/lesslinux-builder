@@ -34,8 +34,36 @@ class MfsSysProfile
 		@dmi_lines = get_dmi if dmi == true
 		@monitor = monitor
 		@monitor_res = get_resolution if monitor == true
+		@pmodel = nil
+		@pcores = nil
+		get_processor 
+		@memory = get_memory 
 	end		
-	attr_reader  :uuid, :usb, :usb_devs, :pci, :pci_devs , :dmi, :dmi_lines 
+	attr_reader  :uuid, :usb, :usb_devs, :pci, :pci_devs , :dmi, :dmi_lines, :pmodel, :pcores, :memory
+	
+	def get_processor
+		pmodel = "unknown"
+		pcores = -1
+		File.new("/proc/cpuinfo").read.split("\n").each { |l|
+			if l =~ /^core id/ 
+				i = l.split[-1].to_i
+				pcores = i if i > pcores 
+			elsif l =~ /^model name/ 
+				pmodel = l.split(/\s:\s/)[-1].strip
+			end
+		}
+		@pmodel = pmodel
+		@pcores = pcores + 1
+	end
+	
+	def get_memory
+		File.new("/proc/meminfo").read.split("\n").each { |l|
+			if l =~ /^MemTotal\:/
+				megs = l.split[1].to_i / 1024
+				return megs 
+			end
+		}
+	end
 	
 	def get_usb
 		devs = Array.new
@@ -114,6 +142,9 @@ class MfsSysProfile
 		g.add_attribute("version", "1.0.0")
 		g.add_attribute("uuid", @uuid)
 		g.add_attribute("build", @version)
+		g.add_attribute("processor", @pmodel)
+		g.add_attribute("cores", @pcores.to_s)
+		g.add_attribute("memory", @memory.to_s) 
 		d = r.add_element("dmidecode")
 		d.add(REXML::CData.new(@dmi_lines.join("")))
 		pci = r.add_element("pci")
@@ -150,8 +181,8 @@ class MfsSysProfile
 		return x
 	end
 	
-	def send(url, email=nil)
-		res = Net::HTTP.post_form(URI(url), 'email' => email.to_s, 'sysprofile' => get_xml.to_s)
+	def send(url, email, newsletter, hwinfo)
+		res = Net::HTTP.post_form(URI(url), 'email' => email.to_s,  'newsletter' => newsletter.to_s, 'hwinfo' => hwinfo.to_s, 'sysprofile' => get_xml.to_s)
 		return res.body
 	end
 end
