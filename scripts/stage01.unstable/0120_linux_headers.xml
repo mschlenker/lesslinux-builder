@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="3.16.5">
+		version="3.16.6">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
@@ -9,14 +9,14 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="cfc1c4b37b30decd1fb509157631fd7e9034e695">patch-3.16.5.xz</pkg>
+				<pkg sha1="0b13b70e515f2f11d9a7412adeeb000ee3cbb73e">patch-3.16.6.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20141010" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20141015" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-3.16.8." />
-					<atext linktext="patch-3.16.6." />
+					<atext linktext="patch-3.16.9." />
 					<atext linktext="patch-3.16.7." />
 					<atext linktext="patch-3.17." />
 					<atext linktext="patch-3.18." />
