@@ -18,17 +18,22 @@ class BootdiskAssembly
 	def create_grubx64
 		randstr = sprintf("%08d", rand(100_000_000))
 		return randstr unless @grub == true
-		system("mkdir -p #{@builddir}/stage03/grub.tmp/boot/grub/x86_64-efi")
-		[ "lst", "mod"].each { |suff|
-			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools-amd64/lib/grub/x86_64-efi/*.#{suff} #{@builddir}/stage03/grub.tmp/boot/grub/x86_64-efi/")
+		[ "x86_64", "i386" ].each { |arch|
+			system("mkdir -p #{@builddir}/stage03/grub.tmp/#{arch}/boot/grub/#{arch}-efi")
 		}
-		grubcfg = File.new("#{@builddir}/stage03/grub.tmp/boot/grub/grub.cfg", "w")
-		grubcfg.write("if ! search --file --set=root /boot/grub/#{randstr}.pt; then\n        search --file --set=root /boot/grub/#{randstr}.cd\nfi\nset prefix=($root)/boot/grub\nif [ -e $prefix/x86_64-efi/grub.cfg ]; then\n        configfile $prefix/x86_64-efi/grub.cfg\nelse\n        configfile $prefix/grub.cfg\nfi\n")
-		grubcfg.close
-		system("tar -C #{@builddir}/stage03/grub.tmp -cvf #{@builddir}/stage03/grub.tmp/memdisk.tar boot")
+		[ "lst", "mod"].each { |suff|
+			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools-amd64/lib/grub/x86_64-efi/*.#{suff} #{@builddir}/stage03/grub.tmp/x86_64/boot/grub/x86_64-efi/")
+			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools/lib/grub/i386-efi/*.#{suff} #{@builddir}/stage03/grub.tmp/i386/boot/grub/i386-efi/")
+		}
+		[ "x86_64", "i386" ].each { |arch|
+			grubcfg = File.new("#{@builddir}/stage03/grub.tmp/#{arch}/boot/grub/grub.cfg", "w")
+			grubcfg.write("if ! search --file --set=root /boot/grub/#{randstr}.pt; then\n        search --file --set=root /boot/grub/#{randstr}.cd\nfi\nset prefix=($root)/boot/grub\nif [ -e $prefix/#{arch}-efi/grub.cfg ]; then\n        configfile $prefix/#{arch}-efi/grub.cfg\nelse\n        configfile $prefix/grub.cfg\nfi\n")
+			grubcfg.close
+			system("tar -C #{@builddir}/stage03/grub.tmp/#{arch} -cvf #{@builddir}/stage03/grub.tmp/#{arch}/memdisk.tar boot")
+		}
 		system("mount --bind #{@builddir}/stage03/grub.tmp #{@builddir}/stage01/chroot/tmp")
-		# system("chroot #{@builddir}/stage01/chroot /usr/local/crosstools-amd64/bin/amd64-linux-uclibc-grub-mkimage -d /usr/local/crosstools-amd64/lib/grub/x86_64-efi -Ox86_64-efi -o /tmp/grubx64.efi part_gpt part_msdos ntfs ntfscomp fat ext2 btrfs normal chain boot configfile linux multiboot iso9660 udf search search_fs_file search_fs_uuid search_label memdisk tar minicmd ls -m /tmp/memdisk.tar")
-		system("chroot #{@builddir}/stage01/chroot /usr/local/crosstools-amd64/bin/grub-mkimage -d /usr/local/crosstools-amd64/lib/grub/x86_64-efi -Ox86_64-efi -o /tmp/grubx64.efi part_gpt part_msdos ntfs ntfscomp fat ext2 btrfs normal chain boot configfile linux multiboot iso9660 udf search search_fs_file search_fs_uuid search_label memdisk tar minicmd ls -m /tmp/memdisk.tar")
+		system("chroot #{@builddir}/stage01/chroot /usr/local/crosstools-amd64/bin/grub-mkimage -d /usr/local/crosstools-amd64/lib/grub/x86_64-efi -Ox86_64-efi -o /tmp/grubx64.efi part_gpt part_msdos ntfs ntfscomp fat ext2 btrfs normal chain boot configfile linux multiboot iso9660 udf search search_fs_file search_fs_uuid search_label memdisk tar minicmd ls -m /tmp/x86_64/memdisk.tar")
+		system("chroot #{@builddir}/stage01/chroot /usr/local/crosstools/bin/grub-mkimage -d /usr/local/crosstools/lib/grub/i386-efi -Oi386-efi -o /tmp/grubia32.efi part_gpt part_msdos ntfs ntfscomp fat ext2 btrfs normal chain boot configfile linux multiboot iso9660 udf search search_fs_file search_fs_uuid search_label memdisk tar minicmd ls -m /tmp/i386/memdisk.tar")
 		system("umount #{@builddir}/stage01/chroot/tmp")
 		return randstr
 	end
@@ -44,6 +49,7 @@ class BootdiskAssembly
 		efi_sha = File.new(@builddir  + "/stage03/efiimage/efi.sha", "w")
 		system("mkdir -p #{@builddir}/stage03/efiimage/EFI/BOOT")
 		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubx64.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GRUBX64.EFI") if @grub == true
+		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubia32.efi #{@builddir}/stage03/efiimage/EFI/BOOT/BOOTIA32.EFI")
 		kcfg = REXML::Document.new(File.new(kconfig))
 		kcfg.elements.each("kernels/kernel") { |k|
 			if k.attributes["efi"].to_s == "true"
@@ -92,8 +98,10 @@ class BootdiskAssembly
 		system("umount #{freeloop}")
 		system("losetup -d #{freeloop}")
 		system("mkdir -p #{@builddir}/stage03/cdmaster/boot/grub/x86_64-efi") if @grub == true
+		system("mkdir -p #{@builddir}/stage03/cdmaster/boot/grub/i386-efi")
 		[ "lst", "mod"].each { |suff|
 			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools-amd64/lib/grub/x86_64-efi/*.#{suff} #{@builddir}/stage03/cdmaster/boot/grub/x86_64-efi/") if @grub == true
+			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools/lib/grub/i386-efi/*.#{suff} #{@builddir}/stage03/cdmaster/boot/grub/i386-efi/")
 		}
 		system("touch #{@builddir}/stage03/cdmaster/boot/grub/#{randstr}.cd") 
 	end
