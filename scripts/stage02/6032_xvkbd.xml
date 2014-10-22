@@ -51,9 +51,9 @@
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	    mkdir -p {TGTDIR}/usr/share/applications
+	    mkdir -p ${TGTDIR}/usr/share/applications
 	    make install DESTDIR=${TGTDIR}
-cat >> ${TGTDIR}/usr/share/applications/xvkbd.desktop << DESKFILE
+cat << DESKFILE > ${TGTDIR}/usr/share/applications/xvkbd.desktop
 
 [Desktop Entry]
 Version=1.0
