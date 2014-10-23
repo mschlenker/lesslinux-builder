@@ -312,7 +312,7 @@ go.signal_connect("clicked") {
 	else
 		disk = @devices[drivecombo.active]
 		dir = targetbutton.filename 
-		targetfile = dir + "/" + disk.device + ".img"
+		targetfile = dir + "/" + disk.device + ".ddimage"
 		if File.exists?(targetfile) 
 			error_dialog(@tl.get_translation("target_exists"), @tl.get_translation("target_exists_long").gsub("FILENAME", targetfile))
 		elsif check_size(disk, dir) && check_mounted_source(drivecombo)
