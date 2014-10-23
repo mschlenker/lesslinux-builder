@@ -32,12 +32,15 @@ class MfsDiskDrive
 		fullblocks = 0
 		skiplist = Array.new
 		if system("which parted > /dev/null") 
-			IO.popen("parted -s '/dev/#{@device}' print") { |line|
+			IO.popen("LC_ALL=POSIX parted -s '/dev/#{@device}' print") { |line|
 				while line.gets
 					ltoks = $_.strip.split
 					if ltoks[0].to_i > 0 && ltoks[4] =~ /extended/i 
 						skiplist.push(@device + ltoks[0])
 						$stderr.puts "Adding #{ltoks[0]} to skiplist"
+					end
+					if $_.strip =~ /partition table/i
+						@gpt = true if ltoks[2] =~ /gpt/ 
 					end
 				end
 			}
@@ -83,6 +86,7 @@ class MfsDiskDrive
 			$stderr.puts "  size:   " + @size.to_s 
 			$stderr.puts "  remov.: " + @removable.to_s  
 			$stderr.puts "  usb:    " + @usb.to_s 
+			$stderr.puts "  gpt:    " + @gpt.to_s 
 		end
 	end
 	

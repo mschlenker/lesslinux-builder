@@ -27,7 +27,7 @@ class MfsSinglePartition
 		@trim = trim
 		blkid
 	end
-	attr_reader :device, :blocks, :fs, :uuid, :label, :size, :extended, :parent, :trim, :free
+	attr_reader :device, :blocks, :fs, :uuid, :label, :size, :extended, :parent, :trim, :free, :filesyssize
 	
 	def blkid
 		@size = File.new("/sys/block/" + @parent + "/size").read.to_i * 512
@@ -201,13 +201,12 @@ class MfsSinglePartition
 			return false
 		end
 		mountpoint = ""
-		if mntpnt.nil?
-			mountpoint = "/media/" + @uuid
-			system("mkdir -p /media/" + @uuid)
+		if mntpnt.nil? || mountpoint == ""
+			mountpoint = "/media/disk/" + @device
 		else
 			mountpoint = mntpnt
-			system("mkdir -p \"#{mntpnt}\"")
 		end
+		system("mkdir -p \"#{mountpoint}\"")
 		type = ""
 		opts = [ mode ]
 		if @fs =~ /crypto_LUKS/
