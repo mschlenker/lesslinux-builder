@@ -119,7 +119,7 @@ class MfsSinglePartition
 				@winvers = "Windows XP" if $_.strip =~ /^2600\.xp(.*?)\./
 				@winvers = "Windows Vista" if $_.strip =~ /[0-9][0-9][0-9][0-9]\.vista(.*?)(rtm|gdr)\./
 				@winvers = "Windows 7" if $_.strip =~ /[0-9][0-9][0-9][0-9]\.win7(.*?)(rtm|gdr)\./
-				@winvers = "Windows 8" if $_.strip =~ /[0-9][0-9][0-9][0-9]\.win8(.*?)(rtm|gdr)\./
+				@winvers = "Windows 8/8.1" if $_.strip =~ /[0-9][0-9][0-9][0-9]\.win8(.*?)(rtm|gdr)\./
 			end
 		}
 		intersect = foundfiles & winfiles

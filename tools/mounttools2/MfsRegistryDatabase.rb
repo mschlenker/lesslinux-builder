@@ -45,15 +45,17 @@ class MfsRegistryDatabase
 	end
 	
 	def reset_shell(backup=false)
-		aux = shell_is_explorer?
-		return nil if aux.nil?
-		return true if aux == true
 		was_mounted = true
 		if @partition.mount_point.nil?
 			was_mounted = false
-			@partition.mount
+			@partition.mount("rw")
+		else 
+			return false unless @partition.remount_rw
 		end
-		return false unless @partition.remount_rw
+		aux = shell_is_explorer?
+		return nil if aux.nil?
+		return true if aux == true
+		# return false unless @partition.remount_rw
 		puts @partition.mount_point[0] 
 		mnt = @partition.mount_point
 		if backup == true
