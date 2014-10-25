@@ -49,7 +49,7 @@ class BootdiskAssembly
 		efi_sha = File.new(@builddir  + "/stage03/efiimage/efi.sha", "w")
 		system("mkdir -p #{@builddir}/stage03/efiimage/EFI/BOOT")
 		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubx64.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GRUBX64.EFI") if @grub == true
-		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubia32.efi #{@builddir}/stage03/efiimage/EFI/BOOT/BOOTIA32.EFI")
+		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubia32.efi #{@builddir}/stage03/efiimage/EFI/BOOT/BOOTIA32.EFI") if @grub == true
 		kcfg = REXML::Document.new(File.new(kconfig))
 		kcfg.elements.each("kernels/kernel") { |k|
 			if k.attributes["efi"].to_s == "true"
@@ -101,7 +101,7 @@ class BootdiskAssembly
 		system("mkdir -p #{@builddir}/stage03/cdmaster/boot/grub/i386-efi")
 		[ "lst", "mod"].each { |suff|
 			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools-amd64/lib/grub/x86_64-efi/*.#{suff} #{@builddir}/stage03/cdmaster/boot/grub/x86_64-efi/") if @grub == true
-			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools/lib/grub/i386-efi/*.#{suff} #{@builddir}/stage03/cdmaster/boot/grub/i386-efi/")
+			system("cp -v #{@builddir}/stage01/chroot/usr/local/crosstools/lib/grub/i386-efi/*.#{suff} #{@builddir}/stage03/cdmaster/boot/grub/i386-efi/") if @grub == true
 		}
 		system("touch #{@builddir}/stage03/cdmaster/boot/grub/#{randstr}.cd") 
 	end
