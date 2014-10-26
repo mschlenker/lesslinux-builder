@@ -14,6 +14,36 @@
             </file>
             <manualcheck date='20141026' interval='60' mirror='https://pypi.python.org/packages/source/r/requests/'/>
         </sources>
+	<builddeps>
+                        <dep>antlr_python_runtime</dep>
+                        <dep>bash</dep>
+                        <dep>cairo-dock-plugins</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>distribute</dep>
+                        <dep>docutils</dep>
+                        <dep>ez_setup</dep>
+                        <dep>fusepy</dep>
+                        <dep>gdrivefs</dep>
+                        <dep>glibc</dep>
+                        <dep>google-api-python-client</dep>
+                        <dep>google-appengine</dep>
+                        <dep>httplib2</dep>
+                        <dep>ipaddr</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>openssl</dep>
+                        <dep>py-dateutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>Python</dep>
+                        <dep>python-onedrive</dep>
+                        <dep>PyYAML</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                        <dep>WebOb</dep>
+                        <dep>xpra</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
