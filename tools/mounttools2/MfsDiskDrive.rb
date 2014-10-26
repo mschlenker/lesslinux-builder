@@ -182,6 +182,19 @@ class MfsDiskDrive
 		return tremain
 	end
 	
+	def smart_long_test
+		tremain = nil
+		system("smartctl -X /dev/#{@device}")
+		IO.popen("smartctl -s on -t long /dev/#{@device}") { |l|
+			while l.gets
+				if $_ =~ /^Please wait\s*?(\d*?)\s*?minutes/ 
+					tremain = $1.to_i
+				end
+			end
+		}
+		return tremain
+	end
+	
 	def mounted
 		m = false
 		@partitions.each { |p|
