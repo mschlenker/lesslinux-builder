@@ -206,6 +206,13 @@ class MfsDiskDrive
 	# Check for Intel Matrix Storage Manager
         
         def imsm? 
+		if system("which parted") 
+			IO.popen("parted -s -m /dev/#{@device} unit B print") { |l|
+				while l.gets
+					return true if $_.strip =~ /\:irst/ 
+				end
+			}
+		end
                 return nil unless system("dd if=/dev/#{@device} bs=512 count=1 of=/dev/null")
 		return true if File.exists?("/var/run/lesslinux/fake_imsm_#{@device}")
                 return true if system("dd if=/dev/#{@device} bs=512 count=1 | strings | grep 'Intel IMSM NV Cache Cfg' ")
