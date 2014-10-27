@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='fred' version='0.1.1' install='chroot'>
+    <package name='fred' version='0.1.1' install='destdir'>
         <license>
             unknown
         </license>
@@ -29,7 +29,26 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-install -m 0755 fred /usr/sbin/
+mkdir -p ${TGTDIR}/usr/sbin
+mkdir -p ${TGTDIR}/usr/share/applications
+
+install -m 0755 fred  ${TGTDIR}/usr/sbin/
+cat << DESKFILE >  ${TGTDIR}/usr/share/applications/fred.desktop
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=FRED Registry Editor
+Categories=CB-Other;
+Exec=/usr/sbin/fred
+Icon=wine
+Terminal=false
+StartupNotify=true
+Path=
+
+DESKFILE
+
 ]]>
         </install>
         <clean>
