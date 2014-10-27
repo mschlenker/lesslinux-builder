@@ -15,23 +15,27 @@
             <manualcheck date='20141027' interval='60' mirror='http://archive.ubuntu.com/ubuntu/pool/universe/h/hivex/'/>
         </sources>
         <unpack>
-            <![CDATA[tar xf ${PKGNAME}_${PKGVERSION}.orig.tar.gz
+            <![CDATA[
+tar xzf ${PKGNAME}_${PKGVERSION}.orig.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
 make install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+            <![CDATA[
+rm -rf ${PKGNAME}-${PKGVERSION}
 ]]>
         </clean>
     </package>
