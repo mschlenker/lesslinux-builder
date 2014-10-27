@@ -1,0 +1,40 @@
+<llpackages>
+    <package name='fred' version='0.1.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='7d051e364064f17fdba30c9706f8a493f5e97aa0'>
+                    fred-0.1.1.tar.gz
+                </pkg>
+                <mirror>
+                    http://files.pinguin.lu/
+                </mirror>
+            </file>
+            <manualcheck date='20141027' interval='60' mirror='http://files.pinguin.lu/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+bash autogen.sh
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+qmake
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+install -m 0755 fred /usr/sbin/
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

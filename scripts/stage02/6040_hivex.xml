@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='hivex' version='1.3.10' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='daf22b5301d4dfdf44cfff326b67c8690ef73509'>
+                    hivex_1.3.10.orig.tar.gz
+                </pkg>
+                <mirror>
+                    http://archive.ubuntu.com/ubuntu/pool/universe/h/hivex/
+                </mirror>
+            </file>
+            <manualcheck date='20141027' interval='60' mirror='http://archive.ubuntu.com/ubuntu/pool/universe/h/hivex/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${PKGNAME}_${PKGVERSION}.orig.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
