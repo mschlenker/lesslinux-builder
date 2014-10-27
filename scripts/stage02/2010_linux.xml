@@ -1,0 +1,105 @@
+<llpackages>
+	<package 
+		name="linux-next"
+		version="3.14.22"
+		class="kernel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                  
+				<pkg sha1="afe0e6c03a03b3356480a11f542ee6177d69a7d7">config-3.16-lesslinux-20140815-1425</pkg> 
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<pkg sha1="660d8a1c2c694b1dbb361ef7fcbd62846ba742a5">lesslinux-fblogo-20100922.ppm</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                 
+				<pkg sha1="fc777520e5976caf0d5513502b8156f73748e379">linux-3.14.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="c37050be4c92284ba24531881ede7f9797a23ff5">patch-3.14.22.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+			<dep>ruby</dep>
+			<dep>installkernel-debian</dep>
+			<dep>xz</dep>
+			<dep>bzip2</dep>
+			<dep>gzip</dep>
+			<dep>lesslinux-modextract</dep>
+			<dep>module-init-tools</dep>
+			<!-- <dep>linux-pax</dep> -->
+			<dep>bc</dep>
+			<dep>distcc</dep>
+			<dep>kmod</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd linux-3.14
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
+			cp -v ${SRCDIR}/config-3.16-lesslinux-20140815-1425  .config 
+			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
+			cd ..
+			mv linux-3.14 linux-${PKGVERSION}
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			yes '' | make oldconfig
+			make clean
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount bzImage CC="distcc gcc" CXX="distcc g++" 
+			else
+				make -j 4
+				make -j 4 bzImage
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd linux-${PKGVERSION}
+			mkdir -p ${TGTDIR}/boot
+			INSTALL_MOD_PATH=${TGTDIR} make modules_install
+			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-lesslinux-000
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-lesslinux-000 -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
+			true
+			
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf linux-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>
