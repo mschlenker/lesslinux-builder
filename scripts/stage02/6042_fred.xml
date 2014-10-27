@@ -14,6 +14,18 @@
             </file>
             <manualcheck date='20141027' interval='60' mirror='http://files.pinguin.lu/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>hivex</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>which</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
@@ -41,7 +53,7 @@ Encoding=UTF-8
 Type=Application
 Name=FRED Registry Editor
 Categories=CB-Other;
-Exec=/usr/sbin/fred
+Exec=sudo /usr/sbin/fred
 Icon=wine
 Terminal=false
 StartupNotify=true
