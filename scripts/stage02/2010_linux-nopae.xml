@@ -72,7 +72,7 @@
 		<build>
 			<![CDATA[ 
 			cd linux-${PKGVERSION}
-			yes n | make oldconfig
+			yes '' | make oldconfig
 			make clean
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
