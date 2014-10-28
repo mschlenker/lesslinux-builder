@@ -19,7 +19,9 @@ class MfsSamDatabase
 		was_mounted = true
 		if @partition.mount_point.nil?
 			was_mounted = false
-			@partition.mount
+			@partition.mount("rw") 
+		else
+			@partition.remount_rw 
 		end
 		puts @partition.mount_point[0] 
 		mnt = @partition.mount_point 
@@ -45,13 +47,15 @@ class MfsSamDatabase
 		if @partition.mount_point.nil?
 			was_mounted = false
 			@partition.mount("rw") 
+		else
+			@partition.remount_rw 
 		end
 		return false unless @partition.remount_rw
 		if backup == true
 			now = Time.new.to_i
-			return false unless system("cp '#{@partition.mount_point[0]}/#{@samfile}' '#{@partition.mount_point[0]}/#{@samfile}.#{now.to_s}'") 
+			return false unless system("cp -v '#{@partition.mount_point[0]}/#{@samfile}' '#{@partition.mount_point[0]}/#{@samfile}.#{now.to_s}'") 
 		end
-		exstring = "printf \"1\\ny\\n\" | chntpw -u 0x" + hexid + " '" + @partition.mount_point[0] + "/" + @samfile + "'"
+		exstring = "printf \"1\\n\\ny\\n\" | chntpw -u 0x" + hexid + " '" + @partition.mount_point[0] + "/" + @samfile + "'"
 		$stderr.puts "RESET HIVE: " + exstring
 		system(exstring)
 		retval = $?.exitstatus

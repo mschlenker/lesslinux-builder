@@ -17,7 +17,9 @@ class MfsRegistryDatabase
 		was_mounted = true
 		if @partition.mount_point.nil?
 			was_mounted = false
-			@partition.mount
+			@partition.mount("rw")
+		else
+			@partition.remount_rw 
 		end
 		puts @partition.mount_point[0] 
 		mnt = @partition.mount_point 

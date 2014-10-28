@@ -201,11 +201,12 @@ class MfsSinglePartition
 			return false
 		end
 		mountpoint = ""
-		if mntpnt.nil? || mountpoint == ""
+		if mntpnt.nil? || mntpnt == ""
 			mountpoint = "/media/disk/" + @device
 		else
 			mountpoint = mntpnt
 		end
+		$stderr.puts "mount #{@device} at #{@mountpoint}"
 		system("mkdir -p \"#{mountpoint}\"")
 		type = ""
 		opts = [ mode ]
@@ -233,6 +234,7 @@ class MfsSinglePartition
 		end
 		opts = opts + extopts unless extopts.nil? 
 		mountcmd = "mount " + type + " -o " + opts.join(',') + " /dev/" + @device + " '" + mountpoint + "'"
+		$stderr.puts mountcmd 
 		return true if system(mountcmd)
 		return false
 	end

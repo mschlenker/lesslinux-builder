@@ -158,14 +158,15 @@ class MfsDiskDrive
 				ltoks = line.split
 				if inside == true && ltoks[0].to_i == 5 && ltoks[-1].to_i > 0
 					@smart_reallocated = ltoks[-1].to_i
-				elsif inside == true && ltoks[0].to_i == 7 && ltoks[-1].to_i > 100
-					@smart_seek_error = ltoks[-1].to_i
+				# elsif inside == true && ltoks[0].to_i == 7 && ltoks[-1].to_i > 100
+				#	@smart_seek_error = ltoks[-1].to_i
 				elsif inside == true && ltoks[0].to_i == 197 && ltoks[-1].to_i > 0
 					@smart_reallocated = ltoks[-1].to_i
 				end
 				inside = true if line =~ /^ID\# ATTRIBUTE/
 			end
 		}
+		@smart_seek_error = 0 
 		return @smart_test_types, @smart_test_results, @smart_bad_sectors, @smart_reallocated, @smart_seek_error
 	end
 	
