@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="linux_headers"
+		version="3.14.22">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="fc777520e5976caf0d5513502b8156f73748e379">linux-3.16.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="c37050be4c92284ba24531881ede7f9797a23ff5">patch-3.16.4.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<manualcheck date="20141028" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-3.14.23." />
+					<atext linktext="patch-3.14.24." />
+					<atext linktext="patch-3.14.25." />
+					<atext linktext="patch-3.14.26." />
+					<atext linktext="patch-3.14.27." />
+					<atext linktext="patch-3.14.28." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			
+			cd linux-3.14
+			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
+				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			fi
+			cd ..
+			mv -v linux-3.14 linux-${PKGVERSION}
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			make headers_check
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			mkdir -p /tools/include
+			cd linux-${PKGVERSION}
+			make INSTALL_HDR_PATH=dest headers_install
+			cp -rv dest/include/* /tools/include
+			
+			]]>
+		</install>
+	</package>
+</llpackages>
