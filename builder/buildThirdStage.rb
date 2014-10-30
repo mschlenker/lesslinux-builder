@@ -130,13 +130,17 @@ class ThirdStage < AnyStage
 			searchdir = "#{@nonfree}/" 
 		end
 		if File.exists?(searchdir + "scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml" )
-			if @unstable == true && File.exists?(searchdir + "scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml" )
+			if @legacy == true && File.exists?(searchdir + "scripts/pkg_content.legacy/" + @pkg_name + "-" + pkg_version + ".xml" )
+				pfile = REXML::Document.new(File.new(searchdir + "scripts/pkg_content.legacy/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
+			elsif @unstable == true && File.exists?(searchdir + "scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml" )
 				pfile = REXML::Document.new(File.new(searchdir + "scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
 			else
 				pfile = REXML::Document.new(File.new(searchdir + "scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
 			end
 		elsif File.exists?("scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml" )
-			if @unstable == true && File.exists?("scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml" )
+			if @legacy == true && File.exists?("scripts/pkg_content.legacy/" + @pkg_name + "-" + pkg_version + ".xml" )
+				pfile = REXML::Document.new(File.new("scripts/pkg_content.legacy/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
+			elsif @unstable == true && File.exists?("scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml" )
 				pfile = REXML::Document.new(File.new("scripts/pkg_content.unstable/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
 			else
 				pfile = REXML::Document.new(File.new("scripts/pkg_content/" + @pkg_name + "-" + pkg_version + ".xml", "r"))
