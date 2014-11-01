@@ -1,0 +1,134 @@
+<llpackages>
+	<package 
+		name="xorg-server"
+		version="1.16.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                        
+				<pkg sha1="96eabe0daae073a62bb61e9707deddfad8e0a76b">xorg-server-1.16.1.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/xserver/</mirror>
+			</file>
+			<!-- <file>                                                                                                        
+				<pkg sha1="dd016593ea04b07847b9ba6218ad65ed824b20da">xorg-server-1.16.0-glibc-2.20.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<manualcheck date="20141101" interval="90" page="http://xorg.freedesktop.org/archive/individual/xserver/" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/xserver/">
+					<atext linktext="xorg-server-1.15.1." />
+					<atext linktext="xorg-server-1.15.2." />
+					<atext linktext="xorg-server-1.15.3." />
+					<atext linktext="xorg-server-1.16." />
+					<atext linktext="xorg-server-1.17." />
+					<atext linktext="xorg-server-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep><dep>glu</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>compositeproto</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>dri3proto</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+			<dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXfont</dep>
+                        <dep>libXxf86vm</dep>
+			<dep>libXi</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXrender</dep>
+                        <dep>libdrm</dep>
+			  <dep>libfontenc</dep>
+                        <dep>libpciaccess</dep>
+			 <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>libxshmfence</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+			<dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>presentproto</dep>
+                        <dep>procps</dep>
+                        <dep>pygobject</dep>
+                        <dep>recordproto</dep>
+                        <dep>sed</dep>
+                        <dep>udev</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xf86dgaproto</dep>
+                        <dep>xineramaproto</dep>
+                        <dep>xmlto</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xtrans</dep>
+			<dep>udev</dep>
+			<dep>libXcomposite</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glibc-2.20.patch | patch -p1 
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+				make  
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			/sbin/paxctl -m -r ${TGTDIR}/usr/bin/Xorg
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

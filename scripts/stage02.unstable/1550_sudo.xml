@@ -1,0 +1,105 @@
+<llpackages>
+	<package 
+		name="sudo"
+		version="1.8.10p3"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                             
+				<pkg sha1="ed45b25da17c82e0d2cfed98cb4bfd45617c91d9">sudo-1.8.10p3.tar.gz</pkg>
+				<mirror>http://www.sudo.ws/sudo/dist/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="90" page="http://www.sudo.ws/sudo/dist/" />
+			<!-- <check>
+				<page html="http://www.sudo.ws/sudo/dist/">
+					<atext linktext="sudo-1.8.9p6" />
+					<atext linktext="sudo-1.8.9p7" />
+					<atext linktext="sudo-1.8.9p8" />
+					<atext linktext="sudo-1.8.9p9" />
+					<atext linktext="sudo-1.8.9p10" />
+					<atext linktext="sudo-1.8.10" />
+					<atext linktext="sudo-1.8.11" />
+					<atext linktext="sudo-1.9" />
+					<atext linktext="sudo-1.10" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --with-pam=no  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --with-pam=no
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			# rsync -avHP /usr/bin/sudo /bin/sudo
+			
+cat > ${TGTDIR}/usr/bin/check_lax_sudo << CHECK
+#!/static/bin/ash
+		
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+[ "\$laxsudo" -gt 0 ] && exit 0
+exit 1
+
+CHECK
+
+chmod 0755 ${TGTDIR}/usr/bin/check_lax_sudo
+			
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
