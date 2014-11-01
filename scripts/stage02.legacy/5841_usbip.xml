@@ -63,15 +63,15 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/linux-3.16.tar.xz | tar xf -
+			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			cd linux-3.16
+			cd linux-3.14
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cd ..
-			mv linux-3.16 linux-${PKGVERSION}
+			mv linux-3.14 linux-${PKGVERSION}
 			]]>
 		</patch>
 		<build>
