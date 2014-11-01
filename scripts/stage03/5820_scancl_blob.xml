@@ -26,6 +26,8 @@ mkdir -p /lesslinux/data/scancl/Protokolle
 tar -C /lesslinux/cdrom/scancl -cf - antivir avupdate | tar -C /lesslinux/data/scancl -xf - 
 cp /etc/avira/avupdate.bat /lesslinux/data/scancl
 
+exit 0
+
 # Create a swap file
 freeblocks=` df -k /lesslinux/data | tail -n1 | awk '{print $4}' ` 
 # Swap files smaller than 256MB or larger than 1024MB do not make sense
@@ -174,7 +176,7 @@ case $1 in
 		
 	    if [ "$method" = "bind" ] ; then
 		umount /AntiVir
-	        mount -o bind "$avdir" /AntiVir
+	        mount --bind "$avdir" /AntiVir
 		chmod -R 0755 /AntiVir
 	    elif [ "$method" = "copy" ] ; then
 		tar -C "$avdir" -cvf - . | tar -C /AntiVir -xf -
