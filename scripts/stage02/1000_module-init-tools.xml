@@ -3,15 +3,14 @@
 		name="module-init-tools"
 		version="3.16"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                               
 				<pkg sha1="919c9fb3e8c73a5790411da1c4d79efda19db195">module-init-tools-3.16.tar.bz2</pkg>
 				<mirror>http://www.kernel.org/pub/linux/utils/kernel/module-init-tools/</mirror>
 			</file>
-			<manualcheck date="20140228" interval="180" page="http://www.kernel.org/" />
+			<manualcheck date="20141101" interval="365" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/kernel/module-init-tools/">
 					<atext linktext="module-init-tools-3.16.1." />

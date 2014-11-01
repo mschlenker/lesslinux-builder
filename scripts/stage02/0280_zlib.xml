@@ -3,15 +3,14 @@
 		name="zlib"
 		version="1.2.8"
 		class="lib"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
 				<pkg sha1="b598beb7acc96347cbd1020b71aef7871d374677">zlib-1.2.8.tar.xz</pkg>
 				<mirror>http://downloads.sourceforge.net/project/libpng/zlib/1.2.8/</mirror>
 			</file>
-			<manualcheck date="20130401" interval="180" page="http://sourceforge.net/projects/libpng/files/zlib/" />
+			<manualcheck date="20141101" interval="120" page="http://sourceforge.net/projects/libpng/files/zlib/" />
 			<check>
 				<page html="http://sourceforge.net/projects/libpng/rss?path=/zlib">
 					<atext linktext="zlib-1.2.10" />

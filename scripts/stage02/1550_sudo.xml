@@ -1,30 +1,16 @@
 <llpackages>
 	<package 
 		name="sudo"
-		version="1.8.10p3"
+		version="1.8.11p2"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                             
-				<pkg sha1="ed45b25da17c82e0d2cfed98cb4bfd45617c91d9">sudo-1.8.10p3.tar.gz</pkg>
+				<pkg sha1="1fb7cff2b7ed67ba98b1518f6cb0dd80dbcc2c48">sudo-1.8.11p2.tar.gz</pkg>
 				<mirror>http://www.sudo.ws/sudo/dist/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="90" page="http://www.sudo.ws/sudo/dist/" />
-			<!-- <check>
-				<page html="http://www.sudo.ws/sudo/dist/">
-					<atext linktext="sudo-1.8.9p6" />
-					<atext linktext="sudo-1.8.9p7" />
-					<atext linktext="sudo-1.8.9p8" />
-					<atext linktext="sudo-1.8.9p9" />
-					<atext linktext="sudo-1.8.9p10" />
-					<atext linktext="sudo-1.8.10" />
-					<atext linktext="sudo-1.8.11" />
-					<atext linktext="sudo-1.9" />
-					<atext linktext="sudo-1.10" />
-				</page>
-			</check> -->
+			<manualcheck date="20141101" interval="60" page="http://www.sudo.ws/sudo/dist/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
