@@ -1,0 +1,87 @@
+<llpackages>
+	<package 
+		name="bash"
+		version="4.3"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                          
+				<pkg sha1="45ac3c5727e7262334f4dfadecdf601b39434e84">bash-4.3.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
+			</file>
+		<file>                                                     
+				<pkg sha1="69f1cc8e0a95a4505d95fdc8ca9afcd76edef27c">bash-4.3-upstream_fixes-7.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20141101" interval="120" page="http://ftp.gnu.org/gnu/bash/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/bash/">
+					<atext linktext="bash-4.3.1." />
+					<atext linktext="bash-4.4." />
+					<atext linktext="bash-4.5." />
+					<atext linktext="bash-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+			<dep>ncurses</dep>
+			<dep>ncurses-8bit</dep>
+			<dep>readline</dep>
+			<dep>bison</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-7.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.3 --without-bash-malloc --with-installed-readline \
+			&& make
+			]]>
+		</build>
+		<!--<test />-->
+		<!-- <test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/LANG/LC_ALL/' tests/intl.tests
+			sed -i 's@tests@& </dev/tty@' tests/run-test
+			make tests
+			]]>
+		</test> -->
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			ln -sfv /bin/bash ${TGTDIR}/bin/sh
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

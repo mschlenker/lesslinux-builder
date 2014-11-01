@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="libtool"
+		version="2.4.3"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>      
+				<pkg sha1="7e946bd07b846a8803bf4321e82cd6be8059c0ca">libtool-2.4.3.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/libtool/</mirror>
+			</file>
+			<manualcheck date="20141101" interval="365" page="http://ftp.gnu.org/gnu/libtool" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/libtool/">
+					<atext linktext="libtool-2.4.3a" />
+					<atext linktext="libtool-2.4.3b" />
+					<atext linktext="libtool-2.4.7" />
+					<atext linktext="libtool-2.4.4" />
+					<atext linktext="libtool-2.4.5" />
+					<atext linktext="libtool-2.4.6" />
+					<atext linktext="libtool-2.5." />
+					<atext linktext="libtool-2.6." />
+					<atext linktext="libtool-2.8." />
+					<atext linktext="libtool-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>binutils</dep>
+			<dep>bash</dep>
+			<dep>coreutils</dep>
+			<dep>linux_headers</dep>
+			<dep>gcc</dep>
+			<dep>glibc</dep>
+			<dep>grep</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
