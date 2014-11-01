@@ -77,6 +77,8 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
+			ln -sf libXaw7.so.7.0.0 ${TGTDIR}/usr/lib/libXaw.so.7
+			ln -sf libXaw6.so.6.0.1 ${TGTDIR}/usr/lib/libXaw.so.6
 			]]>
 		</install>
 	</package>

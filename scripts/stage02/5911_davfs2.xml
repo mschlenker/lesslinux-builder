@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="davfs2"
-		version="1.5.0"
+		version="1.5.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="2867fc682cdc897c56808d03b2a42b9ac472e96f">davfs2-1.5.0.tar.gz</pkg>
+				<pkg sha1="438ea6e08fcdfe0b9ce3e284f11b3b3a4ab371f4">davfs2-1.5.2.tar.gz</pkg>
 				<mirror>http://download.savannah.gnu.org/releases/davfs2/</mirror>
 			</file>
 			<manualcheck date="20140802" interval="120" page="http://download.savannah.gnu.org/releases/davfs2/" />
-			<!-- <check>
-				<page html="http://www.hyperrealm.com/libconfig/">
-					<atext linktext="libconfig-1.4.10." />
-					<atext linktext="libconfig-1.4.11." />
-					<atext linktext="libconfig-1.4.12." />
-					<atext linktext="libconfig-1.4.13." />
-					<atext linktext="libconfig-1.4.14." />
-					<atext linktext="libconfig-1.5." />
-					<atext linktext="libconfig-1.6." />
-					<atext linktext="libconfig-1.2." />
+			<check>
+				<page html="http://download.savannah.gnu.org/releases/davfs2/">
+					<atext linktext="davfs2-1.5.3." />
+					<atext linktext="davfs2-1.5.4." />
+					<atext linktext="davfs2-1.5.5." />
+					<atext linktext="davfs2-1.5.6." />
+					<atext linktext="davfs2-1.5.7." />
+					<atext linktext="davfs2-1.6." />
+					<atext linktext="davfs2-1.7." />
+					<atext linktext="davfs2-1.8." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -61,6 +61,8 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
+			echo 'use_locks 0' > ${TGTDIR}/etc/davfs2/davfs2.conf
+			echo 'delay_upload 3' >> ${TGTDIR}/etc/davfs2/davfs2.conf
 			]]>
 		</install>
 		<clean>

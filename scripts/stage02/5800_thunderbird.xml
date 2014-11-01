@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="thunderbird"
-		version="31.1.2"
+		version="31.2.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="a3983e7d29bd70e8117ca26f5b9873c68675caa9">thunderbird-31.1.2.source.tar.bz2</pkg>
-				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/31.1.2/source/</mirror>
+				<pkg sha1="87dff89388bd7ec51876e1bdbd82bc3fe60006b6">thunderbird-31.2.0.source.tar.bz2</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/31.2.0/source/</mirror>
 			</file>  
 			<!-- 
-tbtag=THUNDERBIRD_31_1_2_RELEASE
+tbtag=THUNDERBIRD_31_2_0_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT ; do
 echo '==> Cloning: '"$l"
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
@@ -19,7 +19,7 @@ hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
 done
 			-->
 			<file>                                                                                                                
-				<pkg sha1="4ce3d0fb059cf2bda52f9a777dc3aae37023c550">thunderbird-31.1.2.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="497965745a43952bf18a166b393340536d290341">thunderbird-31.2.0.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                           
@@ -37,11 +37,11 @@ done
 			<manualcheck date="20140915" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
-					<atext linktext="31.1.4" />
-					<atext linktext="31.1.2" />
-					<atext linktext="31.1.3" />
-					<atext linktext="31.2." />
+					<atext linktext="31.2.1" />
+					<atext linktext="31.2.2" />
+					<atext linktext="31.2.3" />
 					<atext linktext="31.3." />
+					<atext linktext="31.4." />
 					<atext linktext="32." />
 					<atext linktext="33." />
 					<atext linktext="34." />
