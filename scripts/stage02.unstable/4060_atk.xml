@@ -1,66 +1,54 @@
 <llpackages>
 	<package 
-		name="pango"
-		version="1.36.8"
-		class="lib">
+		name="atk"
+		version="2.14.0"
+		class="lib"
+		install="destdir">
 		<license>GPLv2</license>
-		<sources>  
-			<file>                                           
-				<pkg sha1="c6ba02ee8f9d8b22b7cfd74c4b6ae170bebc8d2b">pango-1.36.8.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/pango/1.36/</mirror>
+		<sources>
+			<file>             
+				<pkg sha1="b803d055c8e2f786782803b7d21e413718321db7">atk-2.14.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/atk/2.14/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/pango/" />
+			<manualcheck date="20141101" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/atk" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pango/1.36/">
-					<atext linktext="pango-1.36.9" />
-					<atext linktext="pango-1.36.10" />
-					<atext linktext="pango-1.36.11" />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/atk/2.8/">
+					<atext linktext="atk-2.14.1." />
+					<atext linktext="atk-2.14.2." />
+					<atext linktext="atk-2.14.3." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pango/">
-					<atext linktext="1.40" />
-					<atext linktext="1.38" />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/atk/">
+					<atext linktext="2.16" />
+					<atext linktext="2.18" />
+					<atext linktext="2.20" />
+					<atext linktext="3.0" />
+					<atext linktext="3.2" />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
                         <dep>binutils</dep>
-                        <dep>cairo</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>findutils</dep>
-                        <dep>fontconfig</dep>
-                        <dep>freetype</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <dep>gettext</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
-                        <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXft</dep>
-                        <dep>libXrender</dep>
-                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
-                        <dep>libpthread-stubs</dep>
-                        <dep>libxcb</dep>
-                        <dep>libxml2</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>perl</dep>
-                        <dep>pixman</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>xproto-base</dep>
 			<dep>gobject-introspection</dep>
-			<dep>imake</dep>
-			<dep>harfbuzz</dep>
 			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			# tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
@@ -84,7 +72,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
