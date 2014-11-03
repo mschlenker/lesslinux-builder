@@ -10,10 +10,10 @@
 				<pkg sha1="f5f9eefa8fece7dead0487a2cca25f90e3dab3d9">qemu-2.1.2.tar.bz2</pkg>
 				<mirror>http://wiki.qemu-project.org/download/</mirror>
 			</file>
-			<!-- <file>                           
-				<pkg sha1="58c94faa3f0a682b496538792a66220bdd1d6ac7">qemu-2.1.0-virtfs-proxy-helper.patch</pkg>
+			<file>                           
+				<pkg sha1="58c94faa3f0a682b496538792a66220bdd1d6ac7">qemu-2.1.2-virtfs-proxy-helper.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
+			</file>
 			<manualcheck date="20141101" interval="60" page="http://wiki.qemu-project.org/download/" />
 		</sources>
 		<builddeps>
@@ -74,12 +74,12 @@
 			fi
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			cat  ${SRCDIR}/${PKGNAME}-${PKGVERSION}-virtfs-proxy-helper.patch | patch -p1 
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
