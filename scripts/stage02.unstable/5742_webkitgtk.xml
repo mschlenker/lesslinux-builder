@@ -100,7 +100,7 @@
                 </builddeps> 
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}.tar.xz | tar xf -
+			tar xJf ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<build>
