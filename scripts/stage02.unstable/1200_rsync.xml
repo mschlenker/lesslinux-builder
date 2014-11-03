@@ -1,20 +1,19 @@
 <llpackages>
 	<package 
 		name="rsync"
-		version="3.1.0"
+		version="3.1.1"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                             
-				<pkg sha1="eb58ab04bcb6293da76b83f58327c038b23fcba3">rsync-3.1.0.tar.gz</pkg>
+				<pkg sha1="c84faba04f721d393feccfa0476bfeed9b5b5250">rsync-3.1.1.tar.gz</pkg>
 				<mirror>http://samba.anu.edu.au/ftp/rsync/src/</mirror>
 			</file>
-			<manualcheck date="20140221" interval="180" page="http://samba.anu.edu.au/ftp/rsync/src/" />
+			<manualcheck date="20141101" interval="180" page="http://samba.anu.edu.au/ftp/rsync/src/" />
 			<check>
 				<page html="http://samba.anu.edu.au/ftp/rsync/src/">
-					<atext linktext="rsync-3.1.1." />
+					<atext linktext="rsync-3.1.4." />
 					<atext linktext="rsync-3.1.2." />
 					<atext linktext="rsync-3.1.3." />
 					<atext linktext="rsync-3.2." />

@@ -1,0 +1,177 @@
+<llpackages>
+	<package 
+		name="boost"
+		version="1_56_0"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                           
+				<pkg sha1="1639723c6bdff873cdb6d747f8f8c9d9f066434d">boost_1_56_0.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.56.0</mirror>
+			</file>
+			<manualcheck date="20141101" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
+			<check>
+				<page html="http://sourceforge.net/projects/boost/files/boost/">
+					<atext linktext="1.56.1" />
+					<atext linktext="1.56.2" />
+					<atext linktext="1.57." />
+					<atext linktext="1.58." />
+					<atext linktext="1.59." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>ImageMagick</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python</dep>
+                        <dep>Thunar</dep>
+                        <dep>a52dec</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>alsa-utils</dep>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>bdftopcf</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>bzip2</dep>
+                        <dep>cairo</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>cryptsetup</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>device-mapper</dep>
+                        <dep>dhcpcd</dep>
+                        <dep>diffutils</dep>
+                        <dep>dmidecode</dep>
+                        <dep>dosfstools</dep>
+                        <dep>e2fsprogs</dep>
+                        <dep>eggdbus</dep>
+                        <dep>evince</dep>
+                        <dep>expat</dep>
+                        <dep>ffmpeg</dep>
+                        <dep>file</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>font-util</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>fribidi</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>giblib</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gnome-vfs</dep>
+                        <dep>gnutls</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>gzip</dep>
+                        <!-- <dep>hal</dep> -->
+                        <dep>iceauth</dep>
+                        <dep>imlib2</dep>
+                        <dep>inetutils</dep>
+			<dep>intltool</dep>
+                        <dep>kbd</dep>
+                        <dep>libIDL</dep>
+                        <dep>libXft</dep>
+                        <dep>libXpm</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libglade</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libgsf</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>librsvg</dep>
+                        <dep>libtool</dep>
+                        <dep>libusb</dep><dep>libusb-compat</dep>
+                        <dep>libwnck</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>lshw</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>nasm</dep>
+                        <dep>ncurses</dep>
+                        <dep>openssh</dep>
+                        <dep>openssl</dep>
+                        <dep>patch</dep>
+                        <dep>pciutils</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>polkit</dep>
+                        <dep>procps</dep>
+                        <dep>psmisc</dep>
+                        <dep>qt-everywhere-opensource-src</dep>
+			<dep>rsync</dep>
+                        <dep>ruby</dep>
+                        <dep>scrollkeeper</dep>
+                        <dep>sed</dep>
+                        <dep>sgml-common</dep>
+                        <dep>shadow</dep>
+                        <dep>strace</dep>
+                        <dep>tar</dep>
+                        <dep>texinfo</dep>
+                        <dep>tiff</dep>
+                        <dep>unzip</dep>
+                        <dep>usbutils</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>wicd</dep>
+                        <dep>xinit</dep>
+                        <dep>xkbcomp</dep>
+                        <dep>xrandr</dep>
+                        <dep>xsetroot</dep>
+                        <dep>xterm</dep>
+                        <dep>xz</dep>
+                        <dep>zip</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			sh bootstrap.sh --prefix=/usr
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				sed -i 's%# using gcc ;%using gcc \: \: /usr/bin/distcc g++ ;%g' tools/build/v2/user-config.jam
+				pump ./bjam -a -j $jobcount --debug-configuration
+			else
+				./b2 -a
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			./b2 install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}_${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
