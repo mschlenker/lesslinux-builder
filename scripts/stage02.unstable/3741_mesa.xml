@@ -91,6 +91,8 @@
 			echo 'Current environment:'
 			env
 			
+			bash autogen.sh 
+			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC='distcc /usr/bin/gcc'
