@@ -60,6 +60,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
+			<dep>vala</dep>
 			<!-- soft -->
 			 <dep>imake</dep>
 			 <dep>distcc</dep>
@@ -81,10 +82,10 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr --sysconfdir=/etc --enable-vala 
 				pump make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr --sysconfdir=/etc --enable-vala 
 				make
 			fi
 			]]>
