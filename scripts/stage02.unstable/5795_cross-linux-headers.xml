@@ -1,7 +1,9 @@
 <llpackages>
 	<package 
-		name="linux_headers"
-		version="3.17.2">
+		name="cross-linux-headers"
+		version="3.17.2"
+		class="devel"
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
@@ -24,6 +26,19 @@
 				</page>
 			</check>
 		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
@@ -36,9 +51,7 @@
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
-			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
-				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			fi
+			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cd ..
 			mv -v linux-${major}.${minor} linux-${PKGVERSION}
 			
@@ -46,19 +59,33 @@
 		</patch>
 		<build>
 			<![CDATA[ 
+			
 			cd linux-${PKGVERSION}
-			make headers_check
+			make mrproper
+			
 			]]>
 		</build>
+		<test />
 		<install>
 			<![CDATA[
 			
-			mkdir -p /tools/include
 			cd linux-${PKGVERSION}
 			make INSTALL_HDR_PATH=dest headers_install
-			cp -rv dest/include/* /tools/include
+			find dest/include \( -name .install -o -name ..install.cmd \) -delete
+			
+			for tgt in crosstools/i486-linux-uclibc crosstools-amd64/amd64-linux-uclibc \
+				crosstools-ia32-musl/i386-linux-musl crosstools-amd64-musl/x86_64-linux-musl ; do
+				mkdir -p ${TGTDIR}/usr/local/${tgt}/include
+				cp -rv dest/include/* ${TGTDIR}/usr/local/${tgt}/include
+				ln -s . ${TGTDIR}/usr/local/${tgt}/usr
+			done
 			
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf linux-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

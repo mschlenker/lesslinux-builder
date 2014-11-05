@@ -1,0 +1,127 @@
+<llpackages>
+	<package 
+		name="linux-amd64"
+		version="3.17.2"
+		class="kernel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                  
+				<pkg sha1="8cdbf5add8deb2fc909f44f88e5097b5a8a165c8">config-3.16-amd64-lesslinux-20140815-1425</pkg> 
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<pkg sha1="660d8a1c2c694b1dbb361ef7fcbd62846ba742a5">lesslinux-fblogo-20100922.ppm</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                 
+				<pkg sha1="ad22d0b0979336fa0448268f0febd45be0279288">linux-3.17.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="88308dd308c4b83888d0840eb557c38798a27108">patch-3.17.2.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<manualcheck date="20141101" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-3.17.3." />
+					<atext linktext="patch-3.17.4." />
+					<atext linktext="patch-3.17.5." />
+					<atext linktext="patch-3.18." />
+					<atext linktext="patch-3.19." />
+					<atext linktext="patch-3.20." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+			<dep>cross-gcc-amd64</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+			<dep>ruby</dep>
+			<dep>installkernel-debian</dep>
+			<dep>xz</dep>
+			<dep>bzip2</dep>
+			<dep>gzip</dep>
+			<dep>lesslinux-modextract</dep>
+			<dep>module-init-tools</dep>
+			<!-- artificial dependencies, do not build more than two kernels at once -->
+			<dep>linux</dep>
+			<dep>linux-nopae</dep>
+			<dep>bc</dep>
+			<dep>distcc</dep>
+			<dep>kmod</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
+			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
+			cp -v ${SRCDIR}/config-3.16-amd64-lesslinux-20140815-1425 .config 
+			sed -i 's/lesslinux-000/lesslinux-amd64-000/g' .config 
+			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
+			cd ..
+			mv linux-${major}.${minor} linux-${PKGVERSION}
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			export PATH=/usr/local/crosstools-amd64/bin:$PATH
+			yes '' | make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- oldconfig
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				pump make -j $jobcount ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- CC='distcc /usr/local/crosstools-amd64/bin/amd64-linux-uclibc-gcc'
+				pump make -j $jobcount ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- CC='distcc /usr/local/crosstools-amd64/bin/amd64-linux-uclibc-gcc' bzImage
+			else
+				make -j 4 ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc-
+				make -j 4 ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- bzImage
+			fi
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd linux-${PKGVERSION}
+			localversion=` grep '^CONFIG_LOCALVERSION' .config | sed 's/"//g' | awk -F '=' '{print $2}' `
+			mkdir -p ${TGTDIR}/boot
+			export PATH=/usr/local/crosstools-amd64/bin:$PATH
+			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- modules_install
+			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}${localversion}
+			find ${TGTDIR}/lib/modules/${PKGVERSION}${localversion} -type f -name '*.ko' -exec amd64-linux-uclibc-strip --strip-unneeded {} \; 
+			rm -rf ${TGTDIR}/lib/firmware
+			
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf linux-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>
