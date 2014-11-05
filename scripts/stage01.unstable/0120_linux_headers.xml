@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="linux_headers"
+		version="3.17.2">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="ad22d0b0979336fa0448268f0febd45be0279288">linux-3.17.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="88308dd308c4b83888d0840eb557c38798a27108">patch-3.17.2.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<manualcheck date="20141101" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-3.17.3." />
+					<atext linktext="patch-3.17.4." />
+					<atext linktext="patch-3.17.5." />
+					<atext linktext="patch-3.18." />
+					<atext linktext="patch-3.19." />
+					<atext linktext="patch-3.20." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/linux-3.17.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			
+			cd linux-3.17
+			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
+				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			fi
+			cd ..
+			mv -v linux-3.17 linux-${PKGVERSION}
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			make headers_check
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			mkdir -p /tools/include
+			cd linux-${PKGVERSION}
+			make INSTALL_HDR_PATH=dest headers_install
+			cp -rv dest/include/* /tools/include
+			
+			]]>
+		</install>
+	</package>
+</llpackages>
