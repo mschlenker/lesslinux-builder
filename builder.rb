@@ -54,6 +54,7 @@ include ObjectSpace
 @ignore_arch = false
 @nonfree = nil 
 @grub = true
+@mirror = nil
 
 opts = OptionParser.new 
 opts.on('-n', '--no-test')    { @run_tests = false }
@@ -87,8 +88,8 @@ opts.on('--nonfree', :REQUIRED) { |i| @nonfree =  i.strip }
 opts.on("--no-grub") { @grub = false } 
 # Specify a mirror to try download first - this might be a mirror in the local network with a cache of most distfiles
 # See FileDownloader.rb
-# opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
-# opts.parse!
+opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
+opts.parse!
 
 puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"  
 

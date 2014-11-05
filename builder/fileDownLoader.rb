@@ -11,7 +11,12 @@ class FileDownLoader
 	def initialize  (buildfile, srcdir, check_sources=true)
 		opts = OptionParser.new 
 		opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
-		opts.parse!
+		begin
+			opts.parse!
+		rescue OptionParser::InvalidOption
+			puts "Warning: Invalid option"
+		end
+		# opts.parse!
 		# puts '-> parsing ' + buildfile
 		puts sprintf("%015.4f", Time.now.to_f) + " info   > Parsing " + buildfile
 		$stdout.flush
