@@ -85,8 +85,11 @@ opts.on('--shortest-path-to', :REQUIRED) { |i| @buildonly =  i.strip.split(',') 
 opts.on('--ignore-arch') { @ignore_arch = true }
 opts.on('--nonfree', :REQUIRED) { |i| @nonfree =  i.strip }
 opts.on("--no-grub") { @grub = false } 
+# Specify a mirror to try download first - this might be a mirror in the local network with a cache of most distfiles
+# See FileDownloader.rb
+# opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
+# opts.parse!
 
-opts.parse!
 puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"  
 
 [ "m4", "makeinfo", "gawk", "autoconf", "mkfs.msdos", "mksquashfs", "sha1sum", "cpio", "unxz", "lunzip", "perl" ].each { |p|

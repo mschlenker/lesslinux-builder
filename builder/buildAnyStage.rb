@@ -2,6 +2,7 @@
 require 'hpricot'
 require 'net/http'
 require 'net/https'
+require 'open-uri'
 
 class AnyStage
 	
@@ -19,6 +20,7 @@ class AnyStage
 		@check_sources = check_sources
 		@target_type = "chroot"
 		@nonfree = nonfree 
+		
 		if !skiplist.nil? && File.exist?(skiplist)
 			@skiplist = File.read(skiplist).split("\n")
 		end

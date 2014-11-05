@@ -6,8 +6,12 @@ class FileDownLoader
 	@srcdir = nil
 	@xfile = nil
 	@dltokens = nil
+	@mirror = nil 
 
 	def initialize  (buildfile, srcdir, check_sources=true)
+		opts = OptionParser.new 
+		opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
+		opts.parse!
 		# puts '-> parsing ' + buildfile
 		puts sprintf("%015.4f", Time.now.to_f) + " info   > Parsing " + buildfile
 		$stdout.flush
@@ -20,6 +24,7 @@ class FileDownLoader
 			pkgname = f.elements["pkg"].text.strip
 			shahash = f.elements["pkg"].attributes["sha1"]
 			dllocations = Array.new
+			dlllocations.push(@mirror) unless @mirror.nil? 
 			f.elements.each("mirror") { |m| dllocations.push(m.text.strip) }
 			dllocations = dllocations + [ "http://distfiles.lesslinux.org/", "http://distfiles.lesslinux.org/old/" ]
 			srctoken = SingleSourceFile.new(@srcdir, pkgname, shahash, dllocations, @check_sources)
