@@ -1,0 +1,53 @@
+<llpackages>
+	<package
+		name="mc"
+		version="4.8.13"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="b64b81f80fa93224f054ad5f498e479ceac5a49d">mc-4.8.13.tar.xz</pkg>
+				<mirror>ftp://ftp.midnight-commander.org/pub/midnightcommander/</mirror>
+			</file>
+			<manualcheck date="20141101" interval="60" page="ftp://ftp.midnight-commander.org/" />
+		</sources>
+		<builddeps>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>readline</dep>
+			<dep>autoconf</dep>
+			<dep>automake</dep>
+			<dep>libtool</dep>
+			<dep>glib</dep>
+			<dep>slang</dep>
+			<dep>gettext</dep>
+			<dep>libssh2</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
