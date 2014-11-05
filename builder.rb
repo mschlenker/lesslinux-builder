@@ -55,6 +55,7 @@ include ObjectSpace
 @nonfree = nil 
 @grub = true
 @mirror = nil
+@overwrite_builddir = nil 
 
 opts = OptionParser.new 
 opts.on('-n', '--no-test')    { @run_tests = false }
@@ -89,6 +90,8 @@ opts.on("--no-grub") { @grub = false }
 # Specify a mirror to try download first - this might be a mirror in the local network with a cache of most distfiles
 # See FileDownloader.rb
 opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
+# Overwrite the builddir settings from the XML files
+opts.on('--builddir', :REQUIRED) { |i| @overwrite_builddir =  i.strip }
 opts.parse!
 
 puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"  
@@ -117,7 +120,8 @@ xcfg = File.new( @config_file )
 cfg = REXML::Document.new xcfg
 @cfgroot = cfg.root
 @srcdir = @cfgroot.elements["sourcedir"].text
-@builddir = @cfgroot.elements["builddir"].text
+@builddir = @cfgroot.elements["builddir"].text 
+@builddir = @overwrite_builddir unless @overwrite_builddir.nil?
 @unpriv = @cfgroot.elements["unpriv"].text
 @overlays = @cfgroot.elements["overlays"].text
 @dbuser = @cfgroot.elements["database/user"].text
