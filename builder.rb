@@ -209,7 +209,7 @@ unless @nonfree.nil?
 end
 
 @stage_two_scripts.sort.each { |i| 
-	@stage_two_objs.push(SecondStage.new(i, @srcdir, @builddir, @unpriv, "stage02", @dbh, @unstable, @sqlite, nil, @legacy, @allowfail, @distcchosts, @check_sources, @nonfree))
+	@stage_two_objs.push(SecondStage.new(i, @srcdir, @builddir, @unpriv, "stage02", @dbh, @unstable, @sqlite, nil, @legacy, @allowfail, @distcchosts, @check_sources, @nonfree, @mirror))
 }
 
 puts sprintf("%015.4f", Time.now.to_f) + " info  > Number of threads requested " + @thread_count.to_s
@@ -253,7 +253,7 @@ def get_stage_one_objs
 		end
 	}
 	stage_one_objs = []
-	stage_one_scripts.sort.each { |i| stage_one_objs.push(FirstStage.new(i, @srcdir, @builddir, @unpriv, "stage01", @dbh, @unstable, @sqlite, nil, @legacy)) }
+	stage_one_scripts.sort.each { |i| stage_one_objs.push(FirstStage.new(i, @srcdir, @builddir, @unpriv, "stage01", @dbh, @unstable, @sqlite, nil, @legacy, Array.new, Array.new, @check_sources, nil, @mirror )) }
 	return stage_one_objs
 end
 
@@ -750,7 +750,7 @@ def run_stage_three
 	stage_three_scripts.sort.each { |i| 
 		# puts sprintf("%015.4f", Time.now.to_f) + " info   > Parsing " + i
 		# $stdout.flush
-		this_stage_three_obj = ThirdStage.new(i, @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, Array.new, Array.new, true, @nonfree)
+		this_stage_three_obj = ThirdStage.new(i, @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, Array.new, Array.new, true, @nonfree, @mirror ) 
 		if this_stage_three_obj.pkg_version.nil?
 			fvers = nil
 			@stage_two_objs.each { |i| fvers = i.pkg_version if this_stage_three_obj.pkg_name.strip == i.pkg_name.strip }

@@ -8,21 +8,13 @@ class FileDownLoader
 	@dltokens = nil
 	@mirror = nil 
 
-	def initialize  (buildfile, srcdir, check_sources=true)
-		opts = OptionParser.new 
-		opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
-		begin
-			opts.parse!
-		rescue OptionParser::InvalidOption
-			puts "Warning: Invalid option"
-		end
-		# opts.parse!
-		# puts '-> parsing ' + buildfile
+	def initialize  (buildfile, srcdir, check_sources=true, mirror=nil)
 		puts sprintf("%015.4f", Time.now.to_f) + " info   > Parsing " + buildfile
 		$stdout.flush
 		@buildfile = buildfile
 		@srcdir = srcdir
 		@check_sources = check_sources 
+		@mirror = mirror 
 		dltokens = []
 		@xfile = REXML::Document.new(File.new(@buildfile))
 		@xfile.elements.each("llpackages/package/sources/file") { |f|

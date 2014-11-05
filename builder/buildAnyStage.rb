@@ -6,7 +6,7 @@ require 'open-uri'
 
 class AnyStage
 	
-	def initialize (filename, sourcedir, builddir, unpriv, stage, dbh, unstable, sqlite, skiplist=nil, legacy=false, failpackages=[], distcchosts=[], check_sources=true, nonfree=nil )
+	def initialize (filename, sourcedir, builddir, unpriv, stage, dbh, unstable, sqlite, skiplist=nil, legacy=false, failpackages=[], distcchosts=[], check_sources=true, nonfree=nil, mirror=nil  )
 		@buildfile = filename
 		@srcdir = sourcedir
 		@builddir = builddir
@@ -20,6 +20,7 @@ class AnyStage
 		@check_sources = check_sources
 		@target_type = "chroot"
 		@nonfree = nonfree 
+		@mirror = mirror 
 		
 		if !skiplist.nil? && File.exist?(skiplist)
 			@skiplist = File.read(skiplist).split("\n")
@@ -29,22 +30,22 @@ class AnyStage
 			searchdir = "#{@nonfree}/" 
 		end
 		if File.exists?(searchdir + "scripts/" + @stage + ".legacy/" + @buildfile) && @legacy == true
-			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + ".legacy/" + @buildfile, @srcdir, @check_sources)
+			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + ".legacy/" + @buildfile, @srcdir, @check_sources, @mirror)
 			@xfile = REXML::Document.new(File.new(searchdir + "scripts/" + @stage + ".legacy/" + @buildfile))
 		elsif File.exists?(searchdir + "scripts/" + @stage + ".unstable/" + @buildfile) && @unstable == true
-			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + ".unstable/" + @buildfile, @srcdir, @check_sources)
+			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + ".unstable/" + @buildfile, @srcdir, @check_sources, @mirror)
 			@xfile = REXML::Document.new(File.new(searchdir + "scripts/" + @stage + ".unstable/" + @buildfile))
 		elsif File.exists?(searchdir + "scripts/" + @stage + "/" + @buildfile)
-			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + "/" + @buildfile, @srcdir, @check_sources)
+			@downloader = FileDownLoader.new(searchdir + "scripts/" + @stage + "/" + @buildfile, @srcdir, @check_sources, @mirror)
 			@xfile = REXML::Document.new(File.new(searchdir + "scripts/" + @stage + "/" + @buildfile))
 		elsif File.exists?("scripts/" + @stage + ".legacy/" + @buildfile) && @legacy == true
-			@downloader = FileDownLoader.new("scripts/" + @stage + ".legacy/" + @buildfile, @srcdir, @check_sources)
+			@downloader = FileDownLoader.new("scripts/" + @stage + ".legacy/" + @buildfile, @srcdir, @check_sources, @mirror)
 			@xfile = REXML::Document.new(File.new("scripts/" + @stage + ".legacy/" + @buildfile))
 		elsif File.exists?("scripts/" + @stage + ".unstable/" + @buildfile) && @unstable == true
-			@downloader = FileDownLoader.new("scripts/" + @stage + ".unstable/" + @buildfile, @srcdir, @check_sources)
+			@downloader = FileDownLoader.new("scripts/" + @stage + ".unstable/" + @buildfile, @srcdir, @check_sources, @mirror)
 			@xfile = REXML::Document.new(File.new("scripts/" + @stage + ".unstable/" + @buildfile))
 		else
-			@downloader = FileDownLoader.new("scripts/" + @stage + "/" + @buildfile, @srcdir, @check_sources)
+			@downloader = FileDownLoader.new("scripts/" + @stage + "/" + @buildfile, @srcdir, @check_sources, @mirror)
 			@xfile = REXML::Document.new(File.new("scripts/" + @stage + "/" + @buildfile))
 		end
 		@pkg_name = @xfile.elements["llpackages/package"].attributes["name"]
