@@ -1,0 +1,48 @@
+<pkgdesc name='usbutils' version='008'>
+    <subpackage name='skel'>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/bin/lsusb' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/usbhid-dump' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/usb-devices.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/usbhid-dump.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/lsusb.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/share/pkgconfig/usbutils.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/bin/usb-devices' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/lsusb.py' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'>
+            <file path='/usr/share/usb.ids.gz'/>
+            <file path='/usr/share/usb.ids'/>
+            <file path='/usr/sbin/update-usbids.sh'/>
+        </subpackage>
+        <subpackage name='ignore'/>
+    </vanished>
+</pkgdesc>
