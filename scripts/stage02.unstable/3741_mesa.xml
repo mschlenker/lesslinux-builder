@@ -115,9 +115,8 @@
 				--enable-gallium-egl           \
 				--enable-gallium-gbm           \
 				--enable-glx-tls               \
-				--with-llvm-shared-libs        \
 				--with-egl-platforms="drm,x11" \
-				--with-gallium-drivers="nouveau,r300,r600,radeonsi,svga,swrast" 
+				--with-gallium-drivers="i915,ilo,nouveau,r300,r600,radeonsi,svga,swrast" 
 				
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount 
