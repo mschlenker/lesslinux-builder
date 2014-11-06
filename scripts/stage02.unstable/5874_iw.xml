@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="iw"
+		version="3.17"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="ef95f36a7c772ebdc36e44f7934dcf5681a8c16a">iw-3.17.tar.xz</pkg>
+				<mirror>http://kernel.org/pub/software/network/iw/</mirror>
+			</file>
+			<manualcheck date="20141101" interval="60" page="http://www.kernel.org/pub/software/network/iw" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/software/network/iw/">
+					<atext linktext="iw-3.17.1." />
+					<atext linktext="iw-3.17.2." />
+					<atext linktext="iw-3.17.3." />
+					<atext linktext="iw-3.18." />
+					<atext linktext="iw-3.19." />
+					<atext linktext="iw-3.20." />
+					<atext linktext="iw-3.21." />
+					<atext linktext="iw-3.22." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+			<dep>crda</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>libnl</dep><dep>libnl3</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
