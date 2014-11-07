@@ -46,7 +46,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/grub-${PKGVERSION}.tar.xz | tar xf - || tar xjf ${SRCDIR}/grub-${PKGVERSION}.tar.bz2
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<!-- <patch>
