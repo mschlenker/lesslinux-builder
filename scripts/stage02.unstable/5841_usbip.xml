@@ -80,7 +80,7 @@
 		</patch>
 		<build>
 			<![CDATA[
-			cd linux-${PKGVERSION}/drivers/staging/usbip/userspace
+			cd linux-${PKGVERSION}/tools/usb/usbip
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
