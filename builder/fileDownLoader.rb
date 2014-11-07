@@ -21,7 +21,7 @@ class FileDownLoader
 			pkgname = f.elements["pkg"].text.strip
 			shahash = f.elements["pkg"].attributes["sha1"]
 			dllocations = Array.new
-			dlllocations.push(@mirror) unless @mirror.nil? 
+			dllocations.push(@mirror) unless @mirror.nil? 
 			f.elements.each("mirror") { |m| dllocations.push(m.text.strip) }
 			dllocations = dllocations + [ "http://distfiles.lesslinux.org/", "http://distfiles.lesslinux.org/old/" ]
 			srctoken = SingleSourceFile.new(@srcdir, pkgname, shahash, dllocations, @check_sources)
