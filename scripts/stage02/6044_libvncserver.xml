@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='LibVNCServer' version='0.9.10' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='b60b712dfffec395c743e569914a73efa523a406'>
+                    LibVNCServer-0.9.10.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/LibVNC/libvncserver/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20141108' interval='60' mirror='https://github.com/LibVNC/libvncserver/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libvncserver-${PKGNAME}-${PKGVERSION}
+cmake -DCMAKE_INSTALL_PREFIX=/usr 
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libvncserver-${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libvncserver-${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
