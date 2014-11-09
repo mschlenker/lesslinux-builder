@@ -10,11 +10,7 @@
 				<pkg sha1="ad4ffb779b0d5516498c7b1c9bf24114574f447b">FreeRDP-20141108.tar.bz2</pkg>
 				<mirror>http://cloud.github.com/downloads/FreeRDP/FreeRDP/</mirror>
 			</file>
-			<file>                                                                               
-				<pkg sha1="fb92989cf3fb72fd8a9c25258e601dd6e688905c">freerdp-ffmpeg.patch</pkg>
-				<mirror>https://raw.github.com/pld-linux/freerdp/master/</mirror>
-			</file>
-			<manualcheck date="20140731" interval="180" page="http://pub.freerdp.com/releases/" />
+			<manualcheck date="20141101" interval="60" page="http://pub.freerdp.com/releases/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -33,19 +29,32 @@
                         <dep>binutils</dep>
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
+                        <dep>cups</dep>
                         <dep>ffmpeg</dep>
                         <dep>gcc</dep>
                         <dep>git</dep>
+                        <dep>glib</dep>
                         <dep>glibc</dep>
+                        <dep>gst-plugins-base</dep>
+                        <dep>gstreamer</dep>
                         <dep>libX11</dep>
                         <dep>libXcursor</dep>
                         <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXi</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
                         <dep>libXv</dep>
                         <dep>libxkbfile</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
+                        <dep>pcsc-lite</dep>
                         <dep>pkg-config</dep>
+                        <dep>x264</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
                 </builddeps>
