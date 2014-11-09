@@ -24,7 +24,9 @@
 			</check> -->
 		</sources>
 		<builddeps>
+                        <dep>LibVNCServer</dep>
                         <dep>atk</dep>
+                        <dep>avahi</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
@@ -34,14 +36,14 @@
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
+                        <dep>git</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gnutls3</dep>
-                        <dep>gtk</dep>
-                        <dep>jpegsrc</dep>
+                        <dep>gtk3</dep>
                         <dep>libICE</dep>
                         <dep>libSM</dep>
                         <dep>libX11</dep>
+                        <dep>libXScrnSaver</dep>
                         <dep>libXau</dep>
                         <dep>libXcomposite</dep>
                         <dep>libXcursor</dep>
@@ -51,6 +53,7 @@
                         <dep>libXfixes</dep>
                         <dep>libXft</dep>
                         <dep>libXi</dep>
+                        <dep>libXinerama</dep>
                         <dep>libXmu</dep>
                         <dep>libXpm</dep>
                         <dep>libXrandr</dep>
@@ -67,10 +70,8 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
-                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pango</dep>
                         <dep>pkg-config</dep>
-                        <dep>sed</dep>
-                        <dep>vte</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
                 </builddeps>
