@@ -68,6 +68,19 @@ puts "<==> different parameters #{ARGV[0]} vs. #{ARGV[1]}"
 	unless optversions[ ARGV[1] ][k] == optversions[ ARGV[0] ][k]
 		diffcount += 1
 		puts "CONFIG_#{k} #{optversions[ ARGV[0] ][k]} vs. #{optversions[ ARGV[1] ][k]}"
+		leftconf = nil
+		rightconf = nil
+		if optversions[ ARGV[0] ][k] == "n" 
+			leftconf = "# CONFIG_#{k} is not set"
+		else
+			leftconf = "CONFIG_#{k}=" + optversions[ ARGV[0] ][k]
+		end
+		if optversions[ ARGV[1] ][k] == "n" 
+			rightconf = "# CONFIG_#{k} is not set"
+		else
+			rightconf = "CONFIG_#{k}=" + optversions[ ARGV[1] ][k]
+		end
+		puts "    sed -i '%#{rightconf}%#{leftconf}%g' #{ARGV[1]}" 
 	end
 }
 puts "#{diffcount} differences" 
