@@ -102,17 +102,19 @@
 		<install>
 			<![CDATA[
 			cd linux-${PKGVERSION}
-			localversion=` grep '^CONFIG_LOCALVERSION' .config | sed 's/"//g' | awk -F '=' '{print $2}' `
+			localversion=` grep '^CONFIG_LOCALVERSION' .config | sed 's/"//g' | awk -F '=' '{print $2}' | sed 's%^-%%g' `
 			mkdir -p ${TGTDIR}/boot
+			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
+			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-amd64 
 			export PATH=/usr/local/crosstools-amd64/bin:$PATH
 			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- modules_install
-			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}${localversion}
-			
-			## make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- firmware_install	
-			## make install	
-			
-			find ${TGTDIR}/lib/modules/${PKGVERSION}${localversion} -type f -name '*.ko' -exec amd64-linux-uclibc-strip --strip-unneeded {} \; 
+			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec amd64-linux-uclibc-strip --strip-unneeded {} \; 
 			rm -rf ${TGTDIR}/lib/firmware
+			ln -s  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-amd64
+			make clean
+			make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- modules_prepare 
+			tar cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xf - 
 			
 			]]>
 		</install>
