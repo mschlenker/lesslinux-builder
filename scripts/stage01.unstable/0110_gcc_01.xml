@@ -102,8 +102,22 @@
 		<build>
 			<![CDATA[ 
 			cd gcc-build
-			../gcc-${PKGVERSION}/configure                               \
-				--target=$LFS_TGT                                \
+			
+			ARMFLOAT=''
+			ARMFPU=''
+
+			# Settings for Raspberry Pi
+			case ${LFS_TGT} in
+				*armv6l*)
+					ARMFLOAT="--with-float=vfp"
+					ARMFPU="--with-fpu=hard"
+				;;
+			esac
+
+			http://cdprojekte.mattiasschlenker.de/Computerbild_International/2014/10_Plyta_Ratunkowa/plyta-ratunkowa-tunguska-20141110-114100.iso
+			
+			../gcc-${PKGVERSION}/configure                           \
+				--target=$LFS_TGT ${ARMFLOAT} ${ARMFPU}          \
 				--prefix=/tools                                  \
 				--with-sysroot=$LFS                              \
 				--with-newlib                                    \
@@ -127,13 +141,15 @@
 				--disable-libstdc++-v3                           \
 				--enable-languages=c,c++                         \
 				--with-mpfr-include=$(pwd)/../gcc-${PKGVERSION}/mpfr/src \
-				--with-mpfr-lib=$(pwd)/mpfr/src/.libs
+				--with-mpfr-lib=$(pwd)/mpfr/src/.libs 
+			
 			# Fix build on RaspberryPi
-			case 	$LFS_TGT in 
-				armv6l*)
-					sed -i 's/none-/armv6l-/' Makefile
-				;;
-			esac
+			#case 	$LFS_TGT in 
+			#	armv6l*)
+			#		sed -i 's/none-/armv6l-/' Makefile
+			#	;;
+			# esac
+			
 			make
 			]]>
 		</build>
