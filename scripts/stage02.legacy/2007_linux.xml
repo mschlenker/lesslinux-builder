@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="3.14.23"
+		version="3.14.24"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,14 +19,14 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="5738701e8b667d466d93249df51f82453f34a620">patch-3.14.23.xz</pkg>
+				<pkg sha1="aea32950b04fbb2b3b070333ec399ba8cb0f15f1">patch-3.14.24.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20141028" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20141115" interval="30" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-3.14.29." />
-					<atext linktext="patch-3.14.24." />
+					<atext linktext="patch-3.14.30." />
 					<atext linktext="patch-3.14.25." />
 					<atext linktext="patch-3.14.26." />
 					<atext linktext="patch-3.14.27." />
