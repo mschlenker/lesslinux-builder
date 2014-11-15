@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="brasero3"
-		version="3.10.0"
+		version="3.12.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="5fd0f43c5e8a7d59dabfec88988d7711c9246e1e">brasero-3.10.0.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/brasero/3.10/</mirror>
+				<pkg sha1="2dd4ec27f755f19120f36418f711e1901f6fdd0c">brasero-3.12.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/brasero/3.12/</mirror>
 			</file>
 			<manualcheck date="20140724" interval="180" page="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/" />
 			<check>
-				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/3.10/">
-					<atext linktext="brasero-3.10.1." />
-					<atext linktext="brasero-3.10.2." />
-					<atext linktext="brasero-3.10.3." />
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/3.12/">
+					<atext linktext="brasero-3.12.1." />
+					<atext linktext="brasero-3.12.2." />
+					<atext linktext="brasero-3.12.3." />
 				</page>
 				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/">
 					<atext linktext="3.16" />
-					<atext linktext="3.12" />
+					<atext linktext="3.18" />
 					<atext linktext="3.14" />
 					<atext linktext="4." />
 				</page>
@@ -105,8 +105,7 @@
 			fi
 			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
 				--enable-nautilus=no --enable-libburnia=yes \
-				--enable-cdrtools=no --enable-cdrdao=no \
-				--enable-cdrkit=no --enable-growisofs=no
+				--enable-cdrtools=no --enable-cdrdao=no
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else
