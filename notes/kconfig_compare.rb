@@ -36,6 +36,9 @@ optversions = Hash.new
 unless ARGV[2].nil?
 	dump = File.new(ARGV[2], "w") 
 end
+unless ARGV[3].nil?
+	dumptoo = File.new(ARGV[3], "w") 
+end
 
 puts "<== parameters only left in #{ARGV[0]}"
 # puts ( optversions[ ARGV[0] ].keys.sort - optversions[ ARGV[1] ].keys.sort ).to_s 
@@ -80,7 +83,17 @@ puts "<==> different parameters #{ARGV[0]} vs. #{ARGV[1]}"
 		else
 			rightconf = "CONFIG_#{k}=" + optversions[ ARGV[1] ][k]
 		end
-		puts "    sed -i '%#{rightconf}%#{leftconf}%g' #{ARGV[1]}" 
+		if dumptoo.nil?
+			puts "CONFIG_#{k} #{optversions[ ARGV[0] ][k]} vs. #{optversions[ ARGV[1] ][k]}"
+			puts "    sed -i '%#{rightconf}%#{leftconf}%g' #{ARGV[1]}" 
+		else 
+			if optversions[ ARGV[1] ][k] == "n" 
+				dumptoo.write(leftconf) 
+			else
+				puts "CONFIG_#{k} #{optversions[ ARGV[0] ][k]} vs. #{optversions[ ARGV[1] ][k]}"
+				puts "    sed -i '%#{rightconf}%#{leftconf}%g' #{ARGV[1]}" 
+			end
+		end
 	end
 }
 puts "#{diffcount} differences" 
