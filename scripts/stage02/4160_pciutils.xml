@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="pciutils"
-		version="3.2.1"
+		version="3.3.0"
 		class="lib">
 		<license>GPLv2</license>
 		<sources>
 			<file>                
-				<pkg sha1="4ff9f98938c063b1f183cebc2a0c9dcbc80395d4">pciutils-3.2.1.tar.bz2</pkg>
+				<pkg sha1="ee2cc84dc16e0d4238236344ffd92b683563624c">pciutils-3.3.0.tar.bz2</pkg>
 				<mirror>http://ftp.kernel.org/pub/software/utils/pciutils/</mirror>
 			</file>
 			<file>                           
-				<pkg sha1="d755247da5d7033fa3f3cdb1cfd9dd0644be9a52">pciids-20140221.bz2</pkg>
+				<pkg sha1="f80d2690faf7a95c666306d1c09c8e76f622966c">pciids-20140516.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<!--<file>            
@@ -20,12 +20,12 @@
 			<manualcheck date="20141101" interval="180" page="http://ftp.kernel.org/pub/software/utils/pciutils/" />
 			<check>
 				<page html="rsync://ftp.kernel.org/pub/software/utils/pciutils/">
-					<atext linktext="pciutils-3.2.2." />
-					<atext linktext="pciutils-3.2.3." />
-					<atext linktext="pciutils-3.2.4." />
-					<atext linktext="pciutils-3.2.5." />
-					<atext linktext="pciutils-3.3." />
-					<atext linktext="pciutils-3.4" />
+					<atext linktext="pciutils-3.3.2." />
+					<atext linktext="pciutils-3.3.3." />
+					<atext linktext="pciutils-3.3.4." />
+					<atext linktext="pciutils-3.3.1." />
+					<atext linktext="pciutils-3.4." />
+					<atext linktext="pciutils-3.5" />
 					<atext linktext="pciutils-4." />
 					<atext linktext="pciutils-5" />
 				</page>
@@ -49,7 +49,7 @@
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>
@@ -72,7 +72,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make DNS=yes SHARED=yes PREFIX=/usr install
-			## bunzip2 -c ${SRCDIR}/pciids-20120625.bz2 | gzip -c > /usr/share/pci.ids.gz
+			## bunzip2 -c ${SRCDIR}/pciids-20140516.bz2 | gzip -c > /usr/share/pci.ids.gz
 			]]>
 		</install>
 		<clean>
