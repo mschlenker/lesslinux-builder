@@ -112,7 +112,10 @@
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec amd64-linux-uclibc-strip --strip-unneeded {} \; 
 			rm -rf ${TGTDIR}/lib/firmware
 			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-amd64
-			ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/build 
+			for link in source build ; do
+				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
+				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
+			done
 			make clean
 			make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- modules_prepare 
 			tar cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xf - 
