@@ -109,7 +109,10 @@
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
 			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
-			ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/build 
+			for link in source build ; do
+				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
+				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
+			done 
 			make clean
 			make modules_prepare 
 			tar cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xf - 
