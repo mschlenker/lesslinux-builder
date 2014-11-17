@@ -61,6 +61,7 @@
 			<dep>bc</dep>
 			<dep>distcc</dep>
 			<dep>kmod</dep>
+			<dep>VirtualBox</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -91,6 +92,10 @@
 				make -j 4
 				make -j 4 bzImage
 			fi
+			rsync -avHP /usr/local/VirtualBox/src/ ../VirtualBox/ 
+			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
+				make -C . M=../VirtualBox/${mod} modules
+			done
 			]]>
 		</build>
 		<test />
@@ -102,6 +107,9 @@
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux 
 			INSTALL_MOD_PATH=${TGTDIR} make modules_install
+			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
+				INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox/${mod} modules_install
+			done
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
 			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
