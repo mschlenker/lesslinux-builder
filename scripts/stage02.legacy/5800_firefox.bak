@@ -1,0 +1,308 @@
+<llpackages>
+	<package 
+		name="firefox"
+		version="31.2.0esr"
+		class="user"
+		install="destdir">
+		<!-- FIXME: correctly generate distribution.ini -->
+		<!--
+		
+# Partner Distribution Configuration File
+# Mozilla Firefox for Computerbild.de
+
+[Global]
+id=computerbild
+version=1.0
+about=Mozilla Firefox for Computerbild.de
+
+[Preferences]
+app.distributor="Computerbild"
+app.distributor.channel="Smart Pax"
+app.partner.computerbild="computerbild"
+		
+		-->
+		<license>GPLv2</license>
+		<!-- official branding -->
+		<sources>
+			<file>                                                                         
+				<pkg sha1="9ddfde95fcd19633446f859c5bca77c62815d390">firefox-31.2.0esr.source.tar.bz2</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/31.2.0esr/source/</mirror>
+			</file>
+			<file> 
+				<pkg sha1="4427f0d0499b08c16d381141e2be5ba037b5f762">mozconfig-firefox-25.0-20131031</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<!-- 
+
+fftag=FIREFOX_31_2_0esr_RELEASE
+for l in de es-ES pl ru fr it nl pt-PT ; do 
+echo '==> Cloning: '"$l" ; 
+hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
+( cd $l ; hg checkout $fftag ) ; 
+done
+			
+			-->
+			<file>                                    
+				<pkg sha1="e5e18879e94dccf3590416dab5e83c91db76d04d">firefox-31.2.0esr.source.de-es-pl-ru.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20140902" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
+			<check>
+				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
+					<atext linktext="32.0.1" />
+					<atext linktext="32.0.2" />
+					<atext linktext="32.0.3" />
+					<atext linktext="32.0.4" />
+					<atext linktext="32.1." />
+					<atext linktext="32.2." />
+					<atext linktext="33.0" />
+					<atext linktext="34.0" />
+					<atext linktext="35.0" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Mesa</dep><dep>glu</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>autoconf</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+			<dep>bzip2</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-vfs</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libIDL</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libart_lgpl</dep>
+                        <dep>libbonobo</dep>
+                        <dep>libbonoboui</dep>
+                        <dep>libcanberra</dep>
+                        <dep>libgnome-keyring</dep>
+                        <dep>libgnome</dep>
+                        <dep>libgnomecanvas</dep>
+                        <dep>libgnomeui</dep>
+                        <dep>libnotify</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>makedepend</dep>
+			<dep>openssl</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>popt</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>unzip</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>wget</dep>
+                        <dep>which</dep>
+                        <dep>wireless_tools</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                        <dep>yasm</dep>
+                        <dep>zip</dep>
+                        <dep>zlib</dep>
+			<dep>libmng</dep>
+			<dep>lcms</dep>
+			<dep>nspr</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.bz2
+			mv mozilla-esr31 mozilla-release
+			mkdir l10n
+			tar -C l10n -xJf ${SRCDIR}/firefox-${PKGVERSION}.source.de-es-pl-ru.tar.xz
+			]]>
+		</unpack>
+		<patch>
+		<![CDATA[
+			cp ${SRCDIR}/mozconfig-firefox-25.0-20131031 mozilla-release/.mozconfig
+		]]>
+		</patch>
+		<build>
+			<![CDATA[
+			echo $SHELL
+			export SHELL=/bin/bash
+			echo $SHELL
+			dir=`pwd `
+			sed -i 's%PWD%'${dir}'/l10n%g' mozilla-release/.mozconfig 
+			echo 'ac_add_options --disable-pulseaudio' >> mozilla-release/.mozconfig 
+			echo 'ac_add_options --without-pulseaudio' >> mozilla-release/.mozconfig 
+			cd mozilla-release
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j2\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				make -f client.mk clean
+				make -f client.mk configure 
+				pump make -f client.mk build  
+			else
+				make -f client.mk clean
+				make -f client.mk configure	
+				make -f client.mk build
+			fi
+			echo '===> Trying to find libxul.so...'
+			find ff-build -type f -name libxul.so
+			
+			ccount=0
+			while [ '!' -f ff-build/toolkit/library/build/libxul.so -a $ccount -lt 2 ] ; do
+				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
+				sleep 300
+				make -f client.mk build
+				ccount=` expr $ccount + 1 ` 
+			done
+			[ -f ff-build/toolkit/library/build/libxul.so ] || exit 1		
+	
+			# Now try to build the language packs
+			for packlang in de es-ES pl ru fr it nl pt-PT ; do
+				make -C ff-build/browser/locales langpack-${packlang}
+			done
+			
+			make -C ff-build package
+			echo '==> Searching Tarballs'
+			find ff-build -name '*.tar.bz2' | sort 
+			echo '==> Searching XPIs'
+			find ff-build -name '*.xpi' | sort 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+shortvers=` echo ${PKGVERSION} | sed 's/esr//g' ` 
+TARFILE=mozilla-release/ff-build/dist/firefox-${shortvers}.en-US.linux-i686.tar.bz2
+[ -f "$TARFILE" ] || exit 1
+			
+mkdir -p ${TGTDIR}/opt
+mkdir -p ${TGTDIR}/usr/share/mozilla-addons
+mkdir -p ${TGTDIR}/usr/share/icons
+tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
+mv ${TGTDIR}/opt/firefox ${TGTDIR}/opt/firefox-${PKGVERSION}
+
+# Install language packs
+mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}-extensions
+for packlang in de es-ES pl ru fr it nl pt-PT ; do
+	install -m 0644 mozilla-release/ff-build/dist/linux-i686/xpi/firefox-${shortvers}.${packlang}.langpack.xpi \
+	${TGTDIR}/opt/firefox-${PKGVERSION}-extensions/ 
+done
+
+# mkdir -p -m 0755 ${TGTDIR}/usr/share/mozilla-localization
+# for packlang in de es-ES pl ru fr it nl pt-PT ; do
+#	rm -rf ${TGTDIR}/opt/firefox-${PKGVERSION}/extensions/langpack-${packlang}'@firefox.mozilla.org'
+#	install -m 0644 mozilla-release/ff-build/dist/linux-i686/xpi/firefox-${PKGVERSION}.${packlang}.langpack.xpi \
+#		${TGTDIR}/usr/share/mozilla-localization
+#	mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}/extensions/langpack-${packlang}'@firefox.mozilla.org'
+#	( cd ${TGTDIR}/opt/firefox-${PKGVERSION}/extensions/langpack-${packlang}'@firefox.mozilla.org' ; 
+#		unzip ${TGTDIR}/usr/share/mozilla-localization/firefox-${PKGVERSION}.${packlang}.langpack.xpi )
+# done
+
+install -m 0644 ${TGTDIR}/opt/firefox-${PKGVERSION}/icons/mozicon128.png ${TGTDIR}/usr/share/icons/firefox128.png 
+mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}/plugins
+touch ${TGTDIR}/opt/firefox-${PKGVERSION}/plugins/.intentionally_empty
+
+mkdir -p ${TGTDIR}/usr/bin
+echo -n '' > ${TGTDIR}/usr/bin/firefox-${PKGVERSION}
+cat >> ${TGTDIR}/usr/bin/firefox-${PKGVERSION} << FFRUN
+#!/bin/sh
+
+PATH=/static/bin:/static/sbin:\$PATH
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+langopts=""
+echo "\$LANGUAGE" | grep '^de' >/dev/null && langopts="-contentLocale de-DE -UILocale de-DE"
+echo "\$LANGUAGE" | grep '^pl' >/dev/null && langopts="-contentLocale pl-PL -UILocale pl-PL"
+echo "\$LANGUAGE" | grep '^es' >/dev/null && langopts="-contentLocale es-ES -UILocale es-ES"
+echo "\$LANGUAGE" | grep '^ru' >/dev/null && langopts="-contentLocale ru-RU -UILocale ru-RU"
+echo "\$LANGUAGE" | grep '^fr' >/dev/null && langopts="-contentLocale fr-FR -UILocale fr-FR"
+echo "\$LANGUAGE" | grep '^it' >/dev/null && langopts="-contentLocale it-IT -UILocale it-IT"
+echo "\$LANGUAGE" | grep '^nl' >/dev/null && langopts="-contentLocale nl-NL -UILocale nl-NL"
+echo "\$LANGUAGE" | grep '^pt' >/dev/null && langopts="-contentLocale pt-PT -UILocale pt-PT"
+
+[ "\$security" '!=' "smack" ] && exec /opt/firefox-${PKGVERSION}/firefox \$langopts \$@
+
+if [ "\$#" -lt 1 ] ; then
+    exec sudo /opt/firefox-${PKGVERSION}/firefox_smack
+else
+    if ps waux | grep 'surfer   /opt/.*/firefox-bin' | grep -v grep ; then
+        /opt/firefox-${PKGVERSION}/firefox \$@
+    else
+        sudo /opt/firefox-${PKGVERSION}/firefox_smack &
+	sleep 5
+	exec /opt/firefox-${PKGVERSION}/firefox \$@
+    fi
+fi
+FFRUN
+
+rm ${TGTDIR}/usr/bin/firefox
+ln -sf /usr/bin/firefox-${PKGVERSION} ${TGTDIR}/usr/bin/firefox
+chmod a+rx ${TGTDIR}/usr/bin/firefox-${PKGVERSION}
+
+echo -n '' > ${TGTDIR}/opt/firefox-${PKGVERSION}/firefox_smack
+cat >> ${TGTDIR}/opt/firefox-${PKGVERSION}/firefox_smack << FFSMACK
+#!/static/bin/ash
+
+langopts=""
+echo "\$LANGUAGE" | grep '^de' >/dev/null && langopts="-contentLocale de-DE -UILocale de-DE"
+echo "\$LANGUAGE" | grep '^pl' >/dev/null && langopts="-contentLocale pl-PL -UILocale pl-PL"
+echo "\$LANGUAGE" | grep '^es' >/dev/null && langopts="-contentLocale es-ES -UILocale es-ES"
+echo "\$LANGUAGE" | grep '^ru' >/dev/null && langopts="-contentLocale ru-RU -UILocale ru-RU"
+echo "\$LANGUAGE" | grep '^fr' >/dev/null && langopts="-contentLocale fr-FR -UILocale fr-FR"
+echo "\$LANGUAGE" | grep '^it' >/dev/null && langopts="-contentLocale it-IT -UILocale it-IT"
+echo "\$LANGUAGE" | grep '^nl' >/dev/null && langopts="-contentLocale nl-NL -UILocale nl-NL"
+echo "\$LANGUAGE" | grep '^pt' >/dev/null && langopts="-contentLocale pt-PT -UILocale pt-PT"
+
+if [ -f /etc/lesslinux/banking/allowedservers.xml ] && [ -f /usr/bin/smack_bankrules.rb ] ; then
+	timeout -t 5 /static/sbin/newsmack netmgr /usr/bin/ruby /usr/bin/smack_bankrules.rb
+fi
+/static/sbin/newsmack internet /static/bin/su surfer -c "/opt/firefox-${PKGVERSION}/firefox \$langopts"
+
+FFSMACK
+
+chmod a+rx ${TGTDIR}/opt/firefox-${PKGVERSION}/firefox_smack
+/sbin/paxctl -m -r ${TGTDIR}/opt/firefox-${PKGVERSION}/firefox-bin
+			
+chown -R 0:0 ${TGTDIR}/opt/firefox-${PKGVERSION}
+
+			
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf mozilla-release l10n
+			]]>
+		</clean>
+	</package>
+</llpackages>
