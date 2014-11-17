@@ -170,6 +170,7 @@ done
 			echo $SHELL
 			dir=`pwd `
 			sed -i 's%PWD%'${dir}'/%g' mozilla-release/.mozconfig 
+			sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
 			cd mozilla-release
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
