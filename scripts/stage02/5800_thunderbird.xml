@@ -177,12 +177,6 @@ done
 			# cat mail/installer/removed-files.in.orig | sed 's%hyphenation/hyph%# hyphenation/hyph%g' > mail/installer/removed-files.in
 			make -C tb-build package  
 			
-			# Now build Enigmail and package Enigmail
-			# mv ../enigmail mailnews/extensions/
-			# ( cd mailnews/extensions/enigmail/ ; perl makemake -r )
-			# make -C tb-build/mailnews/extensions/enigmail/  
-			# make -C tb-build/mailnews/extensions/enigmail/ xpi
-			
 			echo '==> Searching Tarballs'
 			find tb-build -name '*.tar.bz2' | sort 
 			echo '==> Searching XPIs'
