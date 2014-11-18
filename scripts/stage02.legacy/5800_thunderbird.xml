@@ -143,7 +143,7 @@ done
 		</unpack>
 		<patch>
 			<![CDATA[
-			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20140723 comm-esr31/.mozconfig
+			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 comm-esr31/.mozconfig
 			]]>
 		</patch>
 		<build>
@@ -158,7 +158,7 @@ done
 			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j2\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure 
 				pump make -f client.mk build  
