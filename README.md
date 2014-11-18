@@ -2,7 +2,7 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 ## Today's state 
 
-**Yellow:** Build with `--unstable` and `--legacy` - this uses headers and kernels from the 3.14.24 LTS series. Buildung with 3.17.3 (just `--unstable`) is not thoroughly tested. 
+**Yellow:** Build with and `--legacy` - this uses headers and kernels from the 3.14.24 LTS series. Building with 3.17.3 is just partially tested. No complete build with 3.14.24 has been done yet, but I expect no surprises.
 
 ## Checking out
 
