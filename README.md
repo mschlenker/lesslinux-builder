@@ -1,5 +1,9 @@
 This repository contains the scripts used for building LessLinux. They are not complete yet since I am cleaning up during the move from subversion to git. See the documentation on http://blog.lesslinux.org/ for details. 
 
+**Today's state**
+
+''Yellow:'' Build with `--unstable` and `--legacy` - this uses headers and kernels from the 3.14.24 LTS series. Buildung with 3.17.3 (just `--unstable`) is not thoroughly tested. 
+
 **Checking out**
 
 Checking out under LessLinux Jabba Builds may fail due to missing certificates, use the command: 
