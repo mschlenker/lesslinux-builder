@@ -1,8 +1,7 @@
 <llpackages>
 	<package 
 		name="bash"
-		version="4.3"
-		>
+		version="4.3">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                          
@@ -10,10 +9,10 @@
 				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
 			</file>
 			<file>                                                     
-				<pkg sha1="4f273329001a559dec651b193b52696c1da50b9c">bash-4.3-upstream_fixes-1.patch</pkg>
+				<pkg sha1="69f1cc8e0a95a4505d95fdc8ca9afcd76edef27c">bash-4.3-upstream_fixes-7.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
+			<manualcheck date="20141101" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/bash/">
 					<atext linktext="bash-4.3.1." />
@@ -31,7 +30,7 @@
 		<patch>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-7.patch | patch -p1
 			]]>
 		</patch>
 		<build>
