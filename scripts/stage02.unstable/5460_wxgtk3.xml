@@ -63,7 +63,7 @@
 			<![CDATA[
 			make -C scintilla/gtk prefix=/usr/compat.new GTK3=yes
 			cd wxWidgets-${PKGVERSION}
-			./configure --prefix=/usr/compat.new --sysconfdir=/etc/compat.new --with-gtk=3 --enable-shared --enable-static --disable-compat26 --enable-unicode --disable-detect_sm && make 
+			./configure --prefix=/usr/compat.new --sysconfdir=/etc/compat.new --with-gtk=3 --enable-shared --enable-static --disable-compat26 --enable-unicode  && make 
 			]]>
 		</build>
 		<test />
