@@ -41,7 +41,7 @@
                         <dep>zlib</dep>
 			<dep>libpng12</dep>
 			<dep>libpng14</dep>
-			<dep>libpng15</dep><dep>libpng16</dep>
+			<dep>libpng15</dep>
 			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
@@ -60,7 +60,7 @@
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --sysconfdir=/etc/compat.new --prefix=/usr/compat.new 
+				./configure --sysconfdir=/etc --prefix=/usr 
 				make
 			fi
 			]]>
