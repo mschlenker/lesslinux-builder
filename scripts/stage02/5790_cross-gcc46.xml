@@ -1,15 +1,14 @@
 <llpackages>
 	<package 
 		name="cross-gcc"
-		version="4.9.1"
+		version="4.9.2"
 		install="destdir"
-		providedeps="no"
-		>
+		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="3f303f403053f0ce79530dae832811ecef91197e">gcc-4.9.1.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.1/</mirror>
+				<pkg sha1="79dbcb09f44232822460d80b033c962c0237c6d8">gcc-4.9.2.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.2/</mirror>
 			</file>
 			<file>                                                                       
 				<pkg sha1="46d5a11a59a4e31f74f73dd70c5d57a59de2d0b4">mpfr-3.1.2.tar.bz2</pkg>
@@ -23,15 +22,11 @@
 				<pkg sha1="5072d82ab50ec36cc8c0e320b5c377adb48abe70">mpc-1.0.2.tar.gz</pkg>
 				<mirror>http://www.multiprecision.org/mpc/download/</mirror>
 			</file>
-			<!-- <file>                                                                         
-				<pkg sha1="cc0cf646f8bd9b08ff4e8d06a6e49f07688a0ab3">gcc-4.6.2-cross_compile-1.patch</pkg>
-				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file> -->
-			<manualcheck date="20140726" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20141101" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
 					<atext linktext="gcc-4.9.4" />
-					<atext linktext="gcc-4.9.2" />
+					<atext linktext="gcc-4.9.5" />
 					<atext linktext="gcc-4.9.3" />
 					<atext linktext="gcc-4.10."/>
 					<atext linktext="gcc-4.11." />

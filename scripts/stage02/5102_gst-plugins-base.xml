@@ -10,6 +10,10 @@
 				<pkg sha1="e675401b62a6bf2e5ea966e833afd005a585e978">gst-plugins-base-0.10.36.tar.bz2</pkg>
 				<mirror>http://gstreamer.freedesktop.org/src/gst-plugins-base/</mirror>
 			</file>
+			<file>                                                        
+				<pkg sha1="8098c8e0058ffeb8ddc6221764fd5fadac649b8d">gst-plugins-base-0.10.36-gcc_4_9_0_i686-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
 			<manualcheck date="20140802" interval="365" page="http://gstreamer.freedesktop.org/src/gst-plugins-base/" />
 			<check>
 				<page html="http://gstreamer.freedesktop.org/src/gst-plugins-base/">
@@ -82,7 +86,14 @@
 			fi
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+		<![CDATA[
+
+cd ${PKGNAME}-${PKGVERSION}
+cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc_4_9_0_i686-1.patch | patch -Np1
+
+		]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}

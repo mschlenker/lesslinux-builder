@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="udev"
-		version="1.9"
+		version="2.1.1"
 		class="user"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                                                                            
-				<pkg sha1="f303e37d7364dc265168e154c9ddb1773bb6f375">eudev-1.9.tar.gz</pkg>
+			<file>                                                                                                   
+				<pkg sha1="f8a2dabc117740eb75f101c28e85cf6a10e708c1">eudev-2.1.1.tar.gz</pkg>
 				<mirror>http://dev.gentoo.org/~blueness/eudev/</mirror>
 			</file>
 			<file>      
@@ -46,7 +46,7 @@
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
-                        <dep>usbutils</dep>
+                        <!-- <dep>usbutils</dep> -->
                         <dep>util-linux-ng</dep>
 			<dep>kmod</dep>
                 </builddeps>
@@ -94,7 +94,7 @@
 			mkdir -pv /lib/udev/rules.d
 			mkdir -pv /etc/udev/rules.d
 			make -C e${PKGNAME}-${PKGVERSION} install
-			ln -sf libudev.so.1.4.1 /lib/libudev.so.0
+			ln -sf libudev.so.1.6.0 /lib/libudev.so.0
 			make -f udev-lfs-20140408/Makefile.lfs install
 			]]>
 		</install>

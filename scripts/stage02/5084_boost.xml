@@ -1,23 +1,22 @@
 <llpackages>
 	<package 
 		name="boost"
-		version="1_55_0"
-		class="user"
-		>
+		version="1_56_0"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="cef9a0cc7084b1d639e06cd3bc34e4251524c840">boost_1_55_0.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.55.0</mirror>
+				<pkg sha1="1639723c6bdff873cdb6d747f8f8c9d9f066434d">boost_1_56_0.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.56.0</mirror>
 			</file>
-			<manualcheck date="20140804" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
+			<manualcheck date="20141101" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
 			<check>
 				<page html="http://sourceforge.net/projects/boost/files/boost/">
-					<atext linktext="1.55.1" />
-					<atext linktext="1.55.2" />
-					<atext linktext="1.56." />
+					<atext linktext="1.56.1" />
+					<atext linktext="1.56.2" />
 					<atext linktext="1.57." />
 					<atext linktext="1.58." />
+					<atext linktext="1.59." />
 				</page>
 			</check>
 		</sources>
@@ -50,7 +49,7 @@
                         <dep>dosfstools</dep>
                         <dep>e2fsprogs</dep>
                         <dep>eggdbus</dep>
-                        <!-- <dep>evince</dep> -->
+                        <!-- <dep>evince</dep> --> 
                         <dep>expat</dep>
                         <dep>ffmpeg</dep>
                         <dep>file</dep>
@@ -121,7 +120,7 @@
                         <dep>texinfo</dep>
                         <dep>tiff</dep>
                         <dep>unzip</dep>
-                        <dep>usbutils</dep>
+                        <!-- <dep>usbutils</dep> -->
                         <dep>util-linux-ng</dep>
                         <dep>which</dep>
                         <dep>wicd</dep>

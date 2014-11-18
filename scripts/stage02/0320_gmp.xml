@@ -3,8 +3,7 @@
 		name="gmp"
 		version="6.0.0a"
 		class="devel"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                   
@@ -44,7 +43,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-6.0.0
-			ABI=32 ./configure --prefix=/usr --enable-cxx  && make
+			CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' ABI=32 ./configure --prefix=/usr --enable-cxx  && make
 			]]>
 		</build>
 		<test>

@@ -1,24 +1,23 @@
 <llpackages>
 	<package 
 		name="strace"
-		version="4.8"
-		install="destdir"
-		>
+		version="4.9"
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="88c19b900d9cb2931e6ea4cf36e0ae3838f2f698">strace-4.8.tar.xz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/strace/strace/4.8/</mirror>
+				<pkg sha1="5e6c78f0dc75e64814e5f8ef49c66823b7f00ae9">strace-4.9.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/strace/strace/4.9/</mirror>
 			</file>
-			<file>    
+			<!-- <file>    
 				<pkg sha1="aa6f6edbd5ae84556536a7ec0f322ea3a02355b8">strace-4.8-glibc_2.18_build_fix-1.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<manualcheck date="20130910" interval="180" page="http://sourceforge.net/projects/strace/files/" />
+			</file> -->
+			<manualcheck date="20141101" interval="180" page="http://sourceforge.net/projects/strace/files/" />
 			<check>
 				<page html="http://sourceforge.net/projects/strace/files/">
-					<atext linktext="strace-4.8.1." />
-					<atext linktext="strace-4.9." />
+					<atext linktext="strace-4.9.1." />
+					<atext linktext="strace-4.10." />
 					<atext linktext="strace-5.0." />
 				</page>
 			</check>
@@ -40,12 +39,12 @@
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glibc_2.18_build_fix-1.patch | patch -p1
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}

@@ -1,23 +1,19 @@
 <llpackages>
 	<package 
 		name="usbutils"
-		version="007"
+		version="008"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>               
-				<pkg sha1="2aa78ca39c10bfedda99a8263785a06d00e38f12">usbutils-007.tar.xz</pkg>
+				<pkg sha1="233dee6cd6829476be778554984045663b568b18">usbutils-008.tar.xz</pkg>
 				<mirror>http://ftp.kernel.org/pub/linux/utils/usb/usbutils/</mirror>
 			</file>
-			<!-- <file>      
-				<pkg sha1="23b7d419774b3fc948b2b87c2ae29e5215bffe43">usbids-20100516.txt</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
-			<manualcheck date="20140802" interval="180" page="http://ftp.kernel.org/pub/linux/utils/usb/usbutils/" />
+			<manualcheck date="20141101" interval="180" page="http://ftp.kernel.org/pub/linux/utils/usb/usbutils/" />
 			<check>
 				<page html="rsync://ftp.kernel.org/pub/linux/utils/usb/usbutils/">
-					<atext linktext="usbutils-008" />
+					<atext linktext="usbutils-010" />
 					<atext linktext="usbutils-009" />
 					<atext linktext="usbutils-07" />
 					<atext linktext="usbutils-01" />
@@ -48,6 +44,7 @@
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
+			<dep>udev</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 

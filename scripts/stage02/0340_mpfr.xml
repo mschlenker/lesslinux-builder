@@ -43,6 +43,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' \
 			./configure --prefix=/usr --enable-thread-safe --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make
 			]]>
 		</build>

@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-nopae"
-		version="3.16.6"
+		version="3.17.3"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="bce412286eaac9765b45d445e63c19047fca1ab5">linux-3.16.tar.xz</pkg>
+				<pkg sha1="ad22d0b0979336fa0448268f0febd45be0279288">linux-3.17.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="0b13b70e515f2f11d9a7412adeeb000ee3cbb73e">patch-3.16.6.xz</pkg>
+				<pkg sha1="aecab551b843b3a27a32ee8490a342a62c1e5e88">patch-3.17.3.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20141015" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20141115" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.16.8." />
-					<atext linktext="patch-3.16.9." />
-					<atext linktext="patch-3.16.7." />
-					<atext linktext="patch-3.17." />
+					<atext linktext="patch-3.17.6." />
+					<atext linktext="patch-3.17.4." />
+					<atext linktext="patch-3.17.5." />
 					<atext linktext="patch-3.18." />
 					<atext linktext="patch-3.19." />
+					<atext linktext="patch-3.20." />
 				</page>
 			</check>
 		</sources>
@@ -64,25 +64,29 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/linux-3.16.tar.xz | tar xf -
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			cd linux-3.16
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/config-3.16-nopae-lesslinux-20140815-1425 .config
 			sed -i 's/lesslinux-000/lesslinux-nopae-000/g' .config
 			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
 			cd ..
-			mv linux-3.16 linux-${PKGVERSION}
+			mv linux-${major}.${minor} linux-${PKGVERSION}
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
 			cd linux-${PKGVERSION}
-			yes n | make oldconfig
+			yes '' | make oldconfig
 			make clean
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -98,14 +102,22 @@
 		<install>
 			<![CDATA[
 			cd linux-${PKGVERSION}
+			localversion=` grep '^CONFIG_LOCALVERSION' .config | sed 's/"//g' | awk -F '=' '{print $2}' | sed 's%^-%%g' `
 			mkdir -p ${TGTDIR}/boot
+			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
+			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-nopae 
 			INSTALL_MOD_PATH=${TGTDIR} make modules_install
 			rm -rf ${TGTDIR}/lib/firmware 
-			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-lesslinux-nopae-000
-			find ${TGTDIR}/lib/modules/${PKGVERSION}-lesslinux-nopae-000 -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
-			
-			true
-			
+			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
+			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-nopae
+			for link in source build ; do
+				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
+				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
+			done
+			make clean
+			make modules_prepare 
+			tar cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xf - 
 			]]>
 		</install>
 		<clean>

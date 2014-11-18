@@ -1,25 +1,24 @@
 <llpackages>
 	<package 
 		name="curl"
-		version="7.36.0"
+		version="7.38.0"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="c39b120585a8a8d64ef14459d6d5f22831d4a7c4">curl-7.36.0.tar.bz2</pkg>
+				<pkg sha1="59c027807fdb33ebf248cb3cc006e7cbe2d655ea">curl-7.38.0.tar.bz2</pkg>
 				<mirror>http://curl.haxx.se/download/</mirror>
 			</file>
-			<manualcheck date="20140519" interval="120" page="http://curl.haxx.se/download/" />
+			<manualcheck date="20141101" interval="120" page="http://curl.haxx.se/download/" />
 			<check>
 				<page html="http://curl.haxx.se/download/">
-					<atext linktext="curl-7.36.1." />
-					<atext linktext="curl-7.36.2." />
-					<atext linktext="curl-7.36.3." />
-					<atext linktext="curl-7.37." />
+					<atext linktext="curl-7.38.1." />
+					<atext linktext="curl-7.38.2." />
+					<atext linktext="curl-7.38.3." />
 					<atext linktext="curl-7.39." />
-					<atext linktext="curl-7.38." />
+					<atext linktext="curl-7.40." />
+					<atext linktext="curl-7.41." />
 					<atext linktext="curl-8." />
 				</page>
 			</check>

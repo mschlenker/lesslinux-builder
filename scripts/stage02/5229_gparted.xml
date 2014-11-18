@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="gparted"
-		version="0.19.1"
+		version="0.20.0"
 		class="user"
 		install='destdir'>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                          
-				<pkg sha1="13c6ade0f0c85823bf8012e0c67d906301eaf99b">gparted-0.19.1.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/gparted/gparted/gparted-0.19.1/</mirror>
+				<pkg sha1="3fd65e2fdc9dc8e42cab74daca8184da37fbaf35">gparted-0.20.0.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/gparted/gparted/gparted-0.20.0/</mirror>
 			</file>
-			<manualcheck date="20140729" interval="60" page="http://sourceforge.net/projects/gparted/files/gparted" />
-			<check>
+			<manualcheck date="20141101" interval="60" page="http://sourceforge.net/projects/gparted/files/gparted" />
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/gparted/files/gparted">
 					<atext linktext="gparted-0.19.3" />
 					<atext linktext="gparted-0.19.4" />
@@ -20,7 +20,7 @@
 					<atext linktext="gparted-0.21." />
 					<atext linktext="gparted-1." />
 				</page>
-			</check>
+			</check> -->
 		</sources> 
 		<builddeps>
                         <dep>Python</dep>

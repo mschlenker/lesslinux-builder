@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="3.16.6"
+		version="3.17.3"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="bce412286eaac9765b45d445e63c19047fca1ab5">linux-3.16.tar.xz</pkg>
+				<pkg sha1="ad22d0b0979336fa0448268f0febd45be0279288">linux-3.17.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="0b13b70e515f2f11d9a7412adeeb000ee3cbb73e">patch-3.16.6.xz</pkg>
+				<pkg sha1="aecab551b843b3a27a32ee8490a342a62c1e5e88">patch-3.17.3.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20141015" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20141115" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.16.8." />
-					<atext linktext="patch-3.16.9." />
-					<atext linktext="patch-3.16.7." />
-					<atext linktext="patch-3.17." />
+					<atext linktext="patch-3.17.6." />
+					<atext linktext="patch-3.17.4." />
+					<atext linktext="patch-3.17.5." />
 					<atext linktext="patch-3.18." />
 					<atext linktext="patch-3.19." />
+					<atext linktext="patch-3.20." />
 				</page>
 			</check>
 		</sources>
@@ -30,16 +30,19 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/linux-3.16.tar.xz | tar xf -
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			
-			cd linux-3.16
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cd ..
-			mv -v linux-3.16 linux-${PKGVERSION}
+			mv -v linux-${major}.${minor} linux-${PKGVERSION}
 			
 			]]>
 		</patch>

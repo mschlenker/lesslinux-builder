@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="gtk-doc"
-		version="1.20"
+		version="1.21"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="dac60c7044bfd2e8a2462c99aaf64b98c777dc51">gtk-doc-1.20.tar.xz</pkg>
-				<mirror>https://download.gnome.org/sources/gtk-doc/1.20/</mirror>
+				<pkg sha1="49b4fc9d4cf618c53f39f35f4cf2fc27b7b3dae4">gtk-doc-1.21.tar.xz</pkg>
+				<mirror>https://download.gnome.org/sources/gtk-doc/1.21/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="270" page="https://download.gnome.org/sources/gtk-doc/" />
+			<manualcheck date="20141101" interval="120" page="https://download.gnome.org/sources/gtk-doc/" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -52,6 +52,9 @@
                         <dep>tar</dep>
                         <dep>vim</dep>
 			<dep>docbook-xsl</dep>
+			<dep>docbook-xml</dep>
+			<dep>docbook-xml43</dep>
+			<dep>docbook-xml44</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

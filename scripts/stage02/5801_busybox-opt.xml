@@ -1,60 +1,46 @@
 <llpackages>
 	<package 
 		name="busybox-opt"
-		version="1.21.1"
+		version="1.22.1"
 		install="destdir"
-		providedeps="no"
-		>
+		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                                                                      
-				<pkg sha1="0771dee88de9999e3c9d1251ccba1a957c0a1e19">busybox-1.21.1.config-opt</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<file>                                                                                                                           
-				<pkg sha1="9244187d8d30447e165c694e89f4731c1705a53b">busybox-1.21.1.tar.bz2</pkg>
+			<file>  
+				<pkg sha1="d6e96fefb6f0fb8079f27468b9bf22d8dd96108e">busybox-1.22.1.tar.bz2</pkg>
 				<mirror>http://busybox.net/downloads/</mirror>
 			</file>
-			<manualcheck date="20130722" interval="60" page="http://www.busybox.net/" />
+			<file>  
+				<pkg sha1="c30e1760cca48dbaa55ee27b2d25ea03839756af">busybox-1.22.1.config</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="180" page="http://busybox.net/downloads/" />
 		</sources>
 		<builddeps>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>bzip2</dep>
-                        <dep>coreutils</dep>
-                        <dep>cross-binutils</dep>
-                        <dep>cross-gcc</dep>
-                        <dep>cross-linux-headers</dep>
-                        <dep>diffutils</dep>
-                        <dep>findutils</dep>
-                        <dep>gcc</dep>
-                        <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>linux_headers</dep>
-                        <dep>make</dep>
-                        <dep>perl</dep>
-                        <dep>sed</dep>
-                        <dep>uClibc</dep>
-                </builddeps>
+			<dep>cross-gcc-musl2</dep>
+			<dep>cross-zlib</dep>
+		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			bunzip2 -c ${SRCDIR}/busybox-${PKGVERSION}.tar.bz2 | tar xf -
+			tar xjf ${SRCDIR}/busybox-${PKGVERSION}.tar.bz2
+			cp -v ${SRCDIR}/busybox-${PKGVERSION}.config busybox-${PKGVERSION}/.config
+			sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' busybox-${PKGVERSION}/.config
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[ 
-			
-			cp ${SRCDIR}/busybox-1.21.1.config-opt busybox-${PKGVERSION}/.config 
-			
-			]]>
-		</patch>
 		<build>
 			<![CDATA[ 
 			
+			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
 			cd busybox-${PKGVERSION}
-			make oldconfig 
-			make 
-			make install 
+			# ARCH=x86 make defconfig
+			# sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
+			# sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config
+			# sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/g'  .config
+			# sed -i 's/# CONFIG_INSTALL_NO_USR is not set/CONFIG_INSTALL_NO_USR=y/g'  .config
+			# sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' .config
+			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make oldconfig
+			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make 
+			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make install
 			
 			]]>
 		</build>

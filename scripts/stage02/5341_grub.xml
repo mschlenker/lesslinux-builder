@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="grub"
-		version="2.00"
+		version="20141102"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="274d91e96b56a5b9dd0a07accff69dbb6dfb596b">grub-2.00.tar.xz</pkg>
+				<pkg sha1="b744b34334adb24b6ddd119d9fcbc081775af209">grub-20141102.tar.bz2</pkg>
 				<mirror>ftp://ftp.gnu.org/gnu/grub/</mirror>
 			</file>
-			<manualcheck date="20140724" interval="180" page="ftp://ftp.gnu.org/gnu/grub/" />
+			<manualcheck date="20141102" interval="90" page="ftp://ftp.gnu.org/gnu/grub/" />
 			<check>
 				<page html="ftp://ftp.gnu.org/gnu/grub/">
 					<atext linktext="grub-2.01." />
@@ -44,30 +44,32 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			# unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[ 
 			sed -i -e '/gets is a/d' ${PKGNAME}-${PKGVERSION}/grub-core/gnulib/stdio.in.h
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME} # -${PKGVERSION}
+			bash autogen.sh
 			./configure --sysconfdir=/etc --prefix=/usr --disable-werror && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME} # -${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME} # -${PKGVERSION}
 			]]>
 		</clean>
 	</package>

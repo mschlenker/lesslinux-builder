@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="libav"
-		version="10.3"
+		version="10.5"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<!-- version 11 conflicts with vlc 2.1.5, keep version 10 until VLC 2.2.0 is released -->
 			<file>                            
-				<pkg sha1="22e4787dbab68fe2b1ec2d80d32a77b542a002ac">libav-10.3.tar.xz</pkg>
+				<pkg sha1="925a45d2700a436c28e0b663510fc8df5bb7e861">libav-10.5.tar.xz</pkg>
 				<mirror>http://libav.org/releases/</mirror>
 			</file>
-			<manualcheck date="20140902" interval="60" page="http://libav.org/releases/" />
+			<manualcheck date="20141101" interval="60" page="http://libav.org/releases/" />
 			<!-- <check>
 				<page html="http://libav.org/releases/">
 					<atext linktext="libav-9.12." />

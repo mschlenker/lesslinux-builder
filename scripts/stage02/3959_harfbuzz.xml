@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="harfbuzz"
-		version="0.9.26"
+		version="0.9.35"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                           
-				<pkg sha1="0963768b8ee1f575c5a20828eefb101be6eaae6f">harfbuzz-0.9.26.tar.bz2</pkg>
+				<pkg sha1="6f4401af396069214be2ba15b884361ef540e501">harfbuzz-0.9.35.tar.bz2</pkg>
 				<mirror>http://www.freedesktop.org/software/harfbuzz/release/</mirror>
 			</file>
-			<manualcheck date="20140221" interval="180" page="http://www.freedesktop.org/software/harfbuzz/release/" />
-			<check>
+			<manualcheck date="20141101" interval="180" page="http://www.freedesktop.org/software/harfbuzz/release/" />
+			<!-- <check>
 				<page html="http://www.freedesktop.org/software/harfbuzz/release/">
 					<atext linktext="harfbuzz-0.9.27." />
 					<atext linktext="harfbuzz-0.9.28." />
@@ -27,7 +27,7 @@
 					<atext linktext="harfbuzz-0.11." />
 					<atext linktext="harfbuzz-1." />
 				</page>
-			</check>
+			</check> -->
 		</sources> 
 		<builddeps>
 			<dep>bash</dep>

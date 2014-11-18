@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="gst-plugins-base1"
-		version="1.2.4"
+		version="1.4.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                        
-				<pkg sha1="036ce9eb723470cd8cc522057a59ad9468b3d489">gst-plugins-base-1.2.4.tar.xz</pkg>
+				<pkg sha1="ba61c16cdc34840b4b69a4abc4b6b4efb4b1a954">gst-plugins-base-1.4.3.tar.xz</pkg>
 				<mirror>http://gstreamer.freedesktop.org/src/gst-plugins-base/</mirror>
 			</file>
-			<manualcheck date="20140515" interval="120" page="http://gstreamer.freedesktop.org/src/gst-plugins-base/" />
+			<manualcheck date="20141101" interval="120" page="http://gstreamer.freedesktop.org/src/gst-plugins-base/" />
 			<check>
 				<page html="http://gstreamer.freedesktop.org/src/gst-plugins-base/">
-					<atext linktext="gst-plugins-base-1.2.11." />
-					<atext linktext="gst-plugins-base-1.2.5." />
-					<atext linktext="gst-plugins-base-1.2.6." />
-					<atext linktext="gst-plugins-base-1.2.7." />
-					<atext linktext="gst-plugins-base-1.2.8." />
-					<atext linktext="gst-plugins-base-1.2.9." />
-					<atext linktext="gst-plugins-base-1.2.10." />
-					<atext linktext="gst-plugins-base-1.3." />
-					<atext linktext="gst-plugins-base-1.4." />
+					<atext linktext="gst-plugins-base-1.4.4." />
+					<atext linktext="gst-plugins-base-1.4.5." />
+					<atext linktext="gst-plugins-base-1.4.6." />
+					<atext linktext="gst-plugins-base-1.4.7." />
+					<atext linktext="gst-plugins-base-1.4.8." />
+					<atext linktext="gst-plugins-base-1.4.9." />
+					<atext linktext="gst-plugins-base-1.4.10." />
+					<atext linktext="gst-plugins-base-1.5." />
+					<atext linktext="gst-plugins-base-1.6." />
 					<atext linktext="gst-plugins-base-2." />
 				</page>
 			</check>
@@ -91,18 +91,18 @@
 		<build>
 			<![CDATA[
 			cd gst-plugins-base-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc48/bin/gcc48"
-				export CXX="distcc /usr/local/gcc48/bin/g++48" 
-				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
-				export CC="/usr/local/gcc48/bin/gcc48"
-				export CXX="/usr/local/gcc48/bin/g++48" 
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	export CC="distcc /usr/local/gcc48/bin/gcc48"
+			#	export CXX="distcc /usr/local/gcc48/bin/g++48" 
+			#	./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+			#	pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			#else
+			#	export CC="/usr/local/gcc48/bin/gcc48"
+			#	export CXX="/usr/local/gcc48/bin/g++48" 
 				./configure --sysconfdir=/etc --prefix=/usr 
 				make
-			fi
+			#fi
 			]]>
 		</build>
 		<test />

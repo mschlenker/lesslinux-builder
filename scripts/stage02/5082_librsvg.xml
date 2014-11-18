@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="librsvg"
-		version="2.40.2"
+		version="2.40.5"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>           
-				<pkg sha1="6a6b4d8071934550aaf19251a1fdb3fa865beff5">librsvg-2.40.2.tar.xz</pkg>
+				<pkg sha1="f78def208b4f01d22da616e341a3835490ab2ef4">librsvg-2.40.5.tar.xz</pkg>
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/librsvg/2.40/</mirror>
 			</file>
-			<manualcheck date="20140519" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/librsvg/" />
+			<manualcheck date="20141101" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/librsvg/" />
 			<check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/librsvg/2.40/">
-					<atext linktext="librsvg-2.40.5." />
-					<atext linktext="librsvg-2.40.3." />
-					<atext linktext="librsvg-2.40.4." />
+					<atext linktext="librsvg-2.40.6." />
+					<atext linktext="librsvg-2.40.7." />
+					<atext linktext="librsvg-2.40.8." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/librsvg/">
 					<atext linktext="2.42" />
@@ -60,6 +60,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
+			<dep>vala</dep>
 			<!-- soft -->
 			 <dep>imake</dep>
 			 <dep>distcc</dep>
@@ -81,10 +82,10 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr --sysconfdir=/etc --enable-vala 
 				pump make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr --sysconfdir=/etc --enable-vala 
 				make
 			fi
 			]]>

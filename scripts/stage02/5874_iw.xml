@@ -1,27 +1,28 @@
 <llpackages>
 	<package 
 		name="iw"
-		version="3.15"
+		version="3.17"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="70d42af4e8e13d385753c0b1cc29b996ed5439af">iw-3.15.tar.xz</pkg>
+				<pkg sha1="ef95f36a7c772ebdc36e44f7934dcf5681a8c16a">iw-3.17.tar.xz</pkg>
 				<mirror>http://kernel.org/pub/software/network/iw/</mirror>
 			</file>
-			<manualcheck date="20140719" interval="120" page="http://kernel.org/pub/software/network/iw/" />
-			<!-- <check>
-				<page html="http://sourceforge.net/projects/xchat/files/">
-					<atext linktext="xchat-2.8.9." />
-					<atext linktext="xchat-2.8.10." />
-					<atext linktext="xchat-2.8.11." />
-					<atext linktext="xchat-2.8.12." />
-					<atext linktext="xchat-2.9." />
-					<atext linktext="xchat-2.10." />
-					<atext linktext="xchat-3." />
+			<manualcheck date="20141101" interval="60" page="http://www.kernel.org/pub/software/network/iw" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/software/network/iw/">
+					<atext linktext="iw-3.17.1." />
+					<atext linktext="iw-3.17.2." />
+					<atext linktext="iw-3.17.3." />
+					<atext linktext="iw-3.18." />
+					<atext linktext="iw-3.19." />
+					<atext linktext="iw-3.20." />
+					<atext linktext="iw-3.21." />
+					<atext linktext="iw-3.22." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

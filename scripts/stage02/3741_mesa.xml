@@ -1,20 +1,16 @@
 <llpackages>
 	<package 
 		name="Mesa"
-		version="10.2.7"
+		version="10.3.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="f8bfea45c8ef09431e6cccbee68ca2c517e6cbbc">MesaLib-10.2.7.tar.bz2</pkg>
-				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.2.7/</mirror>
+				<pkg sha1="cb81b479dd7cb8c5264dee427161d92870a6b78e">MesaLib-10.3.2.tar.bz2</pkg>
+				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.3.2/</mirror>
 			</file>
-			<!-- <file>                                                                                     
-				<pkg sha1="c29e0bc8a55604c8717b2ca4af1f7ad1a53acb28">dri3proto-1.0.tar.gz</pkg>
-				<mirror>http://cgit.freedesktop.org/xorg/proto/dri3proto/snapshot/</mirror>
-			</file> -->
-			<manualcheck date="20140918" interval="60" page="http://www.mesa3d.org/" />
+			<manualcheck date="20141101" interval="45" page="http://www.mesa3d.org/" />
 			<!-- <check>
 				<page html="ftp://ftp.freedesktop.org/pub/mesa//">
 					<atext linktext="10.1" />
@@ -95,6 +91,8 @@
 			echo 'Current environment:'
 			env
 			
+			bash autogen.sh 
+			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC='distcc /usr/bin/gcc'
@@ -117,9 +115,8 @@
 				--enable-gallium-egl           \
 				--enable-gallium-gbm           \
 				--enable-glx-tls               \
-				--with-llvm-shared-libs        \
 				--with-egl-platforms="drm,x11" \
-				--with-gallium-drivers="nouveau,r300,r600,radeonsi,svga,swrast" 
+				--with-gallium-drivers="i915,ilo,nouveau,r300,r600,radeonsi,svga,swrast" 
 				
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount 

@@ -1,17 +1,16 @@
 <llpackages>
 	<package 
 		name="Remmina"
-		version="1.0.0"
+		version="20141108"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="eeaefe53e9770849ed0e11ebae92f54ebffec2de">Remmina-1.0.0.tar.gz</pkg>
+				<pkg sha1="1bd457840054f61cd71c4f418f805b42d97275d2">Remmina-20141108.tar.bz2</pkg>
 				<mirror>http://cloud.github.com/downloads/FreeRDP/Remmina</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="https://github.com/FreeRDP" />
+			<manualcheck date="20141101" interval="60" page="https://github.com/FreeRDP" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -25,7 +24,9 @@
 			</check> -->
 		</sources>
 		<builddeps>
+                        <dep>LibVNCServer</dep>
                         <dep>atk</dep>
+                        <dep>avahi</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
@@ -35,14 +36,14 @@
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
+                        <dep>git</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gnutls3</dep>
-                        <dep>gtk</dep>
-                        <dep>jpegsrc</dep>
+                        <dep>gtk3</dep>
                         <dep>libICE</dep>
                         <dep>libSM</dep>
                         <dep>libX11</dep>
+                        <dep>libXScrnSaver</dep>
                         <dep>libXau</dep>
                         <dep>libXcomposite</dep>
                         <dep>libXcursor</dep>
@@ -52,6 +53,7 @@
                         <dep>libXfixes</dep>
                         <dep>libXft</dep>
                         <dep>libXi</dep>
+                        <dep>libXinerama</dep>
                         <dep>libXmu</dep>
                         <dep>libXpm</dep>
                         <dep>libXrandr</dep>
@@ -68,34 +70,29 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
-                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pango</dep>
                         <dep>pkg-config</dep>
-                        <dep>sed</dep>
-                        <dep>vte</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			mkdir remmina.build
-			cd remmina.build 
-			cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_TELEPATHY=OFF -DWITH_AVAHI=OFF -DWITH_APPINDICATOR=OFF  ../FreeRDP-Remmina-356c033
-			# sed -i 's%-lvte%-lvte -lX11 -lgio-2.0 -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lpthread%g' remmina/CMakeFiles/remmina.dir/link.txt
-			find . -name 'build.make' -exec sed -i 's%/usr/lib/libcrypto.so%%g' {} \; 
-			sed -i 's%-lvte2_90%-lvte2_90 -lgdk_pixbuf-2.0 -lX11 -lgio-2.0 -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lpthread%g' remmina/CMakeFiles/remmina.dir/link.txt
+			cd Remmina
+			git checkout master
+			cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_VTE=OFF -DWITH_APPINDICATOR=OFF -DWITH_TELEPATHY=OFF  .
 			make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd remmina.build
+			cd Remmina
 			make install DESTDIR=${TGTDIR}
 			mkdir -p ${TGTDIR}/usr/share/applications
 

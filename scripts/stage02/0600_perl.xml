@@ -1,24 +1,23 @@
 <llpackages>
 	<package 
 		name="perl"
-		version="5.20.0"
+		version="5.20.1"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                             
-				<pkg sha1="e925e4fc36e90eace19a1ca850f912618ba6788f">perl-5.20.0.tar.bz2</pkg>
+				<pkg sha1="cd424d1520ba2686fe5d4422565aaf880e9467f6">perl-5.20.1.tar.bz2</pkg>
 				<mirror>http://www.cpan.org/src/5.0/</mirror>
 			</file>
-			<!-- <file>                                                                           
-				<pkg sha1="0b09be49bb6eb90453975bc2028d8f512b6b1ee0">perl-5.18.1-libc-1.patch</pkg>
-				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file> -->
+			<file>                                                             
+				<pkg sha1="89609a4f6ec9c713ef9700377763133b09463eae">perl-5.20.1-infinite_recurse_fix-1.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
 			<manualcheck date="20140617" interval="180" page="http://www.cpan.org/" />
 			<check>
 				<page html="http://www.cpan.org/src/5.0/">
-					<atext linktext="perl-5.20.1." />
+					<atext linktext="perl-5.20.4." />
 					<atext linktext="perl-5.20.2." />
 					<atext linktext="perl-5.20.3." />
 					<atext linktext="perl-5.22." />
@@ -48,16 +47,12 @@
 			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			sed -i -e "s|BUILD_ZLIB\s*= True|BUILD_ZLIB = False|"           \
-				-e "s|INCLUDE\s*= ./zlib-src|INCLUDE    = /usr/include|" \
-				-e "s|LIB\s*= ./zlib-src|LIB        = /usr/lib|"         \
-				cpan/Compress-Raw-Zlib/config.in
-			exit 0
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-infinite_recurse_fix-1.patch | patch -p1 
 			]]>
-		</patch> -->
+		</patch>
 		<patch>
 			<![CDATA[
 
