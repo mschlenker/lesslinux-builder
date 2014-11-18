@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="libpng16"
+		version="1.6.14"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                  
+				<pkg sha1="9cc30ac84214fda2177a02da275359ffd5b068d9">libpng-1.6.14.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libpng/libpng16/1.6.14/</mirror>
+			</file>
+			<manualcheck date="20141118" interval="90" page="http://downloads.sourceforge.net/project/libpng" />
+			<check>
+				<page html="http://sourceforge.net/projects/libpng/files/libpng16/">
+					<atext linktext="1.6.15" />
+					<atext linktext="1.6.16" />
+					<atext linktext="1.6.17" />
+					<atext linktext="1.6.18" />
+				</page>
+				<page html="http://sourceforge.net/projects/libpng/files/">
+					<atext linktext="1.8" />
+					<atext linktext="1.7" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>libpng12</dep>
+			<dep>libpng14</dep>
+			<dep>libpng16</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/libpng-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd libpng-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc/compat.new --prefix=/usr/compat.new 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd libpng-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf libpng-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
