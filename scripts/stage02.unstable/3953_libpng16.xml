@@ -10,6 +10,10 @@
 				<pkg sha1="9cc30ac84214fda2177a02da275359ffd5b068d9">libpng-1.6.14.tar.xz</pkg>
 				<mirror>http://downloads.sourceforge.net/project/libpng/libpng16/1.6.14/</mirror>
 			</file>
+			<file>                                                                                                  
+				<pkg sha1="d298b0e7d0d133c22963a869e9b7e84611620a17">libpng-1.6.14-apng.patch.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/libpng-apng/</mirror>
+			</file>
 			<manualcheck date="20141118" interval="90" page="http://downloads.sourceforge.net/project/libpng" />
 			<check>
 				<page html="http://sourceforge.net/projects/libpng/files/libpng16/">
@@ -49,7 +53,14 @@
 			tar xf ${SRCDIR}/libpng-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			
+			cd libpng-${PKGVERSION}
+			gunzip -c ${SRCDIR}/libpng-${PKGVERSION}-apng.patch.gz | patch -p1 
+			
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd libpng-${PKGVERSION}
