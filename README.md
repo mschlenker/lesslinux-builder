@@ -6,7 +6,7 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 **Stable: Yellow** Building with 3.17.3 is partially tested. Firefox 33.1.1 has some issues building the russian, portuguese and polish language packs.
 
-**Unstable: Yellow** libpng 1.6.14 has been added and should automatically be selected by most programs that formerly used libpng 1.5.x. cmake has been updated to 3.0.2, but not yet tested in a full build.
+**Unstable: Red** libpng 1.6.14 has been added and should automatically be selected by most programs that formerly used libpng 1.5.x. cmake has been updated to 3.0.2, but not yet tested in a full build. pkg_content for boost and some other updated packages is missing.
 
 ## Checking out
 
