@@ -1,0 +1,145 @@
+<llpackages>
+	<package 
+		name="webkit"
+		version="2.6.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="86f7861261a40862b10ac74818bf6f109c603268">webkitgtk-2.6.3.tar.xz</pkg>
+				<mirror>http://webkitgtk.org/releases/</mirror>
+			</file>
+			<manualcheck date="20140725" interval="90" page="http://webkitgtk.org/releases/" />
+			<!-- <check>
+				<page html="http://webkitgtk.org/releases/">
+					<atext linktext="webkitgtk-2.2.6." />
+					<atext linktext="webkitgtk-2.2.7." />
+					<atext linktext="webkitgtk-2.2.8." />
+					<atext linktext="webkitgtk-2.2.9." />
+					<atext linktext="webkitgtk-2.2.10." />
+					<atext linktext="webkitgtk-2.2.11." />
+					<atext linktext="webkitgtk-2.4." />
+					<atext linktext="webkitgtk-2.6." />
+					<atext linktext="webkitgtk-2.8." />
+					<atext linktext="webkitgtk-3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison2</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>enchant</dep>
+                        <dep>expat</dep>
+                        <dep>flex</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>gperf</dep>
+                        <dep>grep</dep>
+                        <dep>gst-plugins-base1</dep>
+                        <dep>gstreamer1</dep>
+			<dep>gst-plugins-base</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep>
+			<dep>harfbuzz</dep>
+                        <dep>icu</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libsoup</dep>
+                        <dep>libtasn1</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>sqlite</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<dep>p5-switch</dep>
+			<dep>libwebp</dep>
+			<dep>distcc</dep>
+			<dep>cmake</dep>
+                </builddeps> 
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/webkitgtk-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			mkdir -v build
+			# FIXME: Try to build with distcc
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			cd build
+			cmake -DCMAKE_BUILD_TYPE=Release \
+				-DCMAKE_INSTALL_PREFIX=/usr \
+				-DCMAKE_SKIP_RPATH=ON \
+				-DPORT=GTK \
+				-DLIB_INSTALL_DIR=/usr/lib \
+				-Wno-dev ../webkitgtk-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount
+				make
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd build
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf webkitgtk-${PKGVERSION}
+			rm -rf build 
+			]]>
+		</clean>
+	</package>
+</llpackages>
