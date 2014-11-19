@@ -4,9 +4,9 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 **Legacy: Green** Build with and `--legacy` - this uses headers and kernels from the 3.14.24 LTS series. Firefox 31.2.0esr has some issues building the portuguese language pack. No complete build with 3.14.24 has been done yet, but I expect no surprises.
 
-**Stable: Yellow** Building with 3.17.3 is partially tested. Firefox 33.1.1 has some issues building the russian, portuguese and polish language packs.
+**Stable: Yellow** Building and running with 3.17.3 is partially tested. Firefox 33.1.1 has some issues building the russian, portuguese and polish language packs.
 
-**Unstable: Red** libpng 1.6.14 has been added and should automatically be selected by most programs that formerly used libpng 1.5.x. cmake has been updated to 3.0.2, but not yet tested in a full build. pkg_content for boost and some other updated packages is missing.
+**Unstable: Red** libpng 1.6.14 has been added and should automatically be selected by most programs that formerly used libpng 1.5.x. cmake has been updated to 3.0.2, but not yet tested in a full build. Same for LLVM 3.5.0. pkg_content for boost and some other updated packages is missing. Unstable kernels are based on Ubuntus config and not yet tested! Cairo Dock 3.4.0 might have configuration issues.
 
 ## Checking out
 
