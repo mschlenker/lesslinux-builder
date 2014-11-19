@@ -2,7 +2,11 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 ## Today's state 
 
-**Yellow:** Build with and `--legacy` - this uses headers and kernels from the 3.14.24 LTS series. Building with 3.17.3 is just partially tested. No complete build with 3.14.24 has been done yet, but I expect no surprises.
+**Legacy: Green** Build with and `--legacy` - this uses headers and kernels from the 3.14.24 LTS series. Firefox 31.2.0esr has some issues building the portuguese language pack. No complete build with 3.14.24 has been done yet, but I expect no surprises.
+
+**Stable: Yellow** Building with 3.17.3 is partially tested. Firefox 33.1.1 has some issues building the russian, portuguese and polish language packs.
+
+**Unstable: Yellow** libpng 1.6.14 has been added and should automatically be selected by most programs that formerly used libpng 1.5.x.
 
 ## Checking out
 

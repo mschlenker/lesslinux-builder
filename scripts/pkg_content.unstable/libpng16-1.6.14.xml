@@ -21,11 +21,10 @@
         <directory path='/usr/share/man/man3' owner='0' group='0'/>
         <directory path='/usr/share/man/man5' owner='0' group='0'/>
     </subpackage>
-    <subpackage name='minimal'/>
+    <subpackage name='minimal'>
+	 <file path='/usr/lib/libpng16.so.16.14.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
     <subpackage name='bin'>
-        <file path='/usr/bin/png-fix-itxt' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/pngfix' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/libpng16.so.16.14.0' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'>
         <file path='/usr/share/man/man3/libpngpf.3' owner='0' group='0' mode='100644'/>
@@ -34,6 +33,8 @@
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
+	<file path='/usr/bin/png-fix-itxt' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pngfix' owner='0' group='0' mode='100755'/>
         <file path='/usr/include/libpng16/pngconf.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/libpng16/png.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/libpng16/pnglibconf.h' owner='0' group='0' mode='100644'/>
@@ -47,32 +48,4 @@
         <file path='/usr/lib/libpng16.la' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='ignore'/>
-    <vanished>
-        <subpackage name='skel'/>
-        <subpackage name='minimal'>
-            <file path='/usr/compat.new/lib/libpng16.so.16.14.0'/>
-        </subpackage>
-        <subpackage name='bin'/>
-        <subpackage name='doc'>
-            <file path='/usr/compat.new/share/man/man3/libpngpf.3'/>
-            <file path='/usr/compat.new/share/man/man3/libpng.3'/>
-            <file path='/usr/compat.new/share/man/man5/png.5'/>
-        </subpackage>
-        <subpackage name='config'/>
-        <subpackage name='devel'>
-            <file path='/usr/compat.new/bin/png-fix-itxt'/>
-            <file path='/usr/compat.new/bin/pngfix'/>
-            <file path='/usr/compat.new/include/libpng16/pngconf.h'/>
-            <file path='/usr/compat.new/include/libpng16/png.h'/>
-            <file path='/usr/compat.new/include/libpng16/pnglibconf.h'/>
-            <file path='/usr/compat.new/lib/pkgconfig/libpng16.pc'/>
-            <file path='/usr/compat.new/lib/libpng16.a'/>
-            <file path='/usr/compat.new/bin/libpng16-config'/>
-            <file path='/usr/compat.new/lib/libpng16.la'/>
-        </subpackage>
-        <subpackage name='localization'/>
-        <subpackage name='tzdata'/>
-        <subpackage name='uncategorized'/>
-        <subpackage name='ignore'/>
-    </vanished>
 </pkgdesc>
