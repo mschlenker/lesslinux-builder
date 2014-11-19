@@ -1,6 +1,6 @@
 <llpackages>
 	<package 
-		name="webkit"
+		name="webkit26"
 		version="2.6.3"
 		class="user"
 		install="destdir">
@@ -26,7 +26,7 @@
 				</page>
 			</check> -->
 		</sources>
-		<!-- <builddeps>
+		<builddeps>
                         <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
@@ -98,7 +98,7 @@
 			<dep>libwebp</dep>
 			<dep>distcc</dep>
 			<dep>cmake</dep>
-                </builddeps> -->
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/webkitgtk-${PKGVERSION}.tar.xz | tar xf -
