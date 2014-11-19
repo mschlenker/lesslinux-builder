@@ -98,7 +98,7 @@
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else
-				make  
+				make -j 4
 			fi
 			]]>
 		</build>
