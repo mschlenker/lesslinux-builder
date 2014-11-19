@@ -124,7 +124,7 @@
 				pump make -j $jobcount
 				make
 			else
-				make
+				make -j 5
 			fi
 			]]>
 		</build>
