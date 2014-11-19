@@ -68,7 +68,7 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-			end
+			fi
 			./configure --prefix=/usr/compat.new --sysconfdir=/etc/compat.new 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
@@ -80,7 +80,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd gnome-menus-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
