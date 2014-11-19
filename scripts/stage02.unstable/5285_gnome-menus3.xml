@@ -38,7 +38,7 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-			end
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
