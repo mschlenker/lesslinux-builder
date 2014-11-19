@@ -27,7 +27,7 @@
 				</page>
 			</check> -->
 		</sources>
-		<builddeps>
+		<!-- <builddeps>
                         <dep>Mesa</dep><dep>glu</dep>
                         <dep>Python</dep>
                         <dep>alsa-lib</dep>
@@ -66,10 +66,10 @@
                         <dep>sed</dep>
                         <dep>vala</dep>
                         <dep>vte</dep>
-			<!-- <dep>webkit</dep> -->
+			<dep>webkit</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
-                </builddeps>
+                </builddeps> -->
 		<unpack>
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
