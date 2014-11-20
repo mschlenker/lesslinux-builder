@@ -144,11 +144,11 @@
 				--with-mpfr-lib=$(pwd)/mpfr/src/.libs 
 			
 			# Fix build on RaspberryPi
-			#case 	$LFS_TGT in 
-			#	armv6l*)
-			#		sed -i 's/none-/armv6l-/' Makefile
-			#	;;
-			# esac
+			case 	$LFS_TGT in 
+				armv6l*)
+					sed -i 's/none-/armv6l-/' Makefile
+				;;
+			esac
 			
 			make -j $JOBS
 			]]>
