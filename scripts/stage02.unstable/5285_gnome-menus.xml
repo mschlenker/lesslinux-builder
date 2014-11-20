@@ -71,7 +71,7 @@
 				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old
 				pump make -j $jobcount
 			else
-				./configure --prefix=/usr /compat.old --sysconfdir=/etc/compat.old
+				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old
 				make
 			fi
 			]]>
