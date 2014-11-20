@@ -41,7 +41,7 @@
                         <dep>diffutils</dep>
                         <dep>findutils</dep>
                         <dep>gcc</dep>
-			<dep>cross-gcc-amd64</dep>
+			<dep>cross-gcc-musl2-amd64</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>gzip</dep>
@@ -91,15 +91,22 @@
 		<build>
 			<![CDATA[ 
 			cd linux-${PKGVERSION}
-			export PATH=/usr/local/crosstools-amd64/bin:$PATH
-			yes '' | make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- oldconfig
+			export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
+			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" oldconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				pump make -j $jobcount ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- CC='distcc /usr/local/crosstools-amd64/bin/amd64-linux-uclibc-gcc'
-				pump make -j $jobcount ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- CC='distcc /usr/local/crosstools-amd64/bin/amd64-linux-uclibc-gcc' bzImage
+				pump make -j $jobcount \
+					ARCH=x86_64 \
+					CROSS_COMPILE=x86_64-linux-musl- \
+					CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc'
+				pump make -j $jobcount \
+					ARCH=x86_64 \
+					CROSS_COMPILE=x86_64-linux-musl- \
+					CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
+					bzImage
 			else
-				make -j 4 ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc-
-				make -j 4 ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- bzImage
+				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-"
+				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" bzImage
 			fi
 			
 			]]>
@@ -114,8 +121,8 @@
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-amd64 
-			export PATH=/usr/local/crosstools-amd64/bin:$PATH
-			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- modules_install
+			export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
+			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-musl- modules_install
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec amd64-linux-uclibc-strip --strip-unneeded {} \; 
 			rm -rf ${TGTDIR}/lib/firmware
@@ -125,8 +132,8 @@
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
 			make clean
-			make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- modules_prepare 
-			tar cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xf - 
+			make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-musl- modules_prepare 
+			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
 			]]>
 		</install>
 		<clean>
