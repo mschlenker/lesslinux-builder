@@ -110,8 +110,8 @@
 			# Settings for Raspberry Pi
 			case ${LFS_TGT} in
 				*armv6l*)
-					ARMFLOAT="--with-float=vfp"
-					ARMFPU="--with-fpu=hard"
+					ARMFLOAT="--with-float=hard"
+					ARMFPU="--with-fpu=vfp"
 					JOBS=1
 				;;
 			esac
