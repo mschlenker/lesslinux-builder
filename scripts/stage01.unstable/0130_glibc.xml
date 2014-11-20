@@ -65,6 +65,14 @@
 				;;
 			esac
 			
+			JOBS=4
+			# Settings for Raspberry Pi
+			case ${LFS_TGT} in
+				*armv6l*)
+					JOBS=1
+				;;
+			esac
+			
 			../glibc-${PKGVERSION}/configure --prefix=/tools \
 			--host=${LFS_TGT} \
 			--build=$(../glibc-2.19/scripts/config.guess) \
@@ -72,7 +80,7 @@
 			--enable-kernel=2.6.34 --with-headers=/tools/include \
 			libc_cv_forced_unwind=yes\
 			libc_cv_c_cleanup=yes \
-			libc_cv_ctors_header=yes && make -j 4
+			libc_cv_ctors_header=yes && make -j $JOBS
 			
 			]]>
 		</build>
