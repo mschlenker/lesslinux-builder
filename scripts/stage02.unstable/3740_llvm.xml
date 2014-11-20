@@ -73,7 +73,7 @@
 			tar xf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.xz
 			tar xf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.xz
 			mv -v cfe-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/tools/clang
-			mv -v compiler-rt-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
+			mv -v compiler-rt-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
 			]]>
 		</unpack>
 		<patch />
