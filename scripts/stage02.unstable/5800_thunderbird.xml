@@ -23,7 +23,7 @@ done
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                           
-				<pkg sha1="194b71c84261531c35a44cdbe49d041982fc3111">mozconfig-thunderbird-31.0-20140723</pkg>
+				<pkg sha1="39116467fefa91d4eda92ff4bad21f698d05ef8a">mozconfig-thunderbird-31.0-20141118</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<!-- <file>                                                               
@@ -121,6 +121,18 @@ done
 			<dep>lcms</dep>
 			<dep>nspr</dep>
 			<dep>distcc</dep>
+			<dep>gst-libav</dep>
+			<dep>gst-plugins-bad1</dep>
+			<dep>gst-plugins-good1</dep>
+			<dep>gst-plugins-ugly1</dep>
+			<dep>gstreamer1</dep>
+			<dep>startup-notification</dep>
+			<dep>sqlite</dep>
+			<dep>libevent</dep>
+			<dep>libvpx</dep>
+			<dep>nspr</dep>
+			<dep>nss</dep>
+			<dep>icu</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -131,7 +143,7 @@ done
 		</unpack>
 		<patch>
 			<![CDATA[
-			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20140723 comm-esr31/.mozconfig
+			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 comm-esr31/.mozconfig
 			]]>
 		</patch>
 		<build>
@@ -147,7 +159,7 @@ done
 			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j2\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure 
 				pump make -f client.mk build  
