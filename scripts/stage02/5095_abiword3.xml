@@ -10,6 +10,10 @@
 				<pkg sha1="563126a052e346d39ef0c6133367e15028b23813">abiword-3.0.0.tar.gz</pkg>
 				<mirror>http://www.abisource.com/downloads/abiword/3.0.0/source/</mirror>
 			</file>
+				<file>       
+				<pkg sha1="32d35d660b1d4f6b6ee4c0aba972fe099c035293">abiword-3.0.0-libgcrypt_1_6_0-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
 			<manualcheck date="20140802" interval="180" page="http://www.abisource.com/" />
 			<check>
 				<page html="http://www.abisource.com/downloads/abiword/">
@@ -91,6 +95,13 @@
 			tar xzf ${SRCDIR}/abiword-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[
+			cd abiword-${PKGVERSION}
+			cat ${SRCDIR}/abiword-${PKGVERSION}-libgcrypt_1_6_0-1.patch | patch -p1
+			
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd abiword-${PKGVERSION}
