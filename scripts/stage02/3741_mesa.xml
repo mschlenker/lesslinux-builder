@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="Mesa"
-		version="10.3.2"
+		version="10.3.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="cb81b479dd7cb8c5264dee427161d92870a6b78e">MesaLib-10.3.2.tar.bz2</pkg>
-				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.3.2/</mirror>
+				<pkg sha1="82048401ab72f6ca38780ada6c8998b020cef0f5">MesaLib-10.3.3.tar.bz2</pkg>
+				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.3.3/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="45" page="http://www.mesa3d.org/" />
+			<manualcheck date="20141118" interval="30" page="http://www.mesa3d.org/" />
 			<!-- <check>
 				<page html="ftp://ftp.freedesktop.org/pub/mesa//">
 					<atext linktext="10.1" />
@@ -123,7 +123,7 @@
 				make -j $jobcount 
 				make
 			else
-				make
+				make -j 4
 			fi
 			
 			]]>
