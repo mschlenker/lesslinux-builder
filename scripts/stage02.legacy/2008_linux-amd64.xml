@@ -118,7 +118,7 @@
 			done
 			make clean
 			make ARCH=x86_64 CROSS_COMPILE=amd64-linux-uclibc- modules_prepare 
-			tar cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xf - 
+			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
 			
 			]]>
 		</install>
