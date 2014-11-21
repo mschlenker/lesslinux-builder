@@ -1,34 +1,33 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.4.2"
+		version="3.5.0"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="c5287384d0b95ecb0fd7f024be2cdfb60cd94bc9">llvm-3.4.2.src.tar.gz</pkg>
-				<mirror>http://llvm.org/releases/3.4.2/</mirror>
+				<pkg sha1="58d817ac2ff573386941e7735d30702fe71267d5">llvm-3.5.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.5.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="add5420b10c3c3a38c4dc2322f8b64ba0a5def97">cfe-3.4.2.src.tar.gz</pkg>
-				<mirror>http://llvm.org/releases/3.4.2/</mirror>
+				<pkg sha1="834cee2ed8dc6638a486d8d886b6dce3db675ffa">cfe-3.5.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.5.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="d644b1e4f306f7ad35df0a134d14a1123cd9f082">compiler-rt-3.4.src.tar.gz</pkg>
-				<mirror>http://llvm.org/releases/3.4/</mirror>
+				<pkg sha1="61f3e78088ce4a0787835036f2d3c61ede11e928">compiler-rt-3.5.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.5.0/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://www.llvm.org/" />
+			<manualcheck date="20141118" interval="120" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="llvm-3.4.3.src." />
-					<atext href="llvm-3.4.4.src." />
-					<atext href="llvm-3.4.5.src." />
-					<atext href="llvm-3.5.src." />
+					<atext href="llvm-3.5.1.src." />
+					<atext href="llvm-3.5.2.src." />
+					<atext href="llvm-3.5.3.src." />
 					<atext href="llvm-3.6.src." />
 					<atext href="llvm-3.7.src." />
 					<atext href="llvm-3.8.src." />
+					<atext href="llvm-3.9.src." />
 					<atext href="llvm-4." />
 				</page>
 			</check>
@@ -70,11 +69,11 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.gz
-			tar xzf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.gz
-			tar xzf ${SRCDIR}/compiler-rt-3.4.src.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.xz
+			tar xf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.xz
+			tar xf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.xz
 			mv -v cfe-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/tools/clang
-			mv -v compiler-rt-3.4 ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
+			mv -v compiler-rt-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
 			]]>
 		</unpack>
 		<patch />
@@ -99,7 +98,7 @@
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else
-				make  
+				make -j 4
 			fi
 			]]>
 		</build>
