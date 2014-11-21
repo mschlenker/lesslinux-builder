@@ -69,7 +69,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			./configure --prefix=/usr/compat.new --sysconfdir=/etc/compat.new 
+			./configure --prefix=/usr --sysconfdir=/etc
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else

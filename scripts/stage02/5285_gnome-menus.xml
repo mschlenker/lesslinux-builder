@@ -3,8 +3,8 @@
 		name="gnome-menus"
 		version="2.30.5"
 		class="user"
-		>
-		<license>GPLv2</license>
+		install="destdir">
+		<license>GPLv2</license> 
 		<sources>
 			<file>                             
 				<pkg sha1="dcf7af8507d5678d6bb1bf705d2c4ac2238c6da5">gnome-menus-2.30.5.tar.bz2</pkg>
@@ -68,10 +68,10 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old
 				pump make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old
 				make
 			fi
 			]]>
@@ -80,7 +80,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 	</package>
