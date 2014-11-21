@@ -71,7 +71,7 @@
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else
-				make
+				make -j 4
 			fi
 			]]>
 		</build>
