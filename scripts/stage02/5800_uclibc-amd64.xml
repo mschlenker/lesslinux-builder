@@ -25,21 +25,21 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/uClibc-${PKGVERSION}.tar.xz | tar xf -
+			## unxz -c ${SRCDIR}/uClibc-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
 			
-			cp ${SRCDIR}/uClibc-amd64-${PKGVERSION}.config uClibc/.config 
+			## cp ${SRCDIR}/uClibc-amd64-${PKGVERSION}.config uClibc/.config 
 			
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
 			
-			cd uClibc
-			make
+			## cd uClibc
+			## make
 			
 			]]>
 		</build>
@@ -47,15 +47,18 @@
 		<install>
 			<![CDATA[
 			
-			cd uClibc
-			mkdir -p ${TGTDIR}/usr/local/crosstools-amd64/amd64-linux-uclibc
-			make install PREFIX=${TGTDIR}/usr/local/crosstools-amd64/amd64-linux-uclibc/
+			##cd uClibc
+			##mkdir -p ${TGTDIR}/usr/local/crosstools-amd64/amd64-linux-uclibc
+			##make install PREFIX=${TGTDIR}/usr/local/crosstools-amd64/amd64-linux-uclibc/
+			
+			mkdir -p ${TGTDIR}/etc/lesslinux/packages
+			touch ${TGTDIR}/etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_is_replaced_by_musl-libc 
 			
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf uClibc # -${PKGVERSION}
+			## rm -rf uClibc # -${PKGVERSION}
 			]]>
 		</clean>
 	</package>

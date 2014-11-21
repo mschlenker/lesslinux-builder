@@ -25,21 +25,21 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			## unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
 			
-			cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.config ${PKGNAME}/.config 
+			## cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.config ${PKGNAME}/.config 
 			
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
 			
-			cd ${PKGNAME}
-			make
+			## cd ${PKGNAME}
+			## make
 			
 			]]>
 		</build>
@@ -47,15 +47,18 @@
 		<install>
 			<![CDATA[
 			
-			cd ${PKGNAME} 
-			mkdir -p ${TGTDIR}/usr/local/crosstools/i486-linux-uclibc
-			make install PREFIX=${TGTDIR}/usr/local/crosstools/i486-linux-uclibc/
+			## cd ${PKGNAME} 
+			## mkdir -p ${TGTDIR}/usr/local/crosstools/i486-linux-uclibc
+			## make install PREFIX=${TGTDIR}/usr/local/crosstools/i486-linux-uclibc/
+			
+			mkdir -p ${TGTDIR}/etc/lesslinux/packages
+			touch ${TGTDIR}/etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_is_replaced_by_musl-libc 
 			
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME} # -${PKGVERSION}
+			## rm -rf ${PKGNAME} # -${PKGVERSION}
 			]]>
 		</clean>
 	</package>
