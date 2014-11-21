@@ -159,7 +159,7 @@
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make all-gcc all-target-libgcc -j $jobcount
 			else
-				make all-gcc all-target-libgcc
+				make all-gcc all-target-libgcc -j 4 
 			fi
 			]]>
 		</build>
