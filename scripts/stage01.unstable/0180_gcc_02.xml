@@ -150,7 +150,7 @@ case 	$LFS_TGT in
 		sed -i 's/none-/armv6l-/' Makefile
 	;;
 esac			
-make -j 4
+make -j $JOBS
 			
 			]]>
 		</build>
