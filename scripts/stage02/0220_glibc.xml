@@ -61,7 +61,7 @@ patch -Np1 -i ${SRCDIR}/glibc-2.19-fhs-1.patch
 				--disable-profile      \
 				--enable-kernel=2.6.34 \
 				--enable-obsolete-rpc
-			make
+			make -j 4
 			echo '=== Build finished, testing...'
 			make -k check 2>&1 | tee glibc-check-log
 			echo '=== Testing finished, grepping...'

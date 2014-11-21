@@ -44,7 +44,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' \
-			./configure --prefix=/usr --enable-thread-safe --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make
+			./configure --prefix=/usr --enable-thread-safe --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make -j 4
 			]]>
 		</build>
 		<test>

@@ -41,7 +41,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' \
-			./configure --prefix=/usr && make
+			./configure --prefix=/usr && make -j 4
 			]]>
 		</build>
 		<test>
