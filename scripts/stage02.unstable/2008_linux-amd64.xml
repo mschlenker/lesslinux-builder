@@ -117,20 +117,20 @@
 			
 			localversion='ll-64-0'
 			
+			export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
 			cd linux-${PKGVERSION}
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-amd64 
-			export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
 			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-musl- modules_install
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
-			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec amd64-linux-uclibc-strip --strip-unneeded {} \; 
 			rm -rf ${TGTDIR}/lib/firmware
 			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-amd64
 			for link in source build ; do
 				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec x86_64-linux-musl-strip --strip-unneeded {} \; 
 			make clean
 			make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-musl- modules_prepare 
 			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
