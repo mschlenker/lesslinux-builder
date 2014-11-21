@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="webkit"
-		version="2.4.4"
+		version="2.4.7"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="0f7690bbaef69946c64793c8aa23cd2f00eac9ae">webkitgtk-2.4.4.tar.xz</pkg>
+				<pkg sha1="10d4cd1c1f7454adc576c6b97fa3d262b6665764">webkitgtk-2.4.7.tar.xz</pkg>
 				<mirror>http://webkitgtk.org/releases/</mirror>
 			</file>
-			<manualcheck date="20140725" interval="90" page="http://webkitgtk.org/releases/" />
+			<manualcheck date="20141118" interval="30" page="http://webkitgtk.org/releases/" />
 			<!-- <check>
 				<page html="http://webkitgtk.org/releases/">
 					<atext linktext="webkitgtk-2.2.6." />
@@ -97,6 +97,8 @@
 			<dep>p5-switch</dep>
 			<dep>libwebp</dep>
 			<dep>distcc</dep>
+			<dep>nspr</dep>
+			<dep>nss</dep>
                 </builddeps> 
 		<unpack>
 			<![CDATA[ 

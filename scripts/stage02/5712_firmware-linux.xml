@@ -63,7 +63,7 @@
 			
 			export LANG=en_US.UTF-8
 			export LANGUAGE=en_US:en_GB:en
-			ruby lesslinux-firmwarefinder.rb ${PKGVERSION}-lesslinux-000 ${TGTDIR}/lib/firmware
+			ruby lesslinux-firmwarefinder.rb lesslinux/ ${TGTDIR}/lib/firmware
 			cd ${TGTDIR}/lib/firmware
 			ln -sf iwlwifi-6000g2a-{5,4}.ucode
 			ln -sf iwlwifi-6000g2b-{5,4}.ucode

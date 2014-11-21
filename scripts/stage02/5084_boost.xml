@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="boost"
-		version="1_56_0"
+		version="1_57_0"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="1639723c6bdff873cdb6d747f8f8c9d9f066434d">boost_1_56_0.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.56.0</mirror>
+				<pkg sha1="55366a96bb76440ab140047065650f1d73dbfd8c">boost_1_57_0.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.57.0</mirror>
 			</file>
-			<manualcheck date="20141101" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
+			<manualcheck date="20141118" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
 			<check>
 				<page html="http://sourceforge.net/projects/boost/files/boost/">
-					<atext linktext="1.56.1" />
-					<atext linktext="1.56.2" />
-					<atext linktext="1.57." />
+					<atext linktext="1.57.1" />
+					<atext linktext="1.57.2" />
 					<atext linktext="1.58." />
 					<atext linktext="1.59." />
+					<atext linktext="1.60." />
 				</page>
 			</check>
 		</sources>
@@ -153,19 +153,20 @@
 				export CXX="distcc g++"
 			fi
 			sh bootstrap.sh --prefix=/usr
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				sed -i 's%# using gcc ;%using gcc \: \: /usr/bin/distcc g++ ;%g' tools/build/v2/user-config.jam
-				pump ./bjam -a -j $jobcount --debug-configuration
-			else
-				./b2 -a
-			fi
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+			#	sed -i 's%# using gcc ;%using gcc \: \: /usr/bin/distcc g++ ;%g' tools/build/v2/user-config.jam
+			#	pump ./bjam -a -j $jobcount --debug-configuration
+			#else
+				# ./b2 -a
+				./b2 stage threading=multi link=shared
+			#fi
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}_${PKGVERSION}
-			./b2 install
+			./b2 install threading=multi link=shared
 			]]>
 		</install>
 		<clean>
