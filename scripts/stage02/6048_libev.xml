@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libev' version='4.19' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='5a25212eb976703243fadf3a027e0fe031f29474'>
+                    libev-4.19.tar.gz
+                </pkg>
+                <mirror>
+                    http://dist.schmorp.de/libev/
+                </mirror>
+            </file>
+            <manualcheck date='20141122' interval='60' mirror='http://dist.schmorp.de/libev/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install  DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='xcb-util-renderutil' version='0.3.9' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='cb533b1d039f833f070e7d6398c221a31d30d5e2'>
+                    xcb-util-renderutil-0.3.9.tar.bz2
+                </pkg>
+                <mirror>
+                    http://xcb.freedesktop.org/dist/
+                </mirror>
+            </file>
+            <manualcheck date='20141122' interval='60' mirror='http://xcb.freedesktop.org/dist/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install  DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
