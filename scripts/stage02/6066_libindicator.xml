@@ -1,0 +1,42 @@
+<llpackages>
+    <package name='libindicator' version='12.10.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='25c8a0a150651ee6b2198df3f36fcbb49f0295c2'>
+                    libindicator-12.10.1.tar.gz
+                </pkg>
+                <mirror>
+                    https://launchpad.net/libindicator/12.10/12.10.1/+download/
+                </mirror>
+            </file>
+            <manualcheck date='20141123' interval='60' mirror='https://launchpad.net/libindicator/12.10/12.10.1/+download/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+sed -i 's/-Werror//g' Makefile
+sed -i 's/-Werror//g' tests/Makefile
+sed -i 's/-Werror//g' tools/Makefile
+sed -i 's/-Werror//g' libindicator/Makefile
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
