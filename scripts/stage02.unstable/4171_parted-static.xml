@@ -69,7 +69,7 @@
 			THISDIR=` pwd ` 
 			cd LVM2.2.02.111
 			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link
-			make -C libdm
+			make -k
 			cd ../parted-${PKGVERSION}                    
 			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no
 			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.111/libdm/ioctl -pthread"
