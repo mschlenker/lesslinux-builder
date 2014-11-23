@@ -1,0 +1,56 @@
+<llpackages>
+    <package name='ido' version='0.3.4' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='129ae968c0cd102afd4d7e309ea6942f7ba1f9bd'>
+                    ido_0.3.4.orig.tar.gz
+                </pkg>
+                <mirror>
+                    http://ftp.de.debian.org/debian/pool/main/i/ido/
+                </mirror>
+            </file>
+	    <file>
+                <pkg sha1='e4ab6c6084e70be03a9116213cc7b24d6283d81b'>
+                    ido_0.3.4-1.1.debian.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.de.debian.org/debian/pool/main/i/ido/
+                </mirror>
+            </file>
+            <manualcheck date='20141123' interval='60' mirror='http://ftp.de.debian.org/debian/pool/main/i/ido/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
+	    tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-1.1.debian.tar.xz
+]]>
+        </unpack>
+        <patch>
+	     <![CDATA[
+	     cd ${PKGNAME}-${PKGVERSION}
+	     cat ../debian/patches/03_linker.patch | patch -p1
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+sed -i 's/-Werror//g' example/Makefile
+sed -i 's/-Werror//g' src/Makefile
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[
+	    rm -rf ${PKGNAME}-${PKGVERSION}
+	    rm -rf debian
+]]>
+        </clean>
+    </package>
+</llpackages>
