@@ -47,8 +47,8 @@
 				i?86) 
 					CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' ABI=32 ./configure --prefix=/usr --enable-cxx  && make -j 4
 				;;
-				*)
-					ABI=32 ./configure --prefix=/usr --enable-cxx  && make -j 2
+				armv6l)
+					./configure --prefix=/usr --enable-cxx  && make -j 2
 				;;
 			esac
 			
