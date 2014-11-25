@@ -7,6 +7,10 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
+				<pkg sha1="9af41133674106249ca578d532d6df3c0e09aca0">linux-3.17.4-fix-crosscompile.patch</pkg> 
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                  
 				<pkg sha1="599397809b58caf306b9e3f96c1fd55f13770c63">linux-3.17-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
@@ -81,6 +85,7 @@
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/linux-3.17-config-amd64 .config 
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
