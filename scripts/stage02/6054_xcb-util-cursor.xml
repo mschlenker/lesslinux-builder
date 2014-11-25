@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='xcb-util-image' version='0.4.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='c9c9361781911a47b28f74fc6ebe0abd1273fae4'>
+                    xcb-util-image-0.4.0.tar.bz2
+                </pkg>
+                <mirror>
+                    http://xcb.freedesktop.org/dist/
+                </mirror>
+            </file>
+            <manualcheck date='20141125' interval='60' mirror='http://xcb.freedesktop.org/dist/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
