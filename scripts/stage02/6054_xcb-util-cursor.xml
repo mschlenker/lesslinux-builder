@@ -1,12 +1,12 @@
 <llpackages>
-    <package name='xcb-util-image' version='0.4.0' install='chroot'>
+    <package name='xcb-util-cursor' version='0.1.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='c9c9361781911a47b28f74fc6ebe0abd1273fae4'>
-                    xcb-util-image-0.4.0.tar.bz2
+                <pkg sha1='140d5cf432e368c4bae908681a0eeb76675228ac'>
+                    xcb-util-cursor-0.1.1.tar.gz
                 </pkg>
                 <mirror>
                     http://xcb.freedesktop.org/dist/
@@ -15,7 +15,7 @@
             <manualcheck date='20141125' interval='60' mirror='http://xcb.freedesktop.org/dist/'/>
         </sources>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
