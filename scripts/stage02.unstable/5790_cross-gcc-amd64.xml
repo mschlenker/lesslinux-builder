@@ -120,7 +120,7 @@
 				export CXX="distcc g++"
 			fi
 			../gcc-${PKGVERSION}/configure \
-				--target=x86_64-linux-glibc \
+				--target=x86_64-linux-gnu \
 				--prefix=/usr/local/crosstools-amd64-klibc \
 				--with-newlib \
 				--without-headers \
