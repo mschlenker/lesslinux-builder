@@ -84,8 +84,10 @@
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
+			
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
+			# cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
+			
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/linux-3.17-config-amd64 .config 
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
