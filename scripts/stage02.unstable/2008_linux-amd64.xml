@@ -91,7 +91,10 @@
 		<build>
 			<![CDATA[ 
 			cd linux-${PKGVERSION}
+			
 			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
+			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+			
 			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -118,6 +121,8 @@
 			localversion='ll-64-0'
 			
 			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
+			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+			
 			cd linux-${PKGVERSION}
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
