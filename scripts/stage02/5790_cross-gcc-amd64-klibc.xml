@@ -122,20 +122,22 @@
 			../gcc-${PKGVERSION}/configure \
 				--target=x86_64-linux-gnu \
 				--prefix=/usr/local/crosstools-amd64-klibc \
-				--with-newlib \
-				--without-headers \
-				--disable-nls \
-				--disable-shared \
-				--disable-multilib \
-				--disable-libssp \
-				--disable-libgomp \
-				--disable-libquadmath \
-				--disable-libitm \
-				--disable-decimal-float \
-				--disable-libatomic \
-				--disable-threads \
-				--disable-libsanitizer \
-				--disable-libstdc++-v3 \
+				--with-newlib                                    \
+				--without-headers                                \
+				--disable-nls                                    \
+				--disable-shared                                 \
+				--disable-multilib                               \
+				--disable-decimal-float                          \
+				--disable-threads                                \
+				--disable-libatomic                              \
+				--disable-libgomp                                \
+				--disable-libitm                                 \
+				--disable-libquadmath                            \
+				--disable-libsanitizer                           \
+				--disable-libssp                                 \
+				--disable-libvtv                                 \
+				--disable-libcilkrts                             \
+				--disable-libstdc++-v3                           \
 				--enable-languages=c,c++ \
 				--with-mpfr-include=$(pwd)/../gcc-${PKGVERSION}/mpfr/src \
 				--with-mpfr-lib=$(pwd)/mpfr/src/.libs 
