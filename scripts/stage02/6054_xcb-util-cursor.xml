@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='xcb-util-cursor' version='0.1.1' install='chroot'>
+    <package name='xcb-util-cursor' version='0.1.1' install='destdir'>
         <license>
             unknown
         </license>
@@ -27,7 +27,7 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+make install DESTDIR=${TGTDIR}
 ]]>
         </install>
         <clean>
