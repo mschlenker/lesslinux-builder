@@ -86,7 +86,8 @@
 			cd linux-${major}.${minor}
 			
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
+			# cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
+			sed -i 's%shell objdump%shell $(OBJDUMP)%g' arch/x86/boot/compressed/Makefile
 			
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/linux-3.17-config-amd64 .config 
