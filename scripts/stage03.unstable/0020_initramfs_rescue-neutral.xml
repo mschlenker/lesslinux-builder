@@ -57,10 +57,21 @@ done
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
 	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
 	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
+
+cat >> /home/surfer/.lesslinux/urxvt.xrdb << "EOF"
+URxvt*perl-ext: matcher
+URxvt*urlLauncher: firefox
+URxvt.background: black
+URxvt.foreground: yellow
+URxvt*font: xft:Monospace:pixelsize=12
+EOF
+
+	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
 fi
 
 for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
@@ -127,10 +138,21 @@ xfsettingsd
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
 	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
 	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
+
+cat >> /home/surfer/.lesslinux/urxvt.xrdb << "EOF"
+URxvt*perl-ext: matcher
+URxvt*urlLauncher: firefox
+URxvt.background: black
+URxvt.foreground: yellow
+URxvt*font: xft:Monospace:pixelsize=12
+EOF
+
+	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
 fi
 
 xsetroot -solid darkgray
@@ -189,6 +211,7 @@ xfsettingsd
 # Set DPI value 
 if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
 	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
+	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
 else
 	mkdir -p /home/surfer/.lesslinux
 	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
