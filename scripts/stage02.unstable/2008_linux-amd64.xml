@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="3.17.3"
+		version="3.17.4"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="9af41133674106249ca578d532d6df3c0e09aca0">linux-3.17.4-fix-crosscompile.patch</pkg> 
+				<pkg sha1="148f1727b6e7c0cb36d907a5b4e7eb10a6fdce90">linux-3.17.4-fix-crosscompile.patch</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                  
@@ -23,7 +23,7 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="aecab551b843b3a27a32ee8490a342a62c1e5e88">patch-3.17.3.xz</pkg>
+				<pkg sha1="4b9d7bcc1c6ba322829a53cc0b7f1f30d9111005">patch-3.17.4.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<manualcheck date="20141123" interval="60" page="http://www.kernel.org/" />
@@ -86,7 +86,7 @@
 			cd linux-${major}.${minor}
 			
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			# cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
+			cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
 			
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/linux-3.17-config-amd64 .config 
