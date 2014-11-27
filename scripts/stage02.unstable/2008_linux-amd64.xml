@@ -104,7 +104,6 @@
 			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
 			
 			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
-			sed -i 's%$(OBJDUMP)%/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump%g' .config
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
