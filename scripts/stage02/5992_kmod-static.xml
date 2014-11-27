@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="kmod-static"
-		version="18"
+		version="19"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>              
-				<pkg sha1="6cadc3b088fa5874f712d3bbe4df75ece59c4b77">kmod-18.tar.xz</pkg>
+				<pkg sha1="f59f7dabe32cbf007bcc30731821d5f3ac9a5706">kmod-19.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/utils/kernel/kmod/</mirror>
 			</file>
-			<manualcheck date="20140701" interval="60" page="http://www.kernel.org/pub/linux/utils/kernel/kmod/" />
+			<manualcheck date="20141120" interval="60" page="http://www.kernel.org/pub/linux/utils/kernel/kmod/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/kernel/kmod/">
 					<atext linktext="kmod-33." />
 					<atext linktext="kmod-34." />
-					<atext linktext="kmod-19." />
+					<atext linktext="kmod-35." />
 					<atext linktext="kmod-20." />
 					<atext linktext="kmod-21." />
 					<atext linktext="kmod-22." />
@@ -67,11 +67,12 @@
 		<build>
 			<![CDATA[
 			cd kmod-${PKGVERSION}
-			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
-			./configure --prefix=/static/kmod --bindir=/static/kmod/bin --libdir=/static/lib --sysconfdir=/etc --with-zlib --host=i386-linux-musl 
+			### export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+			./configure --prefix=/static/kmod --bindir=/static/kmod/bin --libdir=/static/lib --sysconfdir=/etc --with-zlib --with-xz --disable-manpages ### --host=i386-linux-musl 
 			make  LDFLAGS=-all-static
-			i386-linux-musl-strip tools/kmod
-  			]]>
+			### i386-linux-musl-strip tools/kmod
+  			strip tools/kmod 
+			]]>
 		</build>
 		<test />
 		<install>
