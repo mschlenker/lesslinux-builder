@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="xcb-util"
-		version="0.3.9"
+		version="0.4.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
-		<sources>
-			<file>                                                                                   
-				<pkg sha1="02060d8e2e70838fc41cd3a27c7f2909090d8c20">xcb-util-0.3.9.tar.bz2</pkg>
+		<sources>	
+			<file>
+				<pkg sha1='7f2e9b7efcc2c34eb1d6ae312c3d73b075832e46'>xcb-util-0.4.0.tar.bz2</pkg>
 				<mirror>http://xcb.freedesktop.org/dist/</mirror>
 			</file>
-			<manualcheck date="20140724" interval="180" page="http://xcb.freedesktop.org/dist/" />
+			<manualcheck date='20141122' interval='60' mirror='http://xcb.freedesktop.org/dist/'/>
 			<check>
 				<page html="http://xcb.freedesktop.org/dist/">
 					<atext linktext="xcb-util-0.3.13." />
