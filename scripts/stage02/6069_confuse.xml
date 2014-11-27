@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='confuse' version='2.7' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='b3f74f9763e6c9012476dbd323d083af4be34cad'>
+                    confuse-2.7.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.savannah.gnu.org/releases/confuse/
+                </mirror>
+            </file>
+            <manualcheck date='20141127' interval='60' mirror='http://download.savannah.gnu.org/releases/confuse/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
