@@ -21,7 +21,7 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make
+make LDFLAGS="-lm"
 ]]>
         </build>
         <install>
