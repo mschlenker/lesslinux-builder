@@ -1,27 +1,15 @@
 <llpackages>
 	<package 
 		name="startup-notification"
-		version="0.9"
-		class="lib"
-		>
+		version="0.12"
+		class="lib" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>         
-				<pkg sha1="2c09f43247683d1e4a16b2f8d1e236b57eafae68">startup-notification-0.9.tar.bz2</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/startup-notification/0.9/</mirror>
+				<pkg sha1="4198bce2808d03160454a2940d989f3a5dc96dbb">startup-notification-0.12.tar.gz</pkg>
+				<mirror>http://www.freedesktop.org/software/startup-notification/releases/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="730" page="http://ftp2.nluug.nl/windowing/gnome/sources/startup-notification/0.9/" />
-			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/startup-notification/0.9/">
-					<atext linktext="startup-notification-0.9.1.tar.bz2" />
-					<atext linktext="startup-notification-0.9.2.tar.bz2" />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/startup-notification/">
-					<atext linktext="0.10/" />
-					<atext linktext="0.11/" />
-					<atext linktext="1.0/" />
-				</page>
-			</check>
+			<manualcheck date="20141118" interval="120" page="http://www.freedesktop.org/software/startup-notification/releases/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -49,7 +37,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<patch />
@@ -63,7 +51,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 	</package>
