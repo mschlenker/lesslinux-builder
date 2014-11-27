@@ -8,6 +8,13 @@ require 'MfsDiskDrive.rb'
 require 'MfsSinglePartition.rb'
 require 'MfsTranslator.rb'
 
+# Global variables filled by boot parameters
+
+$swapsize = 0
+$blobsize = 0
+$min_hc = 0
+$mac_hc = 0
+
 def error_dialog(title, text) 
 	dialog = Gtk::Dialog.new(
 		title,
