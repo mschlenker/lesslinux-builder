@@ -74,6 +74,7 @@
 			<![CDATA[ 
 			cd linux-3.14
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			sed -i 's%shell objdump%shell $(OBJDUMP)%g' arch/x86/boot/compressed/Makefile
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/config-3.14-amd64-lesslinux-20140513-1438 .config 
 			sed -i 's/lesslinux-000/lesslinux-amd64-000/g' .config 
