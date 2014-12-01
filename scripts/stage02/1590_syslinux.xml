@@ -10,6 +10,11 @@
 				<pkg sha1="1bea76b97b4e32a017dd4168e819934b7c6592cc">syslinux-6.03.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/utils/boot/syslinux/</mirror>
 			</file>
+			<!-- nasm 2.11.06 breaks some asm files, so explicitly use nasm 2.11.05 -->
+			<file>                  
+				<pkg sha1="20536831011b07015913964ddedbce916375e5ad">nasm-2.11.05.tar.xz</pkg>
+				<mirror>http://www.nasm.us/pub/nasm/releasebuilds/2.11.05/</mirror>
+			</file>
 			<manualcheck date="20141101" interval="60" page="http://www.kernel.org/pub/linux/utils/boot/syslinux/" />
 			<check>
 				<page html="http://www.kernel.org/pub/linux/utils/boot/syslinux/">
@@ -42,29 +47,35 @@
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			tar xf ${SRCDIR}/nasm-2.11.05.tar.xz
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
-			
-			cd ${PKGNAME}-${PKGVERSION}
+			cd nasm-2.11.05 
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			NASMPATH=` pwd `/nasm
+			cd ../${PKGNAME}-${PKGVERSION}
 			make -k clean
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				pump make -k -j $jobcount CC="distcc gcc" 
-				pump make -k -j $jobcount bios CC="distcc gcc" 
+				pump make -k -j $jobcount CC="distcc gcc" NASM=${NASMPATH} 
+				pump make -k -j $jobcount bios CC="distcc gcc"  NASM=${NASMPATH} 
 			fi
-			make -k
-			make -k bios
+			make -k -j 6 NASM=${NASMPATH} 
+			make -k -j 6 bios NASM=${NASMPATH} 
 			mv bios/extlinux/extlinux ../extlinux.dynamic
 			mv bios/mtools/syslinux   ../syslinux.dynamic
-			make -k bios LDFLAGS=-static
+			make -k bios LDFLAGS=-static NASM=${NASMPATH} 
 			
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
+			test -f  ${PKGNAME}-${PKGVERSION}/bios/extlinux/extlinux || exit 1
+			
 			mkdir -p ${TGTDIR}/usr/share/syslinux
 			mkdir -p ${TGTDIR}/static/sbin
 			mkdir -p ${TGTDIR}/usr/sbin
@@ -107,6 +118,7 @@
 		<clean>
 			<![CDATA[
 			
+			rm -rf nasm-2.11.05 
 			rm -rf ${PKGNAME}-${PKGVERSION}
 			rm syslinux.dynamic extlinux.dynamic
 			
