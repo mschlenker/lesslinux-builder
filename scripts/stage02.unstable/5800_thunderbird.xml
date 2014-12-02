@@ -133,6 +133,7 @@ done
 			<dep>nspr</dep>
 			<dep>nss</dep>
 			<dep>icu</dep>
+			<dep>libevent</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -157,6 +158,7 @@ done
 			mkdir -p mozilla/tb-build
 			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' .mozconfig 
+			sed -i 's%mk_add_options MOZ_OBJDIR%# mk_add_options MOZ_OBJDIR%g' .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
@@ -172,28 +174,28 @@ done
 			find tb-build -type f -name libxul.so
 			
 			ccount=0
-			while [ '!' -f tb-build/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ] ; do
+			while [ '!' -f obj-i686-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ] ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
-			[ -f tb-build/mozilla/toolkit/library/build/libxul.so ] || exit 1 
+			[ -f obj-i686-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so ] || exit 1 
 			
 			# Now try to build the language packs
 			for packlang in de es-ES pl ru fr it nl pt-PT ; do
-				make -C tb-build/mail/locales langpack-${packlang}
+				make -C obj-i686-pc-linux-gnu/mail/locales langpack-${packlang}
 			done
 			
 			# Now try to build the xpi of thunderbird
 			# mv mail/installer/removed-files.in{,.orig}
 			# cat mail/installer/removed-files.in.orig | sed 's%hyphenation/hyph%# hyphenation/hyph%g' > mail/installer/removed-files.in
-			make -C tb-build package  
+			make -C obj-i686-pc-linux-gnu package  
 			
 			echo '==> Searching Tarballs'
-			find tb-build -name '*.tar.bz2' | sort 
+			find obj-i686-pc-linux-gnu -name '*.tar.bz2' | sort 
 			echo '==> Searching XPIs'
-			find tb-build -name '*.xpi' | sort 
+			find obj-i686-pc-linux-gnu -name '*.xpi' | sort 
 			
 			]]>
 		</build>
@@ -201,7 +203,7 @@ done
 		<install>
 			<![CDATA[
 
-TARFILE=comm-esr31/tb-build/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-i686.tar.bz2
+TARFILE=comm-esr31/obj-i686-pc-linux-gnu/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-i686.tar.bz2
 [ -f "$TARFILE" ] || exit 1
 
 mkdir -p ${TGTDIR}/opt
@@ -210,13 +212,13 @@ tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/thunderbird ${TGTDIR}/opt/thunderbird-${PKGVERSION}
 
 echo '====> Installing XPIs'
-install -m 0644 comm-esr31/tb-build/mozilla/dist/xpi-stage/gdata-provider-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
-install -m 0644 comm-esr31/tb-build/mozilla/dist/xpi-stage/lightning-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
+install -m 0644 comm-esr31/obj-i686-pc-linux-gnu/mozilla/dist/xpi-stage/gdata-provider-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
+install -m 0644 comm-esr31/obj-i686-pc-linux-gnu/mozilla/dist/xpi-stage/lightning-*.en-US.linux-i686.xpi ${TGTDIR}/usr/share/mozilla-addons
 
 echo '====> Installing Langpacks'
 mkdir -m 0755 -p ${TGTDIR}/usr/share/mozilla-localization
 for packlang in de es-ES pl ru fr it nl pt-PT ; do
-	install -m 0644 comm-esr31/tb-build/mozilla/dist/linux-i686/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
+	install -m 0644 comm-esr31/obj-i686-pc-linux-gnu/mozilla/dist/linux-i686/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
 		${TGTDIR}/usr/share/mozilla-localization
 done
 
