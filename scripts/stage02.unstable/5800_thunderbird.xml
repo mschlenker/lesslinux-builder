@@ -154,7 +154,7 @@ done
 			export SHELL=/bin/bash
 			echo $SHELL
 			mkdir tb-build
-			mkdir -p mozilla/tb-build
+			## mkdir -p mozilla/tb-build
 			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
