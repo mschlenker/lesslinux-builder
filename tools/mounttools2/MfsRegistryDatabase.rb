@@ -74,13 +74,13 @@ class MfsRegistryDatabase
 		node = h.node_get_child(node, "Windows NT")
 		node = h.node_get_child(node, "CurrentVersion")
 		node = h.node_get_child(node, "Winlogon")
-		#begin
+		begin
 			newshell = { :key => "Shell", :type => 1, :value => "explorer.exe" } #  .encode("UTF-16", "UTF-8") }
 			h.node_set_value(node, newshell)
 			h.commit(mnt[0] + "/" + @regfile)
-		#rescue
-		#	return false
-		#end
+		rescue
+			return false
+		end
 		return true
 	end
 
