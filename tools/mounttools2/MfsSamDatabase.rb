@@ -19,26 +19,27 @@ class MfsSamDatabase
 		was_mounted = true
 		if @partition.mount_point.nil?
 			was_mounted = false
-			@partition.mount("rw") 
-		else
-			@partition.remount_rw 
+			@partition.mount 
 		end
 		puts @partition.mount_point[0] 
 		mnt = @partition.mount_point 
 		@samusers = Array.new
-		IO.popen("printf 'q\n' | chntpw -l '" + mnt[0] + "/" + @samfile + "'") { |io|
-			accstart = false
-			while io.gets
-				toks = $_.split("|")
-				if accstart == true
-					$stderr.puts "Hex ID:" + toks[1].to_s.strip
-					$stderr.puts "Username: " + toks[2].to_s.strip.gsub(/[^[:print:]]/, '_')
-					@samusers.push( [ toks[1].to_s.strip, toks[2].to_s.strip.gsub(/[^[:print:]]/, '_') ] )
+		Dir.mktmpdir {|d|
+			FileUtils.cp mnt[0] + "/" + @samfile, d + "/sam"
+			IO.popen("printf 'q\n' | chntpw -l '" + d + "/sam'") { |io|
+				accstart = false
+				while io.gets
+					toks = $_.split("|")
+					if accstart == true
+						$stderr.puts "Hex ID:" + toks[1].to_s.strip
+						$stderr.puts "Username: " + toks[2].to_s.strip.gsub(/[^[:print:]]/, '_')
+						@samusers.push( [ toks[1].to_s.strip, toks[2].to_s.strip.gsub(/[^[:print:]]/, '_') ] )
+					end
+					accstart = true if $_ =~ / ^|\sRID/
 				end
-				accstart = true if $_ =~ / ^|\sRID/
-			end
+			}
 		}
-		@partition.umount if was_mounted == false
+		@partition.force_umount if was_mounted == false
 		return @samusers 
 	end
 	
@@ -60,7 +61,7 @@ class MfsSamDatabase
 		system(exstring)
 		retval = $?.exitstatus
 		$stderr.puts "RETURNED: " + retval.to_s
-		@partition.umount if was_mounted == false
+		@partition.force_umount if was_mounted == false
 		return true if retval == 2
 		return false
 	end
