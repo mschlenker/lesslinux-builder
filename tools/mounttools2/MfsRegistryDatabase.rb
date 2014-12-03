@@ -20,7 +20,6 @@ class MfsRegistryDatabase
 			was_mounted = false
 			@partition.mount
 		end
-		puts @partition.mount_point[0] 
 		mnt = @partition.mount_point 
 		h = Hivex::open(mnt[0] + "/" + @regfile, {})
 		root = h.root()
@@ -58,20 +57,29 @@ class MfsRegistryDatabase
 		return nil if aux.nil?
 		return true if aux == true
 		# return false unless @partition.remount_rw
-		puts @partition.mount_point[0] 
 		mnt = @partition.mount_point
 		if backup == true
 			now = Time.new.to_i
 			return false unless system("cp '#{@partition.mount_point[0]}/#{@regfile}' '#{@partition.mount_point[0]}/#{@regfile}.#{now.to_s}'") 
 		end
-		cmd = "printf \"cd Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ncat Shell\\ned Shell\\nexplorer.exe\\ncat Shell\\nq\\ny\\n\" | chntpw -e '" + mnt[0] + "/" + @regfile + "'"
-		puts "RUNNING: #{cmd}"
-		system(cmd) 
-		retval = $?.exitstatus
-		$stderr.puts "RETURNED: " + retval.to_s
-		return true if retval == 2
-		return false
-		# return success 
+		h = Hivex::open(mnt[0] + "/" + @regfile, {})
+		root = h.root()
+		node = h.node_get_child(root, "Microsoft")
+		if node.nil?
+			$stderr.puts "no HKLM\\SOFTWARE\\Microsoft node: Probably not the correct hive"
+			return nil
+		end
+		node = h.node_get_child(node, "Windows NT")
+		node = h.node_get_child(node, "CurrentVersion")
+		node = h.node_get_child(node, "Winlogon")
+		newshell = { :key => "Shell", :type => 1, :value => "explorer.exe" }
+		h.node_set_value(node, newshell)
+		begin
+			h.commit 
+		rescue
+			return false
+		end
+		return true
 	end
 
 end
