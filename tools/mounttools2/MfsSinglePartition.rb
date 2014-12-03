@@ -240,6 +240,7 @@ class MfsSinglePartition
 	end
 	
 	def umount
+		system("sync")
 		if @fs =~ /swap/
 			return true if system("swapoff /dev/" + @device)
 			return false
@@ -254,13 +255,21 @@ class MfsSinglePartition
 	end
 	
 	def force_umount
+		system("sync")
 		return umount if @fs =~ /swap/ 
 		return true if mount_point.nil?
 		return true if umount
-		mnt_point = mount_point
-		unless mnt_point.nil? 
-			system("fuser -k #{mnt_point}")
+		tries = 0 
+		while mounted == true && tries < 5
+			mnt_point = mount_point
+			unless mnt_point.nil? 
+				system("sync")
+				sleep 1.0
+				system("fuser -k #{mnt_point[0]}")
+			end
+			return true if mounted == false 
 		end
+		$stderr.puts "Giving up unmounting #{@device}"
 		return umount
 	end
 	
