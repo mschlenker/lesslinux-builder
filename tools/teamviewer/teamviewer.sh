@@ -2,11 +2,11 @@
 # encoding: utf-8
 
 # Wrapper script for TeamViewer
-# The non free component TeamViewer 9 must be present in /lesslinux/blob
+# The non free component TeamViewer 10 must be present in /lesslinux/blob
 
 PATH=:/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
 export PATH
-TVHOME=/opt/teamviewer/teamviewer9
+TVHOME=/opt/teamviewer/teamviewer
 
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
