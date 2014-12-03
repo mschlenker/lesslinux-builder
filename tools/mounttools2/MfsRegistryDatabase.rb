@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 require "tmpdir"
+require "hivex"
 
 class MfsRegistryDatabase
 	
@@ -17,24 +18,23 @@ class MfsRegistryDatabase
 		was_mounted = true
 		if @partition.mount_point.nil?
 			was_mounted = false
-			@partition.mount("rw")
-		else
-			@partition.remount_rw 
+			@partition.mount
 		end
 		puts @partition.mount_point[0] 
 		mnt = @partition.mount_point 
-		valid_reg = system('echo -e "q\n" | chntpw -e \'' + mnt[0] + "/" + @regfile + "'") 
-		return nil if valid_reg == false
-		lcount = 0
-		nline = -1
-		shell = nil
-		IO.popen("printf \"cat Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell\\nq\\n\" | chntpw -e '" + mnt[0] + "/" + @regfile + "'"  ) { |l| 
-			while l.gets
-				nline = lcount if $_ =~ /currentversion.winlogon.shell/i 
-				shell = $_.strip if lcount == nline + 1  
-				lcount += 1
-			end
-		}
+		h = Hivex::open(mnt[0] + "/" + @regfile, {})
+		root = h.root()
+		node = h.node_get_child(root, "Microsoft")
+		if node.nil?
+			$stderr.puts "no HKLM\\SOFTWARE\\Microsoft node: Probably not the correct hive"
+			return nil
+		end
+		node = h.node_get_child(node, "Windows NT")
+		node = h.node_get_child(node, "CurrentVersion")
+		node = h.node_get_child(node, "Winlogon")
+		val = h.node_get_value(node, "Shell")
+		hash = h.value_value(val)
+		shell = hash[:value].to_s.strip 
 		@partition.umount if was_mounted == false
 		return shell
 	end
@@ -42,7 +42,7 @@ class MfsRegistryDatabase
 	def shell_is_explorer?
 		current_shell = get_shell
 		return nil if current_shell.nil?
-		return true if current_shell =~ /explorer\.exe/i 
+		return true if current_shell.strip =~ /^explorer\.exe$/i 
 		return false
 	end
 	
