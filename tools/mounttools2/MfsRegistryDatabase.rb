@@ -33,8 +33,10 @@ class MfsRegistryDatabase
 		node = h.node_get_child(node, "Winlogon")
 		val = h.node_get_value(node, "Shell")
 		hash = h.value_value(val)
-		shell = hash[:value].to_s.strip 
+		shell = hash[:value].to_s.gsub("\x00", "").strip 
+		# shell.encode!("UTF-8", "UTF-8", { :invalid => :replace } )
 		@partition.umount if was_mounted == false
+		$stderr.puts "Found shell: #{shell} #{shell.encoding}"
 		return shell
 	end
 	
@@ -62,23 +64,23 @@ class MfsRegistryDatabase
 			now = Time.new.to_i
 			return false unless system("cp '#{@partition.mount_point[0]}/#{@regfile}' '#{@partition.mount_point[0]}/#{@regfile}.#{now.to_s}'") 
 		end
-		h = Hivex::open(mnt[0] + "/" + @regfile, {})
+		h = Hivex::open(mnt[0] + "/" + @regfile, { :write => 1})
 		root = h.root()
 		node = h.node_get_child(root, "Microsoft")
 		if node.nil?
 			$stderr.puts "no HKLM\\SOFTWARE\\Microsoft node: Probably not the correct hive"
-			return nil
+			return false
 		end
 		node = h.node_get_child(node, "Windows NT")
 		node = h.node_get_child(node, "CurrentVersion")
 		node = h.node_get_child(node, "Winlogon")
-		newshell = { :key => "Shell", :type => 1, :value => "explorer.exe" }
-		h.node_set_value(node, newshell)
-		begin
-			h.commit 
-		rescue
-			return false
-		end
+		#begin
+			newshell = { :key => "Shell", :type => 1, :value => "explorer.exe" } #  .encode("UTF-16", "UTF-8") }
+			h.node_set_value(node, newshell)
+			h.commit(mnt[0] + "/" + @regfile)
+		#rescue
+		#	return false
+		#end
 		return true
 	end
 
