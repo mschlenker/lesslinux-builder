@@ -267,7 +267,8 @@ class MfsSinglePartition
 				sleep 1.0
 				system("fuser -k #{mnt_point[0]}")
 			end
-			return true if mounted == false 
+			tries += 1 
+			return true if umount
 		end
 		$stderr.puts "Giving up unmounting #{@device}"
 		return umount
