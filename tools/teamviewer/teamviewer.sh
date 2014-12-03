@@ -16,12 +16,12 @@ TVHOME=/opt/teamviewer/teamviewer
 . /etc/rc.lang/en/messages.sh
 [ -f "/etc/rc.lang/$lang/messages.sh" ] && . /etc/rc.lang/$lang/messages.sh
 
-tvnotfound="Could not find TeamViewer - make sure the binary tarball is available in /lesslinux/blob."
-[ $lang = de ] && tvnotfound="Konnte TeamViewer nicht finden - Stellen Sie bitte sicher, dass das Tar-Archiv in /lesslinux/blob liegt."
+tvnotfound="Could not find TeamViewer - make sure you have an internet connection to start the installation now."
+[ $lang = de ] && tvnotfound="Konnte TeamViewer nicht finden - Stellen Sie bitte sicher, dass Sie über eine Internetverbindung verfügen, um die Installation jetzt zu starten."
 
 if [ '!' -f "${TVHOME}/teamviewer" ] ; then
 	zenity --error --text "$tvnotfound" 
-	exit 1
+	sudo /usr/bin/blobinstall.sh --check teamviewer 
 fi
 
 # Start the teamviewer daemon
