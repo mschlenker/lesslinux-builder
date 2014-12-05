@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='xsnow' version='1.42' install='chroot'>
+    <package name='xsnow' version='1.42' install='destdir'>
         <license>
             unknown
         </license>
@@ -43,7 +43,7 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+make install DESTDIR=${TGTDIR} 
 ]]>
         </install>
         <clean>
