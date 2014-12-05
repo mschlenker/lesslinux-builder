@@ -76,6 +76,8 @@ if dircount == 1
 		buildtype = "python"
 	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/autogen.sh")
 		buildtype = "autogen"
+	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/Imakefile")
+		buildtype = "imake"
 	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/Makefile")
 		buildtype = "make"
 	end
@@ -128,8 +130,9 @@ if buildtype == "python"
 		buildcommand.push("python setup.py #{c}")
 	}
 	installcommand.push("python setup.py install")
-elsif buildtype == "configure" || buildtype == "autogen" || buildtype == "make"
+elsif buildtype == "configure" || buildtype == "autogen" || buildtype == "make" || buildtype == "imake"
 	buildcommand.push("bash autogen.sh") if buildtype == "autogen"
+	buildcommand.push("xmkmf") if buildtype == "imake"
 	buildcommand.push("./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var") if buildtype == "configure" || buildtype == "autogen"
 	buildcommand.push("make")
 	installcommand.push("make install")
