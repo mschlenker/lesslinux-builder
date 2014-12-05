@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='xsnow' version='1.42' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d63987560dac9c6341e50d270089e40d17031ce3'>
+                    xsnow-1.42.tar.gz
+                </pkg>
+                <mirror>
+                    http://dropmix.xs4all.nl/rick/Xsnow/
+                </mirror>
+            </file>
+            <manualcheck date='20141205' interval='60' mirror='http://dropmix.xs4all.nl/rick/Xsnow/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+xmkmf
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
