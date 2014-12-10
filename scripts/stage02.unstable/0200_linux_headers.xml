@@ -1,6 +1,6 @@
 <llpackages>
 	<package 
-		name="cross-linux-headers"
+		name="linux_headers"
 		version="3.17.6"
 		class="devel"
 		install="destdir">
@@ -27,18 +27,7 @@
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>coreutils</dep>
-                        <dep>findutils</dep>
-                        <dep>gcc</dep>
-                        <dep>glibc</dep>
-                        <dep>linux_headers</dep>
-                        <dep>make</dep>
-                        <dep>perl</dep>
-                        <dep>sed</dep>
-                        <dep>which</dep>
-                </builddeps>
+		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
@@ -51,7 +40,7 @@
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
-			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cd ..
 			mv -v linux-${major}.${minor} linux-${PKGVERSION}
 			
@@ -72,13 +61,8 @@
 			cd linux-${PKGVERSION}
 			make INSTALL_HDR_PATH=dest headers_install
 			find dest/include \( -name .install -o -name ..install.cmd \) -delete
-			
-			for tgt in crosstools/i486-linux-uclibc crosstools-amd64/amd64-linux-uclibc \
-				crosstools-ia32-musl/i386-linux-musl crosstools-amd64-musl/x86_64-linux-musl ; do
-				mkdir -p ${TGTDIR}/usr/local/${tgt}/include
-				cp -rv dest/include/* ${TGTDIR}/usr/local/${tgt}/include
-				ln -s . ${TGTDIR}/usr/local/${tgt}/usr
-			done
+			mkdir -p ${TGTDIR}/usr/include
+			cp -rv dest/include/* ${TGTDIR}/usr/include
 			
 			]]>
 		</install>
