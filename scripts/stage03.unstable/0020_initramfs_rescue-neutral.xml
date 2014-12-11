@@ -54,26 +54,6 @@ for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	fi
 done
 
-# Set DPI value 
-#if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-#	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-#	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
-#else
-#	mkdir -p /home/surfer/.lesslinux
-#	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-#	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-#
-#cat >> /home/surfer/.lesslinux/urxvt.xrdb << "EOF"
-#URxvt*perl-ext: matcher
-#URxvt*urlLauncher: firefox
-#URxvt.background: black
-#URxvt.foreground: white
-#URxvt*font: xft:Fixed:pixelsize=14
-#EOF
-#
-#	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
-#fi
-
 for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
 	sed -i 's/mmmm\.rb/mmmmng.sh/g' /home/surfer/${f} 
 done
@@ -135,26 +115,6 @@ done
 
 xfsettingsd
 
-# Set DPI value 
-if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
-else
-	mkdir -p /home/surfer/.lesslinux
-	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-
-cat >> /home/surfer/.lesslinux/urxvt.xrdb << "EOF"
-URxvt*perl-ext: matcher
-URxvt*urlLauncher: firefox
-URxvt.background: black
-URxvt.foreground: white
-URxvt*font: xft:Fixed:pixelsize=14
-EOF
-
-	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
-fi
-
 xsetroot -solid darkgray
 setxkbmap -layout "$xkbmap"
 
@@ -207,26 +167,6 @@ for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 done
 
 xfsettingsd
-
-# Set DPI value 
-if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
-else
-	mkdir -p /home/surfer/.lesslinux
-	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-
-cat >> /home/surfer/.lesslinux/urxvt.xrdb << "EOF"
-URxvt*perl-ext: matcher
-URxvt*urlLauncher: firefox
-URxvt.background: black
-URxvt.foreground: white
-URxvt*font: xft:Fixed:pixelsize=14
-EOF
-
-	xrdb -merge /home/surfer/.lesslinux/urxvt.xrdb
-fi
 
 xsetroot -solid darkgray
 setxkbmap -layout "$xkbmap"
