@@ -395,7 +395,9 @@ class AnyStage
 			end
 			interval = check.attributes["interval"].to_i
 			if (date.to_i + (interval * 24 * 60 * 60) < Time.now.to_i)
-				puts sprintf("%015.4f", Time.now.to_f) + " check  > MANUAL CHECK : " + @buildfile + " current: " + @pkg_name + " " + @pkg_version + " RECOMMENDED! " + check.attributes["page"]				
+				page = check.attributes["page"]
+				page = check.attributes["mirror"] if page.nil?
+				puts sprintf("%015.4f", Time.now.to_f) + " check  > MANUAL CHECK : " + @buildfile + " current: " + @pkg_name + " " + @pkg_version + " RECOMMENDED! " + page				
 			end
 			version_check = true
 		}
