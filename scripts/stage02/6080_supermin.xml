@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='supermin' version='5.1.11' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='183d8361c5a55ec726ae1b1e31e39dc8c58ec461'>
+                    supermin-5.1.11.tar.gz
+                </pkg>
+                <mirror>
+                    http://libguestfs.org/download/supermin/
+                </mirror>
+            </file>
+            <manualcheck date='20141213' interval='60' mirror='http://libguestfs.org/download/supermin/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+LIBTINFO_CFLAGS="-ltinfo" LIBTINFO_LIBS="-Ltinfo"  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

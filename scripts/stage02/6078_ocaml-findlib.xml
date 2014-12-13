@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='findlib' version='1.5.5' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3221121c4b5adacc050aa361475eee59b2698afa'>
+                    findlib-1.5.5.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.camlcity.org/download/
+                </mirror>
+            </file>
+            <manualcheck date='20141213' interval='60' mirror='http://download.camlcity.org/download/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
