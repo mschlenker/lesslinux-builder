@@ -21,7 +21,7 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+LIBTINFO_CFLAGS="-ltinfo" LIBTINFO_LIBS="-Ltinfo" ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make
 ]]>
         </build>
