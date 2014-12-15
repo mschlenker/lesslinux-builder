@@ -14,6 +14,25 @@
             </file>
             <manualcheck date='20141215' interval='60' mirror='http://distfiles.lesslinux.org/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>libaio</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+                        <!-- <dep>x11vnc</dep> -->
+                        <dep>xmlto</dep>
+                        <dep>zlib</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 ]]>
