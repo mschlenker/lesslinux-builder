@@ -1,0 +1,42 @@
+<llpackages>
+    <package name='kvm' version='20141212' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='1ab7fa6ac7306706e3a06b488688a86d8deec99d'>
+                    kvm-20141212.tar.xz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20141215' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd linux-${PKGNAME}
+make clean
+make defconfig 
+cd tools/kvm
+make clean 
+make -j $( grep -c processor /proc/cpuinfo ) WERROR=0 
+]]>
+        </build>
+        <install>
+            <![CDATA[
+mkdir -p ${TGTDIR}/usr/bin 
+install -m 0755 linux-${PKGNAME}/tools/kvm/lkvm ${TGTDIR}/usr/bin 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf linux-${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
