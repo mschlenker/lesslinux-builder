@@ -63,9 +63,9 @@
 				i?86) 
 					echo "CFLAGS += -march=i486 -mtune=generic" > configparms 
 				;;
-				x86_64) 
-					echo "CFLAGS += -march=x86-64 -mtune=generic" > configparms 
-				;;
+				#x86_64) 
+				#	echo "CFLAGS += -march=x86-64 -mtune=generic" > configparms 
+				#;;
 			esac
 			
 			JOBS=` grep -c processor /proc/cpuinfo `
