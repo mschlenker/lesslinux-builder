@@ -61,11 +61,14 @@
 			
 			case `uname -m` in
 				i?86) 
-					echo "CFLAGS += -march=i486 -mtune=native" > configparms 
+					echo "CFLAGS += -march=i486 -mtune=generic" > configparms 
+				;;
+				x86_64) 
+					echo "CFLAGS += -march=x86_64 -mtune=generic" > configparms 
 				;;
 			esac
 			
-			JOBS=4
+			JOBS=` grep -c processor /proc/cpuinfo `
 			# Settings for Raspberry Pi
 			case ${LFS_TGT} in
 				*armv6l*)
