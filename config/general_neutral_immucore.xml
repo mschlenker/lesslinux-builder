@@ -1,0 +1,24 @@
+<lesslinux>
+	<builddir>/mnt/archiv/LessLinux/llbuild</builddir>
+	<sourcedir>/mnt/archiv/LessLinux/src</sourcedir>
+	<overlays>overlays/immucore</overlays> 
+	<unpriv>mattias</unpriv>
+	<build>
+		<!-- how to treat modules
+		old: modules are squashfs container along the regular containers
+		new: modules are squashfs container loaded with initramfs -->
+		<modmodel>new</modmodel>
+	</build>
+	<database>
+		<dbname>llbuild</dbname>
+		<user>llbuilder</user>
+		<pass>lesslinux</pass>
+	</database>
+	<!-- <stage01>
+		<postclean>1</postclean>
+		<parallel>2</parallel>
+		<targetdir>/mnt/archiv/LessLinux/stage01-chroot</targetdir>
+	</stage01>
+	<stage02>
+	</stage02> -->
+</lesslinux>
