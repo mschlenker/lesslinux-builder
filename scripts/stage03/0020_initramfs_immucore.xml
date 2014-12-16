@@ -1,0 +1,66 @@
+<llpackages>
+	<links>
+	</links>
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+		<dir mode="0755">/etc/default</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0100-files.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+		
+# check, if the files needed exist - some of those directories are defaults of customers
+# and not used on normal LessLinux builds
+
+#for d in Data Runtime Software Programme Windows-Programme Programs Windows-Programs Lizenzen lizenzen licenses legal ; do
+#	[ -d /lesslinux/cdrom/${d} ] && tar -C /lesslinux/cdrom -cf - ${d} | tar -C /lesslinux/data -xf -
+#done
+#for f in liesmich.html readme.html LIESMICH.html README.html Start.exe Start.inf ; do 
+#	[ -f /lesslinux/cdrom/${f} ] && tar -C /lesslinux/cdrom -cf - ${f} | tar -C /lesslinux/data -xf -
+#done
+
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/inittab" mode="0644" group="0" owner="0">
+		<![CDATA[::sysinit:/etc/rc
+tty1::respawn:/static/bin/show_placeholder
+tty2::respawn:/static/sbin/getty -l /static/bin/login 38400 tty2
+tty3::respawn:/static/sbin/getty -l /static/bin/login 38400 tty3
+tty4::askfirst:/static/bin/ash
+tty5::askfirst:/bin/bash
+hvc0::askfirst:/static/bin/ash
+::ctrlaltdel:/static/sbin/reboot
+::shutdown:/etc/rc.shutdown]]>
+		</scriptdata>
+	</scripts> 
+	<package name="initramfs-immucore" version="20141216-00" allowfail="yes">
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="8050b9cdfc4b27d4e7f15e6c3eff678f8760010e">surfer-neutral-20140527-00.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+echo 'nothing to do!'
+		
+		]]>
+		</install>
+	</package>
+</llpackages>
