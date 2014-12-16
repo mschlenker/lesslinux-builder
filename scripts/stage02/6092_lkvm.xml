@@ -44,7 +44,7 @@ make clean
 make defconfig 
 cd tools/kvm
 make clean 
-make -j $( grep -c processor /proc/cpuinfo ) WERROR=0 
+make -j $( grep -c processor /proc/cpuinfo ) WERROR=0  SOURCE_GTK3=no SOURCE_VNCSERVER=no 
 ]]>
         </build>
         <install>
