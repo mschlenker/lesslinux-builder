@@ -44,7 +44,9 @@
 			done
 			case $(uname -m) 
 			in
-				x86_64) ln -sv lib ${CHROOTDIR}/lib64 && ln -sv lib ${CHROOTDIR}/usr/lib64
+				x86_64) 
+					ln -sv lib ${CHROOTDIR}/lib64 && ln -sv lib ${CHROOTDIR}/usr/lib64
+					ln -sv lib /tools/lib64 
 				;;
 			esac
 			mkdir -v ${CHROOTDIR}/var/{lock,log,mail,run,spool}
