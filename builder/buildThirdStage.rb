@@ -121,6 +121,7 @@ class ThirdStage < AnyStage
 	# Install prepared files from the file list generated in the last step
 	
 	def pkg_install ( subpkgs, langs, skipfiles=Array.new, skipdirs=Array.new)
+		skipfiles = Array.new if skipfiles.nil?
 		# Currently just check for automatically generated file from the last build
 		# FIXME: Add prepared/modified versions later
 		# FIXME: Add possibility to skip later
