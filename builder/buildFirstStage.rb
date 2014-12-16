@@ -14,6 +14,8 @@ class FirstStage < AnyStage
 			arch = ` uname -m `
 			if arch =~ /armv6l/
 				bvars.write("LFS_TGT=armv6l-lfs-linux-gnueabihf; export LFS_TGT\n")
+			elsif arch =~ /x86_64/	
+				bvars.write("LFS_TGT=x86_64-lfs-linux-gnu; export LFS_TGT\n")
 			else
 				bvars.write("LFS_TGT=i686-lfs-linux-gnu; export LFS_TGT\n")
 			end
