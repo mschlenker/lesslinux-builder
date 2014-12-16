@@ -106,11 +106,11 @@ puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"
 arch = ` uname -m `.strip
 unless arch =~ /i(4|5|6)86/ || @ignore_arch == true 
 	puts "Currently builds are only allowed on i486, i586 or i686!"
-	puts "Building for i?86 on x86_64 is supported by explicitly"
+	puts "Building for i?86 on x86_64 kernel is supported by explicitly"
 	puts "running this script with 'linux32' prepended."
 	puts ""
 	puts "Use the switch --ignore-arch to build on unsupported archs"
-	puts "- currently only RaspberryPi."
+	puts "- currently only RaspberryPi and x86_64."
 	raise "UnsupportedArchitecture"
 end
 
