@@ -50,6 +50,9 @@
 				armv6l)
 					./configure --prefix=/usr --enable-cxx  && make -j 2
 				;;
+				*)
+					CFLAGS='-mtune=generic' CXXFLAGS='-mtune=generic' ./configure --prefix=/usr --enable-cxx  && make -j 4
+				;;
 			esac
 			
 			]]>
