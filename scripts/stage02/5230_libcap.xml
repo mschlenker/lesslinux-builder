@@ -46,14 +46,14 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make PREFIX=/usr LIBATTR=no
+			make PREFIX=/usr
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make PREFIX=/usr LIBATTR=no install DESTDIR=${TGTDIR}
+			make install DESTDIR=${TGTDIR} RAISE_SETFCAP=no prefix=/usr
 			]]>
 		</install>
 		<clean>

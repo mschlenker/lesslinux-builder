@@ -49,7 +49,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}-stable
-			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-shared
 			make
 			]]>
 		</build>

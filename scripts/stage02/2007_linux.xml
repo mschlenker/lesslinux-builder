@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="3.17.3"
+		version="3.17.7"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="afe0e6c03a03b3356480a11f542ee6177d69a7d7">config-3.16-lesslinux-20140815-1425</pkg> 
+				<pkg sha1="016bb1a1a7265aa621dc21db84847df102ba4bc0">linux-3.17-config-32pae</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -19,15 +19,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="aecab551b843b3a27a32ee8490a342a62c1e5e88">patch-3.17.3.xz</pkg>
+				<pkg sha1="23e8bceb34b03db00604f649112abd4aba2ff7ba">patch-3.17.7.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20141115" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20141210" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.17.6." />
-					<atext linktext="patch-3.17.4." />
-					<atext linktext="patch-3.17.5." />
+					<atext linktext="patch-3.17.9." />
+					<atext linktext="patch-3.17.10." />
+					<atext linktext="patch-3.17.8." />
 					<atext linktext="patch-3.18." />
 					<atext linktext="patch-3.19." />
 					<atext linktext="patch-3.20." />
@@ -61,6 +61,7 @@
 			<dep>bc</dep>
 			<dep>distcc</dep>
 			<dep>kmod</dep>
+			<dep>VirtualBox</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -71,13 +72,15 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
+			localversion='ll-pae-0'
+			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/config-3.16-lesslinux-20140815-1425  .config 
-			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
+			cp -v ${SRCDIR}/linux-3.17-config-32pae  .config 
+			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
 			]]>
@@ -95,33 +98,42 @@
 				make -j 4
 				make -j 4 bzImage
 			fi
+			rsync -avHP /usr/local/VirtualBox/src/ ../VirtualBox/ 
+			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
+				make -C . M=../VirtualBox/${mod} modules
+			done
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
+			localversion='ll-pae-0'
+			
 			cd linux-${PKGVERSION}
-			localversion=` grep '^CONFIG_LOCALVERSION' .config | sed 's/"//g' | awk -F '=' '{print $2}' | sed 's%^-%%g' `
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux 
 			INSTALL_MOD_PATH=${TGTDIR} make modules_install
+			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
+				INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox/${mod} modules_install
+			done
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
-			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
 			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
 			for link in source build ; do
 				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done 
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
 			make clean
 			make modules_prepare 
-			tar cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xf - 
+			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
 			]]>
 		</install>
 		<clean>
 			  <![CDATA[
 			  
 			  rm -rf linux-${PKGVERSION}
+			  rm -rf VirtualBox
 			  
 			  ]]>
 		</clean>

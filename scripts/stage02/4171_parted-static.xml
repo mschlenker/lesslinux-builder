@@ -1,25 +1,38 @@
 <llpackages>
 	<package 
 		name="parted-static"
-		version="3.1"
+		version="3.2"
 		class="lib"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                
-				<pkg sha1="4f006d29451f7cfbf6131efdb0148e7f386ebc8f">parted-3.1.tar.xz</pkg>
+				<pkg sha1="78db6ca8dd6082c5367c8446bf6f7ae044091959">parted-3.2.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/parted/</mirror>
 			</file>
-			<manualcheck date="20130504" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
+			<file>                                                                                          
+				<pkg sha1="2e7b5d48d55aaf4aba1214c3211a194e4c13aa3e">LVM2.2.02.111.tgz</pkg>
+				<mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
+			</file>
+			<manualcheck date="20140729" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/parted/">
-					<atext linktext="parted-3.1.1." />
-					<atext linktext="parted-3.1.2." />
-					<atext linktext="parted-3.2." />
+					<atext linktext="parted-3.2.1." />
+					<atext linktext="parted-3.2.2." />
 					<atext linktext="parted-3.3." />
 					<atext linktext="parted-3.4." />
+					<atext linktext="parted-3.4." />
 					<atext linktext="parted-4." />
+				</page>
+				<page html="http://mirrors.kernel.org/sources.redhat.com/lvm2/">
+					<atext linktext="LVM2.2.02.112.t" />
+					<atext linktext="LVM2.2.02.113.t" />
+					<atext linktext="LVM2.2.02.114.t" />
+					<atext linktext="LVM2.2.02.12" />
+					<atext linktext="LVM2.2.03" />
+					<atext linktext="LVM2.2.04" />
+					<atext linktext="LVM2.3" />
+					<atext linktext="LVM2.4" />
 				</page>
 			</check>
 		</sources>
@@ -47,13 +60,19 @@
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/parted-${PKGVERSION}.tar.xz | tar xf - 
+			tar -xf ${SRCDIR}/LVM2.2.02.111.tgz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd parted-${PKGVERSION}                    
-			./configure --prefix=/usr --sysconfdir=/etc --enable-static --enable-device-mapper=no --disable-nls --with-readline=no && make LDFLAGS=-all-static 
+			THISDIR=` pwd ` 
+			cd LVM2.2.02.111
+			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link
+			make -k
+			cd ../parted-${PKGVERSION}                    
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no
+			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.111/libdm/ioctl -pthread"
 			]]>
 		</build>
 		<test />
@@ -68,6 +87,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf parted-${PKGVERSION}
+			rm -rf LVM2.2.02.111
 			]]>
 		</clean>
 	</package>
