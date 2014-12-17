@@ -46,7 +46,7 @@
 			--target=$LFS_TGT          \
 			--disable-nls              \
 			--disable-werror
-			make
+			make -j 4
 			]]>
 		</build>
 		<install>

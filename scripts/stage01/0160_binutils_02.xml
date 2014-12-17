@@ -46,7 +46,7 @@
 			../binutils-${PKGVERSION}/configure \
 			--prefix=/tools        \
 			--disable-nls --with-lib-path=/tools/lib --with-sysroot --disable-werror
-			make
+			make -j 4
 			# echo "int main () { return 0; }" > conftest.c
 			# i686-lfs-linux-gnu-gcc conftest.c
 			# ./a.out

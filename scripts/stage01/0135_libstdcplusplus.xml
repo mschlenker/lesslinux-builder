@@ -58,7 +58,7 @@ cd gcc-build
     --disable-libstdcxx-threads          \
     --disable-libstdcxx-pch              \
     --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/${PKGVERSION}
-make
+make -j 4
 
 			]]>
 		</build>

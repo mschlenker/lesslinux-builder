@@ -112,11 +112,24 @@ done
 			
 			cd gcc-build
 			
+			ARMFLOAT=''
+			ARMFPU=''
+			JOBS=4
+
+			# Settings for Raspberry Pi
+			case ${LFS_TGT} in
+				*armv6l*)
+					ARMFLOAT="--with-float=hard"
+					ARMFPU="--with-fpu=vfp"
+					JOBS=1
+				;;
+			esac		
+			
 CC=$LFS_TGT-gcc                                      \
 CXX=$LFS_TGT-g++                                     \
 AR=$LFS_TGT-ar                                       \
 RANLIB=$LFS_TGT-ranlib                               \
-../gcc-${PKGVERSION}/configure                               \
+../gcc-${PKGVERSION}/configure ${ARMFLOAT} ${ARMFPU} \
     --prefix=/tools                                  \
     --with-local-prefix=/tools                       \
     --with-native-system-header-dir=/tools/include   \
@@ -137,7 +150,7 @@ case 	$LFS_TGT in
 		sed -i 's/none-/armv6l-/' Makefile
 	;;
 esac			
-make
+make -j $JOBS
 			
 			]]>
 		</build>

@@ -105,15 +105,17 @@
 			
 			ARMFLOAT=''
 			ARMFPU=''
+			JOBS=4
 
 			# Settings for Raspberry Pi
 			case ${LFS_TGT} in
 				*armv6l*)
-					ARMFLOAT="--with-float=vfp"
-					ARMFPU="--with-fpu=hard"
+					ARMFLOAT="--with-float=hard"
+					ARMFPU="--with-fpu=vfp"
+					JOBS=1
 				;;
 			esac
-
+			
 			../gcc-${PKGVERSION}/configure                           \
 				--target=$LFS_TGT ${ARMFLOAT} ${ARMFPU}          \
 				--prefix=/tools                                  \
@@ -142,13 +144,13 @@
 				--with-mpfr-lib=$(pwd)/mpfr/src/.libs 
 			
 			# Fix build on RaspberryPi
-			#case 	$LFS_TGT in 
-			#	armv6l*)
-			#		sed -i 's/none-/armv6l-/' Makefile
-			#	;;
-			# esac
+			case 	$LFS_TGT in 
+				armv6l*)
+					sed -i 's/none-/armv6l-/' Makefile
+				;;
+			esac
 			
-			make
+			make -j $JOBS
 			]]>
 		</build>
 		<install>

@@ -61,7 +61,18 @@
 			
 			case `uname -m` in
 				i?86) 
-					echo "CFLAGS += -march=i486 -mtune=native" > configparms 
+					echo "CFLAGS += -march=i486 -mtune=generic" > configparms 
+				;;
+				#x86_64) 
+				#	echo "CFLAGS += -march=x86-64 -mtune=generic" > configparms 
+				#;;
+			esac
+			
+			JOBS=` grep -c processor /proc/cpuinfo `
+			# Settings for Raspberry Pi
+			case ${LFS_TGT} in
+				*armv6l*)
+					JOBS=1
 				;;
 			esac
 			
@@ -69,10 +80,10 @@
 			--host=${LFS_TGT} \
 			--build=$(../glibc-2.19/scripts/config.guess) \
 			--disable-profile \
-			--enable-kernel=2.6.34 --with-headers=/tools/include \
+			--enable-kernel=2.6.32 --with-headers=/tools/include \
 			libc_cv_forced_unwind=yes\
 			libc_cv_c_cleanup=yes \
-			libc_cv_ctors_header=yes && make
+			libc_cv_ctors_header=yes && make -j $JOBS
 			
 			]]>
 		</build>
