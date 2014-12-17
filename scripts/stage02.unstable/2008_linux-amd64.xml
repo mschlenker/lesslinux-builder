@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="3.17.6"
+		version="3.17.7"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -23,14 +23,14 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="a945f1943d2b24c618fc18d68aa7d295ba7fdb4c">patch-3.17.6.xz</pkg>
+				<pkg sha1="23e8bceb34b03db00604f649112abd4aba2ff7ba">patch-3.17.7.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<manualcheck date="20141210" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-3.17.9." />
-					<atext linktext="patch-3.17.7." />
+					<atext linktext="patch-3.17.10." />
 					<atext linktext="patch-3.17.8." />
 					<atext linktext="patch-3.18." />
 					<atext linktext="patch-3.19." />
