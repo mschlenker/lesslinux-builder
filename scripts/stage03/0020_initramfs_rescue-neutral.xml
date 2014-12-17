@@ -54,15 +54,6 @@ for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	fi
 done
 
-# Set DPI value 
-if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-else
-	mkdir -p /home/surfer/.lesslinux
-	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-fi
-
 for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
 	sed -i 's/mmmm\.rb/mmmmng.sh/g' /home/surfer/${f} 
 done
@@ -124,15 +115,6 @@ done
 
 xfsettingsd
 
-# Set DPI value 
-if [ -f /home/surfer/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-else
-	mkdir -p /home/surfer/.lesslinux
-	echo "Xft.dpi: ${dpi}" >> /home/surfer/.lesslinux/xstuff.xrdb
-	xrdb -merge /home/surfer/.lesslinux/xstuff.xrdb
-fi
-
 xsetroot -solid darkgray
 setxkbmap -layout "$xkbmap"
 
@@ -158,6 +140,53 @@ while true ; do
 		killall -9 compton
 		xfsettingsd --replace
 		compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
+		xfct=` expr $xfct + 1 ` 
+		sleep 5
+	else
+		sleep 9999999
+	fi
+done
+		
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc_i3" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+xfsettingsd
+
+xsetroot -solid darkgray
+setxkbmap -layout "$xkbmap"
+
+killall -9 compton
+killall -9 xcompmgr
+
+urxvt &
+sudo urxvt &
+firefox http://i3wm.org/docs/userguide &
+
+i3 &
+
+# conky -d 
+# Weird hack!
+xfct=0
+while true ; do
+	sleep 5
+	if [ "$xfct" -lt 3 ] ; then
+		xfsettingsd --replace
 		xfct=` expr $xfct + 1 ` 
 		sleep 5
 	else
