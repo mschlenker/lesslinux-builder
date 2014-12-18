@@ -49,5 +49,5 @@ To build the ISO you have to specify some config paths - you might use modified 
 	  --skip-files config/skiplist_neutral_rescue.txt \
 	  -c config/general_neutral_rescue.xml \
 	  -b config/branding_neutral_rescue.xml \
-	  -k config/kernels_rescue_experimental.xml -u
+	  -k config/kernels_rescue_unstable.xml -u
  
