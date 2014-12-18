@@ -36,9 +36,9 @@ To build, simply run:
 
 `ruby -I. builder.rb -n -l -s 1,3 -t 3 --no-stracalyze`
 
-or 
+or (for the unstable tree)
 
-`ruby -I. builder.rb -n -l -s 1,3 -t 3 --no-stracalyze -u`
+`ruby -I. builder.rb -n -l -s 1,3 -t 3 --no-stracalyze --unstable`
 
 ## Building the final ISO image
 
@@ -49,5 +49,5 @@ To build the ISO you have to specify some config paths - you might use modified 
 	  --skip-files config/skiplist_neutral_rescue.txt \
 	  -c config/general_neutral_rescue.xml \
 	  -b config/branding_neutral_rescue.xml \
-	  -k config/kernels_rescue_unstable.xml -u
+	  -k config/kernels_rescue_unstable.xml --unstable
  
