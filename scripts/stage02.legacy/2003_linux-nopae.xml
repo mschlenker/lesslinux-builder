@@ -1,13 +1,17 @@
 <llpackages>
 	<package 
 		name="linux-nopae"
-		version="3.14.25"
+		version="3.14.27"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                  
+			<!-- <file>                                  
 				<pkg sha1="316da81d9df1dceab53d3d552fc448436f1c1736" variable="CONFIGFILE">config-3.14-nonpae-lesslinux-20140513-1438</pkg> 
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<file>                                  
+				<pkg sha1="126d418b4cdb2e05515743e3024b2b44c6f73fe4" variable="CONFIGFILE">linux-3.14-config-nopae</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -19,17 +23,17 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="240907ba50ae05164c9a8d1fd53b79fd73ff1e73">patch-3.14.25.xz</pkg>
+				<pkg sha1="e1b7c673598ca7613196e934b76232ea3a9275fc">patch-3.14.27.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20141123" interval="30" page="http://www.kernel.org/" />
+			<manualcheck date="20141218" interval="30" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-3.14.29." />
 					<atext linktext="patch-3.14.30." />
-					<atext linktext="patch-3.14.25." />
-					<atext linktext="patch-3.14.26." />
-					<atext linktext="patch-3.14.27." />
+					<atext linktext="patch-3.14.31." />
+					<atext linktext="patch-3.14.32." />
+					<atext linktext="patch-3.14.33." />
 					<atext linktext="patch-3.14.28." />
 				</page>
 			</check>
@@ -64,19 +68,24 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/linux-3.14.tar.xz | tar xf -
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			cd linux-3.14
+			localversion='ll-nopae-0'
+			
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/config-3.14-nonpae-lesslinux-20140513-1438 .config
-			sed -i 's/lesslinux-000/lesslinux-nopae-000/g' .config
-			echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-nopae .config
+			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
-			mv linux-3.14 linux-${PKGVERSION}
+			mv linux-${major}.${minor} linux-${PKGVERSION}
 			]]>
 		</patch>
 		<build>
@@ -98,7 +107,8 @@
 		<install>
 			<![CDATA[
 			cd linux-${PKGVERSION}
-			localversion=` grep '^CONFIG_LOCALVERSION' .config | sed 's/"//g' | awk -F '=' '{print $2}' | sed 's%^-%%g' `
+			# localversion=` grep '^CONFIG_LOCALVERSION' .config | sed 's/"//g' | awk -F '=' '{print $2}' | sed 's%^-%%g' `
+			localversion='ll-nopae-0'
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-nopae 
