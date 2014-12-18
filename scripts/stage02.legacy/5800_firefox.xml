@@ -171,7 +171,7 @@ done
 			dir=`pwd `
 			sed -i 's%PWD%'${dir}'/%g' mozilla-release/.mozconfig 
 			sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
-			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
+			# sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
 			cd mozilla-release
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -227,16 +227,6 @@ for packlang in de es-ES pl ru fr it nl pt-PT ; do
 	install -m 0644 mozilla-release/ff-build/dist/linux-i686/xpi/firefox-${shortvers}.${packlang}.langpack.xpi \
 	${TGTDIR}/opt/firefox-${PKGVERSION}-extensions/ 
 done
-
-# mkdir -p -m 0755 ${TGTDIR}/usr/share/mozilla-localization
-# for packlang in de es-ES pl ru fr it nl pt-PT ; do
-#	rm -rf ${TGTDIR}/opt/firefox-${PKGVERSION}/extensions/langpack-${packlang}'@firefox.mozilla.org'
-#	install -m 0644 mozilla-release/ff-build/dist/linux-i686/xpi/firefox-${PKGVERSION}.${packlang}.langpack.xpi \
-#		${TGTDIR}/usr/share/mozilla-localization
-#	mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}/extensions/langpack-${packlang}'@firefox.mozilla.org'
-#	( cd ${TGTDIR}/opt/firefox-${PKGVERSION}/extensions/langpack-${packlang}'@firefox.mozilla.org' ; 
-#		unzip ${TGTDIR}/usr/share/mozilla-localization/firefox-${PKGVERSION}.${packlang}.langpack.xpi )
-# done
 
 install -m 0644 ${TGTDIR}/opt/firefox-${PKGVERSION}/icons/mozicon128.png ${TGTDIR}/usr/share/icons/firefox128.png 
 mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}/plugins
