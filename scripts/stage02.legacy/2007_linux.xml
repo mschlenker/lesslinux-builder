@@ -71,7 +71,7 @@
 			<![CDATA[ 
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
-			unxz -c ${SRCDIR}/linux-${major}-${minor}.tar.xz | tar xf -
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
@@ -79,14 +79,14 @@
 			localversion='ll-pae-0'
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
-			cd linux-${major}-${minor}
+			cd linux-${major}.${minor}
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/linux-${major}-${minor}-config-32pae  .config 
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-32pae  .config 
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			# echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
 			cd ..
-			mv linux-${major}-${minor} linux-${PKGVERSION}
+			mv linux-${major}.${minor} linux-${PKGVERSION}
 			]]>
 		</patch>
 		<build>
