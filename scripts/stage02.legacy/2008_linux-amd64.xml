@@ -73,7 +73,7 @@
 			<![CDATA[ 
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
-			unxz -c ${SRCDIR}/linux-${major}-${minor}.tar.xz | tar xf -
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
