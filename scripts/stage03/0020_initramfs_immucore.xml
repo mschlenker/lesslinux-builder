@@ -31,7 +31,7 @@ export PATH
 		</scriptdata>
 		<scriptdata location="/etc/inittab" mode="0644" group="0" owner="0">
 		<![CDATA[::sysinit:/etc/rc
-tty1::respawn:/static/bin/show_placeholder
+tty1::askfirst:/static/bin/ash
 tty2::respawn:/static/sbin/getty -l /static/bin/login 38400 tty2
 tty3::respawn:/static/sbin/getty -l /static/bin/login 38400 tty3
 tty4::askfirst:/static/bin/ash
