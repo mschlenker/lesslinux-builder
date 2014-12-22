@@ -32,7 +32,7 @@
         </unpack>
         <patch>
 	    <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-cat ${SRCDIR}/${PKGNAME}-Fix-segfault-on-systems-with-broken-locale-support.patch | patch -p1 
+cat ${SRCDIR}/${PKGNAME}-Fix-segfault-on-systems-with-broken-locale-support.patch | patch -p0
 ]]>
 	</patch>
         <build>
