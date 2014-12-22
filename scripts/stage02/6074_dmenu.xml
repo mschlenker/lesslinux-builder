@@ -5,12 +5,12 @@
         </license>
         <sources>
             <file>
-                <pkg sha1='70c1a13b950b7b0cb1bc35e30c6e861a78359953'>
-                    dmenu-4.5.tar.gz
-                </pkg>
-                <mirror>
-                    http://dl.suckless.org/tools/
-                </mirror>
+                <pkg sha1='70c1a13b950b7b0cb1bc35e30c6e861a78359953'>dmenu-4.5.tar.gz</pkg>
+                <mirror>http://dl.suckless.org/tools/</mirror>
+            </file>
+	    <file>
+                <pkg sha1='70c1a13b950b7b0cb1bc35e30c6e861a78359953'>dmenu-Fix-segfault-on-systems-with-broken-locale-support.patch</pkg>
+                <mirror>http://distfiles.lesslinux.org/</mirror>
             </file>
             <manualcheck date='20141127' interval='60' mirror='http://dl.suckless.org/tools/'/>
         </sources>
@@ -30,7 +30,11 @@
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+	</patch>
+	    <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cat ${SRCDIR}/${PKGNAME}-Fix-segfault-on-systems-with-broken-locale-support.patch | patch -p1 
+]]>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make PREFIX=/usr
