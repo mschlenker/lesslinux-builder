@@ -60,6 +60,12 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			case $(uname -m) 
+			in
+				x86_64) 
+					export CFLAGS="-fPIC"
+				;;
+			esac 
 			./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib shared zlib-dynamic
 			make 
 			]]>
