@@ -7,10 +7,10 @@ class SecondStage < AnyStage
 		system("mount -o bind /dev " + builddir + "/stage01/chroot/dev")
 		system("mount -o bind " + builddir + "/stage02/build " + builddir + "/stage01/chroot/llbuild/build")
 		system("mount -o bind " + srcdir + " " + builddir + "/stage01/chroot/llbuild/src")
-		[ "lib64", "usr/lib64", "usr/compat.new/lib64", "usr/compat.old/lib64"].each { |d|
+		[ "lib64", "usr/lib64", "usr/compat.new/lib64", "usr/compat.old/lib64", "usr/local/lib64", "opt/lib64" ].each { |d|
 			system("mount -o bind " + builddir + "/stage01/chroot/" + d.gsub("lib64", "lib") + " " + builddir + "/stage01/chroot/" + d ) if File.directory?(builddir + "/stage01/chroot/" + d) 
 		}
-		[ "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32"].each { |d|
+		[ "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32", "usr/local/lib32", "opt/lib32" ].each { |d|
 			system("mount -o bind " + builddir + "/stage01/chroot/" + d.gsub("lib32", "lib") + " " + builddir + "/stage01/chroot/" + d ) if File.directory?(builddir + "/stage01/chroot/" + d) 
 		}
 		system("mount -vt devpts devpts " + builddir + "/stage01/chroot/dev/pts")
@@ -32,8 +32,8 @@ class SecondStage < AnyStage
 		system("umount " + builddir + "/stage01/chroot/llbuild/build")
 		system("umount " + builddir + "/stage01/chroot/dev")
 		system("umount " + builddir + "/stage01/chroot/tmp")
-		[ "lib64", "usr/lib64", "usr/compat.new/lib64", "usr/compat.old/lib64", 
-		  "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32" ].each { |d| 
+		[ "lib64", "usr/lib64", "usr/compat.new/lib64", "usr/compat.old/lib64", "usr/local/lib64", "opt/lib64", 
+		  "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32", "usr/local/lib32", "opt/lib32" ].each { |d| 
 			system("umount " + builddir + "/stage01/chroot/" + d )
 		}
 	end
