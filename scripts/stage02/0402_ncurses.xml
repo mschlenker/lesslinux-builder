@@ -42,6 +42,12 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			case $(uname -m) 
+			in
+				x86_64) 
+					export CFLAGS="-fPIC"
+				;;
+			esac 
 			./configure --prefix=/usr --with-shared --without-debug --enable-widec && make
 			]]>
 		</build>
@@ -49,6 +55,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+
 			make install DESTDIR=${TGTDIR}
 			chmod -v 644 ${TGTDIR}/usr/lib/libncurses++w.a
 			mkdir -p ${TGTDIR}/lib

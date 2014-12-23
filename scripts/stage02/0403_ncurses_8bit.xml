@@ -43,6 +43,12 @@
 		<build>
 			<![CDATA[
 			cd ncurses-${PKGVERSION}
+			case $(uname -m) 
+			in
+				x86_64) 
+					export CFLAGS="-fPIC"
+				;;
+			esac 
 			./configure --prefix=/usr --with-shared --without-debug && make
 			]]>
 		</build>
