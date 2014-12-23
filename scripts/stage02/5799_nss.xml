@@ -45,11 +45,23 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}/nss/
-			make BUILD_OPT=1                      \
-			NSPR_INCLUDE_DIR=/usr/include/nspr  \
-			USE_SYSTEM_ZLIB=1                   \
-			ZLIB_LIBS=-lz                       \
-			NSS_USE_SYSTEM_SQLITE=1
+			case $(uname -m) 
+			in
+				x86_64) 
+					make BUILD_OPT=1                      \
+					NSPR_INCLUDE_DIR=/usr/include/nspr  \
+					USE_SYSTEM_ZLIB=1                   \
+					ZLIB_LIBS=-lz                       \
+					NSS_USE_SYSTEM_SQLITE=1 USE_64=1
+				;;
+				*)
+					make BUILD_OPT=1                      \
+					NSPR_INCLUDE_DIR=/usr/include/nspr  \
+					USE_SYSTEM_ZLIB=1                   \
+					ZLIB_LIBS=-lz                       \
+					NSS_USE_SYSTEM_SQLITE=1
+				;;
+			esac
 			]]>
 		</build>
 		<test />
