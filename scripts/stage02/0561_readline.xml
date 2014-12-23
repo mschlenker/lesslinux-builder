@@ -58,7 +58,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --libdir=/lib && make SHLIB_LIBS=-lncurses
+			case $(uname -m) 
+			in
+				x86_64) 
+					./configure --prefix=/usr --libdir=/lib && make SHLIB_LIBS=-lncurses CFLAGS="-fPIC"
+				;;
+				*)
+					./configure --prefix=/usr --libdir=/lib && make SHLIB_LIBS=-lncurses
+				;;
+			esac 
+			
+			
 			]]>
 		</build>
 		<test />
