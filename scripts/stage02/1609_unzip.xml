@@ -31,14 +31,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-				pump make -j $jobcount -f unix/Makefile linux CC="distcc gcc" CXX="distcc g++" 
-			else
-				make -f unix/Makefile linux
-			fi
+			case `uname -m` in
+				i?86)
+					sed -i -e 's/DASM_CRC"/DASM_CRC -DNO_LCHMOD"/' unix/Makefile
+					make -f unix/Makefile linux
+				;;
+				*)
+					sed -i -e 's/CFLAGS="-O -Wall/& -DNO_LCHMOD/' unix/Makefile
+					make -f unix/Makefile linux_noasm
+				;;
+			esac
 			]]>
 		</build>
 		<test />
