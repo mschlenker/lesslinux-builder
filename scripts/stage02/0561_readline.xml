@@ -61,6 +61,7 @@
 			case $(uname -m) 
 			in
 				x86_64) 
+					export CFLAGS="-fPIC"
 					./configure --prefix=/usr --libdir=/lib && make SHLIB_LIBS=-lncurses CFLAGS="-fPIC"
 				;;
 				*)
