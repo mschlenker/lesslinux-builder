@@ -33,7 +33,7 @@ class SecondStage < AnyStage
 		system("umount " + builddir + "/stage01/chroot/dev")
 		system("umount " + builddir + "/stage01/chroot/tmp")
 		[ "lib64", "usr/lib64", "usr/compat.new/lib64", "usr/compat.old/lib64", 
-		  "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32"].each { |d| 
+		  "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32" ].each { |d| 
 			system("umount " + builddir + "/stage01/chroot/" + d )
 		}
 	end
