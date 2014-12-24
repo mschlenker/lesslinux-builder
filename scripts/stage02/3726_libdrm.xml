@@ -55,18 +55,31 @@
 		<patch />
 		<build>
 			<![CDATA[
-			# FIXME, this is i386 only!
-			export CFLAGS="-march=i686 -O2"
+			
+			case $(uname -m) 
+			in
+				i?86) 
+					# FIXME, this is i386 only!
+					export CFLAGS="-march=i686 -O2"
+				;;
+			esac 
+			
 			cd ${PKGNAME}-${PKGVERSION}
+			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr --sysconfdir=/etc --enable-vmwgfx-experimental-api CC="distcc gcc" CXX="distcc g++" 
+			fi
+		
+			sed -e "/pthread-stubs/d" -i configure.ac
+			autoreconf -fiv
+			./configure --prefix=/usr --enable-udev
+			
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --prefix=/usr --sysconfdir=/etc --enable-vmwgfx-experimental-api 
-				make  
+				make -j ` grep -c processor /proc/cpuinfo ` 
 			fi
 			]]>
 		</build>
