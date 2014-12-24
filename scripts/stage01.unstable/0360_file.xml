@@ -1,0 +1,52 @@
+<llpackages>
+	<package 
+		name="file"
+		version="5.21">
+		<license>GPLv2</license>
+		<sources>
+			<file>                   
+				<pkg sha1="9836603b75dde99664364b0e7a8b5492461ac0fe">file-5.21.tar.gz</pkg>
+				<mirror>ftp://ftp.astron.com/pub/file/</mirror>
+			</file>
+			<manualcheck date="20141211" interval="180" page="ftp://ftp.astron.com/pub/file/" />
+			<check>
+				<page html="ftp://ftp.astron.com/pub/file/">
+					<atext linktext="file-5.32." />
+					<atext linktext="file-5.33." />
+					<atext linktext="file-5.34." />
+					<atext linktext="file-5.35." />
+					<atext linktext="file-5.22." />
+					<atext linktext="file-5.23." />
+					<atext linktext="file-5.24." />
+					<atext linktext="file-5.25." />
+					<atext linktext="file-5.26." />
+					<atext linktext="file-5.27." />
+					<atext linktext="file-5.28." />
+					<atext linktext="file-5.29." />
+					<atext linktext="file-5.30." />
+					<atext linktext="file-5.31." />
+					<atext linktext="file-6." />
+					<atext linktext="file-7." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
