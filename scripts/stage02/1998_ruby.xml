@@ -67,7 +67,7 @@
 			in
 				x86_64) 
 					export CFLAGS="-fPIC"
-					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr --without-openssl CFLAGS="-fPIC"
+					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr CFLAGS="-fPIC"
 				;;
 				*)
 					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr 
