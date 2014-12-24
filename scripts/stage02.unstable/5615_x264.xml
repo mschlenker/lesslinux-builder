@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="x264"
+		version="snapshot-20141223-2245-stable"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                              
+				<pkg sha1="17d39e2c0b0efa3209519befccd7a29652ac4882">x264-snapshot-20141223-2245-stable.tar.bz2</pkg>
+				<mirror>ftp://ftp.videolan.org/pub/videolan/x264/snapshots/</mirror>
+			</file>
+			<manualcheck date="20141224" interval="45" page="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/" />
+			<check>
+				<page html="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/">
+					<atext linktext="x264-snapshot-201503" />
+					<atext linktext="x264-snapshot-201504" />
+					<atext linktext="x264-snapshot-2017" />
+					<atext linktext="x264-snapshot-2015" />
+					<atext linktext="x264-snapshot-2016" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <!-- <dep>ffmpeg</dep> -->
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>yasm</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --enable-shared --enable-static --enable-pic --disable-cli  CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --enable-shared --enable-static --enable-pic --disable-cli 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
