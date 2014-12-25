@@ -1,16 +1,20 @@
 <llpackages>
 	<package 
-		name="webkit26"
-		version="2.6.4"
+		name="webkit1"
+		version="1.10.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="35086bc154e79f6f0ce3013a7dbe1dadebb5c9d1">webkitgtk-2.6.4.tar.xz</pkg>
+				<pkg sha1="733ca23157eb8dd072d57becf325799c00bde630">webkitgtk-1.10.2.tar.xz</pkg>
 				<mirror>http://webkitgtk.org/releases/</mirror>
 			</file>
-			<manualcheck date="20141225" interval="60" page="http://webkitgtk.org/releases/" />
+			<file>                                                                                            
+				<pkg sha1="f6dff35f6b617379e4003a43cb2569b78592dfb4">webkitgtk-1.10.2.yylex.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20140725" interval="180" page="http://webkitgtk.org/releases/" />
 			<!-- <check>
 				<page html="http://webkitgtk.org/releases/">
 					<atext linktext="webkitgtk-2.2.6." />
@@ -97,33 +101,31 @@
 			<dep>p5-switch</dep>
 			<dep>libwebp</dep>
 			<dep>distcc</dep>
-			<dep>cmake</dep>
-                </builddeps>
+                </builddeps> 
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/webkitgtk-${PKGVERSION}.tar.xz | tar xf -
+			cp ${SRCDIR}/webkitgtk-1.10.2.yylex.patch .
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
-			mkdir -v build
+			cd webkitgtk-${PKGVERSION}
 			# FIXME: Try to build with distcc
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			cd build
-			cmake -DCMAKE_BUILD_TYPE=Release \
-				-DCMAKE_INSTALL_PREFIX=/usr \
-				-DCMAKE_SKIP_RPATH=ON \
-				-DPORT=GTK \
-				-DLIB_INSTALL_DIR=/usr/lib \
-				-Wno-dev ../webkitgtk-${PKGVERSION}
+			./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old  --enable-geolocation=no --enable-gtk-doc=no --enable-webkit2=no --with-gtk=2.0
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 				make
+				cat ../webkitgtk-1.10.2.yylex.patch | patch -p1
+				make
 			else
+				make -j ` grep -c processor /proc/cpuinfo ` 
+				cat ../webkitgtk-1.10.2.yylex.patch | patch -p1
 				make -j ` grep -c processor /proc/cpuinfo ` 
 			fi
 			]]>
@@ -131,14 +133,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd build
+			cd webkitgtk-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
 			rm -rf webkitgtk-${PKGVERSION}
-			rm -rf build 
 			]]>
 		</clean>
 	</package>
