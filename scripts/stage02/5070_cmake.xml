@@ -71,6 +71,7 @@
 			./configure --prefix=/usr --no-qt-gui --system-curl --system-expat --system-zlib --system-bzip2 --system-libarchive --parallel=4
 			./configure --prefix=/usr --no-qt-gui --system-curl --system-expat --system-zlib --system-bzip2 --system-libarchive --parallel=4
 			sed -i 's%/usr/lib/libncurses.so%%g' Source/CMakeFiles/ccmake.dir/build.make
+			sed -i 's%/usr/lib64/libncurses.so%%g' Source/CMakeFiles/ccmake.dir/build.make
 			make cmake
 			make ccmake
 			make
