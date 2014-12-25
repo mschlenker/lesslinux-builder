@@ -65,11 +65,21 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+			fi
+			
+			case $(uname -m) 
+			in
+				x86_64) 
+					export CFLAGS="-fPIC"
+				;;
+			esac 
+				
+			./configure --prefix=/usr 
+				
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --prefix=/usr 
-				make
+				make -j ` grep -c processor /proc/cpuinfo ` 
 			fi
 			]]>
 		</build>
