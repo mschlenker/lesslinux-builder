@@ -68,6 +68,14 @@ sed \
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			
+			case $(uname -m) 
+			in
+				x86_64) 
+					export CFLAGS="-fPIC"
+				;;
+			esac 
+			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which pump ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
