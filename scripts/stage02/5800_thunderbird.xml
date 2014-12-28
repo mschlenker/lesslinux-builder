@@ -174,23 +174,26 @@ done
 			find tb-build -type f -name libxul.so
 			
 			ccount=0
-			while [ '!' -f obj-` uname -m `-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ] ; do
+			while [ '!' -f obj-` uname -m `-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ] && \
+					[ '!' -f obj-` uname -m `-unknown-linux-gnu/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ]  ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
-			[ -f obj-` uname -m `-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so ] || exit 1 
+			[ -f obj-` uname -m `-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/mozilla/toolkit/library/build/libxul.so ] || exit 1 
 			
 			# Now try to build the language packs
 			for packlang in de es-ES pl ru fr it nl pt-PT ; do
 				make -C obj-` uname -m `-pc-linux-gnu/mail/locales langpack-${packlang}
+				make -C obj-` uname -m `-unknown-linux-gnu/mail/locales langpack-${packlang}
 			done
 			
 			# Now try to build the xpi of thunderbird
 			# mv mail/installer/removed-files.in{,.orig}
 			# cat mail/installer/removed-files.in.orig | sed 's%hyphenation/hyph%# hyphenation/hyph%g' > mail/installer/removed-files.in
 			make -C obj-` uname -m `-pc-linux-gnu package  
+			make -C obj-` uname -m `-unknown-linux-gnu package  
 			
 			echo '==> Searching Tarballs'
 			find obj-` uname -m `-pc-linux-gnu -name '*.tar.bz2' | sort 
@@ -203,7 +206,13 @@ done
 		<install>
 			<![CDATA[
 
-TARFILE=comm-esr31/obj-` uname -m `-pc-linux-gnu/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-` uname -m `.tar.bz2
+TARFILE=comm-esr31/obj-` uname -m `-pc-linux-gnu/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-` uname -m `.tar.bz2 
+case $(uname -m) 
+in
+	x86_64) 
+		TARFILE=comm-esr31/obj-` uname -m `-unknown-linux-gnu/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-` uname -m `.tar.bz2 
+	;;
+esac 
 [ -f "$TARFILE" ] || exit 1
 
 mkdir -p ${TGTDIR}/opt
