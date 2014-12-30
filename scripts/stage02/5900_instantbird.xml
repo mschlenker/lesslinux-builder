@@ -155,7 +155,7 @@
 		<install>
 			<![CDATA[
 LIBXUL=obj-instantbird/mozilla/toolkit/library/libxul.so
-TARFILE=obj-instantbird/mozilla/dist/instantbird-${PKGVERSION}.en-US.linux-i686.tar.bz2
+TARFILE=obj-instantbird/mozilla/dist/instantbird-${PKGVERSION}.en-US.linux-`uname -m `.tar.bz2
 [ -f "$TARFILE" ] || exit 1
 [ -f "$LIBXUL" ] || exit 1
 			
