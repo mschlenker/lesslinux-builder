@@ -111,6 +111,8 @@
 			cd ${PKGNAME}
 			./configure --prefix=/usr --sysconfdir=/etc 
 			make 
+			echo '==> Searching XPI'
+			find . -name '*.xpi'
 			]]>
 		</build>
 		<test />
@@ -118,7 +120,7 @@
 			<![CDATA[
 			cd ${PKGNAME}
 			mkdir -p ${TGTDIR}/usr/share/mozilla-addons
-			install -m 0644 build/enigmail-${PKGVERSION}-linux-x86-gcc3.xpi ${TGTDIR}/usr/share/mozilla-addons
+			install -m 0644 build/enigmail-${PKGVERSION}-linux-*-gcc3.xpi ${TGTDIR}/usr/share/mozilla-addons
 			]]>
 		</install>
 		<clean>
