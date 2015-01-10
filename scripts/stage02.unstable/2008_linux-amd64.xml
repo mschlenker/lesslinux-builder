@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="3.18.1"
+		version="3.18.2"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -18,14 +18,14 @@
 				<pkg sha1="4557ef53c89fe70a9da230ae1e6542856d8b0a94">linux-3.18.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<file>
-				<pkg sha1="85436cd73903042d21c1dffcd6c682772ba2d3ed">patch-3.18.1.xz</pkg>
+		<file>
+				<pkg sha1="79eb01f410df9499d99e1c4cf5755de09ec87a7a">patch-3.18.2.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20141216" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150109" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.18.2." />
+					<atext linktext="patch-3.18.5." />
 					<atext linktext="patch-3.18.3." />
 					<atext linktext="patch-3.18.4." />
 					<atext linktext="patch-3.19." />
