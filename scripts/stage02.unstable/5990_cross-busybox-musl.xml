@@ -26,7 +26,7 @@
 			tar xjf ${SRCDIR}/busybox-${PKGVERSION}.tar.bz2
 			cp -v ${SRCDIR}/busybox-${PKGVERSION}.config busybox-${PKGVERSION}/.config
 			sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' busybox-${PKGVERSION}/.config
-			sed -i 's/CONFIG_BRCTL=y/# CONFIG_BRCTL is not set/g' .config
+			sed -i 's/CONFIG_BRCTL=y/# CONFIG_BRCTL is not set/g' busybox-${PKGVERSION}/.config
 			]]>
 		</unpack>
 		<build>
