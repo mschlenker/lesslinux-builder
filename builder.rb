@@ -898,7 +898,7 @@ def run_stage_three
 		### Dir.chdir(@workdir)
 		dep.install
 		### Dir.chdir(@workdir)
-		dep.pkg_install( ["minimal"], ["de", "en"], skipfiles, skipdirs) unless @full_image == true
+		dep.pkg_install( ["minimal","localization" ], ["de", "en"], skipfiles, skipdirs) unless @full_image == true
 		### Dir.chdir(@workdir)
 		pkglist.write("mini\t" + a.pkg_name + "\t" + a.pkg_version + "\n")
 	}
