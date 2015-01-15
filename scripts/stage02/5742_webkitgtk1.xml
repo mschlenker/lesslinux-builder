@@ -124,9 +124,9 @@
 				cat ../webkitgtk-1.10.2.yylex.patch | patch -p1
 				make
 			else
-				make
+				make -j ` grep -c processor /proc/cpuinfo ` 
 				cat ../webkitgtk-1.10.2.yylex.patch | patch -p1
-				make
+				make -j ` grep -c processor /proc/cpuinfo ` 
 			fi
 			]]>
 		</build>
