@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="3.18.5"
+		version="3.18.8"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -11,15 +11,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="f13c27974ca7d40b9ba59efd0193d915d595813c">patch-3.18.5.xz</pkg>
+				<pkg sha1="32c3671a75c270f671af8247dacf7bc6f4facf53">patch-3.18.8.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20150130" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150301" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.18.6." />
-					<atext linktext="patch-3.18.7." />
-					<atext linktext="patch-3.18.8." />
+					<atext linktext="patch-3.18.9." />
+					<atext linktext="patch-3.18.10." />
+					<atext linktext="patch-3.18.11." />
 					<atext linktext="patch-3.19." />
 					<atext linktext="patch-3.20." />
 					<atext linktext="patch-3.21." />
