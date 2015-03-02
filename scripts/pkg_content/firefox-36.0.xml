@@ -9,6 +9,8 @@
         <directory path='/opt/firefox-36.0/plugins' owner='0' group='0'/>
         <directory path='/opt/firefox-36.0/webapprt' owner='0' group='0'/>
         <directory path='/opt/firefox-36.0/dictionaries' owner='0' group='0'/>
+        <directory path='/opt/firefox-36.0/gmp-clearkey' owner='0' group='0'/>
+        <directory path='/opt/firefox-36.0/gmp-clearkey/0.1' owner='0' group='0'/>
         <directory path='/opt/firefox-36.0/browser' owner='0' group='0'/>
         <directory path='/opt/firefox-36.0/browser/extensions' owner='0' group='0'/>
         <directory path='/opt/firefox-36.0/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}' owner='0' group='0'/>
@@ -32,11 +34,10 @@
         <file path='/opt/firefox-36.0/components/libmozgnome.so' owner='0' group='0' mode='100755'/>
         <file path='/opt/firefox-36.0/components/libdbusservice.so' owner='0' group='0' mode='100755'/>
         <file path='/opt/firefox-36.0/firefox' owner='0' group='0' mode='100755'/>
-        <file path='/opt/firefox-36.0/mozilla-xremote-client' owner='0' group='0' mode='100755'/>
         <file path='/opt/firefox-36.0/plugin-container' owner='0' group='0' mode='100755'/>
         <file path='/opt/firefox-36.0/webapprt-stub' owner='0' group='0' mode='100755'/>
-        <file path='/opt/firefox-36.0/libmozsandbox.so' owner='0' group='0' mode='100755'/>
         <file path='/opt/firefox-36.0/firefox-bin' owner='0' group='0' mode='100755'/>
+        <file path='/opt/firefox-36.0/gmp-clearkey/0.1/libclearkey.so' owner='0' group='0' mode='100755'/>
         <file path='/opt/firefox-36.0/browser/components/libbrowsercomps.so' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'/>
@@ -57,6 +58,7 @@
         <file path='/opt/firefox-36.0/dictionaries/en-US.aff' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0/dictionaries/en-US.dic' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0/run-mozilla.sh' owner='0' group='0' mode='100755'/>
+        <file path='/opt/firefox-36.0/gmp-clearkey/0.1/clearkey.info' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/install.rdf' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/icon.png' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0/browser/chrome/icons/default/default32.png' owner='0' group='0' mode='100644'/>
@@ -79,12 +81,13 @@
         <file path='/opt/firefox-36.0/removed-files' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0/omni.ja' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0/platform.ini' owner='0' group='0' mode='100644'/>
-        <file path='/opt/firefox-36.0-extensions/firefox-36.0.it.langpack.xpi' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0-extensions/firefox-36.0.ru.langpack.xpi' owner='0' group='0' mode='100644'/>
-        <file path='/opt/firefox-36.0-extensions/firefox-36.0.fr.langpack.xpi' owner='0' group='0' mode='100644'/>
-        <file path='/opt/firefox-36.0-extensions/firefox-36.0.pl.langpack.xpi' owner='0' group='0' mode='100644'/>
+        <file path='/opt/firefox-36.0-extensions/firefox-36.0.es-ES.langpack.xpi' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0-extensions/firefox-36.0.de.langpack.xpi' owner='0' group='0' mode='100644'/>
+        <file path='/opt/firefox-36.0-extensions/firefox-36.0.pl.langpack.xpi' owner='0' group='0' mode='100644'/>
         <file path='/opt/firefox-36.0-extensions/firefox-36.0.nl.langpack.xpi' owner='0' group='0' mode='100644'/>
+        <file path='/opt/firefox-36.0-extensions/firefox-36.0.fr.langpack.xpi' owner='0' group='0' mode='100644'/>
+        <file path='/opt/firefox-36.0-extensions/firefox-36.0.it.langpack.xpi' owner='0' group='0' mode='100644'/>
         <file path='/usr/bin/firefox-36.0' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='ignore'/>
