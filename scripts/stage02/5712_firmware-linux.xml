@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="linux-firmware"
-		version="3.17.8"
+		version="3.18.8"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
 				<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git -->                                                              
-				<pkg sha1="c498a5cecaf0c3322ca504410a78e5c9c9077507">linux-firmware-20141105.tar.bz2</pkg>
+				<pkg sha1="8f9fb6f314836776e63ea264fa9ec4cdf634219a">linux-firmware-20141216.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -16,14 +16,14 @@
 				<pkg sha1="653f32d591ea8fb5cb3e04101c02c1a46863dd02">lesslinux-firmwarefinder-20130723.rb</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="60" page="git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git" />
+			<manualcheck date="20141216" interval="60" page="git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-3.20." />
 					<atext linktext="patch-3.21." />
 					<atext linktext="patch-3.22." />
-					<atext linktext="patch-3.17." />
-					<atext linktext="patch-3.18." />
+					<atext linktext="patch-3.23." />
+					<atext linktext="patch-3.24." />
 					<atext linktext="patch-3.19." />
 				</page>
 			</check>

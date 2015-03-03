@@ -32,6 +32,7 @@
 			sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/g'  .config
 			sed -i 's/# CONFIG_INSTALL_NO_USR is not set/CONFIG_INSTALL_NO_USR=y/g'  .config
 			sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' .config
+			sed -i 's/CONFIG_BRCTL=y/# CONFIG_BRCTL is not set/g' .config
 			ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" make 
 			ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" make install
 			]]>

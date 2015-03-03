@@ -1,17 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="3.17.8"
+		version="3.18.8"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="148f1727b6e7c0cb36d907a5b4e7eb10a6fdce90">linux-3.17.4-fix-crosscompile.patch</pkg> 
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<file>                                  
-				<pkg sha1="599397809b58caf306b9e3f96c1fd55f13770c63">linux-3.17-config-amd64</pkg> 
+				<pkg sha1="d9fca7840a91310a12e089b3d17afb16fa20b575">linux-3.18-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -19,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="ad22d0b0979336fa0448268f0febd45be0279288">linux-3.17.tar.xz</pkg>
+				<pkg sha1="4557ef53c89fe70a9da230ae1e6542856d8b0a94">linux-3.18.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="ebcee149e792a8edaf115025322ddb3ca48b0062">patch-3.17.8.xz</pkg>
+				<pkg sha1="32c3671a75c270f671af8247dacf7bc6f4facf53">patch-3.18.8.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20150109" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150301" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.17.9." />
-					<atext linktext="patch-3.17.10." />
-					<atext linktext="patch-3.17.11." />
-					<atext linktext="patch-3.18.3" />
+					<atext linktext="patch-3.18.9." />
+					<atext linktext="patch-3.18.10." />
+					<atext linktext="patch-3.18.11." />
 					<atext linktext="patch-3.19." />
 					<atext linktext="patch-3.20." />
+					<atext linktext="patch-3.21." />
 				</page>
 			</check>
 		</sources>
@@ -86,11 +82,9 @@
 			cd linux-${major}.${minor}
 			
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			# cat ${SRCDIR}/linux-${PKGVERSION}-fix-crosscompile.patch | patch -p1
-			sed -i 's%shell objdump%shell $(OBJDUMP)%g' arch/x86/boot/compressed/Makefile
 			
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/linux-3.17-config-amd64 .config 
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config 
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
