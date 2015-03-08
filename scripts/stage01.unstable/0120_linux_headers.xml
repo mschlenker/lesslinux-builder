@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="linux_headers"
+		version="3.19.1">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="b880c818c09f8c492eabc0f9c4178134b3496c56">linux-3.19.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="8f1a556f954573a3bbc70684f95f1484e13e2a51">patch-3.19.1.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+			</file>
+			<manualcheck date="20150308" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-3.19.2." />
+					<atext linktext="patch-3.19.3." />
+					<atext linktext="patch-3.19.4." />
+					<atext linktext="patch-3.20." />
+					<atext linktext="patch-4.0." />
+					<atext linktext="patch-4.1." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
+			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
+				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			fi
+			cd ..
+			mv -v linux-${major}.${minor} linux-${PKGVERSION}
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			make headers_check
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			mkdir -p /tools/include
+			cd linux-${PKGVERSION}
+			make INSTALL_HDR_PATH=dest headers_install
+			cp -rv dest/include/* /tools/include
+			
+			]]>
+		</install>
+	</package>
+</llpackages>
