@@ -1,0 +1,58 @@
+<llpackages>
+	<package 
+		name="binutils_pass1"
+		version="2.25">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                 
+				<pkg sha1="b46cc90ebaba7ffcf6c6d996d60738881b14e50d">binutils-2.25.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
+			</file>
+			<!-- <file>                                                                                  
+				<pkg sha1="6b8f8f5de91332527c5d173caf010818e6c86409">binutils-2.22-build_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20150308 interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/binutils/">
+					<atext linktext="binutils-2.25.1." />
+					<atext linktext="binutils-2.25.2." />
+					<atext linktext="binutils-2.25.3" />
+					<atext linktext="binutils-2.26." />
+					<atext linktext="binutils-2.27." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/binutils-${PKGVERSION}.tar.bz2
+			mkdir binutils-build
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			cd binutils-${PKGVERSION}
+			sed -i -e 's/@colophon/@@colophon/' -e 's/doc@cygnus.com/doc@@cygnus.com/' bfd/doc/bfd.texinfo
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd binutils-build
+			../binutils-${PKGVERSION}/configure     \
+			--prefix=/tools            \
+			--with-sysroot=$CHROOTDIR        \
+			--with-lib-path=/tools/lib \
+			--target=$LFS_TGT          \
+			--disable-nls              \
+			--disable-werror
+			make -j 4
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd binutils-build
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
