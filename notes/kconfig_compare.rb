@@ -88,7 +88,8 @@ puts "<==> different parameters #{ARGV[0]} vs. #{ARGV[1]}"
 			puts "    sed -i '%#{rightconf}%#{leftconf}%g' #{ARGV[1]}" 
 		else 
 			if optversions[ ARGV[1] ][k] == "n" 
-				dumptoo.write(leftconf) 
+				dumptoo.write(leftconf + "\n") 
+				# dumptoo.write("sed -i '%#{rightconf}%#{leftconf}%g' #{ARGV[1]}\n") 
 			else
 				puts "CONFIG_#{k} #{optversions[ ARGV[0] ][k]} vs. #{optversions[ ARGV[1] ][k]}"
 				puts "    sed -i '%#{rightconf}%#{leftconf}%g' #{ARGV[1]}" 
