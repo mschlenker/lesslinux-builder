@@ -59,6 +59,7 @@
 			make install DESTDIR=${TGTDIR} 
 			mkdir -p ${TGTDIR}/usr/bin
 			ln -sf /usr/local/automake114/bin/automake ${TGTDIR}/usr/bin/automake-1.14
+			ln -sf /usr/local/automake114/bin/aclocal ${TGTDIR}/usr/bin/aclocal-1.14
 			cd ..
 			mkdir -p ${TGTDIR}/usr/local/automake114/share/aclocal-1.14
 			install -m 0644 pkg-config-0.28/aclocal.m4 ${TGTDIR}/usr/local/automake114/share/aclocal-1.14
