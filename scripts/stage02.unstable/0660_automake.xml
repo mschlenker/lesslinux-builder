@@ -53,6 +53,7 @@
 		<test>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			sed -i "s:./configure:LEXLIB=/usr/lib/libfl.a &:" t/lex-{clean,depend}-cxx.sh
 			make check
 			]]>
 		</test>
