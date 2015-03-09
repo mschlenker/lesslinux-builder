@@ -1,0 +1,51 @@
+<llpackages>
+	<package 
+		name="gettext"
+		version="0.19.4">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="c473f4f268501d971b913197fb07767e628644bb">gettext-0.19.4.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gettext/</mirror>
+			</file>
+			<manualcheck date="20150309" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gettext/">
+					<atext linktext="gettext-0.19.7." />
+					<atext linktext="gettext-0.19.5." />
+					<atext linktext="gettext-0.19.6." />
+					<atext linktext="gettext-0.20." />
+					<atext linktext="gettext-0.21." />
+					<atext linktext="gettext-1." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}/gettext-tools
+			EMACS="no" ./configure --prefix=/tools --disable-shared
+			make -C gnulib-lib
+			make -C src msgfmt
+			make -C src msgmerge
+			make -C src xgettext
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}/gettext-tools
+			cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin
+			
+			]]>
+		</install>
+	</package>
+</llpackages>

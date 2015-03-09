@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="patch"
+		version="2.7.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="234a499ed2f854f395c49e176b6f8ee47446dab1">patch-2.7.3.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/patch/</mirror>
+			</file>
+			<manualcheck date="20150309" interval="180" page="ftp://ftp.gnu.org/gnu/patch/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/patch/">
+					<atext linktext="patch-2.7.5.tar.gz" />
+					<atext linktext="patch-2.7.4.tar.gz" />
+					<atext linktext="patch-2.8.tar.gz" />
+					<atext linktext="patch-2.8.0.tar.gz" />
+					<atext linktext="patch-2.8.1.tar.gz" />
+					<atext linktext="patch-3.0.tar.gz" />
+					<atext linktext="patch-3.0.0.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat  ${SRCDIR}/${PKGNAME}-${PKGVERSION}-test_fix-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>
