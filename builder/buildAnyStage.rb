@@ -1,5 +1,5 @@
 
-require 'hpricot'
+# require 'hpricot'
 require 'net/http'
 require 'net/https'
 require 'open-uri'
@@ -273,32 +273,33 @@ class AnyStage
 				end
 			}
 			return true if check_rss_updates(pagecontent, versions) 
-			hdoc = Hpricot.parse(pagecontent)
-			(hdoc/:a).each { |a|
-				version_check = true
-				versions.each { |v|
-					unless a.inner_text.strip[v].nil?
-						update_found = true
-						version_found = a.inner_text.strip
-						puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
-							" current: " + @pkg_name + " " + @pkg_version + " found: " + 
-							version_found
-							$stdout.flush
-					end
-				}	
-				if !a.attributes["href"].nil? 
-					hrefs.each { |v| 
-						unless a.attributes["href"].strip[v].nil?
-							update_found = true
-							version_found = a.attributes["href"].strip
-							puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
-								" current: " + @pkg_name + " " + @pkg_version + " found: " + 
-								version_found
-							$stdout.flush
-						end
-					}
-				end
-			}
+			puts sprintf("%015.4f", Time.now.to_f) + " check  > HTTP CHECK CURRENTLY IMPOSSIBLE: " + @buildfile + " current: " + @pkg_name + " " + @pkg_version
+			#hdoc = Hpricot.parse(pagecontent)
+			#(hdoc/:a).each { |a|
+			#	version_check = true
+			#	versions.each { |v|
+			#		unless a.inner_text.strip[v].nil?
+			#			update_found = true
+			#			version_found = a.inner_text.strip
+			#			puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
+			#				" current: " + @pkg_name + " " + @pkg_version + " found: " + 
+			#				version_found
+			#				$stdout.flush
+			#		end
+			#	}	
+			#	if !a.attributes["href"].nil? 
+			#		hrefs.each { |v| 
+			#			unless a.attributes["href"].strip[v].nil?
+			#				update_found = true
+			#				version_found = a.attributes["href"].strip
+			#				puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
+			#					" current: " + @pkg_name + " " + @pkg_version + " found: " + 
+			#					version_found
+			#				$stdout.flush
+			#			end
+			#		}
+			#	end
+			#}
 		rescue Timeout::Error
 				puts sprintf("%015.4f", Time.now.to_f) + " check  > Timeout when checking " + @pkg_name + " " + @pkg_version
 		rescue

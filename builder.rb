@@ -18,7 +18,7 @@ require "digest/sha1"
 require 'optparse' 
 require 'sqlite3'
 require 'thread'
-require 'mahoro'
+# require 'mahoro'
 require 'net/ftp'
 
 include ObjectSpace
