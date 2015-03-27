@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="3.19.1">
+		version="3.19.3">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
@@ -9,15 +9,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="8f1a556f954573a3bbc70684f95f1484e13e2a51">patch-3.19.1.xz</pkg>
+				<pkg sha1="d6506d44130282bcce6536455c91fceb054566b7">patch-3.19.3.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20150308" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150327" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.19.2." />
-					<atext linktext="patch-3.19.3." />
 					<atext linktext="patch-3.19.4." />
+					<atext linktext="patch-3.19.5." />
+					<atext linktext="patch-3.19.6." />
 					<atext linktext="patch-3.20." />
 					<atext linktext="patch-4.0." />
 					<atext linktext="patch-4.1." />
