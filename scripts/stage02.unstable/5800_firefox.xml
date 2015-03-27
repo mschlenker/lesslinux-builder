@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="36.0.1"
+		version="36.0.4"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="cde80f5aee704827da43b9ca94a138a6c8a6c553">firefox-36.0.1.source.tar.bz2</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/36.0.1/source/</mirror>
+				<pkg sha1="ccd8fb7881dcb9ae07a47ceeea561e50b80d55ea">firefox-36.0.4.source.tar.bz2</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/36.0.4/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -34,7 +34,7 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 
-fftag=FIREFOX_36_0_1_RELEASE
+fftag=FIREFOX_36_0_4_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
@@ -43,16 +43,16 @@ done
 			
 			-->
 			<file>                                    
-				<pkg sha1="23baaccb79c4f7e904b0502c13c2ec0207a8bb77">firefox-36.0.1.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="23a03ac08eb1d52e1860d517110086e75dc446a9">firefox-36.0.4.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20150309" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
 					<atext linktext="36.0.5" />
-					<atext linktext="36.0.2" />
-					<atext linktext="36.0.3" />
-					<atext linktext="36.0.4" />
+					<atext linktext="36.0.6" />
+					<atext linktext="36.0.7" />
+					<atext linktext="36.0.8" />
 					<atext linktext="36.1." />
 					<atext linktext="36.2." />
 					<atext linktext="37.0" />
