@@ -3,6 +3,7 @@
 require 'net/http'
 require 'net/https'
 require 'open-uri'
+require 'mahoro'
 
 class AnyStage
 	

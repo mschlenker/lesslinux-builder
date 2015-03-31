@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="openssh"
-		version="6.7p1"
+		version="6.8p1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                       
-				<pkg sha1="14e5fbed710ade334d65925e080d1aaeb9c85bf6">openssh-6.7p1.tar.gz</pkg>
+				<pkg sha1="cdbc51e46a902b30d263b05fdc71340920e91c92">openssh-6.8p1.tar.gz</pkg>
 				<mirror>ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="120" page="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/" />
+			<manualcheck date="20150327" interval="120" page="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/" />
 			<check>
 				<page html="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/">
-					<atext linktext="openssh-6.7p2" />
-					<atext linktext="openssh-6.7.1" />
-					<atext linktext="openssh-6.8." />
+					<atext linktext="openssh-6.8p2" />
+					<atext linktext="openssh-6.8.1" />
 					<atext linktext="openssh-6.9." />
 					<atext linktext="openssh-6.10." />
+					<atext linktext="openssh-6.11." />
 					<atext linktext="openssh-7." />
 				</page>
 			</check>

@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="openssl"
-		version="1.0.1l"
+		version="1.0.1m"
 		class="devel"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="4547a0b4269acf76b1f9e7d188896867d6fc8c18">openssl-1.0.1l.tar.gz</pkg>
+				<pkg sha1="4ccaf6e505529652f9fdafa01d1d8300bd9f3179">openssl-1.0.1m.tar.gz</pkg>
 				<mirror>http://www.openssl.org/source/</mirror>
 			</file>
 			<!-- <file>                         
@@ -18,12 +18,12 @@
 				<pkg sha1="e77dcfc75393108579d6f7d164faafd84dc17820">openssl-1.0.1h-fix_pod_syntax-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file> -->
-			<manualcheck date="20150302" interval="180" page="http://www.openssl.org/source/" />
+			<manualcheck date="20150327" interval="180" page="http://www.openssl.org/source/" />
 			<check>
 				<page html="http://artfiles.org/openssl.org/source/">
 					<atext linktext="openssl-1.0.1n" />
 					<atext linktext="openssl-1.0.1o" />
-					<atext linktext="openssl-1.0.1m" />
+					<atext linktext="openssl-1.0.1p" />
 					<atext linktext="openssl-1.0.2." />
 					<atext linktext="openssl-1.0.3." />
 					<atext linktext="openssl-1.1." />
