@@ -1,0 +1,82 @@
+<llpackages>
+	<package 
+		name="coreutils"
+		version="8.23"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+			<sources>
+			<file>                                                           
+				<pkg sha1="adead02839225218b85133fa57b4dba02af2291d">coreutils-8.23.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
+			</file>
+			<manualcheck date="20140729" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/coreutils/">
+					<atext linktext="coreutils-8.23.1" />
+					<atext linktext="coreutils-8.24." />
+					<atext linktext="coreutils-8.25." />
+					<atext linktext="coreutils-9." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>ncurses</dep>
+			<dep>ncurses-8bit</dep>
+			<dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			case `uname -m` in
+			i?86 | x86_64) 
+				cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-uname-2.patch | patch -p1
+				;;
+			esac
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export FORCE_UNSAFE_CONFIGURE=1
+			./configure --prefix=/usr --enable-no-install-program=kill,uptime && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/bin
+			mkdir -p ${TGTDIR}/usr/sbin
+			make install DESTDIR=${TGTDIR}
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{cat,chgrp,chmod,chown,cp,date,dd,df,echo} ${TGTDIR}/bin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{false,ln,ls,mkdir,mknod,mv,pwd,rm} ${TGTDIR}/bin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{rmdir,stty,sync,true,uname} ${TGTDIR}/bin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/chroot ${TGTDIR}/usr/sbin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{head,sleep,nice} ${TGTDIR}/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
