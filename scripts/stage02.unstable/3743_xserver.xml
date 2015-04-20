@@ -110,10 +110,10 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr  --disable-glx-tls --disable-xvfb --disable-xnest --disable-kdrive --sysconfdir=/etc --localstatedir=/var CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				pump make -k -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr --disable-glx-tls  --disable-xvfb --disable-xnest  --disable-kdrive --sysconfdir=/etc --localstatedir=/var
-				make  
+				make -k -j2
 			fi
 			]]>
 		</build>
@@ -121,7 +121,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			make -k install DESTDIR=${TGTDIR}
 			/sbin/paxctl -m -r ${TGTDIR}/usr/bin/Xorg
 			]]>
 		</install>
