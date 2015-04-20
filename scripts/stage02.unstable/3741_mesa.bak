@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="Mesa"
-		version="10.4.2"
+		version="10.5.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="53ec316946bce7b63327f73c40ac9be1f50e31b2">MesaLib-10.4.2.tar.bz2</pkg>
-				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.4.2/</mirror>
+				<pkg sha1="16ae80abe85b29fa118e1910a224c883964ae6c0">mesa-10.5.3.tar.xz</pkg>
+				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.5.3/</mirror>
 			</file>
-			<manualcheck date="20150113" interval="30" page="http://www.mesa3d.org/" />
+			<manualcheck date="20150420" interval="30" page="http://www.mesa3d.org/" />
 			<!-- <check>
 				<page html="ftp://ftp.freedesktop.org/pub/mesa//">
 					<atext linktext="10.1" />
@@ -69,17 +69,13 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/mesa-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
 			
-			cd ${PKGNAME}-${PKGVERSION}
+			cd mesa-${PKGVERSION}
 			
 			echo "Now working in:"
 			pwd
@@ -107,12 +103,16 @@
 				--enable-texture-float         \
 				--enable-gles1                 \
 				--enable-gles2                 \
+				--enable-openvg                \
+				--enable-vdpau                 \
 				--enable-osmesa                \
 				--enable-xa                    \
 				--enable-gbm                   \
+				--enable-gallium-egl           \
+				--enable-gallium-gbm           \
 				--enable-glx-tls               \
 				--with-egl-platforms="drm,x11" \
-				--with-gallium-drivers="i915,nouveau,r300,r600,radeonsi,svga,swrast" 
+				--with-gallium-drivers="i915,ilo,nouveau,r300,r600,radeonsi,svga,swrast" 
 				
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount 
@@ -131,13 +131,13 @@
 			unset SRCDIR
 			echo 'Current environment:'
 			env
-			cd ${PKGNAME}-${PKGVERSION}
+			cd mesa-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf mesa-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
