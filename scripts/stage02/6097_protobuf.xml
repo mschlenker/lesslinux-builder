@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='protobuf' version='2.6.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3dff24d019729060eff569d7a718bdbb10db13a3'>
+                    protobuf-2.6.1.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/p/protobuf/
+                </mirror>
+            </file>
+            <manualcheck date='20150421' interval='60' mirror='https://pypi.python.org/packages/source/p/protobuf/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
