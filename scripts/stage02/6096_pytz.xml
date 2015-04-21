@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='pytz' version='2015.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='9a1b8bf9b1222f63f7d677f124453d13d7ed27c8'>
+                    pytz-2015.2.tar.bz2
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/p/pytz/
+                </mirror>
+            </file>
+            <manualcheck date='20150421' interval='60' mirror='https://pypi.python.org/packages/source/p/pytz/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
