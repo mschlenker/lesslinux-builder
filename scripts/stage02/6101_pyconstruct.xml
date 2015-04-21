@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='construct' version='2.5.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d23f17d3c6afe2e91aa3b54f1a28b4057b9a2094'>
+                    construct-2.5.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/c/construct/
+                </mirror>
+            </file>
+            <manualcheck date='20150421' interval='60' mirror='https://pypi.python.org/packages/source/c/construct/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
