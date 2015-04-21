@@ -18,6 +18,12 @@
 				</page>
 			</check>-->
 		</sources>
+		<builddeps>
+                        <dep>openssl</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.gem ./
