@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libsmraw-alpha' version='20150105' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='db3bc5f38e6f48aa8c787647b015531c07f0e07b'>
+                    libsmraw-alpha-20150105.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libsmraw/releases/download/20150105/
+                </mirror>
+            </file>
+            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libsmraw/releases/download/20150105/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libsmraw-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libsmraw-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libsmraw-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libqcow-alpha' version='20150105' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='9724dc8030084db7ea5a37135177712308a9c553'>
+                    libqcow-alpha-20150105.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libqcow/releases/download/20150105/
+                </mirror>
+            </file>
+            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libqcow/releases/download/20150105/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libqcow-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libqcow-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libqcow-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
