@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libpst' version='0.6.64' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='28b7717c8526acfbc93f88819b9ac89cb29d942e'>
+                    libpst-0.6.64.tar.gz
+                </pkg>
+                <mirror>
+                    http://www.five-ten-sg.com/libpst/packages/
+                </mirror>
+            </file>
+            <manualcheck date='20150421' interval='60' mirror='http://www.five-ten-sg.com/libpst/packages/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-libpst-shared --disable-python 
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=$TGTDIR
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
