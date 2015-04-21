@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libvhdi-alpha' version='20150110' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='2eb0d07fd45ba774c284830edc7f16ec799a7dfb'>
+                    libvhdi-alpha-20150110.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libvhdi/releases/download/20150110/
+                </mirror>
+            </file>
+            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libvhdi/releases/download/20150110/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libvhdi-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libvhdi-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libvhdi-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
