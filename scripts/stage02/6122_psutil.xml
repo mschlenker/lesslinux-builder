@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='psutil' version='2.2.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='ddf58b3a0e699e142586b67097e3ae062766f11d'>
+                    psutil-2.2.1.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/p/psutil/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://pypi.python.org/packages/source/p/psutil/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

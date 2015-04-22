@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libevtx-alpha' version='20150105' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='20506afb73ce9b83fea0aaf39034e565f7f97d6b'>
+                    libevtx-alpha-20150105.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libevtx/releases/download/20150105/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/libevtx/releases/download/20150105/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libevtx-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libevtx-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libevtx-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

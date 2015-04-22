@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='dpkt' version='1.8.6' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='bf404487c29acb421535d3b847558cc0c167f927'>
+                    dpkt-1.8.6.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/d/dpkt/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://pypi.python.org/packages/source/d/dpkt/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

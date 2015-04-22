@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libmsiecf-alpha' version='20150314' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='612c111020c752c291395625b821f962ef58b70a'>
+                    libmsiecf-alpha-20150314.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libmsiecf/releases/download/20150314/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/libmsiecf/releases/download/20150314/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libmsiecf-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libmsiecf-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libmsiecf-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

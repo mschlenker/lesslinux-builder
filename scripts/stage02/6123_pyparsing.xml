@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='pyparsing' version='2.0.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='39299b6bb894a27fb9cd5b548c21d168b893b434'>
+                    pyparsing-2.0.3.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/p/pyparsing/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://pypi.python.org/packages/source/p/pyparsing/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
