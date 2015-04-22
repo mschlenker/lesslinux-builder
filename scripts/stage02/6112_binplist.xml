@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='binplist' version='0.1.4' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d0b0c289b43023c7e5d464333f083a9009fa0ef7'>
+                    binplist-0.1.4.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/b/binplist/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://pypi.python.org/packages/source/b/binplist/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

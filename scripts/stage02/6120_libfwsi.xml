@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libfwsi-experimental' version='20150124' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='baaab148ac727c459af64a288e7375cfa9c1e463'>
+                    libfwsi-experimental-20150124.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libfwsi/releases/download/20150124/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/libfwsi/releases/download/20150124/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libfwsi-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libfwsi-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libfwsi-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

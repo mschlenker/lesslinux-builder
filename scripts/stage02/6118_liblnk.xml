@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='liblnk-alpha' version='20150105' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='50e84830da33aa16a1cce31b8613affee164e786'>
+                    liblnk-alpha-20150105.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/liblnk/releases/download/20150105/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/liblnk/releases/download/20150105/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd liblnk-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd liblnk-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf liblnk-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

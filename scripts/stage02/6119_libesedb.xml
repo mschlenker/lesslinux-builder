@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libesedb-experimental' version='20150409' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='b2d8941aa74e8b5189b689810c125b194588463b'>
+                    libesedb-experimental-20150409.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libesedb/releases/download/20150409/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/libesedb/releases/download/20150409/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libesedb-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libesedb-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libesedb-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

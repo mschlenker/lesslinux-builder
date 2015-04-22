@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='dfvfs' version='2015.04.22.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a3600e8988e3ff632b17c3ac0c9e96018a890410'>
+                    dfvfs-2015.04.22.0.tar.xz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20150422' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
