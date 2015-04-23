@@ -14,6 +14,18 @@
             </file>
             <manualcheck date='20150422' interval='60' mirror='https://pypi.python.org/packages/source/i/ipython/'/>
         </sources>
+	<builddeps>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>dfvfs</dep>
+                        <dep>fusepy</dep>
+                        <dep>git</dep>
+                        <dep>openssl</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>setuptools</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
