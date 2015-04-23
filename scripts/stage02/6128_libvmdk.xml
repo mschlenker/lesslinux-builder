@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libvmdk-alpha' version='20150325' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a16469073686a0c6bab5374ff4892a9977342e49'>
+                    libvmdk-alpha-20150325.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libvmdk/releases/download/20150325/
+                </mirror>
+            </file>
+            <manualcheck date='20150423' interval='60' mirror='https://github.com/libyal/libvmdk/releases/download/20150325/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libvmdk-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libvmdk-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libvmdk-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

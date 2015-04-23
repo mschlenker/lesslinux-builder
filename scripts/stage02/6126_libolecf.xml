@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libolecf-alpha' version='20150413' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e0b535fca886a4fa04a258312d5da7936233b562'>
+                    libolecf-alpha-20150413.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libolecf/releases/download/20150413/
+                </mirror>
+            </file>
+            <manualcheck date='20150423' interval='60' mirror='https://github.com/libyal/libolecf/releases/download/20150413/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libolecf-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python 
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libolecf-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libolecf-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

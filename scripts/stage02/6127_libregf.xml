@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libregf-alpha' version='20150315' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='72aba53a4b0f94343ded4a7aee782985cdba5efc'>
+                    libregf-alpha-20150315.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libregf/releases/download/20150315/
+                </mirror>
+            </file>
+            <manualcheck date='20150423' interval='60' mirror='https://github.com/libyal/libregf/releases/download/20150315/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libregf-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python 
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libregf-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libregf-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
