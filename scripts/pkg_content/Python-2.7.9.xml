@@ -6,6 +6,7 @@
         <softlink path='/usr/bin/python2-config' owner='0' group='0'/>
         <softlink path='/usr/lib/pkgconfig/python2.pc' owner='0' group='0'/>
         <softlink path='/usr/lib/pkgconfig/python.pc' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpython2.7.so' owner='0' group='0'/>
         <softlink path='/usr/share/man/man1/python.1' owner='0' group='0'/>
         <softlink path='/usr/share/man/man1/python2.1' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
@@ -85,6 +86,7 @@
     <subpackage name='minimal'/>
     <subpackage name='bin'>
         <file path='/usr/bin/python2.7' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libpython2.7.so.1.0' owner='0' group='0' mode='100555'/>
         <file path='/usr/lib/python2.7/lib-dynload/_bisect.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/python2.7/lib-dynload/cmath.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/python2.7/lib-dynload/mmap.so' owner='0' group='0' mode='100755'/>
@@ -246,14 +248,13 @@
         <file path='/usr/include/python2.7/setobject.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/python2.7/token.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/python2.7/intobject.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/libpython2.7.a' owner='0' group='0' mode='100555'/>
         <file path='/usr/lib/pkgconfig/python-2.7.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/python2.7/test/test_macurl2path.py' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/python2.7/config/libpython2.7.a' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
+	<file path='/usr/lib/python2.7/test/test_macurl2path.py' owner='0' group='0' mode='100644'/>
         <file path='/usr/bin/python2.7-config' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/pydoc' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/smtpd.py' owner='0' group='0' mode='100755'/>
@@ -4642,4 +4643,18 @@
         <file path='/usr/lib/python2.7/repr.pyc' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'>
+            <file path='/usr/lib/libpython2.7.a'/>
+        </subpackage>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>
