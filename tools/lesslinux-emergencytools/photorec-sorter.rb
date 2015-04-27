@@ -9,7 +9,7 @@ require 'MfsSinglePartition'
 require 'MfsTranslator'
 
 def traverse_dir(startdir, basedir, pgbar)
-	pgbar.pulse
+	# pgbar.pulse
 	while (Gtk.events_pending?)
 		Gtk.main_iteration
 	end
