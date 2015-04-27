@@ -8,8 +8,14 @@ require 'MfsDiskDrive'
 require 'MfsSinglePartition'
 require 'MfsTranslator'
 
+$lastpulse = Time.now.to_i 
+
 def traverse_dir(startdir, basedir, pgbar)
-	# pgbar.pulse
+	now = Time.now.to_i 
+	if now > $lastpulse
+		pgbar.pulse
+		lastpulse = noe
+	end
 	while (Gtk.events_pending?)
 		Gtk.main_iteration
 	end
@@ -28,7 +34,11 @@ def traverse_dir(startdir, basedir, pgbar)
 end
 
 def rename_file(filepath, basedir, pgbar) 
-	pgbar.pulse
+	now = Time.now.to_i 
+	if now > $lastpulse
+		pgbar.pulse
+		lastpulse = noe
+	end
 	while (Gtk.events_pending?)
 		Gtk.main_iteration
 	end
