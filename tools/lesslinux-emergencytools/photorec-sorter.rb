@@ -22,7 +22,7 @@ def traverse_dir(startdir, basedir, pgbar)
 		elsif File.directory? "#{startdir}/#{e}" 
 			traverse_dir("#{startdir}/#{e}", basedir, pgbar) 
 		elsif File.file? "#{startdir}/#{e}"
-			rename_file("#{startdir}/#{e}", basedir) 
+			rename_file("#{startdir}/#{e}", basedir, pgbar) 
 		end
 	}
 end
