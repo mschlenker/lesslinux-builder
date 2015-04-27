@@ -11,7 +11,9 @@ require 'MfsTranslator'
 def traverse_dir(startdir, basedir) 
 	Dir.entries(startdir).each { |e|
 		puts "Parsing #{startdir}/#{e}"
-		if File.directory? "#{startdir}/#{e}"
+		if e == "." || e == ".."
+			puts "Ignore #{e}"
+		elsif File.directory? "#{startdir}/#{e}" 
 			traverse_dir("#{startdir}/#{e}", basedir) 
 		elsif File.file? "#{startdir}/#{e}"
 			rename_file("#{startdir}/#{e}", basedir) 
