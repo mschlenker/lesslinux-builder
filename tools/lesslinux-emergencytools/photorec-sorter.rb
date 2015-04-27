@@ -14,7 +14,7 @@ def traverse_dir(startdir, basedir, pgbar)
 	now = Time.now.to_i 
 	if now > $lastpulse
 		pgbar.pulse
-		lastpulse = noe
+		lastpulse = now
 	end
 	while (Gtk.events_pending?)
 		Gtk.main_iteration
@@ -37,7 +37,7 @@ def rename_file(filepath, basedir, pgbar)
 	now = Time.now.to_i 
 	if now > $lastpulse
 		pgbar.pulse
-		lastpulse = noe
+		lastpulse = now
 	end
 	while (Gtk.events_pending?)
 		Gtk.main_iteration
