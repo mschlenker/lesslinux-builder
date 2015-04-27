@@ -9,7 +9,7 @@ require 'MfsSinglePartition'
 require 'MfsTranslator'
 
 def traverse_dir(startdir, basedir) 
-	Dir.entries.each(startdir) { |e|
+	Dir.entries(startdir).each { |e|
 		puts "Parsing #{startdir}/#{e}"
 		if File.directory? "#{startdir}/#{e}"
 			traverse_dir("#{startdir}/#{e}", basedir) 
