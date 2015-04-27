@@ -233,7 +233,7 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 		d.partitions.each { |p|
 			psize = p.human_size
 			unless p.mounted == true
-				nicepart = p.vendor + " " + p.model + " (" + businfo + ", " + sizestr + ") Partition " + p.device + " (" + p.fs + ", " + psize + ")"
+				nicepart = d.vendor + " " + d.model + " (" + businfo + ", " + sizestr + ") Partition " + p.device + " (" + p.fs + ", " + psize + ")"
 				partcombo.append_text(nicepart)
 				new_rows += 1
 				part_array.push("/dev/" + p.device)
@@ -246,7 +246,7 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 		unless mounted == true  
 			begin
 				device = "/dev/" + d.device
-				nicedrive = p.vendor + " " + p.model + " " + device + " (" + businfo + ", " + sizestr + ")"
+				nicedrive = d.vendor + " " + d.model + " " + device + " (" + businfo + ", " + sizestr + ")"
 				drivecombo.append_text(nicedrive)
 				disk_rows += 1
 				disk_array.push(device)
