@@ -71,7 +71,7 @@ progressframe.add(progressbox)
 lvb.pack_start_defaults progressframe
 
 gobutton.sensitive = false
-targetbutton.selection_changed {
+targetbutton.signal_connect('selection_changed') {
 	gobutton.sensitive = true unless targetbutton.filename.nil?
 }
 
