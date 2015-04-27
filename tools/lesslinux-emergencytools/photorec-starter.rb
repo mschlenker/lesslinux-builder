@@ -297,11 +297,8 @@ def apply_settings(assi, device, filetypes, target, partition, target_dir, opent
 		}
 	end
 	phrecstring = "photorec /d \"" + target + "\" /cmd " + device + " " + partstring + ",fileopt,everything," + fileopt + searchspace + "search"
-	if $dummy == true
-		puts phrecstring
-	else
-		system("Terminal --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("do_not_close") + "\" -x " + phrecstring )
-	end
+	puts phrecstring
+	system("Terminal --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("do_not_close") + "\" -x " + phrecstring )
 	freespace = 0
 	IO.popen("df \"" + target_dir + "\"") { |i|
 		while i.gets
