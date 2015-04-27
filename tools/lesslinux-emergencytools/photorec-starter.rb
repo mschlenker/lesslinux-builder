@@ -238,7 +238,7 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 					businfo + ", " + 
 					sizestr + ") Partition " + 
 					p.device + " (" + 
-					p.fs + ", " + 
+					p.fs.to_s + ", " + 
 					psize + ")"
 				partcombo.append_text(nicepart)
 				new_rows += 1
