@@ -41,7 +41,8 @@ LOCSTRINGS = {
 		"do_you_want" => "Wollen Sie die Wiederherstellung mit den vorgenommenen Einstellungen durchführen?",
 		"last_label" => "Nach einem Klick auf \"Anwenden\" startet die Suche nach Dateien in einem neuen Fenster. Bitte schließen Sie dieses nicht. Am Ende wird eine Zusammenfassung der Wiederherstellung angezeigt.",
 		"overview" => "Zusammenfassung",
-		"ovlabel" => "<b>Suche auf:</b> %DEVICE%\n\n<b>Suche nach:</b> %SEARCHFOR%\n\n<b>Gefundene Dateien speichern in:</b> %TDIR%/%SUFFIX%.1\n\n<b>Benötigte Zeit:</b> %MINTIME% bis %MAXTIME% Minuten (geschätzt)"
+		"ovlabel" => "<b>Suche auf:</b> %DEVICE%\n\n<b>Suche nach:</b> %SEARCHFOR%\n\n<b>Gefundene Dateien speichern in:</b> %TDIR%/%SUFFIX%.1\n\n<b>Benötigte Zeit:</b> %MINTIME% bis %MAXTIME% Minuten (geschätzt)",
+		"type_deleted" => "Nur gelöschte Dateien suchen"
 	},
 	"en" => {
 		"prog_title" => "Data recovery",
@@ -69,7 +70,8 @@ LOCSTRINGS = {
 		"do_you_want" => "Do you want to start the data recovery with the selected settings?",
 		"last_label" => "After clicking \"Apply\" the data recovery starts in a new window. Please do not close this window. When the recovery is finished a log will be shown.",
 		"overview" => "Overview",
-		"ovlabel" => "<b>Scan drive:</b> %DEVICE%\n\n<b>Search for:</b> %SEARCHFOR%\n\n<b>Save restored files in:</b> %TDIR%/%SUFFIX%.1\n\n<b>Estimated time:</b> %MINTIME% to %MAXTIME% minutes"
+		"ovlabel" => "<b>Scan drive:</b> %DEVICE%\n\n<b>Search for:</b> %SEARCHFOR%\n\n<b>Save restored files in:</b> %TDIR%/%SUFFIX%.1\n\n<b>Estimated time:</b> %MINTIME% to %MAXTIME% minutes",
+		"type_deleted" => "Only search deleted files"
 	},
 	"pl" => {
 		"prog_title" => "Odzyskiwanie danych",
@@ -408,9 +410,12 @@ typelabel.wrap = true
 typelabel.width_request = 550
 typelabel.xalign = 0.1
 
+typedeleted = Gtk::CheckButton.new(extract_lang_string("type_deleted"))
+typedeleted.active = true
 typeradio = Gtk::RadioButton.new(extract_lang_string("type_all"))
 typeselec = Gtk::RadioButton.new(typeradio, extract_lang_string("type_only"))
 typebox = Gtk::VBox.new(false, 5)
+typebox.pack_start(typedeleted, false, true, 5)
 typebox.pack_start(typelabel, false, true, 5)
 typebox.pack_start(typeradio, false, true, 5)
 typebox.pack_start(typeselec, false, true, 5)
