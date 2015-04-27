@@ -282,7 +282,9 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 	return new_rows, part_array, disk_rows, disk_array, niceparts, nicedrives, partsizes, drivesizes
 end
 
-def apply_settings(assi, device, filetypes, target, partition, target_dir, opentarget )
+def apply_settings(assi, device, filetypes, target, partition, target_dir, opentarget, freespaceonly )
+	searchspace = "wholespace,"
+	searchspace = "freespace," if freespaceonly == true 
 	puts target
 	puts target_dir
 	partstring = "partition_i386"
@@ -294,7 +296,7 @@ def apply_settings(assi, device, filetypes, target, partition, target_dir, opent
 			fileopt = fileopt + f + ",enable,"
 		}
 	end
-	phrecstring = "photorec /d \"" + target + "\" /cmd " + device + " " + partstring + ",fileopt,everything," + fileopt + "search"
+	phrecstring = "photorec /d \"" + target + "\" /cmd " + device + " " + partstring + ",fileopt,everything," + fileopt + searchspace + "search"
 	if $dummy == true
 		puts phrecstring
 	else
@@ -548,7 +550,7 @@ assi.signal_connect('close')   { |w|
 	else
 		scantypes = searchformats 
 	end
-	apply_settings(w, scandev, scantypes, target_dir + "/" + targetsuff, partradio.active?, target_dir, opentarget.active?)
+	apply_settings(w, scandev, scantypes, target_dir + "/" + targetsuff, partradio.active?, target_dir, opentarget.active?, typedeleted.active?)
 }
 
 assi.set_forward_page_func{|curr|
