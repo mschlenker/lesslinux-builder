@@ -70,6 +70,11 @@ progressbox.pack_start(gobutton, false, true, 0)
 progressframe.add(progressbox)
 lvb.pack_start_defaults progressframe
 
+go.sensitive = false
+targetbutton.selection_changed {
+	go.sensitive = true unless targetbutton.filename.nil?
+}
+
 go.signal_connect('clicked') {
 	traverse_dir(targetbutton.filename, targetbutton.filename) 
 }
