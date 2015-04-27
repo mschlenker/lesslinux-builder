@@ -226,44 +226,34 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 	partsizes = []
 	drivesizes = []
 	disks.each { |d|
-		sizestr = ""
-		if d[2] > 7_900_000_000
-			sizestr = ((d[2].to_f / 1073741824 ) + 0.5).to_i.to_s + "GB"
-		else
-			sizestr = (d[2].to_f / 1048576 ).to_i.to_s + "MB"
-		end
+		sizestr = d.human_size
 		businfo = "IDE/SATA"
-		businfo = "USB" if d[0] =~ /^usb/
+		businfo = "USB" if d.usb == true
 		mounted = false
-		d[5].each { |p|
-			psize = ""
-			if p[5] > 7_900_000_000
-				psize = ((p[5].to_f / 1073741824 ) + 0.5).to_i.to_s + "GB"
-			else
-				psize = (p[5].to_f / 1048576 ).to_i.to_s + "MB"
-			end
-			unless p[2] == "mounted" || d[4] == true
-				nicepart = d[1] + " (" + businfo + ", " + sizestr + ") Partition " + p[0] + " (" + p[1] + ", " + psize + ")"
+		d.partitions.each { |p|
+			psize = p.human_size
+			unless p.mounted == true
+				nicepart = p.vendor + " " + p.model + " (" + businfo + ", " + sizestr + ") Partition " + p.device + " (" + p.fs + ", " + psize + ")"
 				partcombo.append_text(nicepart)
 				new_rows += 1
-				part_array.push(p[0])
+				part_array.push("/dev/" + p.device)
 				niceparts.push(nicepart)
-				partsizes.push(p[5])
+				partsizes.push(p.size)
 			else
 				mounted = true
 			end
 		}
-		unless mounted == true || d[6].strip =~ /^\/dev\/sr/
+		unless mounted == true  
 			begin
-				device = d[6]
-				nicedrive = d[1] + " " + device + " (" + businfo + ", " + sizestr + ")"
+				device = "/dev/" + d.device
+				nicedrive = p.vendor + " " + p.model + " " + device + " (" + businfo + ", " + sizestr + ")"
 				drivecombo.append_text(nicedrive)
 				disk_rows += 1
 				disk_array.push(device)
 				nicedrives.push(nicedrive)
-				drivesizes.push(d[2])
+				drivesizes.push(d.size)
 			rescue
-				puts "trouble processing " + d[5].join(" // ")
+				puts "trouble processing " + d.device 
 			end
 		end
 	}
@@ -589,7 +579,7 @@ assi.set_forward_page_func{|curr|
 		# when switching from first to second screen, read drivelist
 		puts "current screen 0, rereading drivelist"
 		# alldisks = scan_parts(read_devs) if xml_read_count < 1
-		alldiskss = scan_parts_ng 
+		alldisks = scan_parts_ng 
 		xml_read_count += 1
 		alldisks.each { |d|
 			# d[0] businfo
