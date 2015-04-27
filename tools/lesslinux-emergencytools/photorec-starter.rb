@@ -233,7 +233,13 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 		d.partitions.each { |p|
 			psize = p.human_size
 			unless p.mounted == true
-				nicepart = d.vendor + " " + d.model + " (" + businfo + ", " + sizestr + ") Partition " + p.device + " (" + p.fs + ", " + psize + ")"
+				nicepart = d.vendor + " " + 
+					d.model + " (" + 
+					businfo + ", " + 
+					sizestr + ") Partition " + 
+					p.device + " (" + 
+					p.fs + ", " + 
+					psize + ")"
 				partcombo.append_text(nicepart)
 				new_rows += 1
 				part_array.push("/dev/" + p.device)
