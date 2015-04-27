@@ -27,6 +27,13 @@ window.signal_connect("destroy") {
         Gtk.main_quit
 }
 
+explainframe = Gtk::Frame.new(tl.get_translation("frame_explanation"))
+explainlabel = Gtk::Label.new
+explainlabel.width_request = 360
+explainlabel.set_markup = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+explainframe.add(explainlabel) 
+lvb.pack_start_defaults explainframe
+
 targetframe = Gtk::Frame.new(tl.get_translation("frame_directory"))
 targetbutton = Gtk::FileChooserButton.new(tl.get_translation("workdir"), Gtk::FileChooser::ACTION_SELECT_FOLDER)
 targetbutton.current_folder = "/media/disk"
@@ -34,12 +41,12 @@ targetbutton.current_folder = "/media/disk"
 targetframe.add(targetbutton) 
 lvb.pack_start_defaults targetframe
 
-
 gobutton = Gtk::Button.new(tl.get_translation("go"))
 gobutton.width_request = 120
 progressframe = Gtk::Frame.new(tl.get_translation("frame_progress"))
 pgbar = Gtk::ProgressBar.new
 pgbar.text = tl.get_translation("click_start")
+pgbar.width_request = 240
 # pgbar.fraction = 0.7
 progressbox = Gtk::HBox.new(false, 5)
 progressbox.pack_start(pgbar, true, true, 0)
