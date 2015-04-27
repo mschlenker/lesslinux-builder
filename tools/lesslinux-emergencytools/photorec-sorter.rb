@@ -9,6 +9,9 @@ require 'MfsSinglePartition'
 require 'MfsTranslator'
 
 def traverse_dir(startdir, basedir) 
+	while (Gtk.events_pending?)
+		Gtk.main_iteration
+	end
 	Dir.entries(startdir).each { |e|
 		puts "Parsing #{startdir}/#{e}"
 		if e == "." || e == ".."
@@ -80,6 +83,7 @@ targetbutton.signal_connect('selection_changed') {
 }
 
 gobutton.signal_connect('clicked') {
+	pgbar.pulse 
 	traverse_dir(targetbutton.filename, targetbutton.filename) 
 }
 
