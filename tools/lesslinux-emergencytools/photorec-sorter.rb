@@ -11,8 +11,6 @@ require 'MfsTranslator'
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
 lang = "en" if lang.nil?
-# tlfile = "clonedisk.xml"
-# tlfile = "/usr/share/lesslinux/drivetools/clonedisk.xml" if File.exists?("/usr/share/lesslinux/drivetools/clonedisk.xml")
 tlfile = "photorec-sorter.xml"
 tl = MfsTranslator.new(lang, tlfile)
 @tl = tl
@@ -32,8 +30,24 @@ window.signal_connect("destroy") {
 targetframe = Gtk::Frame.new(tl.get_translation("frame_directory"))
 targetbutton = Gtk::FileChooserButton.new(tl.get_translation("workdir"), Gtk::FileChooser::ACTION_SELECT_FOLDER)
 targetbutton.current_folder = "/media/disk"
+# targetbutton.width_request = 300
 targetframe.add(targetbutton) 
 lvb.pack_start_defaults targetframe
+
+
+gobutton = Gtk::Button.new(tl.get_translation("go"))
+gobutton.width_request = 120
+progressframe = Gtk::Frame.new(tl.get_translation("frame_progress"))
+pgbar = Gtk::ProgressBar.new
+pgbar.text = tl.get_translation("click_start")
+# pgbar.fraction = 0.7
+progressbox = Gtk::HBox.new(false, 5)
+progressbox.pack_start(pgbar, true, true, 0)
+progressbox.pack_start(gobutton, false, true, 0)
+progressframe.add(progressbox)
+lvb.pack_start_defaults progressframe
+
+
 
 window.add(lvb) 
 window.set_title(tl.get_translation("title"))
