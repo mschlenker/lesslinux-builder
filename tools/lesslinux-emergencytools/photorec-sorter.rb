@@ -8,7 +8,8 @@ require 'MfsDiskDrive'
 require 'MfsSinglePartition'
 require 'MfsTranslator'
 
-def traverse_dir(startdir, basedir) 
+def traverse_dir(startdir, basedir, pgbar)
+	pgbar.pulse
 	while (Gtk.events_pending?)
 		Gtk.main_iteration
 	end
@@ -19,14 +20,18 @@ def traverse_dir(startdir, basedir)
 		elsif File.symlink? "#{startdir}/#{e}"
 			puts "Ignore symlink #{e}"
 		elsif File.directory? "#{startdir}/#{e}" 
-			traverse_dir("#{startdir}/#{e}", basedir) 
+			traverse_dir("#{startdir}/#{e}", basedir, pgbar) 
 		elsif File.file? "#{startdir}/#{e}"
 			rename_file("#{startdir}/#{e}", basedir) 
 		end
 	}
 end
 
-def rename_file(filepath, basedir) 
+def rename_file(filepath, basedir, pgbar) 
+	pgbar.pulse
+	while (Gtk.events_pending?)
+		Gtk.main_iteration
+	end
 	puts "Renaming #{filepath}"
 end
 
@@ -84,7 +89,7 @@ targetbutton.signal_connect('selection_changed') {
 
 gobutton.signal_connect('clicked') {
 	pgbar.pulse 
-	traverse_dir(targetbutton.filename, targetbutton.filename) 
+	traverse_dir(targetbutton.filename, targetbutton.filename, pgbar) 
 }
 
 window.add(lvb) 
