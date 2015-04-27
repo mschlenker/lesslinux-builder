@@ -8,6 +8,21 @@ require 'MfsDiskDrive'
 require 'MfsSinglePartition'
 require 'MfsTranslator'
 
+def traverse_dir(startdir, basedir) 
+	Dir.entries.each(startdir) { |e|
+		puts "Parsing #{startdir}/#{e}"
+		if File.directory? "#{startdir}/#{e}"
+			traverse_dir("#{startdir}/#{e}", basedir) 
+		elsif File.file? "#{startdir}/#{e}"
+			rename_file("#{startdir}/#{e}", basedir) 
+		end
+	}
+end
+
+def rename_file(filepath, basedir) 
+	puts "Renaming #{filepath}"
+end
+
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
 lang = "en" if lang.nil?
@@ -55,7 +70,9 @@ progressbox.pack_start(gobutton, false, true, 0)
 progressframe.add(progressbox)
 lvb.pack_start_defaults progressframe
 
-
+go.signal_connect('clicked') {
+	traverse_dir(targetbutton.filename, targetbutton.filename) 
+}
 
 window.add(lvb) 
 window.set_title(tl.get_translation("title"))
