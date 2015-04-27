@@ -12,7 +12,9 @@ def traverse_dir(startdir, basedir)
 	Dir.entries(startdir).each { |e|
 		puts "Parsing #{startdir}/#{e}"
 		if e == "." || e == ".."
-			puts "Ignore #{e}"
+			puts "Ignore directory #{e}"
+		elsif File.symlink? "#{startdir}/#{e}"
+			puts "Ignore symlink #{e}"
 		elsif File.directory? "#{startdir}/#{e}" 
 			traverse_dir("#{startdir}/#{e}", basedir) 
 		elsif File.file? "#{startdir}/#{e}"
