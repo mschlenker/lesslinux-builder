@@ -8,11 +8,11 @@ require 'MfsDiskDrive'
 require 'MfsSinglePartition'
 require 'MfsTranslator'
 
-$lastpulse = Time.now.to_i 
+$lastpulse = Time.now.to_f 
 
 def traverse_dir(startdir, basedir, pgbar)
-	now = Time.now.to_i 
-	if now > $lastpulse
+	now = Time.now.to_f 
+	if now > $lastpulse + 0.3
 		pgbar.pulse
 		$lastpulse = now
 	end
@@ -34,8 +34,8 @@ def traverse_dir(startdir, basedir, pgbar)
 end
 
 def rename_file(filepath, basedir, pgbar) 
-	now = Time.now.to_i 
-	if now > $lastpulse
+	now = Time.now.to_f
+	if now > $lastpulse + 0.3
 		pgbar.pulse
 		$lastpulse = now
 	end
