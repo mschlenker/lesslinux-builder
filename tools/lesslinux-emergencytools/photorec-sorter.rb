@@ -42,7 +42,11 @@ def rename_file(filepath, basedir, pgbar)
 	while (Gtk.events_pending?)
 		Gtk.main_iteration
 	end
-	puts "Renaming #{filepath}"
+	if "#{basedir}/#{filepath}" =~ /\.jpg$/i || "#{basedir}/#{filepath}" =~ /\.jpeg$/i
+		puts "Renaming #{filepath}"
+		# Try to read some exif infos
+		
+	end
 end
 
 lang = ENV['LANGUAGE'][0..1]
