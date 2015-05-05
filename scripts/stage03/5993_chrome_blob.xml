@@ -26,8 +26,8 @@ case $1 in
 		umount /usr/share/applications/google-chrome.desktop
 	    elif [ -f /lesslinux/blob/google-chrome-stable_current_i386.deb ] ; then
 		mount -o size=200M,mode=0755 -t tmpfs tmpfs /opt/google/chrome
-		ar -p /lesslinux/blob/google-chrome-stable_current_i386.deb data.tar.lzma \
-			| unlzma -c | tar -C / -x ./opt/google/chrome
+		ar -p /lesslinux/blob/google-chrome-stable_current_i386.deb data.tar.xz \
+			| unxz -c | tar -C / -x ./opt/google/chrome
 		umount /usr/share/applications/google-chrome.desktop
 		if mountpoint -q /lesslinux/blobpart ; then
 		    ( cd /opt/google ; mksquashfs chrome /lesslinux/blobpart/google-chrome.sqs )
