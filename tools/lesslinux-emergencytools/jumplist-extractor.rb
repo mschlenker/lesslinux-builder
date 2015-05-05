@@ -1,13 +1,9 @@
-#!/usr/bin/ruby
-# encoding: utf-8
-
 require 'glib2'
 require 'gtk2'
 require "rexml/document"
 require 'fileutils'
 require 'MfsTranslator'
 require 'digest/sha1'
-require 'sqlite3' 
 
 $lastpulse = Time.now.to_f 
 $histfiles = 0
@@ -29,89 +25,27 @@ def traverse_dir(startdir, basedir, pgbar, tgtdir)
 			puts "Ignore symlink #{e}"
 		elsif File.directory? "#{startdir}/#{e}" 
 			traverse_dir("#{startdir}/#{e}", basedir, pgbar, tgtdir) 
-		elsif File.file? "#{startdir}/#{e}"
-			extract_file("#{startdir}/#{e}", basedir, pgbar, tgtdir) 
+		elsif File.file?("#{startdir}/#{e}") && startdir =~ /\/AutomaticDestinations$/ 
+			extract_jumplist("#{startdir}/#{e}", basedir, pgbar, tgtdir) 
 		end
 	}
 end
 
-def extract_file(filepath, basedir, pgbar, tgtdir)
-	if filepath =~  /index\.dat$/
-		entries_found = false
-		analyzed = IO.popen( ["msiecfinfo", filepath ]).readlines
-		analyzed.each { |line|
-			if line.strip =~ /Number/ && line.split(":")[1].strip.to_i > 0
-				entries_found = true
-			end
-		}
-		if entries_found == true
-			shasum = Digest::SHA1.hexdigest File.new(filepath).read 
-			lines = IO.popen( ["msiecfexport", filepath ]).readlines
-			outname = tgtdir + "/IE_history_" + shasum + ".txt"
-			outfile = File.new(outname, "w")
-			lines.each { |l| outfile.write(l) }
-			outfile.close
-			idxfile = File.new(tgtdir + "/history_index.csv", "a")
-			idxfile.write("\"#{filepath}\";\"#{outname}\";\n")
-			idxfile.close 
-			$histfiles += 1
-			pgbar.text = "Gefunden: #{$histfiles} Dateien"
-		end
-	elsif filepath =~  /places\.sqlite$/
-		# moz_places (   id INTEGER PRIMARY KEY, url LONGVARCHAR, title LONGVARCHAR, rev_host LONGVARCHAR, visit_count INTEGER DEFAULT 0, hidden INTEGER DEFAULT 0 NOT NULL, typed INTEGER DEFAULT 0 NOT NULL, favicon_id INTEGER, frecency INTEGER DEFAULT -1 NOT NULL, last_visit_date INTEGER , guid TEXT, foreign_count INTEGER DEFAULT 0 NOT NULL);
-		shasum = Digest::SHA1.hexdigest File.new(filepath).read 
-		outname = tgtdir + "/FF_history_" + shasum + ".csv"
-		begin
-			sqlite = SQLite3::Database.new(filepath)
-			resset = sqlite.query("SELECT url, title, visit_count, last_visit_date FROM moz_places")
-			outfile = File.new(outname, "w")
-			outfile.write("\"URL\";\"Titel\";\"Zahl der Besuche\";\"Letzter Besuch\";\n") 
-			resset.each { |e|
-				outfile.write("\"#{e[0]}\";\"#{e[1]}\";#{e[2].to_s};#{e[3]};\n")
-			}
-			outfile.close 
-			$histfiles += 1
-			pgbar.text = "Gefunden: #{$histfiles} Dateien"
-		rescue
-		end
-		idxfile = File.new(tgtdir + "/history_index.csv", "a")
-		idxfile.write("\"#{filepath}\";\"#{outname}\";\n")
-		idxfile.close 
-		begin
-			sqlite.close
-		rescue
-		end
-	elsif filepath =~ /\/History$/ 
-		# urls(id INTEGER PRIMARY KEY,url LONGVARCHAR,title LONGVARCHAR,visit_count INTEGER DEFAULT 0 NOT NULL,typed_count INTEGER DEFAULT 0 NOT NULL,last_visit_time INTEGER NOT NULL,hidden INTEGER DEFAULT 0 NOT NULL,favicon_id INTEGER DEFAULT 0 NOT NULL);
-		shasum = Digest::SHA1.hexdigest File.new(filepath).read 
-		outname = tgtdir + "/Chrome_history_" + shasum + ".csv"
-		begin
-			sqlite = SQLite3::Database.new(filepath)
-			resset = sqlite.query("SELECT url, title, visit_count, last_visit_time FROM urls")
-			outfile = File.new(outname, "w")
-			outfile.write("\"URL\";\"Titel\";\"Zahl der Besuche\";\"Letzter Besuch\";\n") 
-			resset.each { |e|
-				outfile.write("\"#{e[0]}\";\"#{e[1]}\";#{e[2].to_s};#{e[3]};\n")
-			}
-			outfile.close 
-			$histfiles += 1
-			pgbar.text = "Gefunden: #{$histfiles} Dateien"
-		rescue
-		end
-		idxfile = File.new(tgtdir + "/history_index.csv", "a")
-		idxfile.write("\"#{filepath}\";\"#{outname}\";\n")
-		idxfile.close 
-		begin
-			sqlite.close
-		rescue
-		end
-	end
+def extract_jumplist(filepath, basedir, pgbar, tgtdir)
+	shasum = Digest::SHA1.hexdigest File.new(filepath).read 
+	lines = IO.popen( ["perl", "jl.pl", filepath ]).readlines
+	outname = tgtdir + "/Win_Jumplist_" + shasum + ".txt"
+	outfile = File.new(outname, "w")
+	lines.each { |l| outfile.write(l) }
+	outfile.close
+	$histfiles += 1
+	pgbar.text = "Gefunden: #{$histfiles} Dateien"
 end
 
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
 lang = "en" if lang.nil?
-tlfile = "history-extractor.xml"
+tlfile = "jumplist-extractor.xml"
 tl = MfsTranslator.new(lang, tlfile)
 @tl = tl
 
