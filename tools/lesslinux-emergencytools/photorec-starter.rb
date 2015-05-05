@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/ruby -I /usr/share/lesslinux/drivetools
 # encoding: utf-8
 
 require 'glib2'
