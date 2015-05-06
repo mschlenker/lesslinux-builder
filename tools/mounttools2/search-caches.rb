@@ -28,76 +28,26 @@ def traverse_dir(startdir, basedir, pgbar, tgtdir)
 			# puts "Ignore directory #{e}"
 		elsif File.symlink? "#{startdir}/#{e}"
 			puts "Ignore symlink #{e}"
+		elsif File.directory?("#{startdir}/#{e}") && startdir =~ /firefox/i && e =~ /cache/i 
+			open_cache("#{startdir}/#{e}")
+		elsif File.directory?("#{startdir}/#{e}") && startdir =~ /Users/i && e =~ /Temporary Internet Files/i 
+			open_cache("#{startdir}/#{e}")
+		elsif File.directory?("#{startdir}/#{e}") && startdir =~ /skype/i && e =~ /shared_dynco/i 
+			open_cache(startdir)
 		elsif File.directory? "#{startdir}/#{e}" 
 			traverse_dir("#{startdir}/#{e}", basedir, pgbar, tgtdir) 
-		elsif File.file?("#{startdir}/#{e}") && e =~ /\.pst$/ 
-			convert_pst("#{startdir}/#{e}", basedir, pgbar, tgtdir) 
 		end
 	}
 end
 
-def run_command(pgbar, command, args, text)
-        puts "Running " + command + " : " + args.join(" ")  
-        pgbar.text = text 
-        vte = Vte::Terminal.new
-        running = true
-        vte.signal_connect("child_exited") { running = false }
-        vte.fork_command(command, args)
-        while running == true
-                pgbar.pulse
-                while (Gtk.events_pending?)
-                        Gtk.main_iteration
-                end
-                sleep 0.2 
-        end
-end
-
-def convert_pst(filepath, basedir, pgbar, tgtdir)
-	outdir = tgtdir + "/Outlook-Import/" + File.basename(filepath, ".pst")
-	outsbd = File.basename(filepath, ".pst")
-	n = 0
-	while File.directory?(outdir) 
-		outdir = tgtdir + "/Outlook-Import/" + File.basename(filepath, ".pst") + "." + n.to_s 
-		outsbd = File.basename(filepath, ".pst") + "." + n.to_s 
-		n += 1
-	end
-	FileUtils::mkdir_p outdir
-	system("sync")
-	sleep 1
-	pgbar.text = "Konvertiere " + File.basename(filepath, ".pst")
-	puts "Running: readpst -o \"#{outdir}\"  \"#{filepath}\""
-	run_command(pgbar, "readpst", [ "readpst",  "-o" ,   outdir, filepath ], "Konvertiere " + File.basename(filepath, ".pst") ) 
-	#IO.popen( "readpst -o \"#{outdir}\"  \"#{filepath}\"" ) { |line|
-	#	puts line.gets
-	#	now = Time.now.to_f 
-	#	if now > $lastpulse + 0.3
-	#		pgbar.pulse
-	#		$lastpulse = now
-	#	end
-	#	while (Gtk.events_pending?)
-	#		Gtk.main_iteration
-	#	end
-	#}
-	# pgbar.text = tl.get_translation("running")
-	FileUtils::mkdir_p "/home/surfer/.thunderbird/cdi12345.default/Mail/localhost/Inbox.sbd/Outlook-Import.sbd"
-	FileUtils::touch "/home/surfer/.thunderbird/cdi12345.default/Mail/localhost/Inbox.sbd/Outlook-Import"
-	FileUtils::touch "/home/surfer/.thunderbird/cdi12345.default/Mail/localhost/Inbox.sbd/Outlook-Import.sbd/" + outsbd
-	puts "Running: ln -sf \"#{outdir}\" \"/home/surfer/.thunderbird/cdi12345.default/Mail/localhost/Inbox.sbd/Outlook-Import.sbd/#{outsbd}.sbd\""
-	system("ln -sf \"#{outdir}\" \"/home/surfer/.thunderbird/cdi12345.default/Mail/localhost/Inbox.sbd/Outlook-Import.sbd/#{outsbd}.sbd\"")
-	#shasum = Digest::SHA1.hexdigest File.new(filepath).read 
-	#lines = IO.popen( ["perl", "jl.pl", filepath ]).readlines
-	#outname = tgtdir + "/Win_Jumplist_" + shasum + ".txt"
-	#outfile = File.new(outname, "w")
-	#lines.each { |l| outfile.write(l) }
-	#outfile.close
-	#$histfiles += 1
-	#pgbar.text = "Gefunden: #{$histfiles} Dateien"
+def open_cache(path)
+	system("thunar \"#{path}\"")
 end
 
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
 lang = "en" if lang.nil?
-tlfile = "pst-importer.xml"
+tlfile = "search-caches.xml"
 tl = MfsTranslator.new(lang, tlfile)
 @tl = tl
 
@@ -133,7 +83,7 @@ outputbutton = Gtk::FileChooserButton.new(tl.get_translation("workdir"), Gtk::Fi
 outputbutton.current_folder = "/tmp"
 # targetbutton.width_request = 300
 outputframe.add(outputbutton) 
-lvb.pack_start_defaults outputframe
+# lvb.pack_start_defaults outputframe
 
 gobutton = Gtk::Button.new(tl.get_translation("go"))
 gobutton.width_request = 150
@@ -162,7 +112,7 @@ gobutton.signal_connect('clicked') {
 	traverse_dir(targetbutton.filename, targetbutton.filename, pgbar, outputbutton.filename)
 	pgbar.fraction = 1.0
 	pgbar.text = tl.get_translation("done")
-	system("nohup thunderbird &") 
+	# system("nohup thunderbird &") 
 }
 
 window.add(lvb) 

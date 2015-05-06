@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="lesslinux-drivetools"
-		version="20150505-00"
+		version="20150506-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="f79c047bebd3207126c86eba897d633829bc1d84">lesslinux-drivetools-20150505-00.tar.bz2</pkg>
+				<pkg sha1="348a2e9990916fdfba95925ff29d3f661fc30464">lesslinux-drivetools-20150506-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20141203" interval="120" page="http://distfiles.lesslinux.org/" />
@@ -52,19 +52,19 @@
 				clonedisk.sh chntpwgui.sh resetshell.sh usbinstall.sh mountall.sh \
 				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh \
 				mmmmng.sh llmountandopen.sh blobinstall.sh vdiskimage.sh ddrescueimage.sh \
-				photorec-sorter.sh history-extractor.sh jumplist-extractor.sh  ; do
+				photorec-sorter.sh history-extractor.sh jumplist-extractor.sh search-caches.sh pst-importer.sh ; do
 					install -m 0755 ${f}  ${TGTDIR}/usr/bin
 			done
 			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui \
 				resetshell usbinstall mountall mountnet runx11vnc runsmbd blobinstall \
-				vdiskimage ddrescueimage photorec-sorter history-extractor jumplist-extractor ; do
+				vdiskimage ddrescueimage photorec-sorter history-extractor jumplist-extractor search-caches pst-importer ; do
 					install -m 0644 ${f}.xml  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			for f in llpm_drives MfsDiskDrive MfsSinglePartition MfsTranslator MfsSamDatabase \
 				MfsRegistryDatabase MmmmDriveList mmmm initial_system_check deletedisk \
 				clonedisk chntpwgui resetshell usbinstall mountall mountnet runx11vnc llmounthelper ddrescueimage \
 				runsmbd XmlDriveList xmldrivelist_ blobinstall vdiskimage MfsSysProfile \
-				photorec-sorter history-extractor jumplist-extractor ; do
+				photorec-sorter history-extractor jumplist-extractor search-caches pst-importer ; do
 					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			install -m 0755 jl.pl ${TGTDIR}/usr/share/lesslinux/drivetools
