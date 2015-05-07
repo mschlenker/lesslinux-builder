@@ -64,6 +64,8 @@
 			mkdir -p ${TGTDIR}/usr/bin
 			install -m 0755 ${SRCDIR}/openvas-check-setup-20140930.sh ${TGTDIR}/usr/bin/openvas-check-setup
 			install -m 0755 ${SRCDIR}/openvas-wrapper-20141001.sh ${TGTDIR}/usr/bin/openvas-wrapper
+			echo '' >> ${TGTDIR}/usr/bin/openvas-wrapper
+			echo 'sleep 3' >> ${TGTDIR}/usr/bin/openvas-wrapper
 			mkdir -p ${TGTDIR}/usr/var/lib/openvas
 			mkdir -p ${TGTDIR}/usr/var/log/openvas
 			touch ${TGTDIR}/usr/var/lib/openvas/.keep_this_directory
