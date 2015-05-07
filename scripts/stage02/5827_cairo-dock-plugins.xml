@@ -28,9 +28,10 @@
 				</page>
 			</check> -->
 		</sources>
-		<builddeps>
-                        <dep>Mesa</dep><dep>glu</dep>
+		 <builddeps>
+                        <dep>Mesa</dep>
                         <dep>Python</dep>
+                        <dep>WebOb</dep>
                         <dep>alsa-lib</dep>
                         <dep>atk</dep>
                         <dep>bash</dep>
@@ -41,35 +42,41 @@
                         <dep>coreutils</dep>
                         <dep>dbus-glib</dep>
                         <dep>dbus</dep>
+                        <dep>fusepy</dep>
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gnome-menus</dep>
-                        <dep>gtk</dep>
-                        <dep>gtkglext</dep>
+                        <dep>glu</dep>
+                        <dep>gnome-menus3</dep>
+                        <dep>gtk3</dep>
                         <dep>libX11</dep>
                         <dep>libXrandr</dep>
                         <dep>libXrender</dep>
                         <dep>libXxf86vm</dep>
+                        <dep>libdbusmenu</dep>
                         <dep>libexif</dep>
+                        <dep>libindicator</dep>
                         <dep>librsvg</dep>
                         <dep>libsoup</dep>
                         <dep>libxklavier</dep>
                         <dep>libxml2</dep>
                         <dep>linux_headers</dep>
+                        <dep>lm_sensors</dep>
                         <dep>make</dep>
-                        <dep>pango</dep><dep>pangox-compat</dep>
+			<dep>openssl</dep>
+                        <dep>pango</dep>
                         <dep>pkg-config</dep>
+                        <dep>plaso</dep>
+                        <dep>protobuf</dep>
                         <dep>pygobject</dep>
                         <dep>ruby</dep>
                         <dep>sed</dep>
+                        <dep>setuptools</dep>
                         <dep>vala</dep>
-                        <dep>vte</dep>
-			<!-- <dep>webkit</dep> -->
+                        <dep>webkit</dep>
                         <dep>xproto-base</dep>
-			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
