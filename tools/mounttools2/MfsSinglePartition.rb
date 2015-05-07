@@ -25,9 +25,10 @@ class MfsSinglePartition
 		@winvers = nil
 		@extended = false
 		@trim = trim
+		@vssinfo = ""
 		blkid
 	end
-	attr_reader :device, :blocks, :fs, :uuid, :label, :size, :extended, :parent, :trim, :free, :filesyssize
+	attr_reader :device, :blocks, :fs, :uuid, :label, :size, :extended, :parent, :trim, :free, :filesyssize, :vssinfo
 	
 	def blkid
 		@size = File.new("/sys/block/" + @parent + "/size").read.to_i * 512
@@ -479,4 +480,53 @@ class MfsSinglePartition
 	def trim?
 		return @trim 
 	end
+	
+	def vss?
+		return false unless @fs =~ /ntfs/
+		return nil unless system("which vshadowinfo")
+		res = false
+		IO.popen("vshadowinfo /dev/#{@device}") { |e|
+			while e.gets
+				line = $_
+				@vssinfo = @vssinfo + line
+				res = true if line =~ /^Store/  
+			end
+		}
+		return res 
+	end
+	
+	def vss_mount_all 
+		return false if system("mountpoint /media/vss/.#{@device}")
+		system("mkdir -p /media/vss/.#{@device}")
+		system("vshadowmount /dev/#{@device} /media/vss/.#{@device}")
+		Dir.entries("/media/vss/.#{@device}").each { |e|
+			unless e =~ /^\./
+				system("mkdir -p /media/vss/#{@device}/#{e}")
+				system("mount -t ntfs-3g -o ro /media/vss/.#{@device}/#{e} /media/vss/#{@device}/#{e}") unless system("mountpoint /media/vss/#{@device}/#{e}")
+			end
+		}
+		info = File.open("/media/vss/#{@device}/info.txt", "w")
+		info.write @vssinfo
+		info.close
+	end
+	
+	def vss_umount_all 
+		Dir.entries("/media/vss/.#{@device}").each { |e|
+			unless e =~ /^\./
+				system("fuser -k /media/vss/#{@device}/#{e}")
+				system("umount -f /media/vss/#{@device}/#{e}")
+				begin
+					Dir.unlink("/media/vss/#{@device}/#{e}")
+				rescue
+				end
+			end
+		}
+		system("umount -f /media/vss/.#{@device}")
+		File.unlink("/media/vss/#{@device}/info.txt") if File.exists?("/media/vss/#{@device}/info.txt")
+		begin
+			Dir.unlink("/media/vss/#{@device}")
+		rescue
+		end
+	end
+	
 end
