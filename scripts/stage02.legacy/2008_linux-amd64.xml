@@ -1,17 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="3.14.28"
+		version="3.18.14"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<!-- <file>                                  
-				<pkg sha1="93a8eb4817288b1c0e296df3272fc4a11de10f27">config-3.14-amd64-lesslinux-20140513-1438</pkg> 
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
 			<file>                                  
-				<pkg sha1="cb83463e286a411a507cafba7bfe201e63ebf7cb">linux-3.14-config-amd64</pkg> 
+				<pkg sha1="d9fca7840a91310a12e089b3d17afb16fa20b575">linux-3.18-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -19,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="fc777520e5976caf0d5513502b8156f73748e379">linux-3.14.tar.xz</pkg>
+				<pkg sha1="4557ef53c89fe70a9da230ae1e6542856d8b0a94">linux-3.18.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="aebbe1abb9df54277f8069522dad3eb8bb6aceec">patch-3.14.28.xz</pkg>
+				<pkg sha1="29a81189c9e1ea66eef4ed4916261063e7ba2e0e">patch-3.18.14.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20150109" interval="30" page="http://www.kernel.org/" />
+			<manualcheck date="20150527" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.14.29." />
-					<atext linktext="patch-3.14.30." />
-					<atext linktext="patch-3.14.31." />
-					<atext linktext="patch-3.14.32." />
-					<atext linktext="patch-3.14.33." />
-					<atext linktext="patch-3.14.34." />
+					<atext linktext="patch-3.18.15." />
+					<atext linktext="patch-3.18.16." />
+					<atext linktext="patch-3.18.17." />
+					<atext linktext="patch-3.19." />
+					<atext linktext="patch-3.20." />
+					<atext linktext="patch-3.21." />
 				</page>
 			</check>
 		</sources>
@@ -45,7 +41,7 @@
                         <dep>diffutils</dep>
                         <dep>findutils</dep>
                         <dep>gcc</dep>
-			<dep>cross-gcc-amd64</dep><dep>cross-gcc-amd64-klibc</dep>
+			<dep>cross-gcc-amd64-klibc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>gzip</dep>
@@ -78,16 +74,18 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
+			
 			localversion='ll-64-0'
 			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
+			
 			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64  .config 
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config 
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
-			# echo 'CONFIG_ACPI_PROCFS_POWER=y' >>  .config 
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
 			]]>
@@ -131,6 +129,7 @@
 		<test />
 		<install>
 			<![CDATA[
+			
 			localversion='ll-64-0'
 			
 			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
@@ -152,7 +151,6 @@
 			make clean
 			make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_prepare 
 			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
-			
 			]]>
 		</install>
 		<clean>
