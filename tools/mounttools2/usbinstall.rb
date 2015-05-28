@@ -269,7 +269,10 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 		puts "Editing: " + fname 
 		system("cp -v #{fname}.#{language} #{fname}") if File.exists?("#{fname}.#{language}") 
 		system("sed -i 's/homecont=[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9]/homecont=#{contsizes.min.to_s}-#{contsizes.max.to_s}/g' #{fname}") if contsizes.max > 0 
-		if tgt.size > 7_000_000_000
+		if tgt.size > 15_000_000_000
+			system("sed -i 's/swapsize=[0-9][0-9][0-9][0-9]/swapsize=1536 /g' #{fname}")
+			system("sed -i 's/blobsize=[0-9][0-9][0-9][0-9]/blobsize=2560 /g' #{fname}")
+		elsif tgt.size > 7_000_000_000
 			system("sed -i 's/swapsize=[0-9][0-9][0-9][0-9]/swapsize=1024 /g' #{fname}")
 			system("sed -i 's/blobsize=[0-9][0-9][0-9][0-9]/blobsize=1536 /g' #{fname}")
 		elsif tgt.size > 3_000_000_000
