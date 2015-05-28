@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="gettext"
-		version="0.19.3">
+		version="0.19.4">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="8a4614d5d797af98822b88858c17ad8b3ed4224f">gettext-0.19.3.tar.gz</pkg>
+				<pkg sha1="c473f4f268501d971b913197fb07767e628644bb">gettext-0.19.4.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/gettext/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
+			<manualcheck date="20150309" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gettext/">
-					<atext linktext="gettext-0.19.4." />
+					<atext linktext="gettext-0.19.7." />
 					<atext linktext="gettext-0.19.5." />
 					<atext linktext="gettext-0.19.6." />
 					<atext linktext="gettext-0.20." />
@@ -33,6 +33,7 @@
 			cd ${PKGNAME}-${PKGVERSION}/gettext-tools
 			EMACS="no" ./configure --prefix=/tools --disable-shared
 			make -C gnulib-lib
+			make -C intl pluralx.c
 			make -C src msgfmt
 			make -C src msgmerge
 			make -C src xgettext
