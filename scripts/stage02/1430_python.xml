@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="Python"
-		version="2.7.8"
+		version="2.7.9"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                      
-				<pkg sha1="9c6281eeace0c3646fa556c8087bb1b7e033c9c4">Python-2.7.8.tar.xz</pkg>
+				<pkg sha1="3172f6e957713c2d9fca462cc16068222fd1b9d3">Python-2.7.9.tar.xz</pkg>
 				<mirror>http://python.org/ftp/python/2.7.8/</mirror>
 			</file>
-			<manualcheck date="20140801" interval="180" page="http://www.python.org/" />
+			<manualcheck date="20150309" interval="180" page="http://www.python.org/" />
 			<check>
 				<page html="http://python.org/ftp/python/">
 					<atext linktext="2.7.11" />
 					<atext linktext="2.7.12" />
-					<atext linktext="2.7.9" />
+					<atext linktext="2.7.13" />
 					<atext linktext="2.7.10" />
 					<atext linktext="3.2.5" />
 					<atext linktext="3.2.6" />
@@ -74,7 +74,7 @@
 				;;
 			esac 
 				
-			./configure --prefix=/usr 
+			./configure --prefix=/usr  --enable-shared # --enable-static
 				
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 

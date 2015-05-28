@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="cross-linux-headers"
-		version="3.18.14"
+		version="3.19.8"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="4557ef53c89fe70a9da230ae1e6542856d8b0a94">linux-3.18.tar.xz</pkg>
+				<pkg sha1="b880c818c09f8c492eabc0f9c4178134b3496c56">linux-3.19.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="29a81189c9e1ea66eef4ed4916261063e7ba2e0e">patch-3.18.14.xz</pkg>
+				<pkg sha1="46dd30b8b645e39cd530adcc9e49abe06e86e826">patch-3.19.8.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
 			</file>
-			<manualcheck date="20150527" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150513" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.18.15." />
-					<atext linktext="patch-3.18.16." />
-					<atext linktext="patch-3.18.17." />
-					<atext linktext="patch-3.19." />
+					<atext linktext="patch-3.19.10." />
+					<atext linktext="patch-3.19.11." />
+					<atext linktext="patch-3.19.9." />
 					<atext linktext="patch-3.20." />
-					<atext linktext="patch-3.21." />
+					<atext linktext="patch-4.0." />
+					<atext linktext="patch-4.1." />
 				</page>
 			</check>
 		</sources>

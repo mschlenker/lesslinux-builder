@@ -1,21 +1,20 @@
 <llpackages>
 	<package 
 		name="patch"
-		version="2.7.1"
+		version="2.7.5"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="4ac0fc1a636365be9db252c9340aba7209c60bbe">patch-2.7.1.tar.gz</pkg>
+				<pkg sha1="04d23f6e48e95efb07d12ccf44d1f35fb210f457">patch-2.7.5.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/patch/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://ftp.gnu.org/gnu/patch/" />
+			<manualcheck date="20150327" interval="180" page="ftp://ftp.gnu.org/gnu/patch/" />
 			<check>
-				<page html="http://ftp.gnu.org/gnu/patch/">
-					<atext linktext="patch-2.7.3.tar.gz" />
-					<atext linktext="patch-2.7.2.tar.gz" />
+				<page html="ftp://ftp.gnu.org/gnu/patch/">
+					<atext linktext="patch-2.7.6.tar.gz" />
+					<atext linktext="patch-2.7.7.tar.gz" />
 					<atext linktext="patch-2.8.tar.gz" />
 					<atext linktext="patch-2.8.0.tar.gz" />
 					<atext linktext="patch-2.8.1.tar.gz" />

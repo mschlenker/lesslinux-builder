@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="libpng16"
-		version="1.6.14"
+		version="1.6.17"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                  
-				<pkg sha1="9cc30ac84214fda2177a02da275359ffd5b068d9">libpng-1.6.14.tar.xz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/libpng/libpng16/1.6.14/</mirror>
+				<pkg sha1="6394f3c0847c3b9ea69f4f972dddae3786592050">libpng-1.6.17.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libpng/libpng16/1.6.17/</mirror>
 			</file>
 			<file>                                                                                                  
-				<pkg sha1="d298b0e7d0d133c22963a869e9b7e84611620a17">libpng-1.6.14-apng.patch.gz</pkg>
+				<pkg sha1="98df31fa0b035ba102913fb72c4c56b44673841c">libpng-1.6.17-apng.patch.gz</pkg>
 				<mirror>http://downloads.sourceforge.net/libpng-apng/</mirror>
 			</file>
-			<manualcheck date="20141118" interval="90" page="http://downloads.sourceforge.net/project/libpng" />
+			<manualcheck date="20150331" interval="90" page="http://downloads.sourceforge.net/project/libpng" />
 			<check>
 				<page html="http://sourceforge.net/projects/libpng/files/libpng16/">
-					<atext linktext="1.6.15" />
-					<atext linktext="1.6.16" />
-					<atext linktext="1.6.17" />
 					<atext linktext="1.6.18" />
+					<atext linktext="1.6.19" />
+					<atext linktext="1.6.20" />
+					<atext linktext="1.6.21" />
 				</page>
 				<page html="http://sourceforge.net/projects/libpng/files/">
 					<atext linktext="1.8" />

@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="libbde"
-		version="20140731"
+		version="20150204"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="c261cceac2dbbed32bd869c3b998de49fa92f624">libbde-alpha-20140731.tar.gz</pkg>
-				<mirror>https://googledrive.com/host/0B3fBvzttpiiSX2VCRk16TnpDd0U/</mirror>
+				<pkg sha1="66e1aa8745b9d69d71a5ac202d496e3107524a02">libbde-alpha-20150204.tar.gz</pkg>
+				<mirror>https://github.com/libyal/libbde/releases/download/20150204/</mirror>
 			</file>
 			<manualcheck date="20140731" interval="90" page="https://googledrive.com/host/0B3fBvzttpiiSX2VCRk16TnpDd0U/" />
 			<!-- <check>
@@ -53,7 +53,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc 
+			./configure --prefix=/usr --sysconfdir=/etc --enable-python
 			make 
 			]]>
 		</build>

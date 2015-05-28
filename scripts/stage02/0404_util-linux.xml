@@ -1,29 +1,29 @@
 <llpackages>
 	<package 
 		name="util-linux-ng"
-		version="2.25.2"
+		version="2.26.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                                               
-				<pkg sha1="854f37255ca8098e88fb4220c244b727f5dd6d58">util-linux-2.25.2.tar.xz</pkg>
-				<mirror>https://www.kernel.org/pub/linux/utils/util-linux/v2.25/</mirror>
+				<pkg sha1="73aee8f0ecc5f25c206a92e0c6ed7f14a5e01d66">util-linux-2.26.1.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/util-linux/v2.26/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="120" page="https://www.kernel.org/pub/linux/utils/util-linux/" />
+			<manualcheck date="20150327" interval="120" page="https://www.kernel.org/pub/linux/utils/util-linux/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/">
 					<atext linktext="v2.27" />
 					<atext linktext="v2.28" />
-					<atext linktext="v2.26" />
+					<atext linktext="v2.29" />
 					<atext linktext="v3." />
 				</page>
-				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/v2.25/">
-					<atext linktext="util-linux-2.25.3." />
-					<atext linktext="util-linux-2.25.4." />
-					<atext linktext="util-linux-2.25.5." />
-					<atext linktext="util-linux-2.25.6." />
-					<atext linktext="util-linux-2.25.7." />
+				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/v2.26/">
+					<atext linktext="util-linux-2.26.6." />
+					<atext linktext="util-linux-2.26.2." />
+					<atext linktext="util-linux-2.26.3." />
+					<atext linktext="util-linux-2.26.4." />
+					<atext linktext="util-linux-2.26.5." />
 				</page>
 			</check>
 		</sources>
@@ -40,6 +40,7 @@
 			<dep>sed</dep>
 			<dep>autoconf213</dep>
 			<dep>automake113</dep>
+			<dep>automake114</dep>
 			<dep>ncurses</dep>
 			<dep>ncurses-8bit</dep>
 		</builddeps>
