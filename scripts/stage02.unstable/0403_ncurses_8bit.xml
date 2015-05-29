@@ -1,6 +1,6 @@
 <llpackages>
 	<package 
-		name="ncurses"
+		name="ncurses-8bit"
 		version="5.9"
 		class="lib"
 		install="destdir"
@@ -36,56 +36,45 @@
 			<dep>mpc</dep>
 			<dep>gcc</dep>
 			<dep>sed</dep>
+			<dep>ncurses</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xzf ${SRCDIR}/ncurses-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<patch><![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc5_buildfixes-1.patch | patch -p1 
+			cd ncurses-${PKGVERSION}
+			cat ${SRCDIR}/ncurses-${PKGVERSION}-gcc5_buildfixes-1.patch | patch -p1 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ncurses-${PKGVERSION}
 			case $(uname -m) 
 			in
 				x86_64) 
 					export CFLAGS="-fPIC"
 				;;
 			esac 
-			./configure --prefix=/usr --mandir=/usr/share/man --with-shared --without-debug --enable-widec --without-normal --enable-pc-files && make
+			./configure --prefix=/usr --with-shared --without-debug && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-
-			make install DESTDIR=${TGTDIR}
-			chmod -v 644 ${TGTDIR}/usr/lib/libncurses++w.a
-			mkdir -p ${TGTDIR}/lib
-			mv -v ${TGTDIR}/usr/lib/libncursesw.so.5* ${TGTDIR}/lib
-			ln -sfv ../../lib/libncursesw.so.5 ${TGTDIR}/usr/lib/libncursesw.so
-			for lib in curses ncurses form panel menu
-			do
-				ln -sfv lib${lib}w.a ${TGTDIR}/usr/lib/lib${lib}.a ; \
+			cd ncurses-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/lib
+			for i in ncurses form panel menu ; do
+				install -m 0755 lib/lib${i}.so.5.9 ${TGTDIR}/usr/lib
+				ln -s ${TGTDIR}/usr/lib/lib${i}.so.5.9 ${TGTDIR}/usr/lib/lib${i}.so.5
+				ln -s ${TGTDIR}/usr/lib/lib${i}.so.5 ${TGTDIR}/usr/lib/lib${i}.so
 			done
-			ln -sfv libncurses++w.a ${TGTDIR}/usr/lib/libncurses++.a
-			rm -vf ${TGTDIR}/usr/lib/libcursesw.so
-			echo "INPUT(-lncursesw)" > ${TGTDIR}/usr/lib/libcursesw.so
-			ln -sfv libncurses.so ${TGTDIR}/usr/lib/libcurses.so
-			ln -sfv libncursesw.a ${TGTDIR}/usr/lib/libcursesw.a
-			ln -sfv libncurses.a ${TGTDIR}/usr/lib/libcurses.a
-			mkdir -vp      ${TGTDIR}/usr/share/doc/ncurses-${PKGVERSION}
-			cp -v -R doc/* ${TGTDIR}/usr/share/doc/ncurses-${PKGVERSION}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ncurses-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
