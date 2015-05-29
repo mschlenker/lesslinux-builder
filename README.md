@@ -4,9 +4,9 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 **Legacy: Yellow** Build with `--legacy` - this uses headers and kernels from the 3.18.x LTS series.
 
-**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Building and running with 3.18.x is tested. The kernel configuration is now based on Ubuntus kernel. Cmake 3.0.2, libpng 1.6, Boost and LLVM 3.5.0 has been moved here. 
+**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Building and running with 3.19.x is tested. The kernel configuration is now based on Ubuntus kernel. Cmake 3.0.2, libpng 1.6, Boost and LLVM 3.5.0 has been moved here. 
 
-**Unstable: Green** Build with `--unstable`. pkg_content has been updated to match. Unstable kernels are based on Ubuntus config and testing has started! Cairo Dock is back to 3.3.2 since 3.4.0 does not show an application menu. See http://blog.lesslinux.org/minor-update-to-unstable-fresh-firefox-and-thunderbird-fixed-usb-boot/ 
+**Unstable: Red** Build with `--unstable`. Incomplete!
 
 ## Checking out
 
