@@ -2,9 +2,7 @@
 	<package 
 		name="ncurses"
 		version="5.9"
-		class="lib"
-		install="destdir"
-		>
+		class="lib">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                      
@@ -45,6 +43,7 @@
 		<patch><![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc5_buildfixes-1.patch | patch -p1 
+			sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in
 			]]>
 		</patch>
 		<build>
@@ -56,7 +55,14 @@
 					export CFLAGS="-fPIC"
 				;;
 			esac 
-			./configure --prefix=/usr --mandir=/usr/share/man --with-shared --without-debug --enable-widec --without-normal --enable-pc-files && make
+			./configure \
+				--prefix=/usr \
+				--mandir=/usr/share/man \
+				--with-shared \
+				--without-debug \
+				--enable-widec \
+				--without-normal \
+				--enable-pc-files && make
 			]]>
 		</build>
 		<test />
@@ -64,23 +70,19 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 
-			make install DESTDIR=${TGTDIR}
-			chmod -v 644 ${TGTDIR}/usr/lib/libncurses++w.a
-			mkdir -p ${TGTDIR}/lib
-			mv -v ${TGTDIR}/usr/lib/libncursesw.so.5* ${TGTDIR}/lib
-			ln -sfv ../../lib/libncursesw.so.5 ${TGTDIR}/usr/lib/libncursesw.so
-			for lib in curses ncurses form panel menu
-			do
-				ln -sfv lib${lib}w.a ${TGTDIR}/usr/lib/lib${lib}.a ; \
+			make install  
+			mv -v  /usr/lib/libncursesw.so.5*  /lib
+			ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so
+			for lib in ncurses form panel menu ; do
+				rm -vf                    /usr/lib/lib${lib}.so
+				echo "INPUT(-l${lib}w)" > /usr/lib/lib${lib}.so
+				ln -sfv ${lib}w.pc        /usr/lib/pkgconfig/${lib}.pc
 			done
-			ln -sfv libncurses++w.a ${TGTDIR}/usr/lib/libncurses++.a
-			rm -vf ${TGTDIR}/usr/lib/libcursesw.so
-			echo "INPUT(-lncursesw)" > ${TGTDIR}/usr/lib/libcursesw.so
-			ln -sfv libncurses.so ${TGTDIR}/usr/lib/libcurses.so
-			ln -sfv libncursesw.a ${TGTDIR}/usr/lib/libcursesw.a
-			ln -sfv libncurses.a ${TGTDIR}/usr/lib/libcurses.a
-			mkdir -vp      ${TGTDIR}/usr/share/doc/ncurses-${PKGVERSION}
-			cp -v -R doc/* ${TGTDIR}/usr/share/doc/ncurses-${PKGVERSION}
+			rm -vf                     /usr/lib/libcursesw.so
+			echo "INPUT(-lncursesw)" > /usr/lib/libcursesw.so
+			ln -sfv libncurses.so      /usr/lib/libcurses.so
+			
+			 
 			]]>
 		</install>
 		<clean>

@@ -63,6 +63,11 @@
 		<test />
 		<install>
 			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/etc/lesslinux
+			touch ${TGTDIR}/etc/lesslinux/ncurses-${PKGVERSION}-dummy 
+			exit 0
+			
 			cd ncurses-${PKGVERSION}
 			mkdir -p ${TGTDIR}/usr/lib
 			for i in ncurses form panel menu ; do
