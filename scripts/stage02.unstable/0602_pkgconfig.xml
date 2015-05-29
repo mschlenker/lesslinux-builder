@@ -1,0 +1,76 @@
+<llpackages>
+	<package 
+		name="pkg-config"
+		version="0.28"
+		class="devel"
+		install="destdir"
+		>
+		<!--
+		
+		BE CAREFUL! pkg-config 0.24 breaks Xorg xf86-video-ati and xf86-video-nv as of 2010-05-26
+		So for now keep version 0.23 and wait for 0.25
+		
+		-->
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                  
+				<pkg sha1="71853779b12f958777bffcb8ca6d849b4d3bed46">pkg-config-0.28.tar.gz</pkg>
+				<mirror>http://pkgconfig.freedesktop.org/releases/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="365" page="http://people.freedesktop.org/~dbn/" />
+			<check>
+				<page html="http://pkgconfig.freedesktop.org/releases/">
+					<atext linktext="pkg-config-0.28.1.t" />
+					<atext linktext="pkg-config-0.28.2.t" />
+					<atext linktext="pkg-config-0.29.t" />
+					<atext linktext="pkg-config-0.30.t" />
+					<atext linktext="pkg-config-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gcc</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+			<dep>coreutils</dep>
+			<dep>bison</dep>
+			<dep>procps</dep>
+			<dep>grep</dep>
+			<dep>bash</dep>
+			<dep>inetutils</dep>
+			<dep>perl</dep>
+			<dep>pcre</dep>
+			<dep>popt</dep>
+			<!-- <dep>glib</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --with-internal-glib --disable-host-tool 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
