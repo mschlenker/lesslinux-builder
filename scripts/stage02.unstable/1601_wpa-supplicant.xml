@@ -1,0 +1,109 @@
+<llpackages>
+	<package 
+		name="wpa_supplicant"
+		version="2.4"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="22886a40b09029b0b8544d4bb268ed07912c103d">wpa_supplicant-2.4.tar.gz</pkg>
+				<mirror>http://hostap.epitest.fi/releases/</mirror>
+			</file>
+			<manualcheck date="20150529" interval="180" page="http://hostap.epitest.fi/releases/" />
+			<check>
+				<page html="http://hostap.epitest.fi/releases/">
+					<atext linktext="wpa_supplicant-2.6" />
+					<atext linktext="wpa_supplicant-2.7" />
+					<atext linktext="wpa_supplicant-2.8" />
+					<atext linktext="wpa_supplicant-2.9" />
+					<atext linktext="wpa_supplicant-2.5" />
+					<atext linktext="wpa_supplicant-3." />
+					<atext linktext="wpa_supplicant-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+			<dep>distcc</dep>
+			<dep>dbus</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/wpa_supplicant
+
+cat > .config << "EOF"
+BINDIR=/usr/sbin
+LIBDIR=/usr/lib
+CONFIG_BACKEND=file
+CONFIG_CTRL_IFACE=y
+CONFIG_DEBUG_FILE=y
+CONFIG_DEBUG_SYSLOG=y
+CONFIG_DEBUG_SYSLOG_FACILITY=LOG_DAEMON
+CONFIG_DRIVER_NL80211=y
+CONFIG_DRIVER_WEXT=y
+CONFIG_DRIVER_WIRED=y
+CONFIG_EAP_GTC=y
+CONFIG_EAP_LEAP=y
+CONFIG_EAP_MD5=y
+CONFIG_EAP_MSCHAPV2=y
+CONFIG_EAP_OTP=y
+CONFIG_EAP_PEAP=y
+CONFIG_EAP_TLS=y
+CONFIG_EAP_TTLS=y
+CONFIG_IEEE8021X_EAPOL=y
+CONFIG_IPV6=y
+CONFIG_LIBNL32=y
+CONFIG_PEERKEY=y
+CONFIG_PKCS12=y
+CONFIG_READLINE=y
+CONFIG_SMARTCARD=y
+CONFIG_WPS=y
+CONFIG_CTRL_IFACE_DBUS=y
+CONFIG_CTRL_IFACE_DBUS_NEW=y
+CONFIG_CTRL_IFACE_DBUS_INTRO=y
+CFLAGS += -I/usr/include/libnl3
+EOF
+
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/wpa_supplicant
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
