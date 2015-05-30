@@ -37,6 +37,7 @@
 			tar xzf ${SRCDIR}/gc-${PKGVERSION}.tar.gz
 			cd gc-${PKGVERSION} 
 			tar xzf ${SRCDIR}/libatomic_ops-${PKGVERSION}.tar.gz
+			mv libatomic_ops-${PKGVERSION} libatomic_ops 
 			]]>
 		</unpack>
 		<patch />
