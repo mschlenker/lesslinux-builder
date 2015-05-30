@@ -69,8 +69,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf mesa-${PKGVERSION}.tar.xz 
-			 
+			tar xJf ${SRCDIR}/mesa-${PKGVERSION}.tar.xz 
 			]]>
 		</unpack>
 		<build>
@@ -88,7 +87,7 @@
 			echo 'Current environment:'
 			env
 			
-			# bash autogen.sh 
+			bash autogen.sh 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
