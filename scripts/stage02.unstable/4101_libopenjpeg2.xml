@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="openjpeg2"
+		version="2.1.0"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="c2a255f6b51ca96dc85cd6e85c89d300018cb1cb">openjpeg-2.1.0.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/openjpeg.mirror/</mirror>
+			</file>
+			<manualcheck date="20150529" interval="365" page="http://code.google.com/p/openjpeg/downloads/list" />
+			<!-- <check>
+				<page html="http://code.google.com/p/openjpeg/downloads/list">
+					<atext linktext="openjpeg_v1_3_1.tar.gz" />
+					<atext linktext="openjpeg_v1_4.tar.gz" />
+					<atext linktext="openjpeg_v1_5.tar.gz" />
+					<atext linktext="openjpeg_v2_0.tar.gz" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>xproto-base</dep>
+			<dep>cmake</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/openjpeg-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd openjpeg-${PKGVERSION}
+			mkdir build
+			cd build 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				cmake -DCMAKE_BUILD_TYPE=Release   -DCMAKE_INSTALL_PREFIX=/usr ..
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				cmake -DCMAKE_BUILD_TYPE=Release   -DCMAKE_INSTALL_PREFIX=/usr ..
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd openjpeg-${PKGVERSION}/build 
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf openjpeg-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
