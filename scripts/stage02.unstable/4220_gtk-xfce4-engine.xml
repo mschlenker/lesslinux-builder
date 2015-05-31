@@ -1,0 +1,107 @@
+<llpackages>
+	<package 
+		name="gtk-xfce-engine"
+		version="3.2.0"
+		class="lib"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                            
+				<pkg sha1="a00e0925728ca2dd9e8b1d41c692b775c446bf28">gtk-xfce-engine-3.2.0.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/xfce/gtk-xfce-engine/3.2/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="180" page="http://archive.xfce.org/src/xfce/gtk-xfce-engine/" />
+			<check>
+				<page html="http://archive.xfce.org/src/xfce/gtk-xfce-engine/3.2/">
+					<atext linktext="gtk-xfce-engine-3.2.2" />
+					<atext linktext="gtk-xfce-engine-3.2.3" />
+					<atext linktext="gtk-xfce-engine-3.2.4" />
+					<atext linktext="gtk-xfce-engine-3.2.1" />
+				</page>
+				<page html="http://archive.xfce.org/src/xfce/gtk-xfce-engine/">
+					<atext linktext="3.1" />
+					<atext linktext="3.2" />
+					<atext linktext="3.3" />
+					<atext linktext="3.4" />
+					<atext linktext="4.0" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
