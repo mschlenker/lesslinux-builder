@@ -1,0 +1,117 @@
+<llpackages>
+	<package 
+		name="exo"
+		version="0.10.6"
+		class="lib"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                  
+				<pkg sha1="af1f6ec345ee4c64efb2657a7499ef9076b4b410">exo-0.10.6.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/xfce/exo/0.10/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="180" page="http://archive.xfce.org/src/xfce/exo/0.10/" />
+			<check>
+				<page html="http://archive.xfce.org/src/xfce/exo/0.10/">
+					<atext linktext="exo-0.10.7" />
+					<atext linktext="exo-0.10.8" />
+					<atext linktext="exo-0.10.9" />
+					<atext linktext="exo-0.10.10" />
+				</page>
+				<page html="http://archive.xfce.org/src/xfce/exo/">
+					<atext linktext="0.11" />
+					<atext linktext="0.12" />
+					<atext linktext="0.13" />
+					<atext linktext="0.14" />
+					<atext linktext="1.0" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libgnomecanvas</dep>
+                        <dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxfce4util</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-uri</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>pygtk</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			paxctl -m ${TGTDIR}/usr/bin/exo-desktop-item-edit
+			paxctl -m ${TGTDIR}/usr/bin/exo-open
+			paxctl -m ${TGTDIR}/usr/libexec/exo-helper-0.3
+			paxctl -m ${TGTDIR}/usr/libexec/exo-helper-0.6
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
