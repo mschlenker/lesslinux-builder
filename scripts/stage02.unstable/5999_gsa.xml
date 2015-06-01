@@ -1,0 +1,62 @@
+<llpackages>
+	<package 
+		name="greenbone-security-assistant"
+		version="5.0.7"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="5b2f131756232133412ea954275cc55da10ec30f">greenbone-security-assistant-5.0.7.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2039/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>glib</dep>
+                        <dep>gnutls3</dep>
+                        <dep>grep</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libmicrohttpd</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>openvas-libraries</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>subversion</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
