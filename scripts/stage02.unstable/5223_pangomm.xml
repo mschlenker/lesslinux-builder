@@ -1,0 +1,83 @@
+<llpackages>
+	<package 
+		name="pangomm"
+		version="2.36.0"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                 
+				<pkg sha1="eb23bca29b2ea216b58f39292a9c5e5c293716c5">pangomm-2.36.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.36/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.28/" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.28/">
+					<atext linktext="pangomm-2.28.5." />
+					<atext linktext="pangomm-2.28.6." />
+					<atext linktext="pangomm-2.28.7." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/">
+					<atext linktext="2.32" />
+					<atext linktext="2.30" />
+					<atext linktext="3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>cairomm</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>glibmm</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libsigc++</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --sysconfdir=/etc --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
