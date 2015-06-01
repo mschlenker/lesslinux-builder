@@ -1,0 +1,51 @@
+<llpackages>
+    <package name='setuptools' version='17.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8dd9f58bba2208a0223f7921ee8609a93436d0d8'>
+                    setuptools-17.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/s/setuptools/
+                </mirror>
+            </file>
+            <manualcheck date='20150601' interval='60' mirror='https://pypi.python.org/packages/source/s/setuptools/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>docutils</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>openssl</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>six</dep>
+                        <dep>xpra</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
