@@ -46,14 +46,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make -C make/linux prefix=/usr
+			./configure --prefix=/usr 
+			make
+			# make -C make/linux prefix=/usr
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make -C make/linux prefix=/usr install
+			make install
+			# make -C make/linux prefix=/usr install
 			]]>
 		</install>
 		<clean>
