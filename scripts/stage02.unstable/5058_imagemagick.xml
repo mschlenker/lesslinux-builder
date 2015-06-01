@@ -1,0 +1,125 @@
+<llpackages>
+	<package 
+		name="ImageMagick"
+		version="6.9.1-4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                              
+				<pkg sha1="ed0743e1a999461433a45a10f8afe6bf2c62a884">ImageMagick-6.9.1-4.tar.xz</pkg>
+				<mirror>ftp://ftp.imagemagick.org/pub/ImageMagick/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="180" page="ftp://ftp.imagemagick.org/pub/ImageMagick/" />
+			<check>
+				<page html="ftp://ftp.imagemagick.org/pub/ImageMagick/">
+					<atext linktext="ImageMagick-6.9.1-5." />
+					<atext linktext="ImageMagick-6.9.1-6." />
+					<atext linktext="ImageMagick-6.9.1-7." />
+					<atext linktext="ImageMagick-6.9.1-8." />
+					<atext linktext="ImageMagick-6.9.2" />
+					<atext linktext="ImageMagick-6.9.3" />
+					<atext linktext="ImageMagick-6.12" />
+					<atext linktext="ImageMagick-6.10" />
+					<atext linktext="ImageMagick-6.11" />
+					<atext linktext="ImageMagick-7" />
+					<atext linktext="ImageMagick-8" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>ffmpeg</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libtool</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>tiff</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xterm</dep>
+                        <dep>zip</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			<dep>imake</dep>
+			<dep>xdg-utils</dep>
+			<dep>librsvg</dep>
+			<dep>curl</dep>
+			<dep>p7zip</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			elif [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz ] ; then
+				unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				pump make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			rm ${TGTDIR}/usr/bin/convert
+			make install DESTDIR=${TGTDIR}
+			exit 0
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>	   
+	</package>
+</llpackages>
