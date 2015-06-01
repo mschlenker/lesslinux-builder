@@ -1,0 +1,62 @@
+<llpackages>
+	<package 
+		name="libdvdnav"
+		version="5.0.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="e3ec3277e37dd1714e7dc7d205b8fd084125b51a">libdvdnav-5.0.3.tar.xz</pkg>
+				<mirror>http://download.videolan.org/videolan/libdvdnav/5.0.3/</mirror>
+			</file>
+			<manualcheck date="20150601" interval="180" page="http://dvdnav.mplayerhq.hu/releases/" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
+					<atext linktext="gnome-calculator-3.10.6." />
+					<atext linktext="gnome-calculator-3.10.3." />
+					<atext linktext="gnome-calculator-3.10.4." />
+					<atext linktext="gnome-calculator-3.10.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
+					<atext linktext="3.12" />
+					<atext linktext="3.14" />
+					<atext linktext="4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>libdvdread</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
