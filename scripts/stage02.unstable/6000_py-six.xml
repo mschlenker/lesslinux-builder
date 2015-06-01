@@ -1,0 +1,43 @@
+<llpackages>
+    <package name='six' version='1.9.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d168e6d01f0900875c6ecebc97da72d0fda31129'>
+                    six-1.9.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/s/six/
+                </mirror>
+            </file>
+            <manualcheck date='20150601' interval='60' mirror='https://pypi.python.org/packages/source/s/six/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
