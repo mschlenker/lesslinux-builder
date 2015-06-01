@@ -1,0 +1,93 @@
+<llpackages>
+	<package 
+		name="audacious"
+		version="3.6.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="d4c7b0b0e182b42b242a6e711e236174b8127c24">audacious-3.6.2.tar.bz2</pkg>
+				<mirror>http://distfiles.audacious-media-player.org/</mirror>
+			</file>
+			<manualcheck date="20150601" interval="120" page="http://distfiles.audacious-media-player.org/" />
+			<check>
+				<page html="http://distfiles.audacious-media-player.org/">
+					<atext linktext="audacious-3.6.7." />
+					<atext linktext="audacious-3.6.3." />
+					<atext linktext="audacious-3.6.4." />
+					<atext linktext="audacious-3.6.5." />
+					<atext linktext="audacious-3.6.6." />
+					<atext linktext="audacious-3.7." />
+					<atext linktext="audacious-3.8." />
+					<atext linktext="audacious-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ms-sys</dep>
+                        <dep>ncurses</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --enable-thunar 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
