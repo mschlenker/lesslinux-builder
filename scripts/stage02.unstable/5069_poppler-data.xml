@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="poppler-data"
+		version="0.4.7"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                   
+				<pkg sha1="556a5bebd0eb743e0d91819ba11fd79947d8c674">poppler-data-0.4.7.tar.gz</pkg>
+				<mirror>http://poppler.freedesktop.org/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="180" page="http://poppler.freedesktop.org/" />
+			<check>
+				<page html="http://poppler.freedesktop.org/">
+					<atext linktext="poppler-data-0.4.9." />
+					<atext linktext="poppler-data-0.4.10." />
+					<atext linktext="poppler-data-0.4.8." />
+					<atext linktext="poppler-data-0.5." />
+					<atext linktext="poppler-data-0.6." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>make</dep>
+			<dep>poppler</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make prefix=/usr PREFIX=/usr
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} prefix=/usr PREFIX=/usr
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
