@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="xdelta-static"
+		version="3.0.9"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                           
+				<pkg sha1="a3c28412052f3f49ba1ea60ca9c97fcb377cc70f">xdelta3-3.0.9.tar.xz</pkg>
+				<mirror>https://github.com/jmacd/xdelta-devel/releases/download/v3.0.9/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="90" page="https://github.com/jmacd/xdelta-devel/releases" />
+			<!-- <check>
+				<page html="http://code.google.com/p/xdelta/downloads/list">
+					<atext linktext="xdelta3-3.0.9" />
+					<atext linktext="xdelta3-3.0.10" />
+					<atext linktext="xdelta3-3.0.11" />
+					<atext linktext="xdelta3-3.0.12" />
+					<atext linktext="xdelta3-3.0.13" />
+					<atext linktext="xdelta3-3.0.14" />
+					<atext linktext="xdelta3-3.1." />
+					<atext linktext="xdelta3-3.2." />
+					<atext linktext="xdelta3-3.3." />
+					<atext linktext="xdelta4" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/xdelta3-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/xdelta3-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/xdelta3-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd xdelta3-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc --enable-static
+				pump make -j $jobcount xdelta3 LDFLAGS=-static
+			else
+				./configure --prefix=/static --sysconfdir=/etc --enable-static
+				make xdelta3 LDFLAGS=-static
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/static/bin
+			install -m 0755 xdelta3-${PKGVERSION}/xdelta3 ${TGTDIR}/static/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf xdelta3-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
