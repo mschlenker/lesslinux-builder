@@ -36,14 +36,15 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			sed 's%/usr/local%/usr%g' < makefiles/makefile.linux > Makefile
+			# sed 's%/usr/local%/usr%g' < makefiles/makefile.linux > Makefile
+			./configure --prefix=/usr 
 			make
 			]]>
 		</build>
