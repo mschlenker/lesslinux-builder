@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="partclone"
-		version="0.2.70"
+		version="0.2.78"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                            
-				<pkg sha1="b74fb448c42b042d768331f4a6238d3de9dbf85d">partclone_0.2.70.orig.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/partclone/stable/0.2.70/</mirror>
+				<pkg sha1="c91b8a6dc3656819e0619448898c8f10c9884c8b">partclone-0.2.78.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/partclone/stable/0.2.78/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="180" page="http://downloads.sourceforge.net/project/partclone/stable/" />
-			<check>
+			<manualcheck date="20150601" interval="180" page="http://downloads.sourceforge.net/project/partclone/stable/" />
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/partclone/files/stable/">
 					<atext linktext="0.2.85" />
 					<atext linktext="0.2.71" />
@@ -32,7 +32,7 @@
 					<atext linktext="0.4" />
 					<atext linktext="0.5" />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -56,7 +56,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<build>
