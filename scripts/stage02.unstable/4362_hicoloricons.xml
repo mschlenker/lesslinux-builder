@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources> 
 			<file>               
-				<pkg sha1="368ecc47521e1a2f72cef0171bee02aae876ff53">hicolor-icon-theme-0.15.tar.gz</pkg>
+				<pkg sha1="368ecc47521e1a2f72cef0171bee02aae876ff53">hicolor-icon-theme-0.15.tar.xz</pkg>
 				<mirror>http://icon-theme.freedesktop.org/releases/</mirror>
 			</file>
 			<manualcheck date="20150530" interval="365" page="http://icon-theme.freedesktop.org/releases/" />
@@ -35,11 +35,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
