@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="garcon"
+		version="0.5.0"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="87475d3f2a4ad81091dc5db4a0dda1af21628884">garcon-0.5.0.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/libs/garcon/0.5/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="180" page="http://archive.xfce.org/src/libs/garcon/0.2/" />
+			<check>
+				<page html="http://archive.xfce.org/src/libs/garcon/0.5/">
+					<atext linktext="garcon-0.5.1" />
+					<atext linktext="garcon-0.5.2" />
+					<atext linktext="garcon-0.5.3" />
+					<atext linktext="garcon-0.5.4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>libxfce4util</dep>
+                </builddeps> 
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
