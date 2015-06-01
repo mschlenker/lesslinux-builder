@@ -82,14 +82,14 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			# FIXME! Fix search for gio header:
 			cd ${PKGNAME}-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-bsd.patch | patch -p1
 			sed -i 's%gio/gdesktopappinfo\.h%gio-unix-2.0/gio/gdesktopappinfo.h%g' GMenu-old/src/applet-util.c
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
