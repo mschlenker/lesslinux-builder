@@ -86,7 +86,7 @@
 			echo 'Current environment:'
 			env
 			
-			bash autogen.sh 
+			# bash autogen.sh 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -97,7 +97,8 @@
 				export CXX='/usr/bin/g++'
 			fi
 			
-			./configure CFLAGS='-O2' CXXFLAGS='-O2' --prefix=/usr     \
+			./configure CFLAGS='-O2' CXXFLAGS='-O2' \
+				--prefix=/usr     \
 				--sysconfdir=/etc              \
 				--enable-texture-float         \
 				--enable-gles1                 \
