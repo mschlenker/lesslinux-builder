@@ -101,7 +101,9 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc --enable-wayland-backend=no --enable-wayland-compositor=no 
+			./configure --prefix=/usr --sysconfdir=/etc \
+				--enable-wayland-backend=no --enable-wayland-compositor=no \
+				--enable-x11-backend=yes
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount
 			else
