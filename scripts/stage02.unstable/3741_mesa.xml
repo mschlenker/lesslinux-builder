@@ -99,6 +99,7 @@
 			fi
 			
 			./configure CFLAGS='-O2' CXXFLAGS='-O2' \
+				--enable-static \
 				--prefix=/usr     \
 				--sysconfdir=/etc              \
 				--enable-texture-float         \
