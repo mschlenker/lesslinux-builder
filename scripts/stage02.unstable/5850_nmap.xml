@@ -31,7 +31,6 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>gcc49</dep>
                         <dep>Python</dep>
                         <dep>apr</dep>
                         <dep>bash</dep>
@@ -65,8 +64,7 @@
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
-			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
-				./configure --prefix=/usr --sysconfdir=/etc
+			./configure --prefix=/usr --sysconfdir=/etc --with-liblua=included --with-libpcap=included 
 			make
 			
 			]]>
