@@ -93,7 +93,7 @@
 			./open-watcom-c-linux-1.9 -i -dDstDir=${OWPWD}/ow19 -dFullInstall=1
 			ls -lah
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening --disable-java --disable-python --disable-pulse --disable-kmods --disable-docs # --with-gcc=/usr/local/gcc48/bin/gcc48 --with-g++=/usr/local/gcc48/bin/g++48
+			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening --disable-java --disable-python --disable-pulse --disable-kmods --disable-docs --with-gcc=/usr/local/gcc49/bin/gcc49 --with-g++=/usr/local/gcc49/bin/g++49
 			source env.sh
 			kmk
 			]]>
