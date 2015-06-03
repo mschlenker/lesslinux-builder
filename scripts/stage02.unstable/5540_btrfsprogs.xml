@@ -35,6 +35,7 @@
 			<![CDATA[ 
 			cd ${PKGNAME}
 			bash autogen.sh 
+			./configure --prefix=/usr --sysconfdir=/etc 
 			sed -i 's/ build-Documentation//g' Makefile 
 			sed -i 's/ install-Documentation//g' Makefile
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
