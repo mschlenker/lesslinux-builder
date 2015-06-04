@@ -42,6 +42,7 @@
                         <dep>subversion</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -53,6 +54,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			find nasl -type f -exec sed -i 's/-Werror/ /g' {} \;
 			make
 			]]>
 		</build>
