@@ -96,8 +96,11 @@
 			mkdir build ; cd build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
+				export CC="distcc /usr/local/gcc49/bin/gcc49"
+				export CXX="distcc /usr/local/gcc49/bin/g++49"
+			else
+				export CC=/usr/local/gcc49/bin/gcc49 
+				export CXX=/usr/local/gcc49/bin/g++49
 			fi
 			cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
