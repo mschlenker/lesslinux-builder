@@ -35,6 +35,8 @@
                         <dep>pcre</dep>
                         <dep>pkg-config</dep>
                         <dep>xproto-base</dep>
+			<dep>cmake</dep>
+			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -44,7 +46,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
-			make
+			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 make
 			]]>
 		</build>
 		<test />
