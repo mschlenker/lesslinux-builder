@@ -63,9 +63,9 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.2 liblua.so.5.2.3" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
-			mkdir -pv /usr/share/doc/lua-5.2.3 
-			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.2.3
+			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.2 liblua.so.5.2.4" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
+			mkdir -pv /usr/share/doc/lua-5.2.4
+			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.2.4
 
 cat > /usr/lib/pkgconfig/lua.pc << "EOF"
 V=5.2
