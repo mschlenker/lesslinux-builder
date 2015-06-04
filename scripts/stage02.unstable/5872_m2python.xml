@@ -32,7 +32,8 @@
                         <dep>openssl</dep>
                         <dep>pygobject</dep>
                         <dep>swig</dep>
-			<dep>setuptools</dep>
+			<!-- FIXME cycle? -->
+			<!-- <dep>setuptools</dep> -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
