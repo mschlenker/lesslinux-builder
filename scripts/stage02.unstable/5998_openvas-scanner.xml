@@ -40,6 +40,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			find . -type f -exec sed -i 's/-Werror/ /g' {} \;
 			make
 			]]>
 		</build>
