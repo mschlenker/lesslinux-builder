@@ -1,0 +1,118 @@
+<llpackages>
+	<package 
+		name="Remmina"
+		version="20150605"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="c3c04246731ff6bb91f1fba2043ba4eb17e0fa62">Remmina-20150605.tar.bz2</pkg>
+				<mirror>http://cloud.github.com/downloads/FreeRDP/Remmina</mirror>
+			</file>
+			<manualcheck date="20150605" interval="60" page="https://github.com/FreeRDP" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xset-1.2.3." />
+					<atext linktext="xset-1.2.4." />
+					<atext linktext="xset-1.2.5." />
+					<atext linktext="xset-1.2.6." />
+					<atext linktext="xset-1.3." />
+					<atext linktext="xset-1.4." />
+					<atext linktext="xset-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>LibVNCServer</dep>
+                        <dep>atk</dep>
+                        <dep>avahi</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>freerdp</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>git</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gtk3</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXScrnSaver</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXft</dep>
+                        <dep>libXi</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXtst</dep>
+                        <dep>libXv</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgnome-keyring</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libssh</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd Remmina
+			# git checkout master
+			cmake -DCMAKE_INSTALL_PREFIX=/usr   -DWITH_APPINDICATOR=OFF -DWITH_TELEPATHY=OFF  .
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd Remmina
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/share/applications
+
+cat >> ${TGTDIR}/usr/share/applications/remmina.desktop << RMDESKTOP
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Remmina
+Comment=
+Categories=Utility;
+Exec=remmina
+Icon=remmina
+Terminal=false
+StartupNotify=true
+
+RMDESKTOP
+
+			]]>
+		</install>
+	</package>
+</llpackages>

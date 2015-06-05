@@ -30,10 +30,10 @@
                         <dep>glibc</dep>
                         <dep>linux_headers</dep>
                         <dep>openssl</dep>
+			<!-- FIXME cycle? 
                         <dep>pygobject</dep>
-                        <dep>swig</dep>
-			<!-- FIXME cycle? -->
-			<!-- <dep>setuptools</dep> -->
+                        <dep>swig</dep> -->
+			<dep>setuptools</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

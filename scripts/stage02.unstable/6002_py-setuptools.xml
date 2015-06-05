@@ -16,16 +16,16 @@
         </sources>
 	<builddeps>
                         <dep>bash</dep>
-                        <dep>Cython</dep>
+                       <!-- <dep>Cython</dep> -->
                         <dep>distcc</dep>
                         <dep>docutils</dep>
-                        <dep>M2Crypto</dep>
-                        <dep>nmap</dep>
+                        <!-- <dep>M2Crypto</dep> -->
+                       <!-- <dep>nmap</dep> -->
                         <dep>openssl</dep>
-                        <dep>pygobject</dep>
+                       <!--  <dep>pygobject</dep> -->
                         <dep>Python</dep>
-                        <dep>six</dep>
-                        <dep>xpra</dep>
+                       <!-- <dep>six</dep> 
+                        <dep>xpra</dep> -->
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
