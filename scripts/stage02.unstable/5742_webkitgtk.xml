@@ -118,7 +118,10 @@
 				export CC=/usr/local/gcc49/bin/gcc49 
 				export CXX=/usr/local/gcc49/bin/g++49
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc  --enable-geolocation=no --enable-gtk-doc=no
+			# ./configure --prefix=/usr --sysconfdir=/etc  --enable-geolocation=no --enable-gtk-doc=no 
+			./configure  --disable-webgl  --prefix=/usr --sysconfdir=/etc \
+				--enable-geolocation=no --enable-gtk-doc=no \
+				--enable-gles2=no --enable-egl=no --enable-glx=no
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 				make
