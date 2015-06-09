@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="xf86-input-vmmouse"
-		version="13.0.0"
+		version="13.0.99"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                             
-				<pkg sha1="0fa67d2ca9b2b26d32b93cc030fc3ea28964fe81">xf86-input-vmmouse-13.0.0.tar.bz2</pkg>
+				<pkg sha1="2ff9a9d92a2ed59b3ce48197f186bcc39e29f303">xf86-input-vmmouse-13.0.99.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<manualcheck date="20150609" interval="90" page="http://xorg.freedesktop.org/archive/individual/driver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
 					<atext linktext="xf86-input-vmmouse-13.0.1." />
@@ -72,8 +72,8 @@
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				export CC=/usr/local/gcc49/bin/gcc49 
-				export CXX=/usr/local/gcc49/bin/g++49
+				# export CC=/usr/local/gcc49/bin/gcc49 
+				# export CXX=/usr/local/gcc49/bin/g++49
 				./configure --sysconfdir=/etc --prefix=/usr 
 				make
 			fi
