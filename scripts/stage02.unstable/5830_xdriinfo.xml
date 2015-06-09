@@ -42,6 +42,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
+			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -52,6 +53,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export CC=/usr/local/gcc49/bin/gcc49 
+			export CXX=/usr/local/gcc49/bin/g++49
 			 ./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
