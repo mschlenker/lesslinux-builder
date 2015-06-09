@@ -1,0 +1,63 @@
+<llpackages>
+    <package name='i3' version='4.10.2' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='dc50d112645b9838d05e5864dc09a160c4cec8a1'>
+                    i3-4.10.2.tar.bz2
+                </pkg>
+                <mirror>
+                    http://i3wm.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20150609' interval='60' mirror='http://i3wm.org/downloads/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>libX11</dep>
+                        <dep>libev</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>startup-notification</dep>
+                        <dep>util-keysyms</dep>
+                        <dep>which</dep>
+                        <dep>xcb-util-cursor</dep>
+                        <dep>xcb-util-wm</dep>
+                        <dep>xcb-util</dep>
+                        <dep>xproto-base</dep>
+                        <dep>yajl</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
