@@ -55,7 +55,8 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			export CC=/usr/local/gcc49/bin/gcc49 
 			export CXX=/usr/local/gcc49/bin/g++49
-			 ./configure --prefix=/usr --sysconfdir=/etc && make
+			export SHELL=/bin/bash
+			bash ./configure --prefix=/usr --sysconfdir=/etc CC=/usr/local/gcc49/bin/gcc49  CXX=/usr/local/gcc49/bin/g++49 && make
 			]]>
 		</build>
 		<test />
