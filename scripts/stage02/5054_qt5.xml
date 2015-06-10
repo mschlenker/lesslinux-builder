@@ -101,11 +101,11 @@
 				export CC='distcc gcc'
 				export CXX='distcc g++'
 				./configure -prefix /usr/compat.new -gtkstyle -opensource -release -system-sqlite \
-				-silent -no-nis -confirm-license -nomake examples -nomake tests -no-pch
+				-silent -no-nis -confirm-license -nomake examples -nomake tests -no-pch -skip qtwebengine
 				pump make -j $jobcount 
 			else
 				./configure -prefix /usr/compat.new -gtkstyle -opensource -release -system-sqlite \
-				-silent -no-nis -confirm-license -nomake examples -nomake tests 
+				-silent -no-nis -confirm-license -nomake examples -nomake tests -skip qtwebengine
 				make -j 6
 			fi
 			]]>
