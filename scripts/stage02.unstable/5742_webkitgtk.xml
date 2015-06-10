@@ -118,16 +118,17 @@
 				export CC=/usr/local/gcc49/bin/gcc49 
 				export CXX=/usr/local/gcc49/bin/g++49
 			fi
-			# ./configure --prefix=/usr --sysconfdir=/etc  --enable-geolocation=no --enable-gtk-doc=no 
-			./configure  --disable-webgl  --prefix=/usr --sysconfdir=/etc \
-				--enable-geolocation=no --enable-gtk-doc=no \
-				--enable-gles2=no --enable-egl=no --enable-glx=no
+			# ./configure --prefix=/usr --sysconfdir=/etc  --enable-geolocation=no --enable-gtk-doc=no --disable-webgl 
+			./configure  --prefix=/usr --sysconfdir=/etc \
+				--enable-geolocation=no --enable-gtk-doc=no --enable-introspection  
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 				make
 			else
 				make -j ` grep -c processor /proc/cpuinfo ` 
 			fi
+			make -j ` grep -c processor /proc/cpuinfo ` LIBS='-ldl -lGL -lglapi'
+			make 
 			]]>
 		</build>
 		<test />
