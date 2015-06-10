@@ -1,18 +1,16 @@
 <llpackages>
-    <package name='i3' version='4.10.2' install='destdir'>
+    <package name='libxkbcommon' version='20150610' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='dc50d112645b9838d05e5864dc09a160c4cec8a1'>
-                    i3-4.10.2.tar.bz2
-                </pkg>
+                <pkg sha1='89577c13e643d36c5b1ad4dc656125ace267d7c6'></pkg>
                 <mirror>
-                    http://i3wm.org/downloads/
+                    http://distfiles.lesslinux.org/
                 </mirror>
             </file>
-            <manualcheck date='20150609' interval='60' mirror='http://i3wm.org/downloads/'/>
+            <manualcheck date='20150610' interval='60' mirror='https://github.com/xkbcommon/libxkbcommon'/>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -39,7 +37,6 @@
                         <dep>xcb-util</dep>
                         <dep>xproto-base</dep>
                         <dep>yajl</dep>
-			<dep>libxkbcommon</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
@@ -47,17 +44,19 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME} 
+	    bash autogen.sh
+	    ./configure --prefix=/usr --sysconfdir=/etc 
 	    make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME} 
 	    make install DESTDIR=${TGTDIR}
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+            <![CDATA[rm -rf ${PKGNAME} 
 ]]>
         </clean>
     </package>
