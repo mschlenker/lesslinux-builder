@@ -3,7 +3,7 @@
 		name="ntfs-3g_ntfsprogs"
 		version="2015.3.14"
 		class="user"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                
@@ -65,11 +65,11 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make install # DESTDIR=${TGTDIR} 
 			cd ../${PKGNAME}-${PKGVERSION}.static
 			strip src/ntfs-3g
-			mkdir -p ${TGTDIR}/static/sbin
-			install -m 0755 src/ntfs-3g ${TGTDIR}/static/sbin/ntfs-3g.static
+			mkdir -p /static/sbin
+			install -m 0755 src/ntfs-3g /static/sbin/ntfs-3g.static
 			]]>
 		</install>
 		<clean>
