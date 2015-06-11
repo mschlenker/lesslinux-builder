@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="musl-amd64"
-		version="1.1.9"
+		version="1.1.10"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="488509a6cf70881713d5e8f9ecb27b2d5a300334">musl-1.1.9.tar.gz</pkg>
+				<pkg sha1="6c163e5612376008b42e03352708b39b65a1d477">musl-1.1.10.tar.gz</pkg>
 				<mirror>http://www.musl-libc.org/releases/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="60" page="http://www.musl-libc.org/download.html" />
+			<manualcheck date="20150611" interval="60" page="http://www.musl-libc.org/download.html" />
 		</sources>
 		<builddeps>
                      <dep>cross-gcc-musl1-amd64</dep>
