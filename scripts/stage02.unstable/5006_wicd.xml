@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="wicd"
+		version="1.7.3"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>     
+				<pkg sha1="043321f59bef1eb1d1e49c4c14316deca7e5e1c6">wicd-1.7.3.tar.gz</pkg>
+				<mirror>https://launchpad.net/wicd/1.7/1.7.3/+download/</mirror>
+			</file>
+			<!-- <file>          
+				<pkg sha1="76ac6a23973c0d780bd7626daef858b3bd419550">wicd-1.7.2.4-sanitize.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<manualcheck date="20150611" interval="365" page="https://launchpad.net/wicd" />
+			<check>
+				<page html="https://launchpad.net/wicd/+download">
+					<atext linktext="wicd-1.7.3.1." />
+					<atext linktext="wicd-1.7.3.2." />
+					<atext linktext="wicd-1.7.5." />
+					<atext linktext="wicd-1.7.4." />
+					<atext linktext="wicd-1.8.0." />
+					<atext linktext="wicd-1.8.1." />
+					<atext linktext="wicd-1.9." />
+					<atext linktext="wicd-1.10." />
+					<atext linktext="wicd-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+			<dep>pygtk</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+		<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/wicd
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-sanitize.patch | patch -p1
+		]]>
+		</patch> -->
+		<build>
+		<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			python setup.py configure
+		]]>
+		</build>
+		<test />
+		<install>
+		<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			python setup.py install
+			mkdir -p /var/log/wicd
+			mkdir -p /var/lib/wicd/configurations
+			touch /var/log/wicd/.empty_on_purpose
+			touch /var/lib/wicd/configurations/.empty_on_purpose
+		]]>
+		</install>
+	</package>
+</llpackages>
