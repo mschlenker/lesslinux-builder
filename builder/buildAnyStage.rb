@@ -4,6 +4,7 @@ require 'net/http'
 require 'net/https'
 require 'open-uri'
 require 'mahoro'
+require 'nokogiri'
 
 class AnyStage
 	
@@ -258,9 +259,10 @@ class AnyStage
 
 	def check_http_updates(page)
 		begin
-			resp = Net::HTTP.get_response(URI(page.attributes["html"]))
-			pagecontent = resp.body
+			# resp = Net::HTTP.get_response(URI(page.attributes["html"]))
+			# pagecontent = resp.body
 			## pagecontent = `wget -O -  #{page.attributes["html"]}`  
+			pagecontent = Net::HTTP.get(URI(page.attributes["html"]))
 			versions = Array.new
 			hrefs = Array.new
 			page.elements.each("atext") { |at|
@@ -275,32 +277,32 @@ class AnyStage
 			}
 			return true if check_rss_updates(pagecontent, versions) 
 			puts sprintf("%015.4f", Time.now.to_f) + " check  > HTTP CHECK CURRENTLY IMPOSSIBLE: " + @buildfile + " current: " + @pkg_name + " " + @pkg_version
-			#hdoc = Hpricot.parse(pagecontent)
-			#(hdoc/:a).each { |a|
-			#	version_check = true
-			#	versions.each { |v|
-			#		unless a.inner_text.strip[v].nil?
-			#			update_found = true
-			#			version_found = a.inner_text.strip
-			#			puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
-			#				" current: " + @pkg_name + " " + @pkg_version + " found: " + 
-			#				version_found
-			#				$stdout.flush
-			#		end
-			#	}	
-			#	if !a.attributes["href"].nil? 
-			#		hrefs.each { |v| 
-			#			unless a.attributes["href"].strip[v].nil?
-			#				update_found = true
-			#				version_found = a.attributes["href"].strip
-			#				puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
-			#					" current: " + @pkg_name + " " + @pkg_version + " found: " + 
-			#					version_found
-			#				$stdout.flush
-			#			end
-			#		}
-			#	end
-			#}
+			hdoc = Nokogiri::HTML(pagecontent)
+			(hdoc/:a).each { |a|
+				version_check = true
+				versions.each { |v|
+					unless a.inner_text.strip[v].nil?
+						update_found = true
+						version_found = a.inner_text.strip
+						puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
+							" current: " + @pkg_name + " " + @pkg_version + " found: " + 
+							version_found
+							$stdout.flush
+					end
+				}	
+				if !a.attributes["href"].nil? 
+					hrefs.each { |v| 
+						unless a.attributes["href"].strip[v].nil?
+							update_found = true
+							version_found = a.attributes["href"].strip
+							puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
+								" current: " + @pkg_name + " " + @pkg_version + " found: " + 
+								version_found
+							$stdout.flush
+						end
+					}
+				end
+			}
 		rescue Timeout::Error
 				puts sprintf("%015.4f", Time.now.to_f) + " check  > Timeout when checking " + @pkg_name + " " + @pkg_version
 		rescue
