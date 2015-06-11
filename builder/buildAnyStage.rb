@@ -276,7 +276,7 @@ class AnyStage
 				end
 			}
 			return true if check_rss_updates(pagecontent, versions) 
-			puts sprintf("%015.4f", Time.now.to_f) + " check  > HTTP CHECK CURRENTLY IMPOSSIBLE: " + @buildfile + " current: " + @pkg_name + " " + @pkg_version
+			# puts sprintf("%015.4f", Time.now.to_f) + " check  > HTTP CHECK CURRENTLY IMPOSSIBLE: " + @buildfile + " current: " + @pkg_name + " " + @pkg_version
 			hdoc = Nokogiri::HTML(pagecontent)
 			(hdoc/:a).each { |a|
 				version_check = true
