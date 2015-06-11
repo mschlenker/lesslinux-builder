@@ -3,7 +3,7 @@
 		name="libX11"
 		version="1.6.3"
 		class="devel"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>  
 			<!-- <file>    
@@ -79,7 +79,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make install # DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
