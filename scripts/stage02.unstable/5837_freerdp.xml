@@ -63,6 +63,11 @@
 			tar xjf ${SRCDIR}/FreeRDP-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
+		<!--
+		
+cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF -DWITH_CHANNELS=ON  -DWITH_PCSC=ON  .
+
+		-->
 		<build>
 			<![CDATA[
 			cd FreeRDP
