@@ -75,8 +75,12 @@ class FileChecker
 					## IO.popen("LC_ALL=POSIX file -F '::::' '" + @fullpath + "' | awk -F ':::: ' '{print $2}' ") { |f|
 					##	@file_output = f.gets.strip
 					## }
-					fcont = File.read(@fullpath) if fcont.nil? 
-					@file_output = @mahoro.buffer(fcont)
+					fcont = File.read(@fullpath) if fcont.nil?
+					begin
+						@file_output = @mahoro.buffer(fcont)
+					rescue
+						@file_output = "unknown"
+					end
 					puts sprintf("%015.4f", Time.now.to_f) + " debug  > Mahoro output #{@file_output}" 
 					### puts "DEBUG: file output from file run  " + @file_output
 				end
