@@ -14,9 +14,7 @@
 			<manualcheck date="20150529" interval="180" page="https://fedorahosted.org/releases/e/l/" />
 		</sources>
 		<builddeps>
-			<!-- <dep>Python</dep>
-			<dep>automake</dep>
-			<dep>automake113</dep>
+			<dep>Python</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
@@ -26,16 +24,15 @@
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>libpthread-stubs</dep>
-			<dep>libtool</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>xproto-base</dep>
-			<dep>talloc</dep> -->
+                        <!-- <dep>xproto-base</dep> 
+			<dep>talloc</dep>
+			<dep>makedepend</dep> -->
+			<dep>libffi</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
