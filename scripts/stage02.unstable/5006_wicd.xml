@@ -53,14 +53,15 @@
 		<build>
 		<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			python setup.py configure
+			LANG=en_US.UTF-8 python setup.py configure --distro=arch
+			LANG=en_US.UTF-8 python setup.py build 
 		]]>
 		</build>
 		<test />
 		<install>
 		<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			python setup.py install
+			LANG=en_US.UTF-8 python setup.py install
 			mkdir -p /var/log/wicd
 			mkdir -p /var/lib/wicd/configurations
 			touch /var/log/wicd/.empty_on_purpose
