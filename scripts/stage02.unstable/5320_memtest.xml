@@ -34,6 +34,7 @@
                         <dep>glibc</dep>
                         <dep>make</dep>
 			<dep>nasm</dep>
+			<dep>gcc49</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -49,7 +50,9 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}+-${PKGVERSION}
-			make
+			# make 
+			sed -i 's/scp/echo scp/g' Makefile
+			make CC=/usr/local/gcc49/bin/gcc49 -k -j 4
 			# enlarge the size of memtest.bin
 			SIZE=$(wc -c memtest.bin | awk '{print $1}')
 			FILL=$((1474560 - $SIZE))
