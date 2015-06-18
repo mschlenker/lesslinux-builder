@@ -1,192 +1,251 @@
 <pkgdesc name='wicd' version='1.7.3'>
     <subpackage name='skel'>
-        <directory path='/var/log/wicd' owner='0' group='0'/>
-        <directory path='/var/lib/wicd' owner='0' group='0'/>
-        <directory path='/var/lib/wicd/configurations' owner='0' group='0'/>
+        <directory path='/etc/logrotate.d' owner='0' group='0'/>
+        <directory path='/etc/wicd' owner='0' group='0'/>
+        <directory path='/etc/wicd/scripts' owner='0' group='0'/>
+        <directory path='/etc/wicd/scripts/predisconnect' owner='0' group='0'/>
+        <directory path='/etc/wicd/scripts/preconnect' owner='0' group='0'/>
+        <directory path='/etc/wicd/scripts/postconnect' owner='0' group='0'/>
+        <directory path='/etc/wicd/scripts/postdisconnect' owner='0' group='0'/>
+        <directory path='/etc/wicd/encryption' owner='0' group='0'/>
+        <directory path='/etc/wicd/encryption/templates' owner='0' group='0'/>
+        <directory path='/etc/rc.d' owner='0' group='0'/>
+        <directory path='/etc/acpi' owner='0' group='0'/>
+        <directory path='/etc/acpi/suspend.d' owner='0' group='0'/>
+        <directory path='/etc/acpi/resume.d' owner='0' group='0'/>
+        <directory path='/lib/systemd' owner='0' group='0'/>
+        <directory path='/lib/systemd/system' owner='0' group='0'/>
+        <directory path='/usr/share/wicd' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/daemon' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/48x48' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/48x48/status' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/48x48/devices' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/original' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/original/status' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/24x24' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/24x24/status' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/22x22' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/22x22/status' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/16x16' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/16x16/status' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/36x36' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/36x36/status' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/32x32' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/32x32/status' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/scalable' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/icons/hicolor/scalable/devices' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/backends' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/cli' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/gtk' owner='0' group='0'/>
+        <directory path='/usr/share/wicd/curses' owner='0' group='0'/>
+        <directory path='/usr/share/man/nl' owner='0' group='0'/>
+        <directory path='/usr/share/man/nl/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/nl/man5' owner='0' group='0'/>
+        <directory path='/usr/share/man/nl/man8' owner='0' group='0'/>
+        <directory path='/usr/share/doc/wicd' owner='0' group='0'/>
+        <directory path='/usr/lib/python2.7/site-packages/wicd' owner='0' group='0'/>
+        <directory path='/usr/lib/pm-utils' owner='0' group='0'/>
+        <directory path='/usr/lib/pm-utils/sleep.d' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'/>
     <subpackage name='bin'/>
-    <subpackage name='doc'/>
-    <subpackage name='config'/>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/wicd-client.1' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/man5/wicd-manager-settings.conf.5' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/man5/wicd-wireless-settings.conf.5' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/man5/wicd-wired-settings.conf.5' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/man8/wicd-curses.8' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/man8/wicd.8' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/man8/wicd-cli.8' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/nl/man1/wicd-client.1' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/nl/man5/wicd-manager-settings.conf.5' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/nl/man5/wicd-wireless-settings.conf.5' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/nl/man5/wicd-wired-settings.conf.5' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/nl/man8/wicd-curses.8' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/man/nl/man8/wicd.8' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/doc/wicd/README.cli' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/doc/wicd/LICENSE' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/doc/wicd/CHANGES' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/doc/wicd/AUTHORS' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/doc/wicd/README' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/doc/wicd/INSTALL' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/doc/wicd/README.curses' owner='0' group='0' mode='100664'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/logrotate.d/wicd.logrotate' owner='0' group='0' mode='100664'/>
+        <file path='/etc/xdg/autostart/wicd-tray.desktop' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/dhclient.conf.template.default' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/scripts/predisconnect/.empty_on_purpose' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/scripts/preconnect/.empty_on_purpose' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/scripts/postconnect/.empty_on_purpose' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/scripts/.empty_on_purpose' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/scripts/postdisconnect/.empty_on_purpose' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/leap' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wep-shared' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/active' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wpa-psk-hex' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wpa' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/peap' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/active_wired' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wired_8021x' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/peap-tkip' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wpa2-peap' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wep-passphrase' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/psu' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/eap' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wpa2-leap' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/eap-tls' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wep-hex' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wpa-peap' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/wpa-psk' owner='0' group='0' mode='100664'/>
+        <file path='/etc/wicd/encryption/templates/ttls' owner='0' group='0' mode='100664'/>
+        <file path='/etc/dbus-1/system.d/wicd.conf' owner='0' group='0' mode='100664'/>
+        <file path='/etc/rc.d/wicd' owner='0' group='0' mode='100775'/>
+        <file path='/etc/acpi/suspend.d/50-wicd-suspend.sh' owner='0' group='0' mode='100775'/>
+        <file path='/etc/acpi/resume.d/80-wicd-connect.sh' owner='0' group='0' mode='100775'/>
+    </subpackage>
     <subpackage name='devel'/>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
+        <file path='/lib/systemd/system/wicd.service' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/applications/wicd.desktop' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/daemon/autoconnect.py' owner='0' group='0' mode='100775'/>
+        <file path='/usr/share/wicd/daemon/wicd-daemon.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/daemon/suspend.py' owner='0' group='0' mode='100775'/>
+        <file path='/usr/share/wicd/daemon/monitor.py' owner='0' group='0' mode='100775'/>
+        <file path='/usr/share/wicd/icons/hicolor/48x48/status/signal-75.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/48x48/status/signal-100.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/48x48/status/signal-50.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/48x48/status/signal-25.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/48x48/devices/wired-gui.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/original/status/signal-75.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/original/status/signal-100.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/original/status/signal-50.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/original/status/signal-25.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/24x24/status/signal-75.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/24x24/status/signal-100.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/24x24/status/signal-50.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/24x24/status/signal-25.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-good-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-good-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-low-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-high-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-good-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-low-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-high-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/low-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/wired.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-bad-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-good-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/signal-75.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/signal-100.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-good-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/good-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-bad-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-bad-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/high-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-high-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-low-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-low-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/bad-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-low-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/signal-50.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-low-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-low-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/bad-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-high-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-bad-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-bad-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-high-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-good-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/no-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/high-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-high-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/receiving-bad-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-high-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-good-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-good-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-low-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/both-bad-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/idle-bad-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/low-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/good-signal-lock.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/transmitting-high-signal.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/22x22/status/signal-25.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/16x16/status/signal-75.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/16x16/status/signal-100.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/16x16/status/signal-50.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/16x16/status/signal-25.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/36x36/status/signal-75.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/36x36/status/signal-100.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/36x36/status/signal-50.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/36x36/status/signal-25.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/32x32/status/signal-75.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/32x32/status/signal-100.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/32x32/status/signal-50.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/32x32/status/signal-25.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/icons/hicolor/scalable/devices/wired-gui.svg' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/backends/be-external.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/backends/be-ioctl.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/cli/wicd-cli.py' owner='0' group='0' mode='100775'/>
+        <file path='/usr/share/wicd/gtk/netentry.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/gtk/wicd-client.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/gtk/prefs.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/gtk/guiutil.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/gtk/gui.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/gtk/wicd.ui' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/gtk/configscript.py' owner='0' group='0' mode='100775'/>
+        <file path='/usr/share/wicd/curses/netentry_curses.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/curses/wicd-curses.py' owner='0' group='0' mode='100775'/>
+        <file path='/usr/share/wicd/curses/prefs_curses.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/wicd/curses/configscript_curses.py' owner='0' group='0' mode='100775'/>
+        <file path='/usr/share/wicd/curses/curses_misc.py' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/dbus-1/system-services/org.wicd.daemon.service' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/64x64/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/48x48/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/24x24/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/22x22/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/16x16/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/36x36/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/128x128/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/192x192/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/72x72/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/96x96/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/32x32/apps/wicd-gtk.png' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/icons/hicolor/scalable/apps/wicd-gtk.svg' owner='0' group='0' mode='100664'/>
+        <file path='/usr/share/pixmaps/wicd-gtk.xpm' owner='0' group='0' mode='100664'/>
+        <file path='/usr/sbin/wicd' owner='0' group='0' mode='100775'/>
+        <file path='/usr/bin/wicd-curses' owner='0' group='0' mode='100775'/>
+        <file path='/usr/bin/wicd-client' owner='0' group='0' mode='100775'/>
+        <file path='/usr/bin/wicd-gtk' owner='0' group='0' mode='100775'/>
+        <file path='/usr/bin/wicd-cli' owner='0' group='0' mode='100775'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/wnettools.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/translations.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/__init__.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/backend.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/networking.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/backend.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/configmanager.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/logfile.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/wpath.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/configmanager.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/misc.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/misc.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/translations.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/dbusmanager.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/dbusmanager.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/wnettools.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/__init__.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/wpath.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/logfile.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/wicd/networking.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pm-utils/sleep.d/55wicd' owner='0' group='0' mode='100775'/>
         <file path='/var/log/wicd/.empty_on_purpose' owner='0' group='0' mode='100644'/>
         <file path='/var/lib/wicd/configurations/.empty_on_purpose' owner='0' group='0' mode='100644'/>
+        <file path='/var/lib/wicd/WHEREAREMYFILES' owner='0' group='0' mode='100664'/>
     </subpackage>
     <subpackage name='ignore'/>
-    <vanished>
-        <subpackage name='skel'/>
-        <subpackage name='minimal'/>
-        <subpackage name='bin'/>
-        <subpackage name='doc'>
-            <file path='/usr/share/doc/wicd/AUTHORS'/>
-            <file path='/usr/share/doc/wicd/CHANGES'/>
-            <file path='/usr/share/doc/wicd/INSTALL'/>
-            <file path='/usr/share/doc/wicd/LICENSE'/>
-            <file path='/usr/share/doc/wicd/README'/>
-            <file path='/usr/share/doc/wicd/README.cli'/>
-            <file path='/usr/share/doc/wicd/README.curses'/>
-            <file path='/usr/share/man/man1/wicd-client.1'/>
-            <file path='/usr/share/man/man5/wicd-manager-settings.conf.5'/>
-            <file path='/usr/share/man/man5/wicd-wired-settings.conf.5'/>
-            <file path='/usr/share/man/man5/wicd-wireless-settings.conf.5'/>
-            <file path='/usr/share/man/man8/wicd-cli.8'/>
-            <file path='/usr/share/man/man8/wicd-curses.8'/>
-            <file path='/usr/share/man/man8/wicd.8'/>
-            <file path='/usr/share/man/nl/man1/wicd-client.1'/>
-            <file path='/usr/share/man/nl/man5/wicd-manager-settings.conf.5'/>
-            <file path='/usr/share/man/nl/man5/wicd-wired-settings.conf.5'/>
-            <file path='/usr/share/man/nl/man5/wicd-wireless-settings.conf.5'/>
-            <file path='/usr/share/man/nl/man8/wicd-curses.8'/>
-            <file path='/usr/share/man/nl/man8/wicd.8'/>
-        </subpackage>
-        <subpackage name='config'>
-            <file path='/etc/acpi/resume.d/80-wicd-connect.sh'/>
-            <file path='/etc/acpi/suspend.d/50-wicd-suspend.sh'/>
-            <file path='/etc/dbus-1/system.d/wicd.conf'/>
-            <file path='/etc/logrotate.d/wicd.logrotate'/>
-            <file path='/etc/wicd/dhclient.conf.template.default'/>
-            <file path='/etc/wicd/encryption/templates/active'/>
-            <file path='/etc/wicd/encryption/templates/active_wired'/>
-            <file path='/etc/wicd/encryption/templates/eap'/>
-            <file path='/etc/wicd/encryption/templates/eap-tls'/>
-            <file path='/etc/wicd/encryption/templates/leap'/>
-            <file path='/etc/wicd/encryption/templates/peap'/>
-            <file path='/etc/wicd/encryption/templates/peap-tkip'/>
-            <file path='/etc/wicd/encryption/templates/psu'/>
-            <file path='/etc/wicd/encryption/templates/ttls'/>
-            <file path='/etc/wicd/encryption/templates/wep-hex'/>
-            <file path='/etc/wicd/encryption/templates/wep-passphrase'/>
-            <file path='/etc/wicd/encryption/templates/wep-shared'/>
-            <file path='/etc/wicd/encryption/templates/wired_8021x'/>
-            <file path='/etc/wicd/encryption/templates/wpa'/>
-            <file path='/etc/wicd/encryption/templates/wpa-peap'/>
-            <file path='/etc/wicd/encryption/templates/wpa-psk'/>
-            <file path='/etc/wicd/encryption/templates/wpa2-leap'/>
-            <file path='/etc/wicd/encryption/templates/wpa2-peap'/>
-            <file path='/etc/wicd/scripts/.empty_on_purpose'/>
-            <file path='/etc/wicd/scripts/postconnect/.empty_on_purpose'/>
-            <file path='/etc/wicd/scripts/postdisconnect/.empty_on_purpose'/>
-            <file path='/etc/wicd/scripts/preconnect/.empty_on_purpose'/>
-            <file path='/etc/wicd/scripts/predisconnect/.empty_on_purpose'/>
-            <file path='/etc/xdg/autostart/wicd-tray.desktop'/>
-        </subpackage>
-        <subpackage name='devel'/>
-        <subpackage name='localization'/>
-        <subpackage name='tzdata'/>
-        <subpackage name='uncategorized'>
-            <file path='/lib/systemd/system/wicd.service'/>
-            <file path='/usr/bin/wicd-cli'/>
-            <file path='/usr/bin/wicd-client'/>
-            <file path='/usr/bin/wicd-curses'/>
-            <file path='/usr/bin/wicd-gtk'/>
-            <file path='/usr/lib/pm-utils/sleep.d/55wicd'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/__init__.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/__init__.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/backend.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/backend.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/configmanager.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/configmanager.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/dbusmanager.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/dbusmanager.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/logfile.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/logfile.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/misc.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/misc.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/networking.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/networking.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/translations.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/translations.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/wnettools.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/wnettools.pyc'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/wpath.py'/>
-            <file path='/usr/lib/python2.7/site-packages/wicd/wpath.pyc'/>
-            <file path='/usr/sbin/wicd'/>
-            <file path='/usr/share/applications/wicd.desktop'/>
-            <file path='/usr/share/dbus-1/system-services/org.wicd.daemon.service'/>
-            <file path='/usr/share/icons/hicolor/128x128/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/16x16/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/192x192/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/22x22/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/24x24/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/32x32/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/36x36/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/48x48/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/64x64/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/72x72/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/96x96/apps/wicd-gtk.png'/>
-            <file path='/usr/share/icons/hicolor/scalable/apps/wicd-gtk.svg'/>
-            <file path='/usr/share/pixmaps/wicd-gtk.xpm'/>
-            <file path='/usr/share/pixmaps/wicd/bad-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/bad-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-bad-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-bad-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-good-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-good-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-high-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-high-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-low-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/both-low-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/good-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/good-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/high-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/high-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-bad-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-bad-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-good-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-good-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-high-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-high-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-low-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/idle-low-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/low-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/low-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/no-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-bad-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-bad-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-good-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-good-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-high-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-high-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-low-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/receiving-low-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/signal-100.png'/>
-            <file path='/usr/share/pixmaps/wicd/signal-25.png'/>
-            <file path='/usr/share/pixmaps/wicd/signal-50.png'/>
-            <file path='/usr/share/pixmaps/wicd/signal-75.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-bad-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-bad-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-good-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-good-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-high-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-high-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-low-signal-lock.png'/>
-            <file path='/usr/share/pixmaps/wicd/transmitting-low-signal.png'/>
-            <file path='/usr/share/pixmaps/wicd/wired-gui.svg'/>
-            <file path='/usr/share/pixmaps/wicd/wired.png'/>
-            <file path='/usr/share/wicd/backends/be-external.py'/>
-            <file path='/usr/share/wicd/backends/be-ioctl.py'/>
-            <file path='/usr/share/wicd/cli/wicd-cli.py'/>
-            <file path='/usr/share/wicd/curses/configscript_curses.py'/>
-            <file path='/usr/share/wicd/curses/curses_misc.py'/>
-            <file path='/usr/share/wicd/curses/netentry_curses.py'/>
-            <file path='/usr/share/wicd/curses/prefs_curses.py'/>
-            <file path='/usr/share/wicd/curses/wicd-curses.py'/>
-            <file path='/usr/share/wicd/daemon/autoconnect.py'/>
-            <file path='/usr/share/wicd/daemon/monitor.py'/>
-            <file path='/usr/share/wicd/daemon/suspend.py'/>
-            <file path='/usr/share/wicd/daemon/wicd-daemon.py'/>
-            <file path='/usr/share/wicd/gtk/configscript.py'/>
-            <file path='/usr/share/wicd/gtk/gui.py'/>
-            <file path='/usr/share/wicd/gtk/guiutil.py'/>
-            <file path='/usr/share/wicd/gtk/netentry.py'/>
-            <file path='/usr/share/wicd/gtk/prefs.py'/>
-            <file path='/usr/share/wicd/gtk/wicd-client.py'/>
-            <file path='/usr/share/wicd/gtk/wicd.ui'/>
-            <file path='/var/lib/wicd/WHEREAREMYFILES'/>
-        </subpackage>
-        <subpackage name='ignore'/>
-    </vanished>
 </pkgdesc>
