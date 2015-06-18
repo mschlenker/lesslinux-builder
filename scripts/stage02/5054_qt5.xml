@@ -29,58 +29,82 @@
 				</page>
 			</check> -->
 		</sources>
-		<!-- <builddeps>
-			<dep>Mesa</dep><dep>glu</dep>
+		 <builddeps>
+                        <dep>M2Crypto</dep>
+                        <dep>Mesa</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
                         <dep>alsa-lib</dep>
                         <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
+                        <dep>bison</dep>
                         <dep>cairo</dep>
+                        <dep>compositeproto</dep>
                         <dep>coreutils</dep>
-                        <dep>dbus</dep>
+                        <dep>cups</dep>
                         <dep>diffutils</dep>
-                        <dep>findutils</dep>
+                        <dep>flex</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
+                        <dep>fusepy</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
+                        <dep>gperf</dep>
                         <dep>grep</dep>
+                        <dep>gst-plugins-bad</dep>
+                        <dep>gst-plugins-base1</dep>
+                        <dep>gst-plugins-base</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>gstreamer</dep>
                         <dep>gtk</dep>
-			<dep>gtk3</dep>
+                        <dep>icu</dep>
                         <dep>jpegsrc</dep>
                         <dep>libICE</dep>
                         <dep>libSM</dep>
                         <dep>libX11</dep>
-                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
                         <dep>libXext</dep>
                         <dep>libXfixes</dep>
                         <dep>libXi</dep>
-                        <dep>libXrandr</dep>
                         <dep>libXrender</dep>
-                        <dep>libXv</dep>
-                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
-                        <dep>libpthread-stubs</dep>
+                        <dep>libdrm</dep>
+                        <dep>libpng16</dep>
+                        <dep>libwebp</dep>
                         <dep>libxcb</dep>
+                        <dep>libxkbcommon</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
+                        <dep>makedepend</dep>
+                        <dep>mtdev</dep>
                         <dep>openssl</dep>
-                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
                         <dep>perl</dep>
-                        <dep>pixman</dep>
                         <dep>pkg-config</dep>
+                        <dep>plaso</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>ruby</dep>
                         <dep>sed</dep>
-                        <dep>tiff</dep>
+                        <dep>setuptools</dep>
+                        <dep>sqlite</dep>
+                        <dep>udev</dep>
+                        <dep>util-keysyms</dep>
+                        <dep>wayland</dep>
                         <dep>which</dep>
+                        <dep>xcb-util-image</dep>
+                        <dep>xcb-util-renderutil</dep>
+                        <dep>xcb-util-wm</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
-			<dep>sqlite</dep>
-			 <dep>makedepend</dep>
-			 <dep>gst-plugins-base</dep>
-			 <dep>distcc</dep>
-		</builddeps> -->
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/qt-everywhere-opensource-src-${PKGVERSION}.tar.xz 
