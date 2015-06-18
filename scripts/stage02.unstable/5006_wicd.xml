@@ -53,7 +53,7 @@
 		<build>
 		<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			LANG=en_US.UTF-8 python setup.py configure --distro=arch
+			LANG=en_US.UTF-8 python setup.py configure --distro=arch --no-install-gnome-shell-extensions
 			LANG=en_US.UTF-8 python setup.py build 
 		]]>
 		</build>
