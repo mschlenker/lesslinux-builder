@@ -1,47 +1,63 @@
 <llpackages>
 	<package 
 		name="instantbird"
-		version="1.5"
+		version="38.0.1"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                         
-				<pkg sha1="bf5fe5a5a9d4623f0bee4b0756c38159e88f7422">instantbird-1.5.src.tgz</pkg>
-				<mirror>http://instantbird.com/downloads/1.5/</mirror>
+			<file>                                                                                          
+				<pkg sha1="81226df796de098648d70d398aa1160531706cd5">thunderbird-38.0.1.source.tar.bz2</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/38.0.1/source/</mirror>
+			</file>  
+			<!-- <file>                                                                                          
+				<pkg sha1="07a34387b550e2fed690eb5884b00679b6735022">thunderbird-38.0.1-gcc5-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<!-- 
+tbtag=THUNDERBIRD_38_0_1_RELEASE
+for l in de es-ES pl ru fr it nl pt-PT ; do
+echo '==> Cloning: '"$l"
+hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
+( cd $l ; hg checkout $tbtag )
+done
+			-->
+			<file>                                                                                                                
+				<pkg sha1="321206d0469020cbc92549d51e9ed0ac2fa15474">thunderbird-38.0.1.source.de-es-pl-ru.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="90" page="http://instantbird.com/downloads/" />
+			<file>                                                           
+				<pkg sha1="39116467fefa91d4eda92ff4bad21f698d05ef8a">mozconfig-thunderbird-31.0-20141118</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<!-- <file>                                                               
+				<pkg sha1="6f9d3be09e3858cfa65795389aa4d79ec2d1a4a9">enigmail-1.5.2.tar.gz</pkg>
+				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
+			</file> -->
+			<!-- <file>                                                               
+				<pkg sha1="51a7eb7d86ce24d8199f741a0079f0d56ecd6368">enigmail-1.6.tar.gz</pkg>
+				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
+			</file> -->
+			<manualcheck date="20150618" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
 			<check>
-				<page html="http://instantbird.com/downloads/">
-					<atext linktext="1.5.1" />
-					<atext linktext="1.5.2" />
-					<atext linktext="1.5.3" />
-					<atext linktext="1.5.4" />
-					<atext linktext="1.6/" />
-					<atext linktext="1.7/" />
-					<atext linktext="1.8/" />
-					<atext linktext="1.9/" />
-					<atext linktext="1.10/" />
-					<atext linktext="2.0/" />
-					<atext linktext="2.1/" />
-					<atext linktext="2.2/" />
-					<atext linktext="3.0/" />
-					<atext linktext="4.0/" />
+				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
+					<atext linktext="38.0.4" />
+					<atext linktext="38.0.2" />
+					<atext linktext="38.0.3" />
+					<atext linktext="38.1." />
+					<atext linktext="38.2." />
+					<atext linktext="45.0." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
                         <dep>GConf</dep>
-                        <dep>Mesa</dep><dep>glu</dep>
                         <dep>ORBit2</dep>
                         <dep>Python</dep>
                         <dep>alsa-lib</dep>
                         <dep>atk</dep>
                         <dep>autoconf</dep>
-			<dep>autoconf213</dep>
-                        <dep>avahi</dep>
-			<dep>bash</dep>
+                        <dep>bash</dep>
                         <dep>binutils</dep>
 			<dep>bzip2</dep>
                         <dep>cairo</dep>
@@ -79,7 +95,6 @@
                         <dep>libgnomecanvas</dep>
                         <dep>libgnomeui</dep>
                         <dep>libnotify</dep>
-                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
                         <dep>libpthread-stubs</dep>
                         <dep>libxcb</dep>
                         <dep>libxml2</dep>
@@ -97,78 +112,123 @@
                         <dep>tar</dep>
                         <dep>unzip</dep>
                         <dep>util-linux-ng</dep>
-			<dep>wget</dep>
-                        <dep>which</dep>
                         <dep>wireless_tools</dep>
                         <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
-                        <dep>yasm</dep>
+			<dep>yasm</dep>
                         <dep>zip</dep>
-                        <dep>zlib</dep>
+			<dep>zlib</dep>
 			<dep>libmng</dep>
+			<dep>libpng15</dep><dep>libpng16</dep>
 			<dep>lcms</dep>
 			<dep>nspr</dep>
 			<dep>distcc</dep>
-			<!-- Make sure instantbird is built after firefox and thunderbird to make sure not three processes link at the same time -->
-			<dep>firefox</dep>
-			<dep>thunderbird</dep>
+			<dep>gst-libav</dep>
+			<dep>gst-plugins-bad1</dep>
+			<dep>gst-plugins-good1</dep>
+			<dep>gst-plugins-ugly1</dep>
+			<dep>gstreamer1</dep>
+			<dep>startup-notification</dep>
+			<dep>sqlite</dep>
+			<dep>libevent</dep>
+			<dep>libvpx</dep>
+			<dep>nspr</dep>
+			<dep>nss</dep>
+			<dep>icu</dep>
+			<dep>libevent</dep>
+			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tgz
+			tar xjf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.bz2
+			mkdir l10n
+			tar -C l10n -xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.de-es-pl-ru.tar.xz
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[
+			
+			cd comm-esr38
+			# patch -Np1 -i ../thunderbird-31.7.0-gcc5-1.patch
+			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 .mozconfig
+			
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}-src
+			workdir=` pwd ` 
+			cd comm-esr38
+			echo $SHELL
 			export SHELL=/bin/bash
+			echo $SHELL
+			## mkdir tb-build
+			mkdir -p mozilla/tb-build
+			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
+			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' .mozconfig 
+			sed -i 's%mk_add_options MOZ_OBJDIR%# mk_add_options MOZ_OBJDIR%g' .mozconfig 
+			sed -i 's%ac_add_options --enable-calendar%# ac_add_options --enable-calendar%g' .mozconfig 
+			sed -i 's%ac_add_options --enable-application=mail%ac_add_options --enable-application=im%g'  .mozconfig 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
-				sed -i "s%MOZ_MAKE_FLAGS=-j4%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" mozconfig 
-				# echo "MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"" > .mozconfig 
-				make -f client.mk configure
-				exit 0
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				make -f client.mk clean
+				make -f client.mk configure 
 				pump make -f client.mk build  
 			else
-				make -f client.mk configure
-				exit 0
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j2 CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49\"%g" .mozconfig 
+				make -f client.mk clean
+				make -f client.mk configure	
 				make -f client.mk build
 			fi
 			echo '===> Trying to find libxul.so...'
-			find ../obj-instantbird -type f -name libxul.so
+			find obj-` uname -m `-pc-linux-gnu/dist  -type f -name libxul.so
 			
 			ccount=0
-			while [ '!' -f ../obj-instantbird/mozilla/toolkit/library/libxul.so -a $ccount -lt 5 ] ; do
+			# ./obj-i686-pc-linux-gnu/dist/lib/libxul.so
+			while [ '!' -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ] && \
+					[ '!' -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ]  ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
-			sed -i 's%components/libdbusservice%# components/libdbusservice%g' instantbird/installer/removed-files.in
-			cd ../obj-instantbird
-			make package
+			[ -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so ] || exit 1 
 			
+			# Now try to build the language packs
+			for packlang in de es-ES pl ru fr it nl pt-PT ; do
+				make -C obj-` uname -m `-pc-linux-gnu/im/locales langpack-${packlang}
+				make -C obj-` uname -m `-unknown-linux-gnu/im/locales langpack-${packlang}
+			done
+			
+			# Now try to build the xpi of thunderbird
+			# mv mail/installer/removed-files.in{,.orig}
+			# cat mail/installer/removed-files.in.orig | sed 's%hyphenation/hyph%# hyphenation/hyph%g' > mail/installer/removed-files.in
+			make -C obj-` uname -m `-pc-linux-gnu package  
+			make -C obj-` uname -m `-unknown-linux-gnu package  
+			
+			echo '==> Searching Tarballs'
+			find obj-` uname -m `-pc-linux-gnu -name '*.tar.bz2' | sort 
 			echo '==> Searching XPIs'
-			find ../obj-instantbird -name '*.xpi' | sort 
+			find obj-` uname -m `-pc-linux-gnu -name '*.xpi' | sort 
+			
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-mkdir -p ${TGTDIR}/etc/lesslinux
-touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dumm
-exit 0
 
-LIBXUL=obj-instantbird/mozilla/toolkit/library/libxul.so
-TARFILE=obj-instantbird/mozilla/dist/instantbird-${PKGVERSION}.en-US.linux-`uname -m `.tar.bz2
+TARFILE=comm-esr38/obj-` uname -m `-pc-linux-gnu/dist/instantbird-1.6a1pre.en-US.linux-` uname -m `.tar.bz2
+case $(uname -m) 
+in
+	x86_64) 
+		TARFILE=comm-esr38/obj-` uname -m `-unknown-linux-gnu/dist/instantbird-1.6a1pre.en-US.linux-` uname -m `.tar.bz2
+	;;
+esac 
 [ -f "$TARFILE" ] || exit 1
-[ -f "$LIBXUL" ] || exit 1
-			
+
 mkdir -p ${TGTDIR}/opt
-mkdir -p ${TGTDIR}/usr/share/icons
-mkdir -p ${TGTDIR}/usr/bin
-mkdir -p ${TGTDIR}/usr/share/applications/
+mkdir -p ${TGTDIR}/usr/share/mozilla-addons
 tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/instantbird ${TGTDIR}/opt/instantbird-${PKGVERSION}
 
@@ -252,13 +312,12 @@ Terminal=false
 StartupNotify=true
 
 IDESK
-			
-			]]>
+
+]]>
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf obj-instantbird
-			rm -rf ${PKGNAME}-${PKGVERSION}-src
+			rm -rf comm-esr38  l10n
 			]]>
 		</clean>
 	</package>
