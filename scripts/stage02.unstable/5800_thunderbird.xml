@@ -234,9 +234,10 @@ install -m 0644 comm-esr38/obj-` uname -m `-pc-linux-gnu/mozilla/dist/xpi-stage/
 install -m 0644 comm-esr38/obj-` uname -m `-pc-linux-gnu/mozilla/dist/xpi-stage/lightning-*.en-US.linux-` uname -m `.xpi ${TGTDIR}/usr/share/mozilla-addons
 
 echo '====> Installing Langpacks'
+# obj-i686-pc-linux-gnu/dist/linux-i686/xpi/thunderbird-38.0.1.es-ES.langpack.xpi
 mkdir -m 0755 -p ${TGTDIR}/usr/share/mozilla-localization
 for packlang in de es-ES pl ru fr it nl pt-PT ; do
-	install -m 0644 comm-esr38/obj-` uname -m `-pc-linux-gnu/mozilla/dist/linux-` uname -m `/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
+	install -m 0644 comm-esr38/obj-` uname -m `-pc-linux-gnu/dist/linux-` uname -m `/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
 		${TGTDIR}/usr/share/mozilla-localization
 done
 
