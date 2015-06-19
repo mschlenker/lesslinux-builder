@@ -11,6 +11,18 @@
 				<mirror>http://ftp.gnu.org/gnu/libunistring/</mirror>
 			</file>
 			<manualcheck date="20150529" interval="365" page="http://ftp.gnu.org/gnu/libunistring/" />
+			<check>
+				<page html="ftp:///ftp.gnu.org/gnu/libunistring/">
+					<atext linktext="libunistring-0.9.5." />
+					<atext linktext="libunistring-0.9.6." />
+					<atext linktext="libunistring-0.9.7." />
+					<atext linktext="libunistring-0.9.8." />
+					<atext linktext="libunistring-0.10." />
+					<atext linktext="libunistring-0.11." />
+					<atext linktext="libunistring-1." />
+					<atext linktext="libunistring-2." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
