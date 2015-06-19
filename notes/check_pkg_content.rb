@@ -39,6 +39,7 @@ Dir.foreach("scripts/pkg_content.unstable") { |f| @pkgcontent.push f  if f =~ /\
 	if @stablexml.has_key?(k) 
 		if v == @stablexml[k] 
 			# puts "#{k} Versions in stage02 and stage02.unstable match"
+			puts "#{@filenames[k]} - #{k} #{@stablexml[k] } same version for stable and unstable!" unless  @pkgcontent.include?("#{k}-#{v}.xml")
 		else
 			# puts "#{k} Versions in stage02 and stage02.unstable differ"
 			if @pkgcontent.include?("#{k}-#{@stablexml[k] }.xml")
