@@ -233,7 +233,11 @@ class AnyStage
 	# Check if updates are available
 
 	def check_rss_updates(pagecontent, versions)
-		doc = REXML::Document.new(pagecontent)
+		begin
+			doc = REXML::Document.new(pagecontent)
+		rescue REXML::ParseException
+			return false
+		end
 		items = 0
 		begin
 			versions.each { |v|
@@ -305,8 +309,6 @@ class AnyStage
 			}
 		rescue Timeout::Error
 			puts sprintf("%015.4f", Time.now.to_f) + " check  > Timeout when checking " + @pkg_name + " " + @pkg_version
-		rescue REXML::ParseException
-			puts sprintf("%015.4f", Time.now.to_f) + " check  > Malformed XML when checking " + @pkg_name + " " + @pkg_version
 		rescue SocketError
 			puts sprintf("%015.4f", Time.now.to_f) + " check  > SocketError when checking " + @pkg_name + " " + @pkg_version
 		end
