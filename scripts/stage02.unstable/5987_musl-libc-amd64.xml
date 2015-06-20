@@ -11,6 +11,18 @@
 				<mirror>http://www.musl-libc.org/releases/</mirror>
 			</file>
 			<manualcheck date="20150611" interval="60" page="http://www.musl-libc.org/download.html" />
+			<check>
+				<page html="http://www.musl-libc.org/releases/">
+					<atext linktext="musl-1.1.11." />
+					<atext linktext="musl-1.1.12." />
+					<atext linktext="musl-1.1.13." />
+					<atext linktext="musl-1.1.14." />
+					<atext linktext="musl-1.1.15." />
+					<atext linktext="musl-1.2." />
+					<atext linktext="musl-1.3." />
+					<atext linktext="musl-2.0." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                      <dep>cross-gcc-musl1-amd64</dep>
