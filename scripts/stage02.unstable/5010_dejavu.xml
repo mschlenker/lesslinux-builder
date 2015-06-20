@@ -3,8 +3,7 @@
 		name="dejavu-fonts-ttf"
 		version="2.35"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>      
@@ -12,6 +11,16 @@
 				<mirror>http://downloads.sourceforge.net/project/dejavu/dejavu/2.35/</mirror>
 			</file>
 			<manualcheck date="20150530" interval="365" page="http://sourceforge.net/projects/dejavu/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/dejavu/files/dejavu/">
+					<atext linktext="2.36" />
+					<atext linktext="2.37" />
+					<atext linktext="2.38" />
+					<atext linktext="2.39" />
+					<atext linktext="2.40" />
+					<atext linktext="2.41" />
+				</page>
+			</check> 
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

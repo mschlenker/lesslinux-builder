@@ -2,8 +2,7 @@
 	<package 
 		name="openjpeg"
 		version="1.5.2"
-		class="user"
-		>
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>         
@@ -11,14 +10,18 @@
 				<mirror>http://downloads.sourceforge.net/openjpeg.mirror/</mirror>
 			</file>
 			<manualcheck date="20150529" interval="120" page="http://downloads.sourceforge.net/openjpeg.mirror/" />
-			<!-- <check>
-				<page html="http://code.google.com/p/openjpeg/downloads/list">
-					<atext linktext="openjpeg_v1_3_1.tar.gz" />
-					<atext linktext="openjpeg_v1_4.tar.gz" />
-					<atext linktext="openjpeg_v1_5.tar.gz" />
-					<atext linktext="openjpeg_v2_0.tar.gz" />
+			<check>
+				<page html="http://sourceforge.net/projects/openjpeg.mirror/files/">
+					<atext linktext="1.5.3" />
+					<atext linktext="1.5.4" />
+					<atext linktext="1.5.5" />
+					<atext linktext="1.5.6" />
+					<atext linktext="1.5.7" />
+					<atext linktext="1.5.8" />
+					<atext linktext="1.6.0" />
+					<atext linktext="1.6.1" />
 				</page>
-			</check> -->
+			</check> 
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

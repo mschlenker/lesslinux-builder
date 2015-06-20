@@ -15,7 +15,19 @@
 				<pkg sha1="1b6ebc77f3f4aa6b5054e5a6d1d747675cff9276">MesaLib-8.0.4-llvm.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
-			<manualcheck date="20130504" interval="180" page="http://www.mesa3d.org/" />
+			<manualcheck date="20150619" interval="180" page="ftp://ftp.freedesktop.org/pub/mesa/glu/" />
+			<check>
+				<page html="ftp://ftp.freedesktop.org/pub/mesa/glu/">
+					<atext linktext="glu-9.0.1." />
+					<atext linktext="glu-9.0.2." />
+					<atext linktext="glu-9.0.3." />
+					<atext linktext="glu-9.0.4." />
+					<atext linktext="glu-9.0.5." />
+					<atext linktext="glu-9.1." />
+					<atext linktext="glu-9.2." />
+					<atext linktext="glu-10." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>Mesa</dep> 
