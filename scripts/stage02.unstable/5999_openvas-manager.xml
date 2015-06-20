@@ -9,15 +9,16 @@
 				<pkg sha1="5e4319d2acc3fa6f143e46b1327a33a971fd99ba">openvas-manager-5.0.9.tar.gz</pkg>
 				<mirror>http://wald.intevation.org/frs/download.php/1963/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="90" page="https://wald.intevation.org/frs/?group_id=29&amp;release_id=800" />
+			<manualcheck date="20150601" interval="90" page="http://www.openvas.org/install-source.html" />
 			<check>
-				<page html="https://wald.intevation.org/frs/?group_id=29&amp;release_id=800">
-					<atext linktext="openvas-manager 5.0.10" />
-					<atext linktext="openvas-manager 5.0.11" />
-					<atext linktext="openvas-manager 5.0.12" />
-					<atext linktext="openvas-manager 5.0.13" />
-					<atext linktext="openvas-manager 6.0." />
-					<atext linktext="openvas-manager 7.0." />
+				<page html="http://www.openvas.org/install-source.html">
+					<atext href="openvas-manager-5.0.9." />
+					<atext href="openvas-manager-5.0.10." />
+					<atext href="openvas-manager-5.0.11." />
+					<atext href="openvas-manager-5.0.12." />
+					<atext href="openvas-manager-5.0.13." />
+					<atext href="openvas-manager-6." />
+					<atext href="openvas-manager-7." />
 				</page>
 			</check>
 		</sources>
