@@ -9,6 +9,17 @@
 				<pkg sha1="58e38ec650a9fda94cc9efc9c0e99e23eb9dd5ce">openvas-scanner-4.0.6.tar.gz</pkg>
 				<mirror>http://wald.intevation.org/frs/download.php/1959/</mirror>
 			</file>
+			<manualcheck date="20150601" interval="90" page="https://wald.intevation.org/frs/?group_id=29&release_id=800" />
+			<check>
+				<page html="https://wald.intevation.org/frs/?group_id=29&release_id=800">
+					<atext href="openvas-scanner-4.0.7." />
+					<atext href="openvas-scanner-4.0.8." />
+					<atext href="openvas-scanner-4.0.9." />
+					<atext href="openvas-scanner-4.0.10." />
+					<atext href="openvas-scanner-5.0." />
+					<atext href="openvas-scanner-5.1." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

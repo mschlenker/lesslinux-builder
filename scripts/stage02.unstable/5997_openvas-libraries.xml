@@ -17,6 +17,17 @@
 				<pkg sha1="ea39346bbf83370413be4488529c6870c9296da7">openvas-wrapper-20141001.sh</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
+			<manualcheck date="20150601" interval="90" page="https://wald.intevation.org/frs/?group_id=29&release_id=800" />
+			<check>
+				<page html="https://wald.intevation.org/frs/?group_id=29&release_id=800">
+					<atext href="openvas-libraries-7.0.11." />
+					<atext href="openvas-libraries-7.0.12." />
+					<atext href="openvas-libraries-7.0.13." />
+					<atext href="openvas-libraries-7.0.14." />
+					<atext href="openvas-libraries-8.0." />
+					<atext href="openvas-libraries-8.1." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
