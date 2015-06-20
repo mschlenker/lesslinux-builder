@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="curl"
-		version="7.42.0"
+		version="7.43.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="5cabee25dcefca7f071e660bd79847f69aeff6af">curl-7.42.0.tar.bz2</pkg>
+				<pkg sha1="d821ea39610b7f1122f1f574a4d8e20e81b3c561">curl-7.43.0.tar.bz2</pkg>
 				<mirror>http://curl.haxx.se/download/</mirror>
 			</file>
 			<manualcheck date="20150530" interval="90" page="http://curl.haxx.se/download/" />
 			<check>
 				<page html="http://curl.haxx.se/download/">
-					<atext linktext="curl-7.42.1." />
-					<atext linktext="curl-7.42.2." />
-					<atext linktext="curl-7.42.3." />
-					<atext linktext="curl-7.43." />
+					<atext linktext="curl-7.43.1." />
+					<atext linktext="curl-7.43.2." />
+					<atext linktext="curl-7.43.3." />
 					<atext linktext="curl-7.44." />
 					<atext linktext="curl-7.45." />
+					<atext linktext="curl-7.46." />
 					<atext linktext="curl-8." />
 				</page>
 			</check>
@@ -45,6 +45,7 @@
 			<!-- soft -->
 			<dep>libidn</dep>
 			<dep>distcc</dep>
+			<dep>cacerts</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
