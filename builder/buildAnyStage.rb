@@ -298,7 +298,7 @@ class AnyStage
 					hrefs.each { |v| 
 						unless a.attributes["href"].to_s.strip[v].nil?
 							update_found = true
-							version_found = a.attributes["href"].strip
+							version_found = a.attributes["href"].to_s.strip
 							puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
 								" current: " + @pkg_name + " " + @pkg_version + " found: " + 
 								version_found
