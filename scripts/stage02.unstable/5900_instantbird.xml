@@ -231,6 +231,7 @@ mkdir -p ${TGTDIR}/opt
 mkdir -p ${TGTDIR}/usr/share/mozilla-addons
 mkdir -p ${TGTDIR}/usr/bin/	
 mkdir -p ${TGTDIR}/usr/share/icons
+mkdir -p ${TGTDIR}/usr/share/applications
 tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/instantbird ${TGTDIR}/opt/instantbird-${PKGVERSION}
 
