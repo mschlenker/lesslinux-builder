@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="git"
-		version="2.4.3"
+		version="2.4.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>           
-				<pkg sha1="e576ca012e838685feabcfa30162122cecf8e074">git-2.4.3.tar.xz</pkg>
+				<pkg sha1="d0fc3d9fb551ce9c45c94df3bb88f13ca7905869">git-2.4.4.tar.xz</pkg>
 				<mirror>https://www.kernel.org/pub/software/scm/git/</mirror>
 			</file>
 			<manualcheck date="20150611" interval="180" page="https://www.kernel.org/pub/software/scm/git/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/software/scm/git/">
 					<atext linktext="git-2.4.8." />
-					<atext linktext="git-2.4.4." />
+					<atext linktext="git-2.4.9." />
 					<atext linktext="git-2.4.5." />
 					<atext linktext="git-2.4.6." />
 					<atext linktext="git-2.4.7." />
@@ -48,6 +48,7 @@
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
+			<dep>cacerts</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
