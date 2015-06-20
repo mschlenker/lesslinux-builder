@@ -10,7 +10,23 @@
 				<pkg sha1="54d00e38860a9c82fc10f4f0deb3c28fdf244d13">libdvdread-5.0.2.tar.bz2</pkg>
 				<mirror>http://www.videolan.org/pub/videolan/libdvdread/5.0.2/</mirror>
 			</file>
-			<manualcheck date="20150530" interval="180" page="http://www.videolan.org/pub/videolan/libdvdread/" />
+			<manualcheck date="20150530" interval="180" page="http://download.videolan.org/pub/videolan/libdvdread/" />
+			<check>
+				<page html="http://download.videolan.org/pub/videolan/libdvdread/">
+					<atext linktext="5.0.3" />
+					<atext linktext="5.0.4" />
+					<atext linktext="5.0.5" />
+					<atext linktext="5.0.6" />
+					<atext linktext="5.0.7" />
+					<atext linktext="5.0.8" />
+					<atext linktext="5.0.9" />
+					<atext linktext="5.1." />
+					<atext linktext="5.2." />
+					<atext linktext="5.3." />
+					<atext linktext="5.4." />
+					<atext linktext="6.0." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

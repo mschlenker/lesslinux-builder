@@ -11,6 +11,16 @@
 				<mirror>http://ftp.de.debian.org/debian/pool/main/i/iso-codes/</mirror>
 			</file>
 			<manualcheck date="20150601" interval="180" page="http://packages.debian.org/source/unstable/iso-codes" />
+			<check>
+				<page html="http://ftp.de.debian.org/debian/pool/main/i/iso-codes/">
+					<atext linktext="iso-codes_3.58" />
+					<atext linktext="iso-codes_3.59" />
+					<atext linktext="iso-codes_3.60" />
+					<atext linktext="iso-codes_3.61" />
+					<atext linktext="iso-codes_3.62" />
+					<atext linktext="iso-codes_4." />
+				</page>
+			</check>
 		</sources>
 		 <builddeps>
                         <dep>bash</dep>

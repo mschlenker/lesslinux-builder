@@ -11,6 +11,16 @@
 				<mirror>http://downloads.xiph.org/releases/speex/</mirror>
 			</file>
 			<manualcheck date="20150530" interval="180" page="http://downloads.xiph.org/releases/speex/" />
+			<check>
+				<page html="http://downloads.xiph.org/releases/speex/">
+					<atext linktext="speex-1.2rc3." />
+					<atext linktext="speex-1.2rc4." />
+					<atext linktext="speex-1.2rc5." />
+					<atext linktext="speex-1.2rc6." />
+					<atext linktext="speex-1.2." />
+					<atext linktext="speex-1.3" />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
