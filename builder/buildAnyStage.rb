@@ -306,7 +306,9 @@ class AnyStage
 		rescue Timeout::Error
 			puts sprintf("%015.4f", Time.now.to_f) + " check  > Timeout when checking " + @pkg_name + " " + @pkg_version
 		rescue REXML::ParseException
-			puts sprintf("%015.4f", Time.now.to_f) + " check  > Malformed XML when checking " + @pkg_name + " " + @pkg_version	
+			puts sprintf("%015.4f", Time.now.to_f) + " check  > Malformed XML when checking " + @pkg_name + " " + @pkg_version
+		rescue SocketError
+			puts sprintf("%015.4f", Time.now.to_f) + " check  > SocketError when checking " + @pkg_name + " " + @pkg_version
 		end
 	end
 	
