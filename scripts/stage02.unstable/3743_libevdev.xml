@@ -10,7 +10,23 @@
 				<pkg sha1="7cadd09a1a8d0841913daba3735e27378bdafe29">libevdev-1.4.2.tar.gz</pkg>
 				<mirror>http://cgit.freedesktop.org/libevdev/snapshot/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="180" page="http://cgit.freedesktop.org/libevdev/" />
+			<manualcheck date="20150529" interval="180" page="http://www.freedesktop.org/software/libevdev/" />
+			<check>
+				<page html="http://www.freedesktop.org/software/libevdev/">
+					<atext linktext="libevdev-1.4.3" />
+					<atext linktext="libevdev-1.4.4" />
+					<atext linktext="libevdev-1.4.5" />
+					<atext linktext="libevdev-1.4.6" />
+					<atext linktext="libevdev-1.4.7" />
+					<atext linktext="libevdev-1.4.8" />
+					<atext linktext="libevdev-1.4.9" />
+					<atext linktext="libevdev-1.5" />
+					<atext linktext="libevdev-1.6" />
+					<atext linktext="libevdev-1.7" />
+					<atext linktext="libevdev-1.8" />
+					<atext linktext="libevdev-2" />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
