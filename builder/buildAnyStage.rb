@@ -296,7 +296,7 @@ class AnyStage
 				}	
 				if !a.attributes["href"].nil? 
 					hrefs.each { |v| 
-						unless a.attributes["href"].strip[v].nil?
+						unless a.attributes["href"].to_s.strip[v].nil?
 							update_found = true
 							version_found = a.attributes["href"].strip
 							puts sprintf("%015.4f", Time.now.to_f) + " check  > NEWER VERSION: " + @buildfile + 
