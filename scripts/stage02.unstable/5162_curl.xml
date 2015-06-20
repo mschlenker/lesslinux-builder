@@ -60,16 +60,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-				./configure --sysconfdir=/etc --prefix=/usr  CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
-				./configure --sysconfdir=/etc --prefix=/usr
-				make
-			fi
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	export CC="distcc gcc"
+			#	export CXX="distcc g++" 
+			#	./configure --sysconfdir=/etc --prefix=/usr  CC="distcc gcc" CXX="distcc g++" 
+			#	pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			#else
+				./configure --sysconfdir=/etc --prefix=/usr --with-ca-path=/etc/ssl/certs \
+					--disable-smb --without-nss --without-gnutls --without-libssh2
+				make -j2 
+			#fi
 			]]>
 		</build>
 		<test />
