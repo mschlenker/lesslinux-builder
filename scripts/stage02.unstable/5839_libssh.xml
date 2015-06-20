@@ -3,8 +3,7 @@
 		name="libssh"
 		version="0.7.0"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
@@ -12,17 +11,18 @@
 				<mirror>https://red.libssh.org/attachments/download/71/</mirror>
 			</file>
 			<manualcheck date="20150529" interval="120" page="http://www.libssh.org/" />
-			<!-- <check>
-				<page html="http://xorg.freedesktop.org/archive/individual/app/">
-					<atext linktext="xset-1.2.3." />
-					<atext linktext="xset-1.2.4." />
-					<atext linktext="xset-1.2.5." />
-					<atext linktext="xset-1.2.6." />
-					<atext linktext="xset-1.3." />
-					<atext linktext="xset-1.4." />
-					<atext linktext="xset-2." />
+			<check>
+				<page html="https://red.libssh.org/projects/libssh/files">
+					<atext linktext="libssh-0.7.1." />
+					<atext linktext="libssh-0.7.2." />
+					<atext linktext="libssh-0.7.3." />
+					<atext linktext="libssh-0.7.4." />
+					<atext linktext="libssh-0.7.5." />
+					<atext linktext="libssh-0.8." />
+					<atext linktext="libssh-0.9." />
+					<atext linktext="libssh-1." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
