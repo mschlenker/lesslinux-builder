@@ -15,6 +15,18 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> 
 			<manualcheck date="20150601" interval="60" page="http://wiki.qemu-project.org/download/" />
+			<check>
+				<page html="http://wiki.qemu-project.org/download/">
+					<atext linktext="qemu-2.3.1." />
+					<atext linktext="qemu-2.3.2." />
+					<atext linktext="qemu-2.3.3." />
+					<atext linktext="qemu-2.3.4." />
+					<atext linktext="qemu-2.4." />
+					<atext linktext="qemu-2.5." />
+					<atext linktext="qemu-2.6." />
+					<atext linktext="qemu-3." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Mesa</dep>
