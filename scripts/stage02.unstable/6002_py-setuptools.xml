@@ -13,6 +13,18 @@
                 </mirror>
             </file>
             <manualcheck date='20150601' interval='60' mirror='https://pypi.python.org/packages/source/s/setuptools/'/>
+	    <check>
+				<page html="https://pypi.python.org/pypi/setuptools/">
+					<atext href="setuptools-17.1." />
+					<atext href="setuptools-17.2." />
+					<atext href="setuptools-17.3." />
+					<atext href="setuptools-17.4." />
+					<atext href="setuptools-17.5." />
+					<atext href="setuptools-18." />
+					<atext href="setuptools-19." />
+					<atext href="setuptools-20." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
