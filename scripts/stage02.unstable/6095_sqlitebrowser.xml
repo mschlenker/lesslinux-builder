@@ -12,7 +12,19 @@
                     http://distfiles.lesslinux.org/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+            <manualcheck date='20150421' interval='60' mirror='http://sqlitebrowser.org/'/>
+	        <check>
+				<page html="http://sqlitebrowser.org/">
+					<atext href="v3.7.0." />
+					<atext href="v3.7.1." />
+					<atext href="v3.7.2." />
+					<atext href="v3.7.3." />
+					<atext href="v3.7.4." />
+					<atext href="v3.8." />
+					<atext href="v3.9." />
+					<atext href="v4.0." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
