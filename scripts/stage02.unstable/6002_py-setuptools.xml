@@ -1,21 +1,22 @@
 <llpackages>
-    <package name='setuptools' version='17.0' install='chroot'>
+    <package name='setuptools' version='17.1.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='8dd9f58bba2208a0223f7921ee8609a93436d0d8'>
-                    setuptools-17.0.tar.gz
+                <pkg sha1='33a7a3f2409654ec1f43fc1c3722e00ef41492ed'>
+                    setuptools-17.1.1.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/s/setuptools/
                 </mirror>
             </file>
-            <manualcheck date='20150601' interval='60' mirror='https://pypi.python.org/packages/source/s/setuptools/'/>
+            <manualcheck date='20150620' interval='60' mirror='https://pypi.python.org/packages/source/s/setuptools/'/>
 	    <check>
 				<page html="https://pypi.python.org/pypi/setuptools/">
-					<atext href="setuptools-17.1." />
+					<atext href="setuptools-17.1.2" />
+					<atext href="setuptools-17.1.3" />
 					<atext href="setuptools-17.2." />
 					<atext href="setuptools-17.3." />
 					<atext href="setuptools-17.4." />
