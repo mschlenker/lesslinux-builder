@@ -81,5 +81,10 @@
 			ln -sf libXaw6.so.6.0.1 ${TGTDIR}/usr/lib/libXaw.so.6
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>
