@@ -97,5 +97,10 @@
 			paxctl -m /usr/bin/mousepad 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

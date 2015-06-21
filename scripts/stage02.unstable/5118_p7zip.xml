@@ -79,5 +79,10 @@
 			make DEST_HOME=/usr install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}_${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

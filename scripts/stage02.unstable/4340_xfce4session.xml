@@ -118,5 +118,10 @@
 			paxctl -m /usr/bin/xfce4-session-settings
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

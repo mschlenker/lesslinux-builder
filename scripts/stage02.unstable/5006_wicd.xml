@@ -68,5 +68,10 @@
 			touch /var/lib/wicd/configurations/.empty_on_purpose
 		]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

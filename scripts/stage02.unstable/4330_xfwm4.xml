@@ -111,5 +111,10 @@
 			paxctl -m /usr/bin/xfwm4
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>
