@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="linux-firmware"
-		version="4.1.0"
+		version="4.0.5"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
 				<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git -->                                                              
-				<pkg sha1="6300d4ec1ee8969814bee28f7091f4c1dd3e647e">linux-firmware-20150622.tar.bz2</pkg>
+				<pkg sha1="9e0c016f0cd9a64b0e1db5340eacde98052907ab">linux-firmware-20150609.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -35,7 +35,7 @@
 		<unpack>
 			<![CDATA[ 
 			
-			tar xjf ${SRCDIR}/linux-firmware-20150622.tar.bz2
+			tar xjf ${SRCDIR}/linux-firmware-20150609.tar.bz2
 			cp ${SRCDIR}/lesslinux-firmwarefinder-20130723.rb lesslinux-firmwarefinder.rb
 			
 			]]>
