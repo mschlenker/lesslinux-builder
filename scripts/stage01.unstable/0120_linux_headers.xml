@@ -1,18 +1,18 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="4.0.5">
+		version="4.1.0">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="6d63cf9a589d951338a3da50c506007c5ba18814">linux-4.0.tar.xz</pkg>
+				<pkg sha1="2470435c2218f0bcbd46ef2a0000694aca340273">linux-4.1.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<file>
+			<!-- <file>
 				<pkg sha1="98325daa6003be17f6d9bf446275880d98571a5d">patch-4.0.5.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
-			</file>
-			<manualcheck date="20150609" interval="60" page="http://www.kernel.org/" />
+			</file> -->
+			<manualcheck date="20150622" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-4.0.8." />
