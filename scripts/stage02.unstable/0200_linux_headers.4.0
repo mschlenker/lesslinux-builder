@@ -1,29 +1,33 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="4.1.0">
+		version="4.0.5"
+		class="devel"
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="2470435c2218f0bcbd46ef2a0000694aca340273">linux-4.1.tar.xz</pkg>
+				<pkg sha1="6d63cf9a589d951338a3da50c506007c5ba18814">linux-4.0.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<!-- <file>
+			<file>
 				<pkg sha1="98325daa6003be17f6d9bf446275880d98571a5d">patch-4.0.5.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
-			</file> -->
-			<manualcheck date="20150622" interval="60" page="http://www.kernel.org/" />
+			</file>
+			<manualcheck date="20150609" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.1.1." />
-					<atext linktext="patch-4.1.2." />
-					<atext linktext="patch-4.1.3." />
+					<atext linktext="patch-4.0.8." />
+					<atext linktext="patch-4.0.6." />
+					<atext linktext="patch-4.0.7." />
+					<atext linktext="patch-4.1." />
 					<atext linktext="patch-4.2." />
 					<atext linktext="patch-4.3." />
-					<atext linktext="patch-4.4." />
 				</page>
 			</check>
 		</sources>
+		<builddeps>
+		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
@@ -36,9 +40,7 @@
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
-			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
-				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			fi
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cd ..
 			mv -v linux-${major}.${minor} linux-${PKGVERSION}
 			
@@ -46,19 +48,28 @@
 		</patch>
 		<build>
 			<![CDATA[ 
+			
 			cd linux-${PKGVERSION}
-			make headers_check
+			make mrproper
+			
 			]]>
 		</build>
+		<test />
 		<install>
 			<![CDATA[
 			
-			mkdir -p /tools/include
 			cd linux-${PKGVERSION}
 			make INSTALL_HDR_PATH=dest headers_install
-			cp -rv dest/include/* /tools/include
+			find dest/include \( -name .install -o -name ..install.cmd \) -delete
+			mkdir -p ${TGTDIR}/usr/include
+			cp -rv dest/include/* ${TGTDIR}/usr/include
 			
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf linux-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>
