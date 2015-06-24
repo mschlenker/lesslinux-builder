@@ -537,6 +537,8 @@ done
 
 xsetroot -solid darkgray
 setxkbmap -layout "$xkbmap"
+killall -9 compton
+killall -9 xcompmgr
 
 wm2 &
 terminal=/usr/bin/xterm
@@ -564,6 +566,8 @@ done
 
 xsetroot -solid darkgray
 setxkbmap -layout "$xkbmap"
+killall -9 compton
+killall -9 xcompmgr
 
 terminal=/usr/bin/xterm
 [ -x "$terminal" ] || terminal=/usr/bin/Terminal
