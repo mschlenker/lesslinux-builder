@@ -6,7 +6,7 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 **Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Building and running with 3.19.x is tested. The kernel configuration is now based on Ubuntus kernel. Cmake 3.0.2, libpng 1.6, Boost and LLVM 3.5.0 has been moved here. 
 
-**Unstable: Yellow** Build with `--unstable`. Works mostly, need some fine tuning, currently in process to move from kernel 4.0 to 4.1. Should be a smooth move.
+**Unstable: Green** Build with `--unstable`. Works mostly, need some fine tuning, only issues with applications using cogl (some Gnome games). Has been updated to kernel 4.1.0, but kernel configuration might receive some fine tuning. Will probably been merged to stable very soon. 
 
 ## Checking out
 
