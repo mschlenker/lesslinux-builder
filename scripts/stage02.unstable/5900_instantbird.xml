@@ -235,7 +235,7 @@ mkdir -p ${TGTDIR}/usr/share/applications
 tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/instantbird ${TGTDIR}/opt/instantbird-${PKGVERSION}
 
-install -m 0644 ${TGTDIR}/opt/instantbird-${PKGVERSION}/icons/mozicon128.png ${TGTDIR}/usr/share/icons/instantbird128.png 
+install -m 0644 comm-esr38/im/branding/nightly/mozicon128.png ${TGTDIR}/usr/share/icons/instantbird128.png 
 mkdir -p ${TGTDIR}/opt/instantbird-${PKGVERSION}/plugins
 touch ${TGTDIR}/opt/instantbird-${PKGVERSION}/plugins/.intentionally_empty
 
