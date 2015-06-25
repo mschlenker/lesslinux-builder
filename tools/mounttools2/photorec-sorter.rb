@@ -71,20 +71,30 @@ def rename_file(filepath, basedir, pgbar)
 		audio = File.open(filepath, "r") 
 		tag = ID3Tag.read(audio)
 		puts "Renaming #{filepath}"
-		artist = tag.artist 
+		artist = tag.artist.to_s.gsub(":", ".").gsub("/", "_")
 		artist = "uknown artist" if artist.to_s == ""
-		album = tag.album
+		album = tag.album.to_s.gsub(":", ".").gsub("/", "_")
 		album = "uknown album" if album.to_s == ""
-		title = tag.title
+		begin
+			title = tag.title.to_s.gsub(":", ".").gsub("/", "_")
+		rescue 
+			title = ` uuidgen `
+		end
 		if title.to_s == ""
 			title = "uknown title" 
 		end
-		if tag.track_nr.to_i > 0
-			title = tag.track_nr.to_i.to_s + " " + title
+		begin
+			if tag.track_nr.to_i > 0
+				title = tag.track_nr.to_i.to_s + " " + title
+			end
+		rescue
 		end
 		title = title + " " + File.basename(filepath)
-		if tag.year.to_i > 0
-			album = tag.year.to_i.to_s + " " + album
+		begin
+			if tag.year.to_i > 0
+				album = tag.year.to_i.to_s + " " + album
+			end
+		rescue
 		end
 		dest = "#{basedir}/sortiert/MP3/#{artist}/#{album}"
 		FileUtils::mkdir_p dest 
