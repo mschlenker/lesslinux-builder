@@ -467,6 +467,7 @@ class ThirdStage < AnyStage
 	def ThirdStage.create_squashfs (builddir, kconfig)
 		mksquashfs = "mksquashfs"
 		mksquashfs = "mksquashfs4" if system("which mksquashfs4")
+		mksquashfs = ENV['MKSQUASHFS'] unless ENV['MKSQUASHFS'].nil? 
 		squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr", "usrbin", "firmware" ] # , "optkaspersky" ]
 		# kconfig = "config/kernels.xml"
 		kcfg = REXML::Document.new(File.new(kconfig))
