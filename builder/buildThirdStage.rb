@@ -469,7 +469,6 @@ class ThirdStage < AnyStage
 		mksquashfs = "mksquashfs4" if system("which mksquashfs4")
 		mksquashfs = ENV['MKSQUASHFS'] unless ENV['MKSQUASHFS'].nil? 
 		squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr", "usrbin", "firmware" ] # , "optkaspersky" ]
-		# kconfig = "config/kernels.xml"
 		kcfg = REXML::Document.new(File.new(kconfig))
 		kcfg.elements.each("kernels/kernel") { |k|
 			klong = k.elements["long"].text
@@ -488,6 +487,36 @@ class ThirdStage < AnyStage
 		##	system("mv " + builddir + "/stage03/squash/opt/kaspersky " + builddir + "/stage03/squash/optkaspersky")
 		##	system("mkdir -m 0755 " + builddir + "/stage03/squash/opt/kaspersky")
 		## end
+		squashdirs.each { |d|
+			if system("test -d " + builddir + "/stage03/squash/" + d)
+				system(mksquashfs + " " + builddir + "/stage03/squash/" + d + " " + builddir + "/stage03/squash/" + d + ".sqs -noappend" ) 
+			end
+		}
+		squashdirs.each { |d|
+			system("rm -rf " + builddir + "/stage03/squash/" + d ) 
+		}
+	end
+	
+	def ThirdStage.create_single_squashfs (builddir, kconfig)
+		mksquashfs = "mksquashfs"
+		mksquashfs = ENV['MKSQUASHFS'] unless ENV['MKSQUASHFS'].nil? 
+		kcfg = REXML::Document.new(File.new(kconfig))
+		kcfg.elements.each("kernels/kernel") { |k|
+			klong = k.elements["long"].text
+			kname = k.attributes["short"]
+			system("mkdir -p -m 0755 " + builddir + "/stage03/squash/m" + kname )
+			system("mkdir -p -m 0755 " + builddir + "/stage03/squash/lib/modules/" + klong )
+			system("rsync -aP " + builddir + "/stage01/chroot/lib/modules/" + klong + "/ " +  builddir + "/stage03/squash/m" + kname + "/" )
+			system(mksquashfs + " " + builddir + "/stage03/squash/m" + kname + " " + builddir + "/stage03/squash/m" + kname + ".sqs -noappend" )
+		}
+		system("mv " + builddir + "/stage03/squash/lib/firmware " + builddir + "/stage03/squash/")
+		system("mkdir " + builddir + "/stage03/squash/lib/firmware" )
+		system("mkdir " + builddir + "/stage03/squash/fullsys" )
+		squashdirs = [ "fullsys", "firmware" ] 
+		sysdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr" ]
+		sysdirs.each { |d|
+			system("mv " + builddir + "/stage03/squash/" + d + " " + builddir + "/stage03/squash/fullsys/")
+		}
 		squashdirs.each { |d|
 			if system("test -d " + builddir + "/stage03/squash/" + d)
 				system(mksquashfs + " " + builddir + "/stage03/squash/" + d + " " + builddir + "/stage03/squash/" + d + ".sqs -noappend" ) 

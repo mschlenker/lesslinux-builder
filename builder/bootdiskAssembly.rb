@@ -108,7 +108,7 @@ class BootdiskAssembly
 	
 	def create_isoimage (kconfig, write_bootconf)
 		root = @branding.root
-		squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr", "usrbin" ] # , "optkaspersky" ]
+		squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr", "usrbin", "fullsys" ] # , "optkaspersky" ]
 		kcfg = REXML::Document.new(File.new(kconfig))
 		[ "/stage03/cdmaster/boot/isolinux/", "/stage03/cdmaster/lesslinux/" ].each { |d|
 			system( "mkdir -p " + @builddir  + d )

@@ -127,6 +127,9 @@ cfg = REXML::Document.new xcfg
 @dbuser = @cfgroot.elements["database/user"].text
 @dbname = @cfgroot.elements["database/dbname"].text
 @dbpass = @cfgroot.elements["database/pass"].text
+@singlecontainer = false
+@singlecontainer = true if @cfgroot.elements["singlecontainer"].text.to_s =~ /true/i 
+	
 @modmodel = "old"
 begin
 	@modmodel = @cfgroot.elements["build/modmodel"].text.downcase.strip
@@ -909,7 +912,11 @@ def run_stage_three
 	ThirdStage.create_softlinks_ng(@builddir, @dbh) unless @full_image == true
 	ThirdStage.copy_firmware(@builddir)
 	# raise "DebugBreakPoint"
-	ThirdStage.create_squashfs(@builddir, @kernel_file)
+	if @singlecontainer == true
+		ThirdStage.create_single_squashfs(@builddir, @kernel_file)
+	else
+		ThirdStage.create_squashfs(@builddir, @kernel_file)
+	end
 	
 	# include branding
 	ThirdStage.write_branding(@builddir, @branding, @brand_file, @build_timestamp)
