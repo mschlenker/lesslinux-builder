@@ -4374,7 +4374,8 @@ case $1 in
 		    mkdir -p /lesslinux/fullsys
 		    mount -o loop,ro /lesslinux/$mediadir/$contdir/$container /lesslinux/fullsys
 		    for d in bin lib opt sbin usr srv ; do
-			[ -d /lesslinux/fullsys/$d ] && mount --bind /lesslinux/fullsys/$d $d 
+			mkdir -p /$d 
+			[ -d /lesslinux/fullsys/$d ] && mount --bind /lesslinux/fullsys/$d /$d 
 		    done
 		;;
 		*)
