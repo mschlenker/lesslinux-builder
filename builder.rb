@@ -128,8 +128,10 @@ cfg = REXML::Document.new xcfg
 @dbname = @cfgroot.elements["database/dbname"].text
 @dbpass = @cfgroot.elements["database/pass"].text
 @singlecontainer = false
-@singlecontainer = true if @cfgroot.elements["singlecontainer"].text.to_s =~ /true/i 
-	
+begin
+	@singlecontainer = true if @cfgroot.elements["singlecontainer"].text.to_s =~ /true/i 
+rescue
+end
 @modmodel = "old"
 begin
 	@modmodel = @cfgroot.elements["build/modmodel"].text.downcase.strip
