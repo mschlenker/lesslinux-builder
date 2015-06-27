@@ -4369,6 +4369,14 @@ case $1 in
 		'#'*|'')
 			true
 		;;
+		fullsys.sqs*)
+		    container=` echo $fs | awk '{print $1}' `
+		    mkdir -p /lesslinux/fullsys
+		    mount -o loop,ro /lesslinux/$mediadir/$contdir/$container /lesslinux/fullsys
+		    for d in bin lib opt sbin usr srv ; do
+			[ -d /lesslinux/fullsys/$d ] && mount --bind /lesslinux/fullsys/$d $d 
+		    done
+		;;
 		*)
 		    container=` echo $fs | awk '{print $1}' `
 		    if [ -n "$container" ] ; then
