@@ -1,0 +1,100 @@
+<llpackages>
+	<package 
+		name="gcc"
+		version="4.9.2"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="79dbcb09f44232822460d80b033c962c0237c6d8">gcc-4.9.2.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.2/</mirror>
+			</file>
+			<manualcheck date="20141101" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-4.9.4" />
+					<atext linktext="gcc-4.9.5" />
+					<atext linktext="gcc-4.9.3" />
+					<atext linktext="gcc-4.10."/>
+					<atext linktext="gcc-4.11." />
+					<atext linktext="gcc-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			mkdir ${PKGNAME}-build
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			patch -Np1 -i ${SRCDIR}/gcc-4.9.0-upstream_fixes-1.patch
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			SED=sed
+			export SED
+			../${PKGNAME}-${PKGVERSION}/configure --prefix=/usr \
+				--enable-shared \
+				--enable-threads=posix --enable-__cxa_atexit \
+				--enable-clocale=gnu --enable-languages=c,c++ \
+				--disable-multilib --disable-bootstrap --with-system-zlib
+			make -j ` grep -c processor /proc/cpuinfo ` 
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			ulimit -s 32768
+			make -k check
+			../${PKGNAME}-${PKGVERSION}/contrib/test_summary
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/lib
+			ln -sfv ../usr/bin/cpp ${TGTDIR}/lib
+			ln -sfv gcc ${TGTDIR}/usr/bin/cc
+			
+			echo '-=> compiling and checking dummy'
+			echo 'main(){}' > dummy.c
+			${TGTDIR}/usr/bin/cc dummy.c -v -Wl,--verbose &> dummy.log
+			readelf -l a.out | grep ': /lib'
+			echo '-=> grepping through dummy.log'
+			grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log
+			echo '-=> grepping headers in dummy.log'
+			grep -B4 '^ /usr/include' dummy.log
+			echo '-=> grepping linker in dummy.log'
+			grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'
+			echo '-=> grepping libc in dummy.log'
+			grep "/lib.*/libc.so.6 " dummy.log
+			echo '-=> grepping ld in dummy.log'
+			grep found dummy.log
+			
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
