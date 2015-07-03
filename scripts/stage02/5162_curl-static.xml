@@ -1,0 +1,54 @@
+<llpackages>
+	<package 
+		name="curl-static"
+		version="7.43.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="d821ea39610b7f1122f1f574a4d8e20e81b3c561">curl-7.43.0.tar.bz2</pkg>
+				<mirror>http://curl.haxx.se/download/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="90" page="http://curl.haxx.se/download/" />
+			<check>
+				<page html="http://curl.haxx.se/download/">
+					<atext linktext="curl-7.43.1." />
+					<atext linktext="curl-7.43.2." />
+					<atext linktext="curl-7.43.3." />
+					<atext linktext="curl-7.44." />
+					<atext linktext="curl-7.45." />
+					<atext linktext="curl-7.46." />
+					<atext linktext="curl-8." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf curl-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd curl-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --without-libidn \
+				--without-nss --without-gnutls --without-ssl --without-zlib --host=i386-linux-musl
+			make -j4 LDFLAGS=-all-static
+			 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/static/bin
+			install -m 0755 curl-${PKGVERSION}/src/curl ${TGTDIR}/static/bin 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf curl-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
