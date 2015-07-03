@@ -3268,6 +3268,12 @@ case $1 in
 		if [ -f /var/run/lesslinux/cdfound ] ; then
 			printf "$bold===> Skip search for LESSLINUX System $normal\n"
 		elif [ -n "$wgetiso" ] ; then
+			if [ -x /static/bin/curl ] && echo "$wgetiso" | grep -q '^http://' ; then
+				tmpsize=` curl -I "$wgetiso" | grep Content-Length | awk '{print $2}' `
+				if [ "$tmpsize" -gt 0 ] ; then
+					wgetsize=` expr "$tmpsize" / 1024 + 16384 ` 
+				fi
+			fi
 			[ "$wgetsize" -lt 1 ] && wgetsize=1048576
 			mkdir -p /lesslinux/ramiso
 			mount -t tmpfs -o mode=0755,size=${wgetsize}k  tmpfs  /lesslinux/ramiso 
@@ -3281,7 +3287,17 @@ case $1 in
 				tftppath=` echo $hostpath | awk '{print $2}' `
 				tftp -g -b 32768 -l "$isofile" -r "$tftppath" "$tftphost"
 			else
-				wget -O "$isofile" "$wgetiso"
+				if [ -x /static/bin/curl ] ; then
+					if [ "$console" = tty2 ] ; then
+						chvt 8
+						curl -o "$isofile" "$wgetiso" 2> /dev/tty8 
+						chvt 2
+					else
+						curl -o "$isofile" "$wgetiso"
+					fi
+				else
+					wget -O "$isofile" "$wgetiso"
+				fi
 			fi
 			free_loop=` losetup -f `
 			losetup $free_loop $isofile
