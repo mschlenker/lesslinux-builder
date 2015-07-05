@@ -3274,7 +3274,7 @@ case $1 in
 			if [ -x /static/bin/curl ] && echo "$wgetiso" | grep -q '^http://' ; then
 				tmpsize=` curl -I "$wgetiso" | grep Content-Length | awk '{print $2}' `
 				overlay=` echo -n "$wgetiso" | sed 's/iso$/tgz/g' ` 
-				ovrsize=` curl -I "$overlay" | grep Content-Length | awk '{print $2}' `
+				ovrsize=` curl -I "$overlay" | grep '^Content-Length' | awk '{print $2}' `
 				if [ "$tmpsize" -gt 0 ] ; then
 					if [ "$ovrsize" -gt 0 ] ; then
 						mkdir -p /etc/lesslinux/branding/overlays
