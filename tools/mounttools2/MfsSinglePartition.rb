@@ -165,6 +165,49 @@ class MfsSinglePartition
 		return samobj
 	end
 	
+	def get_language
+		return nil, nil unless @fs =~ /fat/ || @fs =~ /ntfs/
+		was_mounted = true
+		if mount_point.nil?
+			was_mounted = false
+			mount
+		end
+		locale = nil
+		userdate = Time.new(1970) 
+		if File.directory?(mount_point[0] + "/Users") 
+			Dir.entries(mount_point[0] + "/Users").each { |d|
+				if ( File.directory?(mount_point[0] + "/Users/" + d) &&
+					!File.symlink?(mount_point[0] + "/Users/" + d) &&
+					File.exists?(mount_point[0] + "/Users/" + d + "/NTUSER.DAT") && 
+					( File.mtime(mount_point[0] + "/Users/" + d + "/NTUSER.DAT").to_i - userdate.to_i > 0 ) )
+					tmplocale = read_locale(mount_point[0] + "/Users/" + d + "/NTUSER.DAT")
+					unless tmplocale.nil?
+						locale = tmplocale 
+						userdate = File.mtime(mount_point[0] + "/Users/" + d + "/NTUSER.DAT")
+					end
+				end
+			}
+		else
+			umount if was_mounted == false
+			return nil, nil
+		end
+		umount if was_mounted == false
+		return locale, userdate 
+	end
+	
+	def read_locale(regfile)
+		begin
+			h = Hivex::open(regfile, { :write => 0})
+			node = h.node_get_child(h.root(), "Control Panel")
+			node = h.node_get_child(node, "International")
+			val = h.node_get_value(node, "LocaleName")
+			hash = h.value_value(val)
+			return hash[:value].to_s.gsub("\x00", "").strip
+		rescue
+			return nil
+		end
+	end
+	
 	def regfile(names=nil)
 		names = [ "Software", "SOFTWARE", "software" ] if names.nil?
 		iswin, winver = is_windows

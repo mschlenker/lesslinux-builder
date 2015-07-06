@@ -1,6 +1,8 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
+require 'MfsSinglePartition'
+
 class MfsDiskDrive
 	
 	def initialize(device, debug=false)
