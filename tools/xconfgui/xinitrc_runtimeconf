@@ -33,18 +33,7 @@ else
 	xrdb -load /root/.lesslinux/xstuff.xrdb
 fi
 
-#mkdir -p /root/.config
-#mkdir -p /root/.icewm
-#mount -t tmpfs -o mode=0755 tmpfs /root/.config
-#mount -t tmpfs -o mode=0755 tmpfs /root/.icewm
-#rsync -avHP /home/surfer/.icewm/ /root/.icewm/
-#rsync -avHP /home/surfer/.config/ /root/.config/
-# FIXME: Do not hardcode theme here!
-#tar -C /usr/share/themes/Adwaita -cvf - gtk-3.0 gtk-2.0 | tar -C /root/.config -xf -
-#chown -R root:root /root/.icewm/ 
-#chown -R root:root /root/.config/
-
-if [ "$lang" = "ru" ] ; then
+if [ "$xkbmap" = "ru" ] ; then
 	setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
 else
 	setxkbmap -layout "$xkbmap"
@@ -67,7 +56,7 @@ if [ "$RUNTIMECONFWM" = "icewm" ] ; then
 	icewm &
 	/usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.jpg
 else
-	/usr/bin/matchbox-window-manager -force_dialogs "Startup: $brandlong" &
+	/usr/bin/matchbox-window-manager -force_dialogs "Startup: $brandlong,Select your language" &
 fi
 
 xfsettingsd 
@@ -76,8 +65,16 @@ xfsettingsd
 	xfsettingsd --replace 
 done ) &
 
+if [ "$nolangsel" -gt 0 ] ; then
+	echo "Skipping language selection"
+else
+	/usr/bin/ruby -I /usr/share/lesslinux/drivetools /usr/local/xconfgui/langselect.rb
+	. /etc/rc.subr/extractbootparams
+	if [ "$xkbmap" = "ru" ] ; then
+		setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+	else
+		setxkbmap -layout "$xkbmap"
+	fi
+fi
+
 /usr/bin/ruby /usr/local/xconfgui/runtimeconf.rb
-#umount /root/.config
-#umount /root/.icewm
-#umount -f /root/.config
-#umount -f /root/.icewm

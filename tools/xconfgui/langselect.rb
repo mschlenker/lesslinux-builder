@@ -3,6 +3,7 @@
 
 require 'gtk2'
 require 'MfsDiskDrive'
+require 'fileutils'
 
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
@@ -125,6 +126,14 @@ langcombo.signal_connect("changed") { |x|
 }
 
 okbutton.signal_connect("clicked") {
+	f = File.new("/etc/lesslinux/cmdline", "a+")
+	f.write(" lang=#{@langorder[langcombo.active]} xkbmap=#{@keymapdefaults[@langorder[kbdcombo.active]]} ") 
+	f.close
+	if system("mountpoint /lesslinux/boot")
+		f = File.new("/lesslinux/boot/cmdline", "a+")
+		f.write(" lang=#{@langorder[langcombo.active]} xkbmap=#{@keymapdefaults[@langorder[kbdcombo.active]]} nolangsel=1 ") 
+		f.close
+	end
 	Gtk.main_quit
 }
 
