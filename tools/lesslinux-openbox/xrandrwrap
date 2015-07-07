@@ -5,3 +5,8 @@ ALTBG=${HOME}/.lesslinux/branding/desktop.png
 [ -f "$ALTBG" ] && BG=$ALTBG
 
 xrandr --size "$1" && Esetroot -s "$BG"
+conky=` pidof conky ` 
+if [ -n "$conky" ] ; then
+	kill -9 "$conky"
+	conky -d 
+fi
