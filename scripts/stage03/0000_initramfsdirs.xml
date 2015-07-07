@@ -537,6 +537,8 @@ done
 
 xsetroot -solid darkgray
 setxkbmap -layout "$xkbmap"
+killall -9 compton
+killall -9 xcompmgr
 
 wm2 &
 terminal=/usr/bin/xterm
@@ -564,6 +566,8 @@ done
 
 xsetroot -solid darkgray
 setxkbmap -layout "$xkbmap"
+killall -9 compton
+killall -9 xcompmgr
 
 terminal=/usr/bin/xterm
 [ -x "$terminal" ] || terminal=/usr/bin/Terminal
@@ -1320,9 +1324,7 @@ switchextr=''
 # for more than one bootscript! All others should be extracted in the
 # respective script! (Mattias)
 
-for i in `cat /proc/cmdline`
-do
-   # echo $i
+for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; do
    case "$i" in
      skipservices=*)
 	skipservices=`echo "$i" | awk -F '=' '{print $2}'`
@@ -1546,6 +1548,9 @@ do
 	switchread=` echo "$swtch" | awk -F '|' '{print $3}' `
 	switchinit=` echo "$swtch" | awk -F '|' '{print $4}' `
 	switchextr=` echo "$swtch" | awk -F '|' '{print $5}' `
+     ;;
+     nolangsel=*)
+	nolangsel=` echo "$i" | awk -F '=' '{print $2}' `
      ;;
    esac
 done
@@ -3242,6 +3247,9 @@ esac
 			<module>sha512</module>
 			<module>des</module>
 			<module>md4</module>
+			<module>sunrpc</module>
+			<module>nfsv3</module>
+			<module>fscache</module>
 		</modlist>
 		<scriptdata location="/etc/rc.d/0106-wgetsys.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
@@ -3264,6 +3272,18 @@ case $1 in
 		if [ -f /var/run/lesslinux/cdfound ] ; then
 			printf "$bold===> Skip search for LESSLINUX System $normal\n"
 		elif [ -n "$wgetiso" ] ; then
+			if [ -x /static/bin/curl ] && echo "$wgetiso" | grep -q '^http://' ; then
+				tmpsize=` curl -I "$wgetiso" | grep Content-Length | awk '{print $2}' `
+				overlay=` echo -n "$wgetiso" | sed 's/iso$/tgz/g' ` 
+				ovrsize=` curl -I "$overlay" | grep '^Content-Length' | awk '{print $2}' `
+				if [ "$tmpsize" -gt 0 ] ; then
+					if [ "$ovrsize" -gt 0 ] ; then
+						mkdir -p /etc/lesslinux/branding/overlays
+						curl -o /etc/lesslinux/branding/overlays/overlay7.tgz "$overlay"
+					fi
+					wgetsize=` expr "$tmpsize" / 1024 + 16384 ` 
+				fi
+			fi
 			[ "$wgetsize" -lt 1 ] && wgetsize=1048576
 			mkdir -p /lesslinux/ramiso
 			mount -t tmpfs -o mode=0755,size=${wgetsize}k  tmpfs  /lesslinux/ramiso 
@@ -3277,7 +3297,17 @@ case $1 in
 				tftppath=` echo $hostpath | awk '{print $2}' `
 				tftp -g -b 32768 -l "$isofile" -r "$tftppath" "$tftphost"
 			else
-				wget -O "$isofile" "$wgetiso"
+				if [ -x /static/bin/curl ] ; then
+					if [ "$console" = tty2 ] ; then
+						chvt 8
+						curl -o "$isofile" "$wgetiso" 2> /dev/tty8 
+						chvt 2
+					else
+						curl -o "$isofile" "$wgetiso"
+					fi
+				else
+					wget -O "$isofile" "$wgetiso"
+				fi
 			fi
 			free_loop=` losetup -f `
 			losetup $free_loop $isofile
@@ -4348,58 +4378,14 @@ case $1 in
 	    touch /var/run/lesslinux/boot_failed
 	    exit 1
 	fi
-	# if mountpoint -q /lesslinux/cdrom || [ -n "$wgetiso" ] || [ -d /lesslinux/ramiso ] > /dev/null 2>&1 ; then
-            printf "$bold===> Searching for LESSLINUX containers $normal\n"
-	    if [ -f /var/run/lesslinux/isoloop ] ; then
-		copy_source=/lesslinux/isoloop/$contdir
-		mediadir=isoloop
-	    else
-		copy_source=/lesslinux/cdrom/$contdir
-	    fi
-	    [ "$skipcheck" -lt 1 ] && run_self_test $mediadir
-	    # toram=0 : never copy to RAM
-	    # toram=1 : always copy to RAM
-	    # toram=n : copy to RAM if available memory is n kilobytes larger than larger than the media
-	    copy_toram="false"
-	    if [ "$toram" -eq 1 ] && [ -z "$wgetiso" ] ; then
-		copy_toram="true"
-	    elif [ "$toram" -gt 1 ] ; then
-		spaceneed=` du -k $copy_source | tail -n1 | awk '{print $1}' `
-		ramneed=` expr $spaceneed + $toram ` 
-		[ "$mem_avail" -gt "$ramneed" ] && copy_toram="true"
-	    fi
-	    if [ "$optram" -gt 0 ] ; then
-		if cat /proc/mounts | grep /lesslinux/cdrom | grep '^/dev/sr' ; then
-			echo '---> System device is on optical media, start copying to RAM'
-		else
-			echo '---> System device is not on optical media, skip copying to RAM'
-			copy_toram="false"
-		fi
-	    fi
-	    [ -f /lesslinux/ramiso/lesslinux.iso ] && copy_toram="false"
- 	    if [ "$copy_toram" = "true" ] ; then
-	        printf "$bold===> Copying LESSLINUX containers to RAM $normal\n"
-	        mkdir -p /lesslinux/toram/$contdir
-	        # cp $copy_source/* /lesslinux/toram/$contdir/
-		tar -C $copy_source/ -cf - . | tar -C /lesslinux/toram/$contdir/ -xf -
-		echo "toram=true" >> /var/run/lesslinux/startup_vars
-		if [ -n "$toramdirs" ] ; then
-		    sepdirs=` echo "$toramdirs" | sed 's%|% %g' `
-		    cdir=` dirname $copy_source ` 
-		    for dir in $sepdirs ; do
-			tar -C "$cdir" -cvf - "$dir" | tar -C /lesslinux/toram -xf - 
-		    done
-		fi
-		if [ -f /var/run/lesslinux/isoloop ] ; then
-		    umount /lesslinux/isoloop
-		    losetup -d ` cat /var/run/lesslinux/install_source ` 
-		fi
-	        umount /lesslinux/cdrom
-		umount /lesslinux/boot
-		[ "$ejectcd" -gt 0 ] && grep -q /dev/sr /var/run/lesslinux/install_source && eject ` cat /var/run/lesslinux/install_source ` 
-	        mediadir=toram
-	    fi
-	# fi
+	printf "$bold===> Searching for LESSLINUX containers $normal\n"
+	if [ -f /var/run/lesslinux/isoloop ] ; then
+	    copy_source=/lesslinux/isoloop/$contdir
+	    mediadir=isoloop
+	else
+	    copy_source=/lesslinux/cdrom/$contdir
+	fi
+	[ "$skipcheck" -lt 1 ] && run_self_test $mediadir
 	[ -f /lesslinux/$mediadir/$contdir/overlay.tgz ] && \
 	    ln -sf /lesslinux/$mediadir/$contdir/overlay.tgz /etc/lesslinux/branding/overlays/overlay3.tgz
 	cat /lesslinux/$mediadir/$contdir/mount.txt | while read fs
@@ -4408,6 +4394,15 @@ case $1 in
 	    case $fs in
 		'#'*|'')
 			true
+		;;
+		fullsys.sqs*)
+		    container=` echo $fs | awk '{print $1}' `
+		    mkdir -p /lesslinux/fullsys
+		    mount -o loop,ro /lesslinux/$mediadir/$contdir/$container /lesslinux/fullsys
+		    for d in bin lib opt sbin usr srv ; do
+			mkdir -p /$d 
+			[ -d /lesslinux/fullsys/$d ] && mount --bind /lesslinux/fullsys/$d /$d 
+		    done
 		;;
 		*)
 		    container=` echo $fs | awk '{print $1}' `
@@ -5232,7 +5227,7 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>
-	<package name="busybox" version="1.22.1" allowfail="yes">
+	<package name="busybox" version="1.23.2" allowfail="yes">
 		<sources>
 			<file>
 				<pkg sha1="1c79e0eb88281bf4f734ab934a2d9f1d1b00de60">busybox-1.7.2-smack-static-ulibc-i686.tar.gz</pkg>
