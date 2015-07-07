@@ -144,10 +144,10 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>  
-	<package name="xconfgui" version="20140912-00" allowfail="yes">
+	<package name="xconfgui" version="20150707-00" allowfail="yes">
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="8dcc6d9407e5161ec8c510fb1edd781950773e86">xconfgui-20140912-00.tar.bz2</pkg>
+				<pkg sha1="eff483e361ebba8f6485d88d94aa3b01b8b4f6c4">xconfgui-20150707-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 		</sources>
@@ -161,7 +161,7 @@ esac
 		cd ${PKGNAME} 
 		mkdir -m 0755 -p ${SQUASHFS}/usr/local/xconfgui
 		# ignore 5in1install.rb 5in1windows.rb - those are proprietary COBI
-		for i in configtest conftest.rb  \
+		for i in configtest conftest.rb  langselect.rb \
 		    installer.rb monitortest monitortest.rb \
 		    runtimeconf.rb trigger_configtest \
 		    xinitrc xinitrc_installer \
