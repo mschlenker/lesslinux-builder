@@ -1324,9 +1324,7 @@ switchextr=''
 # for more than one bootscript! All others should be extracted in the
 # respective script! (Mattias)
 
-for i in `cat /proc/cmdline`
-do
-   # echo $i
+for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; do
    case "$i" in
      skipservices=*)
 	skipservices=`echo "$i" | awk -F '=' '{print $2}'`
@@ -1550,6 +1548,9 @@ do
 	switchread=` echo "$swtch" | awk -F '|' '{print $3}' `
 	switchinit=` echo "$swtch" | awk -F '|' '{print $4}' `
 	switchextr=` echo "$swtch" | awk -F '|' '{print $5}' `
+     ;;
+     nolangsel=*)
+	nolangsel=` echo "$i" | awk -F '=' '{print $2}' `
      ;;
    esac
 done
