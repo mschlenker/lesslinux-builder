@@ -79,6 +79,8 @@
                         <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
+			<dep>gstreamer1</dep>
+			<dep>gst-plugins-base1</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -99,9 +101,10 @@
 				export CXX="distcc g++" 
 			fi
 			./configure --prefix=/usr --sysconfdir=/etc \
-				--enable-gles1=yes --enable-gles2=yes \
+				--enable-gles1 --enable-gles2 \
 				--enable-wayland-egl-platform=no \
-				--enable-wayland-egl-server=no
+				--enable-wayland-egl-server=no \
+				--enable-cogl-gst
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount
 			else
