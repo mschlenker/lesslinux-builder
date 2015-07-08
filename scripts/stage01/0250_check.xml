@@ -39,7 +39,7 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools
+			PKG_CONFIG= ./configure --prefix=/tools
 			]]>
 		</build>
 		<install>

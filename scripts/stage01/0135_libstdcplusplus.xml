@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="libstdcplusplus"
-		version="4.9.2"
+		version="5.1.0"
 		buildas="unpriv"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="79dbcb09f44232822460d80b033c962c0237c6d8">gcc-4.9.2.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.2/</mirror>
+				<pkg sha1="b6c947b09adf780fe02065d0c48bfd7b4bdddfa3">gcc-5.1.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-5.1.0/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20150529" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
-					<atext linktext="gcc-4.9.4" />
-					<atext linktext="gcc-4.9.5" />
-					<atext linktext="gcc-4.9.3" />
-					<atext linktext="gcc-4.10."/>
-					<atext linktext="gcc-4.11." />
-					<atext linktext="gcc-5." />
+					<atext linktext="gcc-5.1.1" />
+					<atext linktext="gcc-5.1.2" />
+					<atext linktext="gcc-5.1.3" />
+					<atext linktext="gcc-5.2"/>
+					<atext linktext="gcc-5.3." />
+					<atext linktext="gcc-6." />
 				</page>
 			</check>
 		</sources>
