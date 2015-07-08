@@ -1,23 +1,26 @@
 <llpackages>
 	<package 
 		name="wv"
-		version="1.2.4"
-		class="user"
-		>
+		version="1.2.9"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>           
-				<pkg sha1="7b11814774426ae41eee009969bef49865a10c79">wv-1.2.4.tar.gz</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="db4717a151742dbdb492318f104504a92075543a">wv-1.2.9.tar.gz</pkg>
+				<mirror>http://www.abisource.com/downloads/wv/1.2.9/</mirror>
 				<mirror>http://surfnet.dl.sourceforge.net/sourceforge/wvware/</mirror>
 			</file>
-			<manualcheck date="20130504" interval="730" page="http://sourceforge.net/projects/wvware/files/" />
+			<manualcheck date="20150530" interval="180" page="http://www.abisource.com/downloads/wv/" />
 			<check>
-				<page html="http://sourceforge.net/projects/wvware/files/">
-					<atext linktext="wv-1.2.5.tar.gz" />
-					<atext linktext="wv-1.2.6.tar.gz" />
-					<atext linktext="wv-1.3.0.tar.gz" />
-					<atext linktext="wv-1.4.0.tar.gz" />
+				<page html="http://www.abisource.com/downloads/wv/">
+					<atext linktext="1.2.10" />
+					<atext linktext="1.2.11" />
+					<atext linktext="1.2.12" />
+					<atext linktext="1.2.13" />
+					<atext linktext="1.2.14" />
+					<atext linktext="1.3." />
+					<atext linktext="1.4." />
+					<atext linktext="2.0." />
 				</page>
 			</check>
 		</sources>
@@ -65,5 +68,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

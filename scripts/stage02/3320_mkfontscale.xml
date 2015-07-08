@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="mkfontscale"
-		version="1.1.1"
+		version="1.1.2"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                
-				<pkg sha1="ad1887ca253b9234ab6a6989de53d3127e302c6c">mkfontscale-1.1.1.tar.bz2</pkg>
+				<pkg sha1="da32fe297732355eea71d4a94ed003be93d1eae7">mkfontscale-1.1.2.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/app/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://xorg.freedesktop.org/archive/individual/app/" />
+			<manualcheck date="20150529" interval="365" page="http://xorg.freedesktop.org/archive/individual/app/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="mkfontscale-1.1.4." />
-					<atext linktext="mkfontscale-1.1.2." />
+					<atext linktext="mkfontscale-1.1.5." />
 					<atext linktext="mkfontscale-1.1.3." />
 					<atext linktext="mkfontscale-1.2." />
 					<atext linktext="mkfontscale-1.3." />
@@ -72,5 +72,10 @@
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

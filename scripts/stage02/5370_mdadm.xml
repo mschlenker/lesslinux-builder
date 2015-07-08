@@ -46,6 +46,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -i 's/-Werror //g' Makefile
+			sed -i 's/\(^inline\)/static \1/' bitmap.c
 			]]>
 		</patch>
 		<build>

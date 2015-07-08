@@ -1,31 +1,33 @@
 <llpackages>
 	<package 
 		name="cmake"
-		version="3.0.2"
+		version="3.2.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                           
-				<pkg sha1="379472e3578902a1d6f8b68a9987773151d6f21a">cmake-3.0.2.tar.gz</pkg>
-				<mirror>http://www.cmake.org/files/v3.0/</mirror>
+				<pkg sha1="fa176cc5b1ccf2e98196b50908432d0268323501">cmake-3.2.3.tar.gz</pkg>
+				<mirror>http://www.cmake.org/files/v3.2/</mirror>
 			</file>
-			<manualcheck date="20141118" interval="90" page="http://www.cmake.org/files/" />
-			<!-- <check>
-				<page html="http://www.cmake.org/files/v2.8/">
-					<atext linktext="cmake-2.8.12.2." />
-					<atext linktext="cmake-2.8.12.3." />
-					<atext linktext="cmake-2.8.12.4." />
-					<atext linktext="cmake-2.8.13." />
-					<atext linktext="cmake-2.8.14." />
-					<atext linktext="cmake-2.8.15." />
+			<manualcheck date="20150620" interval="90" page="http://www.cmake.org/files/" />
+			<check>
+				<page html="http://www.cmake.org/files/v3.2/">
+					<atext linktext="cmake-3.2.9." />
+					<atext linktext="cmake-3.2.4." />
+					<atext linktext="cmake-3.2.5." />
+					<atext linktext="cmake-3.2.6." />
+					<atext linktext="cmake-3.2.7." />
+					<atext linktext="cmake-3.2.8." />
 				</page>
 				<page html="http://www.cmake.org/files/">
-					<atext linktext="v2.10" />
-					<atext linktext="v2.12" />
-					<atext linktext="v3." />
+					<atext linktext="v3.3" />
+					<atext linktext="v3.4" />
+					<atext linktext="v3.5" />
+					<atext linktext="v3.6" />
+					<atext linktext="v4." />
 				</page>
-			</check> -->
+			</check> 
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

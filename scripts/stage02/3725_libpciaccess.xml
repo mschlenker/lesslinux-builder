@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="libpciaccess"
-		version="0.13.2"
+		version="0.13.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                   
-				<pkg sha1="63df515a4c5d5a339a7c1f9e4baa6543efa3c7da">libpciaccess-0.13.2.tar.bz2</pkg>
+				<pkg sha1="99e791fe20924b9da29bf7c7ed9438739c4f2930">libpciaccess-0.13.4.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20150529" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libpciaccess-0.13.3." />
-					<atext linktext="libpciaccess-0.13.4." />
+					<atext linktext="libpciaccess-0.13.5." />
+					<atext linktext="libpciaccess-0.13.6." />
 					<atext linktext="libpciaccess-0.14." />
 					<atext linktext="libpciaccess-0.15." />
 					<atext linktext="libpciaccess-0.2" />
@@ -71,5 +71,10 @@
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

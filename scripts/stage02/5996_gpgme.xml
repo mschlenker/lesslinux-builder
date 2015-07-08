@@ -1,16 +1,29 @@
 <llpackages>
 	<package 
 		name="gpgme"
-		version="1.5.1"
+		version="1.5.5"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="a91c258e79acf30ec86a667e07f835e5e79342d8">gpgme-1.5.1.tar.bz2</pkg>
+				<pkg sha1="88476d72cb099e179de4040760502886f7a54926">gpgme-1.5.5.tar.bz2</pkg>
 				<mirror>ftp://ftp.gnupg.org/gcrypt/gpgme/</mirror>
 			</file>
-			<manualcheck date="20140710" interval="90" page="ftp://ftp.gnupg.org/gcrypt/libassuan/" />
+			<manualcheck date="20150620" interval="90" page="ftp://ftp.gnupg.org/gcrypt/gpgme/" />
+			<check>
+				<page html="ftp://ftp.gnupg.org/gcrypt/gpgme/">
+					<atext linktext="gpgme-1.5.11." />
+					<atext linktext="gpgme-1.5.6." />
+					<atext linktext="gpgme-1.5.7." />
+					<atext linktext="gpgme-1.5.8." />
+					<atext linktext="gpgme-1.5.9." />
+					<atext linktext="gpgme-1.5.10." />
+					<atext linktext="gpgme-1.6." />
+					<atext linktext="gpgme-1.7." />
+					<atext linktext="gpgme-2." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

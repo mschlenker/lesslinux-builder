@@ -1,16 +1,26 @@
 <llpackages>
 	<package 
 		name="iso-codes"
-		version="3.55"
+		version="3.58"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                                                                  
-				<pkg sha1="3b6de85e2da845e28d588670dd0307833a2f3b29">iso-codes_3.55.orig.tar.xz</pkg>
+				<pkg sha1="9f231aac990f5ce781970cebf02fb673baf1c44f">iso-codes_3.58.orig.tar.xz</pkg>
 				<mirror>http://ftp.de.debian.org/debian/pool/main/i/iso-codes/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://packages.debian.org/source/unstable/iso-codes" />
+			<manualcheck date="20150620" interval="180" page="http://packages.debian.org/source/unstable/iso-codes" />
+			<check>
+				<page html="http://ftp.de.debian.org/debian/pool/main/i/iso-codes/">
+					<atext linktext="iso-codes_3.63" />
+					<atext linktext="iso-codes_3.59" />
+					<atext linktext="iso-codes_3.60" />
+					<atext linktext="iso-codes_3.61" />
+					<atext linktext="iso-codes_3.62" />
+					<atext linktext="iso-codes_4." />
+				</page>
+			</check>
 		</sources>
 		 <builddeps>
                         <dep>bash</dep>

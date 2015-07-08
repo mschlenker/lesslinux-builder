@@ -1,30 +1,35 @@
 <llpackages>
 	<package 
 		name="udev"
-		version="2.1.1"
+		version="3.1.2"
 		class="user"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                   
-				<pkg sha1="f8a2dabc117740eb75f101c28e85cf6a10e708c1">eudev-2.1.1.tar.gz</pkg>
+				<pkg sha1="bb50125dbf5aaa31cac926890dfbc8c68c72aac9">eudev-3.1.2.tar.gz</pkg>
 				<mirror>http://dev.gentoo.org/~blueness/eudev/</mirror>
 			</file>
 			<file>      
 				<pkg sha1="7e79b839f7a0adf11a22fbb49c43531f19e55b7f">udev-lfs-20140408.tar.bz2</pkg>
 				<mirror>http://anduin.linuxfromscratch.org/sources/other/</mirror>
 			</file>
-			<manualcheck date="20140818" interval="90" page="http://www.kernel.org/pub/linux/utils/kernel/hotplug/" />
-			<!-- <check>
-				<page html="http://www.kernel.org/pub/linux/utils/kernel/hotplug/">
-					<atext linktext="udev-185.t" />
-					<atext linktext="udev-183.t" />
-					<atext linktext="udev-184.t" />
-					<atext linktext="udev-19" />
-					<atext linktext="udev-20" />
-					<atext linktext="udev-21" />
+			<manualcheck date="20150609" interval="90" page="http://www.kernel.org/pub/linux/utils/kernel/hotplug/" />
+			<check>
+				<page html="http://dev.gentoo.org/~blueness/eudev/">
+					<atext linktext="eudev-3.1.3." />
+					<atext linktext="eudev-3.1.4." />
+					<atext linktext="eudev-3.1.5." />
+					<atext linktext="eudev-3.1.6." />
+					<atext linktext="eudev-3.1.7." />
+					<atext linktext="eudev-3.2." />
+					<atext linktext="eudev-3.3." />
+					<atext linktext="eudev-3.4." />
+					<atext linktext="eudev-3.5." />
+					<atext linktext="eudev-4." />
+					<atext linktext="eudev-5." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>acl</dep>
@@ -59,16 +64,19 @@
 		<patch>
 			<![CDATA[
 			cd e${PKGNAME}-${PKGVERSION}
-			sed    -i '/struct ucred/i struct ucred;' src/libudev/util.h
-			sed -r -i 's|/usr(/bin/test)|\1|'         test/udev-test.pl
-			# tar xjf ${SRCDIR}/${PKGNAME}-config-20100128.tar.bz2
+			sed -r -i 's|/usr(/bin/test)|\1|' test/udev-test.pl
+
+cat > config.cache << "EOF"
+HAVE_BLKID=1
+BLKID_LIBS="-lblkid"
+BLKID_CFLAGS="-I/tools/include"
+EOF
+
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			cd e${PKGNAME}-${PKGVERSION}
-			BLKID_CFLAGS=-I/tools/include       \
-			BLKID_LIBS='-L/tools/lib -lblkid'   \
 			./configure --prefix=/usr           \
 				--bindir=/sbin          \
 				--sbindir=/sbin         \
@@ -94,7 +102,7 @@
 			mkdir -pv /lib/udev/rules.d
 			mkdir -pv /etc/udev/rules.d
 			make -C e${PKGNAME}-${PKGVERSION} install
-			ln -sf libudev.so.1.6.0 /lib/libudev.so.0
+			# ln -sf libudev.so.1.6.0 /lib/libudev.so.0
 			make -f udev-lfs-20140408/Makefile.lfs install
 			]]>
 		</install>

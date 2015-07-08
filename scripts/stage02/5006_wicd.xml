@@ -1,25 +1,24 @@
 <llpackages>
 	<package 
 		name="wicd"
-		version="1.7.2.4"
-		class="user"
-		>
+		version="1.7.3"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>     
-				<pkg sha1="043321f59bef1eb1d1e49c4c14316deca7e5e1c6">wicd-1.7.2.4.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/wicd/wicd-stable/wicd-1.7.2.4/</mirror>
+				<pkg sha1="1c6037cc6a2f8e8adbf0047b7162959a720b566c">wicd-1.7.3.tar.gz</pkg>
+				<mirror>https://launchpad.net/wicd/1.7/1.7.3/+download/</mirror>
 			</file>
-			<file>          
+			<!-- <file>          
 				<pkg sha1="76ac6a23973c0d780bd7626daef858b3bd419550">wicd-1.7.2.4-sanitize.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<manualcheck date="20140802" interval="365" page="https://launchpad.net/wicd" />
+			</file> -->
+			<manualcheck date="20150611" interval="365" page="https://launchpad.net/wicd" />
 			<check>
 				<page html="https://launchpad.net/wicd/+download">
-					<atext linktext="wicd-1.7.2.5." />
-					<atext linktext="wicd-1.7.2.6." />
-					<atext linktext="wicd-1.7.3." />
+					<atext linktext="wicd-1.7.3.1." />
+					<atext linktext="wicd-1.7.3.2." />
+					<atext linktext="wicd-1.7.5." />
 					<atext linktext="wicd-1.7.4." />
 					<atext linktext="wicd-1.8.0." />
 					<atext linktext="wicd-1.8.1." />
@@ -45,28 +44,34 @@
 			fi
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 		<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}/wicd
 			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-sanitize.patch | patch -p1
 		]]>
-		</patch>
+		</patch> -->
 		<build>
 		<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			python setup.py configure
+			LANG=en_US.UTF-8 python setup.py configure --distro=arch --no-install-gnome-shell-extensions
+			LANG=en_US.UTF-8 python setup.py build 
 		]]>
 		</build>
 		<test />
 		<install>
 		<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			python setup.py install
+			LANG=en_US.UTF-8 python setup.py install
 			mkdir -p /var/log/wicd
 			mkdir -p /var/lib/wicd/configurations
 			touch /var/log/wicd/.empty_on_purpose
 			touch /var/lib/wicd/configurations/.empty_on_purpose
 		]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

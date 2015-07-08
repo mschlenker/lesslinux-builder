@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="nmap"
-		version="6.46"
+		version="6.49BETA1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="e19dd4d35d76b24b084665b90c423f53bc7fdcfe">nmap-6.46.tar.bz2</pkg>
+				<pkg sha1="812cf0cfbe7bb12a363afcf24ee326db120d2353">nmap-6.49BETA1.tar.bz2</pkg>
 				<mirror>http://nmap.org/dist/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="120" page="http://nmap.org/dist/" />
+			<manualcheck date="20150601" interval="120" page="http://nmap.org/dist/" />
 			<check>
 				<page html="http://nmap.org/dist/">
-					<atext linktext="nmap-6.41.t" />
-					<atext linktext="nmap-6.42.t" />
-					<atext linktext="nmap-6.43.t" />
-					<atext linktext="nmap-6.44.t" />
-					<atext linktext="nmap-6.45.t" />
-					<atext linktext="nmap-6.46.t" />
-					<atext linktext="nmap-6.47.t" />
-					<atext linktext="nmap-6.48.t" />
+					<atext linktext="nmap-6.50.t" />
+					<atext linktext="nmap-6.51.t" />
+					<atext linktext="nmap-6.52.t" />
+					<atext linktext="nmap-6.53.t" />
+					<atext linktext="nmap-6.54.t" />
+					<atext linktext="nmap-6.55.t" />
+					<atext linktext="nmap-6.56.t" />
+					<atext linktext="nmap-6.57.t" />
 					<atext linktext="nmap-6.49.t" />
 					<atext linktext="nmap-6.5" />
 					<atext linktext="nmap-6.6" />
@@ -52,6 +52,7 @@
                         <dep>sed</dep>
                         <dep>subversion</dep>
                         <dep>util-linux-ng</dep>
+			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -64,7 +65,9 @@
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc
+			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
+				./configure --prefix=/usr --sysconfdir=/etc --with-libpcap=included --without-nmap-update
+			make -j3 -k
 			make
 			
 			]]>

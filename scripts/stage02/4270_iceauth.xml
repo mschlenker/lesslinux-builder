@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="iceauth"
-		version="1.0.6"
+		version="1.0.7"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                    
-				<pkg sha1="ee56608a52eec81682b8ca204a1afa4ec15bf01f">iceauth-1.0.6.tar.bz2</pkg>
+				<pkg sha1="83d67e47167de52192c679a0f0a41f4ba51a5b94">iceauth-1.0.7.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/app/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://xorg.freedesktop.org/archive/individual/app/" />
+			<manualcheck date="20150529" interval="180" page="http://xorg.freedesktop.org/archive/individual/app/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="iceauth-1.0.9." />
-					<atext linktext="iceauth-1.0.7." />
+					<atext linktext="iceauth-1.0.10." />
 					<atext linktext="iceauth-1.0.8." />
 					<atext linktext="iceauth-1.1." />
 					<atext linktext="iceauth-1.2." />
@@ -74,5 +74,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

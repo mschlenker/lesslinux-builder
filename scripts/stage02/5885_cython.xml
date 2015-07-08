@@ -1,15 +1,31 @@
 <llpackages>
 	<package 
 		name="Cython"
-		version="0.20.1"
+		version="0.22"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="e0f2c2094722bada54f24c33f5c792411778ba4f">Cython-0.20.1.tar.gz</pkg>
+				<pkg sha1="a80bd1462ca5e99934908f030549d204951f8da6">Cython-0.22.tar.gz</pkg>
 				<mirror>http://www.cython.org/release/</mirror>
 			</file>
-			<manualcheck date="20140519" interval="60" page="http://www.cython.org/release/" />
+			<manualcheck date="20150601" interval="60" page="http://www.cython.org/release/" />
+			<check>
+				<page html="http://www.cython.org/release/">
+					<atext linktext="Cython-0.22.1" />
+					<atext linktext="Cython-0.22.2" />
+					<atext linktext="Cython-0.22.3" />
+					<atext linktext="Cython-0.22.4" />
+					<atext linktext="Cython-0.23." />
+					<atext linktext="Cython-0.24." />
+					<atext linktext="Cython-0.25." />
+					<atext linktext="Cython-0.26." />
+					<atext linktext="Cython-0.27." />
+					<atext linktext="Cython-0.28." />
+					<atext linktext="Cython-0.29." />
+					<atext linktext="Cython-1." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Python</dep>

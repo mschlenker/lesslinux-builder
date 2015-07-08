@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="gtk"
-		version="2.24.25"
+		version="2.24.28"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                   
-				<pkg sha1="017ee13f172a64026c4e77c3744eeabd5e017694">gtk+-2.24.25.tar.xz</pkg>
+				<pkg sha1="f3c2f1a3728ed51d08054f6b4c7384fbf99477c0">gtk+-2.24.28.tar.xz</pkg>
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gtk+/2.24</mirror>
 			</file>
-			<manualcheck date="20141101" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/gtk+/" />
+			<manualcheck date="20150529" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/gtk+/" />
 			<check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gtk+/2.24/">
-					<atext linktext="gtk+-2.24.27." />
-					<atext linktext="gtk+-2.24.28." />
-					<atext linktext="gtk+-2.24.26." />
+					<atext linktext="gtk+-2.24.29." />
+					<atext linktext="gtk+-2.24.30." />
+					<atext linktext="gtk+-2.24.31." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gtk+/">
 					<atext linktext="2.26" />
@@ -24,6 +24,7 @@
 			</check>
 		</sources>
 		<builddeps>
+			<dep>Mesa</dep>
 			<dep>Python</dep>
                         <dep>atk</dep>
                         <dep>bash</dep>

@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="cairo"
-		version="1.12.18"
+		version="1.14.2"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                        
-				<pkg sha1="a76940b58da9c83b8934264617135326c0918f9d">cairo-1.12.18.tar.xz</pkg>
+				<pkg sha1="c8da68aa66ca0855b5d0ff552766d3e8679e1d24">cairo-1.14.2.tar.xz</pkg>
 				<mirror>http://cairographics.org/releases/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://cairographics.org/releases/" />
+			<manualcheck date="20150529" interval="180" page="http://cairographics.org/releases/" />
 			<check>
 				<page html="http://cairographics.org/releases/">
-					<atext linktext="cairo-1.12.21." />
-					<atext linktext="cairo-1.12.22." />
-					<atext linktext="cairo-1.12.23." />
-					<atext linktext="cairo-1.12.24." />
-					<atext linktext="cairo-1.12.19." />
-					<atext linktext="cairo-1.12.20." />
-					<atext linktext="cairo-1.13." />
-					<atext linktext="cairo-1.14." />
+					<atext linktext="cairo-1.14.3." />
+					<atext linktext="cairo-1.14.4." />
+					<atext linktext="cairo-1.14.5." />
+					<atext linktext="cairo-1.14.6." />
+					<atext linktext="cairo-1.14.7." />
+					<atext linktext="cairo-1.14.8." />
 					<atext linktext="cairo-1.15." />
 					<atext linktext="cairo-1.16." />
+					<atext linktext="cairo-1.17." />
+					<atext linktext="cairo-1.18." />
 					<atext linktext="cairo-2." />
 				</page>
 			</check>
@@ -51,14 +51,14 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>pixman</dep>
-			<!-- <dep>poppler</dep> -->
+			<!-- <dep>poppler</dep> --><!-- ??? -->
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
-			<dep>imake</dep>
-			<dep>distcc</dep>
+			<dep>Mesa</dep>
+			<dep>glu</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -73,10 +73,27 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr --enable-fc=yes --enable-ft=yes --enable-test-surfaces --enable-xlib-xcb=yes --enable-tee=yes --enable-xlib=yes --enable-xcb=yes CC="distcc gcc" CXX="distcc g++" 
+				./configure --prefix=/usr \
+					--enable-fc=yes \
+					--enable-ft=yes \
+					--enable-gl=yes \
+					--enable-test-surfaces \
+					--enable-xlib-xcb=yes \
+					--enable-tee=yes \
+					--enable-xlib=yes \
+					--enable-xcb=yes \
+					CC="distcc gcc" CXX="distcc g++" 
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --prefix=/usr --enable-fc=yes --enable-ft=yes --enable-test-surfaces --enable-xlib-xcb=yes --enable-tee=yes --enable-xlib=yes --enable-xcb=yes
+				./configure --prefix=/usr \
+					--enable-fc=yes \
+					--enable-ft=yes \
+					--enable-gl=yes \
+					--enable-test-surfaces \
+					--enable-xlib-xcb=yes \
+					--enable-tee=yes \
+					--enable-xlib=yes \
+					--enable-xcb=yes
 				make  
 			fi
 			]]>

@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="libxfce4ui"
-		version="4.10.0"
+		version="4.12.1"
 		class="lib"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                            
-				<pkg sha1="3d8181cf9b06c7dd55588eb5bae7aa62edc1fdfb">libxfce4ui-4.10.0.tar.bz2</pkg>
-				<mirror>http://archive.xfce.org/src/xfce/libxfce4ui/4.10/</mirror>
+				<pkg sha1="ef687867bd087b5fc2befee0e8ca1a281f6bf165">libxfce4ui-4.12.1.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/xfce/libxfce4ui/4.12/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://archive.xfce.org/src/xfce/libxfce4ui" />
+			<manualcheck date="20150529" interval="180" page="http://archive.xfce.org/src/xfce/libxfce4ui" />
 			<check>
 				<page html="http://archive.xfce.org/src/xfce/libxfce4ui/4.10/">
-					<atext linktext="libxfce4ui-4.10.2" />
-					<atext linktext="libxfce4ui-4.10.3" />
-					<atext linktext="libxfce4ui-4.10.4" />
-					<atext linktext="libxfce4ui-4.10.1" />
+					<atext linktext="libxfce4ui-4.12.2" />
+					<atext linktext="libxfce4ui-4.12.3" />
+					<atext linktext="libxfce4ui-4.12.4" />
+					<atext linktext="libxfce4ui-4.12.5" />
 				</page>
 				<page html="http://archive.xfce.org/src/xfce/libxfce4ui/">
-					<atext linktext="4.11" />
-					<atext linktext="4.12" />
 					<atext linktext="4.13" />
+					<atext linktext="4.14" />
+					<atext linktext="4.15" />
 					<atext linktext="5.0" />
 				</page>
 			</check>
@@ -46,6 +46,7 @@
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>gtk</dep>
+			<dep>gtk3</dep>
                         <dep>imake</dep>
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
@@ -107,5 +108,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

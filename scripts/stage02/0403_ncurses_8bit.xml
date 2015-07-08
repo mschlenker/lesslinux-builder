@@ -11,6 +11,10 @@
 				<pkg sha1="3e042e5f2c7223bffdaac9646a533b8c758b65b5">ncurses-5.9.tar.gz</pkg>
 				<mirror>ftp://ftp.gnu.org/gnu/ncurses/</mirror>
 			</file>
+			<file>                                      
+				<pkg sha1="18b1449d3c22d204ee75827322db4bf84b771c94">ncurses-5.9-gcc5_buildfixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
 			<manualcheck date="20140802" interval="365" page="http://ftp.gnu.org/gnu/ncurses/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/ncurses/">
@@ -39,7 +43,11 @@
 			tar xzf ${SRCDIR}/ncurses-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch />
+		<patch><![CDATA[
+			cd ncurses-${PKGVERSION}
+			cat ${SRCDIR}/ncurses-${PKGVERSION}-gcc5_buildfixes-1.patch | patch -p1 
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ncurses-${PKGVERSION}
@@ -55,6 +63,11 @@
 		<test />
 		<install>
 			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/etc/lesslinux
+			touch ${TGTDIR}/etc/lesslinux/ncurses-${PKGVERSION}-dummy 
+			exit 0
+			
 			cd ncurses-${PKGVERSION}
 			mkdir -p ${TGTDIR}/usr/lib
 			for i in ncurses form panel menu ; do

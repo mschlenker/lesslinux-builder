@@ -33,6 +33,7 @@
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>gnutls3</dep>
+			<dep>openssl</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
                         <dep>linux_headers</dep>
@@ -41,6 +42,7 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>zlib</dep>
+			<dep>cacerts</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -50,7 +52,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc --enable-shared --with-ssl=gnutls
+			./configure --prefix=/usr --sysconfdir=/etc --enable-shared --with-ssl=openssl --with-ca-bundle=/etc/ssl/ca-bundle.crt
 			make
 			]]>
 		</build>

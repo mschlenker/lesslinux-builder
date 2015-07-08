@@ -10,7 +10,18 @@
 				<pkg sha1="18ee3ace9f06b807f59e1cd194f0c9d5f2bb11fa">libvshadow-alpha-20150106.tar.gz</pkg>
 				<mirror>https://github.com/libyal/libvshadow/releases/download/20150106/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="120" page="https://googledrive.com/host/0B3fBvzttpiiSZDZXRFVMdnZCeHc/" />
+			<manualcheck date="20140731" interval="120" page="https://github.com/libyal/libvshadow/releases" />
+			<check>
+				<page html="https://github.com/libyal/libvshadow/releases">
+					<atext href="libvshadow-alpha-201505" />
+					<atext href="libvshadow-alpha-201506" />
+					<atext href="libvshadow-alpha-201507" />
+					<atext href="libvshadow-alpha-201508" />
+					<atext href="libvshadow-alpha-201509" />
+					<atext href="libvshadow-alpha-20151" />
+					<atext href="libvshadow-alpha-2016" />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -29,6 +40,7 @@
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
+			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -39,6 +51,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
 			./configure --prefix=/usr --sysconfdir=/etc --enable-python 
 			make 
 			]]>

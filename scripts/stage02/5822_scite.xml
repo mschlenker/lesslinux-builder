@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="scite"
-		version="351"
+		version="357"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="b7de64c5e7e55b1ac0ab7dea01ed08ab7ef177db">scintilla351.tgz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/3.5.1/</mirror>
+				<pkg sha1="19dba505dd28ce6b269d4056e0ab16df1fe15355">scintilla357.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/3.5.7/</mirror>
 			</file>
 			<file>                                                                               
-				<pkg sha1="3142e1fbae67e12ab2a3cf8eddcbaae79d1afe60">scite351.tgz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/scintilla/SciTE/3.5.1/</mirror>
+				<pkg sha1="de862cb531953e5bd989f9a96aa4206fd91d01a8">scite357.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/SciTE/3.5.7/</mirror>
 			</file>
-			<manualcheck date="20141118" interval="90" page="http://sourceforge.net/projects/scintilla/files/SciTE/" />
+			<manualcheck date="20150620" interval="90" page="http://sourceforge.net/projects/scintilla/files/SciTE/" />
 			<check>
 				<page html="http://sourceforge.net/projects/scintilla/files/SciTE/">
-					<atext linktext="3.5.2" />
-					<atext linktext="3.5.3" />
-					<atext linktext="3.5.4" />
-					<atext linktext="3.5.5" />
+					<atext linktext="3.5.11" />
+					<atext linktext="3.5.8" />
+					<atext linktext="3.5.8" />
+					<atext linktext="3.5.10" />
 					<atext linktext="3.6." />
 					<atext linktext="3.7." />
 					<atext linktext="3.8." />
@@ -74,6 +74,8 @@
 			cd scite/gtk
 			make prefix=/usr DESTDIR=${TGTDIR} GTK3=yes install 
 			ln -sf SciTE ${TGTDIR}/usr/bin/scite 
+			sed -i 's/Categories=TextEditor;Development;GTK;Application;/Categories=Utility;TextEditor;GTK;/g'  \
+				${TGTDIR}/usr/share/applications/SciTE.desktop
 			]]>
 		</install>
 		<clean>

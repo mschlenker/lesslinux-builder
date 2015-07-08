@@ -11,7 +11,7 @@
 				<mirror>ftp://ftp.mars.org/pub/mpeg/</mirror>
 			</file>
 			<file>   
-				<pkg sha1="8e6f56a84446a7b0a353fbe5bd5c48758ad8b54d">libmad-0.15.1b-lesslinux-20090625.patch</pkg>
+				<pkg sha1="21f745109ceda8a97e4c06910f80ae9d4e553020">libmad-0.15.1b-fixes-1.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20140802" interval="365" page="ftp://ftp.mars.org/pub/mpeg/" />
@@ -47,16 +47,17 @@
 		<patch>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-lesslinux-20090625.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fixes-1.patch | patch -p1
+			sed "s@AM_CONFIG_HEADER@AC_CONFIG_HEADERS@g" -i configure.ac
+			touch NEWS AUTHORS ChangeLog    
 			true
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			autoreconf -fi    
 			./configure --prefix=/usr 
-			sed -i 's/-fforce-mem//g' Makefile
-			sed -i 's/-fforce-mem//g' msvc++/Makefile
 			make
 			]]>
 		</build>
@@ -67,5 +68,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

@@ -1,18 +1,30 @@
 <llpackages>
-    <package name='florence' version='0.6.2' install='destdir'>
+    <package name='florence' version='0.6.3' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='db763ffd5e2eb65096daa27f0e4b221cea7d1014'>
-                    florence-0.6.2.tar.bz2
+                <pkg sha1='bcace0a308ba20b16b4d3392b028e8d99d7fd38e'>
+                    florence-0.6.3.tar.bz2
                 </pkg>
                 <mirror>
-                    http://downloads.sourceforge.net/project/florence/florence/0.6.2/
+                    http://downloads.sourceforge.net/project/florence/florence/0.6.3/
                 </mirror>
             </file>
-            <manualcheck date='20141014' interval='60' mirror='http://downloads.sourceforge.net/project/florence/florence/0.6.2/'/>
+            <manualcheck date='20150601' interval='60' mirror='http://downloads.sourceforge.net/project/florence/florence/0.6.3/'/>
+	    <check>
+				<page html="http://sourceforge.net/projects/florence/files/florence/">
+					<atext href="0.6.4" />
+					<atext href="0.6.5" />
+					<atext href="0.6.6" />
+					<atext href="0.6.7" />
+					<atext href="0.6.8" />
+					<atext href="0.6.9" />
+					<atext href="0.7.0" />
+					<atext href="0.8.0" />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>atk</dep>

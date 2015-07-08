@@ -1,29 +1,28 @@
 <llpackages>
 	<package 
 		name="cabextract"
-		version="1.4"
+		version="1.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="b1d5dd668d2dbe95b47aad6e92c0b7183ced70f1">cabextract-1.4.tar.gz</pkg>
+				<pkg sha1="64f6d5056d3e417a943648c23cb22218b7079ced">cabextract-1.6.tar.gz</pkg>
 				<mirror>http://www.cabextract.org.uk/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://www.cabextract.org.uk/" />
-			<!-- <check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
-					<atext linktext="gnome-calculator-3.10.6." />
-					<atext linktext="gnome-calculator-3.10.3." />
-					<atext linktext="gnome-calculator-3.10.4." />
-					<atext linktext="gnome-calculator-3.10.5." />
+			<manualcheck date="20150601" interval="180" page="http://www.cabextract.org.uk/" />
+			<check>
+				<page html="http://www.cabextract.org.uk/">
+					<atext linktext="cabextract-1.6.1." />
+					<atext linktext="cabextract-1.6.2." />
+					<atext linktext="cabextract-1.6.3." />
+					<atext linktext="cabextract-1.7." />
+					<atext linktext="cabextract-1.8." />
+					<atext linktext="cabextract-1.9." />
+					<atext linktext="cabextract-1.10." />
+					<atext linktext="cabextract-2." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Python</dep>

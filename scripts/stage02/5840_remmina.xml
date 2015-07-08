@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="Remmina"
-		version="20141108"
+		version="20150605"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="1bd457840054f61cd71c4f418f805b42d97275d2">Remmina-20141108.tar.bz2</pkg>
+				<pkg sha1="c3c04246731ff6bb91f1fba2043ba4eb17e0fa62">Remmina-20150605.tar.bz2</pkg>
 				<mirror>http://cloud.github.com/downloads/FreeRDP/Remmina</mirror>
 			</file>
-			<manualcheck date="20141101" interval="60" page="https://github.com/FreeRDP" />
+			<manualcheck date="20150605" interval="60" page="https://github.com/FreeRDP" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -84,8 +84,8 @@
 		<build>
 			<![CDATA[
 			cd Remmina
-			git checkout master
-			cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_VTE=OFF -DWITH_APPINDICATOR=OFF -DWITH_TELEPATHY=OFF  .
+			# git checkout master
+			cmake -DCMAKE_INSTALL_PREFIX=/usr   -DWITH_APPINDICATOR=OFF -DWITH_TELEPATHY=OFF  .
 			make
 			]]>
 		</build>
@@ -114,5 +114,10 @@ RMDESKTOP
 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf Remmina 
+			]]>
+		</clean>
 	</package>
 </llpackages>

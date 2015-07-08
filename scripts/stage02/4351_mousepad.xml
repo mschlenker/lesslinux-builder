@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="mousepad"
-		version="0.3.0"
+		version="0.4.0"
 		class="user"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>             
-				<pkg sha1="2389d46a4df1683f17f1a9162173f62b3ca08fc2">mousepad-0.3.0.tar.bz2</pkg>
-				<mirror>http://archive.xfce.org/src/apps/mousepad/0.3</mirror>
+				<pkg sha1="ebadaadc02184b01230666dc12f8ab90032876f9">mousepad-0.4.0.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/apps/mousepad/0.4</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://archive.xfce.org/src/apps/mousepad/" />
+			<manualcheck date="20150530" interval="180" page="http://archive.xfce.org/src/apps/mousepad/" />
 			<check>
-				<page html="http://archive.xfce.org/src/apps/mousepad/0.3">
-					<atext linktext="mousepad-0.3.1" />
-					<atext linktext="mousepad-0.3.2" />
-					<atext linktext="mousepad-0.3.3" />
-					<atext linktext="mousepad-0.3.4" />
-					<atext linktext="mousepad-0.3.5" />
+				<page html="http://archive.xfce.org/src/apps/mousepad/0.4">
+					<atext linktext="mousepad-0.4.1" />
+					<atext linktext="mousepad-0.4.2" />
+					<atext linktext="mousepad-0.4.3" />
+					<atext linktext="mousepad-0.4.4" />
+					<atext linktext="mousepad-0.4.5" />
 				</page>
 			</check>
 		</sources>
-		<builddeps>
+		<!-- <builddeps>
 			<dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
@@ -63,7 +63,7 @@
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
-		</builddeps>
+		</builddeps> -->
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
@@ -81,10 +81,10 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr --sysconfdir=/etc --disable-dbus CC="distcc gcc" CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc --disable-dbus --enable-gtk3 CC="distcc gcc" CXX="distcc g++" 
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --prefix=/usr --sysconfdir=/etc --disable-dbus
+				./configure --prefix=/usr --sysconfdir=/etc --disable-dbus --enable-gtk3 
 				make
 			fi
 			]]>
@@ -93,9 +93,14 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			paxctl -m /usr/bin/mousepad 
+			make install DESTDIR=${TGTDIR} 
+			paxctl -m ${TGTDIR}/usr/bin/mousepad 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

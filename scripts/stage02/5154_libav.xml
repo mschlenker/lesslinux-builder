@@ -1,29 +1,29 @@
 <llpackages>
 	<package 
 		name="libav"
-		version="10.5"
+		version="11.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<!-- version 11 conflicts with vlc 2.1.5, keep version 10 until VLC 2.2.0 is released -->
 			<file>                            
-				<pkg sha1="925a45d2700a436c28e0b663510fc8df5bb7e861">libav-10.5.tar.xz</pkg>
+				<pkg sha1="c2ab12102de187f2675a56b828b4a5e9136ab747">libav-11.4.tar.xz</pkg>
 				<mirror>http://libav.org/releases/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="60" page="http://libav.org/releases/" />
-			<!-- <check>
+			<manualcheck date="20150530" interval="60" page="http://libav.org/releases/" />
+			<check>
 				<page html="http://libav.org/releases/">
-					<atext linktext="libav-9.12." />
-					<atext linktext="libav-9.13." />
-					<atext linktext="libav-9.14." />
-					<atext linktext="libav-9.15." />
-					<atext linktext="libav-9.16." />
-					<atext linktext="libav-9.17." />
-					<atext linktext="libav-10." />
-					<atext linktext="libav-11." />
+					<atext linktext="libav-11.5." />
+					<atext linktext="libav-11.6." />
+					<atext linktext="libav-11.7." />
+					<atext linktext="libav-11.8." />
+					<atext linktext="libav-11.9." />
+					<atext linktext="libav-12." />
+					<atext linktext="libav-13." />
+					<atext linktext="libav-14." />
 				</page>
-			</check> -->
+			</check> 
 		</sources>
 		<builddeps>
                         <dep>SDL</dep>

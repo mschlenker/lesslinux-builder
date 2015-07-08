@@ -1,18 +1,30 @@
 <llpackages>
-    <package name='python-dateutil' version='2.2' install='chroot'>
+    <package name='python-dateutil' version='2.4.2' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='fbafcd19ea0082b3ecb17695b4cb46070181699f'>
-                    python-dateutil-2.2.tar.gz
+                <pkg sha1='1d975f5db65306a61f4353ef00308ec806f47f54'>
+                    python-dateutil-2.4.2.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/p/python-dateutil/
                 </mirror>
             </file>
-            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/p/python-dateutil/'/>
+            <manualcheck date='20150601' interval='60' mirror='https://pypi.python.org/packages/source/p/python-dateutil/'/>
+	    <check>
+				<page html="https://pypi.python.org/pypi/python-dateutil/">
+					<atext href="python-dateutil-2.4.3." />
+					<atext href="python-dateutil-2.4.4." />
+					<atext href="python-dateutil-2.4.5." />
+					<atext href="python-dateutil-2.4.6." />
+					<atext href="python-dateutil-2.4.7." />
+					<atext href="python-dateutil-2.5." />
+					<atext href="python-dateutil-2.6." />
+					<atext href="python-dateutil-3." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>bash</dep>

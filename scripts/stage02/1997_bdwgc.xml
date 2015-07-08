@@ -1,21 +1,35 @@
 <llpackages>
 	<package 
 		name="bdw-gc"
-		version="7.4.0"
+		version="7.4.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="82f031a5a6db004df3cf8f1b1e72dd6b313ab032">gc-7.4.0.tar.gz</pkg>
-				<mirror>http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/</mirror>
+				<pkg sha1="cd4a54620c38a2c361b3ee99dd134dbffb57c313">gc-7.4.2.tar.gz</pkg>
+				<mirror>http://www.hboehm.info/gc/gc_source/</mirror>
 			</file>
 			<file>
 				<!-- git clone https://github.com/ivmai/libatomic_ops  -->                                                             
-				<pkg sha1="d25a960dbec745c5269979cbece1884bb8213a48">libatomic_ops-20140514.tar.xz</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="57cd7c64e37fca300bd7b24e3d2f14129b25b376">libatomic_ops-7.4.2.tar.gz</pkg>
+				<mirror>http://www.ivmaisoft.com/_bin/atomic_ops/</mirror>
 			</file>
-			<manualcheck date="20140514" interval="180" page="http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/" />
+			<manualcheck date="20150529" interval="180" page="http://www.hboehm.info/gc/" />
+			<check>
+				<page html="http://www.hboehm.info/gc/gc_source/">
+					<atext linktext="gc-7.4.3." />
+					<atext linktext="gc-7.4.4." />
+					<atext linktext="gc-7.4.5." />
+					<atext linktext="gc-7.4.6." />
+					<atext linktext="gc-7.4.7." />
+					<atext linktext="gc-7.5." />
+					<atext linktext="gc-7.6." />
+					<atext linktext="gc-7.7." />
+					<atext linktext="gc-8." />
+					<atext linktext="gc-9." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -36,7 +50,8 @@
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/gc-${PKGVERSION}.tar.gz
 			cd gc-${PKGVERSION} 
-			tar xJf ${SRCDIR}/libatomic_ops-20140514.tar.xz
+			tar xzf ${SRCDIR}/libatomic_ops-${PKGVERSION}.tar.gz
+			mv libatomic_ops-${PKGVERSION} libatomic_ops 
 			]]>
 		</unpack>
 		<patch />

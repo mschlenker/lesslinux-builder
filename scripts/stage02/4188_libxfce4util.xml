@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="libxfce4util"
-		version="4.10.1"
+		version="4.12.1"
 		class="lib"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                         
-				<pkg sha1="8857c89262dea7b4c49626a1cef1abb7101821fb">libxfce4util-4.10.1.tar.bz2</pkg>
-				<mirror>http://archive.xfce.org/src/xfce/libxfce4util/4.10</mirror>
+				<pkg sha1="fbea10b13db55c1f7756ec36ea7c8e84ca781492">libxfce4util-4.12.1.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/xfce/libxfce4util/4.12</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://archive.xfce.org/src/xfce/libxfce4util/" />
+			<manualcheck date="20150529" interval="180" page="http://archive.xfce.org/src/xfce/libxfce4util/" />
 			<check>
-				<page html="http://archive.xfce.org/src/xfce/libxfce4util/4.10/">
-					<atext linktext="4.10.4" />
-					<atext linktext="4.10.2" />
-					<atext linktext="4.10.3" />
+				<page html="http://archive.xfce.org/src/xfce/libxfce4util/4.12/">
+					<atext linktext="4.12.4" />
+					<atext linktext="4.12.2" />
+					<atext linktext="4.12.3" />
 				</page>
 				<page html="http://archive.xfce.org/src/xfce/libxfce4util/">
-					<atext linktext="4.11" />
-					<atext linktext="4.12" />
+					<atext linktext="4.13" />
+					<atext linktext="4.14" />
 					<atext linktext="5.0" />
 				</page>
 			</check>
@@ -77,5 +77,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

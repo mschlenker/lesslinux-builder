@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="font-util"
-		version="1.3.0"
+		version="1.3.1"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
 				<!-- is latest -->  
-				<pkg sha1="a015f4c5a35d98af72835797293697e0eb9cd506">font-util-1.3.0.tar.bz2</pkg>
+				<pkg sha1="0b16add3637c64b0bbaf1dd223b71b0421100c20">font-util-1.3.1.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/font/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://xorg.freedesktop.org/archive/individual/font/" />
+			<manualcheck date="20150529" interval="365" page="http://xorg.freedesktop.org/archive/individual/font/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/font/">
-					<atext linktext="font-util-1.3.1." />
+					<atext linktext="font-util-1.3.4." />
 					<atext linktext="font-util-1.3.2." />
 					<atext linktext="font-util-1.3.3." />
 					<atext linktext="font-util-1.4." />
@@ -57,5 +57,10 @@
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

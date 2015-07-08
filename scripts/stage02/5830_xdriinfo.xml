@@ -1,20 +1,19 @@
 <llpackages>
 	<package 
 		name="xdriinfo"
-		version="1.0.4"
+		version="1.0.5"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="723482b3fc627d7cc6124fec43dd1c21d102daaa">xdriinfo-1.0.4.tar.bz2</pkg>
+				<pkg sha1="0c2c0a369c3a63f28622ddefd84e964c14625f25">xdriinfo-1.0.5.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/app/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="ftp://ftp.x.org/pub/individual/app/" />
+			<manualcheck date="20150601" interval="180" page="ftp://ftp.x.org/pub/individual/app/" />
 			<check>
 				<page html="ftp://ftp.x.org/pub/individual/app/">
-					<atext linktext="xdriinfo-1.0.5." />
+					<atext linktext="xdriinfo-1.0.9." />
 					<atext linktext="xdriinfo-1.0.6." />
 					<atext linktext="xdriinfo-1.0.7." />
 					<atext linktext="xdriinfo-1.0.8." />
@@ -56,7 +55,8 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			export CC=/usr/local/gcc49/bin/gcc49 
 			export CXX=/usr/local/gcc49/bin/g++49
-			 ./configure --prefix=/usr --sysconfdir=/etc && make
+			export SHELL=/bin/bash
+			bash ./configure --prefix=/usr --sysconfdir=/etc CC=/usr/local/gcc49/bin/gcc49  CXX=/usr/local/gcc49/bin/g++49 && make
 			]]>
 		</build>
 		<test />
@@ -66,5 +66,10 @@
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

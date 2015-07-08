@@ -1,19 +1,20 @@
 <llpackages>
 	<package 
 		name="lua"
-		version="5.2.3"
+		version="5.2.4"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                       
-				<pkg sha1="926b7907bc8d274e063d42804666b40a3f3c124c">lua-5.2.3.tar.gz</pkg>
+				<pkg sha1="ef15259421197e3d85b7d6e4871b8c26fd82c1cf">lua-5.2.4.tar.gz</pkg>
 				<mirror>http://www.lua.org/ftp/</mirror>
 			</file>  
 			<file>                       
 				<pkg sha1="e92d2ab3a10cd93c92e4b4ef861b159da9ab1b6b">lua-5.2.3-shared_library-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
+			<manualcheck date="20150601" interval="60" page="http://www.lua.org/ftp/" />
 			<check>
 				<page html="http://www.lua.org/ftp/">
 					<atext linktext="lua-5.2.4." />
@@ -48,7 +49,7 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-shared_library-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-5.2.3-shared_library-1.patch | patch -p1
 			sed -i '/#define LUA_ROOT/s:/usr/local/:/usr/:' src/luaconf.h
 			]]>
 		</patch>
@@ -62,9 +63,9 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.2 liblua.so.5.2.3" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
-			mkdir -pv /usr/share/doc/lua-5.2.3 
-			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.2.3
+			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.2 liblua.so.5.2.4" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
+			mkdir -pv /usr/share/doc/lua-5.2.4
+			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.2.4
 
 cat > /usr/lib/pkgconfig/lua.pc << "EOF"
 V=5.2
@@ -91,5 +92,10 @@ EOF
 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

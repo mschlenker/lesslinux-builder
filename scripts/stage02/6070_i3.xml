@@ -1,18 +1,32 @@
 <llpackages>
-    <package name='i3' version='4.8' install='destdir'>
+    <package name='i3' version='4.10.2' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='857d8d0014b873de406e2041dea94d81cc515b74'>
-                    i3-4.8.tar.bz2
+                <pkg sha1='dc50d112645b9838d05e5864dc09a160c4cec8a1'>
+                    i3-4.10.2.tar.bz2
                 </pkg>
                 <mirror>
                     http://i3wm.org/downloads/
                 </mirror>
             </file>
-            <manualcheck date='20141123' interval='60' mirror='http://i3wm.org/downloads/'/>
+            <manualcheck date='20150609' interval='60' mirror='http://i3wm.org/downloads/'/>
+	        <check>
+				<page html="http://i3wm.org/downloads/">
+					<atext linktext=" i3-4.10.3." />
+					<atext linktext=" i3-4.10.4." />
+					<atext linktext=" i3-4.10.5." />
+					<atext linktext=" i3-4.10.6.." />
+					<atext linktext=" i3-4.11." />
+					<atext linktext=" i3-4.12." />
+					<atext linktext=" i3-4.13." />
+					<atext linktext=" i3-4.14." />
+					<atext linktext=" i3-5." />
+					<atext linktext=" i3-6." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -39,6 +53,7 @@
                         <dep>xcb-util</dep>
                         <dep>xproto-base</dep>
                         <dep>yajl</dep>
+			<dep>libxkbcommon</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2

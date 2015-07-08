@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="wireshark"
-		version="1.10.11"
+		version="1.10.14"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -11,26 +11,27 @@
 				<mirror>http://wiresharkdownloads.riverbed.com/wireshark/src/</mirror>
 			</file> -->
 			<file>                                                           
-				<pkg sha1="f8c75b65d79fc597a7a2468cf01d4e3061997ebf">wireshark-1.10.11.tar.bz2</pkg>
+				<pkg sha1="47c359dc1b9791d2091887a26fdba65f4a7ef3b8">wireshark-1.10.14.tar.bz2</pkg>
 				<mirror>http://wiresharkdownloads.riverbed.com/wireshark/src/</mirror>
 			</file>
 			<file>                                                           
 				<pkg sha1="36f1f053eaadaa20294082605d179091b24b1d72">wireshark-1.8.4-init-root.lua</pkg>
 				<mirror> http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="120" page="http://wiresharkdownloads.riverbed.com/" />
-			<!-- <check>
-				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
-					<atext linktext="1.42.7." />
-					<atext linktext="1.42.8." />
-					<atext linktext="1.42.6." />
-					<atext linktext="1.43." />
-					<atext linktext="1.44." />
-					<atext linktext="1.45." />
-					<atext linktext="2.0." />
-					<atext linktext="2.00." />
+			<manualcheck date="20150601" interval="120" page="http://wiresharkdownloads.riverbed.com/" />
+			<check>
+				<page html="https://1.na.dl.wireshark.org/src/all-versions/">
+					<atext linktext="wireshark-1.10.15." />
+					<atext linktext="wireshark-1.10.16." />
+					<atext linktext="wireshark-1.10.17." />
+					<atext linktext="wireshark-1.10.18." />
+					<atext linktext="wireshark-1.12.7." />
+					<atext linktext="wireshark-1.12.8." />
+					<atext linktext="wireshark-1.12.9." />
+					<atext linktext="wireshark-1.14." />
+					<atext linktext="wireshark-2." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>atk</dep>

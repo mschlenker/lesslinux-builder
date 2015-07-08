@@ -1,33 +1,31 @@
 <llpackages>
 	<package 
 		name="webkit26"
-		version="2.6.4"
+		version="2.8.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="35086bc154e79f6f0ce3013a7dbe1dadebb5c9d1">webkitgtk-2.6.4.tar.xz</pkg>
+				<pkg sha1="89c4686927f5954b44ed14c60dec637b592f18ac">webkitgtk-2.8.3.tar.xz</pkg>
 				<mirror>http://webkitgtk.org/releases/</mirror>
 			</file>
 			<manualcheck date="20141225" interval="60" page="http://webkitgtk.org/releases/" />
-			<!-- <check>
+			<check>
 				<page html="http://webkitgtk.org/releases/">
-					<atext linktext="webkitgtk-2.2.6." />
-					<atext linktext="webkitgtk-2.2.7." />
-					<atext linktext="webkitgtk-2.2.8." />
-					<atext linktext="webkitgtk-2.2.9." />
-					<atext linktext="webkitgtk-2.2.10." />
-					<atext linktext="webkitgtk-2.2.11." />
-					<atext linktext="webkitgtk-2.4." />
-					<atext linktext="webkitgtk-2.6." />
-					<atext linktext="webkitgtk-2.8." />
-					<atext linktext="webkitgtk-3." />
+					<atext linktext="webkitgtk-2.8.4." />
+					<atext linktext="webkitgtk-2.8.5." />
+					<atext linktext="webkitgtk-2.8.6." />
+					<atext linktext="webkitgtk-2.8.7." />
+					<atext linktext="webkitgtk-2.8.8." />
+					<atext linktext="webkitgtk-2.8.9." />
+					<atext linktext="webkitgtk-2.10." />
+					<atext linktext="webkitgtk-2.12." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
-                        <dep>atk</dep>
+			<dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>bison2</dep>
@@ -97,7 +95,7 @@
 			<dep>p5-switch</dep>
 			<dep>libwebp</dep>
 			<dep>distcc</dep>
-			<dep>cmake</dep>
+			<dep>cmake</dep> 
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
 		name="libX11"
-		version="1.6.2"
+		version="1.6.3"
 		class="devel"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>  
 			<!-- <file>    
@@ -11,15 +11,15 @@
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file> -->
 			<file>                                                                                     
-				<pkg sha1="0dd74854e6f6bb8a322e88ba3e89f87c3dcf9e08">libX11-1.6.2.tar.bz2</pkg>
+				<pkg sha1="6f2aadf8346ee00b7419bd338461c6986e274733">libX11-1.6.3.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20150529" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
 					<atext linktext="libX11-1.6.5" />
 					<atext linktext="libX11-1.6.6" />
-					<atext linktext="libX11-1.6.3" />
+					<atext linktext="libX11-1.6.7" />
 					<atext linktext="libX11-1.6.4" />
 					<atext linktext="libX11-1.7." />
 					<atext linktext="libX11-1.8." />
@@ -79,7 +79,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make install # DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>

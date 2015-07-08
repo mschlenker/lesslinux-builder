@@ -1,27 +1,33 @@
 <llpackages>
 	<package 
 		name="poppler"
-		version="0.26.5"
+		version="0.33.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                     
-				<pkg sha1="12937666faee80bae397a8338a3357e864d77d53">poppler-0.26.5.tar.xz</pkg>
+				<pkg sha1="56c195f2c5e56fa017d32c0507a31b226f48bedb">poppler-0.33.0.tar.xz</pkg>
 				<mirror>http://poppler.freedesktop.org/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="90" page="http://poppler.freedesktop.org/" />
-			<!-- <check>
-				<page html="http://poppler.freedesktop.org/">
-					<atext linktext="poppler-0.24.7." />
-					<atext linktext="poppler-0.24.8." />
-					<atext linktext="poppler-0.24.6." />
-					<atext linktext="poppler-0.24.7." />
-					<atext linktext="poppler-0.26." />
-					<atext linktext="poppler-0.28." />
+			<manualcheck date="20150530" interval="90" page="http://poppler.freedesktop.org/" />
+			<check>
+				<page html="http://poppler.freedesktop.org/releases.html">
+					<atext linktext="poppler-0.33.1." />
+					<atext linktext="poppler-0.33.2." />
+					<atext linktext="poppler-0.33.3." />
+					<atext linktext="poppler-0.34." />
+					<atext linktext="poppler-0.35." />
+					<atext linktext="poppler-0.36." />
+					<atext linktext="poppler-0.37." />
+					<atext linktext="poppler-0.38." />
+					<atext linktext="poppler-0.39." />
+					<atext linktext="poppler-0.40." />
+					<atext linktext="poppler-0.41." />
+					<atext linktext="poppler-0.42." />
 					<atext linktext="poppler-1." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
 			<dep>atk</dep>

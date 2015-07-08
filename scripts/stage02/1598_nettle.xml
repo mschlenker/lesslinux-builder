@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="nettle"
-		version="2.7.1"
+		version="3.1.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                       
-				<pkg sha1="e7477df5f66e650c4c4738ec8e01c2efdb5d1211">nettle-2.7.1.tar.gz</pkg>
+				<pkg sha1="1836601393522124787e029466935408e22dd204">nettle-3.1.1.tar.gz</pkg>
 				<mirror>http://www.lysator.liu.se/~nisse/archive/</mirror>
 			</file>
-			<manualcheck date="20130716" interval="60" page="http://www.lysator.liu.se/~nisse/archive/" />
+			<manualcheck date="20150529" interval="60" page="http://www.lysator.liu.se/~nisse/archive/" />
 			<check>
 				<page html="http://www.lysator.liu.se/~nisse/archive/">
-					<atext linktext="nettle-2.7.2." />
-					<atext linktext="nettle-2.7.3." />
-					<atext linktext="nettle-2.7.4." />
-					<atext linktext="nettle-2.10." />
-					<atext linktext="nettle-2.11." />
-					<atext linktext="nettle-2.12." />
-					<atext linktext="nettle-2.8." />
-					<atext linktext="nettle-2.9." />
-					<atext linktext="nettle-3." />
+					<atext linktext="nettle-3.1.2." />
+					<atext linktext="nettle-3.1.3." />
+					<atext linktext="nettle-3.1.4." />
+					<atext linktext="nettle-3.2." />
+					<atext linktext="nettle-3.3." />
+					<atext linktext="nettle-3.4." />
+					<atext linktext="nettle-3.5." />
+					<atext linktext="nettle-4." />
+					<atext linktext="nettle-5." />
 				</page>
 			</check>
 		</sources>
@@ -74,6 +74,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
+			chmod   -v   0755 ${TGTDIR}/usr/lib/lib{hogweed,nettle}.so
 			]]>
 		</install>
 		<clean>

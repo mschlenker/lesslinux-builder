@@ -1,18 +1,30 @@
 <llpackages>
-    <package name='xvkbd' version='3.5' install='destdir'>
+    <package name='xvkbd' version='3.6' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='11b38c7eb89281e692bdf339550b2c751efd8335'>
-                    xvkbd-3.5.tar.gz
+                <pkg sha1='bf7ead8aaa4a586df52d4f62cf57fb601bd7a25b'>
+                    xvkbd-3.6.tar.gz
                 </pkg>
                 <mirror>
                     http://homepage3.nifty.com/tsato/xvkbd/
                 </mirror>
             </file>
             <manualcheck date='20141013' interval='60' mirror='http://homepage3.nifty.com/tsato/xvkbd/'/>
+	    <check>
+				<page html="http://homepage3.nifty.com/tsato/xvkbd/">
+					<atext href="xvkbd-3.6.1." />
+					<atext href="xvkbd-3.6.2." />
+					<atext href="xvkbd-3.7." />
+					<atext href="xvkbd-3.8." />
+					<atext href="xvkbd-3.9." />
+					<atext href="xvkbd-3.10." />
+					<atext href="xvkbd-4." />
+					<atext href="xvkbd-5." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>bash</dep>

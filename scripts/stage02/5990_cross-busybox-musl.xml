@@ -1,21 +1,33 @@
 <llpackages>
 	<package 
 		name="cross-busybox-musl"
-		version="1.22.1"
+		version="1.23.2"
 		class="lib"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
-				<pkg sha1="d6e96fefb6f0fb8079f27468b9bf22d8dd96108e">busybox-1.22.1.tar.bz2</pkg>
+				<pkg sha1="7f37193cb249f27630e0b2a2c6c9bbb7b1d24c16">busybox-1.23.2.tar.bz2</pkg>
 				<mirror>http://busybox.net/downloads/</mirror>
 			</file>
 			<file>  
-				<pkg sha1="c30e1760cca48dbaa55ee27b2d25ea03839756af">busybox-1.22.1.config</pkg>
+				<pkg sha1="70d18f87dbb2bb8dd2303aae1cb4ac6d23c0e29f">busybox-1.23.2.config</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://busybox.net/downloads/" />
+			<manualcheck date="20150622" interval="180" page="http://busybox.net/downloads/" />
+			<check>
+				<page html="http://busybox.net/">
+					<atext href="busybox-1.23.3." />
+					<atext href="busybox-1.23.4." />
+					<atext href="busybox-1.23.5." />
+					<atext href="busybox-1.23.6." />
+					<atext href="busybox-1.24." />
+					<atext href="busybox-1.25." />
+					<atext href="busybox-1.26." />
+					<atext href="busybox-2." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
 			<dep>cross-gcc-musl2</dep>

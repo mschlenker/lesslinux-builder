@@ -1,21 +1,20 @@
 <llpackages>
 	<package 
 		name="openbox"
-		version="3.5.2"
+		version="3.6.1"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                    
-				<pkg sha1="6573516107f8cdb83842aac25a430e3f9f966bad">openbox-3.5.2.tar.gz</pkg>
+				<pkg sha1="0a1b878cc5a64bcf2488dbd19260554a22f4dac2">openbox-3.6.1.tar.gz</pkg>
 				<mirror>http://openbox.org/dist/openbox/</mirror>
 			</file>
 			<file>                                                                                                    
-				<pkg sha1="a900115e49114c79d12887fd134313f89b47644b">lesslinux-openbox-20130926-00.tar.bz2</pkg>
+				<pkg sha1="dbe7298fb93b515bd1c30c702c6a5de94d072df6">lesslinux-openbox-20150707-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://openbox.org/wiki/Openbox:Download" />
+			<manualcheck date="20150601" interval="180" page="http://openbox.org/wiki/Openbox:Download" />
 			<!-- <check>
 				<page html="http://archive.xfce.org/src/apps/midori/0.3/">
 					<atext linktext="midori-0.3.7." />
@@ -74,7 +73,7 @@
 		<unpack>
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			tar xjf ${SRCDIR}/lesslinux-openbox-20130926-00.tar.bz2
+			tar xjf ${SRCDIR}/lesslinux-openbox-20150707-00.tar.bz2
 			]]>
 		</unpack>
 		<patch />

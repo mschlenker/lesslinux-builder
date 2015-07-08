@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="38.0.6"
+		version="38.1.0esr"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="d6103cdcc6a6eda029d44104354d3a5cafbf8d45">firefox-38.0.6.source.tar.bz2</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/38.0.5/source/</mirror>
+				<pkg sha1="207b9e5a0dcb2bacdccd9e57051421ab4cb6e57c">firefox-38.1.0esr.source.tar.bz2</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/38.1.0esr/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -34,7 +34,7 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 
-fftag=FIREFOX_38_0_6_RELEASE
+fftag=FIREFOX_38_1_0esr_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
@@ -43,17 +43,17 @@ done
 			
 			-->
 			<file>                                    
-				<pkg sha1="e868905af5ec5d4eea1281e5ab5636b4adb1c72d">firefox-38.0.6.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="41e7cd0639029d8132b555208f803d12df1abc77">firefox-38.1.0esr.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20150609" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
+			<manualcheck date="20150707" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
-					<atext linktext="38.0.10" />
-					<atext linktext="38.0.7" />
-					<atext linktext="38.0.8" />
-					<atext linktext="38.0.9" />
-					<atext linktext="38.1." />
+					<atext linktext="38.1.1" />
+					<atext linktext="38.1.2" />
+					<atext linktext="38.1.3" />
+					<atext linktext="38.1.4" />
+					<atext linktext="38.3." />
 					<atext linktext="38.2." />
 					<atext linktext="39.0" />
 					<atext linktext="40.0" />
@@ -153,7 +153,7 @@ done
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.bz2
-			# mv mozilla-esr31 mozilla-release
+			mv mozilla-esr38 mozilla-release
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/firefox-${PKGVERSION}.source.de-es-pl-ru.tar.xz
 			]]>

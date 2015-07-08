@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="pcre"
-		version="8.35"
+		version="8.37"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                  
-				<pkg sha1="a10e0040475644bfc97f7d0c0556988acfc52c6f">pcre-8.35.tar.bz2</pkg>
+				<pkg sha1="4c629b3f582366fae4e8912f0d9fa3140347d6e7">pcre-8.37.tar.bz2</pkg>
 				<mirror>ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/" />
+			<manualcheck date="20150529" interval="180" page="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/" />
 			<check>
 				<page html="http://mirror.switch.ch/ftp/pool/1/mirror/exim/pcre/">
-					<atext linktext="pcre-8.36." />
-					<atext linktext="pcre-8.37." />
+					<atext linktext="pcre-8.41." />
+					<atext linktext="pcre-8.42." />
 					<atext linktext="pcre-8.38." />
 					<atext linktext="pcre-8.39." />
 					<atext linktext="pcre-8.40." />
@@ -55,7 +55,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr --enable-utf8 && make
+			./configure --sysconfdir=/etc --prefix=/usr --enable-utf8 --enable-unicode-properties --enable-pcre16  --enable-pcre32   && make
 			]]>
 		</build>
 		<test />

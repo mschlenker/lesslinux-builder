@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="sysklogd"
-		version="1.5"
+		version="1.5.1"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file> 
-				<pkg sha1="070cce745b023f2ce7ca7d9888af434d6d61c236">sysklogd-1.5.tar.gz</pkg>
+				<pkg sha1="2f6ad044960232dc5432ae83c345c0c192263f6d">sysklogd-1.5.1.tar.gz</pkg>
 				<mirror>http://www.infodrom.org/projects/sysklogd/download/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://www.infodrom.org/projects/sysklogd/download/" />
+			<manualcheck date="20150529" interval="180" page="http://www.infodrom.org/projects/sysklogd/download/" />
 			<check>
 				<page html="http://www.infodrom.org/projects/sysklogd/download/">
-					<atext linktext="sysklogd-1.5.0.tar.gz" />
-					<atext linktext="sysklogd-1.5.1.tar.gz" />
-					<atext linktext="sysklogd-1.5.2.tar.gz" />
-					<atext linktext="sysklogd-1.6.tar.gz" />
-					<atext linktext="sysklogd-1.6.0.tar.gz" />
-					<atext linktext="sysklogd-1.6.1.tar.gz" />
-					<atext linktext="sysklogd-2.0.tar.gz" />
+					<atext linktext="sysklogd-1.5.3." />
+					<atext linktext="sysklogd-1.5.4." />
+					<atext linktext="sysklogd-1.5.2." />
+					<atext linktext="sysklogd-1.6." />
+					<atext linktext="sysklogd-1.7." />
+					<atext linktext="sysklogd-1.8." />
+					<atext linktext="sysklogd-2." />
 				</page>
 			</check>
 		</sources>
@@ -63,5 +63,10 @@ EOF
 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

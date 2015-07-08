@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="openvas-libraries"
-		version="7.0.4"
+		version="7.0.10"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="379ac546efaa95cededaf48a9181584fa646cc90">openvas-libraries-7.0.4.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/1722/</mirror>
+				<pkg sha1="ff444bd1e86ec01eaedb6be39f955b83f460a422">openvas-libraries-7.0.10.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2031/</mirror>
 			</file>
 			<file>            
 				<pkg sha1="917913955040e5a312178f838c71ef74645dac6b">openvas-check-setup-20140930.sh</pkg>
@@ -17,6 +17,17 @@
 				<pkg sha1="ea39346bbf83370413be4488529c6870c9296da7">openvas-wrapper-20141001.sh</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
+			<manualcheck date="20150601" interval="90" page="http://www.openvas.org/install-source.html" />
+			<check>
+				<page html="http://www.openvas.org/install-source.html">
+					<atext href="openvas-libraries-7.0.10." />
+					<atext href="openvas-libraries-7.0.11." />
+					<atext href="openvas-libraries-7.0.12." />
+					<atext href="openvas-libraries-7.0.13." />
+					<atext href="openvas-libraries-8.0." />
+					<atext href="openvas-libraries-8.1." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -42,6 +53,7 @@
                         <dep>subversion</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -53,6 +65,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			find nasl -type f -exec sed -i 's/-Werror/ /g' {} \;
 			make
 			]]>
 		</build>

@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="thunderbird"
-		version="31.7.0"
+		version="38.0.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="90e18f8ecccdaf1ee39493223a7e3ad8b3b7bede">thunderbird-31.7.0.source.tar.bz2</pkg>
-				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/31.7.0/source/</mirror>
+				<pkg sha1="81226df796de098648d70d398aa1160531706cd5">thunderbird-38.0.1.source.tar.bz2</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/38.0.1/source/</mirror>
 			</file>  
-			<file>                                                                                          
-				<pkg sha1="07a34387b550e2fed690eb5884b00679b6735022">thunderbird-31.7.0-gcc5-1.patch</pkg>
+			<!-- <file>                                                                                          
+				<pkg sha1="07a34387b550e2fed690eb5884b00679b6735022">thunderbird-38.0.1-gcc5-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
-			</file>
+			</file> -->
 			<!-- 
-tbtag=THUNDERBIRD_31_7_0_RELEASE
+tbtag=THUNDERBIRD_38_0_1_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT ; do
 echo '==> Cloning: '"$l"
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
@@ -23,7 +23,7 @@ hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
 done
 			-->
 			<file>                                                                                                                
-				<pkg sha1="a5df54a206eb6770acb909a5a5a0a23465c72625">thunderbird-31.7.0.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="321206d0469020cbc92549d51e9ed0ac2fa15474">thunderbird-38.0.1.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                           
@@ -38,15 +38,15 @@ done
 				<pkg sha1="51a7eb7d86ce24d8199f741a0079f0d56ecd6368">enigmail-1.6.tar.gz</pkg>
 				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
 			</file> -->
-			<manualcheck date="20150527" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
+			<manualcheck date="20150618" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
-					<atext linktext="31.7.1" />
-					<atext linktext="31.7.2" />
-					<atext linktext="31.7.3" />
-					<atext linktext="31.8." />
-					<atext linktext="31.9." />
-					<atext linktext="38.0." />
+					<atext linktext="38.0.4" />
+					<atext linktext="38.0.2" />
+					<atext linktext="38.0.3" />
+					<atext linktext="38.1." />
+					<atext linktext="38.2." />
+					<atext linktext="45.0." />
 				</page>
 			</check>
 		</sources>
@@ -148,8 +148,8 @@ done
 		<patch>
 			<![CDATA[
 			
-			cd comm-esr31
-			patch -Np1 -i ../thunderbird-31.7.0-gcc5-1.patch
+			cd comm-esr38
+			# patch -Np1 -i ../thunderbird-31.7.0-gcc5-1.patch
 			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 .mozconfig
 			
 			]]>
@@ -157,7 +157,7 @@ done
 		<build>
 			<![CDATA[
 			workdir=` pwd ` 
-			cd comm-esr31
+			cd comm-esr38
 			echo $SHELL
 			export SHELL=/bin/bash
 			echo $SHELL
@@ -179,17 +179,18 @@ done
 				make -f client.mk build
 			fi
 			echo '===> Trying to find libxul.so...'
-			find tb-build -type f -name libxul.so
+			find obj-` uname -m `-pc-linux-gnu/dist  -type f -name libxul.so
 			
 			ccount=0
-			while [ '!' -f obj-` uname -m `-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ] && \
-					[ '!' -f obj-` uname -m `-unknown-linux-gnu/mozilla/toolkit/library/build/libxul.so -a $ccount -lt 2 ]  ; do
+			# ./obj-i686-pc-linux-gnu/dist/lib/libxul.so
+			while [ '!' -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ] && \
+					[ '!' -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ]  ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
-			[ -f obj-` uname -m `-pc-linux-gnu/mozilla/toolkit/library/build/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/mozilla/toolkit/library/build/libxul.so ] || exit 1 
+			[ -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so ] || exit 1 
 			
 			# Now try to build the language packs
 			for packlang in de es-ES pl ru fr it nl pt-PT ; do
@@ -214,11 +215,11 @@ done
 		<install>
 			<![CDATA[
 
-TARFILE=comm-esr31/obj-` uname -m `-pc-linux-gnu/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-` uname -m `.tar.bz2 
+TARFILE=comm-esr38/obj-` uname -m `-pc-linux-gnu/dist/thunderbird-${PKGVERSION}.en-US.linux-` uname -m `.tar.bz2 
 case $(uname -m) 
 in
 	x86_64) 
-		TARFILE=comm-esr31/obj-` uname -m `-unknown-linux-gnu/mozilla/dist/thunderbird-${PKGVERSION}.en-US.linux-` uname -m `.tar.bz2 
+		TARFILE=comm-esr38/obj-` uname -m `-unknown-linux-gnu/dist/thunderbird-${PKGVERSION}.en-US.linux-` uname -m `.tar.bz2 
 	;;
 esac 
 [ -f "$TARFILE" ] || exit 1
@@ -229,19 +230,18 @@ tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/thunderbird ${TGTDIR}/opt/thunderbird-${PKGVERSION}
 
 echo '====> Installing XPIs'
-install -m 0644 comm-esr31/obj-` uname -m `-pc-linux-gnu/mozilla/dist/xpi-stage/gdata-provider-*.en-US.linux-` uname -m `.xpi ${TGTDIR}/usr/share/mozilla-addons
-install -m 0644 comm-esr31/obj-` uname -m `-pc-linux-gnu/mozilla/dist/xpi-stage/lightning-*.en-US.linux-` uname -m `.xpi ${TGTDIR}/usr/share/mozilla-addons
+install -m 0644 comm-esr38/obj-` uname -m `-pc-linux-gnu/mozilla/dist/xpi-stage/gdata-provider-*.en-US.linux-` uname -m `.xpi ${TGTDIR}/usr/share/mozilla-addons
+install -m 0644 comm-esr38/obj-` uname -m `-pc-linux-gnu/mozilla/dist/xpi-stage/lightning-*.en-US.linux-` uname -m `.xpi ${TGTDIR}/usr/share/mozilla-addons
 
 echo '====> Installing Langpacks'
+# obj-i686-pc-linux-gnu/dist/linux-i686/xpi/thunderbird-38.0.1.es-ES.langpack.xpi
 mkdir -m 0755 -p ${TGTDIR}/usr/share/mozilla-localization
 for packlang in de es-ES pl ru fr it nl pt-PT ; do
-	install -m 0644 comm-esr31/obj-` uname -m `-pc-linux-gnu/mozilla/dist/linux-` uname -m `/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
+	install -m 0644 comm-esr38/obj-` uname -m `-pc-linux-gnu/dist/linux-` uname -m `/xpi/thunderbird-${PKGVERSION}.${packlang}.langpack.xpi \
 		${TGTDIR}/usr/share/mozilla-localization
 done
 
-# echo '====> Installing Enigmail'
-# mkdir -m 0755 -p ${TGTDIR}/usr/share/mozilla-addons
-# install -m 0644 comm-esr31/tb-build/mozilla/dist/bin/enigmail-${ENIGMAILVERSION}-linux-` uname -m `.xpi ${TGTDIR}/usr/share/mozilla-addons/
+${TGTDIR}/usr/share/mozilla-addons/
 
 mkdir -p ${TGTDIR}/usr/bin/	
 mkdir -p ${TGTDIR}/usr/share/icons
@@ -306,7 +306,7 @@ chmod a+rx ${TGTDIR}/opt/thunderbird-${PKGVERSION}/thunderbird_smack
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf comm-esr31  l10n
+			rm -rf comm-esr38  l10n
 			]]>
 		</clean>
 	</package>

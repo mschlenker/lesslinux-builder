@@ -1,16 +1,28 @@
 <llpackages>
 	<package
 		name="mc"
-		version="4.8.13"
+		version="4.8.14"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="b64b81f80fa93224f054ad5f498e479ceac5a49d">mc-4.8.13.tar.xz</pkg>
+				<pkg sha1="ae64b22a213fac8b8231b5407b8aa312ca25c38f">mc-4.8.14.tar.xz</pkg>
 				<mirror>ftp://ftp.midnight-commander.org/pub/midnightcommander/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="60" page="ftp://ftp.midnight-commander.org/" />
+			<manualcheck date="20150609" interval="60" page="ftp://ftp.midnight-commander.org/" />
+			<check>
+				<page html="ftp://ftp.midnight-commander.org/pub/midnightcommander/">
+					<atext linktext="mc-4.8.15." />
+					<atext linktext="mc-4.8.16." />
+					<atext linktext="mc-4.8.17." />
+					<atext linktext="mc-4.8.18." />
+					<atext linktext="mc-4.8.19." />
+					<atext linktext="mc-4.9." />
+					<atext linktext="mc-4.10." />
+					<atext linktext="mc-5.0." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

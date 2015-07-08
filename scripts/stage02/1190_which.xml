@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="which"
-		version="2.20"
+		version="2.21"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>           
-				<pkg sha1="3bcd6d87aa5231917ba7123319eedcae90cfa0fd">which-2.20.tar.gz</pkg>
+				<pkg sha1="6b6bec3d2b3d4661c164feb81b9b1d22d1359ded">which-2.21.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/which/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://ftp.gnu.org/gnu/which/" />
+			<manualcheck date="20150529" interval="365" page="http://ftp.gnu.org/gnu/which/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/which/">
-					<atext linktext="which-2.21.tar.gz" />
+					<atext linktext="which-2.26.tar.gz" />
 					<atext linktext="which-2.22.tar.gz" />
 					<atext linktext="which-2.23.tar.gz" />
 					<atext linktext="which-2.24.tar.gz" />
@@ -62,5 +62,10 @@
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

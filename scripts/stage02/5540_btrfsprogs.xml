@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="btrfs-progs"
-		version="20141103"
+		version="20150601"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>                                                          
 			<file>	<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/mason/btrfs-progs.git  -->         
-				<pkg sha1="ce07659f136e5daebff8a53eadcfccde27904eeb">btrfs-progs-20141103.tar.bz2</pkg>
+				<pkg sha1="1d3b8c105dd7e62c234297869e8227c36eadf82f">btrfs-progs-20150601.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20141103" interval="60" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20150601" interval="60" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -34,6 +34,8 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}
+			bash autogen.sh 
+			./configure --prefix=/usr --sysconfdir=/etc 
 			sed -i 's/ build-Documentation//g' Makefile 
 			sed -i 's/ install-Documentation//g' Makefile
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then

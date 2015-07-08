@@ -1,18 +1,30 @@
 <llpackages>
-    <package name='sqlitebrowser' version='2015.04.21.0' install='chroot'>
+    <package name='sqlitebrowser' version='3.7.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='d7ae3027c11af92bf9a18cb17e7c0248cdceabd1'>
-                    sqlitebrowser-2015.04.21.0.tar.gz
+                <pkg sha1='7fd9c78620c12ae1164b080fe44536238ecd0873'>
+                    v3.7.0.tar.gz
                 </pkg>
                 <mirror>
-                    http://distfiles.lesslinux.org/
+                    https://github.com/sqlitebrowser/sqlitebrowser/archive/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+            <manualcheck date='20150421' interval='60' mirror='http://sqlitebrowser.org/'/>
+	        <check>
+				<page html="http://sqlitebrowser.org/">
+					<atext href="v3.7.5." />
+					<atext href="v3.7.1." />
+					<atext href="v3.7.2." />
+					<atext href="v3.7.3." />
+					<atext href="v3.7.4." />
+					<atext href="v3.8." />
+					<atext href="v3.9." />
+					<atext href="v4.0." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -28,7 +40,7 @@
                         <dep>sqlite</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/v${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
@@ -41,6 +53,8 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
+sed -i 's/Development/CB-Other/g' /usr/share/applications/sqlitebrowser.desktop
+sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' /usr/share/applications/sqlitebrowser.desktop
 ]]>
         </install>
         <clean>

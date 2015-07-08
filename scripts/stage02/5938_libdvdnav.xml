@@ -1,29 +1,31 @@
 <llpackages>
 	<package 
 		name="libdvdnav"
-		version="4.2.1"
+		version="5.0.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="c9278f571374b232d92d96c6dbc618ae5f95b318">libdvdnav-4.2.1.tar.xz</pkg>
-				<mirror>http://dvdnav.mplayerhq.hu/releases/</mirror>
+				<pkg sha1="e3ec3277e37dd1714e7dc7d205b8fd084125b51a">libdvdnav-5.0.3.tar.bz2</pkg>
+				<mirror>http://download.videolan.org/videolan/libdvdnav/5.0.3/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://dvdnav.mplayerhq.hu/releases/" />
-			<!-- <check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
-					<atext linktext="gnome-calculator-3.10.6." />
-					<atext linktext="gnome-calculator-3.10.3." />
-					<atext linktext="gnome-calculator-3.10.4." />
-					<atext linktext="gnome-calculator-3.10.5." />
+			<manualcheck date="20150601" interval="180" page="http://download.videolan.org/videolan/libdvdnav/" />
+			<check>
+				<page html="http://download.videolan.org/videolan/libdvdnav/">
+					<atext linktext="5.0.4/" />
+					<atext linktext="5.0.5/" />
+					<atext linktext="5.0.6/" />
+					<atext linktext="5.0.7/" />
+					<atext linktext="5.0.8/" />
+					<atext linktext="5.0.9/" />
+					<atext linktext="5.1.0/" />
+					<atext linktext="5.2.0/" />
+					<atext linktext="5.3.0/" />
+					<atext linktext="6.0.0/" />
+					<atext linktext="6.1.0/" />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.12" />
-					<atext linktext="3.14" />
-					<atext linktext="4." />
-				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
 			<dep>libdvdread</dep>

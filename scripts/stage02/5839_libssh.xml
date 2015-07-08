@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="libssh"
-		version="0.6.3"
+		version="0.7.0"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="8189255e0f684d36b7ca62739fa0cd5f1030a467">libssh-0.6.3.tar.xz</pkg>
+				<pkg sha1="e39d77ef00f17e721aa6bf251621776f262d5575">libssh-0.7.0.tar.xz</pkg>
 				<mirror>https://red.libssh.org/attachments/download/71/</mirror>
 			</file>
-			<manualcheck date="20140519" interval="120" page="http://www.libssh.org/" />
-			<!-- <check>
-				<page html="http://xorg.freedesktop.org/archive/individual/app/">
-					<atext linktext="xset-1.2.3." />
-					<atext linktext="xset-1.2.4." />
-					<atext linktext="xset-1.2.5." />
-					<atext linktext="xset-1.2.6." />
-					<atext linktext="xset-1.3." />
-					<atext linktext="xset-1.4." />
-					<atext linktext="xset-2." />
+			<manualcheck date="20150529" interval="120" page="http://www.libssh.org/" />
+			<check>
+				<page html="https://red.libssh.org/projects/libssh/files">
+					<atext linktext="libssh-0.7.1." />
+					<atext linktext="libssh-0.7.2." />
+					<atext linktext="libssh-0.7.3." />
+					<atext linktext="libssh-0.7.4." />
+					<atext linktext="libssh-0.7.5." />
+					<atext linktext="libssh-0.8." />
+					<atext linktext="libssh-0.9." />
+					<atext linktext="libssh-1." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

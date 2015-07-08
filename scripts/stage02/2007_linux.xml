@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="3.19.8"
+		version="4.1.1"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="6bd512e347254bc2fa0b0191ac2157a1870ba81c">linux-3.19-config-32pae</pkg> 
+				<pkg sha1="04e4a300b6abbf7e4d6e2eb14c36a901f4a45b1d">linux-4.1-config-32pae</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="b880c818c09f8c492eabc0f9c4178134b3496c56">linux-3.19.tar.xz</pkg>
-				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+				<pkg sha1="2470435c2218f0bcbd46ef2a0000694aca340273">linux-4.1.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="46dd30b8b645e39cd530adcc9e49abe06e86e826">patch-3.19.8.xz</pkg>
-				<mirror>http://www.kernel.org/pub/linux/kernel/v3.x/</mirror>
+				<pkg sha1="2b8d258b0d5ccab320ec21b58e15d5f19051875b">patch-4.1.1.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20150513" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150629" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-3.19.10." />
-					<atext linktext="patch-3.19.11." />
-					<atext linktext="patch-3.19.9." />
-					<atext linktext="patch-3.20." />
-					<atext linktext="patch-4.0." />
-					<atext linktext="patch-4.1." />
+					<atext linktext="patch-4.1.4." />
+					<atext linktext="patch-4.1.2." />
+					<atext linktext="patch-4.1.3." />
+					<atext linktext="patch-4.2." />
+					<atext linktext="patch-4.3." />
+					<atext linktext="patch-4.4." />
 				</page>
 			</check>
 		</sources>

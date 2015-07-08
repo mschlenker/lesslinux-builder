@@ -1,23 +1,30 @@
 <llpackages>
 	<package 
 		name="ruby-cairo"
-		version="1.12.9"
-		class="user"
-		>
+		version="1.14.1"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="aa26cc263964ca5a3f16a6224a02798155fcd71b">rcairo-1.12.9.tar.gz</pkg>
-				<mirror>http://cairographics.org/releases/</mirror>
+				<pkg sha1="5004067d807dfd8c81c5d0093f431ea61d0c7b82">rcairo-1.14.1.tar.gz</pkg>
+				<mirror>http://cairographics.org/releases/</mirror>  
 			</file>
-			<manualcheck date="20140802" interval="90" page="http://cairographics.org/releases/" />
-			<!--<check>
-				<page html="http://sourceforge.net/projects/grsync/files/">
-					<atext linktext="grsync-1.1.2." />
-					<atext linktext="grsync-1.2." />
-					<atext linktext="grsync-2." />
+			<manualcheck date="20150601" interval="90" page="http://cairographics.org/releases/" />
+			<check>
+				<page html="http://cairographics.org/releases/">
+					<atext linktext="rcairo-1.14.2." />
+					<atext linktext="rcairo-1.14.3." />
+					<atext linktext="rcairo-1.14.4." />
+					<atext linktext="rcairo-1.14.5." />
+					<atext linktext="rcairo-1.14.6." />
+					<atext linktext="rcairo-1.14.7." />
+					<atext linktext="rcairo-1.14.8." />
+					<atext linktext="rcairo-1.16." />
+					<atext linktext="rcairo-1.18." />
+					<atext linktext="rcairo-1.20." />
+					<atext linktext="rcairo-2." />
 				</page>
-			</check>-->
+			</check>
 		</sources>
 		 <builddeps>
                         <dep>bash</dep>

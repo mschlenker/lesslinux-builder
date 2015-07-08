@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="freetype"
-		version="2.4.12"
+		version="2.5.5"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<!-- Freetype 2.5.x breaks the build of instantbird. So stay with 2.4 for a while -->
 			<file>                                                                                                   
-				<pkg sha1="382479336faefbc77e4b63c9ce4a96cf5d2c3585">freetype-2.4.12.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/freetype/freetype2/2.4.12/</mirror>
+				<pkg sha1="7b7460ef51a8fdb17baae53c6658fc1ad000a1c2">freetype-2.5.5.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/freetype/freetype2/2.5.5/</mirror>
 			</file>
-			<manualcheck date="20130510" interval="120" page="http://sourceforge.net/projects/freetype/files/freetype2/" />
+			<manualcheck date="20150529" interval="120" page="http://sourceforge.net/projects/freetype/files/freetype2/" />
 			<check>
 				<page html="http://sourceforge.net/projects/freetype/files/freetype2/">
-					<atext linktext="2.4.15" />
-					<atext linktext="2.4.13" />
-					<atext linktext="2.4.14" />
-					<atext linktext="2.5." />
+					<atext linktext="2.5.6" />
+					<atext linktext="2.5.6" />
+					<atext linktext="2.5.7" />
+					<atext linktext="2.6." />
 					<atext linktext="3.0." />
 				</page>
 			</check>

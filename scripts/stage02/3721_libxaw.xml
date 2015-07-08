@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="libXaw"
-		version="1.0.12"
+		version="1.0.13"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                          
-				<pkg sha1="6919476379accaf21f2331004e5cfa7939a6786b">libXaw-1.0.12.tar.bz2</pkg>
+				<pkg sha1="15f891fb88aae966b3064dcc1510790a0ebc75a0">libXaw-1.0.13.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20150529" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXaw-1.0.13." />
+					<atext linktext="libXaw-1.0.16." />
 					<atext linktext="libXaw-1.0.14." />
 					<atext linktext="libXaw-1.0.15." />
 					<atext linktext="libXaw-1.1." />
@@ -81,5 +81,10 @@
 			ln -sf libXaw6.so.6.0.1 ${TGTDIR}/usr/lib/libXaw.so.6
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

@@ -1,18 +1,33 @@
 <llpackages>
-    <package name='i3status' version='2.8' install='destdir'>
+    <package name='i3status' version='2.9' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='34c874c23fef0c5652f4449c6c8e4f8df57bfeb9'>
-                    i3status-2.8.tar.bz2
+                <pkg sha1='a7621b108208453a1cd974d52ebc2ba49917ee30'>
+                    i3status-2.9.tar.bz2
                 </pkg>
                 <mirror>
                     http://i3wm.org/i3status/
                 </mirror>
             </file>
-            <manualcheck date='20141127' interval='60' mirror='http://i3wm.org/i3status/'/>
+            <manualcheck date='20150609' interval='60' mirror='http://i3wm.org/i3status/'/>
+	        <check>
+				<page html="http://i3wm.org/i3status/">
+					<atext linktext="i3status-2.9.1." />
+					<atext linktext="i3status-2.9.2." />
+					<atext linktext="i3status-2.9.3." />
+					<atext linktext="i3status-2.10." />
+					<atext linktext="i3status-2.11." />
+					<atext linktext="i3status-2.12." />
+					<atext linktext="i3status-2.13." />
+					<atext linktext="i3status-2.14." />
+					<atext linktext="i3status-3." />
+					<atext linktext="i3status-4." />
+					<atext linktext="i3status-5." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>alsa-lib</dep>

@@ -1,31 +1,36 @@
 <llpackages>
 	<package 
 		name="libtirpc"
-		version="0.2.4"
+		version="0.3.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="1484e59eb9c0c6adf4b072f2b80ccb17465fd4a3">libtirpc-0.2.4.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/libtirpc/libtirpc/0.2.4</mirror>
+				<pkg sha1="0e0ef9123cf28cd0940148fabd23952476a8fcd6">libtirpc-0.3.1.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libtirpc/libtirpc/0.3.1</mirror>
 			</file>
 			<!-- <file>                                                                           
 				<pkg sha1="a19a12eca923bf434ec672edc66c1ea80ae1d061">libtirpc-0.2.3-remove_nis-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file> -->
-			<manualcheck date="20140802" interval="180" page="http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html" />
-			<!-- <check>
-				<page html="http://sourceforge.net/projects/xchat/files/">
-					<atext linktext="xchat-2.8.9." />
-					<atext linktext="xchat-2.8.10." />
-					<atext linktext="xchat-2.8.11." />
-					<atext linktext="xchat-2.8.12." />
-					<atext linktext="xchat-2.9." />
-					<atext linktext="xchat-2.10." />
-					<atext linktext="xchat-3." />
+			<manualcheck date="20150601" interval="180" page="http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html" />
+			<check>
+				<page html="http://sourceforge.net/projects/libtirpc/files/libtirpc/">
+					<atext linktext="libtirpc-0.3.2." />
+					<atext linktext="libtirpc-0.3.3." />
+					<atext linktext="libtirpc-0.3.4." />
+					<atext linktext="libtirpc-0.3.5." />
+					<atext href="0.3.3" />
+					<atext href="0.3.4" />
+					<atext href="0.3.5" />
+					<atext href="0.3.6" />
+					<atext href="0.3.7" />
+					<atext href="0.4.0" />
+					<atext href="0.5.0" />
+					<atext href="0.6.0" />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>GConf</dep>

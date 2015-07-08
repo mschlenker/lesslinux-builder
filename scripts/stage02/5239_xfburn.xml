@@ -1,25 +1,26 @@
 <llpackages>
 	<package 
 		name="xfburn"
-		version="0.5.2"
+		version="0.5.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
-				<pkg sha1="d0a39b331353ccbc73b027a09c87bcbc45d9a312">xfburn-0.5.2.tar.bz2</pkg>
+				<pkg sha1="cf982c53ee28ef1c841f34d37bdfe7b2e857a54d">xfburn-0.5.4.tar.bz2</pkg>
 				<mirror>http://archive.xfce.org/src/apps/xfburn/0.5/</mirror>
 			</file>
 			<!-- <file>  
 				<pkg sha1="61a3e3378809b083b978fcf3a88a1e74e1eff3ff">xfburn_0.4.3-4ubuntu2.debian.tar.gz</pkg>
 				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/x/xfburn/</mirror>
 			</file> -->
-			<manualcheck date="20140727" interval="120" page="http://archive.xfce.org/src/apps/xfburn/" />
+			<manualcheck date="20150530" interval="120" page="http://archive.xfce.org/src/apps/xfburn/" />
 			<check>
 				<page html="http://archive.xfce.org/src/apps/xfburn/0.5/">
-					<atext linktext="xfburn-0.5.3" />
-					<atext linktext="xfburn-0.5.4" />
 					<atext linktext="xfburn-0.5.5" />
+					<atext linktext="xfburn-0.5.6" />
+					<atext linktext="xfburn-0.5.7" />
+					<atext linktext="xfburn-0.5.8" />
 				</page>
 				<page html="http://archive.xfce.org/src/apps/xfburn/">
 					<atext linktext="0.7/" />
@@ -84,7 +85,6 @@
 			else
 				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			fi
-			# tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-4ubuntu2.debian.tar.gz
 			]]>
 		</unpack>
 		<!-- <patch>

@@ -1,16 +1,17 @@
 <llpackages>
 	<package 
 		name="xdotool"
-		version="2.20101012.3049"
+		version="2.20110530.1"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>   
-				<pkg sha1="b57e9b63123f326f0d1c8c43ff66678753d3da0c">xdotool-2.20101012.3049.tar.gz</pkg>
+				<pkg sha1="bf8372b2e76e8ee3884763cee6e8b3f66bf29aa6">xdotool-2.20110530.1.tar.gz</pkg>
 				<mirror>http://semicomplete.googlecode.com/files/</mirror>
 			</file>
-			<check>
+			<manualcheck date="20150601" interval="60" page="http://www.semicomplete.com/projects/xdotool/" />
+			<!-- <check>
 				<page html="http://www.semicomplete.com/projects/xdotool/">
 					<atext linktext="xdotool-2.2010102" />
 					<atext linktext="xdotool-2.2010103" />
@@ -19,7 +20,7 @@
 					<atext linktext="xdotool-2.2011" />
 					<atext linktext="xdotool-3." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -49,7 +50,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make
+			make all
 			]]>
 		</build>
 		<test />
@@ -59,5 +60,10 @@
 			make install PREFIX=/usr
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

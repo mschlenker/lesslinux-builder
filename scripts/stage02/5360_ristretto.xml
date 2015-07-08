@@ -1,25 +1,26 @@
 <llpackages>
 	<package 
 		name="ristretto"
-		version="0.6.3"
+		version="0.8.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                  
-				<pkg sha1="11817ee46f6711b0dc54503fcff35eb56a36bd6e">ristretto-0.6.3.tar.bz2</pkg>
-				<mirror>http://archive.xfce.org/src/apps/ristretto/0.6/</mirror>
+				<pkg sha1="0f780cd0b3270e258315a737e4bbf332806f14dc">ristretto-0.8.0.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/apps/ristretto/0.8/</mirror>
 			</file>
-			<manualcheck date="20140215" interval="180" page="http://archive.xfce.org/src/apps/ristretto/" />
+			<manualcheck date="20150601" interval="180" page="http://archive.xfce.org/src/apps/ristretto/" />
 			<check>
-				<page html="http://archive.xfce.org/src/apps/ristretto/0.6/">
-					<atext linktext="ristretto-0.6.4." />
-					<atext linktext="ristretto-0.6.5." />
-					<atext linktext="ristretto-0.6.6." />
+				<page html="http://archive.xfce.org/src/apps/ristretto/0.8/">
+					<atext linktext="ristretto-0.8.1." />
+					<atext linktext="ristretto-0.8.2." />
+					<atext linktext="ristretto-0.8.3." />
 				</page>	
 				<page html="http://archive.xfce.org/src/apps/ristretto/">
-					<atext linktext="0.7" />
-					<atext linktext="0.8" />
+					<atext linktext="0.9" />
+					<atext linktext="0.10" />
+					<atext linktext="0.12" />
 					<atext linktext="1.0" />
 					<atext linktext="2.0" />
 				</page>
@@ -87,7 +88,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			sed -i 's/Categories=GTK/Categories=AudioVideo;GTK/g' ${TGTDIR}/usr/share/applications/ristretto.desktop 
+			sed -i 's/Categories=GTK;Graphics/Categories=AudioVideo;GTK/g' ${TGTDIR}/usr/share/applications/ristretto.desktop 
 			# /sbin/paxctl -m /usr/bin/ristretto
 			]]>
 		</install>

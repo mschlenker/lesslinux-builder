@@ -1,25 +1,30 @@
 <llpackages>
 	<package 
 		name="pangomm"
-		version="2.28.4"
+		version="2.36.0"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                 
-				<pkg sha1="ee83497485e180708dffbf2e68d633ae8d5a36b4">pangomm-2.28.4.tar.bz2</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.28/</mirror>
+				<pkg sha1="eb23bca29b2ea216b58f39292a9c5e5c293716c5">pangomm-2.36.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.36/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.28/" />
+			<manualcheck date="20150530" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.28/">
-					<atext linktext="pangomm-2.28.5." />
-					<atext linktext="pangomm-2.28.6." />
-					<atext linktext="pangomm-2.28.7." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/2.36/">
+					<atext linktext="pangomm-2.36.1." />
+					<atext linktext="pangomm-2.36.2." />
+					<atext linktext="pangomm-2.36.3." />
+					<atext linktext="pangomm-2.36.4." />
+					<atext linktext="pangomm-2.36.5." />
+					<atext linktext="pangomm-2.36.6." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/pangomm/">
-					<atext linktext="2.32" />
-					<atext linktext="2.30" />
+					<atext linktext="2.38" />
+					<atext linktext="2.40" />
+					<atext linktext="2.42" />
+					<atext linktext="2.44" />
 					<atext linktext="3." />
 				</page>
 			</check>
@@ -62,11 +67,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
@@ -83,5 +84,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

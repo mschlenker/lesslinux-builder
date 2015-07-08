@@ -1,26 +1,25 @@
 <llpackages>
 	<package 
 		name="vlc"
-		version="2.1.5"
+		version="2.2.1"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                            
-				<pkg sha1="7f1cb6324a04cf393896bbb5976ca9febd7b3efc">vlc-2.1.5.tar.xz</pkg>
-				<mirror>http://download.videolan.org/pub/videolan/vlc/2.1.5/</mirror>
+				<pkg sha1="ee8535c5966217bc2069a74c1d4e8c32609656e9">vlc-2.2.1.tar.xz</pkg>
+				<mirror>http://download.videolan.org/pub/videolan/vlc/2.2.1/</mirror>
 			</file>
-			<manualcheck date="20140609" interval="90" page="http://download.videolan.org/pub/videolan/vlc/" />
+			<manualcheck date="20150601" interval="90" page="http://download.videolan.org/pub/videolan/vlc/" />
 			<check>
 				<page html="http://download.videolan.org/pub/videolan/vlc/">
-					<atext linktext="2.1.5.1" />
-					<atext linktext="2.1.5.2" />
-					<atext linktext="2.1.6" />
-					<atext linktext="2.1.7" />
-					<atext linktext="2.1.8" />
-					<atext linktext="2.2." />
+					<atext linktext="2.2.2" />
+					<atext linktext="2.2.3" />
+					<atext linktext="2.2.4" />
+					<atext linktext="2.2.5" />
+					<atext linktext="2.2.6" />
 					<atext linktext="2.3." />
+					<atext linktext="2.4." />
 					<atext linktext="3.0." />
 				</page>
 			</check>
@@ -127,12 +126,12 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./bootstrap
-				./configure --prefix=/usr --enable-libfreerdp=no CC="distcc gcc" CXX="distcc g++" 
+				./configure --prefix=/usr --enable-freerdp=no CC="distcc gcc" CXX="distcc g++" 
 				pump make -k -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 				make
 			else
 				./bootstrap
-				./configure --prefix=/usr --enable-libfreerdp=no 
+				./configure --prefix=/usr --enable-freerdp=no 
 				make
 			fi
 			]]>

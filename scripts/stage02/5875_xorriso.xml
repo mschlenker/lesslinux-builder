@@ -1,27 +1,28 @@
 <llpackages>
 	<package 
 		name="xorriso"
-		version="1.3.8"
+		version="1.4.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="e16757413ad06f3295b27d30e5a3604bd8c2c606">xorriso-1.3.8.tar.gz</pkg>
+				<pkg sha1="9b8e47ad568d4079a63a0112901bec2e9dd4ceed">xorriso-1.4.0.tar.gz</pkg>
 				<mirror>http://www.gnu.org/software/xorriso/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="60" page="http://www.gnu.org/software/xorriso/" />
-			<!-- <check>
-				<page html="http://sourceforge.net/projects/xchat/files/">
-					<atext linktext="xchat-2.8.9." />
-					<atext linktext="xchat-2.8.10." />
-					<atext linktext="xchat-2.8.11." />
-					<atext linktext="xchat-2.8.12." />
-					<atext linktext="xchat-2.9." />
-					<atext linktext="xchat-2.10." />
-					<atext linktext="xchat-3." />
+			<manualcheck date="20150601" interval="60" page="http://www.gnu.org/software/xorriso/" />
+			<check>
+				<page html="http://www.gnu.org/software/xorriso/">
+					<atext linktext="xorriso-1.4.2." />
+					<atext linktext="xorriso-1.4.4." />
+					<atext linktext="xorriso-1.4.6." />
+					<atext linktext="xorriso-1.4.8." />
+					<atext linktext="xorriso-1.4.10." />
+					<atext linktext="xorriso-1.4.12." />
+					<atext linktext="xorriso-1.5." />
+					<atext linktext="xorriso-2." />
 				</page>
-			</check> -->
+			</check> 
 		</sources>
 		<builddeps>
                         <dep>acl</dep>

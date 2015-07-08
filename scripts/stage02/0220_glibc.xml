@@ -1,32 +1,32 @@
 <llpackages>
 	<package 
 		name="glibc"
-		version="2.19"
+		version="2.21"
 		class="lib"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                
-				<pkg sha1="b29e1f94b8a32e283e1cb66c9a913950c496fb51">glibc-2.19.tar.xz</pkg>
+				<pkg sha1="1157be3fe63baa81b7ba104a103337775a6ed06f">glibc-2.21.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
 			</file>
 			<file>                                                                                  
-				<pkg sha1="d61e9ba795b64f1b1aa81023f3e45157cb426c93">glibc-2.19-fhs-1.patch</pkg>
+				<pkg sha1="d61e9ba795b64f1b1aa81023f3e45157cb426c93">glibc-2.21-fhs-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
 			</file>
 			<!-- <file>                                                                                            
 				<pkg sha1="41a88bf6a20926a4a1e9792ae5eb2a9854dc44af">glibc-2.16-gcc_fix-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
 			</file> -->
-			<manualcheck date="20140518" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
+			<manualcheck date="20150529" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/glibc/">
-					<atext linktext="glibc-2.19.1." />
-					<atext linktext="glibc-2.19.2." />
-					<atext linktext="glibc-2.19.3." />
-					<atext linktext="glibc-2.19.4." />
-					<atext linktext="glibc-2.20." />
-					<atext linktext="glibc-2.21." />
+					<atext linktext="glibc-2.21.1." />
+					<atext linktext="glibc-2.21.2." />
+					<atext linktext="glibc-2.21.3." />
+					<atext linktext="glibc-2.21.4." />
+					<atext linktext="glibc-2.22." />
+					<atext linktext="glibc-2.23." />
 				</page>
 			</check>
 		</sources>
@@ -43,8 +43,19 @@
 			<![CDATA[ 
 
 cd glibc-${PKGVERSION}
-sed -i 's/\\$$(pwd)/`pwd`/' timezone/Makefile
-patch -Np1 -i ${SRCDIR}/glibc-2.19-fhs-1.patch
+patch -Np1 -i ${SRCDIR}/glibc-2.21-fhs-1.patch
+
+sed -e '/ia32/s/^/1:/' \
+    -e '/SSE2/s/^1://' \
+    -i  sysdeps/i386/i686/multiarch/mempcpy_chk.S
+
+sed -i '/glibc.*pad/{i\  buflen = buflen > pad ? buflen - pad : 0;
+                     s/ + pad//}' resolv/nss_dns/dns-host.c
+		     
+sed -e '/tst-audit2-ENV/i CFLAGS-tst-audit2.c += -fno-builtin' \
+    -i elf/Makefile
+    
+
 
 			]]>
 		</patch>
@@ -53,7 +64,7 @@ patch -Np1 -i ${SRCDIR}/glibc-2.19-fhs-1.patch
 			cd glibc-build
 			case `uname -m` in
 			i?86) 
-				echo "CFLAGS += -march=i486 -mtune=generic -O3 -pipe" > configparms
+				echo "CFLAGS += -march=i686 -mtune=generic -O2 -pipe" > configparms
 			;;
 			esac
 			../glibc-${PKGVERSION}/configure \

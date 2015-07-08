@@ -1,34 +1,36 @@
 <llpackages>
 	<package 
 		name="cairo-dock-plugins"
-		version="3.3.2"
+		version="3.4.0"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                             
-				<pkg sha1="ed71db39c73398ca7bf4f5468b6606717eac4f52">cairo-dock-plugins-3.3.2.tar.gz</pkg>
-				<mirror>https://launchpad.net/cairo-dock-plug-ins/3.3/3.3.2/+download/</mirror>
+				<pkg sha1="b603f96ba7c48eb0bc4248d8b344f6868ef509ed">cairo-dock-plugins-3.4.0.tar.gz</pkg>
+				<mirror>https://launchpad.net/cairo-dock-plug-ins/3.4/3.4.0/+download/</mirror>
 			</file>
-			<file>                                                                             
+			<!-- <file>                                                                             
 				<pkg sha1="7d27fa541e07fe042b5659714eb868ca81adc14d">cairo-dock-plugins-3.3.2-bsd.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
+			</file> -->
 			<manualcheck date="20140731" interval="180" page="http://glx-dock.org/" />
-			<!-- <check>
+			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
-					<atext linktext="xset-1.2.3." />
-					<atext linktext="xset-1.2.4." />
-					<atext linktext="xset-1.2.5." />
-					<atext linktext="xset-1.2.6." />
-					<atext linktext="xset-1.3." />
-					<atext linktext="xset-1.4." />
-					<atext linktext="xset-2." />
+					<atext href="cairo-dock-plugins-3.4.1." />
+					<atext href="cairo-dock-plugins-3.4.2." />
+					<atext href="cairo-dock-plugins-3.4.3." />
+					<atext href="cairo-dock-plugins-3.4.4." />
+					<atext href="cairo-dock-plugins-3.4.5." />
+					<atext href="cairo-dock-plugins-3.4.6." />
+					<atext href="cairo-dock-plugins-3.5." />
+					<atext href="cairo-dock-plugins-3.6." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		 <builddeps>
+			<dep>M2Crypto</dep>
+                        <dep>python-dateutil</dep>
                         <dep>Mesa</dep>
                         <dep>Python</dep>
                         <dep>WebOb</dep>
@@ -76,6 +78,7 @@
                         <dep>setuptools</dep>
                         <dep>vala</dep>
                         <dep>webkit</dep>
+			<dep>webkit26</dep>
                         <dep>xproto-base</dep>
                 </builddeps>
 		<unpack>
@@ -83,22 +86,25 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			# FIXME! Fix search for gio header:
 			cd ${PKGNAME}-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-bsd.patch | patch -p1
 			sed -i 's%gio/gdesktopappinfo\.h%gio-unix-2.0/gio/gdesktopappinfo.h%g' GMenu-old/src/applet-util.c
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			mkdir build ; cd build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
+				export CC="distcc /usr/local/gcc49/bin/gcc49"
+				export CXX="distcc /usr/local/gcc49/bin/g++49"
+			else
+				export CC=/usr/local/gcc49/bin/gcc49 
+				export CXX=/usr/local/gcc49/bin/g++49
 			fi
 			cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then

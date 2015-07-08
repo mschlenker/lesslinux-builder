@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="imlib2"
-		version="1.4.6"
+		version="1.4.7"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="20e111d822074593e8d657ecf8aafe504e9e2967">imlib2-1.4.6.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/enlightenment/imlib2-src/1.4.6/</mirror>
+				<pkg sha1="0ed225afbbee8e990c655cf13ed802bda8a5cd8a">imlib2-1.4.7.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/enlightenment/imlib2-src/1.4.7/</mirror>
 			</file>
-			<manualcheck date="20140109" interval="365" page="http://sourceforge.net/projects/enlightenment/files/" />
+			<manualcheck date="20150530" interval="365" page="http://sourceforge.net/projects/enlightenment/files/" />
 			<check>
 				<page html="http://sourceforge.net/projects/enlightenment/files/">
 					<atext linktext="imlib2-1.4.9." />
-					<atext linktext="imlib2-1.4.7." />
+					<atext linktext="imlib2-1.4.10." />
 					<atext linktext="imlib2-1.4.8." />
 					<atext linktext="imlib2-1.5." />
 				</page>
@@ -83,5 +83,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

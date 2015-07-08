@@ -48,6 +48,8 @@
 			<![CDATA[
 			cd squashfs${PKGVERSION}
 			# cat ${SRCDIR}/squashfs-20110330-lzo-lzma.patch | patch -p1
+			sed -i 's/#XZ_SUPPORT = 1/XZ_SUPPORT = 1/g' squashfs-tools/Makefile
+			sed -i 's/#LZO_SUPPORT = 1/LZO_SUPPORT = 1/g' squashfs-tools/Makefile
 			]]>
 		</patch>
 		<build>

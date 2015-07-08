@@ -1,18 +1,30 @@
 <llpackages>
-    <package name='six' version='1.8.0' install='chroot'>
+    <package name='six' version='1.9.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='aa3b0659cbc85c6c7a91efc51f2d1007040070cd'>
-                    six-1.8.0.tar.gz
+                <pkg sha1='d168e6d01f0900875c6ecebc97da72d0fda31129'>
+                    six-1.9.0.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/s/six/
                 </mirror>
             </file>
-            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/s/six/'/>
+            <manualcheck date='20150601' interval='60' mirror='https://pypi.python.org/packages/source/s/six/'/>
+	    <check>
+				<page html="https://pypi.python.org/pypi/six/">
+					<atext href="six-1.9.1." />
+					<atext href="six-1.9.2." />
+					<atext href="six-1.9.3." />
+					<atext href="six-1.9.4." />
+					<atext href="six-1.10." />
+					<atext href="six-1.11." />
+					<atext href="six-1.12." />
+					<atext href="six-2." />
+				</page>
+			</check>
         </sources>
 	<builddeps>
                         <dep>bash</dep>

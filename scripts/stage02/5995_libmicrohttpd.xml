@@ -1,16 +1,28 @@
 <llpackages>
 	<package 
 		name="libmicrohttpd"
-		version="0.9.37"
+		version="0.9.42"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="20af66ef99ecdbf426828df6256cb9742a5bce59">libmicrohttpd-0.9.37.tar.gz</pkg>
+				<pkg sha1="bb3fdd302ce68f0e0fe17125c3cbd205c0c77265">libmicrohttpd-0.9.42.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/libmicrohttpd/</mirror>
 			</file>
-			<manualcheck date="20140710" interval="90" page="ftp://ftp.gnupg.org/gcrypt/libassuan/" />
+			<manualcheck date="20150601" interval="90" page="http://ftp.gnu.org/gnu/libmicrohttpd/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/libmicrohttpd/">
+					<atext linktext="libmicrohttpd-0.9.43." />
+					<atext linktext="libmicrohttpd-0.9.44." />
+					<atext linktext="libmicrohttpd-0.9.45." />
+					<atext linktext="libmicrohttpd-0.9.46." />
+					<atext linktext="libmicrohttpd-0.9.47." />
+					<atext linktext="libmicrohttpd-0.10." />
+					<atext linktext="libmicrohttpd-0.11." />
+					<atext linktext="libmicrohttpd-1." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

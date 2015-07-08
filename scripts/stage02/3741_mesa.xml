@@ -1,30 +1,34 @@
 <llpackages>
 	<package 
 		name="Mesa"
-		version="10.3.7"
+		version="10.5.8"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="824840968244842b98d8a03eb99e8d801db0a0a7">MesaLib-10.3.7.tar.bz2</pkg>
-				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.3.7/</mirror>
+				<pkg sha1="f1b72b0ce0221429249485fd97f39775bc1148bf">mesa-10.5.8.tar.xz</pkg>
+				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.5.8/</mirror>
 			</file>
-			<manualcheck date="20150113" interval="30" page="http://www.mesa3d.org/" />
-			<!-- <check>
+			<manualcheck date="20150622" interval="30" page="http://www.mesa3d.org/" />
+			<check>
 				<page html="ftp://ftp.freedesktop.org/pub/mesa//">
-					<atext linktext="10.1" />
-					<atext linktext="10.2" />
-					<atext linktext="10.0.8" />
-					<atext linktext="10.0.9" />
-					<atext linktext="10.0.5" />
-					<atext linktext="10.0.6" />
-					<atext linktext="10.0.7" />
+					<atext linktext="10.6" />
+					<atext linktext="10.7" />
+					<atext linktext="10.5.13" />
+					<atext linktext="10.5.9" />
+					<atext linktext="10.5.10" />
+					<atext linktext="10.5.11" />
+					<atext linktext="10.5.12" />
 				</page>
-			</check> -->
+			</check> 
 		</sources>
 		<builddeps>
-			<dep>Python</dep>
+			<dep>llvm</dep>
+			<dep>libvdpau</dep>
+			<dep>elfutils</dep>
+			<dep>libXvMC</dep>
+			<!-- <dep>Python</dep>
 			<dep>automake</dep>
 			<dep>automake113</dep>
                         <dep>bash</dep>
@@ -58,28 +62,21 @@
                         <dep>xproto-base</dep>
 			<dep>talloc</dep>
 			<dep>llvm</dep>
-			<dep>libvdpau</dep>
-			<dep>elfutils</dep>
+			
 			<dep>dri3proto</dep>
 			<dep>presentproto</dep>
 			<dep>libxshmfence</dep>
-			<!-- soft -->
-			<dep>makedepend</dep>
-			<dep>distcc</dep>
+			<dep>makedepend</dep> -->
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}.tar.gz
-			fi
+			tar xJf ${SRCDIR}/mesa-${PKGVERSION}.tar.xz 
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
 			
-			cd ${PKGNAME}-${PKGVERSION}
+			cd mesa-${PKGVERSION}
 			
 			echo "Now working in:"
 			pwd
@@ -91,7 +88,7 @@
 			echo 'Current environment:'
 			env
 			
-			bash autogen.sh 
+			# bash autogen.sh 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -102,21 +99,19 @@
 				export CXX='/usr/bin/g++'
 			fi
 			
-			./configure --prefix=/usr     \
+			./configure CFLAGS='-O2' CXXFLAGS='-O2' \
+				--prefix=/usr     \
 				--sysconfdir=/etc              \
 				--enable-texture-float         \
 				--enable-gles1                 \
 				--enable-gles2                 \
-				--enable-openvg                \
 				--enable-vdpau                 \
 				--enable-osmesa                \
 				--enable-xa                    \
 				--enable-gbm                   \
-				--enable-gallium-egl           \
-				--enable-gallium-gbm           \
 				--enable-glx-tls               \
 				--with-egl-platforms="drm,x11" \
-				--with-gallium-drivers="i915,ilo,nouveau,r300,r600,radeonsi,svga,swrast" 
+				--with-gallium-drivers="i915,nouveau,r300,r600,radeonsi,svga,swrast" 
 				
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount 
@@ -135,13 +130,13 @@
 			unset SRCDIR
 			echo 'Current environment:'
 			env
-			cd ${PKGNAME}-${PKGVERSION}
+			cd mesa-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf mesa-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

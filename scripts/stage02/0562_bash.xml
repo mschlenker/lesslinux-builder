@@ -10,11 +10,11 @@
 				<pkg sha1="33b1bcc5dca1b72f28b2baeca6efa0d422097964">bash-4.3.30.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
 			</file>
-			<!-- <file>                                                     
-				<pkg sha1="69f1cc8e0a95a4505d95fdc8ca9afcd76edef27c">bash-4.3-upstream_fixes-7.patch</pkg>
+			<file>                                                     
+				<pkg sha1="bcec5a2240abbdf172a0602aee1dcd4814525e64">bash-4.3.30-upstream_fixes-2.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file> -->
-			<manualcheck date="20141118" interval="90" page="http://ftp.gnu.org/gnu/bash/" />
+			</file>
+			<manualcheck date="20150529" interval="90" page="http://ftp.gnu.org/gnu/bash/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/bash/">
 					<atext linktext="bash-4.3.31." />
@@ -48,12 +48,12 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-7.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-2.patch | patch -p1
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}

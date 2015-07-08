@@ -1,17 +1,26 @@
 <llpackages>
 	<package 
 		name="dejavu-fonts-ttf"
-		version="2.34"
+		version="2.35"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>      
-				<pkg sha1="33fa825aa1dd44ce23a11af92b3078e978ff513d">dejavu-fonts-ttf-2.34.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/dejavu/dejavu/2.34/</mirror>
+				<pkg sha1="7912a0f3ef2b380276c46eb6bfb0d87b8e4b3fe8">dejavu-fonts-ttf-2.35.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/dejavu/dejavu/2.35/</mirror>
 			</file>
-			<manualcheck date="20140804" interval="365" page="http://sourceforge.net/projects/dejavu/files/" />
+			<manualcheck date="20150530" interval="365" page="http://sourceforge.net/projects/dejavu/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/dejavu/files/dejavu/">
+					<atext linktext="2.36" />
+					<atext linktext="2.37" />
+					<atext linktext="2.38" />
+					<atext linktext="2.39" />
+					<atext linktext="2.40" />
+					<atext linktext="2.41" />
+				</page>
+			</check> 
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

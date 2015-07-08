@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="ppp"
-		version="2.4.6"
+		version="2.4.7"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                  
-				<pkg sha1="0fd188b28cb8fdc81d2eaa15b78d3ad9c93344f4">ppp-2.4.6.tar.gz</pkg>
-				<mirror>ftp://ftp.samba.org/pub/ppp/</mirror>
+				<pkg sha1="808b023172ea7189bc0d49935bf37a5382a1fe13">ppp-2.4.7.tar.gz</pkg>
+				<mirror>https://www.samba.org/ftp/ppp/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="ftp://ftp.samba.org/pub/ppp/" />
-			<!-- <check>
-				<page html="http://ftp.gnu.org/gnu/screen/">
-					<atext linktext="screen-4.0.4" />
-					<atext linktext="screen-4.0.5" />
-					<atext linktext="screen-4.0.6" />
-					<atext linktext="screen-4.0.7" />
-					<atext linktext="screen-4.1." />
-					<atext linktext="screen-4.2." />
-					<atext linktext="screen-4.3." />
-					<atext linktext="screen-5." />
+			<manualcheck date="20150601" interval="180" page="ftp://ftp.samba.org/pub/ppp/" />
+			<check>
+				<page html="https://www.samba.org/ftp/ppp/">
+					<atext linktext="ppp-2.4.8." />
+					<atext linktext="ppp-2.4.9." />
+					<atext linktext="ppp-2.4.10." />
+					<atext linktext="ppp-2.4.11." />
+					<atext linktext="ppp-2.4.12." />
+					<atext linktext="ppp-2.5." />
+					<atext linktext="ppp-2.6." />
+					<atext linktext="ppp-3." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

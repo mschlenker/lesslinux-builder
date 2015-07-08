@@ -1,25 +1,46 @@
 <llpackages>
 	<package 
 		name="p7zip"
-		version="9.20.1"
+		version="9.38.1"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>  
-				<pkg sha1="1cd567e043ee054bf08244ce15f32cb3258306b7">p7zip_9.20.1_src_all.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/p7zip/p7zip/9.20.1</mirror>
+				<pkg sha1="6b1eccf272d8b141a94758f80727ae633568ba69">p7zip_9.38.1_src_all.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/p7zip/p7zip/9.38.1</mirror>
 			</file>
-			<manualcheck date="20120715" interval="180" page="http://downloads.sourceforge.net/project/p7zip/p7zip" />
-			<!-- <check>
+			<manualcheck date="20150530" interval="180" page="http://downloads.sourceforge.net/project/p7zip/p7zip" />
+			<check>
 				<page html="http://sourceforge.net/projects/p7zip/files/p7zip/">
-					<atext linktext="9.14" />
-					<atext linktext="9.15" />
-					<atext linktext="9.16" />
-					<atext linktext="9.17" />
+					<atext linktext="9.38.2" />
+					<atext linktext="9.38.3" />
+					<atext linktext="9.39" />
+					<atext linktext="9.40" />
+					<atext linktext="9.41" />
+					<atext linktext="9.42" />
+					<atext linktext="9.43" />
+					<atext linktext="9.44" />
+					<atext linktext="9.45" />
+					<atext linktext="9.46" />
+					<atext linktext="9.47" />
+					<atext linktext="9.48" />
+					<atext linktext="9.49" />
+					<atext linktext="9.50" />
+					<atext linktext="9.51" />
+					<atext linktext="9.52" />
+					<atext linktext="9.53" />
+					<atext linktext="9.54" />
+					<atext linktext="9.55" />
+					<atext linktext="9.56" />
+					<atext linktext="9.57" />
+					<atext linktext="9.58" />
+					<atext linktext="9.59" />
+					<atext linktext="9.60" />
+					<atext linktext="9.61" />
 					<atext linktext="10." />
 				</page>
-			</check> -->
+			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -58,5 +79,10 @@
 			make DEST_HOME=/usr install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}_${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

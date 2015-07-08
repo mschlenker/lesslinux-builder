@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="git"
-		version="2.3.4"
+		version="2.4.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>           
-				<pkg sha1="85faeca7d810df6e737106ce431fbe4b0c235d43">git-2.3.4.tar.xz</pkg>
+				<pkg sha1="d0fc3d9fb551ce9c45c94df3bb88f13ca7905869">git-2.4.4.tar.xz</pkg>
 				<mirror>https://www.kernel.org/pub/software/scm/git/</mirror>
 			</file>
-			<manualcheck date="20150327" interval="180" page="https://www.kernel.org/pub/software/scm/git/" />
+			<manualcheck date="20150611" interval="180" page="https://www.kernel.org/pub/software/scm/git/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/software/scm/git/">
-					<atext linktext="git-2.3.8." />
-					<atext linktext="git-2.3.9." />
-					<atext linktext="git-2.3.5." />
-					<atext linktext="git-2.3.6." />
-					<atext linktext="git-2.3.7." />
+					<atext linktext="git-2.4.8." />
+					<atext linktext="git-2.4.9." />
+					<atext linktext="git-2.4.5." />
+					<atext linktext="git-2.4.6." />
+					<atext linktext="git-2.4.7." />
 					<atext linktext="git-2.7." />
-					<atext linktext="git-2.4." />
+					<atext linktext="git-2.8." />
 					<atext linktext="git-2.5." />
 					<atext linktext="git-2.6." />
 				</page>
@@ -48,6 +48,7 @@
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
+			<dep>cacerts</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -61,10 +62,10 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr --sysconfdir=/etc  --with-openssl=no   CC="distcc gcc" CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc  CC="distcc gcc" CXX="distcc g++" 
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --prefix=/usr --sysconfdir=/etc  --with-openssl=no
+				./configure --prefix=/usr --sysconfdir=/etc
 				make
 			fi
 			]]>

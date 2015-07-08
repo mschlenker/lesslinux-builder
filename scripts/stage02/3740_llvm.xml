@@ -1,30 +1,30 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.5.0"
+		version="3.6.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="58d817ac2ff573386941e7735d30702fe71267d5">llvm-3.5.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.5.0/</mirror>
+				<pkg sha1="01ecab99adc9030ee34e9a2e19e65dfe64e1affe">llvm-3.6.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.6.1/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="834cee2ed8dc6638a486d8d886b6dce3db675ffa">cfe-3.5.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.5.0/</mirror>
+				<pkg sha1="b7221d8fdd27e3ed519d0281646e82e17b51122c">cfe-3.6.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.6.1/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="61f3e78088ce4a0787835036f2d3c61ede11e928">compiler-rt-3.5.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.5.0/</mirror>
+				<pkg sha1="85dccdc6ccd9675e871dfd2786b45fbf53518485">compiler-rt-3.6.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.6.1/</mirror>
 			</file>
-			<manualcheck date="20141118" interval="120" page="http://www.llvm.org/" />
+			<manualcheck date="20150529" interval="120" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="llvm-3.5.1.src." />
-					<atext href="llvm-3.5.2.src." />
-					<atext href="llvm-3.5.3.src." />
-					<atext href="llvm-3.6.src." />
+					<atext href="llvm-3.6.4.src." />
+					<atext href="llvm-3.6.2.src." />
+					<atext href="llvm-3.6.3.src." />
+					<atext href="llvm-3.10.src." />
 					<atext href="llvm-3.7.src." />
 					<atext href="llvm-3.8.src." />
 					<atext href="llvm-3.9.src." />
@@ -43,37 +43,25 @@
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>libICE</dep>
-                        <dep>libSM</dep>
-                        <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXdamage</dep>
-                        <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libXt</dep>
-                        <dep>libXxf86vm</dep>
-                        <dep>libdrm</dep>
-                        <dep>libpthread-stubs</dep>
-                        <dep>libxcb</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>xproto-base</dep>
+                        <!-- <dep>xproto-base</dep> 
 			<dep>talloc</dep>
-			<dep>makedepend</dep>
-			<dep>distcc</dep>
+			<dep>makedepend</dep> -->
 			<dep>libffi</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.xz
-			tar xf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.xz
-			tar xf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.xz
-			mv -v cfe-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/tools/clang
-			mv -v compiler-rt-${PKGVERSION}.src ${PKGNAME}-${PKGVERSION}.src/projects/compiler-rt
+			cd ${PKGNAME}-${PKGVERSION}.src
+			tar -xf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.xz -C tools 
+			tar -xf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.xz -C projects
+			mv tools/cfe-${PKGVERSION}.src tools/clang
+			mv projects/compiler-rt-${PKGVERSION}.src projects/compiler-rt
+			cd ..
 			]]>
 		</unpack>
 		<patch />
@@ -94,7 +82,7 @@
 				--enable-libffi            \
 				--enable-optimized         \
 				--enable-shared            \
-				--disable-assertions
+				--disable-assertions --disable-bindings
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else

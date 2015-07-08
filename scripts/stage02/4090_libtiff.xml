@@ -10,7 +10,11 @@
 				<pkg sha1="652e97b78f1444237a82cbcfe014310e776eb6f0">tiff-4.0.3.tar.gz</pkg>
 				<mirror>ftp://ftp.remotesensing.org/pub/libtiff/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="ftp://ftp.remotesensing.org/pub/libtiff/" />
+			<file>                     
+				<pkg sha1="1a2639dfc49cc219291f165a7580325e5e72bfe8">tiff-4.0.3-fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<manualcheck date="20150529" interval="365" page="ftp://ftp.remotesensing.org/pub/libtiff/" />
 			<check>
 				<page html="http://www.remotesensing.org/libtiff/">
 					<atext linktext="v4.0.9" />
@@ -47,7 +51,7 @@
                         <dep>zlib</dep>
 			<!-- soft -->
 			 <dep>imake</dep>
-			 <dep>jpegsrc</dep>
+			 <!-- <dep>jpegsrc</dep> -->
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -58,7 +62,12 @@
 			fi
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fixes-1.patch | patch -p1
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}

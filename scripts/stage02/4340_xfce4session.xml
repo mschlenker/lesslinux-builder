@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="xfce4-session"
-		version="4.10.1"
+		version="4.12.1"
 		class="lib"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                    
-				<pkg sha1="b33d2ced61a9cbacff4f5709959e02d4d1c3836f">xfce4-session-4.10.1.tar.bz2</pkg>
-				<mirror>http://archive.xfce.org/src/xfce/xfce4-session/4.10/</mirror>
+				<pkg sha1="ccdeac8bb6b4bb2382a963efdf2e05c09c61fee4">xfce4-session-4.12.1.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/xfce/xfce4-session/4.12/</mirror>
 			</file>  
-			<manualcheck date="20140802" interval="180" page="http://archive.xfce.org/src/xfce/xfce4-session" />
+			<manualcheck date="20150529" interval="180" page="http://archive.xfce.org/src/xfce/xfce4-session" />
 			<check>
 				<page html="http://archive.xfce.org/src/xfce/xfce4-session/4.10/">
-					<atext linktext="xfce4-session-4.10.4" />
-					<atext linktext="xfce4-session-4.10.3" />
-					<atext linktext="xfce4-session-4.10.2" />
-					<atext linktext="xfce4-session-4.10.5" />
+					<atext linktext="xfce4-session-4.12.4" />
+					<atext linktext="xfce4-session-4.12.3" />
+					<atext linktext="xfce4-session-4.12.2" />
+					<atext linktext="xfce4-session-4.12.5" />
 				</page>
 				<page html="http://archive.xfce.org/src/xfce/xfce4-session/">
-					<atext linktext="4.11" />
-					<atext linktext="4.12" />
 					<atext linktext="4.13" />
+					<atext linktext="4.14" />
+					<atext linktext="4.15" />
 					<atext linktext="5.0" />
 				</page>
 			</check>
@@ -118,5 +118,10 @@
 			paxctl -m /usr/bin/xfce4-session-settings
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

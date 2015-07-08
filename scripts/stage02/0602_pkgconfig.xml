@@ -56,7 +56,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --with-internal-glib
+			./configure --prefix=/usr --with-internal-glib --disable-host-tool 
 			make
 			]]>
 		</build>

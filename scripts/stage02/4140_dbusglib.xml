@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="dbus-glib"
-		version="0.102"
+		version="0.104"
 		class="lib"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                  
-				<pkg sha1="58a8955972f6c221461a49f9c541c22e838a5776">dbus-glib-0.102.tar.gz</pkg>
+				<pkg sha1="776a0e843f5c04cb58225962d623e82f283aed68">dbus-glib-0.104.tar.gz</pkg>
 				<mirror>http://dbus.freedesktop.org/releases/dbus-glib/</mirror>
 			</file>
-			<manualcheck date="20140517" interval="180" page="http://dbus.freedesktop.org/releases/dbus-glib/" />
+			<manualcheck date="20150529" interval="180" page="http://dbus.freedesktop.org/releases/dbus-glib/" />
 			<check>
 				<page html="http://dbus.freedesktop.org/releases/dbus-glib/">
 					<atext linktext="dbus-glib-0.106." />
-					<atext linktext="dbus-glib-0.103." />
-					<atext linktext="dbus-glib-0.104." />
+					<atext linktext="dbus-glib-0.107." />
+					<atext linktext="dbus-glib-0.108." />
 					<atext linktext="dbus-glib-0.105." />
-					<atext linktext="dbus-glib-0.102.3" />
-					<atext linktext="dbus-glib-0.102.2" />
-					<atext linktext="dbus-glib-0.102.1" />
+					<atext linktext="dbus-glib-0.104.3" />
+					<atext linktext="dbus-glib-0.104.2" />
+					<atext linktext="dbus-glib-0.104.1" />
 					<atext linktext="dbus-glib-1." />
 					<atext linktext="dbus-glib-2." />
 				</page>
@@ -78,5 +78,10 @@
 			make install
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="libXrandr"
-		version="1.4.2"
+		version="1.5.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                  
-				<pkg sha1="00865ccefe1040e4d9866d878556710cdc4b2ae6">libXrandr-1.4.2.tar.bz2</pkg>
+				<pkg sha1="79538220e567318c6fb3c5b9a0075184ad6e001f">libXrandr-1.5.0.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20150229" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXrandr-1.4.5." />
-					<atext linktext="libXrandr-1.4.6." />
-					<atext linktext="libXrandr-1.4.3." />
-					<atext linktext="libXrandr-1.4.4." />
-					<atext linktext="libXrandr-1.5." />
+					<atext linktext="libXrandr-1.5.1." />
+					<atext linktext="libXrandr-1.5.2." />
+					<atext linktext="libXrandr-1.5.3." />
+					<atext linktext="libXrandr-1.5.4." />
 					<atext linktext="libXrandr-1.6." />
+					<atext linktext="libXrandr-1.7." />
 					<atext linktext="libXrandr-2." />
 				</page>
 			</check>
@@ -79,5 +79,10 @@
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
 	</package>
 </llpackages>

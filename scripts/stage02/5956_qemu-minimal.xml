@@ -1,20 +1,32 @@
 <llpackages>
 	<package 
 		name="qemu-minimal"
-		version="2.2.0"
+		version="2.3.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="9a16623775a92fd25334f4eced4e6a56ab536233">qemu-2.2.0.tar.bz2</pkg>
+				<pkg sha1="373d74bfafce1ca45f85195190d0a5e22b29299e">qemu-2.3.0.tar.bz2</pkg>
 				<mirror>http://wiki.qemu-project.org/download/</mirror>
 			</file>
 			<file>                           
 				<pkg sha1="58c94faa3f0a682b496538792a66220bdd1d6ac7">qemu-2.1.2-virtfs-proxy-helper.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<manualcheck date="20141212" interval="60" page="http://wiki.qemu-project.org/download/" />
+			</file> 
+			<manualcheck date="20150601" interval="60" page="http://wiki.qemu-project.org/download/" />
+			<check>
+				<page html="http://wiki.qemu-project.org/download/">
+					<atext linktext="qemu-2.3.1." />
+					<atext linktext="qemu-2.3.2." />
+					<atext linktext="qemu-2.3.3." />
+					<atext linktext="qemu-2.3.4." />
+					<atext linktext="qemu-2.4." />
+					<atext linktext="qemu-2.5." />
+					<atext linktext="qemu-2.6." />
+					<atext linktext="qemu-3." />
+				</page>
+			</check>
 		</sources>
 		<builddeps>
                         <dep>Mesa</dep>
@@ -72,12 +84,12 @@ tar xjf ${SRCDIR}/qemu-${PKGVERSION}.tar.bz2
 			
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			cd qemu-${PKGVERSION}
 			cat  ${SRCDIR}/qemu-2.1.2-virtfs-proxy-helper.patch | patch -p1 
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd qemu-${PKGVERSION}

@@ -43,6 +43,7 @@
                         <dep>perl</dep>
                         <dep>sed</dep>
 			<dep>distcc</dep>
+			<dep>gcc49</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -58,16 +59,16 @@
 			NASMPATH=` pwd `/nasm
 			cd ../${PKGNAME}-${PKGVERSION}
 			make -k clean
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				pump make -k -j $jobcount CC="distcc gcc" NASM=${NASMPATH} 
-				pump make -k -j $jobcount bios CC="distcc gcc"  NASM=${NASMPATH} 
-			fi
-			make -k -j 6 NASM=${NASMPATH} 
-			make -k -j 6 bios NASM=${NASMPATH} 
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	pump make -k -j $jobcount CC="distcc gcc" NASM=${NASMPATH} 
+			#	pump make -k -j $jobcount bios CC="distcc gcc"  NASM=${NASMPATH} 
+			#fi
+			make -k -j 6 NASM=${NASMPATH} CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
+			make -k -j 6 bios NASM=${NASMPATH}  CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
 			mv bios/extlinux/extlinux ../extlinux.dynamic
 			mv bios/mtools/syslinux   ../syslinux.dynamic
-			make -k bios LDFLAGS=-static NASM=${NASMPATH} 
+			make -k bios LDFLAGS=-static NASM=${NASMPATH} CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
 			
 			]]>
 		</build>

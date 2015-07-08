@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="boost"
-		version="1_57_0"
+		version="1_58_0"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="55366a96bb76440ab140047065650f1d73dbfd8c">boost_1_57_0.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.57.0</mirror>
+				<pkg sha1="a27b010b9d5de0c07df9dddc9c336767725b1e6b">boost_1_58_0.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.58.0</mirror>
 			</file>
-			<manualcheck date="20141118" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
+			<manualcheck date="20150530" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
 			<check>
 				<page html="http://sourceforge.net/projects/boost/files/boost/">
-					<atext linktext="1.57.1" />
-					<atext linktext="1.57.2" />
-					<atext linktext="1.58." />
+					<atext linktext="1.58.1" />
+					<atext linktext="1.58.2" />
 					<atext linktext="1.59." />
 					<atext linktext="1.60." />
+					<atext linktext="1.61." />
 				</page>
 			</check>
 		</sources>
@@ -36,7 +36,6 @@
                         <dep>binutils</dep>
                         <dep>bison</dep>
                         <dep>bzip2</dep>
-                        <dep>cairo</dep>
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
                         <dep>cryptsetup</dep>
@@ -51,7 +50,6 @@
                         <dep>eggdbus</dep>
                         <!-- <dep>evince</dep> --> 
                         <dep>expat</dep>
-                        <dep>ffmpeg</dep>
                         <dep>file</dep>
                         <dep>findutils</dep>
                         <dep>flex</dep>
