@@ -74,6 +74,8 @@
 			cd scite/gtk
 			make prefix=/usr DESTDIR=${TGTDIR} GTK3=yes install 
 			ln -sf SciTE ${TGTDIR}/usr/bin/scite 
+			sed -i 's/Categories=TextEditor;Development;GTK;Application;/Categories=Utility;TextEditor;GTK;/g'  \
+				${TGTDIR}/usr/share/applications/SciTE.desktop
 			]]>
 		</install>
 		<clean>
