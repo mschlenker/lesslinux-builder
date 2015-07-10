@@ -1,0 +1,101 @@
+<llpackages>
+	<package 
+		name="libdrm"
+		version="2.4.62"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                      
+				<pkg sha1="882b59a372508a301aabd6ba8f8bd124f3a69a16">libdrm-2.4.62.tar.bz2</pkg>
+				<mirror>http://dri.freedesktop.org/libdrm/</mirror>
+			</file>
+			<manualcheck date="20150710" interval="90" page="http://dri.freedesktop.org/libdrm/" />
+			<check>
+				<page html="http://dri.freedesktop.org/libdrm/">
+					<atext linktext="libdrm-2.4.65." />
+					<atext linktext="libdrm-2.4.63." />
+					<atext linktext="libdrm-2.4.64." />
+					<atext linktext="libdrm-2.5." />
+					<atext linktext="libdrm-2.6." />
+					<atext linktext="libdrm-2.7." />
+					<atext linktext="libdrm-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+			<dep>libpciaccess</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>udev</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			
+			case $(uname -m) 
+			in
+				i?86) 
+					# FIXME, this is i386 only!
+					export CFLAGS="-march=i686 -O2"
+				;;
+			esac 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+		
+			sed -e "/pthread-stubs/d" -i configure.ac
+			autoreconf -fiv
+			./configure --prefix=/usr --enable-udev
+			
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				make -j ` grep -c processor /proc/cpuinfo ` 
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# cd drm
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			# rm -rf drm 
+			]]>
+		</clean>
+	</package>
+</llpackages>
