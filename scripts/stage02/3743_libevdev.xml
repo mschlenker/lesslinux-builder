@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="libevdev"
-		version="1.4.2"
+		version="1.4.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                
-				<pkg sha1="7cadd09a1a8d0841913daba3735e27378bdafe29">libevdev-1.4.2.tar.gz</pkg>
+				<pkg sha1="361fc467094147d1a7a2134040445179931ed272">libevdev-1.4.3.tar.xz</pkg>
 				<mirror>http://cgit.freedesktop.org/libevdev/snapshot/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="180" page="http://www.freedesktop.org/software/libevdev/" />
+			<manualcheck date="20150710" interval="180" page="http://www.freedesktop.org/software/libevdev/" />
 			<check>
 				<page html="http://www.freedesktop.org/software/libevdev/">
-					<atext linktext="libevdev-1.4.3" />
+					<atext linktext="libevdev-1.4.10" />
 					<atext linktext="libevdev-1.4.4" />
 					<atext linktext="libevdev-1.4.5" />
 					<atext linktext="libevdev-1.4.6" />
@@ -51,11 +51,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />

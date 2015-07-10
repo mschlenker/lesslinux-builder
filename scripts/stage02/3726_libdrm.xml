@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="libdrm"
-		version="2.4.61"
+		version="2.4.62"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                      
-				<pkg sha1="fce70371540af0490541b05d96c6b6b43f1fab80">libdrm-2.4.61.tar.bz2</pkg>
+				<pkg sha1="882b59a372508a301aabd6ba8f8bd124f3a69a16">libdrm-2.4.62.tar.bz2</pkg>
 				<mirror>http://dri.freedesktop.org/libdrm/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="90" page="http://dri.freedesktop.org/libdrm/" />
+			<manualcheck date="20150710" interval="90" page="http://dri.freedesktop.org/libdrm/" />
 			<check>
 				<page html="http://dri.freedesktop.org/libdrm/">
-					<atext linktext="libdrm-2.4.62." />
+					<atext linktext="libdrm-2.4.65." />
 					<atext linktext="libdrm-2.4.63." />
 					<atext linktext="libdrm-2.4.64." />
 					<atext linktext="libdrm-2.5." />
@@ -74,7 +74,7 @@
 		
 			sed -e "/pthread-stubs/d" -i configure.ac
 			autoreconf -fiv
-			./configure --prefix=/usr --enable-udev
+			./configure --prefix=/usr --enable-udev --disable-valgrind
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
