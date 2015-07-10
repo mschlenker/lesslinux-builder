@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='mercurial' version='3.4.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='c2dc6cb1ec8cd31c1270e36db8149b6bd3dcaa2b'>
+                    mercurial-3.4.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://mercurial.selenic.com/release/
+                </mirror>
+            </file>
+            <manualcheck date='20150710' interval='60' mirror='https://mercurial.selenic.com/release/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
