@@ -1,6 +1,6 @@
 MENU INCLUDE /boot/isolinux/common/colors.cfg
 MENU INCLUDE /boot/isolinux/common/title.cfg
-TIMEOUT 100
+TIMEOUT 300
 
 MENU INCLUDE /boot/isolinux/ru/nopa/default.cfg
 MENU BEGIN sfenpaem
