@@ -303,9 +303,10 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	system("umount /var/run/lesslinux/install_boot")
 	system("umount /var/run/lesslinux/install_efi")
 	# Write the compat MBR
-	sysstr = "dd if=/usr/share/syslinux/gptmbr.bin of=/dev/#{tgt.device} conv=sync"	
+	sysstr = "dd bs=440 count=1 if=/usr/share/syslinux/gptmbr.bin of=/dev/#{tgt.device} conv=sync"	
 	puts sysstr
 	system sysstr
+	run_command(pgbar, "sync", [ "sync" ], @tl.get_translation("waiting"))
 	pgbar.fraction = 1.0
 	pgbar.text =  @tl.get_translation("install_finished") 
 	info_dialog( @tl.get_translation("finished_title"), @tl.get_translation("finished_text") ) 
