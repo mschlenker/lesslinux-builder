@@ -250,16 +250,22 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 		run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 	end
 	# tar the content of the legacy boot part 
-	run_command(pgbar, "mkfs.ext2", [ "mkfs.ext2", "/dev/#{tgt.device}1" ] , @tl.get_translation("write_boot")) 
+	run_command(pgbar, "mkfs.ext2", [ "mkfs.ext2", "-F", "/dev/#{tgt.device}1" ] , @tl.get_translation("write_boot")) 
 	system("sync") 
 	run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 	system("mkdir -p /var/run/lesslinux/install_boot")
 	system("mount -t ext4 /dev/#{tgt.device}1 /var/run/lesslinux/install_boot")
+	run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
+	while system("mountpoint /var/run/lesslinux/install_boot") == false
+		system("mount -t ext4 /dev/#{tgt.device}1 /var/run/lesslinux/install_boot")
+		run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "2" ], @tl.get_translation("waiting"))
+	end
 	run_command(pgbar, "rsync", [ "rsync", "-avHP", "#{sizes[5]}/boot", "/var/run/lesslinux/install_boot/" ] , @tl.get_translation("write_boot")) 
 	system("sync") 
 	system("chmod -R 0644 /var/run/lesslinux/install_boot/")
 	run_command(pgbar, "dd", [ "dd", "if=#{sizes[5]}/boot/efi/efi.img", "of=/dev/#{tgt.device}2", "conv=sync" ], @tl.get_translation("write_boot")) 
 	system("sync") 
+	run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 	system("mkdir -p /var/run/lesslinux/install_efi")
 	system("mount -t vfat /dev/#{tgt.device}2 /var/run/lesslinux/install_efi")
 	# Find and move config files 
