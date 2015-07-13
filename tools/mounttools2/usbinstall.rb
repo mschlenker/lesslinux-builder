@@ -189,7 +189,7 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	efiend = ( sizes[1] + sizes[2] + sizes[3]) * 8388608 - 1
 	# blank the fist few MB
 	# ddstr = "dd if=/dev/zero of=/dev/#{tgt.device} bs=1024 count=1024"
-	run_command(pgbar, "dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "count=1024" ] , @tl.get_translation("preparing")) 
+	run_command(pgbar, "dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "count=1024", "conv=sync" ] , @tl.get_translation("preparing")) 
 	# puts ddstr 
 	# system ddstr 
 	# blank the last few MB
@@ -198,21 +198,21 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	# ddstr = "dd if=/dev/zero of=/dev/#{tgt.device} bs=1024 seek=#{tgtblocks.to_s}"
 	# puts ddstr 
 	# system ddstr 
-	run_command(pgbar, "dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "seek=#{tgtblocks.to_s}" ] , @tl.get_translation("preparing")) 
+	run_command(pgbar, "dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "seek=#{tgtblocks.to_s}", "conv=sync" ] , @tl.get_translation("preparing")) 
 	
 	# Copy the ISO image
 	0.upto(sizes[1] - 1) { |b|
 		system("rm /var/run/lesslinux/copyblock.bin")
 		system("rm /var/run/lesslinux/checkblock.bin")
-		system("dd if=#{sizes[4]} of=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 skip=#{b.to_s}")
+		system("dd if=#{sizes[4]} of=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 skip=#{b.to_s} conv=sync")
 		md5in = ` md5sum /var/run/lesslinux/copyblock.bin `.strip.split[0] 
 		md5out = ''
 		tries = 0
 		matched = false
 		while tries < 9 && matched == false 
-			system("dd of=/dev/#{tgt.device} if=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 seek=#{b.to_s}")
+			system("dd of=/dev/#{tgt.device} if=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 seek=#{b.to_s} conv=sync")
 			system("sync")
-			system("dd if=/dev/#{tgt.device} of=/var/run/lesslinux/checkblock.bin bs=8388608 count=1 skip=#{b.to_s}")
+			system("dd if=/dev/#{tgt.device} of=/var/run/lesslinux/checkblock.bin bs=8388608 count=1 skip=#{b.to_s} conv=sync")
 			md5out = ` md5sum /var/run/lesslinux/checkblock.bin `.strip.split[0]
 			if md5in == md5out 
 				matched = true
@@ -236,20 +236,26 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	system("rm /var/run/lesslinux/checkblock.bin")
 	
 	# Blank the first 32k 
-	system("dd if=/dev/zero bs=8192 count=4 of=/dev/#{tgt.device}")
+	system("dd if=/dev/zero bs=8192 count=4 of=/dev/#{tgt.device} conv=sync")
 	# Create the boot partition legacy
 	run_command(pgbar, "parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "mklabel", "gpt" ] , @tl.get_translation("partitioning")) 
 	run_command(pgbar, "parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "mkpart", "primary", "ext2", "#{bootstart}", "#{bootend}" ] , @tl.get_translation("partitioning")) 
 	run_command(pgbar, "parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "set", "1", "legacy_boot", "on" ] , @tl.get_translation("partitioning")) 
 	run_command(pgbar, "parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "mkpart", "primary", "fat32", "#{efistart}", "#{efiend}" ] , @tl.get_translation("partitioning")) 
 	run_command(pgbar, "parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "set", "2", "boot", "on" ] , @tl.get_translation("partitioning")) 
+	system("sync") 
+	while !File.blockdev?("/dev/#{tgt.device}2")
+		run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
+	end
 	# tar the content of the legacy boot part 
 	run_command(pgbar, "mkfs.ext2", [ "mkfs.ext2", "/dev/#{tgt.device}1" ] , @tl.get_translation("write_boot")) 
 	system("mkdir -p /var/run/lesslinux/install_boot")
 	system("mount -t ext4 /dev/#{tgt.device}1 /var/run/lesslinux/install_boot")
 	run_command(pgbar, "rsync", [ "rsync", "-avHP", "#{sizes[5]}/boot", "/var/run/lesslinux/install_boot/" ] , @tl.get_translation("write_boot")) 
+	system("sync") 
 	system("chmod -R 0644 /var/run/lesslinux/install_boot/")
-	run_command(pgbar, "dd", [ "dd", "if=#{sizes[5]}/boot/efi/efi.img", "of=/dev/#{tgt.device}2" ], @tl.get_translation("write_boot")) 
+	run_command(pgbar, "dd", [ "dd", "if=#{sizes[5]}/boot/efi/efi.img", "of=/dev/#{tgt.device}2", "conv=sync" ], @tl.get_translation("write_boot")) 
+	system("sync") 
 	system("mkdir -p /var/run/lesslinux/install_efi")
 	system("mount -t vfat /dev/#{tgt.device}2 /var/run/lesslinux/install_efi")
 	# Find and move config files 
@@ -287,7 +293,7 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	system("umount /var/run/lesslinux/install_boot")
 	system("umount /var/run/lesslinux/install_efi")
 	# Write the compat MBR
-	sysstr = "dd if=/usr/share/syslinux/gptmbr.bin of=/dev/#{tgt.device}"	
+	sysstr = "dd if=/usr/share/syslinux/gptmbr.bin of=/dev/#{tgt.device} conv=sync"	
 	puts sysstr
 	system sysstr
 	pgbar.fraction = 1.0
