@@ -244,11 +244,15 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	run_command(pgbar, "parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "mkpart", "primary", "fat32", "#{efistart}", "#{efiend}" ] , @tl.get_translation("partitioning")) 
 	run_command(pgbar, "parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "set", "2", "boot", "on" ] , @tl.get_translation("partitioning")) 
 	system("sync") 
-	while !File.blockdev?("/dev/#{tgt.device}2")
+	system("partprobe /dev/#{tgt.device}")
+	run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
+	while File.blockdev?("/dev/#{tgt.device}2") == false 
 		run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 	end
 	# tar the content of the legacy boot part 
 	run_command(pgbar, "mkfs.ext2", [ "mkfs.ext2", "/dev/#{tgt.device}1" ] , @tl.get_translation("write_boot")) 
+	system("sync") 
+	run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 	system("mkdir -p /var/run/lesslinux/install_boot")
 	system("mount -t ext4 /dev/#{tgt.device}1 /var/run/lesslinux/install_boot")
 	run_command(pgbar, "rsync", [ "rsync", "-avHP", "#{sizes[5]}/boot", "/var/run/lesslinux/install_boot/" ] , @tl.get_translation("write_boot")) 
