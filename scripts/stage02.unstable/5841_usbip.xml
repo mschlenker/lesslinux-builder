@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="usbip"
-		version="4.1.3"
+		version="4.1.4"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
@@ -10,13 +10,13 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="b07d1e211d4c319ca6b239e7066cd361686e55f9">patch-4.1.3.xz</pkg>
+				<pkg sha1="642bb54152c031be1b3a83087f8f7b2e1c249493">patch-4.1.4.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20150724" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150804" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.1.4." />
+					<atext linktext="patch-4.1.7." />
 					<atext linktext="patch-4.1.5." />
 					<atext linktext="patch-4.1.6." />
 					<atext linktext="patch-4.2." />
