@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="FileZilla"
-		version="3.9.0.6"
+		version="3.12.0.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="1eca54477a4d3caa1f3d94577109d951aeea0fa9">FileZilla_3.9.0.6_src.tar.bz2</pkg>
-				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.9.0.6/</mirror>
+				<pkg sha1="735295dbd7c3f71180ff7dfb6850c0b8f4412b72">FileZilla_3.12.0.2_src.tar.bz2</pkg>
+				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.12.0.2/</mirror>
 			</file>
-			<manualcheck date="20141115" interval="90" page="http://filezilla-project.org/" />
+			<manualcheck date="20150710" interval="90" page="http://filezilla-project.org/" />
 		</sources>
 		<builddeps>
                         <dep>atk</dep>
@@ -59,7 +59,7 @@
 			else
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
 					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config
-				make
+				make -j3 
 			fi
 			]]>
 		</build>
