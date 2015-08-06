@@ -1571,16 +1571,16 @@ if [ -n "$xlocale" ] ; then
 fi
 
 if [ -z "$keymap" ] ; then
-	keymap=/lib/kbd/keymaps/i386/qwerty/us.map.gz
-	[ "$lang" = "de" ] && keymap=/lib/kbd/keymaps/i386/qwertz/de-latin1.map.gz
-	[ "$lang" = "en" ] && keymap=/lib/kbd/keymaps/i386/qwerty/us.map.gz
-	[ "$lang" = "es" ] && keymap=/lib/kbd/keymaps/i386/qwerty/es.map.gz
-	[ "$lang" = "fr" ] && keymap=/lib/kbd/keymaps/i386/azerty/fr.map.gz
-	[ "$lang" = "it" ] && keymap=/lib/kbd/keymaps/i386/qwerty/it.map.gz
-	[ "$lang" = "us" ] && keymap=/lib/kbd/keymaps/i386/qwerty/us.map.gz
-	[ "$lang" = "uk" ] && keymap=/lib/kbd/keymaps/i386/qwerty/us.map.gz
-	[ "$lang" = "pl" ] && keymap=/lib/kbd/keymaps/i386/qwerty/pl.map.gz
-	[ "$lang" = "ru" ] && keymap=/lib/kbd/keymaps/i386/qwerty/ru.map.gz
+	keymap=/usr/share/keymaps/i386/qwerty/us.map.gz
+	[ "$lang" = "de" ] && keymap=/usr/share/keymaps/i386/qwertz/de-latin1.map.gz
+	[ "$lang" = "en" ] && keymap=/usr/share/keymaps/i386/qwerty/us.map.gz
+	[ "$lang" = "es" ] && keymap=/usr/share/keymaps/i386/qwerty/es.map.gz
+	[ "$lang" = "fr" ] && keymap=/usr/share/keymaps/i386/azerty/fr.map.gz
+	[ "$lang" = "it" ] && keymap=/usr/share/keymaps/i386/qwerty/it.map.gz
+	[ "$lang" = "us" ] && keymap=/usr/share/keymaps/i386/qwerty/us.map.gz
+	[ "$lang" = "uk" ] && keymap=/usr/share/keymaps/i386/qwerty/us.map.gz
+	[ "$lang" = "pl" ] && keymap=/usr/share/keymaps/i386/qwerty/pl.map.gz
+	[ "$lang" = "ru" ] && keymap=/usr/share/keymaps/i386/qwerty/ru.map.gz
 fi
 
 if [ -z "$xkbmap" ] ; then
