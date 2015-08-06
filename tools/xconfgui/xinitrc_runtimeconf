@@ -65,7 +65,7 @@ xfsettingsd
 	xfsettingsd --replace 
 done ) &
 
-if [ "$nolangsel" -gt 0 ] ; then
+if [ "$nolangsel" -gt 0 -o -n "$xlocale" ] ; then
 	echo "Skipping language selection"
 else
 	/usr/bin/ruby -I /usr/share/lesslinux/drivetools /usr/local/xconfgui/langselect.rb

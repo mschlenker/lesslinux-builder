@@ -1552,10 +1552,23 @@ for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; 
      nolangsel=*)
 	nolangsel=` echo "$i" | awk -F '=' '{print $2}' `
      ;;
+     xlocale=*)
+	xlocale=` echo "$i" | awk -F '=' '{print $2}' `
+     ;;
    esac
 done
 
 # Adjust some settings depending each other
+
+if [ -n "$xlocale" ] ; then
+	shortloc=` echo $xlocale | awk -F '.' '{print $1}' `
+	ultraloc=` echo $xlocale | awk -F '_' '{print $1}' `
+	export LC_ALL=${xlocale}
+	export LANG=${xlocale}
+	export LANGUAGE=${shortloc}:${ultraloc}
+	lang=${ultraloc}
+	[ -z "$xkbmap" ] && xkbmap=${ultraloc}
+fi
 
 if [ -z "$keymap" ] ; then
 	keymap=/lib/kbd/keymaps/i386/qwerty/us.map.gz
@@ -1595,14 +1608,16 @@ if [ -z "$tz" ] ; then
 	[ "$lang" = "ru" ] && tz='Europe/Moscow'
 fi
 
-[ "$lang" = "de" ] && export LC_ALL=de_DE.UTF-8 && export LANG=de_DE.UTF-8 && export LANGUAGE=de_DE:de
-[ "$lang" = "en" ] && export LC_ALL=en_US.UTF-8	&& export LANG=en_US.UTF-8 && export LANGUAGE=en_US:en_GB:en
-[ "$lang" = "es" ] && export LC_ALL=es_ES.UTF-8	&& export LANG=es_ES.UTF-8 && export LANGUAGE=es_ES:es_MX:es
-[ "$lang" = "uk" ] && export LC_ALL=en_US.UTF-8 && export LANG=en_GB.UTF-8 && export LANGUAGE=en_GB:en_US:en
-[ "$lang" = "fr" ] && export LC_ALL=fr_FR.UTF-8 && export LANG=fr_FR.UTF-8 && export LANGUAGE=fr_FR:fr
-[ "$lang" = "it" ] && export LC_ALL=it_IT.UTF-8 && export LANG=it_IT.UTF-8 && export LANGUAGE=it_IT:it
-[ "$lang" = "pl" ] && export LC_ALL=pl_PL.UTF-8 && export LANG=pl_PL.UTF-8 && export LANGUAGE=pl_PL:pl
-[ "$lang" = "ru" ] && export LC_ALL=ru_RU.UTF-8 && export LANG=ru_RU.UTF-8 && export LANGUAGE=ru_RU:ru
+if [ -z "$xlocale" ] ; then
+    [ "$lang" = "de" ] && export LC_ALL=de_DE.UTF-8 && export LANG=de_DE.UTF-8 && export LANGUAGE=de_DE:de
+    [ "$lang" = "en" ] && export LC_ALL=en_US.UTF-8	&& export LANG=en_US.UTF-8 && export LANGUAGE=en_US:en_GB:en
+    [ "$lang" = "es" ] && export LC_ALL=es_ES.UTF-8	&& export LANG=es_ES.UTF-8 && export LANGUAGE=es_ES:es_MX:es
+    [ "$lang" = "uk" ] && export LC_ALL=en_US.UTF-8 && export LANG=en_GB.UTF-8 && export LANGUAGE=en_GB:en_US:en
+    [ "$lang" = "fr" ] && export LC_ALL=fr_FR.UTF-8 && export LANG=fr_FR.UTF-8 && export LANGUAGE=fr_FR:fr
+    [ "$lang" = "it" ] && export LC_ALL=it_IT.UTF-8 && export LANG=it_IT.UTF-8 && export LANGUAGE=it_IT:it
+    [ "$lang" = "pl" ] && export LC_ALL=pl_PL.UTF-8 && export LANG=pl_PL.UTF-8 && export LANGUAGE=pl_PL:pl
+    [ "$lang" = "ru" ] && export LC_ALL=ru_RU.UTF-8 && export LANG=ru_RU.UTF-8 && export LANGUAGE=ru_RU:ru
+fi
 
 # end extract bootparams]]>
 		</scriptdata>

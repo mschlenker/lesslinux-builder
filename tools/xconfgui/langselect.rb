@@ -5,9 +5,9 @@ require 'gtk2'
 require 'MfsDiskDrive'
 require 'fileutils'
 
-lang = ENV['LANGUAGE'][0..1]
-lang = ENV['LANG'][0..1] if lang.nil?
-lang = "en" if lang.nil?
+lang = ENV['LANGUAGE'][0..4]
+lang = ENV['LANG'][0..4] if lang.nil?
+lang = "en_GB" if lang.nil?
 
 # Now try to read the language from the registry
 Dir.entries("/sys/block").each { |l|
@@ -17,7 +17,7 @@ Dir.entries("/sys/block").each { |l|
 			if d.usb == false
 				d.partitions.each{ |p|
 					l, d = p.get_language
-					lang = l[0..1] unless l.nil? 
+					lang = l[0..4].gsub("-", "_") unless l.nil? 
 				}
 			end	
 			$stderr.puts "Got language from Registry: #{lang}"
@@ -30,36 +30,40 @@ Dir.entries("/sys/block").each { |l|
 @kbdchanged = false
 
 @languages = {
-	"de" => "Deutsch",
-	"en" => "English",
-	"fr" => "Français",
-	"es" => "Español",
-	"pl" => "Polski",
-	"ru" => "Русский", 
-	"it" => "Italiano",
-	"nl" => "Nederlands"
+	"de_DE" => "Deutsch",
+	"en_GB" => "English",
+	"fr_FR" => "Français",
+	"es_ES" => "Español",
+	"pl_PL" => "Polski",
+	"ru_RU" => "Русский", 
+	"it_IT" => "Italiano",
+	"nl_NL" => "Nederlands",
+	"da_DK" => "Dansk",
+	"pt_PT" => "Português",
+	"lt_LT" => "Lietuvių",
+	"lv_LV" => "Latviešu",
+	"et_ET" => "Eesti",
+	"sk_SK" => "Slovenčina",
+	"sl_SL" => "Slovenščina",
+	"sv_SE" => "Svenska",
+	"bg_BG" => "Български",
+	"hr_HR" => "Hrvatski",
+	"nb_NO" => "Norsk Bokmål",
+	"ro_RO" => "Română",
+	"sr_RS" => "Srpski",
+	"tr_TR" => "Türkçe",
+	"cs_CZ" => "Čeština",
+	"hu_HU" => "Magyar",
+	"fi_FI" => "Suomi",
+	"el_GR" => "Ελληνικά"
 }
 @langorder = @languages.keys.sort 
 
-@keymapdefaults = {
-	"de" => "de",
-	"en" => "us",
-	"fr" => "fr",
-	"es" => "es", 
-	"pl" => "pl",
-	"ru" => "ru",
-	"it" => "it",
-	"nl" => "nl"
-}
+@keymapdefaults = { }
 
 @langlabels = {
-	"en" => "Select your language",
-	"de" => "Wählen Sie Ihre Sprache"
-}
-
-@kbdlabels = {
-	"en" => "Select your keyboard",
-	"de" => "Wählen Sie Ihre Tastatur"
+	"en_GB" => "Select your language",
+	"de_DE" => "Wählen Sie Ihre Sprache"
 }
 
 window = Gtk::Window.new
@@ -79,7 +83,14 @@ ltab = Gtk::Table.new(5, 3)
 if @langlabels.has_key?(lang)
 	langlabel = Gtk::Label.new(@langlabels[lang])
 else 
-	langlabel = Gtk::Label.new(@langlabels["en"])
+	match_found = false
+	@langorder.each { |l|
+		if l[0..1] == lang[0..1]
+			langlabel = Gtk::Label.new(@langlabels[l])
+			match_found = true
+		end
+	}
+	langlabel = Gtk::Label.new(@langlabels["en_GB"]) if match_found == false
 end
 ltab.attach(langlabel, 0, 1, 0, 1, Gtk::SHRINK, Gtk::SHRINK, 3, 3)
 langcombo = Gtk::ComboBox.new
@@ -89,26 +100,17 @@ langcombo = Gtk::ComboBox.new
 unless @langorder.index(lang).nil?
 	langcombo.active = @langorder.index(lang)
 else
-	langcombo.active = @langorder.index("en")
+	match_found = false
+	@langorder.each { |l|
+		if l[0..1] == lang[0..1]
+			langcombo.active = @langorder.index(l)
+			match_found = true
+		end
+	}
+	langcombo.active = @langorder.index("en_GB")  if match_found == false
 end
 ltab.attach(langcombo, 2, 3, 0, 1, Gtk::EXPAND|Gtk::FILL, Gtk::EXPAND|Gtk::FILL, 3, 3)
 
-if @kbdlabels.has_key?(lang)
-	kbdlabel = Gtk::Label.new(@kbdlabels[lang])
-else
-	kbdlabel = Gtk::Label.new(@kbdlabels["en"])
-end
-ltab.attach(kbdlabel, 0, 1, 1, 2, Gtk::SHRINK, Gtk::SHRINK,  3, 3)
-kbdcombo = Gtk::ComboBox.new
-@langorder.each { |k|
-	kbdcombo.append_text(@languages[k]) 
-}
-unless @langorder.index(lang).nil?
-	kbdcombo.active = @langorder.index(lang)
-else
-	kbdcombo.active = @langorder.index("en")
-end
-ltab.attach(kbdcombo, 2, 3, 1, 2, Gtk::EXPAND|Gtk::FILL, Gtk::EXPAND|Gtk::FILL, 3, 3)
 okbutton = Gtk::Button.new(Gtk::Stock::OK)  
 ltab.attach(okbutton, 2, 3, 2, 3, Gtk::EXPAND|Gtk::FILL, Gtk::EXPAND|Gtk::FILL, 3, 3)
 
@@ -117,21 +119,18 @@ ltab.attach(okbutton, 2, 3, 2, 3, Gtk::EXPAND|Gtk::FILL, Gtk::EXPAND|Gtk::FILL, 
 langcombo.signal_connect("changed") { |x|
 	begin
 		langlabel.text = @langlabels[@langorder[langcombo.active]] 
-		kbdlabel.text = @kbdlabels[@langorder[langcombo.active]] 
 	rescue
-		langlabel.text = @langlabels["en"] 
-		kbdlabel.text = @kbdlabels["en"] 
+		langlabel.text = @langlabels["en_GB"] 
 	end
-	kbdcombo.active = langcombo.active
 }
 
 okbutton.signal_connect("clicked") {
 	f = File.new("/etc/lesslinux/cmdline", "a+")
-	f.write(" lang=#{@langorder[langcombo.active]} xkbmap=#{@keymapdefaults[@langorder[kbdcombo.active]]} ") 
+	f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 ") 
 	f.close
 	if system("mountpoint /lesslinux/boot")
 		f = File.new("/lesslinux/boot/cmdline", "a+")
-		f.write(" lang=#{@langorder[langcombo.active]} xkbmap=#{@keymapdefaults[@langorder[kbdcombo.active]]} nolangsel=1 ") 
+		f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 nolangsel=1 ") 
 		f.close
 	end
 	Gtk.main_quit
