@@ -254,7 +254,7 @@ cat >> ${TGTDIR}/usr/bin/thunderbird << TBRUN
 . /etc/rc.subr/extractbootparams
 
 langopts=""
-lc=\$( echo \$LC_ALL | awk -F '.' '{print $1}' | sed 's/_/-/g' )
+lc=\$( echo \$LC_ALL | awk -F '.' '{print \$1}' | sed 's/_/-/g' )
 langopts="-contentLocale \${lc} -UILocale \${lc}"
 
 [ "\$security" '!=' "smack" ] && exec /opt/thunderbird-${PKGVERSION}/thunderbird \$langopts \$@
@@ -280,14 +280,8 @@ cat >> ${TGTDIR}/opt/thunderbird-${PKGVERSION}/thunderbird_smack << TBSMACK
 #!/static/bin/ash
 
 langopts=""
-echo "\$LANGUAGE" | grep '^de' >/dev/null && langopts="-contentLocale de-DE -UILocale de-DE"
-echo "\$LANGUAGE" | grep '^pl' >/dev/null && langopts="-contentLocale pl-PL -UILocale pl-PL"
-echo "\$LANGUAGE" | grep '^es' >/dev/null && langopts="-contentLocale es-ES -UILocale es-ES"
-echo "\$LANGUAGE" | grep '^ru' >/dev/null && langopts="-contentLocale ru-RU -UILocale ru-RU"
-echo "\$LANGUAGE" | grep '^fr' >/dev/null && langopts="-contentLocale fr-FR -UILocale fr-FR"
-echo "\$LANGUAGE" | grep '^it' >/dev/null && langopts="-contentLocale it-IT -UILocale it-IT"
-echo "\$LANGUAGE" | grep '^nl' >/dev/null && langopts="-contentLocale nl-NL -UILocale nl-NL"
-echo "\$LANGUAGE" | grep '^pt' >/dev/null && langopts="-contentLocale pt-PT -UILocale pt-PT"
+lc=\$( echo \$LC_ALL | awk -F '.' '{print \$1}' | sed 's/_/-/g' )
+langopts="-contentLocale \${lc} -UILocale \${lc}"
 
 /static/sbin/newsmack internet /static/bin/su surfer -c "/opt/thunderbird-${PKGVERSION}/thunderbird \$langopts"
 
