@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="40.0"
+		version="40.0.2"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="48483e5738182f8567e2b6d2e29bd6bc1812d3eb">firefox-40.0.source.tar.bz2</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/40.0/source/</mirror>
+				<pkg sha1="b5d79fa3684284bfeb7277e99c756b8688e8121d">firefox-40.0.2.source.tar.bz2</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/40.0.2/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -34,7 +34,7 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 
-fftag=FIREFOX_40_0_RELEASE
+fftag=FIREFOX_40_0_2_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
@@ -43,14 +43,14 @@ done
 			
 			-->
 			<file>                                    
-				<pkg sha1="6c3d18a622fb59b0776b1dab183d6ac1b2254177">firefox-40.0.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="aae8c686f67f6395d9f7c3893388c99ed6126362">firefox-40.0.2.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20150812" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
-					<atext linktext="40.0.1" />
-					<atext linktext="40.0.2" />
+					<atext linktext="40.0.5" />
+					<atext linktext="40.0.6" />
 					<atext linktext="40.0.3" />
 					<atext linktext="40.0.4" />
 					<atext linktext="40.1." />
