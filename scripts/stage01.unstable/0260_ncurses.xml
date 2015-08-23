@@ -36,7 +36,7 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools --with-shared --without-debug --without-ada --enable-overwrite --enable-widec  && make
+			./configure --prefix=/tools --with-shared --without-debug --without-ada --enable-overwrite --enable-widec && make
 			]]>
 		</build>
 		<install>
