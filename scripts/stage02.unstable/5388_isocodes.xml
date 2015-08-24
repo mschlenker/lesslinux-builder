@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="iso-codes"
+		version="3.60"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                                                                  
+				<pkg sha1="5b3258433b0546a1f9cbf7faa4ca23d3027abdb0">iso-codes_3.60.orig.tar.xz</pkg>
+				<mirror>http://ftp.de.debian.org/debian/pool/main/i/iso-codes/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://packages.debian.org/source/unstable/iso-codes" />
+			<check>
+				<page html="http://ftp.de.debian.org/debian/pool/main/i/iso-codes/">
+					<atext linktext="iso-codes_3.63" />
+					<atext linktext="iso-codes_3.64" />
+					<atext linktext="iso-codes_3.65" />
+					<atext linktext="iso-codes_3.61" />
+					<atext linktext="iso-codes_3.62" />
+					<atext linktext="iso-codes_4." />
+				</page>
+			</check>
+		</sources>
+		 <builddeps>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
