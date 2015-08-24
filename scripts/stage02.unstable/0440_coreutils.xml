@@ -1,22 +1,21 @@
 <llpackages>
 	<package 
 		name="coreutils"
-		version="8.23"
+		version="8.24"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
-			<sources>
+		<sources>
 			<file>                                                           
-				<pkg sha1="adead02839225218b85133fa57b4dba02af2291d">coreutils-8.23.tar.xz</pkg>
+				<pkg sha1="cf3d9983461c2b0c074a76804c18464e9a474883">coreutils-8.24.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
 			</file>
-			<manualcheck date="20140729" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
+			<manualcheck date="20140823" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/coreutils/">
-					<atext linktext="coreutils-8.23.1" />
-					<atext linktext="coreutils-8.24." />
+					<atext linktext="coreutils-8.24.1" />
 					<atext linktext="coreutils-8.25." />
+					<atext linktext="coreutils-8.26." />
 					<atext linktext="coreutils-9." />
 				</page>
 			</check>
