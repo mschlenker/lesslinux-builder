@@ -3,15 +3,14 @@
 		name="iana-etc"
 		version="2.30"
 		class="skel"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
 				<pkg sha1="218593bcb9264014c4e397d838b2c218eac9df06">iana-etc-2.30.tar.bz2</pkg>
 				<mirror>http://sethwklein.net/</mirror>
 			</file>
-			<manualcheck date="20130503" interval="365" page="http://sethwklein.net/" />
+			<manualcheck date="20150823" interval="365" page="http://sethwklein.net/" />
 			<check>
 				<page html="http://sethwklein.net/iana-etc">
 					<atext linktext="iana-etc-2.31." />
