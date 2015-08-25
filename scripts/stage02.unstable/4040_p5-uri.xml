@@ -1,0 +1,51 @@
+<llpackages>
+	<package 
+		name="p5-uri"
+		version="1.69"
+		class="lib">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                   
+				<pkg sha1="16d701fa930f920a5c99dc29e11789a8f720fb38">URI-1.69.tar.gz</pkg>
+				<mirror>http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/" />
+			<check>
+				<page html="http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/">
+					<atext linktext="URI-1.70." />
+					<atext linktext="URI-1.71." />
+					<atext linktext="URI-1.72." />
+					<atext linktext="URI-1.7" />
+					<atext linktext="URI-1.8" />
+					<atext linktext="URI-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/URI-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd URI-${PKGVERSION}
+			/usr/bin/perl Makefile.PL 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd URI-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

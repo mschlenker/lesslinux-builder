@@ -1,0 +1,56 @@
+<llpackages>
+	<package 
+		name="p5-xml"
+		version="2.44"
+		class="lib">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="0ab6b932713ec1f9927a1b1c619b6889a5c12849">XML-Parser-2.44.tar.gz</pkg>
+				<mirror>http://search.cpan.org/CPAN/authors/id/T/TO/TODDR/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://search.cpan.org/CPAN/authors/id/T/TO/TODDR/" />
+			<check>
+				<page html="http://search.cpan.org/CPAN/authors/id/T/TO/TODDR/">
+					<atext linktext="XML-Parser-2.45.tar.gz" />
+					<atext linktext="XML-Parser-2.46.tar.gz" />
+					<atext linktext="XML-Parser-2.47.tar.gz" />
+					<atext linktext="XML-Parser-2.48.tar.gz" />
+					<atext linktext="XML-Parser-3.0.tar.gz" />
+					<atext linktext="XML-Parser-3.00.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>expat</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/XML-Parser-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd XML-Parser-${PKGVERSION}
+			/usr/bin/perl Makefile.PL 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd XML-Parser-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
