@@ -1,0 +1,117 @@
+<llpackages>
+	<package 
+		name="util-keysyms"
+		version="0.4.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="ff02ee8ac22c53848af50c0a6a6b00feb002c1cb">xcb-util-keysyms-0.4.0.tar.bz2</pkg>
+				<mirror>http://xcb.freedesktop.org/dist/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="90" page="http://xcb.freedesktop.org/dist/" />
+			<!-- <manualcheck date="20120822" interval="120" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<check>
+				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
+					<atext linktext="1.42.7." />
+					<atext linktext="1.42.8." />
+					<atext linktext="1.42.6." />
+					<atext linktext="1.43." />
+					<atext linktext="1.44." />
+					<atext linktext="1.45." />
+					<atext linktext="2.0." />
+					<atext linktext="2.00." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>font-util</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>git</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+                        <dep>gtkglext</dep>
+                        <dep>guile</dep>
+                        <dep>gwenhywfar</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <!-- <dep>libchipcard</dep> -->
+                        <dep>libdvdread</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libogg</dep>
+                        <dep>libtool</dep>
+                        <dep>libvorbis</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>nspr</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>speex</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>util-macros</dep>
+                        <dep>vala</dep>
+                        <dep>wxWidgets</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xtrans</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xjf ${SRCDIR}/xcb-${PKGNAME}-${PKGVERSION}.tar.bz2
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd xcb-${PKGNAME}-${PKGVERSION}
+			# sh autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc 
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd xcb-${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf xcb-${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
