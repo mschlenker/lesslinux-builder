@@ -3,17 +3,16 @@
 		name="cifs-utils"
 		version="6.4"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
 				<pkg sha1="aa7067fe7b68aaa9725d368725c5c1cf081d5364">cifs-utils-6.4.tar.bz2</pkg>
-				<mirror>ftp://ftp.samba.org/pub/linux-cifs/cifs-utils/</mirror>
+				<mirror>https://download.samba.org/pub/linux-cifs/cifs-utils/</mirror>
 			</file>
-			<manualcheck date="20140719" interval="120" page="ftp://ftp.samba.org/pub/linux-cifs/cifs-utils/" />
+			<manualcheck date="20150823" interval="180" page="https://download.samba.org/pub/linux-cifs/cifs-utils/" />
 			<check>
-				<page html="ftp://ftp.samba.org/pub/linux-cifs/cifs-utils/">
+				<page html="https://download.samba.org/pub/linux-cifs/cifs-utils/">
 					<atext linktext="cifs-utils-6.12." />
 					<atext linktext="cifs-utils-6.5." />
 					<atext linktext="cifs-utils-6.6." />
