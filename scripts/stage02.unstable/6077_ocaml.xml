@@ -1,0 +1,52 @@
+<llpackages>
+    <package name='ocaml' version='4.02.3' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e68ffd2b5bb491a6345f46b27675e1361a49b274'>
+                    ocaml-4.02.3.tar.gz
+                </pkg>
+                <mirror>
+                    http://caml.inria.fr/pub/distrib/ocaml-4.02/
+                </mirror>
+            </file>
+            <manualcheck date='20150823' interval='90' mirror='http://caml.inria.fr/pub/distrib/ocaml-4.02/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>libX11</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure -prefix /usr
+make world.opt
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
