@@ -1,0 +1,99 @@
+<llpackages>
+	<package 
+		name="gcc49"
+		version="4.9.3"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+			<file>                                                                                  
+				<pkg sha1="2e6490a908eac8b2b56b73679bd7c2a5237df1f8">gcc-4.9.3.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.3/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-4.9.4" />
+					<atext linktext="gcc-4.9.5" />
+					<atext linktext="gcc-4.9.6" />
+					<atext linktext="gcc-4.9.7" />
+					<atext linktext="gcc-4.9.8" />
+					<atext linktext="gcc-4.10."/>
+					<atext linktext="gcc-4.11." />
+				</page>
+			</check>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+			<dep>gcc</dep>
+			<dep>zip</dep>
+			<dep>unzip</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			bunzip2 -c ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2 | tar xf -
+			mkdir ${PKGNAME}-build
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd gcc-${PKGVERSION}
+			sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in
+			case `uname -m` in
+				i?86) 
+					sed -i 's/^T_CFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in
+				;;
+			esac
+			sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+			# sed -i 's/getline/get_line/' libiberty/testsuite/test-demangle.c
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
+				--enable-shared \
+				--enable-threads=posix --enable-__cxa_atexit \
+				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
+				--disable-multilib --with-system-zlib --program-suffix=49 --disable-bootstrap
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount
+			else
+				make -j 4
+			fi
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make -k check
+			../gcc-${PKGVERSION}/contrib/test_summary
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf gcc-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
