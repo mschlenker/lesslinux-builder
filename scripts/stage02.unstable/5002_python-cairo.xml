@@ -6,19 +6,19 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>   
-				<pkg sha1="b4283aa1cc9aafd12fd72ad371303a486da1d014">pycairo-1.10.0.tar.bz2</pkg>
+				<pkg sha1="2efa8dfafbd6b8e492adaab07231556fec52d6eb">py2cairo-1.10.0.tar.bz2</pkg>
 				<mirror>http://cairographics.org/releases/</mirror>
 			</file>
 			<manualcheck date="20150823" interval="180" page="http://cairographics.org/releases/" />
 			<check>
 				<page html="http://cairographics.org/releases/">
-					<atext linktext="pycairo-1.10.1." />
-					<atext linktext="pycairo-1.10.2." />
-					<atext linktext="pycairo-1.10.4" />
-					<atext linktext="pycairo-1.10.6" />
-					<atext linktext="pycairo-1.12" />
-					<atext linktext="pycairo-2." />
-					<atext linktext="pycairo-3" />
+					<atext linktext="py2cairo-1.10.1." />
+					<atext linktext="py2cairo-1.10.2." />
+					<atext linktext="py2cairo-1.10.4" />
+					<atext linktext="py2cairo-1.10.6" />
+					<atext linktext="py2cairo-1.12" />
+					<atext linktext="py2cairo-2." />
+					<atext linktext="py2cairo-3" />
 				</page>
 			</check>
 		</sources>
@@ -54,17 +54,13 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/py2cairo-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd py2cairo-${PKGVERSION}
 			./waf configure --prefix=/usr
 			./waf build
 			]]>
@@ -72,7 +68,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd py2cairo-${PKGVERSION}
 			./waf install
 			]]>
 		</install>
