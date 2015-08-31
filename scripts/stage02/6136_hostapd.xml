@@ -1,0 +1,56 @@
+<llpackages>
+	<package 
+		name="hostapd"
+		version="2.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                        
+				<pkg sha1="a44a734fea2163821aaf636b03181ee3a22d2dea">hostapd-2.4.tar.gz</pkg>
+				<mirror>https://w1.fi/releases/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="120" page="http://downloads.sourceforge.net/project/openjade/" />
+			<!-- <check>
+				<page html="http://download.enlightenment.org/releases/">
+					<atext linktext="eina-1.0.1." />
+					<atext linktext="eina-1.0.2." />
+					<atext linktext="eina-1.0.3." />
+					<atext linktext="eina-1.1." />
+					<atext linktext="eina-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/hostapd 
+			cp -v defconfig .config
+			make -j 4
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/hostapd
+			mkdir -p ${TGTDIR}/usr/sbin
+			mkdir -p ${TGTDIR}/usr/share/man/man1
+			mkdir -p ${TGTDIR}/usr/share/man/man8
+			for f in hostapd hostapd_cli ; do
+				install -m 0755 $f ${TGTDIR}/usr/sbin
+			done
+			install -m 0644 hostapd.8 ${TGTDIR}/usr/share/man/man8
+			install -m 0644 hostapd_cli.1 ${TGTDIR}/usr/share/man/man1
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
