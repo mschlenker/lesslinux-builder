@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='rfkill' version='0.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='03025d4ae285c40d5c19ec99ef7b317afda9d900'>
+                    rfkill-0.5.tar.xz
+                </pkg>
+                <mirror>
+                    https://www.kernel.org/pub/software/network/rfkill/
+                </mirror>
+            </file>
+            <manualcheck date='20150901' interval='60' mirror='https://www.kernel.org/pub/software/network/rfkill/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
