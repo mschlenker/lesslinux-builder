@@ -28,5 +28,14 @@ fi
 # ( "${TVHOME}/tmp/teamviewer8/tv_bin/teamviewerd" -n -f --profile-dir /tmp/teamviewer8 )
 # Start TeamViewer
 
+unset SUDO_ASKPASS
+unset SUDO_COMMAND
+unset SUDO_EDITOR
+unset SUDO_GID
+unset SUDO_PROMPT
+unset SUDO_PS1
+unset SUDO_UID
+unset SUDO_USER
+
 cd "$TVHOME"
 ./teamviewer 
