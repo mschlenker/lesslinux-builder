@@ -1,3 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <llpackages>
+	<dirs>
+		<dir mode="0755">/etc</dir>
+		<dir mode="0755">/etc/X11</dir>
+		<dir mode="0755">/etc/X11/xorg.conf.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/X11/xorg.conf.d/synaptics.conf" mode="0644" group="0" owner="0">
+		<![CDATA[
+Section "InputClass"
+        Identifier      "Touchpad"                      # required
+        MatchIsTouchpad "yes"                           # required
+        Driver          "synaptics"                     # required
+        Option          "MinSpeed"              "0.5"
+        Option          "MaxSpeed"              "1.0"
+        Option          "AccelFactor"           "0.075"
+        Option          "TapButton1"            "1"
+        Option          "TapButton2"            "2"     # multitouch
+        Option          "TapButton3"            "3"     # multitouch
+        Option          "VertTwoFingerScroll"   "1"     # multitouch
+        Option          "HorizTwoFingerScroll"  "1"     # multitouch
+        Option          "VertEdgeScroll"        "1"
+        Option          "CoastingSpeed"         "8"
+        Option          "CornerCoasting"        "1"
+        Option          "CircularScrolling"     "1"
+        Option          "CircScrollTrigger"     "7"
+        Option          "EdgeMotionUseAlways"   "1"
+        Option          "LBCornerButton"        "8"     # browser "back" btn
+        Option          "RBCornerButton"        "9"     # browser "forward" btn
+EndSection
+]]>
+		</scriptdata>
+	</scripts>
 	<package name="xf86-input-synaptics" class="user" />
 </llpackages>
