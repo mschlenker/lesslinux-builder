@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="cross-linux-headers"
-		version="4.1.7"
+		version="4.1.8"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -11,14 +11,14 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="a74e751ff86f88e31a5d3c0d183324acee3b2b19">patch-4.1.7.xz</pkg>
+				<pkg sha1="6b3442749196b59b235cf94f1bd1eb92c1c25456">patch-4.1.8.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20150917" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20150924" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
 					<atext linktext="patch-4.1.10." />
-					<atext linktext="patch-4.1.8." />
+					<atext linktext="patch-4.1.11." />
 					<atext linktext="patch-4.1.9." />
 					<atext linktext="patch-4.2." />
 					<atext linktext="patch-4.3." />
