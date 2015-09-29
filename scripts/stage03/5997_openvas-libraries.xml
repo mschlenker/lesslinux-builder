@@ -8,7 +8,8 @@
 		<scriptdata location="/etc/sudoers.lax.d/openvas" mode="0440" group="0" owner="0">
 		<![CDATA[
 surfer  ALL = NOPASSWD: /usr/bin/openvas-wrapper
-		]]>
+surfer  ALL = NOPASSWD: /usr/bin/ruby /usr/bin/openvas-wrapper.rb
+]]>
 		</scriptdata>
 		<scriptdata location="/etc/rc.d/0610-openvas.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash

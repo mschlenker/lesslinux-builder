@@ -68,3 +68,4 @@ echo 'Starting Firefox - login with username "lesslinux" and password "lesslinux
 zenity --info --text 'Starting Firefox - login with username "lesslinux" and password "lesslinux"!'
 
 nohup su surfer -c 'firefox http://127.0.0.1:9392/' &
+sleep 3

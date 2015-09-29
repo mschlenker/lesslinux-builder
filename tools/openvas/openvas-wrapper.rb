@@ -82,7 +82,7 @@ apply.signal_connect("clicked") {
 	cancel.sensitive = false
 	running = true
 	vte.signal_connect("child_exited") { running = false }
-	vte.fork_command("bash", ["bash", "openvas-headless.sh"] )
+	vte.fork_command("bash", ["bash", "/usr/bin/openvas-headless.sh"] )
 	while running == true
 		while (Gtk.events_pending?)
 			Gtk.main_iteration
