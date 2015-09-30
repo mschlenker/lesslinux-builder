@@ -1,0 +1,86 @@
+<llpackages>
+	<package 
+		name="ntfs-3g_ntfsprogs"
+		version="2015.3.14"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                
+				<pkg sha1="0ebd9adffd5a6ddcfbacade6be8efe1eba4b1a08">ntfs-3g_ntfsprogs-2015.3.14.tgz</pkg>
+				<mirror>http://tuxera.com/opensource/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="90" page="http://tuxera.com/" />
+			<check>
+				<page html="http://www.tuxera.com/community/open-source-ntfs-3g/">
+					<atext linktext="ntfs-3g_ntfsprogs-2015.4." />
+					<atext linktext="ntfs-3g_ntfsprogs-2015.5." />
+					<atext linktext="ntfs-3g_ntfsprogs-2015.6." />
+					<atext linktext="ntfs-3g_ntfsprogs-2015.8." />
+					<atext linktext="ntfs-3g_ntfsprogs-2015.9." />
+					<atext linktext="ntfs-3g_ntfsprogs-2015.10." />
+					<atext linktext="ntfs-3g_ntfsprogs-2015.11." />
+					<atext linktext="ntfs-3g_ntfsprogs-2015.12." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016." />
+					<atext linktext="ntfs-3g_ntfsprogs-2017." />
+					<atext linktext="ntfs-3g_ntfsprogs-2018." />
+				</page>
+			</check> 
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libtasn1</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>fuse</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tgz
+			mv ${PKGNAME}-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.static
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tgz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal && make
+			cd ../${PKGNAME}-${PKGVERSION}.static
+			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal --enable-static && make -j3 LDFLAGS=-all-static
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install # DESTDIR=${TGTDIR} 
+			cd ../${PKGNAME}-${PKGVERSION}.static
+			strip src/ntfs-3g
+			mkdir -p /static/sbin
+			install -m 0755 src/ntfs-3g /static/sbin/ntfs-3g.static
+			install -m 0755 ntfsprogs/mkntfs /static/sbin/mkntfs.static
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.static 
+			]]>
+		</clean>
+	</package>
+</llpackages>
