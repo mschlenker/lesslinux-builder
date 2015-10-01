@@ -3629,7 +3629,11 @@ iso_gpt_convert() {
 	mkdir -p /lesslinux/data
 	mkdir -p /lesslinux/efiboot
 	mkdir -p /lesslinux/blobpart
-	mount -t vfat -o rw "${device}1" /lesslinux/data
+	if [ -x /static/sbin/mkntfs.static ] && [ "$secpartstart" -gt 4294967295 ] ; then
+		ntfs-3g.static -o rw "${device}1" /lesslinux/data
+	else
+		mount -t vfat -o rw "${device}1" /lesslinux/data
+	fi
 	mount -t ext4 -o rw "${device}2" /lesslinux/boot
 	[ "$blobblocks" -gt 1 ] && mount -t ext4 -o relatime "${device}4" /lesslinux/blobpart
 	mount -t iso9660 -o ro "${device}8" /lesslinux/cdrom
