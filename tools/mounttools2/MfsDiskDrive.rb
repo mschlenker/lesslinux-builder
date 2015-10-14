@@ -22,13 +22,14 @@ class MfsDiskDrive
 		@smart_bad_sectors = nil
 		@smart_reallocated = nil
 		@smart_seek_error = nil
+		@smart_total_cycles = nil # Write cycles
 		@gpt = false
 		@mbr = false
 		@trim = nil
 		get_info
 		read_partitions
 	end
-	attr_reader :device, :size, :partitions, :removable, :usb, :vendor, :model, :gpt, :mbr
+	attr_reader :device, :size, :partitions, :removable, :usb, :vendor, :model, :gpt, :mbr, :smart_total_cycles 
 	
 	def read_partitions
 		fullblocks = 0
@@ -164,6 +165,9 @@ class MfsDiskDrive
 				#	@smart_seek_error = ltoks[-1].to_i
 				elsif inside == true && ltoks[0].to_i == 197 && ltoks[-1].to_i > 0
 					@smart_reallocated = ltoks[-1].to_i
+				elsif inside == true && ltoks[0].to_i == 241 && ltoks[-1].to_i > 0
+					total_bytes_written = ltoks[-1].to_i * 512
+					@smart_total_cycles = total_bytes_written / @size 
 				end
 				inside = true if line =~ /^ID\# ATTRIBUTE/
 			end
@@ -251,6 +255,24 @@ class MfsDiskDrive
 		}
 		@trim = trim 
 		return trim 
+	end
+
+	def ssd?
+		is_ssd = nil
+		# Solid State Device
+		IO.popen("smartctl -i /dev/#{device}") { |l|
+			while l.gets
+				line = $_.strip
+				if line =~ /Rotation Rate/ 
+					if line =~ /Solid State Device/ 
+						is_ssd = true
+					else 
+						is_ssd = false 
+					end
+				end
+			end
+		}
+		return is_ssd 
 	end
 
 end
