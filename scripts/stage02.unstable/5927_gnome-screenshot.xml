@@ -77,7 +77,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			sed -i 's/DBusActivatable=True//g' ${TGTDIR}/usr/share/applications/org.gnome.Screenshot.desktop
+			sed -i 's/DBusActivatable=true//g' ${TGTDIR}/usr/share/applications/org.gnome.Screenshot.desktop
 			]]>
 		</install>
 		<clean>
