@@ -96,6 +96,66 @@ done
 		
 		]]>
 		</scriptdata>
+		<scriptdata location="/etc/lesslinux/xinitrc_simple_install" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors		
+. /etc/lesslinux/branding/branding.en.sh
+
+for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
+	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
+	if echo "$skipservices" | grep -q '|'$provides'|' ; then
+		echo "Skipping $provides"
+	else
+		$i start
+	fi
+done
+
+for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
+	sed -i 's/mmmm\.rb/mmmmng.sh/g' /home/surfer/${f} 
+done
+
+# Uncomment to debug
+# /usr/bin/Terminal &
+# /usr/bin/xterm &
+# setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
+xfsettingsd --replace
+setxkbmap -layout "$xkbmap"
+esetroot -scale /etc/lesslinux/branding/desktop.jpg
+Thunar --daemon &
+if xdpyinfo | grep -q -i composite ; then
+	sed -i 's/fake transparency=true/fake transparency=false/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+fi
+sed -i 's/modules=switcher;/modules=/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
+xbindkeys &
+if xdpyinfo | grep -q -i composite ; then
+	sleep 1
+	compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
+	# xcompmgr -c &
+fi
+( sudo /usr/bin/usbinstall.sh ; shutdown-wrapper.sh ) & 
+openbox &
+# Weird hack!
+xfct=0
+while true ; do
+	sleep 5
+	if [ "$xfct" -lt 3 ] ; then
+		killall -9 compton
+		xfsettingsd --replace
+		compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
+		xfct=` expr $xfct + 1 ` 
+		sleep 5
+	else
+		sleep 9999999
+	fi
+done
+		
+		]]>
+		</scriptdata>
 		<scriptdata location="/etc/lesslinux/xinitrc_minimal" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash	
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
