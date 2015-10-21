@@ -3022,7 +3022,12 @@ case $1 in
 						mdev -s 
 						sleep 5
 						echo "     Write file system." > /dev/tty8
-						mkfs.vfat "${fulldev}1"
+						if [ -x /static/sbin/mkntfs.static ] ; then
+							mkntfs.static -F -Q -L USBDATA "${fulldev}1"
+						else
+							mkfs.vfat -n USBDATA "${fulldev}1"
+						fi
+						sync 
 						echo "     Poweroff." > /dev/tty8
 						poweroff 
 					fi
