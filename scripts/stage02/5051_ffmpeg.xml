@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="ffmpeg"
-		version="2.6.3"
+		version="2.6.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<!-- version 2.4 conflicts with vlc 2.1.5, keep version 2.2 until VLC 2.2.0 is released -->
 			<file>                                                                        
-				<pkg sha1="a3307d20f97e8b75a113712e0258ab11d548d280">ffmpeg-2.6.3.tar.bz2</pkg>
+				<pkg sha1="7a8a6d4354fbe2aadded7d03526fce3c0443ae97">ffmpeg-2.6.4.tar.bz2</pkg>
 				<mirror>http://ffmpeg.org/releases/</mirror>
 			</file>
-			<manualcheck date="20150530" interval="60" page="http://ffmpeg.org/releases/" />
+			<manualcheck date="20150823" interval="60" page="http://ffmpeg.org/releases/" />
 			<check>
 				<page html="http://ffmpeg.org/releases/">
-					<atext linktext="ffmpeg-2.6.4." />
+					<atext linktext="ffmpeg-2.6.8." />
 					<atext linktext="ffmpeg-2.6.5." />
 					<atext linktext="ffmpeg-2.6.6." />
 					<atext linktext="ffmpeg-2.6.7." />

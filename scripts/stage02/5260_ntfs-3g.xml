@@ -62,7 +62,7 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal && make
 			cd ../${PKGNAME}-${PKGVERSION}.static
-			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal --enable-really-static && make
+			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal --enable-static && make -j3 LDFLAGS=-all-static
 			]]>
 		</build>
 		<test />
@@ -74,6 +74,7 @@
 			strip src/ntfs-3g
 			mkdir -p /static/sbin
 			install -m 0755 src/ntfs-3g /static/sbin/ntfs-3g.static
+			install -m 0755 ntfsprogs/mkntfs /static/sbin/mkntfs.static
 			]]>
 		</install>
 		<clean>

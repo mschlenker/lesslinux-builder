@@ -1,34 +1,34 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.6.1"
+		version="3.6.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="01ecab99adc9030ee34e9a2e19e65dfe64e1affe">llvm-3.6.1.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.6.1/</mirror>
+				<pkg sha1="7a00257eb2bc9431e4c77c3a36b033072c54bc7e">llvm-3.6.2.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.6.2/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="b7221d8fdd27e3ed519d0281646e82e17b51122c">cfe-3.6.1.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.6.1/</mirror>
+				<pkg sha1="7ba809c9c17819a16b668640a642ed134d7052f0">cfe-3.6.2.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.6.2/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="85dccdc6ccd9675e871dfd2786b45fbf53518485">compiler-rt-3.6.1.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.6.1/</mirror>
+				<pkg sha1="c6c52d2923a60f1a2ca2f22fea1770fd2e25728d">compiler-rt-3.6.2.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.6.2/</mirror>
 			</file>
 			<manualcheck date="20150529" interval="120" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="llvm-3.6.4.src." />
-					<atext href="llvm-3.6.2.src." />
-					<atext href="llvm-3.6.3.src." />
-					<atext href="llvm-3.10.src." />
-					<atext href="llvm-3.7.src." />
-					<atext href="llvm-3.8.src." />
-					<atext href="llvm-3.9.src." />
-					<atext href="llvm-4." />
+					<atext href="3.6.4" />
+					<atext href="3.6.5" />
+					<atext href="3.6.3" />
+					<atext href="3.10." />
+					<atext href="3.7." />
+					<atext href="3.8." />
+					<atext href="3.9." />
+					<atext href="4.0." />
 				</page>
 			</check>
 		</sources>

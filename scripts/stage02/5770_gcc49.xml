@@ -1,23 +1,24 @@
 <llpackages>
 	<package 
 		name="gcc49"
-		version="4.9.2"
+		version="4.9.3"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 			<file>                                                                                  
-				<pkg sha1="79dbcb09f44232822460d80b033c962c0237c6d8">gcc-4.9.2.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.2/</mirror>
+				<pkg sha1="2e6490a908eac8b2b56b73679bd7c2a5237df1f8">gcc-4.9.3.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.9.3/</mirror>
 			</file>
-			<manualcheck date="20141101" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
 					<atext linktext="gcc-4.9.4" />
 					<atext linktext="gcc-4.9.5" />
-					<atext linktext="gcc-4.9.3" />
+					<atext linktext="gcc-4.9.6" />
+					<atext linktext="gcc-4.9.7" />
+					<atext linktext="gcc-4.9.8" />
 					<atext linktext="gcc-4.10."/>
 					<atext linktext="gcc-4.11." />
-					<atext linktext="gcc-5." />
 				</page>
 			</check>
 		<builddeps>

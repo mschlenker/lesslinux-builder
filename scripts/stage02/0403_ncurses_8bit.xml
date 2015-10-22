@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="ncurses-8bit"
-		version="5.9"
+		version="6.0"
 		class="lib"
 		install="destdir"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                      
-				<pkg sha1="3e042e5f2c7223bffdaac9646a533b8c758b65b5">ncurses-5.9.tar.gz</pkg>
+				<pkg sha1="acd606135a5124905da770803c05f1f20dd3b21c">ncurses-6.0.tar.gz</pkg>
 				<mirror>ftp://ftp.gnu.org/gnu/ncurses/</mirror>
 			</file>
-			<file>                                      
+			<!-- <file>                                      
 				<pkg sha1="18b1449d3c22d204ee75827322db4bf84b771c94">ncurses-5.9-gcc5_buildfixes-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20140802" interval="365" page="http://ftp.gnu.org/gnu/ncurses/" />
+			</file> -->
+			<manualcheck date="20150823" interval="365" page="http://ftp.gnu.org/gnu/ncurses/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/ncurses/">
-					<atext linktext="ncurses-5.10" />
-					<atext linktext="ncurses-5.11" />
-					<atext linktext="ncurses-6." />
+					<atext linktext="ncurses-6.1" />
+					<atext linktext="ncurses-6.2" />
+					<atext linktext="ncurses-7." />
 				</page>
 			</check>
 		</sources>
@@ -45,7 +45,7 @@
 		</unpack>
 		<patch><![CDATA[
 			cd ncurses-${PKGVERSION}
-			cat ${SRCDIR}/ncurses-${PKGVERSION}-gcc5_buildfixes-1.patch | patch -p1 
+			# cat ${SRCDIR}/ncurses-${PKGVERSION}-gcc5_buildfixes-1.patch | patch -p1 
 			]]>
 		</patch>
 		<build>

@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="util-keysyms"
-		version="20130206"
+		version="0.4.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="f86bd4dd3a735040780969025d7ad6155757bf38">util-keysyms-20130206.tar.bz2</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="ff02ee8ac22c53848af50c0a6a6b00feb002c1cb">xcb-util-keysyms-0.4.0.tar.bz2</pkg>
+				<mirror>http://xcb.freedesktop.org/dist/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="90" page="http://cgit.freedesktop.org/xcb/util-keysyms/" />
+			<manualcheck date="20150823" interval="90" page="http://xcb.freedesktop.org/dist/" />
 			<!-- <manualcheck date="20120822" interval="120" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
 			<check>
 				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
@@ -89,28 +89,28 @@
 		<unpack>
 			<![CDATA[ 
 			
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xjf ${SRCDIR}/xcb-${PKGNAME}-${PKGVERSION}.tar.bz2
 			
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[ 
 			
-			cd ${PKGNAME}
-			sh autogen.sh
+			cd xcb-${PKGNAME}-${PKGVERSION}
+			# sh autogen.sh
 			./configure --prefix=/usr --sysconfdir=/etc 
 			make
 			]]>
 		</build>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd xcb-${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf xcb-${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

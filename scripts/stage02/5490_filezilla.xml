@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="FileZilla"
-		version="3.12.0.2"
+		version="3.14.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="735295dbd7c3f71180ff7dfb6850c0b8f4412b72">FileZilla_3.12.0.2_src.tar.bz2</pkg>
-				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.12.0.2/</mirror>
+				<pkg sha1="d3b82f97584d95bb7100b363a597500117c9e63f">FileZilla_3.14.0_src.tar.bz2</pkg>
+				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.14.0/</mirror>
 			</file>
-			<manualcheck date="20150710" interval="90" page="http://filezilla-project.org/" />
+			<manualcheck date="20150823" interval="90" page="http://filezilla-project.org/" />
 		</sources>
 		<builddeps>
                         <dep>atk</dep>
@@ -54,11 +54,11 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
-					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config CC="distcc gcc" CXX="distcc g++"
+					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin CC="distcc gcc" CXX="distcc g++"
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
-					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config
+					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin 
 				make -j3 
 			fi
 			]]>

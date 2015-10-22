@@ -1,15 +1,15 @@
 <llpackages>
 	<package 
 		name="libaio"
-		version="0.3.109"
+		version="0.3.110"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="b772e567e7089bb3ca405b16370f8b1a4997c0b3">libaio-0.3.109.tar.bz2</pkg>
-				<mirror>http://distfiles.gentoo.org/distfiles/</mirror>
+				<pkg sha1="f8f6ed15f22e528f6f415939b07854539e3360e4">libaio_0.3.110.orig.tar.gz</pkg>
+				<mirror>http://http.debian.net/debian/pool/main/liba/libaio/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="https://packages.debian.org/de/source/sid/libaio" />
+			<manualcheck date="20150823" interval="180" page="https://packages.debian.org/de/source/sid/libaio" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -44,11 +44,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
 			]]>
 		</unpack>
 		<patch />

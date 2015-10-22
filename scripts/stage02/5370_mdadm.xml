@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="mdadm"
-		version="3.3.2"
+		version="3.3.4"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                           
-				<pkg sha1="c649601d84553501c2f3b452cf93d1fbc53f976a">mdadm-3.3.2.tar.xz</pkg>
+				<pkg sha1="e4bac7d8cdb9520d26b6c8ff27e6941d748e290a">mdadm-3.3.4.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/utils/raid/mdadm/</mirror>
 			</file>
-			<manualcheck date="20140903" interval="60" page="http://www.kernel.org/pub/linux/utils/raid/mdadm/" />
+			<manualcheck date="20150823" interval="60" page="http://www.kernel.org/pub/linux/utils/raid/mdadm/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/raid/mdadm/">
 					<atext linktext="mdadm-3.3.5." />
-					<atext linktext="mdadm-3.3.3." />
-					<atext linktext="mdadm-3.3.4." />
+					<atext linktext="mdadm-3.3.6." />
+					<atext linktext="mdadm-3.3.7." />
 					<atext linktext="mdadm-3.4." />
 					<atext linktext="mdadm-3.5." />
 					<atext linktext="mdadm-3.6." />
@@ -42,13 +42,13 @@
 			fi
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -i 's/-Werror //g' Makefile
 			sed -i 's/\(^inline\)/static \1/' bitmap.c
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}

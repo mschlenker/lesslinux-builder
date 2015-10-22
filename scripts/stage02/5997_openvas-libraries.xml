@@ -14,7 +14,7 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>            
-				<pkg sha1="ea39346bbf83370413be4488529c6870c9296da7">openvas-wrapper-20141001.sh</pkg>
+				<pkg sha1="b648a78569fa076c2f56c40e404d604330899030">lesslinux-openvas-20150929-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20150601" interval="90" page="http://www.openvas.org/install-source.html" />
@@ -58,6 +58,7 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/lesslinux-openvas-20150929-00.tar.bz2
 			]]>
 		</unpack>
 		<patch />
@@ -75,10 +76,12 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/applications
 			install -m 0755 ${SRCDIR}/openvas-check-setup-20140930.sh ${TGTDIR}/usr/bin/openvas-check-setup
-			install -m 0755 ${SRCDIR}/openvas-wrapper-20141001.sh ${TGTDIR}/usr/bin/openvas-wrapper
-			echo '' >> ${TGTDIR}/usr/bin/openvas-wrapper
-			echo 'sleep 3' >> ${TGTDIR}/usr/bin/openvas-wrapper
+			install -m 0755 ../openvas/openvas-wrapper.sh ${TGTDIR}/usr/bin/openvas-wrapper
+			install -m 0755 ../openvas/openvas-headless.sh ${TGTDIR}/usr/bin/
+			install -m 0755 ../openvas/openvas-wrapper.rb ${TGTDIR}/usr/bin/
+			install -m 0755 ../openvas/openvas.desktop ${TGTDIR}/usr/share/applications/
 			mkdir -p ${TGTDIR}/usr/var/lib/openvas
 			mkdir -p ${TGTDIR}/usr/var/log/openvas
 			touch ${TGTDIR}/usr/var/lib/openvas/.keep_this_directory

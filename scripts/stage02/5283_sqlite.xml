@@ -1,27 +1,29 @@
 <llpackages>
 	<package 
 		name="sqlite"
-		version="3.8.10.2"
+		version="3.8.11.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                             
-				<pkg sha1="c2f2c17d3dc4c4e179d35cc04e4420636d48a152">sqlite-autoconf-3081002.tar.gz</pkg>
+				<pkg sha1="d0e22d7e361b6f50830a3cdeafe35311443f8f9a">sqlite-autoconf-3081101.tar.gz</pkg>
 				<mirror>http://sqlite.org/2015/</mirror>
 			</file>
-			<manualcheck date="20150527" interval="90" page="http://www.sqlite.org/" />
+			<manualcheck date="20150823" interval="90" page="http://www.sqlite.org/" />
 			<check>
 				<page html="http://sqlite.org/download.html">
-					<atext linktext="sqlite-autoconf-3081003" />
-					<atext linktext="sqlite-autoconf-3081004" />
-					<atext linktext="sqlite-autoconf-3081005" />
-					<atext linktext="sqlite-autoconf-308101" />
-					<atext linktext="sqlite-autoconf-308102" />
-					<atext linktext="sqlite-autoconf-308103" />
-					<atext linktext="sqlite-autoconf-30811" />
+					<atext linktext="sqlite-autoconf-3081102" />
+					<atext linktext="sqlite-autoconf-3081103" />
+					<atext linktext="sqlite-autoconf-3081104" />
+					<atext linktext="sqlite-autoconf-3081105" />
+					<atext linktext="sqlite-autoconf-3081106" />
+					<atext linktext="sqlite-autoconf-308111" />
+					<atext linktext="sqlite-autoconf-308112" />
+					<atext linktext="sqlite-autoconf-308113" />
 					<atext linktext="sqlite-autoconf-30812" />
 					<atext linktext="sqlite-autoconf-30813" />
+					<atext linktext="sqlite-autoconf-30814" />
 					<atext linktext="sqlite-autoconf-3082" />
 					<atext linktext="sqlite-autoconf-3083" />
 					<atext linktext="sqlite-autoconf-3084" />
@@ -51,13 +53,13 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3081002.tar.gz
+			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3081101.tar.gz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3081002
+			cd ${PKGNAME}-autoconf-3081101
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which pump ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
@@ -73,13 +75,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3081002
+			cd ${PKGNAME}-autoconf-3081101
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-autoconf-3081002
+			rm -rf ${PKGNAME}-autoconf-3081101
 			]]>
 		</clean>
 	</package>

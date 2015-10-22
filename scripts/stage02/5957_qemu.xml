@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="qemu"
-		version="2.3.0"
+		version="2.3.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="373d74bfafce1ca45f85195190d0a5e22b29299e">qemu-2.3.0.tar.bz2</pkg>
+				<pkg sha1="3e7572bc2950b2c61a96ec827036ce5f62786673">qemu-2.3.1.tar.bz2</pkg>
 				<mirror>http://wiki.qemu-project.org/download/</mirror>
 			</file>
 			<file>                           
 				<pkg sha1="58c94faa3f0a682b496538792a66220bdd1d6ac7">qemu-2.1.2-virtfs-proxy-helper.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> 
-			<manualcheck date="20150601" interval="60" page="http://wiki.qemu-project.org/download/" />
+			<manualcheck date="20150823" interval="60" page="http://wiki.qemu-project.org/download/" />
 			<check>
 				<page html="http://wiki.qemu-project.org/download/">
-					<atext linktext="qemu-2.3.1." />
+					<atext linktext="qemu-2.3.5." />
 					<atext linktext="qemu-2.3.2." />
 					<atext linktext="qemu-2.3.3." />
 					<atext linktext="qemu-2.3.4." />

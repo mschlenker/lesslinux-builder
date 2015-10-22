@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="cross-binutils-musl"
-		version="2.25"
+		version="2.25.1"
 		class="devel"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                 
-				<pkg sha1="b46cc90ebaba7ffcf6c6d996d60738881b14e50d">binutils-2.25.tar.bz2</pkg>
+				<pkg sha1="1d597ae063e3947a5f61e23ceda8aebf78405fcd">binutils-2.25.1.tar.bz2</pkg>
 				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
 			</file>
-			<manualcheck date="20150308" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/binutils/">
-					<atext linktext="binutils-2.25.1." />
+					<atext linktext="binutils-2.25.4." />
 					<atext linktext="binutils-2.25.2." />
 					<atext linktext="binutils-2.25.3" />
 					<atext linktext="binutils-2.26." />

@@ -94,7 +94,11 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
-			paxctl -m ${TGTDIR}/usr/bin/mousepad 
+			# paxctl -m ${TGTDIR}/usr/bin/mousepad 
+			mv ${TGTDIR}/usr/bin/mousepad  ${TGTDIR}/usr/bin/mousepad.broken
+			echo '#!/bin/bash' >  ${TGTDIR}/usr/bin/mousepad
+			echo 'exec /usr/bin/SciTE "$@"' >> ${TGTDIR}/usr/bin/mousepad
+			chmod 0755 ${TGTDIR}/usr/bin/mousepad
 			]]>
 		</install>
 		<clean>
