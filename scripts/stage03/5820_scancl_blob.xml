@@ -4,7 +4,7 @@
 		class="user">
 	</package>
 	<scripts>
-		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0300-scancl-blob.sh" mode="0755" group="0" owner="0">
+		<!-- <scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0300-scancl-blob.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
@@ -40,7 +40,7 @@ else
 	swapsize=` expr $freeblocks / 1536 ` 
 fi
 if [ "$swapsize" -gt 0 ] ; then
-	echo '---> Creating swap' > /dev/tty8
+	echo '+++> Creating swap' > /dev/tty8
 	echo -n '0%' > /dev/tty8
 	lastct=` expr $swapsize - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "Creating swap file - 0%" "" tty1
@@ -60,7 +60,7 @@ if [ "$swapsize" -gt 0 ] ; then
 fi
 
 #		]]>
-		</scriptdata>
+		</scriptdata> -->
 		<scriptdata location="/etc/sudoers.lax.d/scancl-blob" mode="0440" group="0" owner="0">
 		<![CDATA[
 surfer  ALL = NOPASSWD: /AntiVir/scancl
@@ -107,10 +107,25 @@ case $1 in
 		forcecd=true
 	    fi
 	    
-	    # First try:
+	    # First try: 
+	    # Find Avira directories in BLOB partition
+	    if [ "$forcecd" = false ] && mountpoint -q /lesslinux/blobpart ; then
+		if [ -d /lesslinux/blobpart/scancl ] ; then
+			echo "Antibot directory already exists, skipping..."
+		else
+			mkdir -p /lesslinux/blobpart/scancl/Protokolle
+			tar -C /lesslinux/cdrom/scancl -cf - antivir avupdate | tar -C /lesslinux/blobpart/scancl -xf - 
+			cp /etc/avira/avupdate.bat /lesslinux/blobpart/scancl
+		fi
+		mount --bind /lesslinux/blobpart /lesslinux/scancl-blob
+	    fi
+	    
+	    # Second try:
 	    # Find Avira directories on first partition of the boot drive - this should be VFAT
 	    
-	    if [ "$forcecd" = false ] && cat /proc/mounts | grep '/lesslinux/cdrom' | awk '{print $1}' | grep -q '[1-9]$' ; then
+	    if mountpoint -q /lesslinux/scancl-blob ; then
+		echo "Antibot directory already mounted, skipping..."
+	    elif [ "$forcecd" = false ] && cat /proc/mounts | grep '/lesslinux/cdrom' | awk '{print $1}' | grep -q '[1-9]$' ; then
 		sysdev=` cat /proc/mounts | grep '/lesslinux/cdrom' | awk '{print $1}' | grep -q '[1-9]$' `
 		rawdev=` echo -n $sysdev | sed 's/[1-9]$//g' `
 		fstype=` blkid.static -o udev ${rawdev}1 | grep FS_TYPE | grep fat `
@@ -120,9 +135,10 @@ case $1 in
 		[ -d /lesslinux/scancl-blob/scancl ] || umount /lesslinux/scancl-blob > /dev/null 2>&1 
 	    fi
 	    
-	    # Second try:
+	    # Third try:
 	    # Find Avira directories on any first partition or any superfloppy that is FAT or NTFS
 	    # We might later further narrow this down to only USB or removable drives
+	    
 	    if mountpoint -q /lesslinux/scancl-blob ; then
 		echo "Antibot directory already mounted, skipping..."
 	    elif [ "$forcecd" = false ] ; then

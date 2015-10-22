@@ -3022,7 +3022,12 @@ case $1 in
 						mdev -s 
 						sleep 5
 						echo "     Write file system." > /dev/tty8
-						mkfs.vfat "${fulldev}1"
+						if [ -x /static/sbin/mkntfs.static ] ; then
+							mkntfs.static -F -Q -L USBDATA "${fulldev}1"
+						else
+							mkfs.vfat -n USBDATA "${fulldev}1"
+						fi
+						sync 
 						echo "     Poweroff." > /dev/tty8
 						poweroff 
 					fi
@@ -3609,7 +3614,11 @@ iso_gpt_convert() {
 		[ "$ultraquiet" -gt 1 ] && genericpgbar $pgfrac 32 "$convert_head" "${convert_mkfs}" "" tty1
 		sync
 	done
-	mkfs.vfat -n USBDATA "${device}1"
+	if [ -x /static/sbin/mkntfs.static ] && [ "$secpartstart" -gt 4294967295 ] ; then
+		mkntfs.static -F -Q -L USBDATA "${device}1"
+	else
+		mkfs.vfat -n USBDATA "${device}1"
+	fi
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 75 32 "$convert_head" "${convert_mkfs}" "" tty1
 	sleep 2
 	sync
@@ -3625,7 +3634,11 @@ iso_gpt_convert() {
 	mkdir -p /lesslinux/data
 	mkdir -p /lesslinux/efiboot
 	mkdir -p /lesslinux/blobpart
-	mount -t vfat -o rw "${device}1" /lesslinux/data
+	if [ -x /static/sbin/mkntfs.static ] && [ "$secpartstart" -gt 4294967295 ] ; then
+		ntfs-3g.static -o rw "${device}1" /lesslinux/data
+	else
+		mount -t vfat -o rw "${device}1" /lesslinux/data
+	fi
 	mount -t ext4 -o rw "${device}2" /lesslinux/boot
 	[ "$blobblocks" -gt 1 ] && mount -t ext4 -o relatime "${device}4" /lesslinux/blobpart
 	mount -t iso9660 -o ro "${device}8" /lesslinux/cdrom
