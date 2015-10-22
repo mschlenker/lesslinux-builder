@@ -166,6 +166,7 @@ done
 			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' .mozconfig 
 			sed -i 's%mk_add_options MOZ_OBJDIR%# mk_add_options MOZ_OBJDIR%g' .mozconfig 
+			sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' mozilla-release/.mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
