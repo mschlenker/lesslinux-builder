@@ -212,6 +212,10 @@ case $1 in
 	    install -m 0644 /etc/avira/avupdate.conf.lesslinux /AntiVirUpdate/avupdate.conf
 	    install -m 0644 /etc/avira/scancl.conf.lesslinux /AntiVir/scancl.conf
 	    
+	    if [ -f /AntiVir/install/vdf_fusebundle.zip ] ; then
+		[ /AntiVir/install/vdf_fusebundle.zip -nt /AntiVir/vbase000.vdf ] && ( cd /AntiVir ; unzip install/vdf_fusebundle.zip ) 
+	    fi
+	    
 	    if [ -f /AntiVir/hbedv.key ] ; then
 		echo "skipping key file"
 	    else
