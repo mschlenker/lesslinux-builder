@@ -4,9 +4,9 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 **Legacy: Yellow** Build with `--legacy` - this uses headers and kernels from the 3.18.x LTS series.
 
-**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Works mostly, need some fine tuning, only issues with applications using cogl (some Gnome games). Has been updated to kernel 4.1.1, but kernel configuration might receive some fine tuning. Minor issues with some games that use cogl and clutter.
+**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Works quite good, need some fine tuning. Has been updated to kernel 4.1.11, but kernel configuration might receive some fine tuning. Minor issues with some games that use cogl and clutter.
  
-**Unstable: Red** Build with `--unstable`.  Just stage02 files. No matching pkg_content yet!
+**Unstable: Red** Build with `--unstable`. No changes yet. Will soon be updated but with stage02 only.
 
 ## Checking out
 
