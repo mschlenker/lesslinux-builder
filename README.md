@@ -10,7 +10,7 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 ## Checking out
 
-Checking out under LessLinux Jabba Builds may fail due to missing certificates, use the command: 
+Checking out under older LessLinux Jabba Builds may fail due to missing certificates, use the command: 
 
 `git -c http.sslVerify=false clone https://github.com/mschlenker/lesslinux-builder` 
 
