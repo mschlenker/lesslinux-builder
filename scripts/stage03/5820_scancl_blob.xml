@@ -206,7 +206,7 @@ case $1 in
 	    
 	    if [ -f /AntiVir/install/vdf_fusebundle.zip ] ; then
 		if [ /AntiVir/install/vdf_fusebundle.zip -nt /AntiVir/vbase000.vdf ] ; then
-			( cd /AntiVir ; unzip install/vdf_fusebundle.zip )
+			( cd /AntiVir ; unzip -o install/vdf_fusebundle.zip )
 			touch /AntiVir/vbase000.vdf
 		fi
 	    fi
