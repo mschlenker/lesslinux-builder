@@ -113,7 +113,7 @@ case $1 in
 	    # Try this in case someone has copied the signatures here in order to update them on a 
 	    # Windows system.
 	    
-	    if mountpoint -q /lesslinux/scancl-blob ; then
+	    if [ "$forcecd" = false ] && mountpoint -q /lesslinux/scancl-blob ; then
 		echo "Antibot directory already mounted, skipping..."
 	    elif [ "$forcecd" = false ] ; then
 		devices=` cat /proc/partitions | awk '{print $4}' | grep -v '^name$' | grep '[a-z]$' `
@@ -146,7 +146,9 @@ case $1 in
 	    # Find Avira directories in BLOB partition - this should be the default location and it is used
 	    # as destination for freshly installed signatures:
 	   
-	   if [ "$forcecd" = false ] && mountpoint -q /lesslinux/blobpart ; then
+	    if [ "$forcecd" = false ] && mountpoint -q /lesslinux/scancl-blob ; then 
+		echo "Antibot directory already mounted, skipping..."
+	    elif [ "$forcecd" = false ] ; then
 		if [ -d /lesslinux/blobpart/scancl ] ; then
 			echo "Antibot directory already exists, skipping..."
 		else
@@ -166,12 +168,11 @@ case $1 in
 		avdir='/lesslinux/scancl-blob/scancl/antivir'
 		method='bind'	
 	    else
-		for d in cdrom isoloop toram ; do
+		for d in cdrom isoloop ; do
 			if [ -d /lesslinux/$d/scancl/antivir -a -d /lesslinux/$d/scancl/avupdate ] ; then
 				updir=/lesslinux/$d/scancl/avupdate
 				avdir=/lesslinux/$d/scancl/antivir
 				method='copy'
-				[ "$d" = toram ] && method='bind'
 			fi
 		done
 	    fi
@@ -189,7 +190,6 @@ case $1 in
 	    elif [ "$method" = "copy" ] ; then
 		tar -C "$avdir" -cvf - . | tar -C /AntiVir -xf -
 		chmod -R 0755 /AntiVir
-		[ "$avdir" = /lesslinux/toram/scancl/antivir ] && rm -rf "$avdir"
 	    fi
 	    
 	    for i in avupdate avupdate.bin avupdate_msg.avr ; do
