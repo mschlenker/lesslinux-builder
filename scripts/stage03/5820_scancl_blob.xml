@@ -107,9 +107,46 @@ case $1 in
 		forcecd=true
 	    fi
 	    
-	    # First try: 
-	    # Find Avira directories in BLOB partition
-	    if [ "$forcecd" = false ] && mountpoint -q /lesslinux/blobpart ; then
+	    # First try:
+	    # Find Avira directories on any first partition or superfloppy that is FAT or NTFS and is labelled 
+	    # USBDATA - this prevents us from mounting (broken) windows partitions!
+	    # Try this in case someone has copied the signatures here in order to update them on a 
+	    # Windows system.
+	    
+	    if mountpoint -q /lesslinux/scancl-blob ; then
+		echo "Antibot directory already mounted, skipping..."
+	    elif [ "$forcecd" = false ] ; then
+		devices=` cat /proc/partitions | awk '{print $4}' | grep -v '^name$' | grep '[a-z]$' `
+		for dev in $devices ; do
+			device=/dev/${dev}1
+			label=` blkid.static -o udev ${device} | grep ID_FS_LABEL_ENC | awk -F '=' '{print $2}' `
+			if [ -z "$label" ] ; then
+				device=/dev/${dev}
+				label=` blkid.static -o udev ${device} | grep ID_FS_LABEL_ENC | awk -F '=' '{print $2}' `
+			fi
+			if [ "$label" = "USBDATA" ] ; then
+				fstype=` blkid.static -o udev ${device} | grep FS_TYPE | awk -F '=' '{print $2}' `
+				case $fstype in 
+					[Ee][Xx][Ff][Aa][Tt]*)
+						echo "Ingnoring EXFAT for now"
+					;;
+					*[Ff][Aa][Tt]*)
+						mountpoint -q /lesslinux/scancl-blob || mount -t vfat -o rw,iocharset=utf8 ${device} /lesslinux/scancl-blob
+					;;
+					[Nn][Tt][Ff][Ss]*)
+						mountpoint -q /lesslinux/scancl-blob || mount -t ntfs-3g -o rw ${device} /lesslinux/scancl-blob
+					;;
+				esac
+				[ -d /lesslinux/scancl-blob/scancl ] || umount /lesslinux/scancl-blob > /dev/null 2>&1 
+			fi
+		done
+	    fi
+	    
+	    # Next try: 
+	    # Find Avira directories in BLOB partition - this should be the default location and it is used
+	    # as destination for freshly installed signatures:
+	   
+	   if [ "$forcecd" = false ] && mountpoint -q /lesslinux/blobpart ; then
 		if [ -d /lesslinux/blobpart/scancl ] ; then
 			echo "Antibot directory already exists, skipping..."
 		else
@@ -119,52 +156,7 @@ case $1 in
 		fi
 		mount --bind /lesslinux/blobpart /lesslinux/scancl-blob
 	    fi
-	    
-	    # Second try:
-	    # Find Avira directories on first partition of the boot drive - this should be VFAT
-	    
-	    if mountpoint -q /lesslinux/scancl-blob ; then
-		echo "Antibot directory already mounted, skipping..."
-	    elif [ "$forcecd" = false ] && cat /proc/mounts | grep '/lesslinux/cdrom' | awk '{print $1}' | grep -q '[1-9]$' ; then
-		sysdev=` cat /proc/mounts | grep '/lesslinux/cdrom' | awk '{print $1}' | grep -q '[1-9]$' `
-		rawdev=` echo -n $sysdev | sed 's/[1-9]$//g' `
-		fstype=` blkid.static -o udev ${rawdev}1 | grep FS_TYPE | grep fat `
-		if [ -n "$fstype" ] ; then
-			mount -t vfat -o rw,iocharset=utf8 ${rawdev}1 /lesslinux/scancl-blob
-		fi
-		[ -d /lesslinux/scancl-blob/scancl ] || umount /lesslinux/scancl-blob > /dev/null 2>&1 
-	    fi
-	    
-	    # Third try:
-	    # Find Avira directories on any first partition or any superfloppy that is FAT or NTFS
-	    # We might later further narrow this down to only USB or removable drives
-	    
-	    if mountpoint -q /lesslinux/scancl-blob ; then
-		echo "Antibot directory already mounted, skipping..."
-	    elif [ "$forcecd" = false ] ; then
-		devices=` cat /proc/partitions | awk '{print $4}' | grep -v '^name$' | grep '[a-z]$' `
-		for dev in $devices ; do
-			device=/dev/${dev}1
-			fstype=` blkid.static -o udev ${device} | grep FS_TYPE | awk -F '=' '{print $2}' `
-			if [ -z "$fstype" ] ; then
-				device=/dev/${dev}
-				fstype=` blkid.static -o udev ${device} | grep FS_TYPE | awk -F '=' '{print $2}' `
-			fi
-			case $fstype in 
-				[Ee][Xx][Ff][Aa][Tt]*)
-					echo "Ingnoring EXFAT for now"
-				;;
-				*[Ff][Aa][Tt]*)
-					mountpoint -q /lesslinux/scancl-blob || mount -t vfat -o rw,iocharset=utf8 ${device} /lesslinux/scancl-blob
-				;;
-				[Nn][Tt][Ff][Ss]*)
-					mountpoint -q /lesslinux/scancl-blob || mount -t ntfs-3g -o rw ${device} /lesslinux/scancl-blob
-				;;
-			esac
-			[ -d /lesslinux/scancl-blob/scancl ] || umount /lesslinux/scancl-blob > /dev/null 2>&1 
-		done
-	    fi
-	    
+	
 	    upddir=''
 	    avdir=''
 	    pdfdir=''
@@ -213,7 +205,10 @@ case $1 in
 	    install -m 0644 /etc/avira/scancl.conf.lesslinux /AntiVir/scancl.conf
 	    
 	    if [ -f /AntiVir/install/vdf_fusebundle.zip ] ; then
-		[ /AntiVir/install/vdf_fusebundle.zip -nt /AntiVir/vbase000.vdf ] && ( cd /AntiVir ; unzip install/vdf_fusebundle.zip ) 
+		if [ /AntiVir/install/vdf_fusebundle.zip -nt /AntiVir/vbase000.vdf ] ; then
+			( cd /AntiVir ; unzip install/vdf_fusebundle.zip )
+			touch /AntiVir/vbase000.vdf
+		fi
 	    fi
 	    
 	    if [ -f /AntiVir/hbedv.key ] ; then
