@@ -23,48 +23,7 @@ tar -C /lesslinux/cdrom -cf - Anleitungen  shutdown.bat | tar -C /lesslinux/data
 cp -v /lesslinux/cdrom/autorun.usb /lesslinux/data/autorun.inf 
 
 exit 0
-
-# Exit if the scancl folder does not exist on the ISO filesystem
-[ -d /lesslinux/cdrom/scancl ] || exit 0
-
-mkdir -p /lesslinux/data/scancl/Protokolle
-
-tar -C /lesslinux/cdrom/scancl -cf - antivir avupdate | tar -C /lesslinux/data/scancl -xf - 
-cp /etc/avira/avupdate.bat /lesslinux/data/scancl
-
-exit 0
-
-# Create a swap file
-freeblocks=` df -k /lesslinux/data | tail -n1 | awk '{print $4}' ` 
-# Swap files smaller than 256MB or larger than 1024MB do not make sense
-swapsize=0
-if [ "$freeblocks" -lt 393216 ] ; then
-	swapsize=0
-elif [ "$freeblocks" -gt 1572864 ] ; then
-	swapsize=1024
-else
-	swapsize=` expr $freeblocks / 1536 ` 
-fi
-if [ "$swapsize" -gt 0 ] ; then
-	echo '+++> Creating swap' > /dev/tty8
-	echo -n '0%' > /dev/tty8
-	lastct=` expr $swapsize - 1 ` 
-	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "Creating swap file - 0%" "" tty1
-	for i in ` seq 0 $lastct ` ; do
-		percentage=` expr ${i}00 / ${swapsize} `
-		printf '\033[10D' > /dev/tty8 
-		printf "${percentage}" > /dev/tty8
-		echo -n '%' > /dev/tty8
-		dd if=/dev/zero bs=1048576 count=1 seek=$i of=/lesslinux/data/scancl/swap.sys 
-		mod=` expr $i % 16 ` 
-		[ "$mod" -lt 1 ] && sync
-		[ "$mod" -lt 1 ] && [ "$ultraquiet" -gt 1 ] && genericpgbar $percentage 32 "$convert_head" "Creating swap file - ${percentage}%" "" tty1
-	done
-	printf '\033[10D' > /dev/tty8 
-	echo '100%' > /dev/tty8
-	[ "$ultraquiet" -gt 1 ] && genericpgbar 100 32 "$convert_head" "Creating swap file - 100%" "" tty1
-fi
-
+ 
 #		]]>
 		</scriptdata>
 		<scriptdata location="/etc/sudoers.lax.d/scancl-blob" mode="0440" group="0" owner="0">
