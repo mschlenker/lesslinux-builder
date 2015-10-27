@@ -4,7 +4,7 @@
 		class="user">
 	</package>
 	<scripts>
-		<!-- <scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0300-scancl-blob.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/lesslinux/branding/postisoconvert.d/0300-scancl-blob.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
@@ -23,6 +23,8 @@ export PATH
 [ -d /lesslinux/cdrom/scancl ] || exit 0
 
 mkdir -p /lesslinux/data/scancl/Protokolle
+tar -C /lesslinux/cdrom -cf - Anleitungen  shutdown.bat | tar -C /lesslinux/data -xf - 
+cp -v /lesslinux/cdrom/autorun.usb /lesslinux/data/autorun.inf 
 tar -C /lesslinux/cdrom/scancl -cf - antivir avupdate | tar -C /lesslinux/data/scancl -xf - 
 cp /etc/avira/avupdate.bat /lesslinux/data/scancl
 
@@ -60,7 +62,7 @@ if [ "$swapsize" -gt 0 ] ; then
 fi
 
 #		]]>
-		</scriptdata> -->
+		</scriptdata>
 		<scriptdata location="/etc/sudoers.lax.d/scancl-blob" mode="0440" group="0" owner="0">
 		<![CDATA[
 surfer  ALL = NOPASSWD: /AntiVir/scancl
