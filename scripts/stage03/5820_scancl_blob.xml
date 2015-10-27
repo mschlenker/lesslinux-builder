@@ -25,6 +25,9 @@ export PATH
 mkdir -p /lesslinux/data/scancl/Protokolle
 tar -C /lesslinux/cdrom -cf - Anleitungen  shutdown.bat | tar -C /lesslinux/data -xf - 
 cp -v /lesslinux/cdrom/autorun.usb /lesslinux/data/autorun.inf 
+
+exit 0
+
 tar -C /lesslinux/cdrom/scancl -cf - antivir avupdate | tar -C /lesslinux/data/scancl -xf - 
 cp /etc/avira/avupdate.bat /lesslinux/data/scancl
 
