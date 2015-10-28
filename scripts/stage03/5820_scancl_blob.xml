@@ -72,6 +72,38 @@ case $1 in
 		forcecd=true
 	    fi
 	    
+	    # Copy autorun.inf and stuff to make partition identifiable:
+	   
+	    if [ "$forcecd" = false ] && mountpoint -q /lesslinux/scancl-blob ; then
+		echo "scancl-blob directory already mounted, skipping..."
+	    elif [ "$forcecd" = false ] ; then
+		bootdev=` cat /var/run/lesslinux/install_source `
+		device=${bootdev%8}1
+		label=` blkid.static -o udev $device | grep ID_FS_LABEL_ENC | awk -F '=' '{print $2}' `
+		if [ "$label" = USBDATA ] ; then
+			fstype=` blkid.static -o udev $device | grep FS_TYPE | awk -F '=' '{print $2}' `
+			case $fstype in 
+				[Ee][Xx][Ff][Aa][Tt]*)
+					echo "Ingnoring EXFAT for now"
+				;;
+				*[Ff][Aa][Tt]*)
+					mountpoint -q /lesslinux/scancl-blob || mount -t vfat -o rw,iocharset=utf8 ${device} /lesslinux/scancl-blob
+				;;
+				[Nn][Tt][Ff][Ss]*)
+					mountpoint -q /lesslinux/scancl-blob || mount -t ntfs-3g -o rw ${device} /lesslinux/scancl-blob
+				;;
+			esac
+			for d in cdrom isoloop ; do
+				if [ -d /lesslinux/${d}/scancl ] && [ '!' -f /lesslinux/scancl-blob/autorun.inf ]  ; then
+					tar -C /lesslinux/${d} -cf -  Anleitungen  shutdown.bat | tar -C /lesslinux/scancl-blob -xf - 
+					cp -v /lesslinux/${d}/autorun.usb /lesslinux/scancl-blob/autorun.inf 
+				fi
+			done
+			sync
+			umount /lesslinux/scancl-blob
+		fi
+	    fi
+	    
 	    # First try:
 	    # Find Avira directories on any first partition or superfloppy that is FAT or NTFS and is labelled 
 	    # USBDATA - this prevents us from mounting (broken) windows partitions!
