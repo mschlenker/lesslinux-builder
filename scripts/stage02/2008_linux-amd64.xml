@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="4.1.11"
+		version="4.1.12"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,13 +19,13 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="e27eb6faec4928bd70635bbf16c3678010cdcd23">patch-4.1.11.xz</pkg>
+				<pkg sha1="b549dbacc7d8ed9c5f82637c4975ae7a1fd6572a">patch-4.1.12.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20151024" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20151028" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.1.12." />
+					<atext linktext="patch-4.1.15." />
 					<atext linktext="patch-4.1.13." />
 					<atext linktext="patch-4.1.14." />
 					<atext linktext="patch-4.2." />
