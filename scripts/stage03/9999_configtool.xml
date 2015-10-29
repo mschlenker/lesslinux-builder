@@ -174,6 +174,25 @@ esac
 		mkdir ${SQUASHFS}/usr/var/
 		]]>
 		</install>
+		<scripts>
+			<scriptdata location="/etc/xinitrc.d/0300-langsel.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+#lesslinux provides obmenu
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+ 
+case $1 in start)
+	 
+   ;;
+esac
+
+		]]>
+		</scriptdata>
+		</scripts>
 	</package>
 	
 </llpackages>
