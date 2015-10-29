@@ -186,8 +186,20 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
 . /etc/rc.subr/colors
  
 case $1 in start)
-	 
-   ;;
+	if [ "$UID" -lt 1 ] ; then
+		if [ "$nolangsel" -gt 0 -o -n "$xlocale" ] ; then
+			echo "Skipping language selection"
+		else
+			/usr/bin/ruby -I /usr/share/lesslinux/drivetools /usr/local/xconfgui/langselect.rb
+			. /etc/rc.subr/extractbootparams
+			if [ "$xkbmap" = "ru" ] ; then
+				setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+			else
+				setxkbmap -layout "$xkbmap"
+			fi
+		fi
+	fi
+;;
 esac
 
 		]]>
