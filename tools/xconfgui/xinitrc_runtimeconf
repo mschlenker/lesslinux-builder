@@ -58,14 +58,6 @@ for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	fi
 done
 
-# Terminal &
-
-xfsettingsd 
-( for n in ` seq 5 ` ; do
-	sleep 1
-	xfsettingsd --replace 
-done ) &
-
 if [ "$nolangsel" -gt 0 -o -n "$xlocale" ] ; then
 	echo "Skipping language selection"
 else
