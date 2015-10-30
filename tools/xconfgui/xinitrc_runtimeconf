@@ -15,6 +15,9 @@ mkdir -p -m 0600 /home
 [ -n "$xorgconf" ] && export xorgconf
 [ -n "$xorgscreen" ] && export xorgscreen
 
+/etc/xinitrc.d/0005-xrandr.sh start
+/etc/xinitrc.d/0020-xrdb.sh start
+
 if [ "$xkbmap" = "ru" ] ; then
 	setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
 else
