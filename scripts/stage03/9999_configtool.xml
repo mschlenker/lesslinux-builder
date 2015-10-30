@@ -143,6 +143,35 @@ esac
 	
 		]]>
 		</scriptdata>
+	<scriptdata location="/etc/xinitrc.d/0300-langsel.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+#lesslinux provides obmenu
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+		
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+ 
+case $1 in start)
+	if [ "$UID" -lt 1 ] ; then
+		if [ "$nolangsel" -gt 0 -o -n "$xlocale" ] ; then
+			echo "Skipping language selection"
+		else
+			/usr/bin/ruby -I /usr/share/lesslinux/drivetools /usr/local/xconfgui/langselect.rb
+			. /etc/rc.subr/extractbootparams
+			if [ "$xkbmap" = "ru" ] ; then
+				setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
+			else
+				setxkbmap -layout "$xkbmap"
+			fi
+		fi
+	fi
+;;
+esac
+
+		]]>
+		</scriptdata>
 	</scripts>  
 	<package name="xconfgui" version="20151030-00" allowfail="yes">
 		<sources>
@@ -174,37 +203,5 @@ esac
 		mkdir ${SQUASHFS}/usr/var/
 		]]>
 		</install>
-		<scripts>
-			<scriptdata location="/etc/xinitrc.d/0300-langsel.sh" mode="0755" group="0" owner="0">
-		<![CDATA[#!/bin/bash
-#lesslinux provides obmenu
-
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
-		
-. /etc/rc.defaults
-. /etc/rc.subr/extractbootparams
-. /etc/rc.subr/colors
- 
-case $1 in start)
-	if [ "$UID" -lt 1 ] ; then
-		if [ "$nolangsel" -gt 0 -o -n "$xlocale" ] ; then
-			echo "Skipping language selection"
-		else
-			/usr/bin/ruby -I /usr/share/lesslinux/drivetools /usr/local/xconfgui/langselect.rb
-			. /etc/rc.subr/extractbootparams
-			if [ "$xkbmap" = "ru" ] ; then
-				setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
-			else
-				setxkbmap -layout "$xkbmap"
-			fi
-		fi
-	fi
-;;
-esac
-
-		]]>
-		</scriptdata>
-		</scripts>
 	</package>
-	
 </llpackages>

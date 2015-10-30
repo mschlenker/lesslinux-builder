@@ -38,7 +38,6 @@ for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 		echo "Skipping $provides"
 	else
 		$i start
-		/usr/bin/Esetroot -scale /etc/lesslinux/branding/desktop.png
 		. /etc/rc.subr/extractbootparams
 	fi
 done
