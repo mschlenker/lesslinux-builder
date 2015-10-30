@@ -15,30 +15,12 @@ mkdir -p -m 0600 /home
 [ -n "$xorgconf" ] && export xorgconf
 [ -n "$xorgscreen" ] && export xorgscreen
 
-# Set DPI value 
-if [ -f /root/.lesslinux/xstuff.xrdb ] ; then
-	xrdb -merge /root/.lesslinux/xstuff.xrdb
-else
-	mkdir -p /root/.lesslinux
-	echo "Xft.dpi: ${dpi}" >> /root/.lesslinux/xstuff.xrdb
-	xrdb -merge /root/.lesslinux/xstuff.xrdb
-fi
-
 if [ "$xkbmap" = "ru" ] ; then
 	setxkbmap -layout us,ru -variant ,winkeys -option grp:alt_shift_toggle,grp_led:scroll
 else
 	setxkbmap -layout "$xkbmap"
 fi
-
-if xdpyinfo | grep -q -i composite ; then
-	compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
-	xcompmgr -c &
-fi
-
-if  [ -n "$xrandr" ] ; then
-	/usr/bin/xrandr --size "$xrandr"
-fi
-
+ 
 if [ "$RUNTIMECONFWM" = "icewm" ] ; then
 	echo 'ShowTaskBar=0' >> /root/.icewm/preferences 
 	icewm &

@@ -17,7 +17,7 @@ skipflash=0
 
 case $1 in 
     start)
-	compton -cCGbf 
+	compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
     ;;
 esac
 
