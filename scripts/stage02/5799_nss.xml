@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="nss"
-		version="3.20"
+		version="3.20.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="f5830e2db3303965abad66d9a3318a059c706387">nss-3.20.tar.gz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_20_RTM/src/</mirror>
+				<pkg sha1="6f123d05a8184cdc5ab4c903250f3c9b5b96dea4">nss-3.20.1.tar.gz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_20_1_RTM/src/</mirror>
 			</file>
 			<file>                                                                               
-				<pkg sha1="3b7d97361ab948a3fc1970f40e85cd615b065c6e">nss-3.20-standalone-1.patch</pkg>
+				<pkg sha1="3b7d97361ab948a3fc1970f40e85cd615b065c6e">nss-3.20.1-standalone-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="60" page="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/" />
+			<manualcheck date="20151104" interval="60" page="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
