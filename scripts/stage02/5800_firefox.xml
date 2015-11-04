@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="38.3.0esr"
+		version="38.4.0esr"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="57d2c255348ac13b6ffbb952c5e0d57757aa0290">firefox-38.3.0esr.source.tar.bz2</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/38.3.0esr/source/</mirror>
+				<pkg sha1="a6a74fbd517544be5af335023895616cb1c3a67e">firefox-38.4.0esr.source.tar.bz2</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/38.4.0esr/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -34,7 +34,7 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 			
-fftag=FIREFOX_38_3_0esr_RELEASE
+fftag=FIREFOX_38_4_0esr_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
@@ -43,7 +43,7 @@ done
 
 			-->
 			<file>                                    
-				<pkg sha1="d17e3a5e3852b64e4644e65df9566c7436c2a069">firefox-38.3.0esr.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="1c36bb8aeb2c655ba5d67579d2e7e0e0861b6c07">firefox-38.4.0esr.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20150826" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
