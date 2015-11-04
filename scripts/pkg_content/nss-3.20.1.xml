@@ -1,0 +1,294 @@
+<pkgdesc name='nss' version='3.20.1'>
+    <subpackage name='skel'>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/nss' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libnssutil3.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnsssysinit.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libfreebl3.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnss3.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libssl3.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libsmime3.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libsoftokn3.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnssckbi.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libnssdbm3.so' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/pk12util' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/certutil' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/nss/nssrenam.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/lowkeyti.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/crmf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ecl-exp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs11.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secasn1t.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckfwc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_lifecycle.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cmmfit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_system.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_publickey.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/crmfit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secutil.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssilock.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/templates.c' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/seccomon.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pki3hack.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_crl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/devtm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_resourcelimits.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_crldp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkixt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_results.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_colcertstore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/lgglue.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_logger.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_bytearray.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_list.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/softoknt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cmsreclist.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_cert.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_expirationchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_pki.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_certselector.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_nameconstraintschecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssilckt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/keyt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/sftkdbt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cryptohi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_mem.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secpkcs7.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nsspki.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pk11pub.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/jarfile.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckft.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ckfwm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_socket.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_namechainingchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_policychecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_httpdefaultclient.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/alghmac.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ckfwtm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssb64t.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_util.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/portreg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secoidt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs11ni.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cms.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssrwlkt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ocspresponse.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_procparams.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/base.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ckhelper.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cmst.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ldapt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkim.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secmod.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/sslproto.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_certchainchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pki.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs11f.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_tools.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ocspcertid.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/sslerr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_build.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secder.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs12.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secdig.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secmodt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secrng.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_certpolicymap.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secmpi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_object.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_certpolicyqualifier.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pk11table.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/utilrename.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_crlentry.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/preenc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssrwlk.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nsspkit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ssl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_params.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secpkcs5.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/blapi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_nsscontext.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssbase.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/devm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pk11sdr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/utilparst.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_common.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/dev3hack.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs11n.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/crmfi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_certstore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/sslt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ckmd.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_mutex.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ocspi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckbi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_signaturechecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cryptoht.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ec.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs11t.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_httpcertstore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/crmft.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pk11func.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_error.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/dev.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/basicutil.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_string.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cert.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_crlselector.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_basicconstraintschecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ocspt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ldapresponse.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/keythi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckfw.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/blapit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/baset.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ckfw.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkistore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_checker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ldapdefaultclient.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secerr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ecl-curve.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_verifynode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ck.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs11u.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/certi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/jar-ds.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkitm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_sample_modules.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_lifecycle.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssdev.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_infoaccess.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cmmft.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ldaprequest.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_basicconstraints.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_targetcertchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_primhash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secitem.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_comcertselparams.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secdigt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nsslowhash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs12t.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_certsel.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_ocspchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/softkver.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/certt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nsslocks.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ocsp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ciferfam.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/base64.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_ekuchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_policynode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_store.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/shsign.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ocsprequest.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ckt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_errorstrings.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ecl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/hmacct.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssck.api' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secdert.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_ldapcertstore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/devt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/utilpars.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/p12t.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_comcrlselparams.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_bigint.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_crlchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_revchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_revocationmethod.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs7t.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_revocationchecker.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secport.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cmmf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/key.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs11p.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssb64.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/hasht.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/sechash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/lowkeyi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssutil.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_pk11certstore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/softoken.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_valparams.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/genname.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/cmmfi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secoid.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_buildresult.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/smime.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssdevt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckmdt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_valresult.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pk11pqg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_oid.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_validate.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secmime.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/certdb.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_generalname.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pk11priv.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/jar.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/sdb.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/p12.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secasn1.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkcs1sig.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_x500name.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/certxutl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/ocspti.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_hashtable.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/p12plcy.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_date.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_aiamgr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nss.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/secmodi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_certpolicyinfo.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/utilmodt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckfwt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssbaset.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_crlsel.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/nssckepv.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_trustanchor.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/keyhi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_rwlock.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/xconst.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_monitorlock.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/nss/pkix_pl_nameconstraints.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/nss.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libcrmf.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/bin/nss-config' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libsoftokn3.chk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libfreebl3.chk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libnssdbm3.chk' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
+</pkgdesc>
