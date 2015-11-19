@@ -96,6 +96,7 @@ case $1 in
 			for d in cdrom isoloop ; do
 				if [ -d /lesslinux/${d}/scancl ] && [ '!' -f /lesslinux/scancl-blob/autorun.inf ]  ; then
 					tar -C /lesslinux/${d} -cf -  Anleitungen  shutdown.bat | tar -C /lesslinux/scancl-blob -xf - 
+					tar -C /lesslinux/${d} -cf -  SAD-Notfall-DVD.pdf  | tar -C /lesslinux/scancl-blob -xf - 
 					cp -v /lesslinux/${d}/autorun.usb /lesslinux/scancl-blob/autorun.inf 
 				fi
 			done
