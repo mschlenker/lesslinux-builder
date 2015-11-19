@@ -149,6 +149,7 @@ class BootdiskAssembly
 				# system( "rsync -vP " + @builddir + "/stage01/chroot/boot/vmlinuz-" + klong + " " + @builddir  + "/stage03/cdmaster/boot/isolinux/linux" )
 				system("rsync -avP "  + @builddir + "/stage03/squash/m" + kname + ".sqs " + @builddir  + "/stage03/cdmaster/lesslinux/" ) if File.exists?(@builddir + "/stage03/squash/m" + kname + ".sqs")
 				[ "l" + kname, "i" + kname + ".img" ].each { |r|
+					system("cat '#{@builddir}/stage03/cdmaster/boot/kernel/#{r}' >> '#{@builddir}/stage03/" + root.elements["brandshort"].text.strip + "-" + root.elements["updater/buildidentifier"].text.strip + @build_timestamp + ".raw'")
 					tmphash = Digest::SHA1.hexdigest(File.read(@builddir  + "/stage03/cdmaster/boot/kernel/" + r ))
 					boot_sha.write( tmphash.to_s + "  " + r  + "\n")
 				}
@@ -172,6 +173,7 @@ class BootdiskAssembly
 		# system( "rsync -vP ./bin/initramfs/home.img " + @builddir  + "/stage03/cdmaster/boot/isolinux/home.img" )
 		# [ "initram.img", "devs.img" ].each { |r|
 		[ "initram.img" ].each { |r|
+			system("cat '#{@builddir}/stage03/cdmaster/boot/kernel/#{r}' >> '#{@builddir}/stage03/" + root.elements["brandshort"].text.strip + "-" + root.elements["updater/buildidentifier"].text.strip + @build_timestamp + ".raw'")
 			tmphash = Digest::SHA1.hexdigest(File.read(@builddir  + "/stage03/cdmaster/boot/kernel/" + r ))
 			boot_sha.write( tmphash.to_s + "  " + r + "\n")
 		}
@@ -303,12 +305,22 @@ class BootdiskAssembly
 				" -eltorito-alt-boot " + 
 				" -e boot/efi/efi.img " + 
 				" -no-emul-boot " + 
-				" -isohybrid-gpt-basdat --modification-date=#{isomoddate}00 -V " + 
+				" -isohybrid-gpt-basdat --modification-date=#{isomoddate}01 -V " + 
 				root.elements["brandshort"].text.strip.upcase.gsub("-", "_") + 
 				" -o " + root.elements["brandshort"].text.strip + "-" +
 				root.elements["updater/buildidentifier"].text.strip + 
-				@build_timestamp + ".iso " + 
-				" -r cdmaster --sort-weight 0 / --sort-weight 1 /boot --sort-weight 2 /boot/efi --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
+				@build_timestamp + "-bootonly.iso " + 
+				" -r /boot=./cdmaster/boot --sort-weight 2 /boot/efi --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
+			puts xcomm
+			system xcomm
+			system "cat cdmaster/boot/efi/efi.img >> " + root.elements["brandshort"].text.strip + "-" +
+				root.elements["updater/buildidentifier"].text.strip + 
+				@build_timestamp + ".raw"
+			xcomm = "xdelta3 -9 -S djw -B 536870912 -s " +  root.elements["brandshort"].text.strip + "-" +
+				root.elements["updater/buildidentifier"].text.strip + 
+				@build_timestamp + ".raw " +  root.elements["brandshort"].text.strip + "-" +
+				root.elements["updater/buildidentifier"].text.strip + 
+				@build_timestamp + "-bootonly.iso cdmaster/boot/kickstart.xd3"
 			puts xcomm
 			system xcomm
 			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
@@ -320,12 +332,12 @@ class BootdiskAssembly
 				" -eltorito-alt-boot " + 
 				" -e boot/efi/efi.img " + 
 				" -no-emul-boot " + 
-				" -isohybrid-gpt-basdat --modification-date=#{isomoddate}01 -V " + 
+				" -isohybrid-gpt-basdat --modification-date=#{isomoddate}00 -V " + 
 				root.elements["brandshort"].text.strip.upcase.gsub("-", "_") + 
 				" -o " + root.elements["brandshort"].text.strip + "-" +
 				root.elements["updater/buildidentifier"].text.strip + 
-				@build_timestamp + "-bootonly.iso " + 
-				" -r /boot=./cdmaster/boot --sort-weight 2 /boot/efi --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
+				@build_timestamp + ".iso " + 
+				" -r cdmaster --sort-weight 0 / --sort-weight 1 /boot --sort-weight 2 /boot/efi --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
 			puts xcomm
 			system xcomm
 		else
