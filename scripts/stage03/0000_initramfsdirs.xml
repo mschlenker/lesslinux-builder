@@ -2660,9 +2660,11 @@ case $1 in
     else
       if [ "$dhcp" -gt 0 ] ; then
           printf "$bold===> Setting up early networking (DHCP/ethernet) $normal\n"
-	  for i in 0 1 2 3 4 5 6 7 8 9 ; do
-	      ifconfig eth${i} up > /dev/null 2>&1
-	      udhcpc -q -s /static/share/udhcpc/default.script -i eth${i} > /dev/null 2>&1 &
+	  sleep $dhcpwait 
+	  ifconfig | grep 'encap:Ethernet' | awk '{print $1}' | while read iface ; do
+	      ifconfig ${iface} up > /dev/null 2>&1
+	      sleep 1
+	      udhcpc -q -s /static/share/udhcpc/default.script -i ${iface} > /dev/null 2>&1 &
 	  done
 	  sleep $dhcpwait 
       else
