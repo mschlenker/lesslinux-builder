@@ -35,11 +35,11 @@
         <directory path='/usr/lib/freerdp' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-     <file path='/usr/lib/librdtk.so.1.1.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/librdtk.so.1.1.0' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libfreerdp-client.so.1.2.4' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libfreerdp.so.1.2.4' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libwinpr.so.1.1.0' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib/freerdp/libdrive-client.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/freerdp/libdrive-client.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/freerdp/libaudin-client.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/freerdp/libaudin-client-alsa.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/freerdp/libtsmf-client-alsa-audio.so' owner='0' group='0' mode='100755'/>
@@ -292,4 +292,16 @@
         <file path='/usr/lib/cmake/WinPR/WinPRTargets-release.cmake' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>
