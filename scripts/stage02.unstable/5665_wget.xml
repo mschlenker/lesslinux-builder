@@ -1,0 +1,76 @@
+<llpackages>
+	<package 
+		name="wget"
+		version="1.17"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                         
+				<pkg sha1="ebb8df8ee6a0c2d11be9e250cae55d8502bc1ee6">wget-1.17.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/wget/</mirror>
+			</file>
+			<manualcheck date="20151128" interval="180" page="http://ftp.gnu.org/gnu/wget/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/wget/">
+					<atext linktext="wget-1.17.1." />
+					<atext linktext="wget-1.17.2." />
+					<atext linktext="wget-1.17.3." />
+					<atext linktext="wget-1.17.4." />
+					<atext linktext="wget-1.22." />
+					<atext linktext="wget-1.18." />
+					<atext linktext="wget-1.19." />
+					<atext linktext="wget-1.20." />
+					<atext linktext="wget-1.21." />
+					<atext linktext="wget-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libidn</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+			<dep>gnutls</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --with-openssl=yes --with-ssl=openssl && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			echo 'ca-directory = /etc/ssl/certs' >> ${TGTDIR}/etc/wgetrc 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,90 @@
+<llpackages>
+	<package 
+		name="tiff"
+		version="4.0.6
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                     
+				<pkg sha1="280e27704eaca5f592b82e71ac0c78b87395e2de">tiff-4.0.6.tar.gz</pkg>
+				<mirror>ftp://ftp.remotesensing.org/pub/libtiff/</mirror>
+			</file>
+			<!-- <file>                     
+				<pkg sha1="1a2639dfc49cc219291f165a7580325e5e72bfe8">tiff-4.0.3-fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20151129" interval="365" page="ftp://ftp.remotesensing.org/pub/libtiff/" />
+			<check>
+				<page html="http://www.remotesensing.org/libtiff/">
+					<atext linktext="v4.0.9" />
+					<atext linktext="v4.0.10" />
+					<atext linktext="v4.0.11" />
+					<atext linktext="v4.0.12" />
+					<atext linktext="v4.0.7" />
+					<atext linktext="v4.0.8" />
+					<atext linktext="v4.1" />
+					<atext linktext="v4.2" />
+					<atext linktext="v5" />
+					<atext linktext="v6" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Mesa</dep><dep>glu</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			 <dep>imake</dep>
+			 <!-- <dep>jpegsrc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else 
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fixes-1.patch | patch -p1
+			]]> 
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

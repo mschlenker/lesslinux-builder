@@ -1,0 +1,118 @@
+<llpackages>
+	<package 
+		name="ffmpeg"
+		version="2.6.5"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="9bea77d53277b52f0857e41c9a3a7785078bcc8e">ffmpeg-2.6.5.tar.bz2</pkg>
+				<mirror>http://ffmpeg.org/releases/</mirror>
+			</file>
+			<manualcheck date="20151128" interval="60" page="http://ffmpeg.org/releases/" />
+			<check>
+				<page html="http://ffmpeg.org/releases/">
+					<atext linktext="ffmpeg-2.6.8." />
+					<atext linktext="ffmpeg-2.6.9." />
+					<atext linktext="ffmpeg-2.6.6." />
+					<atext linktext="ffmpeg-2.6.7." />
+					<atext linktext="ffmpeg-2.7." />
+					<atext linktext="ffmpeg-2.8." />
+					<atext linktext="ffmpeg-2.9." />
+					<atext linktext="ffmpeg-2.10." />
+					<atext linktext="ffmpeg-3." />
+				</page>
+			</check> 
+		</sources>
+		<builddeps>
+			<dep>alsa-lib</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>libXext</dep>
+                        <dep>libXv</dep>
+                        <dep>libXvMC</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			<dep>yasm</dep>
+			<dep>lzo</dep>
+			<dep>x264</dep>
+			<dep>distcc</dep>
+			<!-- <dep>qt-everywhere-opensource-src</dep> -->
+			<dep>opus</dep>
+			<dep>fdk-aac</dep>
+			<dep>lame</dep>
+			<dep>libass</dep>
+			<dep>libtheora</dep>
+			<dep>libvpx</dep>
+			<dep>libvorbis</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/-lflite"/-lflite -lasound"/' configure
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --prefix=/usr        \
+				--enable-gpl         \
+				--enable-version3    \
+				--enable-nonfree     \
+				--disable-static     \
+				--enable-shared      \
+				--disable-debug      \
+				--enable-libass      \
+				--enable-libfdk-aac  \
+				--enable-libmp3lame  \
+				--enable-libopus     \
+				--enable-libtheora   \
+				--enable-libvorbis   \
+				--enable-libvpx      \
+				--enable-libx264     \
+				--enable-x11grab
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount 
+			else
+				make  
+			fi
+			# gcc tools/qt-faststart.c -o tools/qt-faststart
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			# mkdir -p ${TGTDIR}/usr/bin
+			# install -v -m755    tools/qt-faststart ${TGTDIR}/usr/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
