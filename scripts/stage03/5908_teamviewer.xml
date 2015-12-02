@@ -28,9 +28,9 @@ case $1 in
 	elif [ -d /lesslinux/blob/teamviewer ] ; then
 		mount --bind  /lesslinux/blob/teamviewer /opt/teamviewer/teamviewer
 		mount -o loop /opt/teamviewer/teamviewer/tv_bin.sqs /opt/teamviewer/teamviewer/tv_bin
-	elif [ -f /lesslinux/blob/teamviewer_linux.tar.gz ] ; then
+	elif [ -f /lesslinux/blob/teamviewer_i386.tar.xz ] ; then
 		mount -t tmpfs -o mode=0755,size=256M tmpfs /opt/teamviewer
-		tar -C /opt/teamviewer -xvzf /lesslinux/blob/teamviewer_linux.tar.gz
+		tar -C /opt/teamviewer -xvf /lesslinux/blob/teamviewer_i386.tar.xz
 		chown -R root:root /opt/teamviewer
 		( cd /opt/teamviewer/teamviewer ; mksquashfs tv_bin tv_bin.sqs )
 		rm -rf /opt/teamviewer/teamviewer/tv_bin
