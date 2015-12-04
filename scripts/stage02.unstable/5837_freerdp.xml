@@ -58,6 +58,7 @@
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
 			<dep>cups</dep>
+			<dep>llvm</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -72,6 +73,7 @@ cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF -DWITH_CHANNELS=ON  -DWIT
 		<build>
 			<![CDATA[
 			cd FreeRDP
+			export CC=/usr/bin/clang 
 			cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=ON \
 				-DWITH_CHANNELS=ON  -DWITH_PCSC=ON -DWITH_JPEG=ON \
 				-DWITH_PULSE=OFF -DWITH_CUPS=ON -DWITH_WAYLAND=OFF \
