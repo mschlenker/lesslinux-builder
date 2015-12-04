@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="freerdp"
-		version="20151128"
+		version="20151204"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="7ab78c6e522e85feeab8bf4133a567cc80bdd7bb">FreeRDP-20151128.tar.bz2</pkg>
+				<pkg sha1="ee2524093e3db539a089341bb09233514847c71f">FreeRDP-20151204.tar.xz</pkg>
 				<mirror>http://cloud.github.com/downloads/FreeRDP/FreeRDP/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="60" page="http://pub.freerdp.com/releases/" />
+			<manualcheck date="20151204" interval="60" page="http://pub.freerdp.com/releases/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -61,7 +61,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/FreeRDP-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/FreeRDP-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<!--
@@ -72,15 +72,13 @@ cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF -DWITH_CHANNELS=ON  -DWIT
 		<build>
 			<![CDATA[
 			cd FreeRDP
-			# git checkout stable-1.1
-			cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF \
+			cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=ON \
 				-DWITH_CHANNELS=ON  -DWITH_PCSC=ON -DWITH_JPEG=ON \
 				-DWITH_PULSE=OFF -DWITH_CUPS=ON -DWITH_WAYLAND=OFF \
 				-DCHANNEL_URBDRC=ON -DWITH_SSE2=ON \
 				-DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release \
-				-DWITH_ALSA=ON -DWITH_CHANNELS=ON \
-				-DCMAKE_INSTALL_PREFIX=/usr .
-			# cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_PCSC=ON -DWITH_CUPS=ON .
+				-DWITH_ALSA=ON -DWITH_CHANNELS=ON -DWITH_X264=ON \
+				-DWITH_OSS=OFF -DCMAKE_INSTALL_PREFIX=/usr .
 			make -j3 VERBOSE=1 
 			]]>
 		</build>
