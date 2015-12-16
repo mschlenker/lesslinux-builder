@@ -3888,6 +3888,12 @@ case $1 in
 			    fi
 			done
 		    fi
+		    if [ '!' -f /var/run/lesslinux/cdfound ] && echo "$skipsearch" | grep -qv '|nbd|' ; then
+			testuuid=` blkid.static -o udev /dev/nbd0 | grep ID_FS_UUID= | awk -F '=' '{print $2}' ` 
+			if [ "$testuuid" = "$isouuid" ] ; then
+			    mount_and_check /dev/nbd0 iso9660 $skipisos
+			fi
+		    fi
 		    if [ '!' -f /var/run/lesslinux/cdfound ] && echo "$skipsearch" | grep -qv '|isohybrid|' ; then
 			cat /proc/partitions | awk '{print $4}' | grep -Ev 'loop|dm|[0-9]$|^$|name$' | while read devname ; do
 			    testuuid=` blkid.static -o udev /dev/${devname} | grep ID_FS_UUID= | awk -F '=' '{print $2}' ` 
