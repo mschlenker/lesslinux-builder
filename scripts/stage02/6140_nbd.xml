@@ -1,0 +1,41 @@
+<llpackages>
+	<package 
+		name="nbd"
+		version="3.12.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="e9ba5825ca7ce2585131ba2ab5698d9af29cb156">nbd-3.12.1.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/nbd/nbd/3.12.1/</mirror>
+			</file>
+			<manualcheck date="20151216" interval="90" page="http://downloads.sourceforge.net/project/nbd" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/nbd-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd nbd-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make -j4
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd nbd-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf nbd-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
