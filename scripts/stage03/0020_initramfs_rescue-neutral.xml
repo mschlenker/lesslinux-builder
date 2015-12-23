@@ -54,6 +54,9 @@ for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	fi
 done
 
+# If present the variable swap confuses conky...
+unset swap
+
 for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
 	sed -i 's/mmmm\.rb/mmmmng.sh/g' /home/surfer/${f} 
 done
