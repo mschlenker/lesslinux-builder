@@ -1,9 +1,12 @@
 <pkgdesc name='openssl' version='1.0.2e'>
     <subpackage name='skel'>
-        <softlink path='/etc/ssl/man/man3/SSL_CTX_use_serverinfo_file.3' owner='0' group='0'/>
-        <softlink path='/etc/ssl/man/man3/SSL_set1_param.3' owner='0' group='0'/>
-        <softlink path='/etc/ssl/man/man3/SSL_CTX_set1_param.3' owner='0' group='0'/>
-        <softlink path='/etc/ssl/man/man3/SSL_get0_param.3' owner='0' group='0'/>
+        <softlink path='/etc/ssl/man/man3/SSL_CTX_clear_extra_chain_certs.3' owner='0' group='0'/>
+        <softlink path='/etc/ssl/man/man3/BUF_strlcat.3' owner='0' group='0'/>
+        <softlink path='/etc/ssl/man/man3/EVP_SignInit_ex.3' owner='0' group='0'/>
+        <softlink path='/etc/ssl/man/man3/BUF_MEM_new_ex.3' owner='0' group='0'/>
+        <softlink path='/etc/ssl/man/man3/BUF_strndup.3' owner='0' group='0'/>
+        <softlink path='/etc/ssl/man/man3/BUF_memdup.3' owner='0' group='0'/>
+        <softlink path='/etc/ssl/man/man3/BUF_strlcpy.3' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
         <file path='/usr/lib/libcrypto.so.1.0.0' owner='0' group='0' mode='100555'/>
@@ -391,6 +394,7 @@
     </subpackage>
     <subpackage name='config'>
         <file path='/etc/ssl/man/man3/SSL_CTX_get0_param.3' owner='0' group='0' mode='100644'/>
+        <file path='/etc/ssl/man/man3/SSL_check_chain.3' owner='0' group='0' mode='100644'/>
         <file path='/etc/ssl/openssl.cnf' owner='0' group='0' mode='100644'/>
         <file path='/etc/ssl/misc/CA.pl' owner='0' group='0' mode='100755'/>
         <file path='/etc/ssl/misc/c_issuer' owner='0' group='0' mode='100755'/>
@@ -484,6 +488,7 @@
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'/>
+    <subpackage name='uncategorized'>
+    </subpackage>
     <subpackage name='ignore'/>
 </pkgdesc>
