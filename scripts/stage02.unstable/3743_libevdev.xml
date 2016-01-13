@@ -1,0 +1,88 @@
+<llpackages>
+	<package 
+		name="libevdev"
+		version="1.4.6"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                                
+				<pkg sha1="65466f8554411646d1cf8006cef861472ca2528b">libevdev-1.4.6.tar.xz</pkg>
+				<mirror>http://www.freedesktop.org/software/libevdev/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="180" page="http://www.freedesktop.org/software/libevdev/" />
+			<check>
+				<page html="http://www.freedesktop.org/software/libevdev/">
+					<atext linktext="libevdev-1.4.10" />
+					<atext linktext="libevdev-1.4.11" />
+					<atext linktext="libevdev-1.4.12" />
+					<atext linktext="libevdev-1.4.13" />
+					<atext linktext="libevdev-1.4.7" />
+					<atext linktext="libevdev-1.4.8" />
+					<atext linktext="libevdev-1.4.9" />
+					<atext linktext="libevdev-1.5" />
+					<atext linktext="libevdev-1.6" />
+					<atext linktext="libevdev-1.7" />
+					<atext linktext="libevdev-1.8" />
+					<atext linktext="libevdev-2" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libpciaccess</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				bash autogen.sh
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				bash autogen.sh
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
