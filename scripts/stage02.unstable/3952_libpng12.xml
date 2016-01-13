@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="libpng12"
+		version="1.2.56"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                       
+				<pkg sha1="29027aeca860048936ebbaec6cdae1148fe05698">libpng-1.2.56.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libpng/libpng12/1.2.56/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="120" page="http://sourceforge.net/projects/libpng/files/libpng12/" />
+			<check>
+				<page html="http://sourceforge.net/projects/libpng/files/libpng12/">
+					<atext linktext="1.2.59" />
+					<atext linktext="1.2.60" />
+					<atext linktext="1.2.57" />
+					<atext linktext="1.2.58" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/libpng-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd libpng-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr/compat.old   CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr/compat.old 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd libpng-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf libpng-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
