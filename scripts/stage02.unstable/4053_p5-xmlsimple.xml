@@ -1,0 +1,57 @@
+<llpackages>
+	<package 
+		name="p5-xml-simple"
+		version="2.21"
+		class="lib">
+		<license>GPLv2</license>
+		<sources>
+			<file> 
+				<pkg sha1="39fd657a184ff7676252875d2ac69e6be765f6ec">XML-Simple-2.21.tar.gz</pkg>
+				<mirror>http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="365" page="http://ftp.gwdg.de/pub/languages/perl/CPAN/authors/id/G/GR/GRANTM/" />
+			<check>
+				<page html="http://ftp.gwdg.de/pub/languages/perl/CPAN/authors/id/G/GR/GRANTM/">
+					<atext linktext="XML-Simple-2.22." />
+					<atext linktext="XML-Simple-2.23." />
+					<atext linktext="XML-Simple-2.24." />
+					<atext linktext="XML-Simple-2.25." />
+					<atext linktext="XML-Simple-2.30." />
+					<atext linktext="XML-Simple-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/XML-Simple-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd XML-Simple-${PKGVERSION}
+			/usr/bin/perl Makefile.PL 
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd XML-Simple-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf XML-Simple-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
