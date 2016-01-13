@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="cairo-dock-plugins"
-		version="3.4.0"
+		version="3.4.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                             
-				<pkg sha1="b603f96ba7c48eb0bc4248d8b344f6868ef509ed">cairo-dock-plugins-3.4.0.tar.gz</pkg>
-				<mirror>https://launchpad.net/cairo-dock-plug-ins/3.4/3.4.0/+download/</mirror>
+				<pkg sha1="b205504e1013d87f378cfbd288ced177868b42bd">cairo-dock-plug-ins-3.4.1.tar.gz</pkg>
+				<mirror>https://launchpad.net/cairo-dock-plug-ins/3.4/3.4.1/+download/</mirror>
 			</file>
 			<!-- <file>                                                                             
 				<pkg sha1="7d27fa541e07fe042b5659714eb868ca81adc14d">cairo-dock-plugins-3.3.2-bsd.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
+			</file>
 			<manualcheck date="20150823" interval="180" page="http://glx-dock.org/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
@@ -26,7 +26,7 @@
 					<atext href="cairo-dock-plugins-3.5." />
 					<atext href="cairo-dock-plugins-3.6." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		 <builddeps>
 			<dep>M2Crypto</dep>
@@ -83,7 +83,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xzf ${SRCDIR}/cairo-dock-plug-ins-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<!-- <patch>

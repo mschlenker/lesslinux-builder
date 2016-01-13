@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="icu"
-		version="55.1"
+		version="56.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                   
-				<pkg sha1="3bb301c11be0e239c653e8aa2925c53f6f4dc88d">icu4c-55_1-src.tgz</pkg>
-				<mirror>http://download.icu-project.org/files/icu4c/55.1/</mirror>
+				<pkg sha1="e4494ce9425c469f138bb6e1ae06faf7fa0cf3de">icu4c-56_1-src.tgz</pkg>
+				<mirror>http://download.icu-project.org/files/icu4c/56.1/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="180" page="http://download.icu-project.org/files/icu4c/" />
+			<manualcheck date="20151128" interval="180" page="http://download.icu-project.org/files/icu4c/" />
 			<check>
 				<page html="http://download.icu-project.org/files/icu4c/">
-					<atext linktext="55.2/" />
-					<atext linktext="55.3/" />
-					<atext linktext="55.4/" />
-					<atext linktext="56." />
+					<atext linktext="56.2/" />
+					<atext linktext="56.3/" />
+					<atext linktext="56.4/" />
 					<atext linktext="57." />
 					<atext linktext="58." />
+					<atext linktext="59." />
 				</page>
 			</check>
 			<!-- <check>
@@ -51,7 +51,7 @@
                 </builddeps> 
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/icu4c-55_1-src.tgz
+			tar xzf ${SRCDIR}/icu4c-56_1-src.tgz
 			]]>
 		</unpack>
 		<patch />

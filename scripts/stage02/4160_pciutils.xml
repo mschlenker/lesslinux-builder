@@ -1,31 +1,23 @@
 <llpackages>
 	<package 
 		name="pciutils"
-		version="3.3.1"
+		version="3.4.0"
 		class="lib">
 		<license>GPLv2</license>
 		<sources>
 			<file>                
-				<pkg sha1="5000951f1c77495e32472da0ccf825487ea8dca1">pciutils-3.3.1.tar.xz</pkg>
+				<pkg sha1="7c868b69cc8dfa6d5653e81c1a945779d6eac999">pciutils-3.4.0.tar.xz</pkg>
 				<mirror>http://ftp.kernel.org/pub/software/utils/pciutils/</mirror>
 			</file>
-			<file>                           
-				<pkg sha1="181e0bbffbd2149a799d5f6f7d9bbea7a09dc56d">pciids-20150531.bz2</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<!--<file>            
-				<pkg sha1="7d6db83ae8a5cfd61cb4e715b9315792b7e7b15f">pciids-20090321.bz2</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>-->
-			<manualcheck date="20150531" interval="180" page="http://ftp.kernel.org/pub/software/utils/pciutils/" />
+			<manualcheck date="20151128" interval="180" page="http://ftp.kernel.org/pub/software/utils/pciutils/" />
 			<check>
 				<page html="rsync://ftp.kernel.org/pub/software/utils/pciutils/">
-					<atext linktext="pciutils-3.3.2." />
-					<atext linktext="pciutils-3.3.3." />
-					<atext linktext="pciutils-3.3.4." />
-					<atext linktext="pciutils-3.3.5." />
-					<atext linktext="pciutils-3.4." />
-					<atext linktext="pciutils-3.5" />
+					<atext linktext="pciutils-3.4.2." />
+					<atext linktext="pciutils-3.4.3." />
+					<atext linktext="pciutils-3.4.4." />
+					<atext linktext="pciutils-3.4.1." />
+					<atext linktext="pciutils-3.5." />
+					<atext linktext="pciutils-3.6" />
 					<atext linktext="pciutils-4." />
 					<atext linktext="pciutils-5" />
 				</page>

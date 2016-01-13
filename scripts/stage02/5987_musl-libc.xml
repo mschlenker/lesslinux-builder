@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="musl"
-		version="1.1.10"
+		version="1.1.12"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="6c163e5612376008b42e03352708b39b65a1d477">musl-1.1.10.tar.gz</pkg>
+				<pkg sha1="e098ce88e7dd4398c178240b4c380771c5b4fe6b">musl-1.1.12.tar.gz</pkg>
 				<mirror>http://www.musl-libc.org/releases/</mirror>
 			</file>
-			<manualcheck date="20150611" interval="60" page="http://www.musl-libc.org/download.html" />
+			<manualcheck date="20151128" interval="60" page="http://www.musl-libc.org/download.html" />
 			<check>
 				<page html="http://www.musl-libc.org/releases/">
-					<atext linktext="musl-1.1.11." />
-					<atext linktext="musl-1.1.12." />
+					<atext linktext="musl-1.1.16." />
+					<atext linktext="musl-1.1.17." />
 					<atext linktext="musl-1.1.13." />
 					<atext linktext="musl-1.1.14." />
 					<atext linktext="musl-1.1.15." />
