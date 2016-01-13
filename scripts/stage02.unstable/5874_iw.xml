@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="iw"
+		version="4.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="1ca0cbf00c99069b7445507cddf6f7f4d227b097">iw-4.3.tar.xz</pkg>
+				<mirror>http://kernel.org/pub/software/network/iw/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="90" page="http://www.kernel.org/pub/software/network/iw" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/software/network/iw/">
+					<atext linktext="iw-4.3.1." />
+					<atext linktext="iw-4.3.2." />
+					<atext linktext="iw-4.3.3." />
+					<atext linktext="iw-4.7." />
+					<atext linktext="iw-4.8." />
+					<atext linktext="iw-4.4." />
+					<atext linktext="iw-4.5." />
+					<atext linktext="iw-4.6." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+			<dep>crda</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>libnl</dep><dep>libnl3</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
