@@ -6,7 +6,7 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 **Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Works quite good, need some fine tuning. Has been updated to kernel 4.1.11, but kernel configuration might receive some fine tuning. Still minor issues with some games that use cogl and clutter.
  
-**Unstable: Yellow** Build with `--unstable`. Currently only minor updates relative to stable, should not result in problems
+**Unstable: Red** Build with `--unstable`. Currently only minor updates relative to stable, but no matching package content, not deeply tested
 
 ## Checking out
 
