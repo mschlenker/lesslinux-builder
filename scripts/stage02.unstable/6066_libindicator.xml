@@ -58,7 +58,7 @@
         <build>
             <![CDATA[
 	    
-cd libindicator_12.10.2+16.04.20151208
+cd libindicator-12.10.2+16.04.20151208
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 sed -i 's/-Werror//g' Makefile
 sed -i 's/-Werror//g' tests/Makefile
@@ -68,12 +68,12 @@ make
 ]]>
         </build>
         <install>
-            <![CDATA[cd libindicator_12.10.2+16.04.20151208
+            <![CDATA[cd libindicator-12.10.2+16.04.20151208
 make install DESTDIR=${TGTDIR} 
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf libindicator_12.10.2+16.04.20151208
+            <![CDATA[rm -rf libindicator-12.10.2+16.04.20151208
 ]]>
         </clean>
     </package>
