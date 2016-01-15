@@ -52,7 +52,7 @@
                 </builddeps>
         <unpack>
             <![CDATA[
-tar xf  ${SRCDIR}/ido_13.10.0+15.10.20151002.orig.tar.gz	    
+tar xzf  ${SRCDIR}/ido_13.10.0+15.10.20151002.orig.tar.gz
 ]]>
         </unpack>
         <!-- <patch>
@@ -63,7 +63,7 @@ tar xf  ${SRCDIR}/ido_13.10.0+15.10.20151002.orig.tar.gz
 	</patch> -->
         <build>
             <![CDATA[
-cd ido-13.10.0+15.10.20151002 
+cd ido-13.10.0+15.10.20151002
 bash autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 sed -i 's/-Werror//g' example/Makefile
