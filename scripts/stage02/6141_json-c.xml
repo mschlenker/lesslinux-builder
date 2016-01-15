@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='json-c' version='0.12' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='5580aad884076c219d41160cbd8bc12213d12c37'>
+                    json-c-0.12.tar.gz
+                </pkg>
+                <mirror>
+                    https://s3.amazonaws.com/json-c_releases/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20160115' interval='60' mirror='https://s3.amazonaws.com/json-c_releases/releases/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

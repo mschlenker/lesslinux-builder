@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='pulseaudio' version='7.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='dc35a8aa66c513ac989319e13a18e317d8e432b3'>
+                    pulseaudio-7.1.tar.xz
+                </pkg>
+                <mirror>
+                    http://freedesktop.org/software/pulseaudio/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20160115' interval='60' mirror='http://freedesktop.org/software/pulseaudio/releases/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
