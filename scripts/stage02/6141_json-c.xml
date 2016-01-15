@@ -22,6 +22,7 @@
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+find . -type f -name Makefile -exec sed -i 's/-Werror//g' {} \; 
 make
 ]]>
         </build>
