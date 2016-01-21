@@ -154,7 +154,7 @@ done
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
-			# mv mozilla-esr38 mozilla-release
+			mv firefox-${PKGVERSION} mozilla-release
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/firefox-${PKGVERSION}.source.de-es-pl-ru.tar.xz
 			]]>
