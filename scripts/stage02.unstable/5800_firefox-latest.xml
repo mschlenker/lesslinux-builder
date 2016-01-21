@@ -153,7 +153,7 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.bz2
+			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			# mv mozilla-esr38 mozilla-release
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/firefox-${PKGVERSION}.source.de-es-pl-ru.tar.xz
