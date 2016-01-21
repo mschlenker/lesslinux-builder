@@ -60,7 +60,7 @@
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-find . -type f -exec sed -i 's/lglib-2.0-lm/lglib-2.0 -lm/g' {} \; 
+find . -type f -exec sed -i 's/lglib-2\.0-lm/lglib-2.0 -lm/g' {} \; 
 sed -i 's/-Werror//g' Makefile
 sed -i 's/-Werror//g' tests/Makefile
 sed -i 's/-Werror//g' tools/Makefile
