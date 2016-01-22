@@ -101,7 +101,7 @@ skipflash=0
 [ -f /etc/default/browser ] && . /etc/default/browser
 
 expiration=20130101
-ffversion=` grep -E '\sfirefox\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
+ffversion=` grep -E '\sfirefox-latest\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
 shortversion=` echo $ffversion | sed 's%esr%%g' ` 
 
 case $1 in 
