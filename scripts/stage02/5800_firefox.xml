@@ -265,7 +265,7 @@ fi
 FFRUN
 
 rm ${TGTDIR}/usr/bin/firefox
-ln -sf /usr/bin/firefox-${PKGVERSION} ${TGTDIR}/usr/bin/firefox
+# ln -sf /usr/bin/firefox-${PKGVERSION} ${TGTDIR}/usr/bin/firefox
 chmod a+rx ${TGTDIR}/usr/bin/firefox-${PKGVERSION}
 
 echo -n '' > ${TGTDIR}/opt/firefox-${PKGVERSION}/firefox_smack
