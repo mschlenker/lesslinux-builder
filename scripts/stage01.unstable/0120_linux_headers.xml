@@ -1,9 +1,7 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="4.1.17"
-		class="devel"
-		install="destdir">
+		version="4.1.17">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
@@ -26,8 +24,6 @@
 				</page>
 			</check>
 		</sources>
-		<builddeps>
-		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
@@ -40,7 +36,9 @@
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
-			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
+				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			fi
 			cd ..
 			mv -v linux-${major}.${minor} linux-${PKGVERSION}
 			
@@ -48,28 +46,19 @@
 		</patch>
 		<build>
 			<![CDATA[ 
-			
 			cd linux-${PKGVERSION}
-			make mrproper
-			
+			make headers_check
 			]]>
 		</build>
-		<test />
 		<install>
 			<![CDATA[
 			
+			mkdir -p /tools/include
 			cd linux-${PKGVERSION}
 			make INSTALL_HDR_PATH=dest headers_install
-			find dest/include \( -name .install -o -name ..install.cmd \) -delete
-			mkdir -p ${TGTDIR}/usr/include
-			cp -rv dest/include/* ${TGTDIR}/usr/include
+			cp -rv dest/include/* /tools/include
 			
 			]]>
 		</install>
-		<clean>
-			<![CDATA[
-			rm -rf linux-${PKGVERSION}
-			]]>
-		</clean>
 	</package>
 </llpackages>
