@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='bridge-utils' version='1.5' install='chroot'>
+    <package name='bridge-utils' version='1.5' install='destdir'>
         <license>
             unknown
         </license>
@@ -40,7 +40,7 @@
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	    make install
+	    make install DESTDIR=${TGTDIR}
 ]]>
         </install>
         <clean>
