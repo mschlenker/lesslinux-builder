@@ -1,0 +1,52 @@
+<llpackages>
+    <package name='bridge-utils' version='1.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='19d2a58cd3a70f971aa931b40256174a847e60d6'>
+                    bridge-utils-1.5.tar.gz
+                </pkg>
+                <mirror>
+                    http://downloads.sourceforge.net/project/bridge/bridge/
+                </mirror>
+            </file>
+	     <file>
+                <pkg sha1='c1d5740435f8500c7ff3117cf4a9f3a2dcbb9a84'>
+                    bridge-utils-1.5-linux_3.8_fix-1.patch
+                </pkg>
+                <mirror>
+                    http://www.linuxfromscratch.org/patches/blfs/svn/
+                </mirror>
+            </file>
+            <manualcheck date='20160226' interval='60' mirror='http://downloads.sourceforge.net/project/bridge/bridge/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch>
+	<build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-linux_3.8_fix-1.patch | patch -p1
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+		autoconf -o configure configure.in
+		./configure --prefix=/usr  
+		make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
