@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="4.1.17">
+		version="4.1.21">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
@@ -9,15 +9,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="975ce6ae4073945acaf35715918c3c3853eda855">patch-4.1.17.xz</pkg>
+				<pkg sha1="da6d649671cb95d54744d5846642e476c9c829e0">patch-4.1.21.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20160201" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20160406" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.1.19." />
-					<atext linktext="patch-4.1.20." />
-					<atext linktext="patch-4.1.18." />
+					<atext linktext="patch-4.1.22." />
+					<atext linktext="patch-4.1.23." />
+					<atext linktext="patch-4.1.24." />
 					<atext linktext="patch-4.2." />
 					<atext linktext="patch-4.3." />
 					<atext linktext="patch-4.4." />
