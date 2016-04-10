@@ -174,6 +174,7 @@ done
 			sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
 			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
 			sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' mozilla-release/.mozconfig 
+			sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' mozilla-release/.mozconfig 
 			echo 'ac_add_options --disable-gconf' >> mozilla-release/.mozconfig 
 			cd mozilla-release
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
