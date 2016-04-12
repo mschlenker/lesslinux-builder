@@ -1,0 +1,97 @@
+<llpackages>
+	<package 
+		name="openvas-libraries"
+		version="8.0.7"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="d3870e5fc2eee583b6c7d01c320f53206cd16b6a">openvas-libraries-8.0.7.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2291/</mirror>
+			</file>
+			<file>            
+				<pkg sha1="917913955040e5a312178f838c71ef74645dac6b">openvas-check-setup-20140930.sh</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>            
+				<pkg sha1="b648a78569fa076c2f56c40e404d604330899030">lesslinux-openvas-20150929-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20160412" interval="90" page="http://www.openvas.org/install-source.html" />
+			<check>
+				<page html="http://www.openvas.org/install-source.html">
+					<atext href="openvas-libraries-8.0.10." />
+					<atext href="openvas-libraries-8.0.11." />
+					<atext href="openvas-libraries-8.0.12." />
+					<atext href="openvas-libraries-8.0.13." />
+					<atext href="openvas-libraries-9.0." />
+					<atext href="openvas-libraries-9.1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+                        <dep>gpgme</dep>
+                        <dep>grep</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libpcap</dep>
+                        <dep>libssh</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>subversion</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>gcc49</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/lesslinux-openvas-20150929-00.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			find nasl -type f -exec sed -i 's/-Werror/ /g' {} \;
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/applications
+			install -m 0755 ${SRCDIR}/openvas-check-setup-20140930.sh ${TGTDIR}/usr/bin/openvas-check-setup
+			install -m 0755 ../openvas/openvas-wrapper.sh ${TGTDIR}/usr/bin/openvas-wrapper
+			install -m 0755 ../openvas/openvas-headless.sh ${TGTDIR}/usr/bin/
+			install -m 0755 ../openvas/openvas-wrapper.rb ${TGTDIR}/usr/bin/
+			install -m 0755 ../openvas/openvas.desktop ${TGTDIR}/usr/share/applications/
+			mkdir -p ${TGTDIR}/usr/var/lib/openvas
+			mkdir -p ${TGTDIR}/usr/var/log/openvas
+			touch ${TGTDIR}/usr/var/lib/openvas/.keep_this_directory
+			touch ${TGTDIR}/usr/var/log/openvas/.keep_this_directory
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
