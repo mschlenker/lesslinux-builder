@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='redis' version='3.0.7' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e56b4b7e033ae8dbf311f9191cf6fdf3ae974d1c'>
+                    redis-3.0.7.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.redis.io/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20160412' interval='60' mirror='http://download.redis.io/releases/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make PREFIX=/usr 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install PREFIX=/usr 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
