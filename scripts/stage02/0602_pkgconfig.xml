@@ -1,28 +1,22 @@
 <llpackages>
 	<package 
 		name="pkg-config"
-		version="0.28"
+		version="0.29"
 		class="devel"
 		install="destdir">
-		<!--
-		
-		BE CAREFUL! pkg-config 0.24 breaks Xorg xf86-video-ati and xf86-video-nv as of 2010-05-26
-		So for now keep version 0.23 and wait for 0.25
-		
-		-->
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                  
-				<pkg sha1="71853779b12f958777bffcb8ca6d849b4d3bed46">pkg-config-0.28.tar.gz</pkg>
+				<pkg sha1="f4b19d203b3896a4293af4b62c7f908063c88a5a">pkg-config-0.29.tar.gz</pkg>
 				<mirror>http://pkgconfig.freedesktop.org/releases/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://people.freedesktop.org/~dbn/" />
+			<manualcheck date="20160113" interval="365" page="http://people.freedesktop.org/~dbn/" />
 			<check>
 				<page html="http://pkgconfig.freedesktop.org/releases/">
-					<atext linktext="pkg-config-0.28.1.t" />
-					<atext linktext="pkg-config-0.28.2.t" />
-					<atext linktext="pkg-config-0.29.t" />
+					<atext linktext="pkg-config-0.29.1.t" />
+					<atext linktext="pkg-config-0.29.2.t" />
 					<atext linktext="pkg-config-0.30.t" />
+					<atext linktext="pkg-config-0.31.t" />
 					<atext linktext="pkg-config-1." />
 				</page>
 			</check>

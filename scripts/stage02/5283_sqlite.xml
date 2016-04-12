@@ -1,32 +1,35 @@
 <llpackages>
 	<package 
 		name="sqlite"
-		version="3.9.2.0"
+		version="3.10.2.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                             
-				<pkg sha1="dae1ae5297fece9671ae0c434a7ecd0cda09c76a">sqlite-autoconf-3090200.tar.gz</pkg>
-				<mirror>http://sqlite.org/2015/</mirror>
+				<pkg sha1="ea4156fc3f6a4a4a2752a5a3ac5c5b3fe7e1a24b">sqlite-autoconf-3100200.tar.gz</pkg>
+				<mirror>http://sqlite.org/2016/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="90" page="http://www.sqlite.org/" />
+			<manualcheck date="20160125" interval="90" page="http://www.sqlite.org/" />
 			<check>
 				<page html="http://sqlite.org/download.html">
-					<atext linktext="sqlite-autoconf-30902001" />
-					<atext linktext="sqlite-autoconf-3090201" />
-					<atext linktext="sqlite-autoconf-3090202" />
-					<atext linktext="sqlite-autoconf-3090203" />
-					<atext linktext="sqlite-autoconf-3090204" />
-					<atext linktext="sqlite-autoconf-3090205" />
-					<atext linktext="sqlite-autoconf-3090206" />
-					<atext linktext="sqlite-autoconf-3090207" />
-					<atext linktext="sqlite-autoconf-3090208" />
-					<atext linktext="sqlite-autoconf-3090209" />
-					<atext linktext="sqlite-autoconf-30903" />
-					<atext linktext="sqlite-autoconf-30904" />
-					<atext linktext="sqlite-autoconf-31" />
-					<atext linktext="sqlite-autoconf-32" />
+					<atext linktext="sqlite-autoconf-31002001" />
+					<atext linktext="sqlite-autoconf-3100201" />
+					<atext linktext="sqlite-autoconf-3100202" />
+					<atext linktext="sqlite-autoconf-3100203" />
+					<atext linktext="sqlite-autoconf-3100204" />
+					<atext linktext="sqlite-autoconf-3100205" />
+					<atext linktext="sqlite-autoconf-3100206" />
+					<atext linktext="sqlite-autoconf-3100207" />
+					<atext linktext="sqlite-autoconf-3100208" />
+					<atext linktext="sqlite-autoconf-3100209" />
+					<atext linktext="sqlite-autoconf-31003" />
+					<atext linktext="sqlite-autoconf-31004" />
+					<atext linktext="sqlite-autoconf-31005" />
+					<atext linktext="sqlite-autoconf-31006" />
+					<atext linktext="sqlite-autoconf-311" />
+					<atext linktext="sqlite-autoconf-312" />
+					<atext linktext="sqlite-autoconf-313" />
 					<atext linktext="sqlite-autoconf-4" />
 				</page>
 			</check>
@@ -50,21 +53,21 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3090200.tar.gz
+			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3100200.tar.gz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3090200
+			cd ${PKGNAME}-autoconf-3100200
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which pump ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				CFLAGS="-DSQLITE_ENABLE_COLUMN_METADATA=1 -g -O2 -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_SECURE_DELETE=1 " ./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				CFLAGS="-DSQLITE_ENABLE_COLUMN_METADATA=1 -g -O2 -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_SECURE_DELETE=1 " ./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				CFLAGS="-DSQLITE_ENABLE_COLUMN_METADATA=1 -g -O2 -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_SECURE_DELETE=1 " ./configure --sysconfdir=/etc --prefix=/usr 
+				CFLAGS="-DSQLITE_ENABLE_COLUMN_METADATA=1 -g -O2 -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_SECURE_DELETE=1 " ./configure --sysconfdir=/etc --prefix=/usr 
 				make
 			fi
 			]]>
@@ -72,13 +75,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3090200
+			cd ${PKGNAME}-autoconf-3100200
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-autoconf-3090200
+			rm -rf ${PKGNAME}-autoconf-3100200
 			]]>
 		</clean>
 	</package>

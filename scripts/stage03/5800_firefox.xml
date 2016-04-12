@@ -51,7 +51,6 @@ skipflash=0
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
 
-expiration=20130830
 ffversion=` grep -E '\sfirefox\s' /etc/lesslinux/pkglist.txt | awk '{print $3}' ` 
 
 case $1 in 
@@ -63,6 +62,7 @@ case $1 in
 	done
 	[ "$security" '!=' "smack" ] || install -m 0755 /usr/bin/dbus-launch /static/bin/
 	mount -t tmpfs -o mode=0755,size=24m,nodev,nosuid tmpfs /opt/firefox-${ffversion}/plugins
+	mount --bind /usr/bin/firefox-${ffversion} /usr/bin/firefox
 	if [ "$skipflash" -gt 0 ] ; then
 	    printf "$bold---> Skipping Flash Player $normal\n"
 	elif [ -f /lesslinux/blob/libflashplayer.so ] ; then
@@ -79,6 +79,7 @@ case $1 in
 	umount /opt/firefox-${ffversion}/lesslinux > /dev/null 2>&1
 	umount /opt/firefox-${ffversion}/plugins > /dev/null 2>&1
 	umount /etc/lesslinux/firefox > /dev/null 2>&1
+	umount /usr/bin/firefox > /dev/null 2>&1
     ;;
 esac
 
@@ -136,5 +137,22 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>
-	<package  name="firefox" />
+	<package  name="firefox">
+		<unpack>
+		<![CDATA[ 
+	
+echo 'nothing to do!'
+
+		]]>
+		</unpack>
+		<install>
+		<![CDATA[ 
+		
+mkdir -p ${SQUASHFS}/usr/bin
+touch ${SQUASHFS}/usr/bin/firefox
+chmod 0755 ${SQUASHFS}/usr/bin/firefox
+		
+		]]>
+		</install>
+	</package>
 </llpackages>

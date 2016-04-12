@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="libpng14"
-		version="1.4.17"
+		version="1.4.19"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                  
-				<pkg sha1="75c9be37d555339afd326fd91466a17727b189e0">libpng-1.4.17.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/libpng/libpng14/1.4.17/</mirror>
+				<pkg sha1="5af8bdd6e5f2954787a7a8ce6760c7d0ae830162">libpng-1.4.19.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libpng/libpng14/1.4.19/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="90" page="http://downloads.sourceforge.net/project/libpng" />
+			<manualcheck date="20160113" interval="90" page="http://downloads.sourceforge.net/project/libpng" />
 			<check>
 				<page html="http://sourceforge.net/projects/libpng/files/libpng14/">
 					<atext linktext="1.4.21" />
-					<atext linktext="1.4.18" />
-					<atext linktext="1.4.19" />
+					<atext linktext="1.4.22" />
+					<atext linktext="1.4.23" />
 					<atext linktext="1.4.20" />
 				</page>
 				<page html="http://sourceforge.net/projects/libpng/files/">
@@ -44,7 +44,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/libpng-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/libpng-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />

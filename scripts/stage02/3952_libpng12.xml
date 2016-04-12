@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="libpng12"
-		version="1.2.54"
+		version="1.2.56"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                       
-				<pkg sha1="d27e73ee861228d427a55949869a808edf5a6913">libpng-1.2.54.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/libpng/libpng12/1.2.54/</mirror>
+				<pkg sha1="29027aeca860048936ebbaec6cdae1148fe05698">libpng-1.2.56.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libpng/libpng12/1.2.56/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="120" page="http://sourceforge.net/projects/libpng/files/libpng12/" />
+			<manualcheck date="20160113" interval="120" page="http://sourceforge.net/projects/libpng/files/libpng12/" />
 			<check>
 				<page html="http://sourceforge.net/projects/libpng/files/libpng12/">
-					<atext linktext="1.2.55" />
-					<atext linktext="1.2.56" />
+					<atext linktext="1.2.59" />
+					<atext linktext="1.2.60" />
 					<atext linktext="1.2.57" />
-					<atext linktext="1.2.54" />
+					<atext linktext="1.2.58" />
 				</page>
 			</check>
 		</sources>
@@ -39,7 +39,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/libpng-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/libpng-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
