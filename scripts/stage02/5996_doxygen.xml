@@ -46,13 +46,15 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd doxygen-1.8.11
-	    cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+            <![CDATA[cd doxygen-1.8.11/
+	    mkdir build 
+	    cd build 
+	    cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr  ..
 	    make
 ]]>
         </build>
         <install>
-            <![CDATA[cd doxygen-1.8.11
+            <![CDATA[cd doxygen-1.8.11/build
 	    make install
 ]]>
         </install>
