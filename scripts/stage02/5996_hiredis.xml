@@ -1,0 +1,63 @@
+<llpackages>
+    <package name='v0.13.3.tar.gz' version='20160412' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='be6f1c50fc4d649dd2924f0afecc0a1705dbe0d3'>
+                    v0.13.3.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/redis/hiredis/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20160412' interval='60' mirror='https://github.com/redis/hiredis/archive/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>diffutils</dep>
+                        <dep>file</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>gnutls3</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libffi</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libtasn1</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p11-kit</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf v0.13.3.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd hiredis-0.13.3
+make PREFIX=/usr
+]]>
+        </build>
+        <install>
+            <![CDATA[cd hiredis-0.13.3
+make install PREFIX=/usr
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf hiredis-0.13.3
+]]>
+        </clean>
+    </package>
+</llpackages>
