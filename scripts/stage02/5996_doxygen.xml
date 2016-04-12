@@ -15,30 +15,28 @@
             <manualcheck date='20160412' interval='60' mirror='http://ftp.stack.nl/pub/users/dimitri/'/>
         </sources>
 	<builddeps>
+                        <dep>M2Crypto</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
                         <dep>coreutils</dep>
-                        <dep>curl</dep>
                         <dep>diffutils</dep>
-                        <dep>file</dep>
-                        <dep>gawk</dep>
+                        <dep>flex</dep>
+                        <dep>fusepy</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
-                        <dep>gmp</dep>
-                        <dep>gnutls3</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>libffi</dep>
-                        <dep>libgcrypt15</dep>
-                        <dep>libgpg-error</dep>
-                        <dep>libtasn1</dep>
+                        <dep>libxml2</dep>
                         <dep>linux_headers</dep>
+                        <dep>m4</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
-                        <dep>p11-kit</dep>
-                        <dep>pkg-config</dep>
-                        <dep>sed</dep>
-                        <dep>zlib</dep>
+                        <dep>plaso</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>setuptools</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/doxygen-${PKGVERSION}.src.tar.gz
