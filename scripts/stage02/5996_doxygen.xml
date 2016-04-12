@@ -41,12 +41,12 @@
                         <dep>zlib</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf doxygen-1.8.11.src.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/doxygen-${PKGVERSION}.src.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd doxygen-1.8.11/
+            <![CDATA[cd doxygen-${PKGVERSION}/
 	    mkdir build 
 	    cd build 
 	    cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr  ..
@@ -54,12 +54,12 @@
 ]]>
         </build>
         <install>
-            <![CDATA[cd doxygen-1.8.11/build
+            <![CDATA[cd doxygen-${PKGVERSION}/build
 	    make install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf doxygen-1.8.11
+            <![CDATA[rm -rf doxygen-${PKGVERSION}
 ]]>
         </clean>
     </package>
