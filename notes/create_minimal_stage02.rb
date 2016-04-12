@@ -119,7 +119,7 @@ unless pkgname.nil?
 	clean.add(REXML::CData.new("rm -rf " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
 	chdir = "cd " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}")
 else
-	unpack.add(REXML::CData.new("tar xf " + archname + "\n"))
+	unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname + "\n"))
 	clean.add(REXML::CData.new("rm -rf " + subdir + "\n"))
 	chdir = "cd " + subdir
 end
