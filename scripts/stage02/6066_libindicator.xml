@@ -65,6 +65,7 @@ sed -i 's/-Werror//g' Makefile
 sed -i 's/-Werror//g' tests/Makefile
 sed -i 's/-Werror//g' tools/Makefile
 sed -i 's/-Werror//g' libindicator/Makefile
+find . -type f -exec sed -i 's/lglib-2\.0-lm/lglib-2.0 -lm/g' {} \; 
 make
 ]]>
         </build>
