@@ -41,6 +41,18 @@ openvas-nvt-sync || openvas-nvt-sync
 retval=$?
 [ "$retval" -gt 0 ] && ask_for_quit "Syncing NVT"
 
+# Write config
+mkdir -p /etc/openvas
+cat > /etc/openvas/redis.conf <<EOF
+daemonize yes
+bind 127.0.0.1
+unixsocket /tmp/redis.sock
+unixsocketperm 700
+EOF
+
+redis-server /etc/openvas/redis.conf
+
+
 # Start the scan daemon
 openvassd -p 9391 -a 127.0.0.1
 
