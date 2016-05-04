@@ -431,7 +431,8 @@ class MfsSinglePartition
 		return @fct
 	end
 	
-	def count_files(pgbar=nil)
+	def count_files(pgbar=nil, pgtext=nil)
+		pgtext = "Analysiere Laufwerk DEVICE - NUMBER Dateien gefunden" if pgtext.nil? 
 		dir = mount_point[0]
 		file_counter = 0 
 		pgbar.activity_mode = true unless pgbar.nil?
@@ -443,7 +444,7 @@ class MfsSinglePartition
 					now = Time.now.to_f
 					if now - last_pulse > 0.1
 						last_pulse = now
-						pgbar.text = "Analysiere Laufwerk #{@device} - #{file_counter.to_s} Dateien gefunden" 
+						pgbar.text = pgtext.gsub("DEVICE", device).gsub("NUMBER", file_counter.to_s)
 						# $stderr.puts "Dateien auf " + @device + ": " + file_counter.to_s 
 						pgbar.pulse
 						while Gtk.events_pending?
