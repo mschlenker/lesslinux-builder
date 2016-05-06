@@ -57,6 +57,7 @@ case $1 in
 	else
 	    printf "$bold===> Preparing Avira $normal\n"
 	    mkdir -m 0755 -p /AntiVir
+	    ln -s  /AntiVir /antivir 
 	    mkdir -m 0755 -p /AntiVirUpdate
 	    mkdir -m 0755 -p /var/log/AntiVir
 	    mkdir -m 0755 -p /var/log/scancl-blob
