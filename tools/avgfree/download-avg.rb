@@ -3,25 +3,24 @@
 
 require 'net/http'
 
-server = 'free.avg.com'
-path = '/de-de/download-free-all-product'
+#server = 'free.avg.com'
+#path = '/de-de/download-free-all-product'
+#page = Net::HTTP.get(server, path)
+#exit 1 if page.nil? 
+#tarball = nil
 
-page = Net::HTTP.get(server, path)
+#ptoks = page.split
+#ptoks.each { |t|
+#	if t =~ /href\=\"(.*)\"$/
+#		url = $1
+#		if url =~ /flx(.*?)\.tar.gz$/ 
+#			puts url 
+#			tarball = url
+#		end
+#	end
+#}
 
-exit 1 if page.nil? 
-
-tarball = nil
-
-ptoks = page.split
-ptoks.each { |t|
-	if t =~ /href\=\"(.*)\"$/
-		url = $1
-		if url =~ /flx(.*?)\.tar.gz$/ 
-			puts url 
-			tarball = url
-		end
-	end
-}
+tarball = 'http://download.avgfree.com/filedir/inst/avg2013flx-r3115-a6155.i386.tar.gz'
 
 exit 1 if tarball.nil? 
 
