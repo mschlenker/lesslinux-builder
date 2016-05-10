@@ -68,6 +68,16 @@ spinbutton.value = 1024.0
 spinbox.pack_start_defaults spinlabel
 spinbox.pack_start_defaults spinbutton
 optsbox.pack_start_defaults spinbox
+qcow_label = Gtk::CheckButton.new(tl.get_translation("use-qcow-overlay"))
+qcow_label.active = true 
+optsbox.pack_start_defaults qcow_label 
+qcowbox = Gtk::HBox.new(false, 5) 
+qcowbutton = Gtk::FileChooserButton.new(tl.get_translation("workdir"), Gtk::FileChooser::ACTION_CREATE)
+qcowquest = Gtk::Label.new(tl.get_translation("choose-qcow"))
+qcowbox.pack_start_defaults qcowquest
+qcowbox.pack_start_defaults qcowbutton
+optsbox.pack_start_defaults qcowbox
+
 optsframe.add optsbox
 lvb.pack_start_defaults optsframe
 

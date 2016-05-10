@@ -32,8 +32,13 @@ def check_matching_types(sourcecombo, targetcombo)
 end
 
 def check_sizes(sourcecombo, targetcombo)
-	return true if @devices[sourcecombo.active].size <= @devices[targetcombo.active].size
-	return question_dialog(@tl.get_translation("too_small_title"), @tl.get_translation("too_small_text"), false)
+	if sourcecombo.class == String
+		return true if File.size(sourcecombo) <= @devices[targetcombo.active].size
+		return question_dialog(@tl.get_translation("too_small_title"), @tl.get_translation("too_small_text"), false)
+	else
+		return true if @devices[sourcecombo.active].size <= @devices[targetcombo.active].size
+		return question_dialog(@tl.get_translation("too_small_title"), @tl.get_translation("too_small_text"), false)
+	end
 end
 
 def check_mounted_source(combo)
@@ -265,14 +270,23 @@ def question_dialog(title, text, default=false)
 end
 
 def run_clone(source, target, progress)
-	puts source.device + " -> " + target.device
+	size = 0
+	if source.class == String
+		size = File.size(source)
+		sourcedev = source
+	else
+		puts source.device + " -> " + target.device
+		size = source.size 
+		sourcedev = "/dev/#{source.device}"
+	end
+	
 	# Calculate size
-	puts source.size.to_s 
+	puts size.to_s 
 	chunksize = 64 * 1024 * 1024 
-	chunkcount = [ source.size, target.size ].min / chunksize
+	chunkcount = [ size, target.size ].min / chunksize
 	puts "Chunksize: " + chunksize.to_s
 	puts "Chunkcount: " + chunkcount.to_s 
-	puts "Lastchunk: " + ( [ source.size, target.size ].min % chunksize ).to_s 
+	puts "Lastchunk: " + ( [ size, target.size ].min % chunksize ).to_s 
 	tstart = Time.now.to_i 
 	tremain = 1_000_000_000_000
 	0.upto(chunkcount - 1) { |c|
@@ -284,7 +298,7 @@ def run_clone(source, target, progress)
 			end
 		end
 		seek = c * 16
-		cmd = "dd if=/dev/#{source.device} of=/dev/#{target.device} bs=4M count=16 seek=#{seek.to_s} skip=#{seek.to_s}"
+		cmd = "dd if=#{sourcedev} of=/dev/#{target.device} bs=4M count=16 seek=#{seek.to_s} skip=#{seek.to_s}"
 		# cmd = "dd if=/dev/#{source.device} of=/dev/null bs=4M count=16 seek=#{seek.to_s} skip=#{seek.to_s}"
 		puts cmd
 		unless system(cmd)
@@ -311,8 +325,8 @@ def run_clone(source, target, progress)
 			Gtk.main_iteration
 		end
 	}
-	puts "Delta: " + ( [ source.size, target.size ].min - ( chunkcount * chunksize )).to_s  
-	cmd = "dd if=/dev/#{source.device} of=/dev/#{target.device} bs=4M count=16 seek=#{ (chunkcount * 16 ).to_s} skip=#{ (chunkcount * 16 ).to_s}"
+	puts "Delta: " + ( [ size, target.size ].min - ( chunkcount * chunksize )).to_s  
+	cmd = "dd if=#{sourcedev} of=/dev/#{target.device} bs=4M count=16 seek=#{ (chunkcount * 16 ).to_s} skip=#{ (chunkcount * 16 ).to_s}"
 	puts cmd
 	system(cmd) 
 	system("sync") 
@@ -329,12 +343,35 @@ go.sensitive = false
 
 # Button to reread the drivelist
 
+drvouterbox = Gtk::VBox.new(false, 5)
+
+@drvradio = Gtk::RadioButton.new(tl.get_translation("disk-is-source"))
+drvouterbox.pack_start_defaults @drvradio
 reread = Gtk::Button.new(tl.get_translation("reread"))
 driveframe = Gtk::Frame.new(tl.get_translation("frame_source"))
 drivebox.pack_start(drivecombo, true, true, 0)
 drivebox.pack_start(reread, false, true, 0)
 reread.width_request = 100
-driveframe.add(drivebox)
+drvouterbox.pack_start_defaults drivebox
+@fileradio = Gtk::RadioButton.new(@drvradio, tl.get_translation("file-is-source"))
+drvouterbox.pack_start_defaults @fileradio
+@sourcebutton = Gtk::FileChooserButton.new(tl.get_translation("select-source-file"), Gtk::FileChooser::ACTION_OPEN)
+drvouterbox.pack_start_defaults @sourcebutton 
+driveframe.add(drvouterbox)
+@sourcebutton.sensitive = false 
+
+@drvradio.signal_connect("clicked") {
+	if @drvradio.active?
+		drivecombo.sensitive = true
+		@sourcebutton.sensitive = false
+	end
+}
+@fileradio.signal_connect("clicked") {
+	if @fileradio.active?
+		drivecombo.sensitive = false
+		@sourcebutton.sensitive = true
+	end
+}
 
 # Target drive
 
@@ -406,14 +443,29 @@ go.signal_connect("clicked") {
 			@clone_running = true
 		end
 	else
-		# Check that target and source are different
-		doclone = check_source_target(drivecombo, targetcombo) 
-		# Check for matching types of source and target
-		doclone = check_matching_types(drivecombo, targetcombo)  if doclone == true
-		# Check sizes of source and target - last partition
-		doclone = check_sizes(drivecombo, targetcombo) if doclone == true
-		# Check for mounted source
-		doclone = check_mounted_source(drivecombo) if doclone == true
+		if @drvradio.active?
+			# Check that target and source are different
+			doclone = check_source_target(drivecombo, targetcombo) 
+			# Check for matching types of source and target
+			doclone = check_matching_types(drivecombo, targetcombo)  if doclone == true
+			# Check sizes of source and target - last partition
+			doclone = check_sizes(drivecombo, targetcombo) if doclone == true
+			# Check for mounted source
+			doclone = check_mounted_source(drivecombo) if doclone == true
+		else
+			doclone = true 
+			if @sourcebutton.filename.nil?
+				error_dialog(@tl.get_translation("source_not_selected_title"), @tl.get_translation("source_not_selected_text"))
+				doclone = false
+			else
+				unless File.file?(@sourcebutton.filename) 
+					error_dialog(@tl.get_translation("source_not_file_title"), @tl.get_translation("source_not_file_text"))
+					doclone = false
+				end
+			end
+			# Check sizes of source and target - last partition
+			doclone = check_sizes(@sourcebutton.filename, targetcombo) if doclone == true
+		end
 		# Check for mounted target
 		doclone = check_mounted_target(targetcombo) if doclone == true
 		# Now warn
@@ -428,7 +480,11 @@ go.signal_connect("clicked") {
 			while (Gtk.events_pending?)
 				Gtk.main_iteration
 			end
-			run_clone(@devices[drivecombo.active], @devices[targetcombo.active], pgbar)
+			if @drvradio.active?
+				run_clone(@devices[drivecombo.active], @devices[targetcombo.active], pgbar)
+			else
+				run_clone(@sourcebutton.filename, @devices[targetcombo.active], pgbar)
+			end
 			if @errorcount < 1 
 				confirm_finished
 			else
