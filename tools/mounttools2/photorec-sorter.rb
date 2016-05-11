@@ -39,69 +39,97 @@ def traverse_dir(startdir, basedir, pgbar)
 end
 
 def rename_file(filepath, basedir, pgbar) 
-	now = Time.now.to_f
-	if now > $lastpulse + 0.3
-		pgbar.pulse
-		$lastpulse = now
-	end
-	while (Gtk.events_pending?)
-		Gtk.main_iteration
-	end
-	if filepath =~ /\.jpg$/i || filepath =~ /\.jpeg$/i
-		img = EXIFR::JPEG.new(filepath)
-		# Try to read some exif infos
-		if img.exif? && !img.date_time.nil? && img.model.to_s != "" && (img.width + img.height > 1119)
-			puts "Renaming #{filepath}"
-			begin
-				puts img.model
-				puts img.width.to_s + " " + img.height.to_s
-				puts img.date_time.to_i.to_s
-				dest = "#{basedir}/sortiert/Fotos/#{img.date_time.year}/#{img.date_time.month}/#{img.model}"
-				FileUtils::mkdir_p dest 
-				if $actionmove == true
-					FileUtils::mv(filepath, "#{dest}/#{img.date_time.year}_#{img.date_time.month}_#{img.date_time.day}_#{File.basename(filepath)}" )
-				else
-					FileUtils::cp(filepath, "#{dest}/#{img.date_time.year}_#{img.date_time.month}_#{img.date_time.day}_#{File.basename(filepath)}" )
+		now = Time.now.to_f
+		if now > $lastpulse + 0.3
+			pgbar.pulse
+			$lastpulse = now
+		end
+		while (Gtk.events_pending?)
+			Gtk.main_iteration
+		end
+		if filepath =~ /\.jpg$/i || filepath =~ /\.jpeg$/i
+			img = EXIFR::JPEG.new(filepath)
+			# Try to read some exif infos
+			if img.exif? && !img.date_time.nil? && img.model.to_s != "" && (img.width + img.height > 1119)
+				puts "Renaming #{filepath}"
+				begin
+					puts img.model
+					puts img.width.to_s + " " + img.height.to_s
+					puts img.date_time.to_i.to_s
+					dest = "#{basedir}" + @tl.get_translation("path_picture") + "/#{img.date_time.year}/#{img.date_time.month}/#{img.model}"
+					FileUtils::mkdir_p dest 
+					if $actionmove == true
+						FileUtils::mv(filepath, "#{dest}/#{img.date_time.year}_#{img.date_time.month}_#{img.date_time.day}_#{File.basename(filepath)}" )
+					else
+						FileUtils::cp(filepath, "#{dest}/#{img.date_time.year}_#{img.date_time.month}_#{img.date_time.day}_#{File.basename(filepath)}" )
+					end
+				rescue 
+					puts "Broken EXIF tag!"
 				end
+			end
+		elsif filepath =~ /\.xls/i || filepath =~ /\.csv$/i || filepath =~ /\.sxc$/i || filepath =~ /\.xlt$/i   || filepath =~ /\.ods$/i  
+			dest = basedir + @tl.get_translation("path_spreadsheet")
+			FileUtils::mkdir_p dest 
+			if $actionmove == true
+				FileUtils::mv(filepath, dest )
+			else
+				FileUtils::cp(filepath, dest )
+			end
+		elsif filepath =~ /\.doc/i || filepath =~ /\.rtf$/i || filepath =~ /\.sxw$/i || filepath =~ /\.odt$/i   || filepath =~ /\.ott$/i  
+			dest = basedir + @tl.get_translation("path_wordproc")
+			FileUtils::mkdir_p dest 
+			if $actionmove == true
+				FileUtils::mv(filepath, dest )
+			else
+				FileUtils::cp(filepath, dest )
+			end
+		elsif filepath =~ /\.ppt/i || filepath =~ /\.odp$/i || filepath =~ /\.otp$/i || filepath =~ /\.odg$/i   || filepath =~ /\.sxi$/i   || filepath =~ /\.pot$/i  
+			dest = basedir + @tl.get_translation("path_presentation")
+			FileUtils::mkdir_p dest 
+			if $actionmove == true
+				FileUtils::mv(filepath, dest )
+			else
+				FileUtils::cp(filepath, dest )
+			end
+		elsif filepath =~ /\.mp3$/i
+			audio = File.open(filepath, "r") 
+			tag = ID3Tag.read(audio)
+			puts "Renaming #{filepath}"
+			artist = tag.artist.to_s.gsub(":", ".").gsub("/", "_")
+			artist = "uknown artist" if artist.to_s == ""
+			album = tag.album.to_s.gsub(":", ".").gsub("/", "_")
+			album = "uknown album" if album.to_s == ""
+			begin
+				title = tag.title.to_s.gsub(":", ".").gsub("/", "_")
 			rescue 
-				puts "Broken EXIF tag!"
+				title = ` uuidgen `
+			end
+			if title.to_s == ""
+				title = "uknown title" 
+			end
+			begin
+				if tag.track_nr.to_i > 0
+					title = tag.track_nr.to_i.to_s + " " + title
+				end
+			rescue
+			end
+			title = title + " " + File.basename(filepath)
+			begin
+				if tag.year.to_i > 0
+					album = tag.year.to_i.to_s + " " + album
+				end
+			rescue
+			end
+			dest = "#{basedir}" + @tl.get_translation("path_mp3") + "/#{artist}/#{album}"
+			FileUtils::mkdir_p dest 
+			audio.close
+			if $actionmove == true
+				FileUtils::mv(filepath, "#{dest}/#{title}" )
+			else
+				FileUtils::cp(filepath, "#{dest}/#{title}" )
 			end
 		end
-	elsif filepath =~ /\.mp3$/
-		audio = File.open(filepath, "r") 
-		tag = ID3Tag.read(audio)
-		puts "Renaming #{filepath}"
-		artist = tag.artist.to_s.gsub(":", ".").gsub("/", "_")
-		artist = "uknown artist" if artist.to_s == ""
-		album = tag.album.to_s.gsub(":", ".").gsub("/", "_")
-		album = "uknown album" if album.to_s == ""
-		begin
-			title = tag.title.to_s.gsub(":", ".").gsub("/", "_")
-		rescue 
-			title = ` uuidgen `
-		end
-		if title.to_s == ""
-			title = "uknown title" 
-		end
-		begin
-			if tag.track_nr.to_i > 0
-				title = tag.track_nr.to_i.to_s + " " + title
-			end
-		rescue
-		end
-		title = title + " " + File.basename(filepath)
-		begin
-			if tag.year.to_i > 0
-				album = tag.year.to_i.to_s + " " + album
-			end
-		rescue
-		end
-		dest = "#{basedir}/sortiert/MP3/#{artist}/#{album}"
-		FileUtils::mkdir_p dest 
-		audio.close
-		FileUtils::cp(filepath, "#{dest}/#{title}" )
 	end
-end
 
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
