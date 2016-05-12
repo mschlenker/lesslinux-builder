@@ -1,0 +1,40 @@
+<llpackages>
+    <package name='graphviz' version='2.38.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='053c771278909160916ca5464a0a98ebf034c6ef'>
+                    graphviz-2.38.0.tar.gz
+                </pkg>
+                <mirror>
+                    http://pkgs.fedoraproject.org/repo/pkgs/graphviz//5b6a829b2ac94efcd5fa3c223ed6d3ae/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://pkgs.fedoraproject.org/repo/pkgs/graphviz//5b6a829b2ac94efcd5fa3c223ed6d3ae/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+sed -i 's/ruby-1.9/ruby-2.2/g' configure
+sed -i 's/ e_/ gs_error_/'     plugin/gs/gvloadimage_gs.c
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
