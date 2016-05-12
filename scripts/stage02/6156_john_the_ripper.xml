@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='john-1.8.0-jumbo' version='1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='38196f21d2c9c4b539529d0820eb242d5373241f'>
+                    john-1.8.0-jumbo-1.tar.xz
+                </pkg>
+                <mirror>
+                    http://www.openwall.com/john/j/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://www.openwall.com/john/j/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/src
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/src
+make install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
