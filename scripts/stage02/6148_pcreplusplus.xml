@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='pcre++' version='0.9.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='7cb640555c6adf34bf366139b22f6d1a66bd1fb0'>
+                    pcre++-0.9.5.tar.gz
+                </pkg>
+                <mirror>
+                    http://www.daemon.de/idisk/Apps/pcre++/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://www.daemon.de/idisk/Apps/pcre++/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

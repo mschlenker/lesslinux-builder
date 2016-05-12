@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='tclap' version='1.2.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='4f124216dd6e6936f5af6372d921a6c51563f8fd'>
+                    tclap-1.2.1.tar.gz
+                </pkg>
+                <mirror>
+                    http://downloads.sourceforge.net/project/tclap/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://downloads.sourceforge.net/project/tclap/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

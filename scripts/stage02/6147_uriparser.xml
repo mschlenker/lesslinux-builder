@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='uriparser' version='0.8.4' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='7a1948c20bed54b04dad0e1d7d2fa8f80fc7b2b3'>
+                    uriparser-0.8.4.tar.bz2
+                </pkg>
+                <mirror>
+                    http://downloads.sourceforge.net/project/uriparser/Sources/0.8.4/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://downloads.sourceforge.net/project/uriparser/Sources/0.8.4/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
