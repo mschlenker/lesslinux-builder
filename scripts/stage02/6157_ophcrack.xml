@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='ophcrack' version='3.6.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8e39b8c013b3f2144b23e33abeeadbb81e4120ca'>
+                    ophcrack-3.6.0.tar.bz2
+                </pkg>
+                <mirror>
+                    http://downloads.sourceforge.net/ophcrack/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://downloads.sourceforge.net/ophcrack/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
