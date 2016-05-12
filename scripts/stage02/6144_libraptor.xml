@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='raptor2' version='2.0.15' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='504231f87024df9aceb90eb957196b557b4b8e38'>
+                    raptor2-2.0.15.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.librdf.org/source/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://download.librdf.org/source/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
