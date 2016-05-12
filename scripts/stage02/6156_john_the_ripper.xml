@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='john-1.8.0-jumbo' version='1' install='chroot'>
+    <package name='john-1.8.0-jumbo' version='1' install='destdir'>
         <license>
             unknown
         </license>
@@ -26,8 +26,9 @@ make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/src
-make install 
+            <![CDATA[
+mkdir -p ${TGTDIR}/opt	    
+tar -cvf - ${PKGNAME}-${PKGVERSION} | tar -C ${TGTDIR}/opt -xf - 
 ]]>
         </install>
         <clean>
