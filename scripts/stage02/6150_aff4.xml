@@ -22,6 +22,7 @@
         <build>
             <![CDATA[cd ${PKGNAME}-master
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+sed -i 's/SUBDIRS = src tests/SUBDIRS = src/g' Makefile 
 make
 ]]>
         </build>
