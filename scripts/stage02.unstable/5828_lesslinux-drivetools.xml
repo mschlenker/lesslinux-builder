@@ -53,13 +53,13 @@
 				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh \
 				mmmmng.sh llmountandopen.sh blobinstall.sh vdiskimage.sh ddrescueimage.sh \
 				photorec-sorter.sh history-extractor.sh jumplist-extractor.sh search-caches.sh \
-				pst-importer.sh qemustarter.sh vshadowgui.sh ; do
+				pst-importer.sh qemustarter.sh vshadowgui.sh accesspoint.sh ; do
 					install -m 0755 ${f}  ${TGTDIR}/usr/bin
 			done
 			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui \
 				resetshell usbinstall mountall mountnet runx11vnc runsmbd blobinstall \
 				vdiskimage ddrescueimage photorec-sorter history-extractor jumplist-extractor \
-				search-caches pst-importer qemustarter vshadowgui ; do
+				search-caches pst-importer qemustarter vshadowgui accesspoint ; do
 					install -m 0644 ${f}.xml  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			for f in llpm_drives MfsDiskDrive MfsSinglePartition MfsTranslator MfsSamDatabase \
@@ -67,7 +67,7 @@
 				clonedisk chntpwgui resetshell usbinstall mountall mountnet runx11vnc llmounthelper ddrescueimage \
 				runsmbd XmlDriveList xmldrivelist_ blobinstall vdiskimage MfsSysProfile \
 				photorec-sorter history-extractor jumplist-extractor search-caches pst-importer \
-				qemustarter vshadowgui ; do
+				qemustarter vshadowgui accesspoint ; do
 					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			install -m 0755 jl.pl ${TGTDIR}/usr/share/lesslinux/drivetools
