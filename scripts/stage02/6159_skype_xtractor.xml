@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='skype_xtractor' version='0.1.8.8' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='fcafa919abcdb087c798f03e634b95fd5898b17a'>
+                   skype_xtractor_v.0.1.8.8.zip
+                </pkg>
+                <mirror>
+                    http://downloads.sourceforge.net/project/skypextractor/skype%20xtractor/0.1.8.8/
+                </mirror>
+            </file>
+            <manualcheck date='20160513' interval='60' mirror='https://nmap.org/ncrack/dist/'/>
+        </sources>
+        <unpack>
+            <![CDATA[
+mkdir skypex
+cd skypex
+unzip ${SRCDIR}/${PKGNAME}_v.${PKGVERSION}.zip
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+echo 'Nothing to build here'
+]]>
+        </build>
+        <install>
+            <![CDATA[
+mkdir -p ${TGTDIR}/usr/share/skype_xtractor
+tar -C skypex -cvf - . | tar -C ${TGTDIR}/usr/share/skype_xtractor -xf -
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf skypex 
+]]>
+        </clean>
+    </package>
+</llpackages>
