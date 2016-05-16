@@ -1,0 +1,141 @@
+<llpackages>
+	<package 
+		name="linux"
+		version="4.1.24"
+		class="kernel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                  
+				<pkg sha1="04e4a300b6abbf7e4d6e2eb14c36a901f4a45b1d">linux-4.1-config-32pae</pkg> 
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<pkg sha1="660d8a1c2c694b1dbb361ef7fcbd62846ba742a5">lesslinux-fblogo-20100922.ppm</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                 
+				<pkg sha1="2470435c2218f0bcbd46ef2a0000694aca340273">linux-4.1.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="6112c2214273e3dbe6e0b01a2e262d2f015b0e20">patch-4.1.24.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+			</file>
+			<manualcheck date="20160513" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
+					<atext linktext="patch-4.1.25." />
+					<atext linktext="patch-4.1.26." />
+					<atext linktext="patch-4.1.27." />
+					<atext linktext="patch-4.2." />
+					<atext linktext="patch-4.3." />
+					<atext linktext="patch-4.4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+			<dep>ruby</dep>
+			<dep>installkernel-debian</dep>
+			<dep>xz</dep>
+			<dep>bzip2</dep>
+			<dep>gzip</dep>
+			<dep>lesslinux-modextract</dep>
+			<dep>module-init-tools</dep>
+			<!-- <dep>linux-pax</dep> -->
+			<dep>bc</dep>
+			<dep>distcc</dep>
+			<dep>kmod</dep>
+			<dep>VirtualBox</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			localversion='ll-pae-0'
+			
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-32pae  .config 
+			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
+			cd ..
+			mv linux-${major}.${minor} linux-${PKGVERSION}
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			yes '' | make oldconfig
+			make clean
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount bzImage CC="distcc gcc" CXX="distcc g++" 
+			else
+				make -j 4
+				make -j 4 bzImage
+			fi
+			rsync -avHP /usr/local/VirtualBox/src/ ../VirtualBox/ 
+			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
+				make -C . M=../VirtualBox/${mod} modules
+			done
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			localversion='ll-pae-0'
+			
+			cd linux-${PKGVERSION}
+			mkdir -p ${TGTDIR}/boot
+			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
+			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux 
+			INSTALL_MOD_PATH=${TGTDIR} make modules_install
+			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
+				INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox/${mod} modules_install
+			done
+			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
+			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
+			for link in source build ; do
+				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
+				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
+			done 
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
+			make clean
+			make modules_prepare 
+			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf linux-${PKGVERSION}
+			  rm -rf VirtualBox
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>
