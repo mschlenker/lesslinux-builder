@@ -25,7 +25,7 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="6526c10955706e519b482b5e98967d294e8ebfd5">firefox-45.0.2esr.source.tar.bz2</pkg>
+				<pkg sha1="6526c10955706e519b482b5e98967d294e8ebfd5">firefox-45.0.2esr.source.tar.xz</pkg>
 				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/45.0.2esr/source/</mirror>
 			</file>
 			<file> 
@@ -151,7 +151,7 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.bz2
+			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			mv firefox-${PKGVERSION} mozilla-release
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/firefox-${PKGVERSION}.source.de-es-pl-ru.tar.xz
