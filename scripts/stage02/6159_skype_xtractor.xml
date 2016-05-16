@@ -14,6 +14,13 @@
             </file>
             <manualcheck date='20160513' interval='60' mirror='https://nmap.org/ncrack/dist/'/>
         </sources>
+	<builddeps>
+		<dep>bash</dep>
+		<dep>Cython</dep>
+		<dep>M2Crypto</dep>
+		<dep>PyYAML</dep>
+		<dep>Python</dep>
+	</builddeps>
         <unpack>
             <![CDATA[
 mkdir skypex
