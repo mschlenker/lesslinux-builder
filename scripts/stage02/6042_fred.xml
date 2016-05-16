@@ -12,6 +12,10 @@
                     http://files.pinguin.lu/
                 </mirror>
             </file>
+	     <file>
+                <pkg sha1='ecc9f9417242ab8584cf0674dcbad48a029e2093'>fred-extras-0.1.1.tar.bz2</pkg>
+                <mirror>http://distfiles.lesslinux.org/</mirror>
+            </file>
             <manualcheck date='20150823' interval='180' mirror='http://files.pinguin.lu/'/>
         </sources>
 	<builddeps>
@@ -28,6 +32,7 @@
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+	    tar xf ${SRCDIR}/${PKGNAME}-extras-${PKGVERSION}.tar.bz2
 ]]>
         </unpack>
         <patch/>
@@ -40,11 +45,14 @@ make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[
 mkdir -p ${TGTDIR}/usr/sbin
 mkdir -p ${TGTDIR}/usr/share/applications
+mkdir -p ${TGTDIR}/usr/share/fred
 
-install -m 0755 fred  ${TGTDIR}/usr/sbin/
+install -m 0755 ${PKGNAME}-${PKGVERSION}/fred  ${TGTDIR}/usr/sbin/
+install -m 0644 fred/*.pdf fred/*.fred ${TGTDIR}/usr/share/fred
+
 cat << DESKFILE >  ${TGTDIR}/usr/share/applications/fred.desktop
 
 [Desktop Entry]
