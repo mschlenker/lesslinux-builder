@@ -12,13 +12,27 @@
                     http://downloads.sourceforge.net/project/ophcrack/samdump2/3.0.0/
                 </mirror>
             </file>
+	    <file>
+                <pkg sha1='7df6ec2e7a39e6691ab2edc208128b8aee8cbc47'>
+                    samdump2_3.0.0-3.debian.tar.xz
+                </pkg>
+                <mirror>
+                    http://archive.ubuntu.com/ubuntu/pool/universe/s/samdump2/
+                </mirror>
+            </file>
             <manualcheck date='20160517' interval='60' mirror='http://downloads.sourceforge.net/project/ophcrack/samdump2/3.0.0/'/>
         </sources>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+	    tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-3.debian.tar.xz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+<![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cat ../debian/ftbfs_link.patch | patch -p1
+cat ../debian/compiler_flags.patch | patch -p1
+]]>
+	</patch>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make PREFIX=/usr 
@@ -30,7 +44,7 @@ make install PREFIX=/usr
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION} debian
 ]]>
         </clean>
     </package>
