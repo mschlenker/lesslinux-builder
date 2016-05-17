@@ -23,8 +23,9 @@
             <manualcheck date='20160517' interval='60' mirror='http://downloads.sourceforge.net/project/ophcrack/samdump2/3.0.0/'/>
         </sources>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-	    tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-3.debian.tar.xz
+            <![CDATA[
+tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+tar xJf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-3.debian.tar.xz
 ]]>
         </unpack>
         <patch>
