@@ -30,8 +30,8 @@ tar xJf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-3.debian.tar.xz
         </unpack>
         <patch>
 <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-cat ../debian/ftbfs_link.patch | patch -p1
-cat ../debian/compiler_flags.patch | patch -p1
+cat ../debian/patches/ftbfs_link.patch | patch -p1
+cat ../debian/patches/compiler_flags.patch | patch -p1
 ]]>
 	</patch>
         <build>
