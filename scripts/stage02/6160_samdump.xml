@@ -32,6 +32,8 @@ tar xJf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-3.debian.tar.xz
 <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 cat ../debian/patches/ftbfs_link.patch | patch -p1
 cat ../debian/patches/compiler_flags.patch | patch -p1
+sed -i 's/install: build infos/install: build/g' Makefile
+sed -i 's/uninstall: infos/uninstall:/g' Makefile
 ]]>
 	</patch>
         <build>
