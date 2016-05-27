@@ -10,10 +10,10 @@ require 'MfsTranslator.rb'
 
 # Global variables filled by boot parameters
 
-$swapsize = 0
-$blobsize = 0
-$min_hc = 0
-$mac_hc = 0
+@swapsize = 0
+@blobsize = 0
+@min_hc = 0
+@max_hc = 0
 
 def error_dialog(title, text) 
 	dialog = Gtk::Dialog.new(
@@ -314,6 +314,21 @@ end
 
 # 
 
+def extract_cmdline
+	cmdline = ""
+	File.open("/proc/cmdline").each { |line|
+		cmdline = cmdline + " " + line 
+	}
+	toks = cmdline.strip.split
+	toks.each { |t|
+		if t =~ /homecont=([0-9]*?)-([0-9]*?)$/
+			@min_hc = $1.to_i
+			@max_hc = $2.to_i
+		end
+	}
+end
+
+
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
 lang = "en" if lang.nil?
@@ -353,13 +368,17 @@ langcombo.active = lindex
 ubox.pack_start(langcombo, false, true, 0)
 hbox = Gtk::HBox.new(false, 0)
 hcheck = Gtk::CheckButton.new(tl.get_translation("createhome"))
-hcheck.active = true
+hcheck.active = true if @max_hc.to_i > 0
 hmin = Gtk::Entry.new
 hmin.width_chars = 4
 hmax = Gtk::Entry.new
 hmax.width_chars = 5
 hmin.text = "512"
 hmax.text = "2048"
+if ( @max_hc.to_i > 0 && @max_hc.to_i > 0 )
+	hmin.text = @min_hc.to_s
+	hmax.text = @max_hc.to_s
+end
 hupto = Gtk::Label.new tl.get_translation("upto")
 hunit = Gtk::Label.new "MB"
 hbox.pack_start(hcheck, false, false, 2)
