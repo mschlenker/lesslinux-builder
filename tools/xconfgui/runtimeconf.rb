@@ -892,7 +892,7 @@ if crypt_container.nil? && laxsudo == false
 	contid = assi.append_page(contvbox)
 	assi.set_page_title(contvbox, extract_lang_string("password_title"))
 	assi.set_page_type(contvbox, Gtk::Assistant::PAGE_CONTENT)
-	assi.set_page_complete(contvbox, true) # false)
+	assi.set_page_complete(contvbox, false)
 	d_pass.signal_connect("key-release-event") { 
 		assi.set_page_complete(contvbox, password_compare(d_pass.text, c_pass.text, u_pass.text, uc_pass.text))
 	}
@@ -913,7 +913,7 @@ elsif !crypt_container.nil? && request_container_reinit(hexdigest) == true
 	contid = assi.append_page(contvbox)
 	assi.set_page_title(contvbox, extract_lang_string("reinit_title"))
 	assi.set_page_type(contvbox, Gtk::Assistant::PAGE_CONTENT)
-	assi.set_page_complete(contvbox, true) # false)
+	assi.set_page_complete(contvbox, false)
 	d_pass.signal_connect("key-release-event") { 
 		assi.set_page_complete(contvbox, password_compare(d_pass.text, c_pass.text, u_pass.text, uc_pass.text))
 	}
