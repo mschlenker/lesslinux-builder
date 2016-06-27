@@ -4,6 +4,7 @@
 require "tmpdir"
 require "MfsSinglePartition"
 require "MfsDiskDrive"
+require 'MfsTranslator.rb'
 
 class LessLinuxInstaller
 
@@ -70,7 +71,7 @@ class LessLinuxInstaller
 		efiend = ( sizes[1] + 8 + sizes[2] + sizes[3]) * 8388608 - 1
 		# blank the fist few MB
 		# ddstr = "dd if=/dev/zero of=/dev/#{tgt.device} bs=1024 count=1024"
-		run_command(pgbar, "dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "count=1024", "conv=sync" ] , @tl.get_translation("preparing")) 
+		run_command("dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "count=1024", "conv=sync" ] , @tl.get_translation("preparing")) 
 		# puts ddstr 
 		# system ddstr 
 		# blank the last few MB
@@ -91,9 +92,8 @@ class LessLinuxInstaller
 			tries = 0
 			matched = false
 			while tries < 9 && matched == false 
-				system("dd of=/dev/#{tgt.device} if=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 seek=#{b.to_s} conv=sync")
-				system("sync")
-				system("dd if=/dev/#{tgt.device} of=/var/run/lesslinux/checkblock.bin bs=8388608 count=1 skip=#{b.to_s} conv=sync")
+				system("dd of=/dev/#{tgt.device} if=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 seek=#{b.to_s}")
+				system("dd if=/dev/#{tgt.device} of=/var/run/lesslinux/checkblock.bin bs=8388608 count=1 skip=#{b.to_s}")
 				md5out = ` md5sum /var/run/lesslinux/checkblock.bin `.strip.split[0]
 				if md5in == md5out 
 					matched = true
@@ -102,6 +102,7 @@ class LessLinuxInstaller
 				end
 				tries += 1 
 			end
+			system("sync") 
 			# ddstr = "dd if=#{sizes[4]} of=/dev/#{tgt.device} bs=8388608 count=1 seek=#{b.to_s} skip=#{b.to_s}" 
 			# puts ddstr 
 			# system ddstr 
