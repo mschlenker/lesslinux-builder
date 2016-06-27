@@ -102,7 +102,6 @@ class LessLinuxInstaller
 				end
 				tries += 1 
 			end
-			system("sync") 
 			# ddstr = "dd if=#{sizes[4]} of=/dev/#{tgt.device} bs=8388608 count=1 seek=#{b.to_s} skip=#{b.to_s}" 
 			# puts ddstr 
 			# system ddstr 
@@ -115,6 +114,7 @@ class LessLinuxInstaller
 				end
 			end
 		}
+		system("sync") 
 		system("rm /var/run/lesslinux/copyblock.bin")
 		system("rm /var/run/lesslinux/checkblock.bin")
 	
@@ -192,8 +192,10 @@ class LessLinuxInstaller
 		puts sysstr
 		system sysstr
 		run_command("sync", [ "sync" ], @tl.get_translation("waiting"))
-		pgbar.fraction = 1.0
-		pgbar.text =  @tl.get_translation("install_finished") 
+		unless pgbar.nil?
+			pgbar.fraction = 1.0
+			pgbar.text =  @tl.get_translation("install_finished") 
+		end
 		# info_dialog( @tl.get_translation("finished_title"), @tl.get_translation("finished_text") ) 
 	end
 
