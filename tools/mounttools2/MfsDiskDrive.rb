@@ -210,6 +210,13 @@ class MfsDiskDrive
 		return m
 	end
 	
+	def system_drive?
+		@partitions.each { |p|
+			return true if p.system_partition?
+		}
+		return false
+	end
+	
 	# Check for Intel Matrix Storage Manager
         
         def imsm? 

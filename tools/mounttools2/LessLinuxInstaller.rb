@@ -120,7 +120,7 @@ class LessLinuxInstaller
 		system("rm /var/run/lesslinux/#{tgt.device}/checkblock.bin")
 	
 		# Blank the first 32k 
-		system("dd if=/dev/zero bs=8192 count=4 of=/dev/#{tgt.device} conv=sync")
+		system("dd if=/dev/zero bs=8192 count=4 of=/dev/#{tgt.device} conv=fsync")
 		# Create the boot partition legacy
 		run_command("parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "mklabel", "gpt" ] , @tl.get_translation("partitioning")) 
 		run_command("parted", [ "parted", "-s", "/dev/#{tgt.device}", "unit", "B", "mkpart", "info", "fat32", "#{infostart}", "#{infoend}" ] , @tl.get_translation("partitioning")) 
@@ -189,7 +189,7 @@ class LessLinuxInstaller
 		system("cp -v /var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/{isolinux.cfg,extlinux.conf}") unless File.exists? ("/var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/extlinux.conf") 
 		# Write syslinux
 		system("extlinux --install /var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux") 
-		system("mount -t ntfs-3g /dev/#{tgt.device}3 /var/run/lesslinux/#{tgt.device}/install_info")
+		system("mount -t ntfs-3g /dev/#{tgt.device}1 /var/run/lesslinux/#{tgt.device}/install_info")
 		system("tar -C \"#{sizes[5]}/lesslinux/info\" -cvf - . | tar -C /var/run/lesslinux/#{tgt.device}/install_info -xf - ")
 		system("sync") 
 		system("umount /var/run/lesslinux/#{tgt.device}/install_boot")
