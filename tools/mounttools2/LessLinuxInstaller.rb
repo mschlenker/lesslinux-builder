@@ -189,6 +189,7 @@ class LessLinuxInstaller
 		system("cp -v /var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/{isolinux.cfg,extlinux.conf}") unless File.exists? ("/var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/extlinux.conf") 
 		# Write syslinux
 		system("extlinux --install /var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux") 
+		system("mkdir -p /var/run/lesslinux/#{tgt.device}/install_info")
 		system("mount -t ntfs-3g /dev/#{tgt.device}1 /var/run/lesslinux/#{tgt.device}/install_info")
 		system("tar -C \"#{sizes[5]}/lesslinux/info\" -cvf - . | tar -C /var/run/lesslinux/#{tgt.device}/install_info -xf - ")
 		system("sync") 
