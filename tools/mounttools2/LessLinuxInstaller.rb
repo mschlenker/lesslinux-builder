@@ -71,7 +71,7 @@ class LessLinuxInstaller
 		efiend = ( sizes[1] + 8 + sizes[2] + sizes[3]) * 8388608 - 1
 		# blank the fist few MB
 		# ddstr = "dd if=/dev/zero of=/dev/#{tgt.device} bs=1024 count=1024"
-		run_command("dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "count=1024", "conv=sync" ] , @tl.get_translation("preparing")) 
+		run_command("dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "count=1024", "conv=fsync" ] , @tl.get_translation("preparing")) 
 		# puts ddstr 
 		# system ddstr 
 		# blank the last few MB
@@ -80,21 +80,22 @@ class LessLinuxInstaller
 		# ddstr = "dd if=/dev/zero of=/dev/#{tgt.device} bs=1024 seek=#{tgtblocks.to_s}"
 		# puts ddstr 
 		# system ddstr 
-		run_command("dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "seek=#{tgtblocks.to_s}", "conv=sync" ] , @tl.get_translation("preparing")) 
+		run_command("dd", [ "dd", "if=/dev/zero", "of=/dev/#{tgt.device}", "bs=1024", "seek=#{tgtblocks.to_s}", "conv=fsync" ] , @tl.get_translation("preparing")) 
 	
 		# Copy the ISO image
 		0.upto(sizes[1] - 1) { |b|
-			system("rm /var/run/lesslinux/copyblock.bin")
-			system("rm /var/run/lesslinux/checkblock.bin")
-			system("dd if=#{sizes[4]} of=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 skip=#{b.to_s} conv=sync")
-			md5in = ` md5sum /var/run/lesslinux/copyblock.bin `.strip.split[0] 
+			system("rm /var/run/lesslinux/#{tgt.device}/copyblock.bin")
+			system("rm /var/run/lesslinux/#{tgt.device}/checkblock.bin")
+			system("mkdir -p /var/run/lesslinux/#{tgt.device}")
+			system("dd if=#{sizes[4]} of=/var/run/lesslinux/#{tgt.device}/copyblock.bin bs=8388608 count=1 skip=#{b.to_s}")
+			md5in = ` md5sum /var/run/lesslinux/#{tgt.device}/copyblock.bin `.strip.split[0] 
 			md5out = ''
 			tries = 0
 			matched = false
 			while tries < 9 && matched == false 
-				system("dd of=/dev/#{tgt.device} if=/var/run/lesslinux/copyblock.bin bs=8388608 count=1 seek=#{b.to_s}")
-				system("dd if=/dev/#{tgt.device} of=/var/run/lesslinux/checkblock.bin bs=8388608 count=1 skip=#{b.to_s}")
-				md5out = ` md5sum /var/run/lesslinux/checkblock.bin `.strip.split[0]
+				system("dd of=/dev/#{tgt.device} if=/var/run/lesslinux/#{tgt.device}/copyblock.bin bs=8388608 count=1 seek=#{b.to_s} conv=fsync")
+				system("dd if=/dev/#{tgt.device} of=/var/run/lesslinux/#{tgt.device}/checkblock.bin bs=8388608 count=1 skip=#{b.to_s} conv=fsync")
+				md5out = ` md5sum /var/run/lesslinux/#{tgt.device}/checkblock.bin `.strip.split[0]
 				if md5in == md5out 
 					matched = true
 				else
@@ -115,8 +116,8 @@ class LessLinuxInstaller
 			end
 		}
 		system("sync") 
-		system("rm /var/run/lesslinux/copyblock.bin")
-		system("rm /var/run/lesslinux/checkblock.bin")
+		system("rm /var/run/lesslinux/#{tgt.device}/copyblock.bin")
+		system("rm /var/run/lesslinux/#{tgt.device}/checkblock.bin")
 	
 		# Blank the first 32k 
 		system("dd if=/dev/zero bs=8192 count=4 of=/dev/#{tgt.device} conv=sync")
@@ -133,39 +134,42 @@ class LessLinuxInstaller
 		while File.blockdev?("/dev/#{tgt.device}2") == false 
 			run_command("/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 		end
+		[ "1", "2", "3" ].each { |n|
+			system("dd if=/dev/zero bs=1M count=8 of=/dev/#{tgt.device}#{n} conv=fsync")
+		}
 		run_command("mkfs.ntfs", [ "mkfs.ntfs", "-F", "-f", "-L", "info", "/dev/#{tgt.device}1" ] , @tl.get_translation("write_info")) 
 		# tar the content of the legacy boot part 
 		run_command("mkfs.ext2", [ "mkfs.ext2", "-F", "/dev/#{tgt.device}2" ] , @tl.get_translation("write_boot")) 
 		system("sync") 
 		run_command("/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
-		system("mkdir -p /var/run/lesslinux/install_boot")
-		system("mount -t ext4 /dev/#{tgt.device}2 /var/run/lesslinux/install_boot")
+		system("mkdir -p /var/run/lesslinux/#{tgt.device}/install_boot")
+		system("mount -t ext4 /dev/#{tgt.device}2 /var/run/lesslinux/#{tgt.device}/install_boot")
 		run_command("/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
-		while system("mountpoint /var/run/lesslinux/install_boot") == false
-			system("mount -t ext4 /dev/#{tgt.device}2 /var/run/lesslinux/install_boot")
+		while system("mountpoint /var/run/lesslinux/#{tgt.device}/install_boot") == false
+			system("mount -t ext4 /dev/#{tgt.device}2 /var/run/lesslinux/#{tgt.device}/install_boot")
 			run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 		end
-		run_command("rsync", [ "rsync", "-avHP", "#{sizes[5]}/boot", "/var/run/lesslinux/install_boot/" ] , @tl.get_translation("write_boot")) 
+		run_command("rsync", [ "rsync", "-avHP", "#{sizes[5]}/boot", "/var/run/lesslinux/#{tgt.device}/install_boot/" ] , @tl.get_translation("write_boot")) 
 		system("sync") 
-		system("chmod -R 0644 /var/run/lesslinux/install_boot/")
-		run_command("dd", [ "dd", "if=#{sizes[5]}/boot/efi/efi.img", "of=/dev/#{tgt.device}3", "conv=sync" ], @tl.get_translation("write_boot")) 
+		system("chmod -R 0644 /var/run/lesslinux/#{tgt.device}/install_boot/")
+		run_command("dd", [ "dd", "if=#{sizes[5]}/boot/efi/efi.img", "of=/dev/#{tgt.device}3", "conv=fsync" ], @tl.get_translation("write_boot")) 
 		system("sync") 
 		run_command("/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
-		system("mkdir -p /var/run/lesslinux/install_efi")
-		system("mount -t vfat /dev/#{tgt.device}3 /var/run/lesslinux/install_efi")
+		system("mkdir -p /var/run/lesslinux/#{tgt.device}/install_efi")
+		system("mount -t vfat /dev/#{tgt.device}3 /var/run/lesslinux/#{tgt.device}/install_efi")
 		# Find and move config files 
 		cfgfiles = Array.new
-		IO.popen("find /var/run/lesslinux/install_boot/boot -name '*.cfg'") { |line|
+		IO.popen("find /var/run/lesslinux/#{tgt.device}/install_boot/boot -name '*.cfg'") { |line|
 			while line.gets
 				cfgfiles.push $_.strip
 			end
 		}
-		IO.popen("find /var/run/lesslinux/install_efi -name '*.conf'") { |line|
+		IO.popen("find /var/run/lesslinux/#{tgt.device}/install_efi -name '*.conf'") { |line|
 			while line.gets
 				cfgfiles.push $_.strip
 			end
 		}
-		cfgfiles.push("/var/run/lesslinux/install_boot/boot/isolinux/extlinux.conf") if File.exists? ("/var/run/lesslinux/install_boot/boot/isolinux/extlinux.conf") 
+		cfgfiles.push("/var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/extlinux.conf") if File.exists? ("/var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/extlinux.conf") 
 		cfgfiles.each { |fname|
 			puts "Editing: " + fname 
 			system("cp -v #{fname}.#{language} #{fname}") if File.exists?("#{fname}.#{language}") unless language.nil? 
@@ -182,13 +186,17 @@ class LessLinuxInstaller
 			end
 			system("rm #{fname}") if fname =~ /boot0x80\.cfg$/ 
 		}
-		system("cp -v /var/run/lesslinux/install_boot/boot/isolinux/{isolinux.cfg,extlinux.conf}") unless File.exists? ("/var/run/lesslinux/install_boot/boot/isolinux/extlinux.conf") 
+		system("cp -v /var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/{isolinux.cfg,extlinux.conf}") unless File.exists? ("/var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux/extlinux.conf") 
 		# Write syslinux
-		system("extlinux --install /var/run/lesslinux/install_boot/boot/isolinux") 
-		system("umount /var/run/lesslinux/install_boot")
-		system("umount /var/run/lesslinux/install_efi")
+		system("extlinux --install /var/run/lesslinux/#{tgt.device}/install_boot/boot/isolinux") 
+		system("mount -t ntfs-3g /dev/#{tgt.device}3 /var/run/lesslinux/#{tgt.device}/install_info")
+		system("tar -C \"#{sizes[5]}/lesslinux/info\" -cvf - . | tar -C /var/run/lesslinux/#{tgt.device}/install_info -xf - ")
+		system("sync") 
+		system("umount /var/run/lesslinux/#{tgt.device}/install_boot")
+		system("umount /var/run/lesslinux/#{tgt.device}/install_efi")
+		system("umount /var/run/lesslinux/#{tgt.device}/install_info")
 		# Write the compat MBR
-		sysstr = "dd bs=440 count=1 if=/usr/share/syslinux/gptmbr.bin of=/dev/#{tgt.device} conv=sync"	
+		sysstr = "dd bs=440 count=1 if=/usr/share/syslinux/gptmbr.bin of=/dev/#{tgt.device} conv=fsync"	
 		puts sysstr
 		system sysstr
 		run_command("sync", [ "sync" ], @tl.get_translation("waiting"))
