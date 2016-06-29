@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="wireshark"
-		version="1.10.14"
+		version="2.0.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -11,25 +11,26 @@
 				<mirror>http://wiresharkdownloads.riverbed.com/wireshark/src/</mirror>
 			</file> -->
 			<file>                                                           
-				<pkg sha1="47c359dc1b9791d2091887a26fdba65f4a7ef3b8">wireshark-1.10.14.tar.bz2</pkg>
+				<pkg sha1="6a5c18710d6da04ddc84975cdc840812e672c0f4">wireshark-2.0.2.tar.bz2</pkg>
 				<mirror>http://wiresharkdownloads.riverbed.com/wireshark/src/</mirror>
 			</file>
 			<file>                                                           
 				<pkg sha1="36f1f053eaadaa20294082605d179091b24b1d72">wireshark-1.8.4-init-root.lua</pkg>
 				<mirror> http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="120" page="http://wiresharkdownloads.riverbed.com/" />
+			<manualcheck date="20160412" interval="120" page="http://wiresharkdownloads.riverbed.com/" />
 			<check>
 				<page html="https://1.na.dl.wireshark.org/src/all-versions/">
-					<atext linktext="wireshark-1.10.15." />
-					<atext linktext="wireshark-1.10.16." />
-					<atext linktext="wireshark-1.10.17." />
-					<atext linktext="wireshark-1.10.18." />
-					<atext linktext="wireshark-1.12.7." />
-					<atext linktext="wireshark-1.12.8." />
-					<atext linktext="wireshark-1.12.9." />
-					<atext linktext="wireshark-1.14." />
-					<atext linktext="wireshark-2." />
+					<atext linktext="wireshark-2.0.3." />
+					<atext linktext="wireshark-2.0.4." />
+					<atext linktext="wireshark-2.0.5." />
+					<atext linktext="wireshark-2.0.6." />
+					<atext linktext="wireshark-2.0.7." />
+					<atext linktext="wireshark-2.0.8." />
+					<atext linktext="wireshark-2.1." />
+					<atext linktext="wireshark-2.2." />
+					<atext linktext="wireshark-3." />
+					<atext linktext="wireshark-4." />
 				</page>
 			</check>
 		</sources>
@@ -84,20 +85,16 @@
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
-			# export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
-			export PATH=$PATH:/usr/compat.old/bin:/usr/compat.old/sbin
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			# ./configure --without-libnl --prefix=/usr --sysconfdir=/etc --with-ssl
-			# ./configure --prefix=/usr --sysconfdir=/etc --with-ssl --with-lua=/usr/compat.old
 			./configure --prefix=/usr --sysconfdir=/etc --with-ssl
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount # LIBS='-llua -lz' # -lnl-3 -lnl-route-3 -lnl-genl-3'
+				pump make -j $jobcount  
 			else
-				make # LIBS='-llua -lz' # -lnl-3 -lnl-route-3 -lnl-genl-3'
+				make  
 			fi
 			]]>
 		</build>
@@ -106,8 +103,8 @@
 			
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
-			mv ${TGTDIR}/usr/share/wireshark/init.lua{,.orig} 
-			install -m 0644 ${SRCDIR}/${PKGNAME}-1.8.4-init-root.lua ${TGTDIR}/usr/share/wireshark/init.lua
+			# mv ${TGTDIR}/usr/share/wireshark/init.lua{,.orig} 
+			install -m 0644 ${SRCDIR}/${PKGNAME}-1.8.4-init-root.lua ${TGTDIR}/usr/share/wireshark/init.lua.root
 			mkdir -p ${TGTDIR}/usr/share/applications
 			cat > ${TGTDIR}/usr/share/applications/wireshark.desktop  << EOF
 			
@@ -115,7 +112,7 @@
 frame_maininfo=
 Name=Wireshark
 Icon=wireshark
-Exec=sudo /usr/bin/wireshark
+Exec=/usr/bin/wireshark
 Type=Application
 Categories=CB-Other;
 

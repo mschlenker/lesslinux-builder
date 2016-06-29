@@ -20,7 +20,16 @@ export PATH
 
 case $1 in 
     start)
-	[ -n "$xrandr" ] && xrandr --size "$xrandr" 
+	if [ -n "$xrandr" ] ; then
+		xrandr --size "$xrandr" 
+	elif [ -z "$norotate" ] ; then
+		aspect=` xrandr | grep '*' | head -n1 | awk '{print $1}' ` 
+		width=` echo $aspect | awk -F 'x' '{print $1}' `
+		height=` echo $aspect | awk -F 'x' '{print $2}' `
+		if [ "$height" -gt "$width" ] ; then
+			xrandr -o right 
+		fi
+	fi
     ;;
 esac
 

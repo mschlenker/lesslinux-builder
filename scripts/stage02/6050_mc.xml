@@ -1,21 +1,21 @@
 <llpackages>
 	<package
 		name="mc"
-		version="4.8.15"
+		version="4.8.17"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="cd122d30f93db66f5153700500c3253653245542">mc-4.8.15.tar.xz</pkg>
+				<pkg sha1="f6a080a6ce6523f308e2530e839e0156be70cdc6">mc-4.8.17.tar.xz</pkg>
 				<mirror>ftp://ftp.midnight-commander.org/pub/midnightcommander/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="90" page="ftp://ftp.midnight-commander.org/" />
+			<manualcheck date="20160510" interval="90" page="ftp://ftp.midnight-commander.org/" />
 			<check>
 				<page html="ftp://ftp.midnight-commander.org/pub/midnightcommander/">
 					<atext linktext="mc-4.8.20." />
-					<atext linktext="mc-4.8.16." />
-					<atext linktext="mc-4.8.17." />
+					<atext linktext="mc-4.8.21." />
+					<atext linktext="mc-4.8.22." />
 					<atext linktext="mc-4.8.18." />
 					<atext linktext="mc-4.8.19." />
 					<atext linktext="mc-4.9." />
@@ -72,6 +72,26 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
+			
+mkdir -p ${TGTDIR}/usr/share/applications
+cat >> ${TGTDIR}/usr/share/applications/mc.desktop << MCDESKTOP
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Midnight Commander
+Comment=
+Categories=Utility;
+Exec=Terminal --hide-menubar -T "Midnight Commander" -e mc 
+Icon=file-manager
+Terminal=false
+StartupNotify=true
+
+MCDESKTOP
+			
+chmod 0755 ${TGTDIR}/usr/share/applications/mc.desktop
+
 			]]>
 		</install>
 		<clean>

@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="libxml2"
-		version="2.9.2"
+		version="2.9.3"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>               
-				<pkg sha1="f46a37ea6d869f702e03f393c376760f3cbee673">libxml2-2.9.2.tar.gz</pkg>
+				<pkg sha1="0301ce933637e0ceda049047dbefd18714f59b6e">libxml2-2.9.3.tar.gz</pkg>
 				<mirror>ftp://xmlsoft.org/libxml2/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="ftp://xmlsoft.org/libxml2/" />
+			<manualcheck date="20160412" interval="180" page="ftp://xmlsoft.org/libxml2/" />
 			<check>
 				<page html="ftp://xmlsoft.org/libxml2/">
 					<atext linktext="libxml2-2.9.10." />
-					<atext linktext="libxml2-2.9.3." />
+					<atext linktext="libxml2-2.9.11." />
 					<atext linktext="libxml2-2.9.4." />
 					<atext linktext="libxml2-2.9.5." />
 					<atext linktext="libxml2-2.9.6." />
@@ -55,7 +55,7 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 <![CDATA[		
 cd ${PKGNAME}-${PKGVERSION}
 sed \
@@ -64,7 +64,7 @@ sed \
           ((ent->children == NULL) \&\& (ctxt->options \& XML_PARSE_NOENT))) \&\&/' \
   -i parser.c
 ]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
@@ -80,10 +80,10 @@ sed \
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr  --with-python --with-threads=no  --disable-static --with-history CC="distcc gcc" CXX="distcc g++" 
+				./configure --prefix=/usr  --with-python --with-threads=yes  --disable-static --with-history CC="distcc gcc" CXX="distcc g++" 
 				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --prefix=/usr  --with-python --with-threads=no  --disable-static --with-history
+				./configure --prefix=/usr  --with-python --with-threads=yes  --disable-static --with-history
 				make
 			fi
 			]]>
