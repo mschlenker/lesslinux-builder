@@ -1,0 +1,86 @@
+<llpackages>
+	<package 
+		name="mpfr"
+		version="3.1.4"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                       
+				<pkg sha1="e3b0af77f18505184410d621fe0aae179e229dba">mpfr-3.1.4.tar.bz2</pkg>
+				<mirror>http://www.mpfr.org/mpfr-current/</mirror>
+			</file>
+			<!-- <file>                                                                       
+				<pkg sha1="95ffaa75ca87a45f5373449f25178c5bc3467cb6">mpfr-3.1.2-upstream_fixes-3.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20160630" interval="180" page="http://www.mpfr.org/mpfr-current/" />
+			<check>
+				<page html="http://www.mpfr.org/mpfr-current/">
+					<atext linktext="mpfr-3.1.4.tar.bz2" />
+					<atext linktext="mpfr-3.1.5.tar.bz2" />
+					<atext linktext="mpfr-3.1.6.tar.bz2" />
+					<atext linktext="mpfr-3.2." />
+					<atext linktext="mpfr-3.3." />
+					<atext linktext="mpfr-3.4." />
+					<atext linktext="mpfr-4." />
+					<atext linktext="mpfr-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <unpack>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-3.patch | patch -p1 
+			]]>
+		</unpack> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			case `uname -m` in
+				i?86) 
+					CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' \
+						./configure --prefix=/usr --enable-thread-safe --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make -j 4
+				;;
+				*)
+					./configure --prefix=/usr --enable-thread-safe --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make -j 2
+				;;
+			esac
+			make html
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			make install-html DESTDIR=${TGTDIR}
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

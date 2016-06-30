@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="gmp"
+		version="6.1.1"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                   
+				<pkg sha1="1cec4ae9b40b0f7eb6339d4e93e058ff9528c4b6">gmp-6.1.1.tar.lz</pkg>
+				<mirror>http://ftp.sunet.se/pub/gnu/gmp/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="180" page="http://ftp.sunet.se/pub/gnu/gmp/" />
+			<check>
+				<page html="http://ftp.sunet.se/pub/gnu/gmp/">
+					<atext linktext="gmp-6.1.1b." />
+					<atext linktext="gmp-6.1.1a." />
+					<atext linktext="gmp-6.1.2." />
+					<atext linktext="gmp-6.1.3." />
+					<atext linktext="gmp-6.1.4." />
+					<atext linktext="gmp-6.2." />
+					<atext linktext="gmp-6.3." />
+					<atext linktext="gmp-6.4." />
+					<atext linktext="gmp-6.5." />
+					<atext linktext="gmp-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.lz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-6.1.1
+			case `uname -m` in
+				i?86) 
+					CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' ABI=32 ./configure --prefix=/usr --enable-cxx  && make -j 4
+				;;
+				armv6l)
+					./configure --prefix=/usr --enable-cxx  && make -j 2
+				;;
+				*)
+					CFLAGS='-mtune=generic' CXXFLAGS='-mtune=generic' ./configure --prefix=/usr --enable-cxx  && make -j 4
+				;;
+			esac
+			
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-6.1.1
+			make check 2>&1 | tee gmp-check-log
+			awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-6.1.1
+			make install DESTDIR=${TGTDIR}
+			mkdir -v ${TGTDIR}/usr/share/doc/gmp-${PKGVERSION}
+			cp    -v doc/{isa_abi_headache,configuration} doc/*.html ${TGTDIR}/usr/share/doc/gmp-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION} ${PKGNAME}-6.1.1
+			]]>
+		</clean>
+	</package>
+</llpackages>

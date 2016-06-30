@@ -1,0 +1,76 @@
+<llpackages>
+	<package 
+		name="binutils"
+		version="2.26.1"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                 
+				<pkg sha1="624cd377e3a8eef3db83a56ce289a60f556b3ec2">binutils-2.26.1.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
+			</file>
+			<file>                                                                 
+				<pkg sha1="8d52b7d0db9bab81e87dac4537799794af951051">binutils-2.26-upstream_fixes-3.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20160629" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/binutils/">
+					<atext linktext="binutils-2.26.4." />
+					<atext linktext="binutils-2.26.2." />
+					<atext linktext="binutils-2.26.3" />
+					<atext linktext="binutils-2.27." />
+					<atext linktext="binutils-2.28." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			mkdir binutils-build
+			]]>
+		</unpack>
+		<patch>			
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/binutils-2.26-upstream_fixes-3.patch | patch -p1
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-build
+			../${PKGNAME}-${PKGVERSION}/configure --prefix=/usr --enable-shared --disable-werror
+			make tooldir=/usr
+			]]>
+		</build>
+		<test>
+			<![CDATA[ 
+			cd ${PKGNAME}-build
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make tooldir=/usr install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/include
+			# cp -v ../${PKGNAME}-${PKGVERSION}/include/libiberty.h ${TGTDIR}/usr/include
+			]]>
+		</install>
+		<clean>
+			<![CDATA[ 
+			rm -rf ${PKGNAME}-build
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
