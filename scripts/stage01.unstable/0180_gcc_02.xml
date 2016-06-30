@@ -1,0 +1,161 @@
+<llpackages>
+	<package 
+		name="gcc_pass2"
+		version="6.1.0"
+		buildas="unpriv">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="e0cdec515a54ce979ad52f9c784d3e142c76553a">gcc-6.1.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.1.0/</mirror>
+			</file>
+			<file>                                                                       
+				<pkg sha1="e3b0af77f18505184410d621fe0aae179e229dba">mpfr-3.1.4.tar.bz2</pkg>
+				<mirror>http://www.mpfr.org/mpfr-current/</mirror>
+			</file>
+			<file>                                   
+				<pkg sha1="1cec4ae9b40b0f7eb6339d4e93e058ff9528c4b6">gmp-6.1.1.tar.lz</pkg>
+				<mirror>http://ftp.sunet.se/pub/gnu/gmp/</mirror>
+			</file>
+			<file>                                
+				<pkg sha1="b8be66396c726fdc36ebb0f692ed8a8cca3bcc66">mpc-1.0.3.tar.gz</pkg>
+				<mirror>http://www.multiprecision.org/mpc/download/</mirror>
+			</file>
+			<manualcheck date="20160629" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-6.1.1" />
+					<atext linktext="gcc-6.1.2" />
+					<atext linktext="gcc-6.1.3" />
+					<atext linktext="gcc-6.2."/>
+					<atext linktext="gcc-6.3." />
+					<atext linktext="gcc-7." />
+				</page>
+				<page html="http://ftp.sunet.se/pub/gnu/gmp/">
+					<atext linktext="gmp-6.1.1b." />
+					<atext linktext="gmp-6.1.1a." />
+					<atext linktext="gmp-6.1.2." />
+					<atext linktext="gmp-6.1.3." />
+					<atext linktext="gmp-6.1.4." />
+					<atext linktext="gmp-6.2." />
+					<atext linktext="gmp-6.3." />
+					<atext linktext="gmp-6.4." />
+					<atext linktext="gmp-6.5." />
+					<atext linktext="gmp-7." />
+				</page>
+				<page html="http://www.mpfr.org/mpfr-current/">
+					<atext linktext="mpfr-3.1.4.tar.bz2" />
+					<atext linktext="mpfr-3.1.5.tar.bz2" />
+					<atext linktext="mpfr-3.1.6.tar.bz2" />
+					<atext linktext="mpfr-3.2." />
+					<atext linktext="mpfr-3.3." />
+					<atext linktext="mpfr-3.4." />
+					<atext linktext="mpfr-4." />
+					<atext linktext="mpfr-5." />
+				</page>
+				<page html="http://www.multiprecision.org/index.php?prog=mpc&amp;page=download">
+					<atext linktext="Version 1.0.4" />
+					<atext linktext="Version 1.0.5" />
+					<atext linktext="Version 1.1" />
+					<atext linktext="Version 2." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/mpfr-3.1.4.tar.bz2
+			tar xf ${SRCDIR}/gmp-6.1.1.tar.lz
+			tar xf ${SRCDIR}/mpc-1.0.3.tar.gz
+
+			mv -v mpc-1.0.3 gcc-${PKGVERSION}/mpc
+			mv -v gmp-6.1.1 gcc-${PKGVERSION}/gmp
+			mv -v mpfr-3.1.4 gcc-${PKGVERSION}/mpfr
+			mkdir -v gcc-build
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd gcc-${PKGVERSION}
+			cat gcc/limitx.h gcc/glimits.h gcc/limity.h > `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h
+			
+for file in \
+ $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
+do
+  cp -uv $file{,.orig}
+  sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&@g' \
+      -e 's@/usr@/tools@g' $file.orig > $file
+  echo '
+#undef STANDARD_STARTFILE_PREFIX_1
+#undef STANDARD_STARTFILE_PREFIX_2
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
+#define STANDARD_STARTFILE_PREFIX_2 ""' >> $file
+  touch $file.orig
+done
+			
+			]]>
+		</patch>
+		<chown>
+			<![CDATA[ 
+			chown -R ${UNPRIV} gcc-build
+			chown -R ${UNPRIV} gcc-${PKGVERSION}
+			]]>
+		</chown>
+		<build>
+			<![CDATA[ 
+			
+			cd gcc-build
+			
+			ARMFLOAT=''
+			ARMFPU=''
+			JOBS=4
+
+			# Settings for Raspberry Pi
+			case ${LFS_TGT} in
+				*armv6l*)
+					ARMFLOAT="--with-float=hard"
+					ARMFPU="--with-fpu=vfp"
+					JOBS=1
+				;;
+			esac		
+			
+CC=$LFS_TGT-gcc                                      \
+CXX=$LFS_TGT-g++                                     \
+AR=$LFS_TGT-ar                                       \
+RANLIB=$LFS_TGT-ranlib                               \
+../gcc-${PKGVERSION}/configure ${ARMFLOAT} ${ARMFPU} \
+    --prefix=/tools                                  \
+    --with-local-prefix=/tools                       \
+    --with-native-system-header-dir=/tools/include   \
+    --enable-languages=c,c++                         \
+    --disable-libstdcxx-pch                          \
+    --disable-multilib                               \
+    --disable-bootstrap                              \
+    --disable-libgomp
+    
+# Fix build on RaspberryPi
+case 	$LFS_TGT in 
+	armv6l*)
+		sed -i 's/none-/armv6l-/' Makefile
+	;;
+esac			
+make -j $JOBS
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd gcc-build
+			make install
+			ln -vs gcc /tools/bin/cc
+			ln -sv /tools/lib/libgcc_s.so{,.1} ${CHROOTDIR}/usr/lib
+			ln -sv /tools/lib/libstdc++.so{,.6} ${CHROOTDIR}/usr/lib
+			echo 'main(){}' > dummy.c
+			cc dummy.c
+			readelf -l a.out | grep ': /tools'
+
+			]]>
+		</install>
+	</package>
+</llpackages>

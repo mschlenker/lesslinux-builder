@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="dejagnu"
+		version="1.6">
+		<license>GPLv2</license>
+		<sources>
+			<file>                        
+				<pkg sha1="03a40e5bf964383af3fb56a07cc7605cb9aaab97">dejagnu-1.6.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/dejagnu/</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="9c2c7cfc83c58db25d3751b9429c1b94e5893852">dejagnu-1.4.4-consolidated-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20160630" interval="365" page="http://ftp.gnu.org/gnu/dejagnu/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/dejagnu/">
+					<atext linktext="dejagnu-1.6.1" />
+					<atext linktext="dejagnu-1.6.2" />
+					<atext linktext="dejagnu-1.7." />
+					<atext linktext="dejagnu-1.8." />
+					<atext linktext="dejagnu-2." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-consolidated-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
