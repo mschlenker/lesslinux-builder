@@ -1,0 +1,60 @@
+<llpackages>
+	<package 
+		name="pcre"
+		version="8.39"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                  
+				<pkg sha1="5e38289fd1b4ef3e8426f31a01e34b6924d80b90">pcre-8.39.tar.bz2</pkg>
+				<mirror>ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="180" page="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/" />
+			<check>
+				<page html="http://mirror.switch.ch/ftp/pool/1/mirror/exim/pcre/">
+					<atext linktext="pcre-8.41." />
+					<atext linktext="pcre-8.42." />
+					<atext linktext="pcre-8.43." />
+					<atext linktext="pcre-8.44." />
+					<atext linktext="pcre-8.40." />
+					<atext linktext="pcre-8.4" />
+					<atext linktext="pcre-8.5" />
+					<atext linktext="pcre-9" />
+					<atext linktext="pcre-10" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>inetutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --sysconfdir=/etc --prefix=/usr --enable-utf8 --enable-unicode-properties --enable-pcre16  --enable-pcre32   && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

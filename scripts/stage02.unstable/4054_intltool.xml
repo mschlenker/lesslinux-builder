@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="intltool"
+		version="0.51.0"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>       
+				<pkg sha1="a0c3bcb99d1bcfc5db70f8d848232a47c47da090">intltool-0.51.0.tar.gz</pkg>
+				<mirror>https://launchpad.net/intltool/trunk/0.51.0/+download/</mirror>
+			</file>
+			<manualcheck date="20150529" interval="365" page="https://launchpad.net/intltool/trunk/" />
+			<check>
+				<page html="https://launchpad.net/intltool/trunk/">
+					<atext href="intltool-0.51.1." />
+					<atext href="intltool-0.51.2." />
+					<atext href="intltool-0.51.3." />
+					<atext href="intltool-0.51.4." />
+					<atext href="intltool-0.52." />
+					<atext href="intltool-0.53." />
+					<atext href="intltool-0.54." />
+					<atext href="intltool-1.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's:\\\${:\\\$\\{:' intltool-update.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

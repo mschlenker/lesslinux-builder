@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="bash"
+		version="4.3.30"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                          
+				<pkg sha1="33b1bcc5dca1b72f28b2baeca6efa0d422097964">bash-4.3.30.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
+			</file>
+			<file>                                                     
+				<pkg sha1="c8981c62d37afce3e2cc97d5e6bd3b748e265ecf">bash-4.3.30-upstream_fixes-3.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="90" page="http://ftp.gnu.org/gnu/bash/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/bash/">
+					<atext linktext="bash-4.3.31." />
+					<atext linktext="bash-4.4." />
+					<atext linktext="bash-4.5." />
+					<atext linktext="bash-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>readline</dep>
+			<dep>bison</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-3.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.3.30 --without-bash-malloc --with-installed-readline \
+			&& make -j 4
+			]]>
+		</build>
+		<!--<test />-->
+		<!-- <test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/LANG/LC_ALL/' tests/intl.tests
+			sed -i 's@tests@& </dev/tty@' tests/run-test
+			make tests
+			]]>
+		</test> -->
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			ln -sfv /bin/bash ${TGTDIR}/bin/sh
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

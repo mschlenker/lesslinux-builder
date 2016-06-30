@@ -1,0 +1,76 @@
+<llpackages>
+	<package 
+		name="bison"
+		version="3.0.4"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                 
+				<pkg sha1="8270497aad88c7dd4f2c317298c50513fb0c3c8e">bison-3.0.4.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/bison/</mirror>
+			</file>
+			<manualcheck date="20150309" interval="180" page="http://ftp.gnu.org/gnu/bison/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/bison/">
+					<atext linktext="bison-3.0.5." />
+					<atext linktext="bison-3.0.6." />
+					<atext linktext="bison-3.0.7." />
+					<atext linktext="bison-3.0.8." />
+					<atext linktext="bison-3.1." />
+					<atext linktext="bison-3.2." />
+					<atext linktext="bison-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkgconfig</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
+			<dep>acl</dep>
+			<dep>libcap</dep>
+                        <dep>sed</dep>
+			<dep>shadow</dep>
+			<dep>psmisc</dep>
+			<dep>iana-etc</dep>
+			<dep>m4</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr
+			 
+			make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

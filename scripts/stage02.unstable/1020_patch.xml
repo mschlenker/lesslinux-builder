@@ -1,0 +1,85 @@
+<llpackages>
+	<package 
+		name="patch"
+		version="2.7.5"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="04d23f6e48e95efb07d12ccf44d1f35fb210f457">patch-2.7.5.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/patch/</mirror>
+			</file>
+			<manualcheck date="20150327" interval="180" page="ftp://ftp.gnu.org/gnu/patch/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/patch/">
+					<atext linktext="patch-2.7.6.tar.gz" />
+					<atext linktext="patch-2.7.7.tar.gz" />
+					<atext linktext="patch-2.8.tar.gz" />
+					<atext linktext="patch-2.8.0.tar.gz" />
+					<atext linktext="patch-2.8.1.tar.gz" />
+					<atext linktext="patch-3.0.tar.gz" />
+					<atext linktext="patch-3.0.0.tar.gz" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<dep>e2fsprogs</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>findutils</dep>
+                        <dep>groff</dep>
+			<dep>gzip</dep>
+			<dep>less</dep>
+			<dep>kbd</dep>
+			<dep>make</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat  ${SRCDIR}/${PKGNAME}-${PKGVERSION}-test_fix-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>

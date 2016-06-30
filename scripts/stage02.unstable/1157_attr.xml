@@ -1,0 +1,51 @@
+<llpackages>
+	<package 
+		name="attr"
+		version="2.4.47"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                          
+				<pkg sha1="9aa2d40eacabaddda596bf691c502a59d814cb2a">attr_2.4.47.orig.tar.bz2</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/a/attr/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://archive.ubuntu.com/ubuntu/pool/main/a/attr/" />
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkgconfig</dep>
+			<dep>ncurses</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+				tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+				cd ${PKGNAME}-${PKGVERSION}
+				sed -i -e 's|/@pkg_name@|&-@pkg_version@|' include/builddefs.in
+				sed -i -e "/SUBDIRS/s|man[25]||g" man/Makefile
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --libexecdir=/usr/lib && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install install-dev install-lib
+			chmod -v 755 /usr/lib/libattr.so
+			]]>
+		</install>
+	</package>
+</llpackages>

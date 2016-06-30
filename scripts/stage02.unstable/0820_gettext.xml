@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="gettext"
+		version="0.19.8.1"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="b5d24ba2958c91fc5cc0058165837c99a0f58784">gettext-0.19.8.1.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gettext/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gettext/">
+					<atext linktext="gettext-0.19.9." />
+					<atext linktext="gettext-0.19.10." />
+					<atext linktext="gettext-0.19.11." />
+					<atext linktext="gettext-0.20." />
+					<atext linktext="gettext-0.21." />
+					<atext linktext="gettext-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}/
+			sed -i -e '/gets is a/d' gettext-*/*/stdio.in.h
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			EMACS="no" ./configure --prefix=/usr --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			chmod -v 0755 ${TGTDIR}/usr/lib/preloadable_libintl.so
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

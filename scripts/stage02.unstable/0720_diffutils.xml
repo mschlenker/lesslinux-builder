@@ -1,0 +1,73 @@
+<llpackages>
+	<package 
+		name="diffutils"
+		version="3.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                  
+				<pkg sha1="6463cce7d3eb73489996baefd0e4425928ecd61e">diffutils-3.3.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/diffutils/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/diffutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/diffutils/">
+					<atext linktext="diffutils-3.5." />
+					<atext linktext="diffutils-3.4." />
+					<atext linktext="diffutils-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<dep>e2fsprogs</dep>
+                        <dep>coreutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			sed -i 's:= @mkdir_p@:= /bin/mkdir -p:' po/Makefile.in.in
+			# sed -i -e '/gets is a/d' ${PKGNAME}-${PKGVERSION}/lib/stdio.in.h
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

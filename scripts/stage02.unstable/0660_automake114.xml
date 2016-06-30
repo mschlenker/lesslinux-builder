@@ -1,0 +1,76 @@
+<llpackages>
+	<package 
+		name="automake114"
+		version="1.14.1"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="2ced676f6b792a95c5919243f81790b1172c7f5b">automake-1.14.1.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/automake/</mirror>
+			</file>
+			<file>                                                                  
+				<pkg sha1="71853779b12f958777bffcb8ca6d849b4d3bed46">pkg-config-0.28.tar.gz</pkg>
+				<mirror>http://pkgconfig.freedesktop.org/releases/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://ftp.gnu.org/gnu/automake/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/automake/">
+					<atext linktext="automake-1.14.5" />
+					<atext linktext="automake-1.14.2" />
+					<atext linktext="automake-1.14.3" />
+					<atext linktext="automake-1.14.4" />
+					<atext linktext="automake-1.15" />
+					<atext linktext="automake-1.16" />
+					<atext linktext="automake-1.17" />
+					<atext linktext="automake-1.20" />
+					<atext linktext="automake-2" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>autoconf213</dep>
+			<dep>autoconf</dep>
+			<dep>automake</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/automake-${PKGVERSION}.tar.xz | tar xf - 
+			tar xzf ${SRCDIR}/pkg-config-0.28.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd automake-${PKGVERSION}
+			./configure --prefix=/usr/local/automake114 && make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd automake-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd automake-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			mkdir -p ${TGTDIR}/usr/bin
+			ln -sf /usr/local/automake114/bin/automake ${TGTDIR}/usr/bin/automake-1.14
+			ln -sf /usr/local/automake114/bin/aclocal ${TGTDIR}/usr/bin/aclocal-1.14
+			cd ..
+			mkdir -p ${TGTDIR}/usr/local/automake114/share/aclocal-1.14
+			install -m 0644 pkg-config-0.28/aclocal.m4 ${TGTDIR}/usr/local/automake114/share/aclocal-1.14
+			install -m 0644 pkg-config-0.28/pkg.m4 ${TGTDIR}/usr/local/automake114/share/aclocal-1.14
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf automake-${PKGVERSION}
+			rm -rf pkg-config-0.28
+			]]>
+		</clean>
+	</package>
+</llpackages>
