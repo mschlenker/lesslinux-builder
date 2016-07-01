@@ -84,6 +84,7 @@
 				--enable-libffi            \
 				--enable-optimized         \
 				--enable-shared            \
+				--enable-static \
 				--disable-assertions --disable-bindings
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
