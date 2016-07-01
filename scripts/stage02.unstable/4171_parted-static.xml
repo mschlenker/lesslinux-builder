@@ -1,0 +1,100 @@
+<llpackages>
+	<package 
+		name="parted-static"
+		version="3.2"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                
+				<pkg sha1="78db6ca8dd6082c5367c8446bf6f7ae044091959">parted-3.2.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/parted/</mirror>
+			</file>
+			<file>                                                                                          
+				<pkg sha1="e75e321467164e293b081796486457fcd001a0dc">LVM2.2.02.158.tgz</pkg>
+				<mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/parted/">
+					<atext linktext="parted-3.2.1." />
+					<atext linktext="parted-3.2.2." />
+					<atext linktext="parted-3.3." />
+					<atext linktext="parted-3.4." />
+					<atext linktext="parted-3.4." />
+					<atext linktext="parted-4." />
+				</page>
+				<page html="http://mirrors.kernel.org/sources.redhat.com/lvm2/">
+					<atext linktext="LVM2.2.02.160.t" />
+					<atext linktext="LVM2.2.02.161.t" />
+					<atext linktext="LVM2.2.02.162.t" />
+					<atext linktext="LVM2.2.02.163.t" />
+					<atext linktext="LVM2.2.02.164.t" />
+					<atext linktext="LVM2.2.02.165.t" />
+					<atext linktext="LVM2.2.02.166.t" />
+					<atext linktext="LVM2.2.02.159.t" />
+					<atext linktext="LVM2.2.02.16" />
+					<atext linktext="LVM2.2.02.17" />
+					<atext linktext="LVM2.2.03" />
+					<atext linktext="LVM2.2.04" />
+					<atext linktext="LVM2.3" />
+					<atext linktext="LVM2.4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>device-mapper</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/parted-${PKGVERSION}.tar.xz | tar xf - 
+			tar -xf ${SRCDIR}/LVM2.2.02.158.tgz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			THISDIR=` pwd ` 
+			cd LVM2.2.02.111
+			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link
+			make -k
+			cd ../parted-${PKGVERSION}                    
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no
+			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.158/libdm/ioctl -pthread"
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd parted-${PKGVERSION}
+			mkdir -p $TGTDIR/static/sbin
+			install -m 0755 parted/parted $TGTDIR/static/sbin/parted
+			strip $TGTDIR/static/sbin/parted 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf parted-${PKGVERSION}
+			rm -rf LVM2.2.02.158
+			]]>
+		</clean>
+	</package>
+</llpackages>
