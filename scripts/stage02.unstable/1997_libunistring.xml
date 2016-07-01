@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="libunistring"
+		version="0.9.6"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                                   
+				<pkg sha1="87cb4c18fbb1e0f1d8eb38311093835a924b4b12">libunistring-0.9.6.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/libunistring/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="365" page="http://ftp.gnu.org/gnu/libunistring/" />
+			<check>
+				<page html="ftp:///ftp.gnu.org/gnu/libunistring/">
+					<atext linktext="libunistring-0.9.9." />
+					<atext linktext="libunistring-0.9.10." />
+					<atext linktext="libunistring-0.9.7." />
+					<atext linktext="libunistring-0.9.8." />
+					<atext linktext="libunistring-0.10." />
+					<atext linktext="libunistring-0.11." />
+					<atext linktext="libunistring-1." />
+					<atext linktext="libunistring-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

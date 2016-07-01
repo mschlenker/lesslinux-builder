@@ -1,0 +1,351 @@
+<llpackages>
+	<package 
+		name="xproto-base"
+		version="20160701"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="ef1765eeb5e9e38d080225fe6a64ed7cd2984b46">bigreqsproto-1.1.2.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="bd0f0f4dc8f37eaabd9279d10fe2889710507358">damageproto-1.2.1.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>                                                               
+				<pkg sha1="ab605af5da8c98c0c2f8b2c578fed7c864ee996a">fixesproto-5.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="07f6ab3e1e1efe71c51f50e95851d93d2a1de773">fontcacheproto-0.1.3.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="28c108bd6438c332122c10871c1fc6415591755f">fontsproto-2.1.3.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>                                                                                   
+				<pkg sha1="20e061c463bed415051f0f89e968e331a2078551">glproto-1.4.17.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>                                                                                                    
+				<pkg sha1="62b29a0c3b4ede9d129a0598cc6becf628a2158a">inputproto-2.3.2.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="c6514843f35e2591fadc13f3fc87bf3752b7197c">inputproto-1.5.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file> -->
+			<file>  
+				<pkg sha1="bc9c0fa7d39edf4ac043e6eeaa771d3e245ac5b2">kbproto-1.0.7.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="bc420745dc4af011988e9dcabdadf8829cbc2374">randrproto-1.5.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="442de2a6a2145e49f9ef12cadbea69140f9ca066">randrproto-1.3.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file> -->
+			<file>
+				<pkg sha1="d30cf508b1a1b5f0deb1c6db41ba2f4e57680637">renderproto-0.11.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>                                                                                               
+				<pkg sha1="9ff9bb9243b0474330959dc3853973523c9dd9ce">resourceproto-1.2.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="640a2cbef5893aacda74799e6fa4d973e629b753">scrnsaverproto-1.2.2.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="4556b5c2243a2ca290ea2140dc1a427c4bac8ba2">videoproto-2.3.3.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>      
+				<pkg sha1="e93da374ecef9359370edc0160bcb8b2a2f7d9f6">xcb-proto-1.12.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/x11</mirror>
+				<mirror>http://xcb.freedesktop.org/dist/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="59ae9ec6414964440bf654b207618e5dd66a32fb">xcmiscproto-1.2.2.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>                                     
+			<file>  <!-- cb5d78633eb909f706cf5904910083471c53089d  xextproto-7.0.4.tar.bz2 -->
+				<!-- required for libXext 1.0.4 -->                              
+				<pkg sha1="b8d736342dcb73b71584d99a1cb9806d93c25ff8">xextproto-7.3.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>  
+			<!-- <file> 
+				<pkg sha1="891e3f8e2c17128a8fc6930583e42fd3db75839a">xproto-7.0.15.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file> -->
+			<!-- <file>   
+				<pkg sha1="0eda5588d42f2c810d8491da44fe84a4093e12bc">xproto-7.0.16.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file> -->
+			<file>                                                                    
+				<pkg sha1="e2ea1d12235bfcd83dbc815fb69524ef0be5c1fb">xproto-7.0.29.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>                                               
+				<pkg sha1="23e861f40ba0f0cbbfd7db7ba2ef623762ffca17">xf86driproto-2.1.1.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<!-- <file>     
+				<pkg sha1="1ba917531ff035287549d576097d7028bd3d037f">dri2proto-2.1.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file> -->
+			<!--<file>       
+				<pkg sha1="21e9c0c7e0be5fe971f51589d0573b0273202b7f">dri2proto-2.2.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>-->
+			<!-- <file>         
+				<pkg sha1="6c9e2c822e777db435a43616067f8dd21cc00a53">dri2proto-2.3.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file> -->
+			<file>                                                                         
+				<pkg sha1="2bc4e8f00778b1f3fe58b4c4f93607ac2adafbbf">dri2proto-2.8.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<file>                                                      
+				<pkg sha1="11d54c3210887631ea71e8f8030a77692e964fc4">xf86vidmodeproto-2.3.1.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
+					<atext linktext="xf86vidmodeproto-2.3.2." />
+					<atext linktext="xf86vidmodeproto-2.4." />
+					<atext linktext="xf86vidmodeproto-2.5." />
+					<atext linktext="dri2proto-2.8.1" />
+					<atext linktext="dri2proto-2.9." />
+					<atext linktext="dri2proto-2.10." />
+					<atext linktext="xf86driproto-2.1.2." />
+					<atext linktext="xf86driproto-2.4." />
+					<atext linktext="xf86driproto-2.5." />
+					<atext linktext="xproto-7.0.32." />
+					<atext linktext="xproto-7.0.30." />
+					<atext linktext="xproto-7.0.31." />
+					<atext linktext="xproto-7.1." />
+					<atext linktext="xproto-7.2." />
+					<atext linktext="xproto-8." />
+					<atext linktext="xextproto-7.3.1." />
+					<atext linktext="xextproto-7.3.2." />
+					<atext linktext="xextproto-7.3.3." />
+					<atext linktext="xextproto-7.4." />
+					<atext linktext="xextproto-7.5." />
+					<atext linktext="xextproto-8." />
+					<atext linktext="xcmiscproto-1.2.4." />
+					<atext linktext="xcmiscproto-1.2.3." />
+					<atext linktext="xcmiscproto-1.3." />
+					<atext linktext="xcmiscproto-1.4." />
+					<atext linktext="xcmiscproto-2." />
+					<atext linktext="videoproto-2.3.5." />
+					<atext linktext="videoproto-2.3.4." />
+					<atext linktext="videoproto-2.4." />
+					<atext linktext="scrnsaverproto-1.2.5." />
+					<atext linktext="scrnsaverproto-1.2.3." />
+					<atext linktext="scrnsaverproto-1.2.4." />
+					<atext linktext="scrnsaverproto-1.3." />
+					<atext linktext="scrnsaverproto-1.4." />
+					<atext linktext="scrnsaverproto-2." />
+					<atext linktext="resourceproto-1.2.1." />
+					<atext linktext="resourceproto-1.2.2." />
+					<atext linktext="resourceproto-1.3." />
+					<atext linktext="renderproto-0.12.tar.bz2" />
+					<atext linktext="renderproto-0.13.tar.bz2" />
+					<atext linktext="randrproto-1.5.1." />
+					<atext linktext="randrproto-1.5.2." />
+					<atext linktext="randrproto-1.6." />
+					<atext linktext="randrproto-1.7." />
+					<atext linktext="randrproto-2." />
+					<atext linktext="kbproto-1.0.9." />
+					<atext linktext="kbproto-1.0.8." />
+					<atext linktext="kbproto-1.1." />
+					<atext linktext="kbproto-1.2." />
+					<atext linktext="kbproto-1.2." />
+					<atext linktext="inputproto-2.3.3." />
+					<atext linktext="inputproto-2.3.4." />
+					<atext linktext="inputproto-2.4." />
+					<atext linktext="inputproto-2.5." />
+					<atext linktext="glproto-1.4.18." />
+					<atext linktext="glproto-1.4.19." />
+					<atext linktext="glproto-1.4.20." />
+					<atext linktext="glproto-1.5." />
+					<atext linktext="glproto-1.6." />
+					<atext linktext="fontsproto-2.1.5." />
+					<atext linktext="fontsproto-2.1.6." />
+					<atext linktext="fontsproto-2.1.4." />
+					<atext linktext="fontsproto-2.2." />
+					<atext linktext="fontsproto-2.3." />
+					<atext linktext="fontsproto-3." />
+					<atext linktext="fontcacheproto-0.1.4.tar.bz2" />
+					<atext linktext="fontcacheproto-0.1.5.tar.bz2" />
+					<atext linktext="fontcacheproto-0.2.tar.bz2" />
+					<atext linktext="fontcacheproto-0.2.0.tar.bz2" />
+					<atext linktext="fixesproto-5.0.1." />
+					<atext linktext="fixesproto-5.0.2." />
+					<atext linktext="fixesproto-5.1." />
+					<atext linktext="fixesproto-5.2." />
+					<atext linktext="fixesproto-6." />
+					<atext linktext="damageproto-1.2.2." />
+					<atext linktext="damageproto-1.2.3." />
+					<atext linktext="damageproto-1.2.4." />
+					<atext linktext="damageproto-1.3." />
+					<atext linktext="damageproto-1.4." />
+					<atext linktext="damageproto-2." />
+					<atext linktext="compositeproto-0.4.3." />
+					<atext linktext="compositeproto-0.4.4." />
+					<atext linktext="compositeproto-0.5." />
+					<atext linktext="compositeproto-0.6." />
+					<atext linktext="compositeproto-1." />
+					<atext linktext="bigreqsproto-1.1.5." />
+					<atext linktext="bigreqsproto-1.1.3." />
+					<atext linktext="bigreqsproto-1.1.4." />
+					<atext linktext="bigreqsproto-1.2." />
+					<atext linktext="bigreqsproto-2." />
+				</page>
+				<page html="http://xcb.freedesktop.org/dist/">
+					<atext linktext="xcb-proto-1.12.1." />
+					<atext linktext="xcb-proto-1.12.2." />
+					<atext linktext="xcb-proto-1.12.3." />
+					<atext linktext="xcb-proto-1.13." />
+					<atext linktext="xcb-proto-1.14." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			for pkg in bigreqsproto-1.1.2 \
+				damageproto-1.2.1 \
+				fixesproto-5.0 \
+				fontcacheproto-0.1.3 \
+				fontsproto-2.1.3 \
+				inputproto-2.3.2 \
+				kbproto-1.0.7 \
+				randrproto-1.5.0 \
+				renderproto-0.11 \
+				resourceproto-1.2.0 \
+				scrnsaverproto-1.2.2 \
+				videoproto-2.3.3 \
+				xcb-proto-1.12 \
+				xcmiscproto-1.2.2 \
+				xextproto-7.3.0 \
+				xproto-7.0.29 \
+				glproto-1.4.17 \
+				xf86driproto-2.1.1 \
+				dri2proto-2.8 \
+				xf86vidmodeproto-2.3.1
+			do
+				tar xjf ${SRCDIR}/${pkg}.tar.bz2
+			done
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			for pkg in bigreqsproto-1.1.2 \
+				damageproto-1.2.1 \
+				fixesproto-5.0 \
+				fontcacheproto-0.1.3 \
+				fontsproto-2.1.3 \
+				inputproto-2.3.2 \
+				kbproto-1.0.7 \
+				randrproto-1.5.0 \
+				renderproto-0.11 \
+				resourceproto-1.2.0 \
+				scrnsaverproto-1.2.2 \
+				videoproto-2.3.3 \
+				xcb-proto-1.12 \
+				xcmiscproto-1.2.2 \
+				xextproto-7.3.0 \
+				xproto-7.0.29 \
+				glproto-1.4.17 \
+				xf86driproto-2.1.1 \
+				dri2proto-2.8 \
+				xf86vidmodeproto-2.3.1
+			do
+				( cd ${pkg} && ./configure --prefix=/usr )
+			done
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			for pkg in bigreqsproto-1.1.2 \
+				damageproto-1.2.1 \
+				fixesproto-5.0 \
+				fontcacheproto-0.1.3 \
+				fontsproto-2.1.3 \
+				inputproto-2.3.2 \
+				kbproto-1.0.7 \
+				randrproto-1.5.0 \
+				renderproto-0.11 \
+				resourceproto-1.2.0 \
+				scrnsaverproto-1.2.2 \
+				videoproto-2.3.3 \
+				xcb-proto-1.12 \
+				xcmiscproto-1.2.2 \
+				xextproto-7.3.0 \
+				xproto-7.0.29 \
+				glproto-1.4.17 \
+				xf86driproto-2.1.1 \
+				dri2proto-2.8 \
+				xf86vidmodeproto-2.3.1
+			do
+				make -C ${pkg} install DESTDIR=${TGTDIR}
+			done
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			for pkg in bigreqsproto-1.1.2 \
+				damageproto-1.2.1 \
+				fixesproto-5.0 \
+				fontcacheproto-0.1.3 \
+				fontsproto-2.1.3 \
+				inputproto-2.3.2 \
+				kbproto-1.0.7 \
+				randrproto-1.5.0 \
+				renderproto-0.11 \
+				resourceproto-1.2.0 \
+				scrnsaverproto-1.2.2 \
+				videoproto-2.3.3 \
+				xcb-proto-1.12 \
+				xcmiscproto-1.2.2 \
+				xextproto-7.3.0 \
+				xproto-7.0.29 \
+				glproto-1.4.17 \
+				xf86driproto-2.1.1 \
+				dri2proto-2.8 \
+				xf86vidmodeproto-2.3.1
+			do
+				rm -rf ${pkg} 
+			done
+			]]>
+		</clean>
+	</package>
+</llpackages>
