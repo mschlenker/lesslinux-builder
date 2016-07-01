@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="libiptc"
+		version="1.6.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                              
+				<pkg sha1="21a694e75b0d6863cc001f85fb15915d12b8cc22">iptables-1.6.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.netfilter.org/pub/iptables/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://www.netfilter.org/" />
+			<check>
+				<page html="http://www.netfilter.org/projects/iptables/downloads.html">
+					<atext linktext="iptables-1.6.1.t" />
+					<atext linktext="iptables-1.6.2.t" />
+					<atext linktext="iptables-1.6.3.t" />
+					<atext linktext="iptables-1.6.4.t" />
+					<atext linktext="iptables-1.6.5.t" />
+					<atext linktext="iptables-1.8." />
+					<atext linktext="iptables-2." />
+				</page>
+			</check> 
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/iptables-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd iptables-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr --enable-devel CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount -C libiptc CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr --enable-devel
+				make -C libiptc 
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd iptables-${PKGVERSION}
+			make -C libiptc install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf iptables-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

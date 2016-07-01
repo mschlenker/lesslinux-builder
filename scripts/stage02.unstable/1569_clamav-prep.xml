@@ -1,0 +1,84 @@
+<llpackages>
+	<package 
+		name="clamav-prep"
+		version="0.99.2"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                           
+				<pkg sha1="c9793d67c041e2b944116d912f8681c8bd6e4432">clamav-0.99.2.tar.gz</pkg>
+				<mirror>http://www.clamav.net/downloads/production/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://sourceforge.net/projects/clamav/files/" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/clamav/files/">
+					<atext linktext="clamav-0.98.8." />
+					<atext linktext="clamav-0.98.9." />
+					<atext linktext="clamav-0.98.10." />
+					<atext linktext="clamav-0.99." />
+					<atext linktext="clamav-0.100." />
+					<atext linktext="clamav-1." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libtool</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			<dep>zip</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			echo 'Nothing to unpack!'
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to build!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			if grep -E '^clamav:' /etc/passwd ; then
+				echo 'User clamav found in /etc/passwd'
+			else
+				echo 'clamav:x:60002:60002:ClamAV:/dev/null:/bin/false' >> /etc/passwd
+			fi
+			if grep -E '^clamav:' /etc/shadow ; then
+				echo 'User clamav found in /etc/shadow'
+			else
+				echo 'clamav:!:13792:0:99999:7:::' >> /etc/shadow
+			fi
+			if grep -E '^clamav:' /etc/group ; then
+				echo 'Group clamav found in /etc/group'
+			else
+				echo 'clamav:x:60002:' >> /etc/group
+			fi
+			mkdir -p /etc/lesslinux/packages
+			touch /etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_just_prepares_passwd_for_clamav
+			]]>
+		</install>
+	</package>
+</llpackages>
