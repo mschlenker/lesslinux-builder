@@ -48,6 +48,7 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
+			<dep>cmake</dep>
                         <!-- <dep>xproto-base</dep> 
 			<dep>talloc</dep>
 			<dep>makedepend</dep> -->
@@ -79,13 +80,21 @@
 				export CC='gcc'
 				export CXX='g++'
 			fi
-			../${PKGNAME}-${PKGVERSION}.src/configure --prefix=/usr              \
-				--sysconfdir=/etc          \
-				--enable-libffi            \
-				--enable-optimized         \
-				--enable-shared            \
-				--enable-static \
-				--disable-assertions --disable-bindings
+			#../${PKGNAME}-${PKGVERSION}.src/configure --prefix=/usr              \
+			#	--sysconfdir=/etc          \
+			#	--enable-libffi            \
+			#	--enable-optimized         \
+			#	--enable-shared            \
+			#	--enable-static \
+			#	--disable-assertions --disable-bindings
+			CC=gcc CXX=g++                              \
+			cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+				-DLLVM_ENABLE_FFI=ON                  \
+				-DCMAKE_BUILD_TYPE=Release            \
+				-DBUILD_SHARED_LIBS=ON                \
+				-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
+				-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
+				
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else
