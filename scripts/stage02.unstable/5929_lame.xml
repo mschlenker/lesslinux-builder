@@ -62,8 +62,6 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CXX=/usr/local/gcc48/bin/g++48
-			export CC=/usr/local/gcc48/bin/gcc48
 			./configure --prefix=/usr --enable-mp3rtp --disable-static --disable-werror
 			make
 			]]>
