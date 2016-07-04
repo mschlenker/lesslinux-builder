@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="curl-static"
+		version="7.49.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="50db69ee612d36a465e2fec3a35028e11c2766bb">curl-7.49.1.tar.bz2</pkg>
+				<mirror>http://curl.haxx.se/download/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="90" page="http://curl.haxx.se/download/" />
+			<check>
+				<page html="http://curl.haxx.se/download/">
+					<atext linktext="curl-7.49.4." />
+					<atext linktext="curl-7.49.2." />
+					<atext linktext="curl-7.49.3." />
+					<atext linktext="curl-7.50." />
+					<atext linktext="curl-7.51." />
+					<atext linktext="curl-7.52." />
+					<atext linktext="curl-8." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>cross-binutils-musl</dep>
+                        <dep>cross-gcc-musl2</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>musl</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/curl-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd curl-${PKGVERSION}
+			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+			./configure --prefix=/usr --sysconfdir=/etc --without-libidn \
+				--without-nss --without-gnutls --without-ssl --without-zlib --host=i386-linux-musl
+			make -j4 LDFLAGS=-all-static
+			 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/static/bin
+			install -m 0755 curl-${PKGVERSION}/src/curl ${TGTDIR}/static/bin 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf curl-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
