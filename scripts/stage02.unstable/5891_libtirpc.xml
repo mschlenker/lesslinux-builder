@@ -1,0 +1,121 @@
+<llpackages>
+	<package 
+		name="libtirpc"
+		version="1.0.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                           
+				<pkg sha1="8da1636f98b5909c0d587e7534bc1e91f5c1a970">libtirpc-1.0.1.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/libtirpc/libtirpc/1.0.1</mirror>
+			</file>
+			<!-- <file>                                                                           
+				<pkg sha1="a19a12eca923bf434ec672edc66c1ea80ae1d061">libtirpc-0.2.3-remove_nis-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20160701" interval="180" page="http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html" />
+			<check>
+				<page html="http://sourceforge.net/projects/libtirpc/files/libtirpc/">
+					<atext linktext="libtirpc-1.0.2." />
+					<atext linktext="libtirpc-1.0.3." />
+					<atext linktext="libtirpc-1.0.4." />
+					<atext linktext="libtirpc-1.0.5." />
+					<atext href="1.1.3" />
+					<atext href="1.1.4" />
+					<atext href="1.1.5" />
+					<atext href="1.1.6" />
+					<atext href="1.1.7" />
+					<atext href="1.2.0" />
+					<atext href="1.3.0" />
+					<atext href="1.4.0" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>font-util</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk</dep>
+                        <dep>gtkglext</dep>
+                        <dep>guile</dep>
+                        <dep>gwenhywfar</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <!-- <dep>libchipcard</dep> -->
+                        <dep>libdvdread</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libogg</dep>
+                        <dep>libtool</dep>
+                        <dep>libvorbis</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>nspr</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>speex</dep>
+                        <dep>tar</dep>
+                        <dep>util-macros</dep>
+                        <dep>vala</dep>
+                        <dep>wxWidgets</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xtrans</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-remove_nis-1.patch | patch -p1
+			sed "s@AM_CONFIG_HEADER@AC_CONFIG_HEADERS@g" -i configure.ac
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			autoreconf -fi && ./configure --prefix=/usr --sysconfdir=/etc --disable-gssapi  && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

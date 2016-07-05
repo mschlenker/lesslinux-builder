@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="lzlib"
+		version="1.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="66c99fd24060926de0b00f19d57ef265d6d55dd3">lzlib-1.8.tar.gz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/lzip/lzlib</mirror>
+			</file>
+			<manualcheck date="20160701" interval="90" page="http://download.savannah.gnu.org/releases/lzip/" />
+			<check>
+				<page html="http://download.savannah.gnu.org/releases/lzip/lzlib/">
+					<atext linktext="lzlib-1.12." />
+					<atext linktext="lzlib-1.13." />
+					<atext linktext="lzlib-1.9." />
+					<atext linktext="lzlib-1.10." />
+					<atext linktext="lzlib-1.11." />
+					<atext linktext="lzlib-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
