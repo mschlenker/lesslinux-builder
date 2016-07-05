@@ -1,0 +1,128 @@
+<llpackages>
+	<package 
+		name="cogl"
+		version="1.22.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="30bef68b5ccffb06df033c5f3f9758ef3e48dc01">cogl-1.22.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/cogl/1.22/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="90" page="http://ftp2.nluug.nl/windowing/gnome/sources/cogl/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/cogl/1.22/">
+					<atext linktext="cogl-1.22.3." />
+					<atext linktext="cogl-1.22.4." />
+					<atext linktext="cogl-1.22.5." />
+					<atext linktext="cogl-1.22.6." />
+					<atext linktext="cogl-1.22.1." />
+					<atext linktext="cogl-1.22.2." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/cogl/">
+					<atext linktext="1.26" />
+					<atext linktext="1.28" />
+					<atext linktext="1.30." />
+					<atext linktext="1.24." />
+					<atext linktext="2.0" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Mesa</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>compositeproto</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib-networking</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+			<dep>gstreamer1</dep>
+			<dep>gst-plugins-base1</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc \
+				--enable-gles1 --enable-gles2 \
+				--enable-wayland-egl-platform=no \
+				--enable-wayland-egl-server=no \
+				--enable-cogl-gst
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				pump make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
