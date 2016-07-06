@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="db"
+		version="6.2.23"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="646c57b99799dc300207976e2270cdaca1a2f198">db-6.2.23.tar.gz</pkg>
+				<mirror>http://download.oracle.com/berkeley-db/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="90" page="http://www.linuxfromscratch.org/blfs/view/svn/server/db.html" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
+					<atext linktext="gnome-calculator-3.10.6." />
+					<atext linktext="gnome-calculator-3.10.3." />
+					<atext linktext="gnome-calculator-3.10.4." />
+					<atext linktext="gnome-calculator-3.10.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
+					<atext linktext="3.12" />
+					<atext linktext="3.14" />
+					<atext linktext="4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build_unix
+			../dist/configure --prefix=/usr      \
+				--enable-compat185 \
+				--enable-dbm       \
+				--disable-static   \
+				--enable-cxx   
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build_unix
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

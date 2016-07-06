@@ -1,0 +1,54 @@
+<llpackages>
+    <package name='redis' version='3.2.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='26c0fc282369121b4e278523fce122910b65fbbf'>
+                    redis-3.2.1.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.redis.io/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='60' mirror='http://download.redis.io/releases/'/>
+        </sources>
+	<builddeps>
+                        <dep>autoconf</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>sed</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make PREFIX=/usr 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install PREFIX=/usr 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

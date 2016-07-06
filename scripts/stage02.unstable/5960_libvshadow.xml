@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="libvshadow"
+		version="20160110"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="e4c1d375dfdd040bbe539949cb9b7f37c520cdc9">libvshadow-alpha-20160110.tar.gz</pkg>
+				<mirror>https://github.com/libyal/libvshadow/releases/download/20160110/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="120" page="https://github.com/libyal/libvshadow/releases" />
+			<check>
+				<page html="https://github.com/libyal/libvshadow/releases">
+					<atext href="libvshadow-alpha-201610" />
+					<atext href="libvshadow-alpha-201611" />
+					<atext href="libvshadow-alpha-201607" />
+					<atext href="libvshadow-alpha-201608" />
+					<atext href="libvshadow-alpha-201609" />
+					<atext href="libvshadow-alpha-20161" />
+					<atext href="libvshadow-alpha-2017" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fuse</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+			<dep>gcc49</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-alpha-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
+			./configure --prefix=/usr --sysconfdir=/etc --enable-python 
+			make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

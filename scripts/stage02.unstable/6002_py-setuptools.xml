@@ -1,0 +1,66 @@
+<llpackages>
+    <package name='setuptools' version='24.0.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='7eac36b2ee70029ffbb3134d16894577635482ba'>
+                    setuptools-24.0.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/s/setuptools/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/setuptools/'/>
+	    <check>
+				<page html="https://pypi.python.org/pypi/setuptools/">
+					<atext href="setuptools-24.0.3" />
+					<atext href="setuptools-24.0.4" />
+					<atext href="setuptools-24.1." />
+					<atext href="setuptools-24.2." />
+					<atext href="setuptools-24.3." />
+					<atext href="setuptools-24.4." />
+					<atext href="setuptools-25." />
+					<atext href="setuptools-26." />
+					<atext href="setuptools-27." />
+					<atext href="setuptools-28." />
+					<atext href="setuptools-29." />
+				</page>
+			</check>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                       <!-- <dep>Cython</dep> -->
+                        <dep>distcc</dep>
+                        <dep>docutils</dep>
+                        <!-- <dep>M2Crypto</dep> -->
+                       <!-- <dep>nmap</dep> -->
+                        <dep>openssl</dep>
+                       <!--  <dep>pygobject</dep> -->
+                        <dep>Python</dep>
+                       <!-- <dep>six</dep> 
+                        <dep>xpra</dep> -->
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,174 @@
+<llpackages>
+	<package 
+		name="cross-gcc-musl2"
+		version="5.3.0"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="0612270b103941da08376df4d0ef4e5662a2e9eb">gcc-5.3.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-5.3.0/</mirror>
+			</file>
+			<file>                                                                                  
+				<pkg sha1="f9cbd9aa639f4f96e25399372b9e655e3cb09f4b">musl-gcc-patches-5.3.0.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                       
+				<pkg sha1="e3b0af77f18505184410d621fe0aae179e229dba">mpfr-3.1.4.tar.bz2</pkg>
+				<mirror>http://www.mpfr.org/mpfr-current/</mirror>
+			</file>
+			<file>                                   
+				<pkg sha1="1cec4ae9b40b0f7eb6339d4e93e058ff9528c4b6">gmp-6.1.1.tar.lz</pkg>
+				<mirror>http://ftp.sunet.se/pub/gnu/gmp/</mirror>
+			</file>
+			<file>                                
+				<pkg sha1="b8be66396c726fdc36ebb0f692ed8a8cca3bcc66">mpc-1.0.3.tar.gz</pkg>
+				<mirror>http://www.multiprecision.org/mpc/download/</mirror>
+			</file>
+			<!-- <file>                                                                         
+				<pkg sha1="cc0cf646f8bd9b08ff4e8d06a6e49f07688a0ab3">gcc-4.6.2-cross_compile-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20160701" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-5.3.1" />
+					<atext linktext="gcc-5.3.2" />
+					<atext linktext="gcc-5.3.3" />
+					<atext linktext="gcc-5.3.4."/>
+					<atext linktext="gcc-6." />
+					<atext linktext="gcc-7." />
+				</page>
+				<page html="http://ftp.sunet.se/pub/gnu/gmp/">
+					<atext linktext="gmp-6.1.1b." />
+					<atext linktext="gmp-6.1.1a." />
+					<atext linktext="gmp-6.1.2." />
+					<atext linktext="gmp-6.1.3." />
+					<atext linktext="gmp-6.1.4." />
+					<atext linktext="gmp-6.2." />
+					<atext linktext="gmp-6.3." />
+					<atext linktext="gmp-6.4." />
+					<atext linktext="gmp-6.5." />
+					<atext linktext="gmp-7." />
+				</page>
+				<page html="http://www.mpfr.org/mpfr-current/">
+					<atext linktext="mpfr-3.1.7.tar.bz2" />
+					<atext linktext="mpfr-3.1.5.tar.bz2" />
+					<atext linktext="mpfr-3.1.6.tar.bz2" />
+					<atext linktext="mpfr-3.2." />
+					<atext linktext="mpfr-3.3." />
+					<atext linktext="mpfr-3.4." />
+					<atext linktext="mpfr-4." />
+					<atext linktext="mpfr-5." />
+				</page>
+				<page html="http://www.multiprecision.org/index.php?prog=mpc&amp;page=download">
+					<atext linktext="Version 1.0.4" />
+					<atext linktext="Version 1.0.5" />
+					<atext linktext="Version 1.1" />
+					<atext linktext="Version 2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>cross-binutils-musl</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>mpfr</dep>
+                        <dep>perl</dep>
+                        <dep>readline</dep>
+                        <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+			<dep>musl</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/musl-gcc-patches-${PKGVERSION}.tar.xz
+			
+			tar xf ${SRCDIR}/mpfr-3.1.4.tar.bz2
+			tar xf ${SRCDIR}/gmp-6.1.1.tar.lz
+			tar xf ${SRCDIR}/mpc-1.0.3.tar.gz
+
+			mv -v mpc-1.0.3 gcc-${PKGVERSION}/mpc
+			mv -v gmp-6.1.1 gcc-${PKGVERSION}/gmp
+			mv -v mpfr-3.1.4 gcc-${PKGVERSION}/mpfr
+		
+			mkdir ${PKGNAME}-build
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd gcc-${PKGVERSION}
+			cat ../musl-gcc-patches/series | while read fname ; do 
+				cat ../musl-gcc-patches/${fname} | patch -p1
+			done
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			# crosstools-ia32-musl/i386-linux-musl
+			export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+			export CLFS_TARGET=i386-linux-musl
+			export CLFS_CPU=i686
+			cd ../gcc-build
+			../gcc-${PKGVERSION}/configure \
+				--prefix=/usr/local/crosstools-ia32-musl \
+				--build=${CLFS_HOST} \
+				--target=${CLFS_TARGET} \
+				--host=${CLFS_HOST} \
+				--with-sysroot=/usr/local/crosstools-ia32-musl/${CLFS_TARGET} \
+				--disable-nls \
+				--enable-languages=c \
+				--enable-c99 \
+				--enable-long-long \
+				--disable-libmudflap \
+				--disable-multilib \
+				--with-mpfr-include=$(pwd)/../gcc-${PKGVERSION}/mpfr/src \
+				--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
+				--with-arch=${CLFS_CPU}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				pump make -j $jobcount
+			else
+				make -j 4
+			fi
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf gcc-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
