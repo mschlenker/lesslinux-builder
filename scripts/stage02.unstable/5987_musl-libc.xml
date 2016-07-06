@@ -41,6 +41,10 @@ for f in utmp paths ; do
         sed -i 's%/dev/null/utmp%/var/run/utmp%g' include/${f}.h
 done
 
+./configure 
+make 
+exit 0
+
 export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
 export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
 export CLFS_TARGET=i386-linux-musl
@@ -59,6 +63,8 @@ CFLAGS=-fno-toplevel-reorder CC=${CLFS_TARGET}-gcc make
 			<![CDATA[
 			
 cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+exit 0
 
 export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
 export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")

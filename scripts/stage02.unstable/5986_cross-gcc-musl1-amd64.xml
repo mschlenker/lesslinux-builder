@@ -124,6 +124,9 @@
 		</patch>
 		<build>
 			<![CDATA[
+			
+			exit 0
+			
 			cd ${PKGNAME}-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -166,6 +169,11 @@
 		</build>
 		<install>
 			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/etc/lesslinux
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			exit 0
+			
 			cd ${PKGNAME}-build
 			make install install-gcc install-target-libgcc DESTDIR=${TGTDIR}
 			]]>

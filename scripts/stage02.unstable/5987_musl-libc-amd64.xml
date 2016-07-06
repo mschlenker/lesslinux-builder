@@ -35,6 +35,8 @@
 		<build>
 			<![CDATA[
 			
+			exit 0
+			
 cd musl-${PKGVERSION}
 for f in utmp paths ; do
         sed -i 's%/dev/null/wtmp%/var/log/wtmp%g' include/${f}.h
@@ -57,6 +59,11 @@ CFLAGS=-fno-toplevel-reorder CC=${CLFS_TARGET}-gcc make
 		</build>
 		<install>
 			<![CDATA[
+			
+			
+mkdir -p ${TGTDIR}/etc/lesslinux
+touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+exit 0
 			
 cd musl-${PKGVERSION}
 
