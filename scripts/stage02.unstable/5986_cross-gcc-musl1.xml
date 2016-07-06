@@ -100,6 +100,9 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
+			
+			exit 0
+			
 			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2
 			tar xf ${SRCDIR}/musl-gcc-patches-${PKGVERSION}.tar.xz
 			
@@ -116,6 +119,9 @@
 		</unpack>
 		<patch>
 			<![CDATA[
+			
+			exit 0
+			
 			cd gcc-${PKGVERSION}
 			cat ../musl-gcc-patches/series | while read fname ; do 
 				cat ../musl-gcc-patches/${fname} | patch -p1

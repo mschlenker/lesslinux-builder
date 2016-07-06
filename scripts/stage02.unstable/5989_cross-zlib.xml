@@ -3,7 +3,7 @@
 		name="cross-zlib"
 		version="1.2.8"
 		class="lib"
-		install="chroot"
+		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
@@ -40,7 +40,7 @@
 		<install>
 			<![CDATA[
 			cd zlib-${PKGVERSION}
-			make install
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
