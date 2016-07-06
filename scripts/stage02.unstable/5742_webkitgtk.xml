@@ -108,11 +108,11 @@
 			# FIXME: Try to build with distcc
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	export CC="distcc /usr/local/gcc49/bin/gcc49"
-			#	export CXX="distcc /usr/local/gcc49/bin/g++49"
-			#else
-			#	export CC=/usr/local/gcc49/bin/gcc49 
-			#	export CXX=/usr/local/gcc49/bin/g++49
+				export CC="distcc /usr/local/gcc49/bin/gcc49"
+				export CXX="distcc /usr/local/gcc49/bin/g++49"
+			else
+				export CC=/usr/local/gcc49/bin/gcc49 
+				export CXX=/usr/local/gcc49/bin/g++49
 			fi
 			# ./configure --prefix=/usr --sysconfdir=/etc  --enable-geolocation=no --enable-gtk-doc=no --disable-webgl 
 			./configure  --prefix=/usr --sysconfdir=/etc \
@@ -123,7 +123,7 @@
 			else
 				make -j ` grep -c processor /proc/cpuinfo ` 
 			fi
-			make -j ` grep -c processor /proc/cpuinfo ` # LIBS='-ldl -lGL -lglapi'
+			make -j ` grep -c processor /proc/cpuinfo ` LIBS='-ldl -lGL -lglapi'
 			make 
 			]]>
 		</build>
