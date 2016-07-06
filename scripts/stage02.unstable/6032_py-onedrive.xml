@@ -1,0 +1,63 @@
+<llpackages>
+    <package name='python-onedrive' version='15.10.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='bc91b03108f67a5d52e16974de6aee45916d2ad6'>
+                   python-onedrive-15.10.5.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/6f/2b/c419bfe0c90fbfaf3737d2c445edb02977da96a44ba038f54c137fd79d2b/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/python-onedrive'/>
+        </sources>
+	<builddeps>
+                        <dep>antlr_python_runtime</dep>
+                        <dep>bash</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>distribute</dep>
+                        <dep>docutils</dep>
+                        <dep>ez_setup</dep>
+                        <dep>fusepy</dep>
+                        <dep>gdrivefs</dep>
+                        <dep>google-api-python-client</dep>
+                        <dep>google-appengine</dep>
+                        <dep>httplib2</dep>
+                        <dep>ipaddr</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>py-dateutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>PyYAML</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                        <dep>WebOb</dep>
+                        <dep>xpra</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

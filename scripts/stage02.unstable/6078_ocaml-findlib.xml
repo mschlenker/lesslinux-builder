@@ -1,0 +1,50 @@
+<llpackages>
+    <package name='findlib' version='1.6.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='25da312f0a0013fe04ebe0577594e8bc9e7f5d64'>
+                    findlib-1.6.2.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.camlcity.org/download/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='90' mirror='http://download.camlcity.org/download/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>ocaml</dep>
+                        <dep>sed</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

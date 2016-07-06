@@ -1,0 +1,78 @@
+<llpackages>
+    <package name='rxvt-unicode' version='9.22' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e575b869782fbfed955f84f48b204ec888d91ba1'>
+                    rxvt-unicode-9.22.tar.bz2
+                </pkg>
+                <mirror>
+                    http://dist.schmorp.de/rxvt-unicode/Attic/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='180' mirror='http://dist.schmorp.de/rxvt-unicode/Attic/'/>
+	        <check>
+				<page html="http://dist.schmorp.de/rxvt-unicode/Attic/">
+					<atext href="rxvt-unicode-9.28." />
+					<atext href="rxvt-unicode-9.23." />
+					<atext href="rxvt-unicode-9.24." />
+					<atext href="rxvt-unicode-9.25." />
+					<atext href="rxvt-unicode-9.26." />
+					<atext href="rxvt-unicode-9.27." />
+					<atext href="rxvt-unicode-10." />
+					<atext href="rxvt-unicode-11." />
+				</page>
+			</check>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXft</dep>
+                        <dep>libXrender</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>startup-notification</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-everything 
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
