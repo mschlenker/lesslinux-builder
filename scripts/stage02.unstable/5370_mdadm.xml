@@ -42,19 +42,19 @@
 			fi
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -i 's/-Werror //g' Makefile
-			sed -i 's/\(^inline\)/static \1/' bitmap.c
+			# sed -i 's/\(^inline\)/static \1/' bitmap.c
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc52/bin/gcc52"
-			export CXX="/usr/local/gcc52/bin/g++52"
-			make RUN_DIR=/var/run CC="/usr/local/gcc52/bin/gcc52" CXX="/usr/local/gcc52/bin/g++52"
+			#export CC="/usr/local/gcc52/bin/gcc52"
+			#export CXX="/usr/local/gcc52/bin/g++52"
+			make RUN_DIR=/var/run # CC="/usr/local/gcc52/bin/gcc52" CXX="/usr/local/gcc52/bin/g++52"
 			]]>
 		</build>
 		<test />
