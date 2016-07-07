@@ -77,10 +77,10 @@
 			export CXX="/usr/local/gcc54/bin/g++54"
 			THISDIR=` pwd ` 
 			cd LVM2.2.02.158
-			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link
-			make -k
+			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link CFLAGS=-fPIE LDFLAGS=-pie
+			make lib
 			cd ../parted-${PKGVERSION}                    
-			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no 
 			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.158/libdm/ioctl -pthread"
 			]]>
 		</build>
