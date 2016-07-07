@@ -53,7 +53,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc
+			./configure --prefix=/usr --sysconfdir=/etc XTABLES_LIBS=-I/usr/lib XTABLES_CFLAGS=-lxtables
 			make
 			]]>
 		</build>
