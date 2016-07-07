@@ -1,32 +1,27 @@
 <llpackages>
 	<package 
-		name="gcc48"
-		version="4.8.5"
+		name="gcc54"
+		version="5.4.0"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="de144b551f10e23d82f30ecd2d6d0e18c26f8850">gcc-4.8.5.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-4.8.5/</mirror>
+				<pkg sha1="07524df2b4ab9070bad9c49ab668da72237b8115">gcc-5.4.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-5.4.0/</mirror>
 			</file>
-			<!-- <file>                                                                         
-				<pkg sha1="cc0cf646f8bd9b08ff4e8d06a6e49f07688a0ab3">gcc-4.6.2-cross_compile-1.patch</pkg>
-				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file> -->
-			<manualcheck date="20150823" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20160701" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
-					<atext linktext="gcc-4.8.7" />
-					<atext linktext="gcc-4.8.8" />
-					<atext linktext="gcc-4.8.6" />
-					<atext linktext="gcc-4.8.8" />
-					<atext linktext="gcc-4.8.9" />
-					<atext linktext="gcc-4.8.10"/>
-					<atext linktext="gcc-4.8.11" />
+					<atext linktext="gcc-5.4.1" />
+					<atext linktext="gcc-5.4.2" />
+					<atext linktext="gcc-5.4.3" />
+					<atext linktext="gcc-5.5"/>
+					<atext linktext="gcc-5.6." />
+					<atext linktext="gcc-6." />
 				</page>
 			</check>
-		</sources>
+		</sources>	
 		<builddeps>
 			<dep>linux_headers</dep>
 			<dep>glibc</dep>
@@ -41,7 +36,6 @@
 			<dep>zip</dep>
 			<dep>unzip</dep>
 			<!-- <dep>distcc</dep> -->
-			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -49,35 +43,21 @@
 			mkdir ${PKGNAME}-build
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[
-			cd gcc-${PKGVERSION}
-			sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in
-			case `uname -m` in
-				i?86) 
-					sed -i 's/^T_CFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in
-				;;
-			esac
-			sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
-			# sed -i 's/getline/get_line/' libiberty/testsuite/test-demangle.c
-			
-			]]>
-		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-build
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
+			SED=sed
+			export SED
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc54/bin/gcc54"
-				export CXX="distcc /usr/local/gcc54/bin/g++54"
+				export CC="distcc gcc"
+				export CXX="distcc g++"
 			fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
 				--enable-shared \
 				--enable-threads=posix --enable-__cxa_atexit \
 				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
-				--disable-multilib --with-system-zlib --program-suffix=48 --disable-bootstrap
+				--disable-multilib --with-system-zlib --program-suffix=54 --disable-bootstrap
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else

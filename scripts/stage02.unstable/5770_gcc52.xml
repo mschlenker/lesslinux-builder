@@ -35,7 +35,7 @@
 			<dep>gcc</dep>
 			<dep>zip</dep>
 			<dep>unzip</dep>
-			<dep>distcc</dep>
+			<!-- <dep>distcc</dep> -->
 			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
@@ -51,7 +51,7 @@
 			export SED
 			export CC="/usr/local/gcc54/bin/gcc54"
 			export CXX="/usr/local/gcc54/bin/g++54"
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc /usr/local/gcc54/bin/gcc54"
 				export CXX="distcc /usr/local/gcc54/bin/g++54"
