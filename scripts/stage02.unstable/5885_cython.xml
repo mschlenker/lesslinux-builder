@@ -37,6 +37,7 @@
                         <dep>linux_headers</dep>
                         <dep>openssl</dep>
                         <dep>pygobject</dep>
+			<dep>gcc52</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -46,6 +47,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export CC="/usr/local/gcc52/bin/gcc52"
+			export CXX="/usr/local/gcc52/bin/g++52"
 			python setup.py build
 			]]>
 		</build>
@@ -53,6 +56,8 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export CC="/usr/local/gcc52/bin/gcc52"
+			export CXX="/usr/local/gcc52/bin/g++52"
 			python setup.py install
 			]]>
 		</install>
