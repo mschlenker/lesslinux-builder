@@ -57,18 +57,28 @@
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+	 <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+sed '/-Werror/s/$/ -Wno-deprecated-declarations/' -i libindicator/Makefile.{am,in}
+  sed 's/LIBINDICATOR_LIBS+="$LIBM"/LIBINDICATOR_LIBS+=" $LIBM"/g' -i configure
+  sed 's/LIBM="-lmw"/LIBM=" -lmw"/g' -i configure
+  sed 's/LIBM="-lm"/LIBM=" -lm"/g' -i configure
+  sed 's/LIBS="-lm  $LIBS"/LIBS=" -lm  $LIBS"/g' -i configure
+  sed 's/LIBS="-lmw  $LIBS"/LIBS=" -lmw  $LIBS"/g' -i configure
+]]>
+	
+	</patch>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 export CC="/usr/local/gcc54/bin/gcc54"
 export CXX="/usr/local/gcc54/bin/g++54"
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-find . -type f -exec sed -i 's/lglib-2\.0-lm/lglib-2.0 -lm/g' {} \; 
-sed -i 's/-Werror//g' Makefile
-sed -i 's/-Werror//g' tests/Makefile
-sed -i 's/-Werror//g' tools/Makefile
-sed -i 's/-Werror//g' libindicator/Makefile
-find . -type f -exec sed -i 's/lglib-2\.0-lm/lglib-2.0 -lm/g' {} \; 
+./configure \
+    --prefix='/usr' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --disable-static \
+    --disable-tests
 make
 ]]>
         </build>
