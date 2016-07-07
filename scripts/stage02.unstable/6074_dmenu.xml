@@ -25,6 +25,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>xproto-base</dep>
+			<dep>gcc54</dep>
 	</builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -37,11 +38,15 @@ cat ${SRCDIR}/${PKGNAME}-Fix-segfault-on-systems-with-broken-locale-support.patc
 	</patch> -->
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+export CC="/usr/local/gcc54/bin/gcc54"
+export CXX="/usr/local/gcc54/bin/g++54"
 make PREFIX=/usr
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+export CC="/usr/local/gcc54/bin/gcc54"
+export CXX="/usr/local/gcc54/bin/g++54"	    
 make install PREFIX=/usr DESTDIR="$TGTDIR"
 ]]>
         </install>
