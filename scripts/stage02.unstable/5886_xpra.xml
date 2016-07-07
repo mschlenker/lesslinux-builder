@@ -68,8 +68,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc52/bin/gcc52"
-			export CXX="/usr/local/gcc52/bin/g++52"
+			export PATH=/usr/local/gcc52/bin:$PATH
 			python setup.py build
 			]]>
 		</build>
@@ -77,8 +76,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc52/bin/gcc52"
-			export CXX="/usr/local/gcc52/bin/g++52"
+			export PATH=/usr/local/gcc52/bin:$PATH
 			python setup.py install
 			]]>
 		</install>
