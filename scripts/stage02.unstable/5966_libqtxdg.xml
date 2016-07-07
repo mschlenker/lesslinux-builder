@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="libqtxdg"
-		version="1.3.0"
+		version="20140521"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="cd5ad7881099ceba52df893005dc85153980ef45">libqtxdg-1.3.0.tar.xz</pkg>
-				<mirror>https://downloads.lxqt.org/libqtxdg/1.3.0/</mirror>
+				<pkg sha1="3b04f8504c88140d5618597303a87964611764ad">libqtxdg-20140521.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
@@ -35,6 +35,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>qt-everywhere-opensource-src</dep>
+			<dep>gcc54</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -45,6 +46,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make 
 			]]>
@@ -53,6 +56,8 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
