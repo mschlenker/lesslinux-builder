@@ -49,6 +49,7 @@
 			<!-- creates cycle -->
 			<!-- <dep>subversion</dep> -->
 			<!-- <dep>distcc</dep> -->
+			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -59,12 +60,14 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
 				export DISTCC_HOSTS
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
+				export CC="distcc /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc /usr/local/gcc54/bin/g++54" 
 			fi
 			
 			case $(uname -m) 
