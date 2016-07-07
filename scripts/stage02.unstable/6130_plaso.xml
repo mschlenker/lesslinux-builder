@@ -56,6 +56,7 @@
                         <dep>requests</dep>
                         <dep>setuptools</dep>
                         <dep>six</dep>
+			<dep>gcc52</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -64,12 +65,14 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+export PATH=/usr/local/gcc52/bin:$PATH
 python setup.py config
 python setup.py build
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+export PATH=/usr/local/gcc52/bin:$PATH
 python setup.py install
 ]]>
         </install>
