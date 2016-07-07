@@ -62,6 +62,7 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
+			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -72,8 +73,10 @@
 		<patch />
 		<build>
 			<![CDATA[
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			THISDIR=` pwd ` 
-			cd LVM2.2.02.111
+			cd LVM2.2.02.158
 			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link
 			make -k
 			cd ../parted-${PKGVERSION}                    
@@ -84,6 +87,8 @@
 		<test />
 		<install>
 			<![CDATA[
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			cd parted-${PKGVERSION}
 			mkdir -p $TGTDIR/static/sbin
 			install -m 0755 parted/parted $TGTDIR/static/sbin/parted
@@ -93,7 +98,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf parted-${PKGVERSION}
-			rm -rf LVM2.2.02.158
+			rm -rf LVM2.2.02.111
 			]]>
 		</clean>
 	</package>
