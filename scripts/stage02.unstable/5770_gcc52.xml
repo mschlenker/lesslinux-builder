@@ -23,19 +23,6 @@
 			</check>
 		</sources>	
 		<builddeps>
-			<dep>linux_headers</dep>
-			<dep>glibc</dep>
-			<dep>man-pages</dep>
-			<dep>readjust</dep>
-			<dep>zlib</dep>
-			<dep>binutils</dep>
-			<dep>gmp</dep>
-			<dep>mpfr</dep>
-			<dep>mpc</dep>
-			<dep>gcc</dep>
-			<dep>zip</dep>
-			<dep>unzip</dep>
-			<!-- <dep>distcc</dep> -->
 			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
@@ -79,6 +66,10 @@
 			<![CDATA[
 			cd ${PKGNAME}-build
 			make install DESTDIR=${TGTDIR}
+			version=52
+			for fname in gcc g++ c++ cpp ; do
+				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
+			done
 			]]>
 		</install>
 		<clean>
