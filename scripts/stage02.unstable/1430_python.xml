@@ -49,7 +49,7 @@
 			<!-- creates cycle -->
 			<!-- <dep>subversion</dep> -->
 			<!-- <dep>distcc</dep> -->
-			<dep>gcc54</dep>
+			<dep>gcc52</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -60,8 +60,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
+			export CC="/usr/local/gcc52/bin/gcc52"
+			export CXX="/usr/local/gcc52/bin/g++52"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
 				export DISTCC_HOSTS
