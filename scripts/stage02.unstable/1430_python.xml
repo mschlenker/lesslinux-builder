@@ -49,7 +49,7 @@
 			<!-- creates cycle -->
 			<!-- <dep>subversion</dep> -->
 			<!-- <dep>distcc</dep> -->
-			<dep>gcc52</dep>
+			<!-- <dep>gcc52</dep> -->
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -66,8 +66,8 @@
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
 				export DISTCC_HOSTS
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc54/bin/gcc54"
-				export CXX="distcc /usr/local/gcc54/bin/g++54" 
+				export CC="distcc /usr/local/gcc52/bin/gcc52"
+				export CXX="distcc /usr/local/gcc52/bin/g++52" 
 			fi
 			
 			case $(uname -m) 
