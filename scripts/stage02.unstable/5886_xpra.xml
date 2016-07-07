@@ -58,6 +58,7 @@
                         <dep>subversion</dep>
                         <dep>x264</dep>
                         <dep>xproto-base</dep>
+			<dep>gcc54</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -67,6 +68,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			python setup.py build
 			]]>
 		</build>
@@ -74,6 +77,8 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			python setup.py install
 			]]>
 		</install>
