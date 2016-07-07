@@ -1,0 +1,81 @@
+<llpackages>
+    <package name='plaso' version='1.4.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8948ef239923e55348289e2f4c41cb50e613f38e'>
+                    plaso-1.4.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/log2timeline/plaso/releases/download/1.4.0/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/log2timeline/plaso/releases'/>
+        </sources>
+	<builddeps>
+                        <dep>Cython</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>PyYAML</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>antlr_python_runtime</dep>
+                        <dep>bash</dep>
+                        <dep>bencode</dep>
+                        <dep>binplist</dep>
+                        <dep>construct</dep>
+                        <dep>dfvfs</dep>
+                        <dep>distcc</dep>
+                        <dep>distribute</dep>
+                        <dep>docutils</dep>
+                        <dep>dpkt</dep>
+                        <dep>ez_setup</dep>
+                        <dep>fusepy</dep>
+                        <dep>gdrivefs</dep>
+                        <dep>google-api-python-client</dep>
+                        <dep>google-appengine</dep>
+                        <dep>google-apputils</dep>
+                        <dep>hachoir-core</dep>
+                        <dep>hachoir-metadata</dep>
+                        <dep>hachoir-parser</dep>
+                        <dep>httplib2</dep>
+                        <dep>ipaddr</dep>
+                        <dep>ipython</dep>
+                        <dep>nmap</dep>
+                        <dep>protobuf</dep>
+                        <dep>psutil</dep>
+                        <dep>py-dateutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>pyparsing</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>python-gflags</dep>
+                        <dep>python-onedrive</dep>
+                        <dep>pytsk3</dep>
+                        <dep>pytz</dep>
+                        <dep>requests</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
