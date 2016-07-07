@@ -76,6 +76,7 @@
                         <dep>xfsprogs</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
+			<dep>gcc54</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -93,10 +94,12 @@ tar xjf ${SRCDIR}/qemu-${PKGVERSION}.tar.bz2
 		<build>
 			<![CDATA[
 			cd qemu-${PKGVERSION}
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
+				export CC="distcc /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc /usr/local/gcc54/bin/g++54" 
 			fi
 			./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/qemu \
 				--docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \
