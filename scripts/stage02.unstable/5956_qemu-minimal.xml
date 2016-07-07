@@ -105,8 +105,7 @@ tar xjf ${SRCDIR}/qemu-${PKGVERSION}.tar.bz2
 				--docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \
 				--disable-bsd-user --disable-linux-user \
 				--target-list=x86_64-softmmu,i386-softmmu \
-				--disable-sdl --disable-vnc --audio-drv-list=alsa --disable-gtk \
-				--disable-smartcard-nss
+				--disable-sdl --disable-vnc --audio-drv-list=alsa --disable-gtk
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				pump make -j $jobcount
 			else
