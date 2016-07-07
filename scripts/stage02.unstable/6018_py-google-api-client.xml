@@ -41,18 +41,18 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py config
 python setup.py build
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
 ]]>
         </clean>
     </package>
