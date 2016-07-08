@@ -168,6 +168,7 @@ done
 			sed -i 's%mk_add_options MOZ_OBJDIR%# mk_add_options MOZ_OBJDIR%g' .mozconfig 
 			sed -i 's%ac_add_options --enable-calendar%# ac_add_options --enable-calendar%g' .mozconfig 
 			sed -i 's%ac_add_options --enable-application=mail%ac_add_options --enable-application=im%g'  .mozconfig 
+			sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-libevent%g' .mozconfig 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
