@@ -200,9 +200,15 @@ cd mozilla-release
 				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" pump make -f client.mk build  
 			else
 				# sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49\"%g" .mozconfig 
-				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" make -f client.mk clean
-				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" make -f client.mk configure	
-				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" make -f client.mk build
+				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \ 
+				CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
+				make -f client.mk clean
+				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
+				CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
+				make -f client.mk configure	
+				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
+				CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
+				make -f client.mk build
 			fi
 			echo '===> Trying to find libxul.so...'
 			find ff-build -type f -name libxul.so
