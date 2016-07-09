@@ -32,7 +32,7 @@
 			<dep>gmp</dep>
 			<dep>mpfr</dep>
 			<dep>mpc</dep> -->
-			<dep>gcc</dep>
+			<dep>gcc61</dep>
 			<dep>perl</dep>
 			<!-- <dep>zip</dep> 
 			<dep>unzip</dep>
@@ -49,13 +49,15 @@
 			cd ${PKGNAME}-build
 			SED=sed
 			export SED
+			export CC="/usr/local/gcc61/bin/gcc61"
+			export CXX="/usr/local/gcc61/bin/g++61"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
+				export CC="distcc /usr/local/gcc61/bin/gcc61"
+				export CXX="distcc /usr/local/gcc61/bin/g++61"
 			fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
-				--enable-shared \
+				--enable-shared --disable-libsanitizer \
 				--enable-threads=posix --enable-__cxa_atexit \
 				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
 				--disable-multilib --with-system-zlib --program-suffix=54 
