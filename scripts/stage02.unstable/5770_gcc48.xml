@@ -28,7 +28,7 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>gcc54</dep>
+			<dep>gcc52</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -53,18 +53,18 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-build
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
+			export CC="/usr/local/gcc52/bin/gcc52"
+			export CXX="/usr/local/gcc52/bin/g++52"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc54/bin/gcc54"
-				export CXX="distcc /usr/local/gcc54/bin/g++54"
+				export CC="distcc /usr/local/gcc52/bin/gcc52"
+				export CXX="distcc /usr/local/gcc52/bin/g++52"
 			fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
 				--enable-shared \
 				--enable-threads=posix --enable-__cxa_atexit \
 				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
-				--disable-multilib --with-system-zlib --program-suffix=48 --disable-bootstrap
+				--disable-multilib --with-system-zlib --program-suffix=48 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else
