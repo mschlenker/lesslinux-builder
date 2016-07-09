@@ -60,7 +60,7 @@
 				--enable-shared --disable-libsanitizer \
 				--enable-threads=posix --enable-__cxa_atexit    \
 				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
-				--disable-multilib --with-system-zlib --program-suffix=54 
+				--disable-multilib --with-system-zlib --program-suffix=54 --disable-bootstrap 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else
