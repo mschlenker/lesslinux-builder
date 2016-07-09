@@ -56,7 +56,7 @@
 			fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
 				--enable-shared \
-				--enable-threads=posix --enable-__cxa_atexit \
+				--enable-threads=posix --enable-__cxa_atexit --disable-libsanitizer --disable-libcilkrts \
 				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
 				--disable-multilib --with-system-zlib --program-suffix=61
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
