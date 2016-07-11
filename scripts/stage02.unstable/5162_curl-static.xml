@@ -51,9 +51,9 @@
 		<build>
 			<![CDATA[
 			cd curl-${PKGVERSION}
-			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+			export CC=/usr/local/musl/bin/musl-gcc
 			./configure --prefix=/usr --sysconfdir=/etc --without-libidn \
-				--without-nss --without-gnutls --without-ssl --without-zlib --host=i386-linux-musl
+				--without-nss --without-gnutls --without-ssl  
 			make -j4 LDFLAGS=-all-static
 			 
 			]]>
