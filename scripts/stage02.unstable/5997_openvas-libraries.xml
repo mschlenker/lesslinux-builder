@@ -67,9 +67,9 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			CFLAGS='-Wno-error=unused-const-variable' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			CFLAGS='-Wno-error=unused-const-variable -Wno-error=misleading-indentation' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			# find nasl -type f -exec sed -i 's/-Werror/ /g' {} \;
-			CFLAGS='-Wno-error=unused-const-variable'  make
+			CFLAGS='-Wno-error=unused-const-variable -Wno-error=misleading-indentation'  make
 			]]>
 		</build>
 		<test />
