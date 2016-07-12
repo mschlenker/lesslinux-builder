@@ -53,8 +53,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			CFLAGS='-Wno-error' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			CFLAGS='-Wno-error'  make
+			CFLAGS='-w' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			CFLAGS='-w'  make
 			]]>
 		</build>
 		<test />
