@@ -64,7 +64,7 @@
                         <dep>util-linux-ng</dep>
                         <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
-			<dep>gcc48</dep>
+			<!-- <dep>gcc48</dep> -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -84,7 +84,7 @@
 			#else
 			#	export CC="/usr/local/gcc48/bin/gcc48"
 			#	export CXX="/usr/local/gcc48/bin/g++48" 
-				./configure --sysconfdir=/etc --prefix=/usr --disable-hal
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --disable-wayland 
 				make
 			#fi
 			]]>
