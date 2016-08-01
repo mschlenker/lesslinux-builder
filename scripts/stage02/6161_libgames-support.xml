@@ -28,6 +28,7 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
+touch /etc/lesslinux/${PKGNAME}-${PKGVERSION}_might_fail_on_old_stable 
 ]]>
         </install>
         <clean>
