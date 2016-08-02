@@ -19,7 +19,7 @@ case $1 in
 	ethtool=''
 	ethwait=10
 	ethiface=eth0
-	for i in `cat /proc/cmdline` ; do
+	for i in `cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline` ; do
 		case "$i" in
 		    ethtool=*)
 			ethtool=`echo "$i" | awk -F '=' '{print $2}'`

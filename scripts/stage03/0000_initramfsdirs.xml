@@ -45,6 +45,8 @@
 		<dir mode="0755">/etc/rc.d</dir>
 		<dir mode="0755">/etc/samba</dir>
 		<dir mode="0755">/etc/xinitrc.d</dir>
+		<dir mode="0755">/lesslinux</dir>
+		<dir mode="0755">/lesslinux/boot</dir>
 	</dirs>
 	<files>
 		<file mode="0664" owner="0" group="43">/var/log/wtmp</file>
@@ -52,6 +54,8 @@
 		<file mode="0640" owner="0" group="0">/var/log/messages</file>
 		<file mode="0644" owner="0" group="0">/var/lib/dpkg/status</file>
 		<file mode="0644" owner="0" group="0">/etc/samba/smb.conf</file>
+		<file mode="0644" owner="0" group="0">/etc/lesslinux/cmdline</file>
+		<file mode="0644" owner="0" group="0">/lesslinux/boot/cmdline</file>
 	</files>
 	<links>
 		<softlink target="/static/bin/busybox">/linuxrc</softlink>
@@ -279,7 +283,7 @@ if [ -n "$xvfb" ] ; then
     /usr/bin/xinit "$XINITRC" -- /usr/bin/Xvfb :0 -retro -nolisten tcp -dpi "$dpi" -screen :0 "$xvfb"
 else
     # Determine if we have to use a screen section or not - do not use a screen section when KMS is detected
-    if [ -c /dev/fb0 ] && cat /proc/cmdline | grep -qv ' vga=' ; then
+    if [ -c /dev/fb0 ] && cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline | grep -qv ' vga=' ; then
         /usr/bin/xinit "$XINITRC" -- /usr/bin/Xorg -nolisten tcp -br -dpi "$dpi"
     elif [ -n "$xorgscreen" -a -f /etc/X11/xorg.conf ] ; then
 	/usr/bin/xinit "$XINITRC" -- /usr/bin/Xorg -nolisten tcp -screen "$xorgscreen" -br -dpi "$dpi"
@@ -464,7 +468,7 @@ xfsettingsd --replace
 # Read boot command line for the chooser
 # FIXME: Do proper replacement of Umlauts 
 	
-for i in `cat /proc/cmdline` ; do
+for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; do
       case "$i" in
 	rdesktop=*)
 	    rdesktop=` echo "$i" | awk -F '=' '{print $2}' `
@@ -1045,7 +1049,7 @@ for n in 0 1 2 3 4 5 6 ; do
 	    umount $j > /dev/null 2>&1
 	    umount_retval="$?"
 	    if [ "$j" = "/lesslinux/cdrom" ] ; then
-		cat /proc/cmdline | grep -q noeject || [ -f /var/run/lesslinux/shutdown_requested_reboot ] || ( [ "$umount_retval" -lt 1 ] && eject -s "$boot_device" ) 
+		cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline | grep -q noeject || [ -f /var/run/lesslinux/shutdown_requested_reboot ] || ( [ "$umount_retval" -lt 1 ] && eject -s "$boot_device" ) 
 	    fi
 	done
 	free_loop
@@ -3654,6 +3658,7 @@ iso_gpt_convert() {
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 33 32 "$convert_head" "${convert_bios}" "" tty1
 	# Copy legacy boot files
 	tar -C /lesslinux/cdrom -cf - boot/isolinux boot/grub boot/kernel | tar -C /lesslinux/boot -xf -
+	touch /lesslinux/boot/cmdline
 	# Copy GRUBs file to properly detect the boot partition
 	idfile=` ls /lesslinux/boot/boot/grub/????????.cd `
 	idtarg=` echo $idfile | sed 's/\.cd/.pt/g' ` 
@@ -5093,7 +5098,7 @@ case $1 in
 	# mkdir -p /usr/var/run/dbus
 	mkdir -p /etc/dbus-1/session.d
 	mountpoint -q /usr/share/X11/xkb/compiled || mount -t tmpfs -o mode=0755 tmpfs /usr/share/X11/xkb/compiled
-	if fbset > /dev/null 2>&1 && cat /proc/cmdline | grep -qv ' vga=' ; then
+	if fbset > /dev/null 2>&1 && cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline | grep -qv ' vga=' ; then
 	    cp -f /etc/X11/xorg.conf.xorg /etc/X11/xorg.conf
 	elif [ -n "$xorgconf" ] && [ -f "$xorgconf" ] ; then
 	    cp -f  "$xorgconf" /etc/X11/xorg.conf

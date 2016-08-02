@@ -17,7 +17,7 @@ export PATH
 
 start_cpuburn=0 
 
-for i in `cat /proc/cmdline`
+for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` 
 do
    case "$i" in
      cpuburn=*)

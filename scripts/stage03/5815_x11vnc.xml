@@ -24,7 +24,7 @@ parg=''
 sarg=''
 
 case $1 in start)
-   for i in `cat /proc/cmdline` ; do
+   for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; do
       case "$i" in
 	x11vnc=*)
 	    x11vnc=` echo "$i" | awk -F '=' '{print $2}' `

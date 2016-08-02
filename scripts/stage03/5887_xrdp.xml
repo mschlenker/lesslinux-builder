@@ -18,7 +18,7 @@ skipflash=0
 start_xrdp=0
 xrdp_keys=/etc/xrdp/rsakeys.ini
 
-for i in `cat /proc/cmdline`
+for i in `cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline`
 do
    case "$i" in
      xrdp=*)

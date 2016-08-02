@@ -69,7 +69,7 @@ case $1 in
 	    mount -o mode=755 -t tmpfs tmpfs /AntiVir
 	    
 	    forcecd=false
-	    if cat /proc/cmdline | grep ' scancl=' | grep -q '|forcecd|' ; then
+	    if cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline | grep ' scancl=' | grep -q '|forcecd|' ; then
 		forcecd=true
 	    fi
 	    
