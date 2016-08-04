@@ -4324,21 +4324,26 @@ case $1 in
 	isoblocks=0
 	filesys=''
 	sysdevice=''
+	outerfs=''
 	if mountpoint -q /lesslinux/isoloop ; then
 		copydevice=` cat /proc/mounts | grep /lesslinux/isoloop | awk '{print $1}' `
 		contdevice=` cat /proc/mounts | grep /lesslinux/cdrom | awk '{print $1}' ` 
 		sysdevice=$contdevice
 		isoblocks=` df -k /lesslinux/isoloop | tail -n 1 | awk '{print $2}' `
-		filesys=` cat /proc/mounts | grep /lesslinux/isoloop | awk '{print $3}' `		
+		filesys=` cat /proc/mounts | grep /lesslinux/isoloop | awk '{print $3}' `
+		outerfs=` cat /proc/mounts | grep /lesslinux/cdrom   | awk '{print $3}' `
 	else
 		copydevice=` cat /proc/mounts | grep /lesslinux/cdrom | awk '{print $1}' `
 		sysdevice=$copydevice
 		isoblocks=` df -k /lesslinux/cdrom | tail -n 1 | awk '{print $2}' `
 		filesys=` cat /proc/mounts | grep /lesslinux/cdrom | awk '{print $3}' `
+		outerfs=` cat /proc/mounts | grep /lesslinux/cdrom | awk '{print $3}' `
 	fi
 	if [ "$optram" -gt 0 ] ; then
 		if echo $sysdevice | grep '^/dev/sr' ; then
 			echo '---> System device is on optical media, start copying to RAM'
+		elif [ "$outerfs" = "ntfs" -o "$outerfs" = "fuseblk" ] ; then
+			echo '---> System device is on NTFS, start copying to RAM'
 		else
 			echo '---> System device is not on optical media, skip copying to RAM'
 			exit 1
