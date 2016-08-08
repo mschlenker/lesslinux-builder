@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="cross-binutils"
-		version="2.26.1"
+		version="2.27"
 		class="devel"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
-	<sources>
+		<sources>
 			<file>                                                                 
-				<pkg sha1="624cd377e3a8eef3db83a56ce289a60f556b3ec2">binutils-2.26.1.tar.bz2</pkg>
+				<pkg sha1="6e472ddae565a2b1447e6f2393809bb8799982cf">binutils-2.27.tar.bz2</pkg>
 				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
 			</file>
 			<manualcheck date="20160629" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/binutils/">
-					<atext linktext="binutils-2.26.4." />
-					<atext linktext="binutils-2.26.2." />
-					<atext linktext="binutils-2.26.3" />
-					<atext linktext="binutils-2.27." />
+					<atext linktext="binutils-2.27.1." />
+					<atext linktext="binutils-2.27.2." />
+					<atext linktext="binutils-2.27.3" />
 					<atext linktext="binutils-2.28." />
+					<atext linktext="binutils-2.29." />
 				</page>
 			</check>
 		</sources>
