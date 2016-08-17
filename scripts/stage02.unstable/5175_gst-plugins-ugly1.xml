@@ -75,7 +75,7 @@
 			#else
 			#	export CC="/usr/local/gcc48/bin/gcc48"
 			#	export CXX="/usr/local/gcc48/bin/g++48" 
-				./configure --sysconfdir=/etc --prefix=/usr --disable-hal
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --enable-static --enable-shared --enable-experimental
 				make
 			#fi
 			]]>
