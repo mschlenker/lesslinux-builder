@@ -11,7 +11,7 @@
 				<mirror>http://openbox.org/dist/openbox/</mirror>
 			</file>
 			<file>                                                                                                    
-				<pkg sha1="dbe7298fb93b515bd1c30c702c6a5de94d072df6">lesslinux-openbox-20150707-00.tar.bz2</pkg>
+				<pkg sha1="90ebf634ed79821da46059c846d7a57ad8dc217d">lesslinux-openbox-20160817-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20150601" interval="180" page="http://openbox.org/wiki/Openbox:Download" />
@@ -73,7 +73,7 @@
 		<unpack>
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			tar xjf ${SRCDIR}/lesslinux-openbox-20150707-00.tar.bz2
+			tar xjf ${SRCDIR}/lesslinux-openbox-20160817-00.tar.bz2
 			]]>
 		</unpack>
 		<patch />
@@ -92,7 +92,7 @@
 			for f in substitute_menu.rb llpm_xrandr.rb ; do
 				install -m 0755 lesslinux-openbox/${f} ${TGTDIR}/usr/share/lesslinux/openbox
 			done
-			for f in menu_thin menu menu_translations ; do
+			for f in menu_thin menu menu_translations  llpm_xrandr ; do
 				install -m 0644 lesslinux-openbox/${f}.xml ${TGTDIR}/usr/share/lesslinux/openbox
 			done
 			install -m 0755  lesslinux-openbox/xrandrwrap ${TGTDIR}/usr/bin

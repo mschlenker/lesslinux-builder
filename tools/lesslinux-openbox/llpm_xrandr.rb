@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 require "rexml/document"
+require "/usr/share/lesslinux/drivetools/MfsTranslator"
 
 class RandResolution
 	include Comparable
@@ -21,6 +22,11 @@ class RandResolution
 		return 0
 	end
 end
+
+lang = ENV['LANGUAGE'][0..1]
+lang = ENV['LANG'][0..1] if lang.nil?
+lang = "en" if lang.nil?
+@tl = MfsTranslator.new(lang, "/usr/share/lesslinux/openbox/llpm_xrandr.xml") 
 
 resolutions = Array.new 
 common_res = [
@@ -96,7 +102,7 @@ unless common_res.include?(selected)
 end
 
 if rescount < 2 
-	label = "Resolution cannot be changed"
+	label = @tl.get_translation("resolution_cannot_be_changed")
 	item = REXML::Element.new "item"
 	item.add_attribute("label", label)
 	action = REXML::Element.new "action"
