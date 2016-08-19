@@ -507,7 +507,7 @@ class SecondStage < AnyStage
 				puts '  > Error occured when installing ' + @pkg_name + "-" + @pkg_version
 				if (queue_name.to_s == "top")
 					puts '  > Failed package is from top queue, so I am continuing!'
-				elsif @failpackages.include?(@pkg_name)
+				elsif ( @failpackages.include?(@pkg_name) || @failpackages.include?('ALL') )
 					puts '  > Package was explicitely allowed to fail by CLI switch!'
 				else
 					puts '  > Remove the file ' + @builddir + '/tmp/LessLinux_Emergency_Exit afterwards!'
