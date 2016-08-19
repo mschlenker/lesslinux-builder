@@ -108,12 +108,30 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC='distcc /usr/local/gcc54/bin/gcc54'
 				export CXX='distcc /usr/local/gcc54/bin/g++54'
-				./configure -prefix /usr -gtkstyle -opensource -release -system-sqlite \
-				-silent -no-nis -confirm-license -nomake examples -nomake demos -no-pch
+				./configure -prefix /usr \
+					-bindir         /usr/bin/qt4                \
+					-plugindir      /usr/lib/qt4/plugins        \
+					-importdir      /usr/lib/qt4/imports        \
+					-headerdir      /usr/include/qt4            \
+					-datadir        /usr/share/qt4              \
+					-docdir         /usr/share/doc/qt4          \
+					-translationdir /usr/share/qt4/translations \
+					-examplesdir    /usr/share/doc/qt4/examples \
+					-gtkstyle -opensource -release -system-sqlite \
+					-silent -no-nis -confirm-license -nomake examples -nomake demos
 				pump make -j $jobcount 
 			else
-				./configure -prefix /usr -gtkstyle -opensource -release -system-sqlite \
-				-silent -no-nis -confirm-license -nomake examples -nomake demos  
+				./configure -prefix /usr \
+					-bindir         /usr/bin/qt4                \
+					-plugindir      /usr/lib/qt4/plugins        \
+					-importdir      /usr/lib/qt4/imports        \
+					-headerdir      /usr/include/qt4            \
+					-datadir        /usr/share/qt4              \
+					-docdir         /usr/share/doc/qt4          \
+					-translationdir /usr/share/qt4/translations \
+					-examplesdir    /usr/share/doc/qt4/examples \
+					-gtkstyle -opensource -release -system-sqlite \
+					-silent -no-nis -confirm-license -nomake examples -nomake demos  
 				make -j 6
 			fi
 			]]>
