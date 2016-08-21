@@ -37,12 +37,14 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    export PATH=/usr/bin/qt4:$PATH
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    export PATH=/usr/bin/qt4:$PATH
 make install
 ]]>
         </install>
