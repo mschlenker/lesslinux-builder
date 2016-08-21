@@ -70,6 +70,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
+			xport PATH=/usr/bin/qt4:$PATH
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make 
 			]]>
@@ -78,6 +79,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}
+			xport PATH=/usr/bin/qt4:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
