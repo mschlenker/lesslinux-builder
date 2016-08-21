@@ -1,15 +1,16 @@
 <llpackages>
 	<package 
-		name="libqtxdg"
-		version="20140521"
+		name="liblxqt-mount"
+		version="0.7.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="3b04f8504c88140d5618597303a87964611764ad">libqtxdg-20140521.tar.xz</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="d5bfa9ef4868448b317e776eaeba54a4d54d7cae">liblxqt-mount-0.7.0.tar.xz</pkg>
+				<mirror>http://lxqt.org/downloads/lxqt/0.7.0/</mirror>
 			</file>
+			<manualcheck date="20140731" interval="60" page="http://lxqt.org/downloads/lxqt/" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -29,26 +30,46 @@
                         <dep>binutils</dep>
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
-                        <dep>file</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXft</dep>
+                        <dep>libXi</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXtst</dep>
+                        <dep>libXv</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>liblxqt</dep>
+                        <dep>libxkbfile</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>qt-everywhere-opensource-src</dep>
-			<dep>gcc54</dep>
+                        <dep>xproto-base</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			mkdir ${PKGNAME}
+			tar -C ${PKGNAME} -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
-			export PATH=/usr/bin/qt4:$PATH
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make 
 			]]>
@@ -57,9 +78,6 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
-			export PATH=/usr/bin/qt4:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
