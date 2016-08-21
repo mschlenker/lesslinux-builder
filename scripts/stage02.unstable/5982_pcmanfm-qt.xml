@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
-		name="liblxqt-mount"
+		name="pcmanfm-qt"
 		version="0.7.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="d5bfa9ef4868448b317e776eaeba54a4d54d7cae">liblxqt-mount-0.7.0.tar.xz</pkg>
+				<pkg sha1="272e496c0b1b8a5e6ce16b2d76577913d9a09231">pcmanfm-qt-0.7.0.tar.xz</pkg>
 				<mirror>http://lxqt.org/downloads/lxqt/0.7.0/</mirror>
 			</file>
 			<manualcheck date="20140731" interval="60" page="http://lxqt.org/downloads/lxqt/" />
@@ -31,32 +31,14 @@
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
                         <dep>gcc</dep>
+                        <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>libICE</dep>
-                        <dep>libSM</dep>
                         <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXcomposite</dep>
-                        <dep>libXcursor</dep>
-                        <dep>libXdamage</dep>
-                        <dep>libXdmcp</dep>
-                        <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libXft</dep>
-                        <dep>libXi</dep>
-                        <dep>libXinerama</dep>
-                        <dep>libXmu</dep>
-                        <dep>libXpm</dep>
-                        <dep>libXrandr</dep>
-                        <dep>libXrender</dep>
-                        <dep>libXt</dep>
-                        <dep>libXtst</dep>
-                        <dep>libXv</dep>
-                        <dep>libXxf86vm</dep>
-                        <dep>liblxqt</dep>
-                        <dep>libxkbfile</dep>
+                        <dep>libfm</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
+                        <dep>menu-cache</dep>
+                        <dep>pkg-config</dep>
                         <dep>qt-everywhere-opensource-src</dep>
                         <dep>xproto-base</dep>
                 </builddeps>
