@@ -97,6 +97,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export PATH=/usr/bin/qt4:$PATH
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
@@ -117,6 +118,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export PATH=/usr/bin/qt4:$PATH
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>

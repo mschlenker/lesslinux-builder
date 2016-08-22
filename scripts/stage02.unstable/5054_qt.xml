@@ -141,6 +141,9 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install 
+			for file in moc uic rcc qmake lconvert lrelease lupdate; do
+				ln -sfrvn /usr/bin/qt4/$file /usr/bin/$file-qt4
+			done
 			]]>
 		</install>
 		<clean>

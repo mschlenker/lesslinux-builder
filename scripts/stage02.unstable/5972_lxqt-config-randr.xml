@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
-		name="liblxqt-mount"
+		name="lxqt-config-randr"
 		version="0.7.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="d5bfa9ef4868448b317e776eaeba54a4d54d7cae">liblxqt-mount-0.7.0.tar.xz</pkg>
+				<pkg sha1="11cb0283b0012ce5d1d3b6074dc35b26d72b8014">lxqt-config-randr-0.7.0.tar.xz</pkg>
 				<mirror>http://lxqt.org/downloads/lxqt/0.7.0/</mirror>
 			</file>
 			<manualcheck date="20140731" interval="60" page="http://lxqt.org/downloads/lxqt/" />
@@ -53,10 +53,10 @@
                         <dep>libXtst</dep>
                         <dep>libXv</dep>
                         <dep>libXxf86vm</dep>
-                        <dep>liblxqt</dep>
                         <dep>libxkbfile</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
+                        <dep>pkg-config</dep>
                         <dep>qt-everywhere-opensource-src</dep>
                         <dep>xproto-base</dep>
                 </builddeps>
