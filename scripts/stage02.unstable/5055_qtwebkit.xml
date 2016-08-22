@@ -85,16 +85,17 @@
 			fi
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glib_fix-1.patch | patch -p1
-			sed -i '/-Werror/d' src/3rdparty/webkit/Source/WebKit.pri
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc5-1.patch | patch -p1
 			]]>
-		</patch> -->
+		</patch> 
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			echo 'Skip building!'
 			]]>
 		</build>

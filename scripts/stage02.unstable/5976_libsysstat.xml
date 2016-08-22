@@ -45,7 +45,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
-			export PATH=/usr/bin/qt4:$PATH
+			export PATH=/usr/compat.old/qt4/bin:$PATH
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make 
 			]]>
@@ -54,7 +54,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}
-			export PATH=/usr/bin/qt4:$PATH
+			export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>

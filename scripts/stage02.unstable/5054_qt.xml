@@ -108,30 +108,14 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC='distcc /usr/local/gcc54/bin/gcc54'
 				export CXX='distcc /usr/local/gcc54/bin/g++54'
-				./configure -prefix /usr \
+				./configure -prefix /usr/compat.old/qt4 \
 					-sysconfdir       /etc/xdg \
-					-bindir         /usr/bin/qt4                \
-					-plugindir      /usr/lib/qt4/plugins        \
-					-importdir      /usr/lib/qt4/imports        \
-					-headerdir      /usr/include/qt4            \
-					-datadir        /usr/share/qt4              \
-					-docdir         /usr/share/doc/qt4          \
-					-translationdir /usr/share/qt4/translations \
-					-examplesdir    /usr/share/doc/qt4/examples \
 					-gtkstyle -opensource -release -system-sqlite \
 					-silent -no-nis -confirm-license -nomake examples -nomake demos -no-webkit
 				pump make -j $jobcount 
 			else
-				./configure -prefix /usr \
+				./configure -prefix /usr/compat.old/qt4 \
 					-sysconfdir       /etc/xdg \
-					-bindir         /usr/bin/qt4                \
-					-plugindir      /usr/lib/qt4/plugins        \
-					-importdir      /usr/lib/qt4/imports        \
-					-headerdir      /usr/include/qt4            \
-					-datadir        /usr/share/qt4              \
-					-docdir         /usr/share/doc/qt4          \
-					-translationdir /usr/share/qt4/translations \
-					-examplesdir    /usr/share/doc/qt4/examples \
 					-gtkstyle -opensource -release -system-sqlite \
 					-silent -no-nis -confirm-license -nomake examples -nomake demos  -no-webkit 
 				make -j 6
@@ -143,8 +127,14 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install 
+			find /usr/compat.old/qt4/lib/pkgconfig -name "*.pc" -exec perl -pi -e "s, -L$PWD/?\S+,,g" {} \;
+			for file in /usr/compat.old/qt4/lib/libQt*.prl; do
+				sed -r -e '/^QMAKE_PRL_BUILD_DIR/d'    \
+				-e 's/(QMAKE_PRL_LIBS =).*/\1/' \
+				-i $file
+			done
 			for file in moc uic rcc qmake lconvert lrelease lupdate; do
-				ln -sfrvn /usr/bin/qt4/$file /usr/bin/$file-qt4
+				ln -sfrvn /usr/compat.old/qt4/bin/$file /usr/bin/$file-qt4
 			done
 			]]>
 		</install>

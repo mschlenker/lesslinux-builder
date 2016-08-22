@@ -48,7 +48,7 @@
 			cd ${PKGNAME}
 			export CC="/usr/local/gcc54/bin/gcc54"
 			export CXX="/usr/local/gcc54/bin/g++54"
-			export PATH=/usr/bin/qt4:$PATH
+			export PATH=/usr/compat.old/qt4/bin:$PATH
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make 
 			]]>
@@ -59,7 +59,7 @@
 			cd ${PKGNAME}
 			export CC="/usr/local/gcc54/bin/gcc54"
 			export CXX="/usr/local/gcc54/bin/g++54"
-			export PATH=/usr/bin/qt4:$PATH
+			export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>

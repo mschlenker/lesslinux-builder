@@ -75,15 +75,15 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			export LIBGNUTLS_CFLAGS=` PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --cflags gnutls `
 			export LIBGNUTLS_LIBS=`   PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --libs   gnutls `
-			# export PATH=/usr/bin/qt4:$PATH
+			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC='distcc gcc'
 				export CXX='distcc g++'
-				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/bin/qt4/moc --with-qt4-uic=/usr/bin/qt4/uic
+				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic
 				pump make -j $jobcount 
 			else
-				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/bin/qt4/moc --with-qt4-uic=/usr/bin/qt4/uic
+				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic
 				make
 			fi
 			]]>

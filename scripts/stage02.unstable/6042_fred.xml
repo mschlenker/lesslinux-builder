@@ -38,7 +38,7 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-export PATH=/usr/bin/qt4:$PATH
+export PATH=/usr/compat.old/qt4/bin:$PATH
 bash autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 qmake
