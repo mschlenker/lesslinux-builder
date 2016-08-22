@@ -96,15 +96,20 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			export CC="/usr/local/gcc54/bin/gcc54"
 			export CXX="/usr/local/gcc54/bin/g++54"
-			echo 'Skip building!'
+			export QTDIR=/usr/compat.old/qt4 
+			PATH=$PATH:$QT4PREFIX/bin Tools/Scripts/build-webkit --qt            \
+				--no-webkit2    \
+				--prefix=/usr/compat.old/qt4
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			mkdir -p ${TGTDIR}/etc/lesslinux/packages/
-			touch ${TGTDIR}/etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_is_not_needed_on_stable
+			export QTDIR=/usr/compat.old/qt4 
+			make -C WebKitBuild/Release install
+			# mkdir -p ${TGTDIR}/etc/lesslinux/packages/
+			# touch ${TGTDIR}/etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_is_not_needed_on_stable
 			]]>
 		</install>
 		<clean>
