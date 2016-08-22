@@ -156,6 +156,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
+			[ -f ${TGTDIR}/usr/bin/vlc ] || exit 1
 			mkdir -p ${TGTDIR}/usr/share/icons
 			for i in 16x16 48x48 32x32 128x128 256x256 ; do
 				install -m 0644 share/icons/${i}/vlc.png ${TGTDIR}/usr/share/icons/vlc${i}.png
