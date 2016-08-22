@@ -109,6 +109,7 @@
 				export CC='distcc /usr/local/gcc54/bin/gcc54'
 				export CXX='distcc /usr/local/gcc54/bin/g++54'
 				./configure -prefix /usr \
+					-sysconfdir       /etc/xdg \
 					-bindir         /usr/bin/qt4                \
 					-plugindir      /usr/lib/qt4/plugins        \
 					-importdir      /usr/lib/qt4/imports        \
@@ -118,10 +119,11 @@
 					-translationdir /usr/share/qt4/translations \
 					-examplesdir    /usr/share/doc/qt4/examples \
 					-gtkstyle -opensource -release -system-sqlite \
-					-silent -no-nis -confirm-license -nomake examples -nomake demos
+					-silent -no-nis -confirm-license -nomake examples -nomake demos -no-webkit
 				pump make -j $jobcount 
 			else
 				./configure -prefix /usr \
+					-sysconfdir       /etc/xdg \
 					-bindir         /usr/bin/qt4                \
 					-plugindir      /usr/lib/qt4/plugins        \
 					-importdir      /usr/lib/qt4/imports        \
@@ -131,7 +133,7 @@
 					-translationdir /usr/share/qt4/translations \
 					-examplesdir    /usr/share/doc/qt4/examples \
 					-gtkstyle -opensource -release -system-sqlite \
-					-silent -no-nis -confirm-license -nomake examples -nomake demos  
+					-silent -no-nis -confirm-license -nomake examples -nomake demos  -no-webkit 
 				make -j 6
 			fi
 			]]>
