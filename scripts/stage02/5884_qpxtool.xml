@@ -41,6 +41,7 @@
 		</unpack>
 		<build>
 			<![CDATA[
+			export PATH=/usr/compat.old/qt4/bin:$PATH 
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/usr --disable-png 
 			make
@@ -50,6 +51,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export PATH=/usr/compat.old/qt4/bin:$PATH 
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
