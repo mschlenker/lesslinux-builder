@@ -39,6 +39,7 @@
                         <dep>glib</dep>
                         <dep>glibc</dep>
                         <dep>gnutls</dep>
+			<dep>gnutls3</dep>
                         <dep>grep</dep>
                         <dep>gtk</dep>
                         <dep>inetutils</dep>
@@ -73,17 +74,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export LIBGNUTLS_CFLAGS=` PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --cflags gnutls `
-			export LIBGNUTLS_LIBS=`   PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --libs   gnutls `
+			# export LIBGNUTLS_CFLAGS=` PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --cflags gnutls `
+			# export LIBGNUTLS_LIBS=`   PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig pkg-config --libs   gnutls `
 			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC='distcc gcc'
 				export CXX='distcc g++'
-				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic
+				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic --with-qt4-includes=/usr/compat.old/qt4/include --with-qt4-libs=/usr/compat.old/qt4/lib
 				pump make -j $jobcount 
 			else
-				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic
+				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic --with-qt4-includes=/usr/compat.old/qt4/include --with-qt4-libs=/usr/compat.old/qt4/lib
 				make
 			fi
 			]]>
