@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.8.0"
+		version="3.8.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="723ac918979255706434a05f5af34b71c49c9971">llvm-3.8.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.8.0/</mirror>
+				<pkg sha1="e0c48c4c182424b99999367d688cd8ce7876827b">llvm-3.8.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.8.1/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="2230ef962f2df3c13ec93f5b04b0e3cdff94b2ce">cfe-3.8.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.8.0/</mirror>
+				<pkg sha1="b5ff24dc6ad8f84654f4859389990bace1cfb6d5">cfe-3.8.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.8.1/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="480ea09e369dac6de1f3759b27fa19417b26b69e">compiler-rt-3.8.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.8.0/</mirror>
+				<pkg sha1="be5fefcef9d035ea2db97f3396ea5ff11fdc35ed">compiler-rt-3.8.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.8.1/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="120" page="http://www.llvm.org/" />
+			<manualcheck date="20160823" interval="120" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="3.8.1" />
+					<atext href="3.8.4" />
 					<atext href="3.8.2" />
 					<atext href="3.8.3" />
 					<atext href="3.10." />

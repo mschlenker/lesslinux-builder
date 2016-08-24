@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="cross-gcc-amd64-klibc"
-		version="6.1.0"
+		version="6.2.0"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="e0cdec515a54ce979ad52f9c784d3e142c76553a">gcc-6.1.0.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.1.0/</mirror>
+				<pkg sha1="583e29c7fe69d9a1031a89752c2551ab5aeacb91">gcc-6.2.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.2.0/</mirror>
 			</file>
 			<file>                                                                       
 				<pkg sha1="e3b0af77f18505184410d621fe0aae179e229dba">mpfr-3.1.4.tar.bz2</pkg>
@@ -22,14 +22,14 @@
 				<pkg sha1="b8be66396c726fdc36ebb0f692ed8a8cca3bcc66">mpc-1.0.3.tar.gz</pkg>
 				<mirror>http://www.multiprecision.org/mpc/download/</mirror>
 			</file>
-			<manualcheck date="20160629" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20160823" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
-					<atext linktext="gcc-6.1.1" />
-					<atext linktext="gcc-6.1.2" />
-					<atext linktext="gcc-6.1.3" />
-					<atext linktext="gcc-6.2."/>
-					<atext linktext="gcc-6.3." />
+					<atext linktext="gcc-6.2.1" />
+					<atext linktext="gcc-6.2.2" />
+					<atext linktext="gcc-6.2.3" />
+					<atext linktext="gcc-6.3."/>
+					<atext linktext="gcc-6.4." />
 					<atext linktext="gcc-7." />
 				</page>
 				<page html="http://ftp.sunet.se/pub/gnu/gmp/">
