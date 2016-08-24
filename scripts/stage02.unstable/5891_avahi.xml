@@ -106,7 +106,7 @@
 			PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig:/usr/compat.old/qt4/lib/pkgconfig ./configure \
 				--prefix=/usr --sysconfdir=/etc --localstatedir=/var \
 				--disable-mono --disable-monodoc --disable-qt3 \
-				--with-distro=none
+				--with-distro=none --disable-python 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				pump make -j $jobcount
 			else
