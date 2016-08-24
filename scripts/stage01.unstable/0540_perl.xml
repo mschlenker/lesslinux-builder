@@ -42,7 +42,8 @@
 			
 			cd ${PKGNAME}-${PKGVERSION}
 			sh Configure -des -Dprefix=/tools  -Dlibs=-lm
-			make
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
 			
 			]]>
 		</build>

@@ -31,7 +31,8 @@
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/tools
-			make
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
 			]]>
 		</build>
 		<install>

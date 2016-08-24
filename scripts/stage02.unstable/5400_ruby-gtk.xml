@@ -208,6 +208,7 @@
                         <dep>gtk3</dep>
 			<dep>gtksourceview3</dep>
 			<dep>vte3</dep>
+			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -227,9 +228,18 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				export CC='distcc gcc'
+				export CXX='distcc g++'
+			else
+				export CC='gcc'
+				export CXX='g++'
+			fi
 			ruby extconf.rb 
 			#  glib2 gio2 gdk_pixbuf2 pango atk gtk2 gstreamer gobject-introspection vte gtksourceview2 rsvg2 poppler && make
-			make
+			make -j${jobcount}
 			]]>
 		</build>
 		<test />

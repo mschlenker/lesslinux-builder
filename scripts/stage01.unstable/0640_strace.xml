@@ -35,7 +35,9 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools --enable-static && make LDFLAGS="-static"
+			./configure --prefix=/tools --enable-static 
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT} LDFLAGS="-static"
 			]]>
 		</build>
 		<install>

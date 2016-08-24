@@ -35,7 +35,9 @@
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
 			export FORCE_UNSAFE_CONFIGURE=1
-			./configure --prefix=/tools --enable-install-program=hostname && make
+			./configure --prefix=/tools --enable-install-program=hostname 
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
 			]]>
 		</build>
 		<install>

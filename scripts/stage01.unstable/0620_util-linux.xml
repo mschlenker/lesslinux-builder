@@ -46,7 +46,8 @@
 				--disable-makeinstall-chown    \
 				--without-systemdsystemunitdir \
 				PKG_CONFIG=""
-			make
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
 			]]>
 		</build>
 		<install>
