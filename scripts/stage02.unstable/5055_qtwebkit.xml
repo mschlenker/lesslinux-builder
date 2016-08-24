@@ -94,10 +94,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			# export CC="/usr/local/gcc54/bin/gcc54"
-			# export CXX="/usr/local/gcc54/bin/g++54"
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				export CC='distcc gcc'
+				export CXX='distcc g++'
+			else
+				export CC='gcc'
+				export CXX='g++'
+			fi
 			export QTDIR=/usr/compat.old/qt4 
-			PATH=$PATH:$QTDIR/bin Tools/Scripts/build-webkit --qt --no-webkit2 --prefix=$QTDIR
+			PATH=$PATH:$QTDIR/bin Tools/Scripts/build-webkit --qt --no-webkit2 --prefix=$QTDIR --makeargs=-j${jobcount}
 			]]>
 		</build>
 		<test />
