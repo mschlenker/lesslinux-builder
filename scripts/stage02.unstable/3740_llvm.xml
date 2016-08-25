@@ -74,23 +74,25 @@
 			cd ../${PKGNAME}-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
-				export CC='distcc gcc'
-				export CXX='distcc g++'
-			else
-				export CC='gcc'
-				export CXX='g++'
-			fi
-			cmake -DCMAKE_INSTALL_PREFIX=/usr           \
-				-DLLVM_ENABLE_FFI=ON                  \
-				-DCMAKE_BUILD_TYPE=Release            \
-				-DBUILD_SHARED_LIBS=ON                \
-				-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
-				-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
-				
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				CC='distcc gcc' \
+				CXX='distcc g++' \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+					-DLLVM_ENABLE_FFI=ON                  \
+					-DCMAKE_BUILD_TYPE=Release            \
+					-DBUILD_SHARED_LIBS=ON                \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
+					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
 				pump make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else
-				make -j 4
+				CC='gcc' \
+				CXX='g++'  \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+					-DLLVM_ENABLE_FFI=ON                  \
+					-DCMAKE_BUILD_TYPE=Release            \
+					-DBUILD_SHARED_LIBS=ON                \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
+					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
+				make -j 4 CC='gcc' CXX='g++' 
 			fi
 			]]>
 		</build>
