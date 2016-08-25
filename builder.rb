@@ -351,17 +351,15 @@ end
 
 def walk_down_dependencies(pkg_name, known_deps=Array.new)
 	alldeps = Array.new
-	@total_deps[pkg_name].each { |n|
-		n.each { |m|
-			unless alldeps.include?(m) || m.nil? || known_deps.include?(m) 
-				alldeps = alldeps + walk_down_dependencies(m, alldeps)
-			end
-		}
-		alldeps.push n
-		alldeps.uniq!
+	@total_deps[pkg_name].each { |m|
+		unless alldeps.include?(m) || m.nil? || known_deps.include?(m) 
+			alldeps = alldeps + walk_down_dependencies(m, alldeps)
+		end
+		alldeps.push m
 	}
+	alldeps.uniq!
 	alldeps.push pkg_name
-	# puts alldeps.join(", ") 
+	puts alldeps.join(", ") 
 	return alldeps.compact 
 end
 
