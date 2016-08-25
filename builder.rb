@@ -359,7 +359,7 @@ def walk_down_dependencies(pkg_name, known_deps=Array.new)
 	}
 	alldeps.uniq!
 	alldeps.push pkg_name
-	puts alldeps.join(", ") 
+	# puts alldeps.join(", ") 
 	return alldeps.compact 
 end
 
