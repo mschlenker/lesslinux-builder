@@ -80,14 +80,6 @@
 				export CC='gcc'
 				export CXX='g++'
 			fi
-			#../${PKGNAME}-${PKGVERSION}.src/configure --prefix=/usr              \
-			#	--sysconfdir=/etc          \
-			#	--enable-libffi            \
-			#	--enable-optimized         \
-			#	--enable-shared            \
-			#	--enable-static \
-			#	--disable-assertions --disable-bindings
-			CC=gcc CXX=g++                              \
 			cmake -DCMAKE_INSTALL_PREFIX=/usr           \
 				-DLLVM_ENABLE_FFI=ON                  \
 				-DCMAKE_BUILD_TYPE=Release            \
