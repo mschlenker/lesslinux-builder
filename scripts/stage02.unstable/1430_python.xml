@@ -59,14 +59,12 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			#export CC="/usr/local/gcc52/bin/gcc52"
-			#export CXX="/usr/local/gcc52/bin/g++52"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
 				export DISTCC_HOSTS
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	export CC="distcc /usr/local/gcc52/bin/gcc52"
-			#	export CXX="distcc /usr/local/gcc52/bin/g++52" 
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
 			fi
 			
 			case $(uname -m) 

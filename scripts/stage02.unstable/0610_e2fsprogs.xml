@@ -62,6 +62,14 @@ sed -i -e 's:\[\.-\]::' tests/filter.sed
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}/build
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			../configure --prefix=/usr \
 				--with-root-prefix="" \
 				--enable-elf-shlibs \
@@ -69,7 +77,7 @@ sed -i -e 's:\[\.-\]::' tests/filter.sed
 				--disable-libuuid \
 				--disable-uuidd \
 				--disable-fsck
-			
+			make -j $jobcount 
 			]]>
 		</build>
 		<test>
