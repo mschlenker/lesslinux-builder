@@ -147,7 +147,7 @@ done
 			<dep>nspr</dep>
 			<dep>nss</dep>
 			<dep>icu</dep>
-			<dep>gcc52</dep>
+			<dep>gcc62</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -179,12 +179,12 @@ done
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				# FIXME!
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc62/bin/gcc62' CXX='distcc /usr/local/gcc62/bin/g++62'\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure 
 				pump make -f client.mk build  
 			else
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j2  CC=/usr/local/gcc52/bin/gcc52 CXX=/usr/local/gcc52/bin/g++52\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j2  CC=/usr/local/gcc62/bin/gcc62 CXX=/usr/local/gcc62/bin/g++62\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure	
 				make -f client.mk build

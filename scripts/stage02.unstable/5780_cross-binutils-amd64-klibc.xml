@@ -65,8 +65,16 @@
 		<build>
 			<![CDATA[ 
 			cd binutils-build
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			../binutils-${PKGVERSION}/configure --target=x86_64-linux-gnu --prefix=/usr/local/crosstools-amd64-klibc --disable-nls --disable-werror
-			make -j 4
+			make -j $jobcount
 			]]>
 		</build>
 		<install>

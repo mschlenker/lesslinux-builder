@@ -40,10 +40,18 @@
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 export PATH=/usr/compat.old/qt4/bin:$PATH
+jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 # bash autogen.sh
 # ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 qmake
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

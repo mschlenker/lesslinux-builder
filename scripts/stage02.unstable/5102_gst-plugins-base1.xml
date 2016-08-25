@@ -92,18 +92,17 @@
 		<build>
 			<![CDATA[
 			cd gst-plugins-base-${PKGVERSION}
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	export CC="distcc /usr/local/gcc48/bin/gcc48"
-			#	export CXX="distcc /usr/local/gcc48/bin/g++48" 
-			#	./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-			#	pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			#else
-			#	export CC="/usr/local/gcc48/bin/gcc48"
-			#	export CXX="/usr/local/gcc48/bin/g++48" 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr --enable-static --enable-shared --enable-experimental \
+					CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
 				./configure --sysconfdir=/etc --prefix=/usr --enable-static --enable-shared --enable-experimental
 				make
-			#fi
+			fi
 			]]>
 		</build>
 		<test />

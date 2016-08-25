@@ -74,6 +74,13 @@ cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF -DWITH_CHANNELS=ON  -DWIT
 			<![CDATA[
 			cd FreeRDP
 			export CC=/usr/bin/clang 
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc /usr/bin/clang"
+			fi
 			cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=ON \
 				-DWITH_CHANNELS=ON  -DWITH_PCSC=ON -DWITH_JPEG=ON \
 				-DWITH_PULSE=OFF -DWITH_CUPS=ON -DWITH_WAYLAND=OFF \
@@ -81,7 +88,7 @@ cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF -DWITH_CHANNELS=ON  -DWIT
 				-DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release \
 				-DWITH_ALSA=ON -DWITH_CHANNELS=ON -DWITH_X264=ON \
 				-DWITH_OSS=OFF -DCMAKE_INSTALL_PREFIX=/usr .
-			make -j3 VERBOSE=1 
+			make -j $jobcount VERBOSE=1 
 			]]>
 		</build>
 		<test />

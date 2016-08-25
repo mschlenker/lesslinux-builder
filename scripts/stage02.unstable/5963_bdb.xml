@@ -47,13 +47,21 @@
 		<patch />
 		<build>
 			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cd ${PKGNAME}-${PKGVERSION}/build_unix
 			../dist/configure --prefix=/usr      \
 				--enable-compat185 \
 				--enable-dbm       \
 				--disable-static   \
 				--enable-cxx   
-			make
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

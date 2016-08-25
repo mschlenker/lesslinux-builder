@@ -67,9 +67,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			CFLAGS='-Wno-error=unused-const-variable -Wno-error=misleading-indentation' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			# find nasl -type f -exec sed -i 's/-Werror/ /g' {} \;
-			CFLAGS='-Wno-error=unused-const-variable -Wno-error=misleading-indentation'  make
+			CFLAGS='-Wno-error=unused-const-variable -Wno-error=misleading-indentation'  make -j $jobcount 
 			]]>
 		</build>
 		<test />

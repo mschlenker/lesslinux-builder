@@ -39,10 +39,18 @@ cat ${SRCDIR}/${PKGNAME}-Fix-segfault-on-systems-with-broken-locale-support.patc
 	</patch> -->
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 sed -i 's%usr/X11R6%usr%g' config.mk
 #export CC="/usr/local/gcc54/bin/gcc54"
 #export CXX="/usr/local/gcc54/bin/g++54"
-make PREFIX=/usr
+make -j $jobcount PREFIX=/usr
 ]]>
         </build>
         <install>

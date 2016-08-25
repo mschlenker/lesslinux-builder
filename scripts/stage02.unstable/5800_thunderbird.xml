@@ -170,7 +170,7 @@ done
 			sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' mozilla-release/.mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc52/bin/gcc52' CXX='distcc /usr/local/gcc52/bin/g++52'\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure 
 				pump make -f client.mk build  

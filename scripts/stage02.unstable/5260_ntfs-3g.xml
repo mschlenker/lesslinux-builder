@@ -62,9 +62,19 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal \
+				&& make -j $jobcount
 			cd ../${PKGNAME}-${PKGVERSION}.static
-			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal --enable-static && make -j3 LDFLAGS=-all-static
+			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal --enable-static \
+				&& make -j $jobcount LDFLAGS=-all-static
 			]]>
 		</build>
 		<test />

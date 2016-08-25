@@ -96,6 +96,14 @@
 			./open-watcom-c-linux-1.9 -i -dDstDir=${OWPWD}/ow19 -dFullInstall=1
 			ls -lah
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening --disable-java --disable-python --disable-pulse --disable-kmods --disable-docs 
 			source env.sh
 			kmk

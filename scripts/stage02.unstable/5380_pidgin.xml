@@ -86,10 +86,18 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/opt --sysconfdir=/etc  --disable-screensaver \
 				--disable-gtkspell --disable-vv --disable-meanwhile \
 				--disable-nm  --disable-tcl
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

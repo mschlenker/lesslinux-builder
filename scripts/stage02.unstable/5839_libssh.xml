@@ -46,13 +46,21 @@
 		<patch />
 		<build>
 			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			export SHELL=/bin/bash
 			env
 			mkdir -pv libssh.build
 			cd libssh.build
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  ../${PKGNAME}-${PKGVERSION}
 			find . -name 'build.make' -exec sed -i 's%/usr/lib/libcrypto.so%%g' {} \;
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

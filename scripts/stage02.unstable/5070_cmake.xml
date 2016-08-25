@@ -69,12 +69,21 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --no-qt-gui --system-curl --system-expat --system-zlib --system-bzip2 --system-libarchive --parallel=4
 			./configure --prefix=/usr --no-qt-gui --system-curl --system-expat --system-zlib --system-bzip2 --system-libarchive --parallel=4
 			sed -i 's%/usr/lib/libncurses.so%%g' Source/CMakeFiles/ccmake.dir/build.make
 			sed -i 's%/usr/lib64/libncurses.so%%g' Source/CMakeFiles/ccmake.dir/build.make
-			make cmake
-			make ccmake
+			make -j $jobcount cmake
+			make -j $jobcount ccmake
+			make -j $jobcount
 			make
 			]]>
 		</build>

@@ -37,9 +37,17 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 	    export PATH=/usr/compat.old/qt4/bin:$PATH
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

@@ -75,16 +75,17 @@
 		<build>
 			<![CDATA[
 			cd gst-plugins-bad-${PKGVERSION}
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	export CC="distcc /usr/local/gcc48/bin/gcc48"
-			#	export CXX="distcc /usr/local/gcc48/bin/g++48" 
-			#	./configure --sysconfdir=/etc --prefix=/usr --disable-hal  CC="distcc gcc" CXX="distcc g++" 
-			#	pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			#else
-			#	export CC="/usr/local/gcc48/bin/gcc48"
-			#	export CXX="/usr/local/gcc48/bin/g++48" 
-				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --disable-wayland --enable-static --enable-shared --enable-experimental
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc /usr/local/gcc48/bin/gcc48"
+				export CXX="distcc /usr/local/gcc48/bin/g++48" 
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --disable-wayland \
+					--enable-static --enable-shared --enable-experimental \
+					CC="distcc gcc" CXX="distcc g++" 
+				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --disable-wayland \
+					--enable-static --enable-shared --enable-experimental
 				make
 			#fi
 			]]>
