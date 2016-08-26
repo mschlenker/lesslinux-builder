@@ -468,7 +468,7 @@ def run_stage_two
 			remaining_deps = k.depends_on.clone
 			@total_deps[k.pkg_name] = k.depends_on
 			# remaining_deps = (remaining_deps + v).compact
-			while (remaining_deps.size > 0 && rescount < 1_000_000 && circle_found == false && depends_on_circle == false) 
+			while (remaining_deps.size > 0 && rescount < 10_000_000 && circle_found == false && depends_on_circle == false) 
 				rescount += 1
 				x = remaining_deps.pop
 				if already_resolved.include?(x)
