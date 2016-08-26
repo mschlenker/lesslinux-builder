@@ -49,7 +49,7 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				pump make -j $jobcount PREFIX=/usr SBINDIR=/sbin CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount PREFIX=/usr SBINDIR=/sbin CC="distcc gcc" CXX="distcc g++" 
 			else
 				make PREFIX=/usr SBINDIR=/sbin
 			fi

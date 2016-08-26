@@ -61,7 +61,7 @@
 			fi
 			./configure --prefix=/usr/compat.static --sysconfdir=/etc/compat.static --enable-static
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++"  LDFLAGS=-all-static
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++"  LDFLAGS=-all-static
 			else
 				make LDFLAGS=-all-static
 			fi

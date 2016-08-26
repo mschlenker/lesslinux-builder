@@ -142,7 +142,7 @@
 				export CXX="distcc g++" 
 				# ./bootstrap
 				CFLAGS="-DLUA_COMPAT_5_1" ./configure --prefix=/usr --enable-freerdp=no --disable-atmo --enable-libva=no --enable-vdpau=no CC="distcc gcc" CXX="distcc g++" 
-				pump make -k -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -k -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 				make
 			else
 				# ./bootstrap

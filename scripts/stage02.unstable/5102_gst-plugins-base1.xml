@@ -98,7 +98,7 @@
 				export CXX="distcc g++" 
 				./configure --sysconfdir=/etc --prefix=/usr --enable-static --enable-shared --enable-experimental \
 					CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --sysconfdir=/etc --prefix=/usr --enable-static --enable-shared --enable-experimental
 				make

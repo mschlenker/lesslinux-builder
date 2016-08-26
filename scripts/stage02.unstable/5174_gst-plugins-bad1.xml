@@ -82,7 +82,7 @@
 				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --disable-wayland \
 					--enable-static --enable-shared --enable-experimental \
 					CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --disable-wayland \
 					--enable-static --enable-shared --enable-experimental

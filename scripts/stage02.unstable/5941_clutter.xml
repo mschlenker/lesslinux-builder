@@ -107,7 +107,7 @@
 				--enable-x11-backend=yes \
 				--enable-egl-backend 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi

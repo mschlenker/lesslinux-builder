@@ -47,7 +47,7 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				pump make -j $jobcount prefix=/usr CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount prefix=/usr CC="distcc gcc" CXX="distcc g++" 
 			else
 				make prefix=/usr
 			fi

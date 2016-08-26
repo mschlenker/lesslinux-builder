@@ -106,7 +106,7 @@
 				--enable-wayland-egl-server=no \
 				--enable-cogl-gst
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi

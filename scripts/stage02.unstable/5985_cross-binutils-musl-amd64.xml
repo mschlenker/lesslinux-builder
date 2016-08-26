@@ -79,7 +79,7 @@
 					--with-sysroot=/usr/local/crosstools-amd64-musl/x86_64-linux-musl \
 					--disable-werror --disable-multilib CC="distcc gcc" CXX="distcc g++" 
 				make configure-host
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				../binutils-${PKGVERSION}/configure --target=x86_64-linux-musl \
 					--prefix=/usr/local/crosstools-amd64-musl --disable-nls \

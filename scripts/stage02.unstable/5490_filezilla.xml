@@ -56,7 +56,7 @@
 				export CXX="distcc g++" 
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
 					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin CC="distcc gcc" CXX="distcc g++"
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
 					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin 

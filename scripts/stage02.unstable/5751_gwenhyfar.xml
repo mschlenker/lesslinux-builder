@@ -82,7 +82,7 @@
 				export CC='distcc gcc'
 				export CXX='distcc g++'
 				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic --with-qt4-includes=/usr/compat.old/qt4/include --with-qt4-libs=/usr/compat.old/qt4/lib
-				pump make -j $jobcount 
+				make -j $jobcount 
 			else
 				CFLAGS='-Wno-error=deprecated-declarations' ./configure --sysconfdir=/etc --prefix=/usr --with-qt4-moc=/usr/compat.old/qt4/bin/moc --with-qt4-uic=/usr/compat.old/qt4/bin/uic --with-qt4-includes=/usr/compat.old/qt4/include --with-qt4-libs=/usr/compat.old/qt4/lib
 				make

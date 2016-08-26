@@ -167,7 +167,7 @@
 				--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
 				--with-arch=${CLFS_CPU}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make all-gcc all-target-libgcc -j $jobcount
+				make all-gcc all-target-libgcc -j $jobcount
 			else
 				make all-gcc all-target-libgcc -j 4 
 			fi

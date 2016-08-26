@@ -108,7 +108,7 @@
 				--docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \
 				--target-list=x86_64-softmmu,i386-softmmu,x86_64-linux-user,i386-linux-user 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make -j $( grep -c processor /proc/cpuinfo )
 			fi

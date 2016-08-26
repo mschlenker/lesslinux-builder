@@ -80,7 +80,7 @@
 				export CC="distcc /usr/local/gcc52/bin/gcc52"
 				export CXX="distcc /usr/local/gcc52/bin/g++52"
 				./configure --prefix=/usr --sysconfdir=/etc --disable-xinerama --disable-i18n --disable-nls
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				export CC="/usr/local/gcc52/bin/gcc52"
 				export CXX="/usr/local/gcc52/bin/g++52"

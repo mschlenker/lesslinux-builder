@@ -184,7 +184,7 @@ done
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc54/bin/gcc54' CXX='distcc /usr/local/gcc54/bin/g++54'\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure 
-				pump make -f client.mk build  
+				make -f client.mk build  
 			else
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j2  CC=/usr/local/gcc54/bin/gcc54 CXX=/usr/local/gcc54/bin/g++54\"%g" .mozconfig 
 				make -f client.mk clean

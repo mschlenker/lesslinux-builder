@@ -82,7 +82,7 @@
 					-DBUILD_SHARED_LIBS=ON                \
 					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
 					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
-				pump make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
+				make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else
 				CC='gcc' \
 				CXX='g++'  \

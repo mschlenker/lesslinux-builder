@@ -49,7 +49,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --without-atk-bridge --prefix=/usr --sysconfdir=/etc --disable-broadway-backend --enable-x11-backend --disable-wayland-backend CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure  --without-atk-bridge --prefix=/usr --sysconfdir=/etc --disable-broadway-backend --enable-x11-backend --disable-wayland-backend 
 				make

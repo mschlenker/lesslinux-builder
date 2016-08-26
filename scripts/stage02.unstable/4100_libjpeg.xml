@@ -62,7 +62,7 @@
 			./configure --prefix=/usr --mandir=/usr/share/man --with-jpeg8 --enable-static --enable-shared 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount 
+				make -j $jobcount 
 			else
 				make
 			fi

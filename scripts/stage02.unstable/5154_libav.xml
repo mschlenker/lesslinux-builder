@@ -70,7 +70,7 @@
 			fi
 			./configure --prefix=/usr/compat.new --enable-shared --enable-runtime-cpudetect --enable-gpl --enable-x11grab --enable-libopenjpeg --enable-libx264 --enable-libfreetype --enable-gnutls
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi
