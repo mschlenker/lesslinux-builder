@@ -198,6 +198,7 @@ cd mozilla-release
 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
 				export CC='distcc /usr/local/gcc61/bin/gcc61'
 				export CXX='distcc /usr/local/gcc61/bin/g++61'
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc61/bin/gcc61' CXX='distcc /usr/local/gcc61/bin/g++61'\"%g" .mozconfig 
