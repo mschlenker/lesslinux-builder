@@ -152,8 +152,8 @@
 					ln -sf  /usr/bin/distcc ./bin/${b} 
 				done
 				export PATH=${CURRENTPWD}/bin:$PATH 
-				cd ${PKGNAME}_${PKGVERSION}
 			fi
+			cd ${PKGNAME}_${PKGVERSION}
 			
 			sh bootstrap.sh --prefix=/usr
 			./b2 stage threading=multi link=shared
