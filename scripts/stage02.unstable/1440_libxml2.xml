@@ -76,7 +76,7 @@ sed \
 				;;
 			esac 
 			
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which pump ; then
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
