@@ -144,20 +144,20 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}_${PKGVERSION}
+			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
+				CURRENTPWD=` pwd ` 
+				mkdir bin
+				for b in gcc cc g++ c++ ; do
+					ln -sf  /usr/bin/distcc ./bin/${b} 
+				done
+				export PATH=${CURRENTPWD}/bin:$PATH 
+				cd ${PKGNAME}_${PKGVERSION}
 			fi
+			
 			sh bootstrap.sh --prefix=/usr
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-			#	sed -i 's%# using gcc ;%using gcc \: \: /usr/bin/distcc g++ ;%g' tools/build/v2/user-config.jam
-			#	pump ./bjam -a -j $jobcount --debug-configuration
-			#else
-				# ./b2 -a
-				./b2 stage threading=multi link=shared
-			#fi
+			./b2 stage threading=multi link=shared
+			
 			]]>
 		</build>
 		<test />
