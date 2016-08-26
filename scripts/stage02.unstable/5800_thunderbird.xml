@@ -141,7 +141,7 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.bz2
+			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
 			mv thunderbird-${PKGVERSION} comm-esr
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.de-es-pl-ru.tar.xz
