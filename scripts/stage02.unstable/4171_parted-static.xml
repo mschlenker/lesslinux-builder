@@ -81,7 +81,7 @@
 			make lib
 			cd ../parted-${PKGVERSION}                    
 			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no 
-			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.158/libdm/ioctl -pthread"
+			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.164/libdm/ioctl -pthread"
 			]]>
 		</build>
 		<test />
