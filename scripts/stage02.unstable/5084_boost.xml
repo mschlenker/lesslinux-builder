@@ -145,7 +145,10 @@
 		<build>
 			<![CDATA[
 			
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
 				CURRENTPWD=` pwd ` 
 				mkdir bin
 				for b in gcc cc g++ c++ ; do
@@ -156,7 +159,7 @@
 			cd ${PKGNAME}_${PKGVERSION}
 			
 			sh bootstrap.sh --prefix=/usr
-			./b2 stage threading=multi link=shared
+			./b2 -j $jobcount stage threading=multi link=shared
 			
 			]]>
 		</build>
