@@ -98,6 +98,7 @@
 			export PATH=/usr/local/gcc54/bin:$PATH 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
 				export CC="distcc /usr/local/gcc54/bin/gcc54"
 				export CXX="distcc /usr/local/gcc54/bin/g++54"
 				export QTDIR=/usr/compat.old/qt4 

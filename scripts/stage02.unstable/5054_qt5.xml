@@ -125,6 +125,7 @@
 			cd qt-everywhere-opensource-src-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
 				export CC='distcc gcc'
 				export CXX='distcc g++'
 				./configure -prefix /usr \

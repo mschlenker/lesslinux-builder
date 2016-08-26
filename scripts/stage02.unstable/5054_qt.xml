@@ -106,6 +106,7 @@
 			export CXX="/usr/local/gcc54/bin/g++54"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
 				export CC='distcc /usr/local/gcc54/bin/gcc54'
 				export CXX='distcc /usr/local/gcc54/bin/g++54'
 				./configure -prefix /usr/compat.old/qt4 \
