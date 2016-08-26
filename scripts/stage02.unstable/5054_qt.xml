@@ -114,7 +114,7 @@
 					-sysconfdir       /etc/xdg \
 					-gtkstyle -opensource -release -system-sqlite \
 					-silent -no-nis -confirm-license -nomake examples -nomake demos -no-webkit
-				pump make -j $jobcount 
+				make -j $jobcount 
 			else
 				./configure -prefix /usr/compat.old/qt4 \
 					-sysconfdir       /etc/xdg \

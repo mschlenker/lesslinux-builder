@@ -142,7 +142,7 @@
 					-nomake examples \
 					-nomake tests \
 					-no-pch -optimized-qmake -dbus-linked -openssl-linked
-				pump make -j $jobcount 
+				make -j $jobcount 
 			else
 				./configure -prefix /usr \
 					-bindir         /usr/bin/qt5                \
