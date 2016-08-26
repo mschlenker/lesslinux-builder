@@ -199,14 +199,14 @@ sed -e '/#include/a\
 			
 			ccount=0
 			# ./obj-i686-pc-linux-gnu/dist/lib/libxul.so
-			while [ '!' -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ] && \
-					[ '!' -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ]  ; do
+			while [ '!' -f obj-` uname -m `-pc-linux-gnu/dist/bin/libxul.so -a $ccount -lt 2 ] && \
+					[ '!' -f obj-` uname -m `-unknown-linux-gnu/dist/bin/libxul.so -a $ccount -lt 2 ]  ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
-			[ -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so ] || exit 1 
+			[ -f obj-` uname -m `-pc-linux-gnu/dist/bin/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/dist/bin/libxul.so ] || exit 1 
 			
 			# Now try to build the language packs
 			for packlang in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
