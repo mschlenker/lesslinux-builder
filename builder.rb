@@ -20,6 +20,7 @@ require 'sqlite3'
 require 'thread'
 # require 'mahoro'
 require 'net/ftp'
+require 'fileutils'
 
 include ObjectSpace
 
@@ -403,6 +404,15 @@ def run_stage_two
 			Dir.mkdir(@builddir + d)
 		end
 	}
+	# Write host file for distcc
+	unless File.directory?(@builddir + "/stage01/chroot/etc/distcc" )
+		FileUtils.mkdir_p(@builddir + "/stage01/chroot/etc/distcc")
+	end
+	if @distcchosts.size > 0
+		distcc_hostfile = File.new(@builddir + "/stage01/chroot/etc/distcc/hosts", "w")
+		@distcchosts.each { |h| distcc_hostfile.write( h + "\n" ) }
+		distcc_hostfile.close 
+	end
 	pkg_count = @stage_two_objs.size
 	# Stage 02 abfrühstücken
 	# Alle Scripte in stage02 suchen
