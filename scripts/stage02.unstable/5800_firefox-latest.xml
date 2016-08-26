@@ -24,7 +24,7 @@ app.partner.computerbild="computerbild"
 		<license>GPLv2</license>
 		<!-- official branding -->
 		<sources>
-			<file>                                                                         
+			<file>                                                                     95714df71633aac57219c88a0f799652da53901d    
 				<pkg sha1="75c36b8d2e4d25e0cbcc5e1ee7ed02b7e17ade8e">firefox-48.0.2.source.tar.xz</pkg>
 				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/48.0.2/source/</mirror>
 			</file>
@@ -157,7 +157,7 @@ done
 			<dep>nspr</dep>
 			<dep>nss</dep>
 			<dep>icu</dep>
-			<dep>gcc61</dep>
+			<dep>gcc54</dep>
 			<!-- <dep>gcc49</dep> -->
                 </builddeps>
 		<unpack>
@@ -180,7 +180,7 @@ done
 		<build>
 			<![CDATA[
 
-export PATH=/usr/local/gcc61/bin:$PATH 
+export PATH=/usr/local/gcc54/bin:$PATH 
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL
@@ -199,30 +199,30 @@ cd mozilla-release
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				[ "$jobcount" -gt 8 ] && jobcount=8 
-				export CC='distcc /usr/local/gcc61/bin/gcc61'
-				export CXX='distcc /usr/local/gcc61/bin/g++61'
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc61/bin/gcc61' CXX='distcc /usr/local/gcc61/bin/g++61'\"%g" .mozconfig 
+				export CC='distcc /usr/local/gcc54/bin/gcc54'
+				export CXX='distcc /usr/local/gcc54/bin/g++54'
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc54/bin/gcc54' CXX='distcc /usr/local/gcc54/bin/g++54'\"%g" .mozconfig 
 				# CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" \
 				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" \
 				#	make -f client.mk clean
 				# CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" \
 				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" \
 				#	make -f client.mk configure 
-				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" \
-					CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized"  \
+				# CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized" \
+				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized"  \
 					make -f client.mk 
 			else
-				export CC='/usr/local/gcc61/bin/gcc61'
-				export CXX='/usr/local/gcc61/bin/g++61'
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=/usr/local/gcc61/bin/gcc61 CXX=/usr/local/gcc61/bin/g++61\"%g" .mozconfig 
+				export CC='/usr/local/gcc54/bin/gcc54'
+				export CXX='/usr/local/gcc54/bin/g++54'
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=/usr/local/gcc54/bin/gcc54 CXX=/usr/local/gcc54/bin/g++54\"%g" .mozconfig 
 				# CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \ 
 				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
 				#	make -f client.mk clean
 				#CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
 				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
 				#	make -f client.mk configure	
-				CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
-					CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
+				# CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
+				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
 					make -f client.mk
 			fi
 			echo '===> Trying to find libxul.so...'
