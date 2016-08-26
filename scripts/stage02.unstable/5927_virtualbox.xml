@@ -109,11 +109,11 @@
 				export CXX="distcc /usr/local/gcc61/bin/g++61" 
 				./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening \
 					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs \
-					CC="distcc /usr/local/gcc61/bin/gcc61" CXX="distcc /usr/local/gcc61/bin/g++61"
+					--with-gcc="distcc /usr/local/gcc61/bin/gcc61" --with-g++="distcc /usr/local/gcc61/bin/g++61"
 			else
 				./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening \
 					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs \
-					CC="/usr/local/gcc61/bin/gcc61" CXX="/usr/local/gcc61/bin/g++61"
+					--with-gcc="/usr/local/gcc61/bin/gcc61" --with-g++="/usr/local/gcc61/bin/g++61"
 			fi
 			source env.sh
 			kmk
