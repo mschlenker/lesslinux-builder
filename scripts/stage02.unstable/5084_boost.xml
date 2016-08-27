@@ -148,7 +148,7 @@
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				[ "$jobcount" -gt 8 ] && jobcount=8 
+				[ "$jobcount" -gt 10 ] && jobcount=10 
 				CURRENTPWD=` pwd ` 
 				mkdir bin
 				for b in gcc cc g++ c++ ; do
