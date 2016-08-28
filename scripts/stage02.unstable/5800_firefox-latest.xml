@@ -24,7 +24,7 @@ app.partner.computerbild="computerbild"
 		<license>GPLv2</license>
 		<!-- official branding -->
 		<sources>
-			<file>                                                                     95714df71633aac57219c88a0f799652da53901d    
+			<file>                                                                     
 				<pkg sha1="75c36b8d2e4d25e0cbcc5e1ee7ed02b7e17ade8e">firefox-48.0.2.source.tar.xz</pkg>
 				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/48.0.2/source/</mirror>
 			</file>
@@ -205,7 +205,7 @@ cd mozilla-release
 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				[ "$jobcount" -gt 8 ] && jobcount=8 
+				[ "$jobcount" -gt 8 ] && jobcount=8
 				export CC='distcc /usr/local/gcc54/bin/gcc54'
 				export CXX='distcc /usr/local/gcc54/bin/g++54'
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc54/bin/gcc54' CXX='distcc /usr/local/gcc54/bin/g++54'\"%g" .mozconfig 
@@ -221,7 +221,7 @@ cd mozilla-release
 			else
 				export CC='/usr/local/gcc54/bin/gcc54'
 				export CXX='/usr/local/gcc54/bin/g++54'
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=/usr/local/gcc54/bin/gcc54 CXX=/usr/local/gcc54/bin/g++54\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j1  CC=/usr/local/gcc54/bin/gcc54 CXX=/usr/local/gcc54/bin/g++54\"%g" .mozconfig 
 				# CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \ 
 				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
 				#	make -f client.mk clean

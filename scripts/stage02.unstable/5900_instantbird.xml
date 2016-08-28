@@ -178,7 +178,7 @@ done
 				make -f client.mk configure 
 				make -f client.mk build  
 			else
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j3 CC=/usr/local/gcc52/bin/gcc52 CXX=/usr/local/gcc52/bin/g++52\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j1 CC=/usr/local/gcc52/bin/gcc52 CXX=/usr/local/gcc52/bin/g++52\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure	
 				make -f client.mk build
