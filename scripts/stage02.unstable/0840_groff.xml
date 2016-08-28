@@ -64,7 +64,9 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			PAGE=A4 ./configure --prefix=/usr && make -j $jobcount
+			PAGE=A4 ./configure --prefix=/usr 
+			make -k -j $jobcount
+			make -j 1 
 			]]>
 		</build>
 		<test />
