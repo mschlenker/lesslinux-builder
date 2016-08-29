@@ -91,20 +91,27 @@
 		<!-- WARNING: Using distcc will break the build! -->
 		<build>
 			<![CDATA[
-			export PATH=/usr/local/gcc61/bin:$PATH 
-			export CC="/usr/local/gcc61/bin/gcc61"
-			export CXX="/usr/local/gcc61/bin/g++61"
 			export USER=root
 			OWPWD=` pwd ` 
 			ls -lah
 			echo $OWPWD
 			./open-watcom-c-linux-1.9 -i -dDstDir=${OWPWD}/ow19 -dFullInstall=1
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 10 ] && jobcount=10 
+				CURRENTPWD=` pwd ` 
+				mkdir bin
+				for b in gcc61 cc61 g++61 c++61 ; do
+					ln -sf  /usr/bin/distcc ./bin/${b} 
+				done
+				export PATH=${CURRENTPWD}/bin:$PATH 
+			fi
 			ls -lah
 			cd ${PKGNAME}-${PKGVERSION}
-			jobcount=2
 			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening \
 					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs \
-					--with-gcc="/usr/local/gcc61/bin/gcc61" --with-g++="/usr/local/gcc61/bin/g++61"
+					--with-gcc="gcc61" --with-g++="g++61"
 			source env.sh
 			kmk
 			]]>
