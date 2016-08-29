@@ -47,8 +47,12 @@
 		</unpack>
 		<build>
 			<![CDATA[
+			for h in $DISTCC_POTENTIAL_HOSTS ; do
+				echo $h >> hosts.new
+			done
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/usr --sysconfdir=/etc --disable-Werror
+			make
 			]]>
 		</build>
 		<test />
@@ -56,11 +60,13 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
+			install -m 0644 ../hosts.new ${TGTDIR}/etc/distcc/hosts 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -f hosts.new 
 			]]>
 		</clean>
 	</package>
