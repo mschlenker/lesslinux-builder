@@ -80,7 +80,7 @@
 			# if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 			#	make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			# else
-				make -j ` grep -c processor /proc/cpuinfo ` 
+				make -j 4
 			# fi
 			]]>
 		</build>
