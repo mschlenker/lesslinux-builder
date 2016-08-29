@@ -56,16 +56,17 @@
 			]]>
 		</unpack>
 		<patch />
+		<!-- FIXME: Building with distcc did break multiprocessinge? Investigate -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
-				export DISTCC_HOSTS
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-			fi
+			# if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+			#	DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
+			#	export DISTCC_HOSTS
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	export CC="distcc gcc"
+			#	export CXX="distcc g++" 
+			# fi
 			
 			case $(uname -m) 
 			in
@@ -76,11 +77,11 @@
 				
 			./configure --prefix=/usr  --enable-shared # --enable-static
 				
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
+			# if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+			#	make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			# else
 				make -j ` grep -c processor /proc/cpuinfo ` 
-			fi
+			# fi
 			]]>
 		</build>
 		<test />

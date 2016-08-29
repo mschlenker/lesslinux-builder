@@ -137,7 +137,7 @@ done
 			<dep>nss</dep>
 			<dep>icu</dep>
 			<dep>libevent</dep>
-			<dep>firefox-latest</dep>
+			<dep>firefox</dep>
 			<dep>gcc61</dep>
                 </builddeps>
 		<unpack>
@@ -188,11 +188,11 @@ sed -e '/#include/a\
 				export CC='distcc /usr/local/gcc61/bin/gcc61'
 				export CXX='distcc /usr/local/gcc61/bin/g++61'
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				[ "$jobcount" -gt 8 ] && jobcount=8 
+				[ "$jobcount" -gt 12 ] && jobcount=12 
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc61/bin/gcc61' CXX='distcc /usr/local/gcc61/bin/g++61'\"%g" .mozconfig 
 				make -f client.mk 
 			else
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j1 CC=/usr/local/gcc61/bin/gcc61 CXX=/usr/local/gcc61/bin/g++61\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4 CC=/usr/local/gcc61/bin/gcc61 CXX=/usr/local/gcc61/bin/g++61\"%g" .mozconfig 
 				make -f client.mk 
 			fi
 			echo '===> Trying to find libxul.so...'

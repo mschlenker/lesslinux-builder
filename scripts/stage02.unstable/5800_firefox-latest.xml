@@ -157,7 +157,6 @@ done
 			<dep>nspr</dep>
 			<dep>nss</dep>
 			<dep>icu</dep>
-			<dep>firefox</dep>
 			<dep>gcc54</dep>
 			<!-- <dep>gcc49</dep> -->
                 </builddeps>
@@ -221,7 +220,7 @@ cd mozilla-release
 			else
 				export CC='/usr/local/gcc54/bin/gcc54'
 				export CXX='/usr/local/gcc54/bin/g++54'
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j1  CC=/usr/local/gcc54/bin/gcc54 CXX=/usr/local/gcc54/bin/g++54\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=/usr/local/gcc54/bin/gcc54 CXX=/usr/local/gcc54/bin/g++54\"%g" .mozconfig 
 				# CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \ 
 				#	CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2 -Wno-error=maybe-uninitialized -Wno-error=unused-value " \
 				#	make -f client.mk clean
