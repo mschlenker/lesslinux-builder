@@ -20,9 +20,18 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd rustc-1.11.0
+            <![CDATA[
+
+jobcount=4
+cd rustc-1.11.0
+if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+	export CC='distcc gcc'
+	export CXX='distcc g++' 
+fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+make -j $jobcount
+make -j $jobcount all
 ]]>
         </build>
         <install>
