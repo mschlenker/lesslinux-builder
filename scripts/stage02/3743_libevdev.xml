@@ -64,7 +64,7 @@
 				export CXX="distcc g++" 
 				bash autogen.sh
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				bash autogen.sh
 				./configure --sysconfdir=/etc --prefix=/usr 

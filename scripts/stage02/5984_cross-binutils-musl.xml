@@ -76,7 +76,7 @@
 					--with-sysroot=/usr/local/crosstools-ia32-musl/i386-linux-musl \
 					--disable-werror --disable-multilib CC="distcc gcc" CXX="distcc g++" 
 				make configure-host
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				../binutils-${PKGVERSION}/configure --target=i386-linux-musl \
 					--prefix=/usr/local/crosstools-ia32-musl --disable-nls \

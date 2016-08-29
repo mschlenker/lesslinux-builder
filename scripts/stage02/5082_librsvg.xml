@@ -83,7 +83,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 				./configure --prefix=/usr --sysconfdir=/etc --enable-vala 
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				./configure --prefix=/usr --sysconfdir=/etc --enable-vala 
 				make

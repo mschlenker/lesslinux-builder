@@ -82,7 +82,7 @@
 				export CXX="distcc g++"
 				export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
 				./configure --sysconfdir=/etc --prefix=/usr 

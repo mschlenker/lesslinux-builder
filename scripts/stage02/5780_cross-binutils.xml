@@ -71,7 +71,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				../binutils-${PKGVERSION}/configure --target=i486-linux-uclibc  --prefix=/usr/local/crosstools --disable-nls --disable-werror CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				../binutils-${PKGVERSION}/configure --target=i486-linux-uclibc  --prefix=/usr/local/crosstools --disable-nls --disable-werror
 				make -j 3

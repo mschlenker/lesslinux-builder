@@ -144,7 +144,7 @@
 				--with-mpfr-include=$(pwd)/../gcc-${PKGVERSION}/mpfr/src \
 				--with-mpfr-lib=$(pwd)/mpfr/src/.libs 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make -j 4
 			fi

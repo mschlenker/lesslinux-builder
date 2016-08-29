@@ -56,7 +56,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr --docdir=/usr/doc/${PKGNAME}-${PKGVERSION} --disable-acl-support   CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr --docdir=/usr/doc/${PKGNAME}-${PKGVERSION} --disable-acl-support 
 				make

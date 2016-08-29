@@ -72,7 +72,7 @@
 				./configure --prefix=/usr  --sysconfdir=/etc  --localstatedir=/var  --with-piddir=/var/run \
 					--with-pammodulesdir=/lib/security  --with-fhs --enable-swat=no --with-pam=no \
 					--with-cluster-support=no --with-acl-support=no  --with-quotas=no --with-sys-quotas=no CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr  --sysconfdir=/etc  --localstatedir=/var  --with-piddir=/var/run \
 					--with-pammodulesdir=/lib/security  --with-fhs --enable-swat=no --with-pam=no \

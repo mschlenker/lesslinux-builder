@@ -59,7 +59,7 @@
 				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
 				--disable-multilib --with-system-zlib --program-suffix=52 --disable-bootstrap
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make -j 4
 			fi

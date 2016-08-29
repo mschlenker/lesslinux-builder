@@ -107,7 +107,7 @@
 				export CXX='distcc g++'
 				./configure -prefix /usr -gtkstyle -opensource -release -system-sqlite \
 				-silent -no-nis -confirm-license -nomake examples -nomake demos -no-pch
-				pump make -j $jobcount 
+				make -j $jobcount 
 			else
 				./configure -prefix /usr -gtkstyle -opensource -release -system-sqlite \
 				-silent -no-nis -confirm-license -nomake examples -nomake demos

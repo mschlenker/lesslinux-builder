@@ -75,7 +75,7 @@
 					--localstatedir=/var --enable-xml-docs=no --enable-doxygen-docs=no \
 					--disable-systemd  --without-systemdsystemunitdir   --with-console-auth-dir=/var/run/console/ \
 					CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr --sysconfdir=/etc --enable-inotify \
 					--localstatedir=/var --enable-xml-docs=no --enable-doxygen-docs=no \

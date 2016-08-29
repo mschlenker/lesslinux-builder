@@ -67,7 +67,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old
 				make

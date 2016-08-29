@@ -150,7 +150,7 @@
 				--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
 				--with-arch=${CLFS_CPU}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make -j 4
 			fi

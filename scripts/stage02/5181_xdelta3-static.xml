@@ -54,7 +54,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 				./configure --prefix=/usr --sysconfdir=/etc --enable-static
-				pump make -j $jobcount xdelta3 LDFLAGS=-static
+				make -j $jobcount xdelta3 LDFLAGS=-static
 			else
 				./configure --prefix=/static --sysconfdir=/etc --enable-static
 				make xdelta3 LDFLAGS=-static

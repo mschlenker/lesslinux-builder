@@ -92,7 +92,7 @@
 				--enable-libx264     \
 				--enable-x11grab
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount 
+				make -j $jobcount 
 			else
 				make  
 			fi

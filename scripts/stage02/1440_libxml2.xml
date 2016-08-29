@@ -81,7 +81,7 @@ sed \
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr  --with-python --with-threads=yes  --disable-static --with-history CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr  --with-python --with-threads=yes  --disable-static --with-history
 				make

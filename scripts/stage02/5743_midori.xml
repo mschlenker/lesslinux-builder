@@ -94,7 +94,7 @@
 			fi
 			./configure --prefix=/usr --enable-gtk3 --disable-zeitgeist
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi

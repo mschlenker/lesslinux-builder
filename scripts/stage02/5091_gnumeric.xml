@@ -87,7 +87,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 				PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig ./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig ./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old 
 				make

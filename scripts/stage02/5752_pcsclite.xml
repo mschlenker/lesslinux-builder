@@ -57,7 +57,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr --sysconfdir=/etc --disable-libhal  CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr --sysconfdir=/etc --disable-libhal 
 				make

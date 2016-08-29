@@ -51,7 +51,7 @@
 				export CXX='distcc g++'
 				./configure --prefix=/usr 
 				if which pump ; then
-					pump make -j $jobcount
+					make -j $jobcount
 				else
 					make -j $jobcount
 				fi

@@ -85,7 +85,7 @@
 			./configure --prefix=/usr --sysconfdir=/etc
 			find . -type f -name Makefile -exec sed -i 's%-Werror%%g' {} \;
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi

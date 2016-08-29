@@ -47,7 +47,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				cmake -DCMAKE_BUILD_TYPE=Release   -DCMAKE_INSTALL_PREFIX=/usr ..
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				cmake -DCMAKE_BUILD_TYPE=Release   -DCMAKE_INSTALL_PREFIX=/usr ..
 				make

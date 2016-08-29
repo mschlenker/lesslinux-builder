@@ -118,7 +118,7 @@
 			./configure  --prefix=/usr --sysconfdir=/etc \
 				--enable-geolocation=no --enable-gtk-doc=no --enable-introspection  
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 				make
 			else
 				make -j ` grep -c processor /proc/cpuinfo ` 

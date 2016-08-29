@@ -61,7 +61,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				LDFLAGS='-L/usr/compat.old/lib -lX11 -lm' ./configure --prefix=/usr --enable-nls CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				LDFLAGS='-L/usr/compat.old/lib -lX11 -lm' ./configure --prefix=/usr --enable-nls
 				make

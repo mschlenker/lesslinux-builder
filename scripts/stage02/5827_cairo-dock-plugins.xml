@@ -108,7 +108,7 @@
 			fi
 			cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi

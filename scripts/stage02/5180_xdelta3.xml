@@ -54,8 +54,8 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 				./configure --prefix=/usr --sysconfdir=/etc
-				pump make -j $jobcount
-				pump make -j $jobcount xdelta3
+				make -j $jobcount
+				make -j $jobcount xdelta3
 			else
 				./configure --prefix=/usr --sysconfdir=/etc
 				make

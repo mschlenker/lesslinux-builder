@@ -86,7 +86,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-esd=no
 				make

@@ -96,7 +96,7 @@
 			#	export CC="distcc /usr/local/gcc48/bin/gcc48"
 			#	export CXX="distcc /usr/local/gcc48/bin/g++48" 
 			#	./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-			#	pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			#	make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			#else
 			#	export CC="/usr/local/gcc48/bin/gcc48"
 			#	export CXX="/usr/local/gcc48/bin/g++48" 

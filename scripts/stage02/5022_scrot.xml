@@ -62,7 +62,7 @@
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
 				sed -i 's%@my_libs@%-lImlib2 -ldl -lX11%g' src/Makefile
 				sed -i 's%@my_libs@%-lImlib2 -ldl -lX11%g' Makefile
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --sysconfdir=/etc --prefix=/usr 
 				sed -i 's%@my_libs@%-lImlib2 -ldl -lX11%g' src/Makefile

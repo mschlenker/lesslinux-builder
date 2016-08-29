@@ -61,8 +61,8 @@
 			make -k clean
 			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	pump make -k -j $jobcount CC="distcc gcc" NASM=${NASMPATH} 
-			#	pump make -k -j $jobcount bios CC="distcc gcc"  NASM=${NASMPATH} 
+			#	make -k -j $jobcount CC="distcc gcc" NASM=${NASMPATH} 
+			#	make -k -j $jobcount bios CC="distcc gcc"  NASM=${NASMPATH} 
 			#fi
 			make -k -j 6 NASM=${NASMPATH} CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
 			make -k -j 6 bios NASM=${NASMPATH}  CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49

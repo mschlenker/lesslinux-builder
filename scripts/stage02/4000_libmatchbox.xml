@@ -60,7 +60,7 @@
 				export CXX="distcc g++" 
 				LDFLAGS='-L/usr/compat.old/lib -lX11' CFLAGS='-I/usr/compat.old/include' CXXFLAGS='-I/usr/compat.old/include'  \
 				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-pango --enable-xsettings  CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				LDFLAGS='-L/usr/compat.old/lib -lX11' CFLAGS='-I/usr/compat.old/include' CXXFLAGS='-I/usr/compat.old/include'  \
 				./configure --prefix=/usr/compat.old --sysconfdir=/etc/compat.old --enable-pango --enable-xsettings

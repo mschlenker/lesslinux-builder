@@ -105,7 +105,7 @@ tar xjf ${SRCDIR}/qemu-${PKGVERSION}.tar.bz2
 				--disable-sdl --disable-vnc --audio-drv-list=alsa --disable-gtk \
 				--disable-smartcard-nss
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make -j $( grep -c processor /proc/cpuinfo )
 			fi

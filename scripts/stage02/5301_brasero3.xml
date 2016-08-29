@@ -107,7 +107,7 @@
 				--enable-nautilus=no --enable-libburnia=yes \
 				--enable-cdrtools=no --enable-cdrdao=no
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi

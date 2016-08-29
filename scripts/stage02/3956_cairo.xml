@@ -83,7 +83,7 @@
 					--enable-xlib=yes \
 					--enable-xcb=yes \
 					CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr \
 					--enable-fc=yes \

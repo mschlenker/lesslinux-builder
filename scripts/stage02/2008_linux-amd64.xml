@@ -101,18 +101,18 @@
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				pump make -j $jobcount \
+				make -j $jobcount \
 					ARCH=x86_64 \
 					CROSS_COMPILE=x86_64-linux-gnu- \
 					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
 					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
 					bzImage
-				pump make -j $jobcount \
+				make -j $jobcount \
 					ARCH=x86_64 \
 					CROSS_COMPILE=x86_64-linux-gnu- \
 					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
 					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
-				pump make -j $jobcount \
+				make -j $jobcount \
 					ARCH=x86_64 \
 					CROSS_COMPILE=x86_64-linux-gnu- \
 					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \

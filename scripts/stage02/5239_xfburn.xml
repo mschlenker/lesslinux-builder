@@ -101,7 +101,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 				./configure --sysconfdir=/etc --prefix=/usr --disable-hal 
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				./configure --sysconfdir=/etc --prefix=/usr --disable-hal 
 				make

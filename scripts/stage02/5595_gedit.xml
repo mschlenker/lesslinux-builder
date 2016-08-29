@@ -92,7 +92,7 @@
 			fi
 			./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --disable-spell
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 			else
 				make
 			fi

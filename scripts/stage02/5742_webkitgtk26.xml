@@ -119,7 +119,7 @@
 				-DLIB_INSTALL_DIR=/usr/lib \
 				-Wno-dev ../webkitgtk-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				pump make -j $jobcount
+				make -j $jobcount
 				make
 			else
 				make -j ` grep -c processor /proc/cpuinfo ` 

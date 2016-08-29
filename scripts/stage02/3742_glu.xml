@@ -55,7 +55,7 @@
 				export CC='distcc gcc'
 				export CXX='distcc g++' 
 				./configure --sysconfdir=/etc --prefix=/usr 
-				pump make -j $jobcount 
+				make -j $jobcount 
 				make -j $jobcount 
 				make -j $jobcount 
 			else

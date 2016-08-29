@@ -100,7 +100,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --disable-hal  CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old --disable-hal 
 				make

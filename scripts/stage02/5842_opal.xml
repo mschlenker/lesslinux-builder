@@ -77,7 +77,7 @@
 				export CXX='distcc  /usr/local/gcc49/bin/g++49'
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				./configure --sysconfdir=/etc --prefix=/usr 
-				pump make -j $jobcount 
+				make -j $jobcount 
 			else
 				export CC=/usr/local/gcc49/bin/gcc49 
 				export CXX=/usr/local/gcc49/bin/g++49

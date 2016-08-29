@@ -68,7 +68,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr --without-system-anchors  --without-trust-paths CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr --without-system-anchors  --without-trust-paths
 				make  
