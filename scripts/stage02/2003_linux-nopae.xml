@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-nopae"
-		version="4.1.27"
+		version="4.1.31"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,15 +19,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="bcbaf651a0f4bb8d8375c868f29fc580a0237ceb">patch-4.1.27.xz</pkg>
+				<pkg sha1="f4f40f1d945d10b64500abf687830d3d0b87d771">patch-4.1.31.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20160628" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20160828" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.1.28." />
-					<atext linktext="patch-4.1.29." />
-					<atext linktext="patch-4.1.30." />
+					<atext linktext="patch-4.1.32." />
+					<atext linktext="patch-4.1.33." />
+					<atext linktext="patch-4.1.34." />
 					<atext linktext="patch-4.2." />
 					<atext linktext="patch-4.3." />
 					<atext linktext="patch-4.4." />
