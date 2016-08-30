@@ -78,6 +78,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-build
+			mkdir -p ${TGTDIR}/usr/bin 
 			make install DESTDIR=${TGTDIR}
 			version=54
 			for fname in gcc g++ c++ cpp ; do
