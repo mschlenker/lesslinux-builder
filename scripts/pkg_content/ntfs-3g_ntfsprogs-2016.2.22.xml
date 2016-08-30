@@ -1,0 +1,112 @@
+<pkgdesc name='ntfs-3g_ntfsprogs' version='2016.2.22'>
+    <subpackage name='skel'>
+        <softlink path='/lib/libntfs-3g.so.87' owner='0' group='0'/>
+        <softlink path='/lib/libntfs-3g.so' owner='0' group='0'/>
+        <softlink path='/sbin/mount.lowntfs-3g' owner='0' group='0'/>
+        <softlink path='/sbin/mount.ntfs-3g' owner='0' group='0'/>
+        <softlink path='/sbin/mkfs.ntfs' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man8/mount.lowntfs-3g.8' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man8/mount.ntfs-3g.8' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man8/mkfs.ntfs.8' owner='0' group='0'/>
+        <softlink path='/usr/lib/libntfs-3g.so' owner='0' group='0'/>
+        <directory path='/usr/share/doc/ntfs-3g' owner='0' group='0'/>
+        <directory path='/usr/include/ntfs-3g' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/lib/libntfs-3g.so.87.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/bin/ntfs-3g' owner='0' group='0' mode='100755'/>
+        <file path='/bin/lowntfs-3g' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/ntfsundelete' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/ntfsresize' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/ntfscp' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/mkntfs' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/ntfsclone' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/ntfslabel' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfs-3g.usermap' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfscluster' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfs-3g.secaudit' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfscmp' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfscat' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfsinfo' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfsfix' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfs-3g.probe' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ntfsls' owner='0' group='0' mode='100755'/>
+        <file path='/static/sbin/mkntfs.static' owner='0' group='0' mode='100755'/>
+        <file path='/static/sbin/ntfs-3g.static' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/doc/ntfs-3g/README' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfs-3g.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfslabel.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsprogs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfscluster.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsclone.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfs-3g.usermap.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfswipe.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfscat.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfstruncate.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsfallocate.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mkntfs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsrecover.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsdecrypt.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfscp.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsinfo.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfs-3g.probe.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfscmp.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsresize.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsundelete.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfs-3g.secaudit.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsls.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/ntfsfix.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/ntfs-3g/ntfstime.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/debug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/cache.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/device.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/unistr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/layout.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/lcnalloc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/device_io.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/acls.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/index.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/misc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/bootsect.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/param.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/ea.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/logging.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/runlist.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/dir.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/endians.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/security.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/efs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/mst.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/attrib.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/reparse.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/bitmap.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/ioctl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/compress.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/logfile.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/volume.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/object_id.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/collate.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/compat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/xattrs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/attrlist.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/support.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/inode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/realpath.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/mft.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ntfs-3g/types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libntfs-3g.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libntfs-3g.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libntfs-3g.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>
