@@ -73,6 +73,7 @@
                         <dep>xdg-utils</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
+			<dep>qt5</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -103,6 +104,7 @@
 			
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
+			[ -x ${TGTDIR}/usr/bin/wireshark ] || exit 1 
 			# mv ${TGTDIR}/usr/share/wireshark/init.lua{,.orig} 
 			install -m 0644 ${SRCDIR}/${PKGNAME}-1.8.4-init-root.lua ${TGTDIR}/usr/share/wireshark/init.lua.root
 			mkdir -p ${TGTDIR}/usr/share/applications
