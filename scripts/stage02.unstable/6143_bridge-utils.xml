@@ -56,6 +56,7 @@
 		./configure --prefix=/usr  
 		find . -type f -exec sed -i 's%/usr/src/linux/include%/usr/compat.old/include%g' {} \;
 		sed -i 's%#include <linux/if_bridge.h>%%g' libbridge/libbridge.h 
+		sed -i 's%#include <linux/if_bridge.h>%%g' libbridge/libbridge_private.h 
 		make
 ]]>
         </build>
