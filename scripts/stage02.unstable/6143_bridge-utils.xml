@@ -54,6 +54,7 @@
 		export CXX="/usr/local/gcc54/bin/g++54"
 		autoconf -o configure configure.in
 		./configure --prefix=/usr  
+		find . -type f -exec sed -i 's%/usr/src/linux/include%/usr/compat.old/include%g' {} \;
 		make
 ]]>
         </build>
