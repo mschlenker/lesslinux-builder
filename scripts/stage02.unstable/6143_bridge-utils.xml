@@ -48,15 +48,16 @@
 	    cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-linux_3.8_fix-1.patch | patch -p1
 ]]>
 	</patch>
+	<!-- 
+	Might fail because of redefined struct with newer kernels!
+	Should be considered as deprecated and replaced by the ip command from iproute2 instead. 
+	
+	FIXME: Move to bitrot when not needed anymore!
+	-->
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-		export CC="/usr/local/gcc54/bin/gcc54"
-		export CXX="/usr/local/gcc54/bin/g++54"
 		autoconf -o configure configure.in
 		./configure --prefix=/usr  
-		find . -type f -exec sed -i 's%/usr/src/linux/include%/usr/compat.old/include%g' {} \;
-		sed -i 's%#include <linux/if_bridge.h>%%g' libbridge/libbridge.h 
-		sed -i 's%#include <linux/if_bridge.h>%%g' libbridge/libbridge_private.h 
 		make
 ]]>
         </build>
