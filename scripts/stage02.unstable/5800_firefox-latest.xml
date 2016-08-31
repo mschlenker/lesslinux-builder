@@ -167,7 +167,7 @@ done
 			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			mv firefox-${PKGVERSION} mozilla-release
 			mkdir l10n
-			tar -C l10n -xf ${SRCDIR}/firefox-48.0.1.source.de-es-pl-ru.tar.xz
+			tar -C l10n -xf ${SRCDIR}/firefox-47.0.1.source.de-es-pl-ru.tar.xz
 			]]>
 		</unpack>
 		<patch>
@@ -260,7 +260,7 @@ cd mozilla-release
 		<install>
 			<![CDATA[
 
-mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
+# mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
 # touch ${TGTDIR}/opt/firefox-${PKGVERSION}/investigate_failed_build_later 
 # exit 0
 		
