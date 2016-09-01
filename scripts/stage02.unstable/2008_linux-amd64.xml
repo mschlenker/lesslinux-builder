@@ -99,30 +99,32 @@
 			
 			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
 			
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			jobcount=6
+			
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				make -j $jobcount \
 					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-gnu- \
-					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
+					CROSS_COMPILE=x86_64-linux-gnu- bzImage
+					#CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
+					# OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
 					bzImage
 				make -j $jobcount \
 					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-gnu- \
-					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+					CROSS_COMPILE=x86_64-linux-gnu- 
+					# CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
+					# OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
 				make -j $jobcount \
 					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-gnu- \
-					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
-					bzImage
-			else
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
-			fi
+					CROSS_COMPILE=x86_64-linux-gnu- bzImage 
+					# CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
+					# OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
+					# bzImage
+			# else
+			#	make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
+			#	make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+			#	make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
+			# fi
 			
 			]]>
 		</build>
