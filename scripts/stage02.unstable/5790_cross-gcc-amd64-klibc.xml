@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="cross-gcc-amd64-klibc"
-		version="5.4.0"
+		version="6.2.0"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="07524df2b4ab9070bad9c49ab668da72237b8115">gcc-5.4.0.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-5.4.0/</mirror>
+				<pkg sha1="583e29c7fe69d9a1031a89752c2551ab5aeacb91">gcc-6.2.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.2.0/</mirror>
 			</file>
 			<file>                                                                       
 				<pkg sha1="e3b0af77f18505184410d621fe0aae179e229dba">mpfr-3.1.4.tar.bz2</pkg>
@@ -89,7 +89,7 @@
                         <dep>texinfo</dep>
                         <dep>util-linux-ng</dep>
 			<dep>distcc</dep>
-			<dep>gcc61</dep>
+			<dep>gcc62</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -117,12 +117,12 @@
 			cd ${PKGNAME}-build
 			SED=sed
 			export SED
-			export CC="/usr/local/gcc61/bin/gcc61"
-			export CXX="/usr/local/gcc61/bin/g++61"
+			export CC="/usr/local/gcc62/bin/gcc62"
+			export CXX="/usr/local/gcc62/bin/g++62"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc61/bin/gcc61"
-				export CXX="distcc /usr/local/gcc61/bin/g++61"
+				export CC="distcc /usr/local/gcc61/bin/gcc62"
+				export CXX="distcc /usr/local/gcc61/bin/g++62"
 			fi
 			../gcc-${PKGVERSION}/configure \
 				--target=x86_64-linux-gnu \
