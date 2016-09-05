@@ -64,7 +64,8 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			waf ./configure --sysconfdir=/etc --prefix=/usr 
+			./configure --sysconfdir=/etc --prefix=/usr 
+			# waf configure --sysconfdir=/etc --prefix=/usr 
 			make -j $jobcount
 			]]>
 		</build>
