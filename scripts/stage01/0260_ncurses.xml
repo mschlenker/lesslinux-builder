@@ -35,12 +35,14 @@
 		</patch> -->
 		<build>
 			<![CDATA[ 
+			export CPPFLAGS="-P"
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/tools --with-shared --without-debug --without-ada --enable-overwrite --enable-widec && make
 			]]>
 		</build>
 		<install>
 			<![CDATA[
+			export CPPFLAGS="-P"1
 			cd ${PKGNAME}-${PKGVERSION}
 			make install
 			]]>
