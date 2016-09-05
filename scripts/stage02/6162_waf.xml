@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='waf' version='1.9.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8c0b99ed874c6af6c384b4f160f6cd08f01a6bc5'>
+                    waf-1.9.3.tar.bz2
+                </pkg>
+                <mirror>
+                    https://waf.io/
+                </mirror>
+            </file>
+            <manualcheck date='20160905' interval='60' mirror='https://waf.io/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
