@@ -45,7 +45,7 @@
         </unpack>
         <patch>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	    cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-linux_3.8_fix-1.patch | patch -p1
+	    head -n43 ${SRCDIR}/${PKGNAME}-${PKGVERSION}-linux_3.8_fix-1.patch | patch -p1
 ]]>
 	</patch>
 	<!-- 
