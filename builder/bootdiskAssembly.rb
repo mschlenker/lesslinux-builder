@@ -297,7 +297,8 @@ class BootdiskAssembly
 		if File.exist?("#{@builddir}/stage03/cdmaster/boot/efi/efi.img")
 			isomoddate = @build_timestamp.gsub("-", "") 
 			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
-				" -joliet -graft-points " + 
+				" -joliet -graft-points " +
+				" -file_size_limit off " + 
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
@@ -325,6 +326,7 @@ class BootdiskAssembly
 			system xcomm
 			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
 				" -joliet -graft-points " + 
+				" -file_size_limit off " + 
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
@@ -344,6 +346,7 @@ class BootdiskAssembly
 			isomoddate = @build_timestamp.gsub("-", "") 
 			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
 				" -joliet -graft-points " + 
+				" -file_size_limit off " + 
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
@@ -358,6 +361,7 @@ class BootdiskAssembly
 			system xcomm
 			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
 				" -joliet -graft-points " + 
+				" -file_size_limit off " + 
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
