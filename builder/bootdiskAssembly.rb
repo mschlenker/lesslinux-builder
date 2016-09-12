@@ -296,9 +296,8 @@ class BootdiskAssembly
 		Dir.chdir( @builddir  + "/stage03" )
 		if File.exist?("#{@builddir}/stage03/cdmaster/boot/efi/efi.img")
 			isomoddate = @build_timestamp.gsub("-", "") 
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
-				" -joliet -graft-points " +
-				" -file_size_limit off " + 
+			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+				" -file_size_limit off -- -as mkisofs " +
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
@@ -324,9 +323,8 @@ class BootdiskAssembly
 				@build_timestamp + "-bootonly.iso cdmaster/boot/kickstart.xd3"
 			puts xcomm
 			system xcomm
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
-				" -joliet -graft-points " + 
-				" -file_size_limit off " + 
+			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+				" -file_size_limit off -- -as mkisofs " +
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
@@ -344,9 +342,8 @@ class BootdiskAssembly
 			system xcomm
 		else
 			isomoddate = @build_timestamp.gsub("-", "") 
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
-				" -joliet -graft-points " + 
-				" -file_size_limit off " + 
+			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+				" -file_size_limit off -- -as mkisofs " +
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
@@ -359,9 +356,9 @@ class BootdiskAssembly
 				" -r cdmaster --sort-weight 0 / --sort-weight 1 /boot --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
 			puts xcomm
 			system xcomm
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso -as mkisofs " +
+			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+				" -file_size_limit off -- -as mkisofs " +
 				" -joliet -graft-points " + 
-				" -file_size_limit off " + 
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
 				" -no-emul-boot -boot-info-table -boot-load-size 4 " +
