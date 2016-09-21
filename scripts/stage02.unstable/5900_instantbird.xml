@@ -141,7 +141,8 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.bz2
+			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
+			mv thunderbird-${PKGVERSION} comm-esr
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.de-es-pl-ru.tar.xz
 			]]>
@@ -149,8 +150,15 @@ done
 		<patch>
 			<![CDATA[
 			
-			cd comm-esr38
-			# patch -Np1 -i ../thunderbird-31.7.0-gcc5-1.patch
+			cd comm-esr
+sed -e '/#include/i\
+    print OUT "#define _GLIBCXX_INCLUDE_NEXT_C_HEADERS\\n"\;' \
+    -i mozilla/nsprpub/config/make-system-wrappers.pl 
+    
+sed -e '/#include/a\
+    print OUT "#undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS\\n"\;' \
+    -i mozilla/nsprpub/config/make-system-wrappers.pl
+    
 			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 .mozconfig
 			
 			]]>
@@ -158,44 +166,49 @@ done
 		<build>
 			<![CDATA[
 			workdir=` pwd ` 
-			cd comm-esr38
+			cd comm-esr
 			echo $SHELL
 			export SHELL=/bin/bash
 			echo $SHELL
+			export CC=/usr/local/gcc61/bin/gcc61
+			export CXX=/usr/local/gcc61/bin/g++61
+			export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
+			export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
 			## mkdir tb-build
-			mkdir -p mozilla/tb-build
+		mkdir -p mozilla/tb-build
 			sed -i 's%PWD%'${workdir}'%g' .mozconfig 
 			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' .mozconfig 
+			sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-libevent%g' .mozconfig 
 			sed -i 's%mk_add_options MOZ_OBJDIR%# mk_add_options MOZ_OBJDIR%g' .mozconfig 
+			sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' .mozconfig 
+			sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' .mozconfig 
 			sed -i 's%ac_add_options --enable-calendar%# ac_add_options --enable-calendar%g' .mozconfig 
 			sed -i 's%ac_add_options --enable-application=mail%ac_add_options --enable-application=im%g'  .mozconfig 
-			sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-libevent%g' .mozconfig 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc52/bin/gcc52' CXX='distcc /usr/local/gcc52/bin/g++52'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc61/bin/gcc61' CXX='distcc /usr/local/gcc61/bin/g++61'\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure 
 				make -f client.mk build  
 			else
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4 CC=/usr/local/gcc52/bin/gcc52 CXX=/usr/local/gcc52/bin/g++52\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4 CC=/usr/local/gcc61/bin/gcc61 CXX=/usr/local/gcc61/bin/g++61\"%g" .mozconfig 
 				make -f client.mk clean
 				make -f client.mk configure	
 				make -f client.mk build
 			fi
 			echo '===> Trying to find libxul.so...'
 			find obj-` uname -m `-pc-linux-gnu/dist  -type f -name libxul.so
-			
 			ccount=0
 			# ./obj-i686-pc-linux-gnu/dist/lib/libxul.so
-			while [ '!' -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ] && \
-					[ '!' -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so -a $ccount -lt 2 ]  ; do
+			while [ '!' -f obj-` uname -m `-pc-linux-gnu/dist/bin/libxul.so -a $ccount -lt 2 ] && \
+					[ '!' -f obj-` uname -m `-unknown-linux-gnu/dist/bin/libxul.so -a $ccount -lt 2 ]  ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
 				make -f client.mk build
 				ccount=` expr $ccount + 1 ` 
 			done
-			[ -f obj-` uname -m `-pc-linux-gnu/dist/lib/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so ] || exit 1 
+			[ -f obj-` uname -m `-pc-linux-gnu/dist/bin/libxul.so ] || [ -f obj-` uname -m `-unknown-linux-gnu/dist/lib/libxul.so ] || exit 1 
 			
 			# Now try to build the language packs
 			# for packlang in de es-ES pl ru fr it nl pt-PT ; do
