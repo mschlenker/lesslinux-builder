@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="Cython"
-		version="0.24"
+		version="0.24.1"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="32f12b8dd976111668ef8ba7e716a850869a0bf6">Cython-0.24.tar.gz</pkg>
-				<mirror>https://pypi.python.org/packages/b1/51/bd5ef7dff3ae02a2c6047aa18d3d06df2fb8a40b00e938e7ea2f75544cac/</mirror>
+				<pkg sha1="a837efb73c195585ce6e27cf53e3587285ccd39f">Cython-0.24.1.tar.gz</pkg>
+				<mirror>https://pypi.python.org/packages/c6/fe/97319581905de40f1be7015a0ea1bd336a756f6249914b148a17eefa75dc/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="90" page="https://pypi.python.org/pypi/Cython/" />
+			<manualcheck date="20160921" interval="90" page="https://pypi.python.org/pypi/Cython/" />
 			<check>
 				<page html="https://pypi.python.org/pypi/Cython/">
-					<atext linktext="Cython-0.23.5" />
-					<atext linktext="Cython-0.23.2" />
-					<atext linktext="Cython-0.23.3" />
-					<atext linktext="Cython-0.23.4" />
+					<atext linktext="Cython-0.24.5" />
+					<atext linktext="Cython-0.24.2" />
+					<atext linktext="Cython-0.24.3" />
+					<atext linktext="Cython-0.24.4" />
 					<atext linktext="Cython-0.30." />
-					<atext linktext="Cython-0.24." />
+					<atext linktext="Cython-0.31." />
 					<atext linktext="Cython-0.25." />
 					<atext linktext="Cython-0.26." />
 					<atext linktext="Cython-0.27." />
@@ -37,7 +37,6 @@
                         <dep>linux_headers</dep>
                         <dep>openssl</dep>
                         <dep>pygobject</dep>
-			<dep>gcc52</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -47,8 +46,6 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc52/bin/gcc52"
-			export CXX="/usr/local/gcc52/bin/g++52"
 			python setup.py build
 			]]>
 		</build>
@@ -56,8 +53,6 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc52/bin/gcc52"
-			export CXX="/usr/local/gcc52/bin/g++52"
 			python setup.py install
 			]]>
 		</install>
