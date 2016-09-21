@@ -50,7 +50,6 @@
                         <dep>xineramaproto</dep>
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
-			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -72,8 +71,6 @@
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				# export CC=/usr/local/gcc49/bin/gcc49 
-				# export CXX=/usr/local/gcc49/bin/g++49
 				./configure --sysconfdir=/etc --prefix=/usr 
 				make
 			fi
