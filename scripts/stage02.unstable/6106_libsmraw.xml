@@ -40,7 +40,6 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
-			<dep>gcc49</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -49,7 +48,6 @@
         <patch/>
         <build>
             <![CDATA[cd libsmraw-${PKGVERSION}
-CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
 make
 ]]>
