@@ -40,7 +40,6 @@
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
-			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -59,7 +58,6 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			# CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
 			./configure --prefix=/usr --sysconfdir=/etc --enable-python 
 			make  -j $jobcount
 			]]>
