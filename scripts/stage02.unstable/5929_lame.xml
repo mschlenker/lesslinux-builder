@@ -40,7 +40,6 @@
                         <dep>nasm</dep>
                         <dep>ncurses</dep>
                         <dep>sed</dep>
-			<dep>gcc48</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -70,7 +69,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --enable-mp3rtp --disable-static --disable-werror
+			./configure --prefix=/usr --enable-mp3rtp --disable-static 
 			make -j $jobcount
 			]]>
 		</build>
