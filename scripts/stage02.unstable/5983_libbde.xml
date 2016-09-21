@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="libbde"
-		version="20160418"
+		version="20160731"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="183e40408de61d6aab6d68b88e42cedcd4f7ba90">libbde-alpha-20160418.tar.gz</pkg>
-				<mirror>https://github.com/libyal/libbde/releases/download/20160418/</mirror>
+				<pkg sha1="59823f4958ab9a0b2484662e3b40c8bffef097e6">libbde-alpha-20160731.tar.gz</pkg>
+				<mirror>https://github.com/libyal/libbde/releases/download/20160731/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="90" page="https://github.com/libyal/libbde/releases" />
+			<manualcheck date="20160731" interval="90" page="https://github.com/libyal/libbde/releases" />
 			<check>
 				<page html="https://github.com/libyal/libbde/releases">
 					<atext href="libbde-alpha-201610" />
@@ -41,7 +41,6 @@
                         <dep>openssl</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
-			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -60,7 +59,6 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			# CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
 			./configure --prefix=/usr --sysconfdir=/etc --enable-python
 			make -j $jobcount 
 			]]>
