@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="icewm"
-		version="1.3.8"
+		version="1.3.12"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="dc9155227129be14aced00c24c572356e0fa5cd8">icewm-1.3.8.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/icewm/icewm-1.3/1.3.8/</mirror>
+				<pkg sha1="272c43992ed3627a98121bd936e598438550199a">icewm-1.3.12.tar.bz2</pkg>
+				<mirror>https://github.com/bbidulock/icewm/releases/download/1.3.12/</mirror>
 			</file>
 			<!-- <file>                                                                        
 				<pkg sha1="9a0a5fa981ca7b39b46a8104c9d87ff6f90a58b3">icewm-1.3.7-deprecated.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
-			<manualcheck date="20150823" interval="180" page="http://downloads.sourceforge.net/project/icewm/icewm-1.3/1.3.8/" />
+			<manualcheck date="20160921" interval="180" page="https://github.com/bbidulock/icewm/releases/" />
 			<!-- <check>
 				<page html="http://www.hyperrealm.com/libconfig/">
 					<atext linktext="libconfig-1.4.10." />
@@ -59,7 +59,6 @@
                         <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
-			<dep>gcc52</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -75,18 +74,14 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc52/bin/gcc52"
-				export CXX="distcc /usr/local/gcc52/bin/g++52"
-				./configure --prefix=/usr --sysconfdir=/etc --disable-xinerama --disable-i18n --disable-nls
-				make -j $jobcount
-			else
-				export CC="/usr/local/gcc52/bin/gcc52"
-				export CXX="/usr/local/gcc52/bin/g++52"
-				./configure --prefix=/usr --sysconfdir=/etc --disable-xinerama --disable-i18n --disable-nls
-				make
+				export CC="distcc gcc"
+				export CXX="distcc g++"
 			fi
+			./configure --prefix=/usr --sysconfdir=/etc --disable-xinerama --disable-i18n --disable-nls
+			make -j $jobcount
 			]]>
 		</build>
 		<test />
