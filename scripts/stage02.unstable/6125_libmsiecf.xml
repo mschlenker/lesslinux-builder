@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libmsiecf-alpha' version='20160421' install='chroot'>
+    <package name='libmsiecf-alpha' version='20160904' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='c41403915639b908d6647bd618afda1fb14d3e6a'>
-                    libmsiecf-alpha-20160421.tar.gz
+                <pkg sha1='005231f76f69b5efc029c9714ebbb284eb33f77a'>
+                    libmsiecf-alpha-20160904.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libmsiecf/releases/download/20160421/
+                    https://github.com/libyal/libmsiecf/releases/download/20160904/
                 </mirror>
             </file>
-            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libmsiecf/releases/'/>
+            <manualcheck date='20160904' interval='60' mirror='https://github.com/libyal/libmsiecf/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -39,7 +39,6 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
-			<dep>gcc49</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -48,8 +47,7 @@
         <patch/>
         <build>
             <![CDATA[cd libmsiecf-${PKGVERSION}
-CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python2
 make
 ]]>
         </build>
