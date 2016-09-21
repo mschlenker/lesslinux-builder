@@ -31,7 +31,6 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>sed</dep>
-			<dep>gcc52</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -46,7 +45,6 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -i 's/-Werror //g' Makefile
-			# sed -i 's/\(^inline\)/static \1/' bitmap.c
 			]]>
 		</patch>
 		<build>
@@ -67,8 +65,6 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc52/bin/gcc52"
-			export CXX="/usr/local/gcc52/bin/g++52"
 			make install RUN_DIR=/var/run
 			]]>
 		</install>
