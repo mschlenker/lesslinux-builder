@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="compton"
-		version="20160705"
+		version="20160921"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="4b86efe650cefe76d4dee4060ffc055e076c12f9">compton-20160705.tar.bz2</pkg>
+				<pkg sha1="36fe721f0b7c8a7ae819fc68383cc96d4627fb52">compton-20160921.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file><!-- -cCGbf -->
-			<manualcheck date="20160701" interval="120" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20160921" interval="120" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
                         <dep>Mesa</dep>
@@ -36,7 +36,6 @@
                         <dep>pkg-config</dep>
                         <dep>xproto-base</dep>
 			<dep>cmake</dep>
-			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
