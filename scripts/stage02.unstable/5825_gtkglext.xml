@@ -26,7 +26,6 @@
 			</check> 
 		</sources>
 		<builddeps>
-			<dep>gcc49</dep>
                         <dep>Mesa</dep><dep>glu</dep>
                         <dep>atk</dep>
                         <dep>bash</dep>
@@ -87,7 +86,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			autoreconf --force --install
-			CC=/usr/local/gcc49/bin/gcc49 ./configure --prefix=/usr --sysconfdir=/etc
+			./configure --prefix=/usr --sysconfdir=/etc
 			make
 			]]>
 		</build>
