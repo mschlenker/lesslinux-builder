@@ -34,6 +34,7 @@
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
+			<dep>cmake</dep>
                         <dep>coreutils</dep>
                         <dep>dbus-glib</dep>
                         <dep>dbus</dep>
@@ -69,7 +70,6 @@
                         <dep>sqlite</dep>
                         <dep>vala</dep>
                         <dep>webkit26</dep>
-			<dep>webkit</dep>
                         <dep>which</dep>
                         <dep>xproto-base</dep>
 			<dep>p5-switch</dep>
@@ -90,7 +90,11 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			./configure --prefix=/usr --enable-gtk3 --disable-zeitgeist
+			cmake -DCMAKE_INSTALL_PREFIX=/usr \
+				-DCMAKE_BUILD_TYPE=Release  \
+				-DUSE_ZEITGEIST=OFF         \
+				-DHALF_BRO_INCOM_WEBKIT2=ON \
+				-DUSE_GTK3=1
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
