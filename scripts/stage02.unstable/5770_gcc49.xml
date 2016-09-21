@@ -26,69 +26,33 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			bunzip2 -c ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2 | tar xf -
-			mkdir ${PKGNAME}-build
+			echo 'Nothing to unpack!'
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[
-			cd gcc-${PKGVERSION}
-			sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in
-			case `uname -m` in
-				i?86) 
-					sed -i 's/^T_CFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in
-				;;
-			esac
-			sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
-			# sed -i 's/getline/get_line/' libiberty/testsuite/test-demangle.c
-			
+			echo 'Nothing to patch!'
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-build
-			export CC="/usr/local/gcc52/bin/gcc52"
-			export CXX="/usr/local/gcc52/bin/g++52"
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc52/bin/gcc52"
-				export CXX="distcc /usr/local/gcc52/bin/g++52"
-			fi
-			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
-				--enable-shared \
-				--enable-threads=posix --enable-__cxa_atexit \
-				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
-				--disable-multilib --with-system-zlib --program-suffix=49 
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				make -j $jobcount
-			else
-				make -j 4
-			fi
+			echo 'Nothing to build!'
 			]]>
 		</build>
 		<test>
 			<![CDATA[
-			cd ${PKGNAME}-build
-			make -k check
-			../gcc-${PKGVERSION}/contrib/test_summary
+			echo 'Nothing to test!'
 			]]>
 		</test>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-build
-			mkdir -p ${TGTDIR}/usr/bin 
-			make install DESTDIR=${TGTDIR}
-			version=49
-			for fname in gcc g++ c++ cpp ; do
-				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
-				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
-			done
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf gcc-${PKGVERSION}
-			rm -rf ${PKGNAME}-build
+			echo 'Nothing to clean!'
 			]]>
 		</clean>
 	</package>
