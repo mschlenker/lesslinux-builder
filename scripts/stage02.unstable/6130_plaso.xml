@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='plaso' version='1.4.0' install='chroot'>
+    <package name='plaso' version='1.5.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='8948ef239923e55348289e2f4c41cb50e613f38e'>
-                    plaso-1.4.0.tar.gz
+                <pkg sha1='c77640e633ee009bd5ace5013995768c471873c3'>
+                    plaso-1.5.0.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/log2timeline/plaso/releases/download/1.4.0/
+                    https://github.com/log2timeline/plaso/releases/download/1.5.0/
                 </mirror>
             </file>
-            <manualcheck date='20160701' interval='60' mirror='https://github.com/log2timeline/plaso/releases'/>
+            <manualcheck date='20160921' interval='60' mirror='https://github.com/log2timeline/plaso/releases'/>
         </sources>
 	<builddeps>
                         <dep>Cython</dep>
@@ -56,7 +56,6 @@
                         <dep>requests</dep>
                         <dep>setuptools</dep>
                         <dep>six</dep>
-			<dep>gcc52</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -65,14 +64,12 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-export PATH=/usr/local/gcc52/bin:$PATH
 python setup.py config
 python setup.py build
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-export PATH=/usr/local/gcc52/bin:$PATH
 python setup.py install
 ]]>
         </install>
