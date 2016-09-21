@@ -711,7 +711,8 @@ tty3::respawn:/static/sbin/getty -l /static/bin/login 38400 tty3
 tty4::askfirst:/static/bin/ash
 tty5::askfirst:/bin/bash
 tty6::respawn:/static/bin/x_user_start
-hvc0::askfirst:/static/bin/ash
+xenconsole::askfirst:/static/bin/ash
+serialconsole::askfirst:/static/bin/ash
 ::ctrlaltdel:/static/sbin/reboot
 ::shutdown:/etc/rc.shutdown]]>
 		</scriptdata>
@@ -858,6 +859,20 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	fi
 done
 ####
+
+ # Softlink /dev/hvc0 so that there is no constant respawning on Console 0
+hv=` cat /sys/hypervisor/type `
+if [ "$hv" '!=' "xen" ] ; then
+	ln -s /dev/tty8 /dev/xenconsole
+else
+	ln -s /dev/hvc0 /dev/xenconsole
+fi
+
+if [ -c /dev/ttyS0 ] ; then
+	ln -s /dev/ttyS0 /dev/serialconsole
+else
+	ln -s /dev/tty9 /dev/serialconsole
+fi
 
 # Running local startup script -- containers and encrypted home should be available right now:
 if [ -f "/etc/rc.local" ] ; then
@@ -1923,12 +1938,6 @@ case $1 in
     # Change some access modes of devices
     chmod 0666 /dev/tty
     chmod 0666 /dev/pty*
-    
-    # Softlink /dev/hvc0 so that there is no constant respawning on Console 0
-    hv=` cat /sys/hypervisor/type `
-    if [ "$hv" '!=' "xen" ] ; then
-	ln -sf /dev/null /dev/hvc0
-    fi
     
     # mdev needs a shell at /bin/sh
     [ '!' -f /bin/sh ] && ln /static/bin/busybox /bin/sh
@@ -3009,7 +3018,7 @@ export PATH
 
 case $1 in 
 	start)
-		if cat /proc/cmdline | grep -q ' uninstall=full' && [ '!' "$uuid" = "all" ] && [ -n "$uuid" ] ; then 
+		if grep -q ' uninstall=full' /proc/cmdline && [ '!' "$uuid" = "all" ] && [ -n "$uuid" ] ; then 
 			for i in ` seq $usbwait ` ; do
 				devname=` blkid.static -U $uuid `
 				if [ -n "$devname" ] ; then
