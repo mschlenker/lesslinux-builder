@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="thunderbird"
-		version="45.2.0"
+		version="45.3.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="45bc0a5560e6108bf877ec749f1902e03a6ae3d7">thunderbird-45.2.0.source.tar.xz</pkg>
-				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/45.2.0/source/</mirror>
+				<pkg sha1="5a07598c45fadb354d9f47fde1fbcb75799e26db">thunderbird-45.3.0.source.tar.xz</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/45.3.0/source/</mirror>
 			</file>  
 			<!-- <file>                                                                                          
 				<pkg sha1="07a34387b550e2fed690eb5884b00679b6735022">thunderbird-38.0.1-gcc5-1.patch</pkg>
@@ -39,14 +39,14 @@ done
 				<pkg sha1="51a7eb7d86ce24d8199f741a0079f0d56ecd6368">enigmail-1.6.tar.gz</pkg>
 				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
 			</file> -->
-			<manualcheck date="20160822" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
+			<manualcheck date="20160922" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
-					<atext linktext="45.2.1" />
-					<atext linktext="45.2.2" />
-					<atext linktext="45.2.3" />
-					<atext linktext="45.3." />
+					<atext linktext="45.3.1" />
+					<atext linktext="45.3.2" />
+					<atext linktext="45.3.3" />
 					<atext linktext="45.4." />
+					<atext linktext="45.5." />
 					<atext linktext="46.0." />
 				</page>
 			</check>
@@ -138,14 +138,13 @@ done
 			<dep>icu</dep>
 			<dep>libevent</dep>
 			<dep>firefox</dep>
-			<dep>gcc61</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
 			mv thunderbird-${PKGVERSION} comm-esr
 			mkdir l10n
-			tar -C l10n -xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.de-es-pl-ru.tar.xz
+			tar -C l10n -xf ${SRCDIR}/thunderbird-45.0.2.source.de-es-pl-ru.tar.xz
 			]]>
 		</unpack>
 		<patch>
@@ -171,8 +170,6 @@ sed -e '/#include/a\
 			echo $SHELL
 			export SHELL=/bin/bash
 			echo $SHELL
-			export CC=/usr/local/gcc61/bin/gcc61
-			export CXX=/usr/local/gcc61/bin/g++61
 			export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
 			export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
 			## mkdir tb-build
@@ -185,14 +182,14 @@ sed -e '/#include/a\
 			sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' .mozconfig 
 			echo 'ac_add_options --disable-gconf' >> .mozconfig 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				export CC='distcc /usr/local/gcc61/bin/gcc61'
-				export CXX='distcc /usr/local/gcc61/bin/g++61'
+				export CC='distcc gcc'
+				export CXX='distcc g++'
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				[ "$jobcount" -gt 12 ] && jobcount=12 
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc61/bin/gcc61' CXX='distcc /usr/local/gcc61/bin/g++61'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
 				make -f client.mk 
 			else
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4 CC=/usr/local/gcc61/bin/gcc61 CXX=/usr/local/gcc61/bin/g++61\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4 CC=gcc CXX=g++\"%g" .mozconfig 
 				make -f client.mk 
 			fi
 			echo '===> Trying to find libxul.so...'
