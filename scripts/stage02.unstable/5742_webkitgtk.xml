@@ -114,6 +114,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}gtk-${PKGVERSION}
+			jobcount=` grep -c processor /proc/cpuinfo `
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
@@ -121,12 +122,7 @@
 			fi
 			./configure  --prefix=/usr --sysconfdir=/etc \
 				--enable-geolocation=no --enable-gtk-doc=no --enable-introspection  
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				make -j $jobcount
-				make
-			fi
-			make -j ` grep -c processor /proc/cpuinfo ` # LIBS='-ldl -lGL -lglapi'
-			make 
+			make -j $jobcount
 			]]>
 		</build>
 		<test />
