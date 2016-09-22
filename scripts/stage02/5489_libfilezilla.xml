@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libfilezilla' version='0.6.1' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0ea791c80bb6ad575222a84aa019392bf7e55351'>
+                    libfilezilla-0.6.1.tar.bz2
+                </pkg>
+                <mirror>
+                    http://downloads.sourceforge.net/project/filezilla/libfilezilla/0.6.1/
+                </mirror>
+            </file>
+            <manualcheck date='20160922' interval='60' mirror='http://downloads.sourceforge.net/project/filezilla/libfilezilla/0.6.1/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

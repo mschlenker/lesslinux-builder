@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='tinycompress' version='1.1.1' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='2fd7aa08368a59c9821d273f909a341f014c1482'>
+                    tinycompress-1.1.1.tar.bz2
+                </pkg>
+                <mirror>
+                    ftp://ftp.alsa-project.org/pub/tinycompress/
+                </mirror>
+            </file>
+            <manualcheck date='20160922' interval='60' mirror='ftp://ftp.alsa-project.org/pub/tinycompress/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
