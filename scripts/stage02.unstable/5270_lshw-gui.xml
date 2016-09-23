@@ -62,6 +62,7 @@
 			cd lshw-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			make install-gui DESTDIR=${TGTDIR}
+			ln -sf lshw ${TGTDIR}/usr/sbin/lshw-static 
 			]]>
 		</install>
 		<clean>

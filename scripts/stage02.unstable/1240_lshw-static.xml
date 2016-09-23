@@ -24,37 +24,34 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			echo 'Nothing to unpack!'
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[
+			echo 'Nothing to patch!'
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/src
-			jobcount=2
-			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
-				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
-				export DISTCC_HOSTS
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-			fi
-			make -j $jobcount static
+			echo 'Nothing to build!'
 			]]>
 		</build>
-		<test />
+		<test>
+			<![CDATA[
+			echo 'Nothing to test!'
+			]]>
+		</test>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/src
-			mkdir -p ${TGTDIR}/usr/sbin
-			install -m 0755 lshw-static ${TGTDIR}/usr/sbin
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
 		<clean>
-			  <![CDATA[
-			  
-			  rm -rf ${PKGNAME}-${PKGVERSION}
-			  
-			  ]]>
+			 <![CDATA[
+			echo 'Nothing to clean!'
+			]]>
 		</clean>
 	</package>
 </llpackages>
