@@ -1,28 +1,16 @@
 <llpackages>
 	<package 
 		name="conky"
-		version="1.9.0"
+		version="1.10.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="2069cbdb8e7224fcbf3c6b1ddebf64a51634b4cc">conky-1.9.0.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/conky/conky/1.9.0/</mirror>
+				<pkg sha1="f2da0e3b8e6ff8ebc42b35f710f822e228616993">conky-1.10.4.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://downloads.sourceforge.net/project/conky/conky/1.9.0/" />
-			<check>
-				<page html="http://sourceforge.net/projects/conky/files/conky/">
-					<atext linktext="1.9.1" />
-					<atext linktext="1.9.2" />
-					<atext linktext="1.9.3" />
-					<atext linktext="1.9.4" />
-					<atext linktext="1.9.5" />
-					<atext linktext="1.10.0" />
-					<atext linktext="1.11.0" />
-					<atext linktext="2.0.0" />
-				</page>
-			</check>
+			<manualcheck date="20160922" interval="180" page="https://github.com/brndnmtthws/conky/releases" />
 		</sources>
 		<builddeps>
                         <dep>alsa-lib</dep>
@@ -32,6 +20,7 @@
                         <dep>diffutils</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
+			<dep>cmake</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>glib</dep>
@@ -55,21 +44,32 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc --enable-wlan \
-					--enable-curl --enable-rss --enable-weather-metar --enable-weather-xoap
-			make
+			mkdir _build
+			cd _build
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			cmake -DCMAKE_INSTALL_PREFIX=/usr \
+				-DBUILD_AUDACIOUS=OFF -DBUILD_WLAN=ON \
+				-DBUILD_WEATHER_METAR=ON -DBUILD_WEATHER_XOAP=ON ..
+			make -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}/_build 
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>

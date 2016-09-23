@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libaudclient-3.5-rc2.tar.bz2' version='20160923' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='150ae0469f017da9322d456295aa9257d9be84af'>
+                    libaudclient-3.5-rc2.tar.bz2
+                </pkg>
+                <mirror>
+                    http://distfiles.audacious-media-player.org/
+                </mirror>
+            </file>
+            <manualcheck date='20160923' interval='60' mirror='http://distfiles.audacious-media-player.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/libaudclient-3.5-rc2.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libaudclient-3.5-rc2
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libaudclient-3.5-rc2
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libaudclient-3.5-rc2
+]]>
+        </clean>
+    </package>
+</llpackages>
