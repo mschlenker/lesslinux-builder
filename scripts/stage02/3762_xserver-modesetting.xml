@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='xf86-video-modesetting' version='0.9.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='982e5140ad81051d51c6370d065f3033ee4ad24b'>
+                    xf86-video-modesetting-0.9.0.tar.bz2
+                </pkg>
+                <mirror>
+                    https://www.x.org/releases/individual/driver/
+                </mirror>
+            </file>
+            <manualcheck date='20160923' interval='60' mirror='https://www.x.org/releases/individual/driver/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
