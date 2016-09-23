@@ -59,6 +59,10 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
+			
+			echo 'Nothing to unpack!'
+			exit 0
+			
 			tar xzf ${SRCDIR}/scintilla366.tgz
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
@@ -73,6 +77,10 @@
 		</patch> -->
 		<build>
 			<![CDATA[
+			
+			echo 'Nothing to build!'
+			exit 0
+			
 			export PATH=/usr/local/gcc54/bin:$PATH
 			cd scintilla/gtk
 			make prefix=/usr
@@ -83,6 +91,12 @@
 		<test />
 		<install>
 			<![CDATA[
+			
+			echo 'Nothing to install!'
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			exit 0
+			
 			export PATH=/usr/local/gcc54/bin:$PATH
 			cd ${PKGNAME}-${PKGVERSION}
 			make install
