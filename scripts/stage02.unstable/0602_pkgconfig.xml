@@ -39,7 +39,8 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/usr --with-internal-glib --disable-host-tool --disable-compile-warnings
-			make
+			jobcount=`grep -c processor /proc/cpuinfo`
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />
