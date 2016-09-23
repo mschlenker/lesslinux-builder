@@ -35,18 +35,19 @@
 			mkdir binutils-build
 			]]>
 		</unpack>
-		<patch>			
+		<!-- <patch>			
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
 			# cat ${SRCDIR}/binutils-2.26-upstream_fixes-3.patch | patch -p1
 			
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-build
+			jobcount=`grep -c processor /proc/cpuinfo`
 			../${PKGNAME}-${PKGVERSION}/configure --prefix=/usr --enable-shared --disable-werror
-			make tooldir=/usr
+			make -j $jobcount tooldir=/usr
 			]]>
 		</build>
 		<test>
