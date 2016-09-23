@@ -73,6 +73,7 @@
 			cd util-linux-${PKGVERSION}
 			# export PATH=/usr/local/automake113/bin:$PATH
 			# export AL_OPTS="-I/usr/local/automake113/share/aclocal-1.13"
+			jobcount=`grep -c processor /proc/cpuinfo`
 			./configure --disable-chfn-chsh  \
             --disable-login      \
             --disable-nologin    \
@@ -82,7 +83,7 @@
             --disable-pylibmount \
             --without-python     \
             --without-systemd    \
-            --without-systemdsystemunitdir && make
+            --without-systemdsystemunitdir && make -j $jobcount 
 			]]>
 		</build>
 		<test />
