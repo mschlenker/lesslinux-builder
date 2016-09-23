@@ -55,6 +55,7 @@
 					export CFLAGS="-fPIC"
 				;;
 			esac 
+			jobcount=`grep -c processor /proc/cpuinfo`
 			./configure \
 				--prefix=/usr \
 				--mandir=/usr/share/man \
@@ -62,7 +63,7 @@
 				--without-debug \
 				--enable-widec \
 				--without-normal \
-				--enable-pc-files && make
+				--enable-pc-files && make -j $jobcount 
 			]]>
 		</build>
 		<test />
