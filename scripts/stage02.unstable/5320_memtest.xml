@@ -50,7 +50,7 @@
 		</unpack>
 		<patch>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}+-${PKGVERSION}
 			cat ../debian/patches/series | while read fname ; do cat ../debian/patches/$fname | patch -p1; done
 			sed -i 's/scp/echo scp/g' Makefile
 			]]>
