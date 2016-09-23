@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="libsysstat"
-		version="20140521"
+		version="0.3.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="4fde2e525b4e4f64e694c18a56b8e2540625bbd5">libsysstat-20140521.tar.xz</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="d69ea2fc8350c73ae46859407023c3561612faa6">libsysstat-0.3.2.tar.xz</pkg>
+				<mirror>https://github.com/lxde/libsysstat/releases/download/0.3.2/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="60" page="https://github.com/lxde/libsysstat" />
+			<manualcheck date="20160922" interval="60" page="https://github.com/lxde/libsysstat" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -34,7 +34,7 @@
                         <dep>glibc</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
-                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>qt5</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -44,7 +44,7 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -53,7 +53,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			export PATH=/usr/compat.old/qt4/bin:$PATH
+			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make -j $jobcount 
 			]]>
@@ -61,14 +61,14 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
-			export PATH=/usr/compat.old/qt4/bin:$PATH
+			cd ${PKGNAME}-${PKGVERSION}
+			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
