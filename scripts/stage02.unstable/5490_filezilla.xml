@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="FileZilla"
-		version="3.14.1"
+		version="3.21.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -12,7 +12,7 @@
 			</file>
 			<manualcheck date="20151023" interval="90" page="http://filezilla-project.org/" />
 		</sources>
-		<!-- <builddeps>
+		<builddeps>
                         <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
@@ -41,7 +41,7 @@
                         <dep>wxWidgets3</dep>
                         <dep>xdg-utils</dep>
 			<dep>libfilezilla</dep>
-                </builddeps> -->
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}_src.tar.bz2
