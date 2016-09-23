@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="lxqt-about"
-		version="0.7.0"
+		version="0.10.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="cdb875bc5a09a426d28d3ce623afb2c09384a10f">lxqt-about-0.7.0.tar.xz</pkg>
-				<mirror>http://lxqt.org/downloads/lxqt/0.7.0/</mirror>
+				<pkg sha1="f40336f99ceb57643e81ffc18bf6e35a48ec4559">lxqt-about-0.10.0.tar.xz</pkg>
+				<mirror>http://lxqt.org/downloads/lxqt/0.10.0/</mirror>
 			</file>
 			<manualcheck date="20140731" interval="60" page="http://lxqt.org/downloads/lxqt/" />
 			<!-- <check>
@@ -40,14 +40,13 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			mkdir ${PKGNAME}
-			tar -C ${PKGNAME} -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -56,7 +55,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			export PATH=/usr/compat.old/qt4/bin:$PATH
+			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			make -j $jobcount 
 			]]>
@@ -64,14 +63,14 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
-			export PATH=/usr/compat.old/qt4/bin:$PATH
+			cd ${PKGNAME}-${PKGVERSION}
+			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

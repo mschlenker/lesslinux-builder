@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="libqtxdg"
-		version="20140521"
+		version="2.0.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="3b04f8504c88140d5618597303a87964611764ad">libqtxdg-20140521.tar.xz</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="45870efbf773c889db2e9f4c6a65dfb95253c56e">libqtxdg-2.0.0.tar.xz</pkg>
+				<mirror>https://github.com/lxde/libqtxdg/releases/download/2.0.0/</mirror>
 			</file>
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
@@ -34,8 +34,7 @@
                         <dep>glibc</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
-                        <dep>qt-everywhere-opensource-src</dep>
-			<dep>gcc54</dep>
+                        <dep>qt5</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -46,20 +45,22 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
-			export PATH=/usr/compat.old/qt4/bin:$PATH
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			make 
+			make -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
-			export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>

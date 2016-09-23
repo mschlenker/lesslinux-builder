@@ -57,43 +57,38 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
-                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>qt5</dep>
                         <dep>xproto-base</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			mkdir ${PKGNAME}
-			tar -C ${PKGNAME} -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			echo 'Nothing to unpack!'
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			echo 'Nothing to patch!'
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}
-			jobcount=2
-			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
-				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
-				export DISTCC_HOSTS
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-			fi
-			export PATH=/usr/compat.old/qt4/bin:$PATH
-			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			make -j $jobcount 
+			echo 'Nothing to build!'
 			]]>
 		</build>
-		<test />
+		<test>
+			<![CDATA[
+			echo 'Nothing to test!'
+			]]>
+		</test>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
-			export PATH=/usr/compat.old/qt4/bin:$PATH
-			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
 		<clean>
-			<![CDATA[
-			rm -rf ${PKGNAME}
+			 <![CDATA[
+			echo 'Nothing to clean!'
 			]]>
 		</clean>
 	</package>
