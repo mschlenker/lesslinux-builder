@@ -23,7 +23,9 @@
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 mkdir _build
 cd _build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DBUILD_TESTING=OFF       -Wno-dev ..
 make -j 2
 ]]>
         </build>
