@@ -69,6 +69,8 @@
 			make -j $jobcount
 			convert ./Setup/Linux/usr/share/pixmaps/veracrypt.xpm -resize '48x48!'  ./Setup/Linux/usr/share/pixmaps/veracrypt.png
 			sed -i 's%Categories=Encryption;Encryption Tools;Utility;%Categories=Utility;Encryption;Encryption Tools;%g'  ./Setup/Linux/usr/share/applications/veracrypt.desktop
+			echo '===> searching files'
+			find . -type f | sort 
 			]]>
 		</build>
 		<test />
