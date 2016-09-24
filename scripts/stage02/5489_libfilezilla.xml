@@ -50,8 +50,14 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+	jobcount=2
+	if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
+		jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+		export CC="distcc gcc"
+		export CXX="distcc g++"
+	fi
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+	make -j $jobcount 
 ]]>
         </build>
         <install>
