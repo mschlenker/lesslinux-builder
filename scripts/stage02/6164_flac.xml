@@ -14,6 +14,25 @@
             </file>
             <manualcheck date='20160924' interval='60' mirror='http://downloads.xiph.org/releases/flac/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>doxygen</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libogg</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>nasm</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 ]]>
