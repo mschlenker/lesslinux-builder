@@ -62,14 +62,13 @@
                 </builddeps> -->
 		<unpack>
 			<![CDATA[ 
-			mkdir ${PKGNAME}
-			tar -C ${PKGNAME} -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -86,14 +85,14 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
