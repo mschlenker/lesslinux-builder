@@ -79,7 +79,7 @@
 			cd ${PKGNAME}-${PKGNAME}_${PKGVERSION}/src
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share 
-			tar -C ./Setup/Linux/ -cvf - | tar -C ${TGTDIR}/ -xf - 
+			tar -C ./Setup/Linux/ -cvf - . | tar -C ${TGTDIR}/ -xf - 
 			ln -sf veracrypt ${TGTDIR}/usr/bin/truecrypt 
 			rm veracrypt ${TGTDIR}/usr/bin/veracrypt-uninstall.sh
 			]]>
