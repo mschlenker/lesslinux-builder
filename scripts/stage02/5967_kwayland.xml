@@ -1,12 +1,12 @@
 <llpackages>
-    <package name='solid' version='5.25.0' install='chroot'>
+    <package name='kwayland' version='5.25.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='2094bded5c49f963d952fcbee8000e496c0df7b4'>
-                    solid-5.25.0.tar.xz
+                <pkg sha1='10e170ad59f1682b3c0efcf63507f61a55ad2fc8'>
+                    kwayland-5.25.0.tar.xz
                 </pkg>
                 <mirror>
                     http://download.kde.org/stable/frameworks/5.25/
@@ -23,18 +23,8 @@
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 mkdir _build
 cd _build
-jobcount=2
-if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
-	DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
-	export DISTCC_HOSTS
-	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-	export CC="distcc gcc"
-	export CXX="distcc g++" 
-fi
-cmake -DCMAKE_INSTALL_PREFIX=/usr \
-	-DCMAKE_BUILD_TYPE=Release \
-	-DBUILD_TESTING=OFF  -Wno-dev ..
-make -j $jobcount 
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
 ]]>
         </build>
         <install>

@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='kwindowsystem' version='5.25.0' install='chroot'>
+    <package name='libkscreen' version='5.7.3' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='daa07474df69fd66bff1a20805331ebf58214835'>
-                    kwindowsystem-5.25.0.tar.xz
+                <pkg sha1='7f0faa05a5fd2696ab696b163a214813cbb8e260'>
+                    libkscreen-5.7.3.tar.xz
                 </pkg>
                 <mirror>
-                    http://download.kde.org/stable/frameworks/5.25/
+                    http://download.kde.org/stable/plasma/5.7.3/
                 </mirror>
             </file>
-            <manualcheck date='20160924' interval='60' mirror='http://download.kde.org/stable/frameworks/5.25/'/>
+            <manualcheck date='20160924' interval='60' mirror='http://download.kde.org/stable/plasma/5.7.3/'/>
         </sources>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
@@ -23,16 +23,8 @@
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 mkdir _build
 cd _build
-jobcount=2
-if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
-	DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
-	export DISTCC_HOSTS
-	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-	export CC="distcc gcc"
-	export CXX="distcc g++" 
-fi
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
-make -j $jobcount 
+make -j 2
 ]]>
         </build>
         <install>

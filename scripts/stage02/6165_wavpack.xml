@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='wavpack' version='4.80.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='83036db97b22f0585da81d113321ea8a989b2134'>
+                    wavpack-4.80.0.tar.bz2
+                </pkg>
+                <mirror>
+                    http://www.wavpack.com/
+                </mirror>
+            </file>
+            <manualcheck date='20160924' interval='60' mirror='http://www.wavpack.com/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
