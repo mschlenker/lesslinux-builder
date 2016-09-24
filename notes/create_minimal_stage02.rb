@@ -80,6 +80,8 @@ if dircount == 1
 		buildtype = "imake"
 	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/Makefile")
 		buildtype = "make"
+	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/CMakeLists.txt")
+		buildtype = "cmake"
 	end
 end
 
@@ -135,6 +137,13 @@ elsif buildtype == "configure" || buildtype == "autogen" || buildtype == "make" 
 	buildcommand.push("xmkmf") if buildtype == "imake"
 	buildcommand.push("./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var") if buildtype == "configure" || buildtype == "autogen"
 	buildcommand.push("make")
+	installcommand.push("make install")
+elsif buildtype == "cmake"
+	buildcommand.push("mkdir _build")
+	buildcommand.push("cd _build")
+	buildcommand.push("cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..")
+	buildcommand.push("make -j 2")
+	installcommand.push("cd _build")
 	installcommand.push("make install")
 end
 [ buildcommand, installcommand ].each { |c| c.push("") }
