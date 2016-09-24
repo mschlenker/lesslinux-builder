@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='kwindowsystem' version='5.25.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='daa07474df69fd66bff1a20805331ebf58214835'>
+                    kwindowsystem-5.25.0.tar.xz
+                </pkg>
+                <mirror>
+                    http://download.kde.org/stable/frameworks/5.25/
+                </mirror>
+            </file>
+            <manualcheck date='20160924' interval='60' mirror='http://download.kde.org/stable/frameworks/5.25/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
