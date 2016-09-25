@@ -75,6 +75,7 @@
                         <dep>zlib</dep>
 			<dep>distcc</dep>
 			<dep>flac</dep>
+			<dep>wavpack</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -91,7 +92,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc --enable-wavpack=no
+			./configure --prefix=/usr --sysconfdir=/etc 
 			make -j $jobcount
 			]]>
 		</build>
