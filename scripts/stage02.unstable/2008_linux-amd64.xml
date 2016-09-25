@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="4.4.21"
+		version="4.4.22"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,13 +19,13 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="ca4f2a84d2048d6c11687ac8e0070dc67a85f896">patch-4.4.21.xz</pkg>
+				<pkg sha1="a16ca0ac9434153f7756b7b121f7a7be4980c757">patch-4.4.22.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<manualcheck date="20160922" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.4.22." />
+					<atext linktext="patch-4.4.25." />
 					<atext linktext="patch-4.4.23." />
 					<atext linktext="patch-4.4.24." />
 					<atext linktext="patch-4.5." />
@@ -74,31 +74,38 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			
 			localversion='ll-64-0'
 			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
-			
-			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config 
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-nopae .config
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
+			mkdir linux-${PKGVERSION}.build
+			tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
-			cd linux-${PKGVERSION}
+			cd linux-${PKGVERSION}.build
 			
 			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
 			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
 			
+			echo 'PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH' > ../linux-${PKGVERSION}/environment.inc
+			echo 'OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump' >> ../linux-${PKGVERSION}/environment.inc
+			echo 'CC=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc'  >> ../linux-${PKGVERSION}/environment.inc
+			
+			echo 'ARCH=x86_64' > ../linux-${PKGVERSION}/arch.inc
+			echo 'CROSS_COMPILE="x86_64-linux-gnu-"' > ../linux-${PKGVERSION}/crosscompile.inc
+			
 			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
 			
+			jobcount=4 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				make -j $jobcount \
@@ -119,10 +126,12 @@
 					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
 					bzImage
 			else
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
 			fi
+			cd ../linux-${PKGVERSION}
+			make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_prepare 
 			
 			]]>
 		</build>
@@ -135,7 +144,7 @@
 			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
 			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
 			
-			cd linux-${PKGVERSION}
+			cd linux-${PKGVERSION}.build
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-amd64 
@@ -148,15 +157,16 @@
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec x86_64-linux-gnu-strip --strip-unneeded {} \; 
-			make clean
-			make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_prepare 
-			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
+			cd ../linux-${PKGVERSION}
+			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
+
 			]]>
 		</install>
 		<clean>
 			  <![CDATA[
 			  
 			  rm -rf linux-${PKGVERSION}
+			  rm -rf linux-${PKGVERSION}.build 
 			  
 			  ]]>
 		</clean>
