@@ -14,6 +14,46 @@
             </file>
             <manualcheck date='20160924' interval='60' mirror='http://download.kde.org/stable/frameworks/5.25/'/>
         </sources>
+	<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>extra-cmake-modules</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXScrnSaver</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXft</dep>
+                        <dep>libXi</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXtst</dep>
+                        <dep>libXv</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>qt5</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 ]]>

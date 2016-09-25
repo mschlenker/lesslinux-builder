@@ -14,6 +14,17 @@
             </file>
             <manualcheck date='20160924' interval='60' mirror='http://download.kde.org/stable/frameworks/5.25/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 ]]>
