@@ -11,6 +11,10 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+			<dep>ruby</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
