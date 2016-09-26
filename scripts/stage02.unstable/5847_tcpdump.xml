@@ -1,0 +1,86 @@
+<llpackages>
+	<package 
+		name="tcpdump"
+		version="4.8.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="e256e8b42765ccf7cfff06a6349dffeb97ef3b1e">tcpdump-4.8.0.tar.gz</pkg>
+				<mirror>http://www.tcpdump.org/release/</mirror>
+			</file>
+			<manualcheck date="20160923" interval="120" page="http://www.tcpdump.org/release/" />
+			<check>
+				<page html="http://www.tcpdump.org/release/">
+					<atext linktext="tcpdump-4.8.1." />
+					<atext linktext="tcpdump-4.8.2." />
+					<atext linktext="tcpdump-4.8.3." />
+					<atext linktext="tcpdump-4.8.4." />
+					<atext linktext="tcpdump-4.8.5." />
+					<atext linktext="tcpdump-4.9." />
+					<atext linktext="tcpdump-4.10." />
+					<atext linktext="tcpdump-4.11." />
+					<atext linktext="tcpdump-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libpcap</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			export LIBS="-ldl"
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

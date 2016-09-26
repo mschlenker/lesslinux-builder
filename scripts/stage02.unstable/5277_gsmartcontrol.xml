@@ -1,0 +1,116 @@
+<llpackages>
+	<package 
+		name="gsmartcontrol"
+		version="0.8.7"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                      
+				<pkg sha1="36c255e8f493b003a616cb1eff3a86ccc6b8f80a">gsmartcontrol-0.8.7.tar.bz2</pkg>
+				<mirror>http://download.berlios.de/gsmartcontrol/gsmartcontrol-0.8.7.tar.bz2/from_sourceforge/</mirror>
+			</file>
+			<!-- <file>                      
+				<pkg sha1="3dd2250ecf212050cd4eb753bf03ffdc77f31adf">gsmartcontrol_0.8.6-1.2.debian.tar.gz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/g/gsmartcontrol/</mirror>
+			</file> -->
+			<manualcheck date="20150823" interval="180" page="http://gsmartcontrol.sourceforge.net/home/index.php/Downloads" />
+			<check>
+				<page html="http://gsmartcontrol.sourceforge.net/home/index.php/Downloads">
+					<atext linktext="gsmartcontrol-0.8.11.tar.bz2" />
+					<atext linktext="gsmartcontrol-0.8.8.tar.bz2" />
+					<atext linktext="gsmartcontrol-0.8.9.tar.bz2" />
+					<atext linktext="gsmartcontrol-0.8.10.tar.bz2" />
+					<atext linktext="gsmartcontrol-0.9.0.tar.bz2" />
+					<atext linktext="gsmartcontrol-0.9.1.tar.bz2" />
+					<atext linktext="gsmartcontrol-1.0.0.tar.bz2" />
+					<atext linktext="gsmartcontrol-1.0.1.tar.bz2" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>atk</dep>
+                        <dep>atkmm</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>cairomm</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>glibmm</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>gtkmm</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libsigc++</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pangomm</dep>
+                        <dep>pcre</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			### tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-1.2.debian.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			for i in 02_fix_doc_install 03_gcc4.4 04_glib2.31 05_gcc-4.7 ; do
+				cat ../debian/patches/${i}.patch | patch -p1
+			done
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				make -j $jobcount
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			paxctl -m /usr/bin/gsmartcontrol
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			### rm -rf debian
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,30 +1,30 @@
 <llpackages>
 	<package 
 		name="sqlite"
-		version="3.14.1"
+		version="3.14.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                             
-				<pkg sha1="774a05b8e7c9318111228bd5ad6bf65272f3fe38">sqlite-autoconf-3140100.tar.gz</pkg>
+				<pkg sha1="5d3a6bccd9154963641960db61df901a4e0b3ca0">sqlite-autoconf-3140200.tar.gz</pkg>
 				<mirror>http://sqlite.org/2016/</mirror>
 			</file>
-			<manualcheck date="20160823" interval="90" page="http://www.sqlite.org/" />
+			<manualcheck date="20160923" interval="90" page="http://www.sqlite.org/" />
 			<check>
 				<page html="http://sqlite.org/download.html">
-					<atext linktext="sqlite-autoconf-31401001" />
-					<atext linktext="sqlite-autoconf-3140101" />
-					<atext linktext="sqlite-autoconf-3140102" />
-					<atext linktext="sqlite-autoconf-3140103" />
-					<atext linktext="sqlite-autoconf-3140104" />
-					<atext linktext="sqlite-autoconf-3140105" />
-					<atext linktext="sqlite-autoconf-3140106" />
-					<atext linktext="sqlite-autoconf-3140107" />
-					<atext linktext="sqlite-autoconf-3140108" />
-					<atext linktext="sqlite-autoconf-3140109" />
+					<atext linktext="sqlite-autoconf-31402001" />
+					<atext linktext="sqlite-autoconf-3140201" />
+					<atext linktext="sqlite-autoconf-3140202" />
+					<atext linktext="sqlite-autoconf-3140203" />
+					<atext linktext="sqlite-autoconf-3140204" />
+					<atext linktext="sqlite-autoconf-3140205" />
+					<atext linktext="sqlite-autoconf-3140206" />
+					<atext linktext="sqlite-autoconf-3140207" />
+					<atext linktext="sqlite-autoconf-3140208" />
+					<atext linktext="sqlite-autoconf-3140209" />
 					<atext linktext="sqlite-autoconf-31405" />
-					<atext linktext="sqlite-autoconf-31402" />
+					<atext linktext="sqlite-autoconf-31406" />
 					<atext linktext="sqlite-autoconf-31403" />
 					<atext linktext="sqlite-autoconf-31404" />
 					<atext linktext="sqlite-autoconf-315" />
@@ -53,13 +53,13 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3140100.tar.gz
+			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3140200.tar.gz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3140100
+			cd ${PKGNAME}-autoconf-3140200
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
@@ -75,13 +75,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3140100
+			cd ${PKGNAME}-autoconf-3140200
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-autoconf-3140100
+			rm -rf ${PKGNAME}-autoconf-3140200
 			]]>
 		</clean>
 	</package>
