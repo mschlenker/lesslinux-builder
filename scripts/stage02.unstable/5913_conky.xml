@@ -41,6 +41,7 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>xproto-base</dep>
+			<dep>libaudclient</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -61,7 +62,7 @@
 				export CXX="distcc g++" 
 			fi
 			cmake -DCMAKE_INSTALL_PREFIX=/usr \
-				-DBUILD_AUDACIOUS=OFF -DBUILD_WLAN=ON \
+				-DBUILD_AUDACIOUS=ON -DBUILD_WLAN=ON \
 				-DBUILD_WEATHER_METAR=ON -DBUILD_WEATHER_XOAP=ON ..
 			make -j $jobcount
 			]]>
