@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libgudev' version='230' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='964ff42115e012f7b52994251e73a48317867d43'>
+                    libgudev-230.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.gnome.org/pub/gnome/sources/libgudev/230/
+                </mirror>
+            </file>
+            <manualcheck date='20160926' interval='60' mirror='http://ftp.gnome.org/pub/gnome/sources/libgudev/230/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

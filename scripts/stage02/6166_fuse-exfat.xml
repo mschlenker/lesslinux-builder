@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='fuse-exfat' version='1.2.4' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='f263c5d87d9d777644d3f789a2954de6086f76a2'>
+                    fuse-exfat-1.2.4.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/relan/exfat/releases/download/v1.2.4/
+                </mirror>
+            </file>
+            <manualcheck date='20160926' interval='60' mirror='https://github.com/relan/exfat/releases/download/v1.2.4/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
