@@ -46,7 +46,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.3.30 --without-bash-malloc --with-installed-readline \
+			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.4 --without-bash-malloc --with-installed-readline \
 			&& make -j $jobcount
 			]]>
 		</build>

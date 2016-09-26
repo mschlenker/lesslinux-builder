@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="readline"
-		version="6.3"
+		version="7.0"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                     
-				<pkg sha1="017b92dc7fd4e636a2b5c9265a77ccc05798c9e1">readline-6.3.tar.gz</pkg>
+				<pkg sha1="d9095fa14a812495052357e1d678b3f2ac635463">readline-7.0.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/readline/</mirror>
 			</file>
-			<file>                                     
+			<!-- <file>                                     
 				<pkg sha1="3b61771c11b5858dfbeac205cde2791e4f142c82">readline-6.3-upstream_fixes-3.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20150823" interval="365" page="http://ftp.gnu.org/gnu/readline/" />
+			</file> -->
+			<manualcheck date="20160923" interval="365" page="http://ftp.gnu.org/gnu/readline/" />
 			<!-- <check>
 				<page html="http://ftp.gnu.org/gnu/readline/">
 					<atext linktext="readline-6.2.1." />
@@ -35,7 +35,7 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-1.patch | patch -p1
+			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-1.patch | patch -p1
 			sed -i '/MV.*old/d' Makefile.in
 			sed -i '/{OLDSUFF}/c:' support/shlib-install
 			
