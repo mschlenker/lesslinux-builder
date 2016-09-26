@@ -67,6 +67,7 @@
                         <dep>util-linux-ng</dep>
                         <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -85,9 +86,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			autoreconf --force --install
 			./configure --prefix=/usr --sysconfdir=/etc
-			make
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />
