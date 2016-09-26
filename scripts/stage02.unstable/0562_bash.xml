@@ -1,20 +1,16 @@
 <llpackages>
 	<package 
 		name="bash"
-		version="4.3.30"
+		version="4.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                          
-				<pkg sha1="33b1bcc5dca1b72f28b2baeca6efa0d422097964">bash-4.3.30.tar.gz</pkg>
+				<pkg sha1="8de012df1e4f3e91f571c3eb8ec45b43d7c747eb">bash-4.4.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
 			</file>
-			<file>                                                     
-				<pkg sha1="c8981c62d37afce3e2cc97d5e6bd3b748e265ecf">bash-4.3.30-upstream_fixes-3.patch</pkg>
-				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20160630" interval="90" page="http://ftp.gnu.org/gnu/bash/" />
+			<manualcheck date="20160922" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/bash/">
 					<atext linktext="bash-4.3.31." />
