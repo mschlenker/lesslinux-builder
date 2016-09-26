@@ -1,55 +1,46 @@
 <llpackages>
 	<package 
-		name="wimlib"
-		version="1.10.0"
+		name="gnuchess"
+		version="6.2.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="f314974dfd0d4c39f8319d8f31e5b7dc7620c297">wimlib-1.10.0.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/wimlib/</mirror>
+				<pkg sha1="323ce6576c86157358f4b561d085c04bba816b64">gnuchess-6.2.3.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/chess/</mirror>
 			</file>
-			<manualcheck date="20160923" interval="90" page="https://wimlib.net/" />
+			<manualcheck date="20160923" interval="180" page="http://ftp.gnu.org/gnu/chess/" />
 			<check>
-				<page html="https://wimlib.net/">
-					<atext linktext="v1.10.1." />
-					<atext linktext="v1.10.2." />
-					<atext linktext="v1.10.3." />
-					<atext linktext="v1.10.4." />
-					<atext linktext="v1.11." />
-					<atext linktext="v1.12." />
-					<atext linktext="v1.13." />
-					<atext linktext="v2.0" />
+				<page html="http://ftp.gnu.org/gnu/chess/">
+					<atext linktext="gnuchess-6.2.8." />
+					<atext linktext="gnuchess-6.2.4." />
+					<atext linktext="gnuchess-6.2.5." />
+					<atext linktext="gnuchess-6.2.6." />
+					<atext linktext="gnuchess-6.2.7." />
+					<atext linktext="gnuchess-6.3." />
+					<atext linktext="gnuchess-6.4." />
+					<atext linktext="gnuchess-7." />
 				</page>
 			</check>
 		</sources>
-		<builddeps>
-                        <dep>Python</dep>
-                        <dep>attr</dep>
+		 <builddeps>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>distcc</dep>
-                        <dep>fuse</dep>
+                        <dep>flex</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <dep>gettext</dep>
                         <dep>glibc</dep>
-                        <dep>gnome-icon-theme</dep>
                         <dep>grep</dep>
-                        <dep>icu</dep>
                         <dep>inetutils</dep>
-                        <dep>libxml2</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
-                        <dep>ntfs-3g_ntfsprogs</dep>
-                        <dep>openssl</dep>
-                        <dep>pkg-config</dep>
-                        <dep>procps</dep>
-                        <dep>pygobject</dep>
+                        <dep>readline</dep>
                         <dep>sed</dep>
-                        <dep>xz</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

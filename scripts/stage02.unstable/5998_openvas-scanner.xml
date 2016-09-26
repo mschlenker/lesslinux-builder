@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
-		name="greenbone-security-assistant"
-		version="6.0.11"
+		name="openvas-scanner"
+		version="5.0.7"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="2da768d158ce32abe04eb9f6a84db5cfe50775a1">greenbone-security-assistant-6.0.11.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/2363/</mirror>
+				<pkg sha1="ca5ba1a65ff34a8cb8c014cb09129434e319d689">openvas-scanner-5.0.7.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2367/</mirror>
 			</file>
-			<manualcheck date="20160412" interval="90" page="http://www.openvas.org/install-source.html" />
+			<manualcheck date="20160923" interval="90" page="http://www.openvas.org/install-source.html" />
 			<check>
 				<page html="http://www.openvas.org/install-source.html">
-					<atext href="greenbone-security-assistant-6.0.15." />
-					<atext href="greenbone-security-assistant-6.0.12." />
-					<atext href="greenbone-security-assistant-6.0.13." />
-					<atext href="greenbone-security-assistant-6.0.14." />
-					<atext href="greenbone-security-assistant-7." />
-					<atext href="greenbone-security-assistant-8." />
+					<atext href="openvas-scanner-5.0.10." />
+					<atext href="openvas-scanner-5.0.11." />
+					<atext href="openvas-scanner-5.0.8." />
+					<atext href="openvas-scanner-5.0.9." />
+					<atext href="openvas-scanner-6.0." />
+					<atext href="openvas-scanner-7.0." />
 				</page>
 			</check>
 		</sources>
@@ -27,23 +27,19 @@
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
                         <dep>gcc</dep>
-                        <dep>glibc</dep>
                         <dep>glib</dep>
+                        <dep>glibc</dep>
                         <dep>gnutls3</dep>
                         <dep>grep</dep>
                         <dep>libgcrypt15</dep>
                         <dep>libgpg-error</dep>
-                        <dep>libmicrohttpd</dep>
-                        <dep>libxml2</dep>
-                        <dep>libxslt</dep>
+                        <dep>libpcap</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
                         <dep>openvas-libraries</dep>
                         <dep>pkg-config</dep>
-                        <dep>sed</dep>
                         <dep>subversion</dep>
-			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -54,7 +50,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			jobcount=2
+			  jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
@@ -62,8 +58,9 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			CFLAGS='-w' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			CFLAGS='-w'  make -j $jobcount 
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			find . -type f -exec sed -i 's/-Werror/ /g' {} \;
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

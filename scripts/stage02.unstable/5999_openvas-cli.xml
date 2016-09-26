@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
-		name="greenbone-security-assistant"
-		version="6.0.11"
+		name="openvas-cli"
+		version="1.4.4"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="2da768d158ce32abe04eb9f6a84db5cfe50775a1">greenbone-security-assistant-6.0.11.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/2363/</mirror>
+				<pkg sha1="352fdfa30713321e74f0052c87cd4dce7a3c3321">openvas-cli-1.4.4.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2332/</mirror>
 			</file>
-			<manualcheck date="20160412" interval="90" page="http://www.openvas.org/install-source.html" />
+			<manualcheck date="20160923" interval="90" page="http://www.openvas.org/install-source.html" />
 			<check>
 				<page html="http://www.openvas.org/install-source.html">
-					<atext href="greenbone-security-assistant-6.0.15." />
-					<atext href="greenbone-security-assistant-6.0.12." />
-					<atext href="greenbone-security-assistant-6.0.13." />
-					<atext href="greenbone-security-assistant-6.0.14." />
-					<atext href="greenbone-security-assistant-7." />
-					<atext href="greenbone-security-assistant-8." />
+					<atext href="openvas-cli-1.4.5." />
+					<atext href="openvas-cli-1.4.6." />
+					<atext href="openvas-cli-1.4.7." />
+					<atext href="openvas-cli-1.4.8." />
+					<atext href="openvas-cli-1.5." />
+					<atext href="openvas-cli-1.6." />
 				</page>
 			</check>
 		</sources>
@@ -27,23 +27,15 @@
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
                         <dep>gcc</dep>
-                        <dep>glibc</dep>
                         <dep>glib</dep>
+                        <dep>glibc</dep>
                         <dep>gnutls3</dep>
-                        <dep>grep</dep>
-                        <dep>libgcrypt15</dep>
-                        <dep>libgpg-error</dep>
-                        <dep>libmicrohttpd</dep>
-                        <dep>libxml2</dep>
-                        <dep>libxslt</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
                         <dep>openvas-libraries</dep>
                         <dep>pkg-config</dep>
-                        <dep>sed</dep>
                         <dep>subversion</dep>
-			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -54,7 +46,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			jobcount=2
+			  jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
@@ -62,8 +54,8 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			CFLAGS='-w' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			CFLAGS='-w'  make -j $jobcount 
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />
