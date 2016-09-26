@@ -80,7 +80,7 @@
                         <dep>which</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
-			<!-- <dep>gcc61</dep> -->
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -99,8 +99,7 @@
 			ls -lah
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening \
-					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs # \
-			#		--with-gcc="gcc61" --with-g++="g++61"
+					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs 
 			source env.sh
 			kmk
 			]]>

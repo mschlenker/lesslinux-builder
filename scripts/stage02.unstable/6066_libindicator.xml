@@ -52,6 +52,7 @@
 			<dep>gnome-common</dep>
 			<dep>ido</dep>
 			<dep>gcc54</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -73,13 +74,21 @@ sed '/-Werror/s/$/ -Wno-deprecated-declarations/' -i libindicator/Makefile.{am,i
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 export CC="/usr/local/gcc54/bin/gcc54"
 export CXX="/usr/local/gcc54/bin/g++54"
+  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc /usr/local/gcc54/bin/g++54" 
+			fi
 ./configure \
     --prefix='/usr' \
     --localstatedir='/var' \
     --sysconfdir='/etc' \
     --disable-static \
     --disable-tests
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

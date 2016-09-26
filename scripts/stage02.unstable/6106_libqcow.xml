@@ -41,6 +41,7 @@
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -49,8 +50,16 @@
         <patch/>
         <build>
             <![CDATA[cd libqcow-${PKGVERSION}
+	      jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python2
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

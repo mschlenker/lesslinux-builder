@@ -37,7 +37,7 @@
                         <dep>make</dep>
                         <dep>perl</dep>
                         <dep>sed</dep>
-			<dep>gcc54</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -57,8 +57,16 @@
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 		autoconf -o configure configure.in
+		 jobcount=2
+		if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+			DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+			export DISTCC_HOSTS
+			jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			export CC="distcc gcc"
+			export CXX="distcc g++" 
+		fi
 		./configure --prefix=/usr  
-		make
+		make -j $jobcount 
 ]]>
         </build>
         <install>
