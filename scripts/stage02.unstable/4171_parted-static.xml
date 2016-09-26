@@ -11,10 +11,10 @@
 				<mirror>http://ftp.gnu.org/gnu/parted/</mirror>
 			</file>
 			<file>                                                                                          
-				<pkg sha1="032277219d6d9acd4adbed9c000ed06a074b8200">LVM2.2.02.164.tgz</pkg>
+				<pkg sha1="5e2dd5bcae8a55c1721bf5c24e8c263895818b44">LVM2.2.02.166.tgz</pkg>
 				<mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
 			</file>
-			<manualcheck date="20160823" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
+			<manualcheck date="20160923" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/parted/">
 					<atext linktext="parted-3.2.1." />
@@ -30,8 +30,8 @@
 					<atext linktext="LVM2.2.02.170.t" />
 					<atext linktext="LVM2.2.02.171.t" />
 					<atext linktext="LVM2.2.02.172.t" />
-					<atext linktext="LVM2.2.02.165.t" />
-					<atext linktext="LVM2.2.02.166.t" />
+					<atext linktext="LVM2.2.02.173.t" />
+					<atext linktext="LVM2.2.02.174.t" />
 					<atext linktext="LVM2.2.02.167.t" />
 					<atext linktext="LVM2.2.02.17" />
 					<atext linktext="LVM2.2.02.18" />
@@ -67,7 +67,7 @@
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/parted-${PKGVERSION}.tar.xz | tar xf - 
-			tar -xf ${SRCDIR}/LVM2.2.02.164.tgz
+			tar -xf ${SRCDIR}/LVM2.2.02.166.tgz
 			]]>
 		</unpack>
 		<patch />
@@ -76,7 +76,7 @@
 			export CC="/usr/local/gcc54/bin/gcc54"
 			export CXX="/usr/local/gcc54/bin/g++54"
 			THISDIR=` pwd ` 
-			cd LVM2.2.02.164
+			cd LVM2.2.02.166
 			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link # CFLAGS=-fPIE LDFLAGS=-pie
 			make lib
 			cd ../parted-${PKGVERSION}                    
@@ -98,7 +98,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf parted-${PKGVERSION}
-			rm -rf LVM2.2.02.164
+			rm -rf LVM2.2.02.166
 			]]>
 		</clean>
 	</package>
