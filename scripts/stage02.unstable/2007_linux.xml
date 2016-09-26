@@ -125,7 +125,7 @@
 			done
 			rm -rf ${TGTDIR}/lib/firmware 
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
-			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-nopae
+			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
 			for link in source build ; do
 				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
