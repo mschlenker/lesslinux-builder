@@ -1,0 +1,46 @@
+<llpackages>
+    <package name='pcre2' version='10.22' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3be3891e1cb1caaa31fa89db51d015831f8f8089'>
+                    pcre2-10.22.tar.bz2
+                </pkg>
+                <mirror>
+                    ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/
+                </mirror>
+            </file>
+            <manualcheck date='20160927' interval='60' mirror='ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	      jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make -j $jobcount
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
