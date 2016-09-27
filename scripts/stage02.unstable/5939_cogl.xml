@@ -81,6 +81,7 @@
 			<dep>distcc</dep>
 			<dep>gstreamer1</dep>
 			<dep>gst-plugins-base1</dep>
+			<dep>wayland</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -102,8 +103,7 @@
 			fi
 			./configure --prefix=/usr --sysconfdir=/etc \
 				--enable-gles1 --enable-gles2 \
-				--enable-wayland-egl-platform=no \
-				--enable-wayland-egl-server=no \
+				--enable-{kms,wayland,xlib}-egl-platform \
 				--enable-cogl-gst
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount
