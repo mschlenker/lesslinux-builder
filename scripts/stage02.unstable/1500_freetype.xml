@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="freetype"
-		version="2.6.3"
+		version="2.7"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                   
-				<pkg sha1="6c98bd5d0be313207c37ca23d25faf983486aee5">freetype-2.6.3.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/freetype/freetype2/2.6.3/</mirror>
+				<pkg sha1="f251029d5ab542a96dd4531605fe577185077560">freetype-2.7.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/freetype/freetype2/2.7/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="120" page="http://sourceforge.net/projects/freetype/files/freetype2/" />
+			<manualcheck date="20160923" interval="120" page="http://sourceforge.net/projects/freetype/files/freetype2/" />
 			<check>
 				<page html="http://sourceforge.net/projects/freetype/files/freetype2/">
-					<atext linktext="2.6.4" />
-					<atext linktext="2.6.5" />
-					<atext linktext="2.6.6" />
-					<atext linktext="2.7." />
+					<atext linktext="2.7.1" />
+					<atext linktext="2.7.2" />
+					<atext linktext="2.7.3" />
+					<atext linktext="2.8." />
 					<atext linktext="3.0." />
 				</page>
 			</check>
@@ -35,6 +35,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>libpng16</dep>
 			<!-- <dep>distcc</dep> -->
 		</builddeps>
 		<unpack>
@@ -42,7 +43,14 @@
 			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg &&
+			sed -r "s:.*(#.*SUBPIXEL_(RENDERING|HINTING 2)) .*:\1:g" \
+				-i include/freetype/config/ftoption.h
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
