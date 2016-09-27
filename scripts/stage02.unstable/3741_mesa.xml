@@ -73,6 +73,13 @@
 			tar xJf ${SRCDIR}/mesa-${PKGVERSION}.tar.xz 
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd mesa-${PKGVERSION}
+			sed -i "/pthread-stubs/d" configure.ac     
+			sed -i "/seems to be moved/s/^/: #/" bin/ltmain.sh 
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			
