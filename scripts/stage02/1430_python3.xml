@@ -1,0 +1,75 @@
+<llpackages>
+	<package 
+		name="Python"
+		version="3.5.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                      
+				<pkg sha1="4843aabacec5bc0cdd3e1f778faa926e532794d2">Python-3.5.2.tar.xz</pkg>
+				<mirror>http://python.org/ftp/python/3.5.2/</mirror>
+			</file>
+			<manualcheck date="20160923" interval="180" page="http://www.python.org/" />
+			<check>
+				<page html="http://python.org/ftp/python/">
+					<atext linktext="3.5.3" />
+					<atext linktext="3.5.4" />
+					<atext linktext="3.5.5" />
+					<atext linktext="3.5.6" />
+					<atext linktext="3.5.7" />
+					<atext linktext="3.5.8" />
+					<atext linktext="3.6." />
+					<atext linktext="3.7." />
+					<atext linktext="4.0." />
+				</page>
+			</check>
+		</sources> 
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			export CC="gcc"
+			export CXX="g++" 
+			jobcount=4 
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			
+			case $(uname -m) 
+			in
+				x86_64) 
+					export CFLAGS="-fPIC"
+				;;
+			esac 
+			./configure --prefix=/usr       \
+				--enable-shared     \
+				--with-system-expat \
+				--with-system-ffi   \
+				--without-ensurepip
+			make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
