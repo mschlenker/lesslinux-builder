@@ -145,7 +145,7 @@ done
 			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
 			mv thunderbird-${PKGVERSION} comm-esr
 			mkdir l10n
-			tar -C l10n -xf ${SRCDIR}/thunderbird-45.0.3.source.de-es-pl-ru.tar.xz
+			tar -C l10n -xJf ${SRCDIR}/thunderbird-45.3.0.source.de-es-pl-ru.tar.xz
 			]]>
 		</unpack>
 		<patch>
