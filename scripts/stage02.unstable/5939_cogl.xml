@@ -103,7 +103,6 @@
 			fi
 			./configure --prefix=/usr --sysconfdir=/etc \
 				--enable-gles1 --enable-gles2 \
-				--enable-wayland-egl-platform=no \
 				--enable-cogl-gst
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount

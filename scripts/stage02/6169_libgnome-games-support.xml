@@ -1,0 +1,46 @@
+<llpackages>
+    <package name='libgnome-games-support' version='1.2.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e03ad14c2622943c9f5c1927364823f6e2ddb4c8'>
+                    libgnome-games-support-1.2.0.tar.xz
+                </pkg>
+                <mirror>
+                    ftp://ftp.gnome.org/mirror/gnome.org/sources/libgnome-games-support/1.2/
+                </mirror>
+            </file>
+            <manualcheck date='20160927' interval='60' mirror='ftp://ftp.gnome.org/mirror/gnome.org/sources/libgnome-games-support/1.2/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	      jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
