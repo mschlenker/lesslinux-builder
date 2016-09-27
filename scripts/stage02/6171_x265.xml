@@ -1,0 +1,51 @@
+<llpackages>
+    <package name='x265' version='2.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='358d7208a071c811d72fc100890ac86b0fde1255'>
+                    x265_2.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://bitbucket.org/multicoreware/x265/downloads/
+                </mirror>
+            </file>
+	       <file>
+                <pkg sha1='e21b0ff2acc718ca39ed1a8815194912f45b99d7'>
+                    x265_2.0-enable_static-1.patch
+                </pkg>
+                <mirror>
+                    http://www.linuxfromscratch.org/patches/blfs/svn/
+                </mirror>
+            </file>
+            <manualcheck date='20160927' interval='60' mirror='https://bitbucket.org/multicoreware/x265/downloads/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/x265_2.0.tar.gz
+]]>
+        </unpack>
+        <patch>
+		<![CDATA[cd x265_2.0
+		patch -Np1 -i ${SRCDIR}/x265_2.0-enable_static-1.patch
+		mkdir _build
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd x265_2.0/_build
+	    cmake -DCMAKE_INSTALL_PREFIX=/usr \
+		-DENABLE_STATIC=OFF         \
+		../source
+]]>
+        </build>
+        <install>
+            <![CDATA[cd x265_2.0/_build 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf x265_2.0
+]]>
+        </clean>
+    </package>
+</llpackages>
