@@ -1,29 +1,29 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.8.1"
+		version="3.9.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="e0c48c4c182424b99999367d688cd8ce7876827b">llvm-3.8.1.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.8.1/</mirror>
+				<pkg sha1="da792f11a208d5b994c4fe1c8faa20f90ff0e4a3">llvm-3.9.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.9.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="b5ff24dc6ad8f84654f4859389990bace1cfb6d5">cfe-3.8.1.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.8.1/</mirror>
+				<pkg sha1="00d49ee82451130a8e1e7b1d56cffa37b783bcb2">cfe-3.9.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.9.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="be5fefcef9d035ea2db97f3396ea5ff11fdc35ed">compiler-rt-3.8.1.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.8.1/</mirror>
+				<pkg sha1="a306d576e84b7ee048ebb0ae5ca72e6ec9e1c549">compiler-rt-3.9.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.9.0/</mirror>
 			</file>
-			<manualcheck date="20160823" interval="120" page="http://www.llvm.org/" />
+			<manualcheck date="20160923" interval="120" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="3.8.4" />
-					<atext href="3.8.2" />
-					<atext href="3.8.3" />
+					<atext href="3.9.1" />
+					<atext href="3.9.2" />
+					<atext href="3.9.3" />
 					<atext href="3.10." />
 					<atext href="3.11." />
 					<atext href="3.12." />
@@ -80,7 +80,7 @@
 					-DLLVM_ENABLE_FFI=ON                  \
 					-DCMAKE_BUILD_TYPE=Release            \
 					-DBUILD_SHARED_LIBS=ON                \
-					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
 					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
 				make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else
@@ -90,7 +90,7 @@
 					-DLLVM_ENABLE_FFI=ON                  \
 					-DCMAKE_BUILD_TYPE=Release            \
 					-DBUILD_SHARED_LIBS=ON                \
-					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
 					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
 				make -j 4 CC='gcc' CXX='g++' 
 			fi
