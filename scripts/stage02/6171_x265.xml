@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='x265' version='2.0' install='chroot'>
+    <package name='x265' version='2.0' install='destdir'>
         <license>
             unknown
         </license>
@@ -34,13 +34,21 @@
 	</patch>
         <build>
             <![CDATA[cd x265_2.0/_build
-	    cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	jobcount=2
+	if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+		jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+		export CC="distcc gcc"
+		export CXX="distcc g++" 
+	fi
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
 		-DENABLE_STATIC=OFF         \
 		../source
+	make -j $jobcount 
 ]]>
         </build>
         <install>
             <![CDATA[cd x265_2.0/_build 
+	    make install DESTDIR=${TGTDIR} 
 ]]>
         </install>
         <clean>
