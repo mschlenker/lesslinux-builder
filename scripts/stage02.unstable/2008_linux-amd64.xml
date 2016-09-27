@@ -87,6 +87,7 @@
 			mv linux-${major}.${minor} linux-${PKGVERSION}
 			mkdir linux-${PKGVERSION}.build
 			tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
+			tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
 			]]>
 		</patch>
 		<build>

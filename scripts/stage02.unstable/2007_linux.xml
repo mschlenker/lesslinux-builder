@@ -108,6 +108,7 @@
 			done
 			cd ../linux-${PKGVERSION}
 			make -j $jobcount modules_prepare 
+			tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
 			]]>
 		</build>
 		<test />
