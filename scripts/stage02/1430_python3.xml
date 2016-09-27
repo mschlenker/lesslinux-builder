@@ -1,6 +1,6 @@
 <llpackages>
 	<package 
-		name="Python"
+		name="Python3"
 		version="3.5.2"
 		class="user"
 		install="destdir">
@@ -25,9 +25,13 @@
 				</page>
 			</check>
 		</sources> 
+		<builddeps>
+			<dep>Python</dep>
+			<dep>expat</dep>
+			<dep>libffi</dep>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			unxz -c ${SRCDIR}/Python-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch />
@@ -36,7 +40,7 @@
 			export CC="gcc"
 			export CXX="g++" 
 			jobcount=4 
-			cd ${PKGNAME}-${PKGVERSION}
+			cd Python-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
 				export DISTCC_HOSTS
@@ -62,13 +66,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd Python-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf Python-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
