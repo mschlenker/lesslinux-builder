@@ -57,7 +57,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
-			export LDFLAGS=-lncurses
+			export 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
@@ -65,7 +65,9 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			make -j $jobcount INSTALL_TOP=/usr MYCFLAGS="-DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1 -lncurses" linux 
+			make -j $jobcount INSTALL_TOP=/usr \
+				MYCFLAGS="-DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1 -lncurses" \
+				LDFLAGS=-lncurses linux 
 			]]>
 		</build>
 		<test />
