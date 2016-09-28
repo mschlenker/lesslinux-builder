@@ -662,6 +662,7 @@ def run_stage_two
 					thread_info[n] = "building"
 					$stdout.flush
 					build_stage02_package(p)
+					thread_info[n] = "waiting"
 					m.synchronize { 
 						puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + 
 							" install " + p.pkg_name + " from dependency queue "
