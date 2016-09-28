@@ -1,0 +1,75 @@
+<llpackages>
+	<package 
+		name="matchbox-common"
+		version="0.9.1"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>   
+				<pkg sha1="1d8adb017b600f6c58a8cefdd7c9f4597f21e4b5">matchbox-common-0.9.1.tar.bz2</pkg>
+				<mirror>http://matchbox-project.org/sources/matchbox-common/0.9/</mirror>
+			</file>
+			<manualcheck date="20120624" interval="3650" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>glib</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXft</dep>
+                        <dep>libXrender</dep>
+                        <dep>libmatchbox</dep>
+                        <dep>libpng12</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig \
+				PNG_LIBS='-L/usr/compat.old/lib -lpng12' PNG_CFLAGS='-I/usr/compat.old/include/libpng12' \
+				LDFLAGS='-L/usr/compat.old/lib -lX11 -lm' ./configure --prefix=/usr CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig \
+				PNG_LIBS='-L/usr/compat.old/lib -lpng12' PNG_CFLAGS='-I/usr/compat.old/include/libpng12' \
+				LDFLAGS='-L/usr/compat.old/lib -lX11 -lm' ./configure --prefix=/usr
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

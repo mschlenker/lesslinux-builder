@@ -57,6 +57,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
+			export LDFLAGS=-lncurses
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
@@ -71,7 +72,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.2 liblua.so.5.3.3" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
+			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.3 liblua.so.5.3.3" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
 			mkdir -pv /usr/share/doc/lua-5.3.3
 			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.3.3
 
