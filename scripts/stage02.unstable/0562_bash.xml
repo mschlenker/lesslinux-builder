@@ -39,6 +39,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
+			export LDFLAGS=-lncurses
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
@@ -46,7 +47,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.4 --without-bash-malloc   \
+			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.4 --without-bash-malloc  --with-installed-readline  \
 			&& make -j $jobcount
 			]]>
 		</build>
