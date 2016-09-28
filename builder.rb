@@ -580,7 +580,9 @@ def run_stage_two
 			end
 		}
 		puts sprintf("%015.4f", Time.now.to_f) + " queue  > Start " + @thread_count.to_s + " threads for stage02 build!"
-		0.upto(@thread_count - 1) { |n|
+		thread_info = Array.new 
+		0.upto(@thread_count * 3) { |n|
+			thread_info[n] = "waiting"
 			work_in_progress[n] = nil 
 			sleep n.to_f / 10.0 
 			t[n] = Thread.new { 
@@ -597,22 +599,32 @@ def run_stage_two
 				end
 				puts sprintf("%015.4f", Time.now.to_f) + " queue  > bottom queue size " + build_bottom_queue.size.to_s
 				puts sprintf("%015.4f", Time.now.to_f) + " queue  > top queue size " + build_top_queue.size.to_s
+				puts sprintf("%015.4f", Time.now.to_f) + " thread > who is doing what? " + thread_info.join(", ") 
 				$stdout.flush
 				p = nil
-				if build_bottom_queue.size > 0
-					p = build_bottom_queue.shift
-					queue_name = "bottom"
-				else
-					p = build_top_queue.shift
-					queue_name = "top"
-				end
+				
 				# current_builds.push(p.pkg_name)
-				if p.nil? # || work_in_progress.include?(p.pkg_name)
-					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " Ooops, someone was faster "
+				building_threads = 0
+				thread_info.each { |s| building_threads += 1 if s == "building" }
+				if  ( build_bottom_queue.size < 1 &&  build_top_queue.size < 1 ) # p.nil? # || work_in_progress.include?(p.pkg_name)
+					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " Ooops, someone was faster... "
+					thread_info[n] = "waiting"
 					$stdout.flush
 					# work_in_progress[n] = nil
+				elsif ( building_threads  > @thread_count - 2 )
+					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " Waiting... "
+					thread_info[n] = "waiting"
+					$stdout.flush
 				elsif ( @buildonly.size > 0 && !@buildpkgs.include?(p.pkg_name) )
+					if build_bottom_queue.size > 0
+						p = build_bottom_queue.shift
+						queue_name = "bottom"
+					else
+						p = build_top_queue.shift
+						queue_name = "top"
+					end
 					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " skipping " + p.pkg_name 
+					thread_info[n] = "waiting"
 					built_packages.push(p.pkg_name)
 					pkg_deps.delete(p)
 					work_in_progress[n] = nil
@@ -638,13 +650,22 @@ def run_stage_two
 						end
 					}
 				else
+					if build_bottom_queue.size > 0
+						p = build_bottom_queue.shift
+						queue_name = "bottom"
+					else
+						p = build_top_queue.shift
+						queue_name = "top"
+					end
 					work_in_progress[n] = p.pkg_name
 					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " build " + p.pkg_name + " from dependency queue "
+					thread_info[n] = "building"
 					$stdout.flush
 					build_stage02_package(p)
 					m.synchronize { 
 						puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + 
 							" install " + p.pkg_name + " from dependency queue "
+						thread_info[n] = "installing"
 						puts sprintf("%015.4f", Time.now.to_f) + " debug  > Memory usage #{memory_usage.to_s} kB"
 						$stdout.flush
 						install_stage02_package(p, queue_name)
