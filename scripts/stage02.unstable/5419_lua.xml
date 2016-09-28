@@ -65,7 +65,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			make -j $jobcount INSTALL_TOP=/usr MYCFLAGS="-DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1" linux 
+			make -j $jobcount INSTALL_TOP=/usr MYCFLAGS="-DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1 -lncurses" linux 
 			]]>
 		</build>
 		<test />

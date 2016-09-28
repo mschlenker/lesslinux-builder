@@ -86,7 +86,7 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			[ -x ${TGTDIR}/usr/sbin/smbd ] || exit 1 
-			install -v -m644 ../examples/smb.conf.default ${TGTDIR}/etc/samba
+			install -v -m 644 examples/smb.conf.default ${TGTDIR}/etc/samba
 			
 			]]>
 		</install>
