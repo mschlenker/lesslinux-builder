@@ -610,13 +610,12 @@ def run_stage_two
 					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " Ooops, someone was faster... "
 					thread_info[n] = "w"
 					$stdout.flush
-					sleep 2.0
 					# work_in_progress[n] = nil
 				elsif ( building_threads  > @thread_count - 2 )
 					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " Waiting... "
 					thread_info[n] = "w"
 					$stdout.flush
-					sleep 10.0
+					sleep @thread_count * 3
 				elsif ( @buildonly.size > 0 && !@buildpkgs.include?(p.pkg_name) )
 					if build_bottom_queue.size > 0
 						p = build_bottom_queue.shift
