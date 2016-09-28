@@ -14,25 +14,36 @@
             </file>
             <manualcheck date='20160708' interval='60' mirror='http://ftp.gnome.org/pub/GNOME/sources/libgames-support/1.0/'/>
         </sources>
-        <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
-]]>
-        </unpack>
-        <patch/>
-        <build>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
-]]>
-        </build>
-        <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install DESTDIR=${TGTDIR}
-]]>
-        </install>
-        <clean>
-            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
-]]>
-        </clean>
+       <unpack>
+			<![CDATA[ 
+			echo 'Nothing to unpack!'
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			echo 'Nothing to patch!'
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			echo 'Nothing to build!'
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			echo 'Nothing to test!'
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			echo 'Nothing to clean!'
+			]]>
+		</clean>
     </package>
 </llpackages>
