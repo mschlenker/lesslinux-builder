@@ -57,7 +57,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
-			export LDFLAGS=-lncurses
+			# export LDFLAGS=-lncurses
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
