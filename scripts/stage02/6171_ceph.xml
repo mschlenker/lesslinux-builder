@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='ceph' version='10.2.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='57bb6bbfa9e9b54c28ce7d45c8011cfcb9f1f69c'>
+                    ceph_10.2.3.orig.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.ceph.com/tarballs/
+                </mirror>
+            </file>
+            <manualcheck date='20160929' interval='60' mirror='http://download.ceph.com/tarballs/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/ceph_10.2.3.orig.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ceph-10.2.3
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ceph-10.2.3
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ceph-10.2.3
+]]>
+        </clean>
+    </package>
+</llpackages>
