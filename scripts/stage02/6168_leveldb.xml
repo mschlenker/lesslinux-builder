@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='leveldb' version='1.19' install='chroot'>
+    <package name='leveldb' version='1.19' install='destdir'>
         <license>
             unknown
         </license>
@@ -26,7 +26,11 @@ make
         </build>
         <install>
             <![CDATA[cd leveldb-1.19
-make install
+	    mkdir -p ${TGTDIR}/usr/lib
+	    mkdir -p ${TGTDIR}/usr/include
+	    cp --preserve=links libleveldb.* ${TGTDIR}/usr/lib
+            cp -r include/leveldb ${TGTDIR}/usr/include/
+
 ]]>
         </install>
         <clean>
