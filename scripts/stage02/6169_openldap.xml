@@ -1,0 +1,69 @@
+<llpackages>
+    <package name='openldap' version='2.4.44' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='016a738d050a68d388602a74b5e991035cdba149'>
+                    openldap-2.4.44.tgz
+                </pkg>
+                <mirror>
+                    ftp://ftp.openldap.org/pub/OpenLDAP/openldap-release/
+                </mirror>
+            </file>
+	    <file>
+                <pkg sha1='cf9bb7581656f01f58b70599f991a3bfa5428104'>
+                    openldap-2.4.44-consolidated-2.patch
+                </pkg>
+                <mirror>
+                   http://www.linuxfromscratch.org/patches/blfs/svn
+                </mirror>
+            </file>
+            <manualcheck date='20160929' interval='60' mirror='ftp://ftp.openldap.org/pub/OpenLDAP/openldap-release/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/openldap-2.4.44.tgz
+]]>
+        </unpack>
+        <patch>
+		<![CDATA[cd openldap-2.4.44
+cat ${SRCDIR}/openldap-2.4.44-consolidated-2.patch | patch -p1 
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd openldap-2.4.44
+autoconf
+./configure --prefix=/usr         \
+            --sysconfdir=/etc     \
+            --localstatedir=/var  \
+            --libexecdir=/usr/lib \
+            --disable-static      \
+            --disable-debug       \
+            --with-tls=openssl    \
+            --enable-dynamic      \
+            --enable-crypt        \
+            --enable-slapd        \
+            --enable-modules      \
+            --enable-backends=mod \
+            --disable-ndb         \
+            --disable-sql         \
+            --disable-shell       \
+            --disable-bdb         \
+            --disable-hdb         \
+            --enable-overlays=mod
+make depend 
+make -j ` grep -c processor /proc/cpuinfo ` 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd openldap-2.4.44
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf openldap-2.4.44
+]]>
+        </clean>
+    </package>
+</llpackages>

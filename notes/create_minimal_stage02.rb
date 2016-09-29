@@ -50,7 +50,7 @@ sha1sum = `sha1sum /tmp/#{uuid}/#{archname}`.strip.split[0]
 
 # Unpack the archive 
 # FIXME: Unzip zip as well 
-if archname =~ /\.tar.bz2$/ || archname =~ /\.tar.gz$/ || archname =~  /\.tar.xz$/
+if archname =~ /\.tar.bz2$/ || archname =~ /\.tar.gz$/ || archname =~  /\.tar.xz$/ || archname =~  /\.tgz$/ 
 	system(" tar -C /tmp/#{uuid}/unpack -xf /tmp/#{uuid}/#{archname}")
 else
 	$stderr.puts "This type of archive is not (yet) supported!"
