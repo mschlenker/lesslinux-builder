@@ -1,27 +1,28 @@
 <llpackages>
-    <package name='sqlitebrowser' version='3.9.0' install='chroot'>
+    <package name='sqlitebrowser' version='3.8.0' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='27ce9c7ad6613e673445cfe84549d60dd8a5ea8e'>
-                    v3.9.0.tar.gz
+                <pkg sha1='466ef6692c569e2e95158fcb6ac8a4f6ea38fc6f'>
+                    v3.8.0.tar.gz
                 </pkg>
                 <mirror>
                     https://github.com/sqlitebrowser/sqlitebrowser/archive/
                 </mirror>
             </file>
+	    <!-- check the reasons for failed builds with 3.9, cmake?  -->
             <manualcheck date='20160125' interval='60' mirror='http://sqlitebrowser.org/'/>
 	        <check>
 				<page html="http://sqlitebrowser.org/">
-					<atext href="v3.9.5." />
-					<atext href="v3.9.1." />
-					<atext href="v3.9.2." />
-					<atext href="v3.9.3." />
-					<atext href="v3.9.4." />
+					<atext href="v3.8.5." />
+					<atext href="v3.8.1." />
+					<atext href="v3.8.2." />
+					<atext href="v3.8.3." />
+					<atext href="v3.8.4." />
+					<atext href="v3.9." />
 					<atext href="v3.10." />
-					<atext href="v3.11." />
 					<atext href="v4.0." />
 				</page>
 			</check>
@@ -36,9 +37,8 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
-                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>qt5</dep>
                         <dep>sqlite</dep>
-			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/v${PKGVERSION}.tar.gz
@@ -47,25 +47,17 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	    jobcount=2
-			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
-				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
-				export DISTCC_HOSTS
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-			fi
-	    export PATH=/usr/compat.old/qt4/bin:$PATH
-cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-make -j $jobcount 
+	    mkdir _build
+	    cd _build 
+cmake -DCMAKE_INSTALL_PREFIX=/usr  -Wno-dev -DUSE_QT5=yes ..
+make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	    export PATH=/usr/compat.old/qt4/bin:$PATH
-make install
-sed -i 's/Development/CB-Other/g' /usr/share/applications/sqlitebrowser.desktop
-sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' /usr/share/applications/sqlitebrowser.desktop
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/_build 
+make install DESTDIR=${TGTDIR}
+sed -i 's/Development/CB-Other/g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
+sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
 ]]>
         </install>
         <clean>
