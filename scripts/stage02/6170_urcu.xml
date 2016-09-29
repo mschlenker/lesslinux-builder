@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='userspace-rcu' version='0.9.2' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='61d1d0d1b955c7a67a7253317647304d04b400a0'>
+                    userspace-rcu-0.9.2.tar.bz2
+                </pkg>
+                <mirror>
+                    http://www.lttng.org/files/urcu/
+                </mirror>
+            </file>
+            <manualcheck date='20160929' interval='60' mirror='http://www.lttng.org/files/urcu/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
