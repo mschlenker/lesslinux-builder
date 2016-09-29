@@ -21,14 +21,15 @@
         <patch/>
         <build>
             <![CDATA[cd leveldb-1.19
-make
+make -j ` grep -c processor /proc/cpuinfo ` 
 ]]>
         </build>
         <install>
             <![CDATA[cd leveldb-1.19
 	    mkdir -p ${TGTDIR}/usr/lib
 	    mkdir -p ${TGTDIR}/usr/include
-	    cp --preserve=links libleveldb.* ${TGTDIR}/usr/lib
+	    cp --preserve=links out-shared/libleveldb.* ${TGTDIR}/usr/lib
+	    cp --preserve=links out-static/libleveldb.* ${TGTDIR}/usr/lib
             cp -r include/leveldb ${TGTDIR}/usr/include/
 
 ]]>
