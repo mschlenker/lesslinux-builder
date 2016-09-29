@@ -12,7 +12,9 @@
                     https://github.com/google/leveldb/archive/
                 </mirror>
             </file>
-	    <builddeps>
+            <manualcheck date='20160929' interval='60' mirror='https://github.com/google/leveldb/archive/'/>
+        </sources>
+	<builddeps>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
@@ -25,8 +27,6 @@
                         <dep>make</dep>
                         <dep>sed</dep>
                 </builddeps>
-            <manualcheck date='20160929' interval='60' mirror='https://github.com/google/leveldb/archive/'/>
-        </sources>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/leveldb-1.19.tar.gz
 ]]>
