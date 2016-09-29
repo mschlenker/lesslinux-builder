@@ -56,6 +56,7 @@
                         <dep>xfsprogs</dep>
                         <dep>yasm</dep>
                         <dep>zlib</dep>
+			<dep>gcc54</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/ceph_10.2.3.orig.tar.gz
@@ -64,8 +65,10 @@
         <patch/>
         <build>
             <![CDATA[cd ceph-10.2.3
+	    export CC="/usr/local/gcc54/bin/gcc54"
+	    export CXX="/usr/local/gcc54/bin/g++54"
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --without-tcmalloc --without-libatomic-ops
-make
+make -j ` grep -c processor /proc/cpuinfo ` 
 ]]>
         </build>
         <install>
