@@ -21,7 +21,7 @@
         <patch/>
         <build>
             <![CDATA[cd ceph-10.2.3
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --without-tcmalloc
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --without-tcmalloc --without-libatomic-ops
 make
 ]]>
         </build>
