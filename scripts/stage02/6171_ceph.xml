@@ -14,6 +14,49 @@
             </file>
             <manualcheck date='20160929' interval='60' mirror='http://download.ceph.com/tarballs/'/>
         </sources>
+	<builddeps>
+                        <dep>Cython</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>boost</dep>
+                        <dep>bzip2</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>fuse</dep>
+                        <dep>fusepy</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>google-snappy</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>leveldb</dep>
+                        <dep>libaio</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>nspr</dep>
+                        <dep>nss</dep>
+                        <dep>openldap</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>sed</dep>
+                        <dep>setuptools</dep>
+                        <dep>tar</dep>
+                        <dep>udev</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>xfsprogs</dep>
+                        <dep>yasm</dep>
+                        <dep>zlib</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/ceph_10.2.3.orig.tar.gz
 ]]>
