@@ -726,7 +726,7 @@ def run_stage_two
 		# i.stracalyze
 		if ( @stracalyze == true && 
 			!File.exists?(@builddir + "/stage02/build/" + i.pkg_name + "-" + i.pkg_version + ".dependencies.txt") ) || @force_stracalyze == true
-			system "ruby -I. builder/stracalyzer.rb " + @builddir + " " + i.pkg_name + " " + i.pkg_version
+			system "ruby -I. builder/stracalyzer.rb " + @builddir + " " + i.pkg_name + " " + i.pkg_version if ( File.exists?(@builddir + "/stage02/build/" + i.pkg_name + "-" + i.pkg_version + ".strace.build.log") || File.exists?(@builddir + "/stage02/build/" + i.pkg_name + "-" + i.pkg_version + ".strace.build.log.bz2") )
 		end
 		# raise "BreakpointReached"
 	}
