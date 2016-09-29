@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='keyutils' version='1.5.9' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='cf040adebe25eb466760f34752f4100fd5acb5e7'>
+                    keyutils-1.5.9.tar.bz2
+                </pkg>
+                <mirror>
+                    http://people.redhat.com/~dhowells/keyutils/
+                </mirror>
+            </file>
+            <manualcheck date='20160929' interval='60' mirror='http://people.redhat.com/~dhowells/keyutils/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
