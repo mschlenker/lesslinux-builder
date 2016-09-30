@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='qtstyleplugins' version='20160930' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='7e54462ace1791d0c0caa968d5a9678841451f72'>
+                    qtstyleplugins-20160930.tar.xz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20160930' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}
+	    qmake-qt5
+	    make -j `grep -c processor /proc/cpuinfo ` 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}
+	    make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
