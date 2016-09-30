@@ -71,7 +71,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			./configure --sysconfdir=/etc --prefix=/usr --without-ntfs --enable-qt 
+			./configure --sysconfdir=/etc --prefix=/usr --without-ntfs --enable-qt --without-ewf
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount
 			else
