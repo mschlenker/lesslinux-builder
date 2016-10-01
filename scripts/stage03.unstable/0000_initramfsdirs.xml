@@ -782,6 +782,33 @@ showpgbar() {
 	printf '\33[0m' > /dev/tty1
 }
 
+### Function for showing graphical progress bar
+
+showsplash() {
+    fraction=$1
+    total=$2
+    serv=$3
+    if [ '!' -p /splash.fifo ] ; then
+	if fbset ; then
+		# disable the cursor
+		echo -n -e '\e[?17;14;224c' > /dev/tty1
+		# create a fifo
+		mkfifo /splash.fifo
+		# Write config
+		fbwidth=` fbset | grep '^mode' | awk -F '["x-]' '{print $2}' `
+		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
+		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
+	fi
+    fi
+    if [ -p /splash.fifo ] ; then
+	expr ${fraction}00 / ${total} > /splash.fifo
+	if [ -f /etc/lesslinux/fbsplash_icon.cfg ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 2>/dev/null 
+	fi
+    fi
+}
+
 ### FIXME: Change RAM message according to settings for fbsplash!
 ### In this build when fbsplash and different console is selected
 ### nothing will be shown, the computer will just shutdown!
@@ -827,6 +854,7 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	elif [ -f /var/run/lesslinux/boot_failed ] ; then
 	    printf "$bold---> Skipping $provides - prerequisites failed\n" 
 	elif [ -z "$debuglev" ] ; then
+	    [ "$ultraquiet" = 3 ] && showsplash $scriptcount $scripttotal $provides
 	    [ "$ultraquiet" = 2 ] && showpgbar $scriptcount $scripttotal $provides
 	    [ "$ultraquiet" = 1 ] && printf "[${bold}${provides}${normal}] "
 	    if [ -f "/etc/rc.confd/$provides.$hwenv.modules" ] ; then
@@ -878,6 +906,12 @@ fi
 if [ -f "/etc/rc.local" ] ; then
 	printf "\n${bold}===> Running local startup scripts from /etc/rc.local ${normal}\n"
 	/etc/rc.local
+fi
+
+# Exit the splash and remove the fifo:
+if [ -p /splash.fifo ] ; then
+	echo "exit" > /splash.fifo
+	rm /splash.fifo
 fi
 
 printf "$normal\n"
