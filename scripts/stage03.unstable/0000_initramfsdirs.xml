@@ -1854,7 +1854,27 @@ run_self_test() {
 
 #		]]>
 		</scriptdata>
-		<scriptdata location="/etc/rc.subr/loadmodules.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.subr/write_fbsplash_config" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+width=$1
+height=$2
+
+# Default logo is 174x106 pixels, pgbar 26px under logo and 10px high
+# pgbar 90% of screen width, everything centered
+
+pgbar_offset_vert=` expr ${width} / 20 `
+
+
+#		]]>
+		</scriptdata>
 		<![CDATA[#!/static/bin/ash
 
 PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
