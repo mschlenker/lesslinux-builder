@@ -985,10 +985,42 @@ showpgbar() {
 	printf '\33[0m' > /dev/tty1
 }
 
+# Graphical progressbar for shutdown
+
+showsplash() {
+    fraction=$1
+    total=$2
+    serv=$3
+    if [ '!' -p /splash.fifo ] ; then
+	if fbset ; then
+		# disable the cursor
+		# echo -n -e '\e[?17;14;224c' > /dev/tty1
+		echo -n -e '\e[?25l' > /dev/tty1
+		# create a fifo
+		mkfifo /splash.fifo
+		# Write config
+		fbwidth=` fbset | grep '^mode' | awk -F '["x-]' '{print $2}' `
+		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
+		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
+	# else
+		# Move cursor to top left - clear screen
+		# printf '\33[2J' > /dev/tty1
+		# printf "${bold}${brandlong}: Start ${serv}...${normal}" > /dev/tty1
+	fi
+    fi
+    if [ -p /splash.fifo ] ; then
+	expr ${fraction}00 / ${total} > /splash.fifo
+	if [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_${serv}.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 
+	fi
+    fi
+}
+
 ####
 scriptcount=0 
 scripttotal=` ls /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? | wc -l ` 
-[ "$console" = tty2 ] && showpgbar 0 $scripttotal 
+[ "$console" = tty2 -a "$ultraquiet" -eq 2 ] && showpgbar 0 $scripttotal 
 
 # Clear the terminal with empty newlines
 for i in ` seq 50 ` ; do
@@ -1013,7 +1045,7 @@ fi
 
 printf "${bold}${stop_remaining}${normal}\n"
 [ "$ultraquiet" -gt 1 ] && clearscreen
-[ "$ultraquiet" -gt 1 ] && centertext 34 1 "${stop_remaining}"
+[ "$ultraquiet" -eq 2 ] && centertext 34 1 "${stop_remaining}"
 
 [ "$ultraquiet" -gt 0 ] || printf "$bold---> Running rc scripts in reverse order $normal\n" 
 
@@ -1027,7 +1059,8 @@ do
         if echo "$skipservices" | grep '|'$provides'|' > /dev/null 2>&1 ; then 
 	    [ "$ultraquiet" -gt 0 ] || printf "$bold---> Skipping $provides \n" 
         else
-	    [ "$ultraquiet" -gt 1 ] && showpgbar $scriptcount $scripttotal $provides
+	    [ "$ultraquiet" -eq 2 ] && showpgbar $scriptcount $scripttotal $provides
+	    [ "$ultraquiet" -eq 3 ] && showsplash $scriptcount $scripttotal $provides
 	    [ "$ultraquiet" -gt 0 ] && $i stop > /dev/null 2>&1
 	    [ "$ultraquiet" -gt 0 ] || $i stop
         fi
@@ -1035,7 +1068,7 @@ do
     scriptcount=` expr $scriptcount + 1 `
 done
 
-[ "$ultraquiet" -gt 1 ] && chvt 1
+[ "$ultraquiet" -eq 2 ] && chvt 1
 
 # first find and unmount all fuseblk devices
 fuseblks=` cat /proc/mounts | grep ' fuseblk ' | awk '{print $2}' ` 
@@ -1136,15 +1169,15 @@ if [ -f /var/run/lesslinux/shutdown_requested_reboot ] ; then
 	shutdown_seconds=0
 fi
 
-[ "$ultraquiet" -gt 1 ] && chvt 1
+[ "$ultraquiet" -eq 2 ] && chvt 1
 shutdown_msg=` echo $shut_down_in | sed 's/COUNT/'$shutdown_seconds'/g' ` 
 printf "\n${bold}${shutdown_msg}${normal}\n\n"
-[ "$ultraquiet" -gt 1 ] && clearscreen tty1
-[ "$ultraquiet" -gt 1 ] && centertext 34 1 "${shutdown_msg}" tty1
+[ "$ultraquiet" -eq 2 ] && clearscreen tty1
+[ "$ultraquiet" -eq 2 ] && centertext 34 1 "${shutdown_msg}" tty1
 sleep $shutdown_seconds
 printf "\n${bold}${shut_down_now}${normal}\n\n"
-[ "$ultraquiet" -gt 1 ] && clearscreen tty1
-[ "$ultraquiet" -gt 1 ] && centertext 34 1 "${shut_down_now}" tty1 
+[ "$ultraquiet" -eq 2 ] && clearscreen tty1
+[ "$ultraquiet" -eq 2 ] && centertext 34 1 "${shut_down_now}" tty1 
 
 # THE END		]]>
 		</scriptdata>
