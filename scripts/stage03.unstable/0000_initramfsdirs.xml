@@ -842,7 +842,7 @@ fi
 ####
 scriptcount=0 
 scripttotal=` ls /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? | wc -l ` 
-[ "$console" = tty2 ] && showpgbar 0 $scripttotal 
+[ "$console" = tty2 -a "$ultraquiet" -eq 2 ] && showpgbar 0 $scripttotal 
 
 for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
         provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
