@@ -1868,13 +1868,13 @@ export PATH
 width=$1
 height=$2
 
-# Default logo is 174x106 pixels, pgbar 26px under logo and 10px high
+# Default logo is 174x106 pixels, pgbar 24px under logo and 10px high
 # pgbar 90% of screen width, everything centered
 
 pgbar_offset_x=` expr ${width} / 20 `
 img_offset_x=` expr ${width} / 2 - 87 `
-img_offset_y=` expr ${height} / 2 - 105 `
-pgbar_offset_y=` expr ${img_offset_y} + 200 `
+img_offset_y=` expr ${height} / 2 - 65 `
+pgbar_offset_y=` expr ${img_offset_y} + 130 `
 pgbar_width=` expr ${width} - 2 '*' ${pgbar_offset_x} ` 
 
 cat << EOF > /etc/lesslinux/fbsplash.cfg
