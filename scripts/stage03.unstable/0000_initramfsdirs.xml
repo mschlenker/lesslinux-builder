@@ -791,7 +791,8 @@ showsplash() {
     if [ '!' -p /splash.fifo ] ; then
 	if fbset ; then
 		# disable the cursor
-		echo -n -e '\e[?17;14;224c' > /dev/tty1
+		# echo -n -e '\e[?17;14;224c' > /dev/tty1
+		echo -n -e '\e[?25l' > /dev/tty1
 		# create a fifo
 		mkfifo /splash.fifo
 		# Write config
