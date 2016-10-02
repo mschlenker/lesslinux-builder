@@ -799,16 +799,16 @@ showsplash() {
 		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
 		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
 		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
-	else
+	# else
 		# Move cursor to top left - clear screen
-		printf '\33[2J' > /dev/tty1
-		printf "${bold}${brandlong}: Start ${serv}...${normal}" > /dev/tty1
+		# printf '\33[2J' > /dev/tty1
+		# printf "${bold}${brandlong}: Start ${serv}...${normal}" > /dev/tty1
 	fi
     fi
     if [ -p /splash.fifo ] ; then
 	expr ${fraction}00 / ${total} > /splash.fifo
-	if [ -f /etc/lesslinux/fbsplash_icon.cfg ] ; then
-		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 2>/dev/null 
+	if [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_${serv}.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 
 	fi
     fi
 }
