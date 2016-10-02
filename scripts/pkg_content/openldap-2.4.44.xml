@@ -227,10 +227,8 @@
         <directory path='/etc/openldap/schema' owner='0' group='0'/>
         <directory path='/usr/lib/openldap' owner='0' group='0'/>
     </subpackage>
-    <subpackage name='minimal'/>
-    <subpackage name='bin'>
-        <file path='/usr/sbin/slapd' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/openldap/sssvlv-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
+    <subpackage name='minimal'>
+    <file path='/usr/lib/openldap/sssvlv-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/openldap/back_relay-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/openldap/back_monitor-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/openldap/back_passwd-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
@@ -263,6 +261,10 @@
         <file path='/usr/lib/libldap_r-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/liblber-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libldap-2.4.so.2.10.7' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/sbin/slapd' owner='0' group='0' mode='100755'/>
+        
         <file path='/usr/bin/ldapwhoami' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/ldapsearch' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/ldapexop' owner='0' group='0' mode='100755'/>
