@@ -1911,7 +1911,7 @@ pgbar_width=` expr ${width} - 2 '*' ${pgbar_offset_x} `
 
 # Show an icon beneath the bar
 icon_offset_x=` expr ${width} / 2 - 24 ` 
-icon_offset_y=` expr ${pgbar_offset} + 22 ` 
+icon_offset_y=` expr ${pgbar_offset_y} + 22 ` 
 
 # In some scripts you want to show a text message which is larger 
 # than the icons, see for example the USB conversion script
