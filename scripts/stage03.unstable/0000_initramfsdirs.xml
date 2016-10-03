@@ -1916,7 +1916,7 @@ icon_offset_y=` expr ${pgbar_offset} + 22 `
 # In some scripts you want to show a text message which is larger 
 # than the icons, see for example the USB conversion script
 text_offset_x=` expr ${width} / 2 - 200 ` 
-text_offset_y=` expr ${pgbar_offset} + 20 ` 
+text_offset_y=` expr ${pgbar_offset_y} + 20 ` 
 
 # Config file for main logo
 
@@ -4560,14 +4560,20 @@ case $1 in
 		kblocks=`expr $isoblocks + 8192 ` 
 		mount -t tmpfs -o mode=0755,size=${kblocks}k tmpfs /lesslinux/ramiso 
 		if [ "$ultraquiet" -gt 1 ] ; then
+			if [ "$ultraquiet" -eq 3 -a -p /splash.fifo ] ; then
+				echo 0 > /splash.fifo
+				fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/toram.ppm 
+			fi
 			genericpgbar 0 32 "$copying_toram" "0%" "" tty1
 			largeblocks=` expr $copyblocks / 2048 ` 
 			for n in ` seq 0 $largeblocks `; do
 				percentage=` expr ${n}00 / $largeblocks ` 
 				dd if=$copydevice of=/lesslinux/ramiso/lesslinux.iso bs=4194304 count=1 seek=$n skip=$n
 				genericpgbar $percentage 32 "$copying_toram" "${percentage}%" "" tty1
+				[ -p /splash.fifo ] && echo $percentage > /splash.fifo
 			done
 			genericpgbar 100 32 "$copying_toram" "100%" "" tty1
+			[ -p /splash.fifo ] && echo 100 > /splash.fifo
 		else
 			dd if=$copydevice of=/lesslinux/ramiso/lesslinux.iso bs=2048 count=$copyblocks
 		fi
