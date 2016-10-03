@@ -16,7 +16,7 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>  
-				<pkg sha1="18c7d35c9696259e01dcda0c888a755f6220edbc">busybox-1.24.2-fbsplash.patch</pkg>
+				<pkg sha1="07cd562e709f6d1ce9ef1dc7aefcd8ddc192481e">busybox-1.25.0-fbset-nofill.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20160701" interval="180" page="http://busybox.net/downloads/" />
@@ -47,7 +47,7 @@
 		<patch>
 		<![CDATA[ 
 			cd busybox-${PKGVERSION}
-			cat ${SRCDIR}/busybox-${PKGVERSION}-fbsplash.patch | patch -p1
+			cat ${SRCDIR}/busybox-1.25.0-fbset-nofill.patch | patch -p1
 			sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' .config
 			# sed -i 's/CONFIG_BRCTL=y/# CONFIG_BRCTL is not set/g' .config
 			sed -i 's/CONFIG_FEATURE_WTMP=y/# CONFIG_FEATURE_WTMP is not set/g' .config
