@@ -1915,8 +1915,10 @@ icon_offset_y=` expr ${pgbar_offset} + 22 `
 
 # In some scripts you want to show a text message which is larger 
 # than the icons, see for example the USB conversion script
-text_offset_x=` expr ${width} / 2 - 200 ` 
-text_offset_y=` expr ${pgbar_offset_y} + 20 ` 
+# text_offset_x=` expr ${width} / 2 - 200 ` 
+text_offset_x=$pgbar_offset_x
+# text_offset_y=` expr ${pgbar_offset_y} + 20 ` 
+text_offset_y=` expr ${height} - 150 ` 
 
 # Config file for main logo
 
