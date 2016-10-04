@@ -1011,8 +1011,10 @@ showsplash() {
 	expr ${fraction}00 / ${total} > /splash.fifo
 	if [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_${serv}.ppm ] ; then
 		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 
+	elif [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_gears.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_gears.ppm 
 	fi
-    fi
+    fi 
 }
 
 ####
@@ -1912,8 +1914,8 @@ pgbar_offset_y=` expr ${img_offset_y} + 130 `
 pgbar_width=` expr ${width} - 2 '*' ${pgbar_offset_x} ` 
 
 # Show an icon beneath the bar
-icon_offset_x=` expr ${width} / 2 - 24 ` 
-icon_offset_y=` expr ${pgbar_offset_y} + 22 ` 
+icon_offset_x=` expr ${width} / 2 - 32 ` 
+icon_offset_y=` expr ${pgbar_offset_y} + 34 ` 
 
 # In some scripts you want to show a text message which is larger 
 # than the icons, see for example the USB conversion script
