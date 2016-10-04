@@ -807,6 +807,8 @@ showsplash() {
 	expr ${fraction}00 / ${total} > /splash.fifo
 	if [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_${serv}.ppm ] ; then
 		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 
+	elif [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_gears.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_gears.ppm 
 	fi
     fi
 }
