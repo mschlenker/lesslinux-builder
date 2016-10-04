@@ -1322,7 +1322,8 @@ dhcp='1'				# use dhcp or static settings in earlynet script
 regdom=''				# regulatory domain for WIFI
 
 loadmodules=''				# list of modules to load very early in the boot process
-defermods='|drivers/net/wireless|drivers/gpu/drm|sound|drivers/net/ethernet|'
+defermods='|drivers/net/wireless|sound|' #
+					# was |drivers/net/wireless|drivers/gpu/drm|sound|drivers/net/ethernet|
 					# specify module directories to be loaded later by udev
 hwenv='default'				# influences the behaviour for loading modules
 searchiso=''				# search content directories only on ISOs with the given ISOID and count of bytes
