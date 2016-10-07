@@ -87,6 +87,12 @@ if xdpyinfo | grep -q -i composite ; then
 	# xcompmgr -c &
 fi
 openbox &
+
+# Open the assistant when the background image is provided:
+if [ -f /etc/lesslinux/branding/bg_assistant.png ] ; then
+	( cd /usr/share/lesslinux/drivetools ; ruby -I . assistant.rb ) & 
+fi
+
 # conky -d 
 # Weird hack!
 xfct=0
