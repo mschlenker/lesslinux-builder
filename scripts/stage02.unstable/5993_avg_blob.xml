@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llpackages>
+	<package 
+		name="avgfree"
+		version="20161008-00"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                            
+				<pkg sha1="650192f75e03f5107c477e7b943b5affe808e819">avgfree-20161008-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20161008-00" interval="60" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+			<dep>ruby</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to build!'
+  			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/opt/avg/av/bin
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/avgfree
+			
+			install -m 0755 ${PKGNAME}/download-avg.rb ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0644 ${PKGNAME}/avg-free.xml ${TGTDIR}/usr/share/lesslinux/blob/
+			
+			for f in avg-gui.sh avg-gui.rb avg-wrapper.sh ; do
+				install -m 0755 ${PKGNAME}/${f} ${TGTDIR}/usr/share/lesslinux/avgfree/
+			done
+			
+			
+			cat > ${TGTDIR}/opt/avg/av/bin/avgwrapper.sh << EOF
+#!/bin/bash
+zenity --info --text 'Please install the AVG free BLOB!' || echo 'Please install the AVG free BLOB!' 
+
+EOF
+			chmod 0755 ${TGTDIR}/opt/avg/av/bin/avgwrapper.sh
+			for f in avgcfgctl avgctl avgdiag avgdump avgevtlog \
+				avgscan avgsetup avgupdate avgvvctl ; do
+				ln -sf /opt/avg/av/bin/avgwrapper.sh ${TGTDIR}/usr/bin/${f} 
+			done
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			echo 'Nothing to clean!'
+			]]>
+		</clean>
+	</package>
+</llpackages>

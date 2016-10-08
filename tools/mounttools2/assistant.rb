@@ -19,7 +19,7 @@ commands = [
 	"sudo /usr/bin/ddrescueimage.sh",
 	"sudo /usr/bin/qphotorec",
 	"sudo /usr/bin/gsmartcontrol",
-	"sudo /usr/bin/blobinstall.sh --check avg-free"
+	"sudo /usr/share/lesslinux/avgfree/avg-wrapper.sh"
 ]
 
 
