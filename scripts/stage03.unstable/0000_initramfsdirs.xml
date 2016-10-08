@@ -1910,7 +1910,7 @@ height=$2
 
 pgbar_offset_x=` expr ${width} / 20 `
 img_offset_x=` expr ${width} / 2 - 87 `
-img_offset_y=` expr ${height} / 2 - 104 `
+img_offset_y=` expr ${height} / 2 - 65 `
 pgbar_offset_y=` expr ${img_offset_y} + 130 `
 pgbar_width=` expr ${width} - 2 '*' ${pgbar_offset_x} ` 
 
@@ -3592,6 +3592,16 @@ iso_gpt_convert() {
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "$convert_prepare" "" tty1
 	[ "$ultraquiet" -eq 3 -a -p /splash.fifo ] && echo 90 > /splash.fifo
 	
+	# When installed from batchinstall or USB install the ISOhybrid MBR gets nuked,
+	# it should be saved to a file than. Try to find it! On a drirect install
+	# from Win32DiskImager or dd we should not need it.
+	
+	# Copy the saved MBR first
+	mkdir -p /lesslinux/boot
+	mount -t ext4 -o ro ${device}2 /lesslinux/boot
+	[ -f /lesslinux/boot/isohybridmbr.bin ] && cp -v /lesslinux/boot/isohybridmbr.bin /tmp
+	umount /lesslinux/boot
+	
 	# Size of boot/isolinux directory in kilobytes
 	bootsize=` du -sk /lesslinux/cdrom/boot | awk '{print $1}' `
 	efidirsize=` du -sk /lesslinux/cdrom/boot/efi | awk '{print $1}' `
@@ -3784,12 +3794,12 @@ iso_gpt_convert() {
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 45 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 45 > /splash.fifo
 	
-	# Sixth partition - ISO image reserved
+	# Seventh partition - ISO image reserved
 	parted -s $device unit B mkpart primary ext2 $seventhpartstart ` expr $eighthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 50 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 50 > /splash.fifo
 	
-	# Seventh partition - ISO image
+	# Eight partition - ISO image
 	parted -s $device unit B mkpart primary ext2 $eighthpartstart ` expr '(' $deviceblocks - 1 ')' '*' 8388608 - 1 `
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 55 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 55 > /splash.fifo
@@ -3819,6 +3829,14 @@ iso_gpt_convert() {
 	sync
 	mdev -s
 	sleep 2
+	
+	# Copy the saved ISOhybrid MBR: 
+	if [ -f /tmp/isohybridmbr.bin ] ; then
+		dd if=/tmp/isohybridmbr.bin of=${device}8 conv=notrunc
+		sync
+		rm /tmp/isohybridmbr.bin
+	fi
+	
 	mkfs.ext2 -L LessLinuxBoot "${device}2"
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 85 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 85 > /splash.fifo

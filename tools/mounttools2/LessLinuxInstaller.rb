@@ -118,7 +118,8 @@ class LessLinuxInstaller
 		system("sync") 
 		system("rm /var/run/lesslinux/#{tgt.device}/copyblock.bin")
 		system("rm /var/run/lesslinux/#{tgt.device}/checkblock.bin")
-	
+		# Copy the first 32k to a file: 
+		system("dd bs=8192 count=4 if=/dev/#{tgt.device} of=/var/run/lesslinux/#{tgt.device}/isohybridmbr.bin")
 		# Blank the first 32k 
 		system("dd if=/dev/zero bs=8192 count=4 of=/dev/#{tgt.device} conv=fsync")
 		# Create the boot partition legacy
@@ -150,6 +151,7 @@ class LessLinuxInstaller
 			run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
 		end
 		run_command("rsync", [ "rsync", "-avHP", "#{sizes[5]}/boot", "/var/run/lesslinux/#{tgt.device}/install_boot/" ] , @tl.get_translation("write_boot")) 
+		system("cp -v /var/run/lesslinux/#{tgt.device}/isohybridmbr.bin /var/run/lesslinux/#{tgt.device}/install_boot/")
 		system("sync") 
 		system("chmod -R 0644 /var/run/lesslinux/#{tgt.device}/install_boot/")
 		run_command("dd", [ "dd", "if=#{sizes[5]}/boot/efi/efi.img", "of=/dev/#{tgt.device}3", "conv=fsync" ], @tl.get_translation("write_boot")) 
