@@ -22,12 +22,13 @@ commands = [
 	"sudo /usr/share/lesslinux/avgfree/avg-wrapper.sh"
 ]
 
-icons = [ "/usr/share/icons/Adwaita/48x48/devices/drive-multidisk.png",
-	"/usr/share/icons/Adwaita/48x48/devices/drive-multidisk.png",
-	"/usr/share/icons/Adwaita/48x48/devices/drive-multidisk.png",
-	"/usr/share/icons/Adwaita/48x48/devices/drive-multidisk.png",
-	"/usr/share/icons/Adwaita/48x48/devices/drive-multidisk.png",
-	"/usr/share/icons/Adwaita/48x48/devices/drive-multidisk.png"
+icons = [ 
+	"/usr/share/icons/Faenza/devices/48/drive-harddisk-usb.png",
+	"/usr/share/icons/Faenza/devices/48/drive-harddisk-system.png",
+	"/usr/share/icons/Faenza/devices/48/drive-harddisk-system.png",
+	"/usr/share/icons/Faenza/devices/48/camera.png",
+	"/usr/share/icons/Faenza/apps/48/gnome-disks.png",
+	"/usr/share/icons/Faenza/apps/48/comix.png"
 ]
 
 window = Gtk::Window.new
