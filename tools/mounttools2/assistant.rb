@@ -33,8 +33,8 @@ icons = [
 
 window = Gtk::Window.new
 
-# bgimg = Gtk::Image.new("/etc/lesslinux/branding/bg_assistant.png")
-bgimg = Gtk::Image.new("/tmp/bg_assistant.png")
+bgimg = Gtk::Image.new("/etc/lesslinux/branding/bg_assistant.png")
+# bgimg = Gtk::Image.new("/tmp/bg_assistant.png")
 fixed = Gtk::Fixed.new
 fixed.put(bgimg, 0, 0)
 minimize = Gtk::EventBox.new.add(Gtk::Image.new("images/minimize.png"))
