@@ -112,11 +112,11 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr \
-					--enable-glamor  \
+					--disable-glamor \
 					--enable-install-setuid \
 					--enable-suid-wrapper \
 					--disable-systemd-logind \
-					--disable-kdrive \
+					--enable-kdrive \
 					--sysconfdir=/etc \
 					--localstatedir=/var \
 					--with-xkb-output=/var/lib/xkb \
@@ -124,11 +124,11 @@
 				make -k -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr \
-					--enable-glamor \
+					--disable-glamor \
 					--enable-install-setuid \
 					--enable-suid-wrapper \
 					--disable-systemd-logind \
-					--disable-kdrive \
+					--enable-kdrive \
 					--sysconfdir=/etc \
 					--localstatedir=/var \
 					--with-xkb-output=/var/lib/xkb
