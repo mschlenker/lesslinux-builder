@@ -20,7 +20,10 @@ require 'net/http'
 #	end
 #}
 
-tarball = 'http://download.avgfree.com/filedir/inst/avg2013flx-r3115-a6155.i386.tar.gz'
+# http://download.avgfree.com/filedir/inst/avg2013flx-r3118-a6926.i386.tar.gz
+# tarball = 'http://download.avgfree.com/filedir/inst/avg2013flx-r3115-a6155.i386.tar.gz'
+
+tarball='http://download.avgfree.com/filedir/inst/avg2013flx-r3118-a6926.i386.tar.gz'
 
 exit 1 if tarball.nil? 
 
