@@ -2531,6 +2531,10 @@ case $1 in
 	fi
 	if [ -p /splash.fifo ] ; then
 		echo "exit" > /splash.fifo
+		# Re-Write config
+		fbwidth=` fbset | grep '^mode' | awk -F '["x-]' '{print $2}' `
+		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
+		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
 		chvt 8
 		# Remove old fifo
 		rm /splash.fifo
