@@ -1,0 +1,13 @@
+#!/bin/bash
+	
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+HOME=/root
+export HOME
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+ 
+/usr/bin/Esetroot /usr/local/xconfgui/testbild.png > /dev/null 2>&1
+/usr/bin/ruby /usr/local/xconfgui/pgbar.rb > /dev/null 2>&1
