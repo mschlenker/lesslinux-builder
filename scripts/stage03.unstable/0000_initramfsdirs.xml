@@ -2529,6 +2529,15 @@ case $1 in
 		umount /lib/modules/${kversion}/kernel/${dir}
 	    done
 	fi
+	if [ -p /splash.fifo ] ; then
+		echo "exit" > /splash.fifo
+		chvt 8
+		# Remove old fifo
+		rm /splash.fifo
+		# Create new (empty fifo)
+		mkfifo /splash.fifo
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
+	fi
     ;;
 esac
 
