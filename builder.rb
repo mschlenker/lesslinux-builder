@@ -104,7 +104,7 @@ puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"
 	end
 }
 
-if @force_linear == false && @thread_count < 2
+if @force_linear == false && @thread_count < 2 && !@skip_stages.include?("2") 
 	puts "Use at least two threads or --force-linear!"
 	raise "NotEnoughThreads"
 end
