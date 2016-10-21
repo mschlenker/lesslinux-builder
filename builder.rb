@@ -610,7 +610,7 @@ def run_stage_two
 				
 				# current_builds.push(p.pkg_name)
 				building_threads = 0
-				thread_info.each { |s| building_threads += 1 if s == "build" }
+				thread_info.each { |s| building_threads += 1 if s =~ /^build/ }
 				if  ( build_bottom_queue.size < 1 &&  build_top_queue.size < 1 ) # p.nil? # || work_in_progress.include?(p.pkg_name)
 					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " Ooops, someone was faster... "
 					thread_info[n] = "w"
