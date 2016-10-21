@@ -112,7 +112,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr \
-					--disable-glamor \
+					--enable-glamor \
 					--enable-install-setuid \
 					--enable-suid-wrapper \
 					--disable-systemd-logind \
@@ -124,7 +124,7 @@
 				make -k -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --prefix=/usr \
-					--disable-glamor \
+					--enable-glamor \
 					--enable-install-setuid \
 					--enable-suid-wrapper \
 					--disable-systemd-logind \
