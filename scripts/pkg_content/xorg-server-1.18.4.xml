@@ -33,6 +33,7 @@
         <file path='/usr/lib/xorg/modules/drivers/modesetting_drv.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xorg/modules/libwfb.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xorg/modules/libint10.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xorg/modules/libglamoregl.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xorg/modules/libfbdevhw.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xorg/modules/libshadow.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xorg/modules/extensions/libglx.so' owner='0' group='0' mode='100755'/>
@@ -86,6 +87,7 @@
         <file path='/usr/include/xorg/xf86Pci.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/xorg/dgaproc.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/xorg/damagestr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xorg/glamor.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/xorg/migc.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/xorg/xvmcext.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/xorg/fbdevhw.h' owner='0' group='0' mode='100644'/>
@@ -241,8 +243,21 @@
         <file path='/usr/share/X11/xorg.conf.d/10-quirks.conf' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/aclocal/xorg-server.m4' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/xorg/modules/drivers/modesetting_drv.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xorg/modules/libglamoregl.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xorg/protocol.txt' owner='0' group='0' mode='100644'/>
         <file path='/var/lib/xkb/README.compiled' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>
