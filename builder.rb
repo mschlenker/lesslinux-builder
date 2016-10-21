@@ -104,6 +104,11 @@ puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"
 	end
 }
 
+if @force_linear == false && @thread_count < 2
+	puts "Use at least two threads or --force-linear!"
+	raise "NotEnoughThreads"
+end
+
 arch = ` uname -m `.strip
 unless arch =~ /i(4|5|6)86/ || @ignore_arch == true 
 	puts "Currently builds are only allowed on i486, i586 or i686!"
@@ -660,14 +665,14 @@ def run_stage_two
 					end
 					work_in_progress[n] = p.pkg_name
 					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " build " + p.pkg_name + " from dependency queue "
-					thread_info[n] = "build"
+					thread_info[n] = "build:#{p.pkg_name}"
 					$stdout.flush
 					build_stage02_package(p)
 					thread_info[n] = "wi"
 					m.synchronize { 
 						puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + 
 							" install " + p.pkg_name + " from dependency queue "
-						thread_info[n] = "install"
+						thread_info[n] = "install:#{p.pkg_name}"
 						puts sprintf("%015.4f", Time.now.to_f) + " debug  > Memory usage #{memory_usage.to_s} kB"
 						$stdout.flush
 						install_stage02_package(p, queue_name)
