@@ -3793,27 +3793,33 @@ iso_gpt_convert() {
 	[ -p /splash.fifo ] && echo 30 > /splash.fifo
 	
 	# Fourth partition - Blob
-	parted -s $device unit B mkpart "${brandshort}-BLOB" ext2 $fourthpartstart ` expr $fifthpartstart - 1 ` 
+	blobpartlabel="${brandshort}-BLOB"
+	[ "$blobblocks" -lt 32 ] && blobpartlabel=empty
+	parted -s $device unit B mkpart "${blobpartlabel}" ext2 $fourthpartstart ` expr $fifthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 35 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 35 > /splash.fifo
 	
 	# Fifth partition - encrypted container
-	parted -s $device unit B mkpart "${brandshort}-HOME" ext2 $fifthpartstart ` expr $sixthpartstart - 1 ` 
+	homepartlabel="${brandshort}-HOME"
+	[ "$hcblocks" -lt 32 ] && homepartlabel=empty
+	parted -s $device unit B mkpart "${homepartlabel}" ext2 $fifthpartstart ` expr $sixthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 40 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 40 > /splash.fifo
 	
 	# Sixth partition - Swap
-	parted -s $device unit B mkpart "${brandshort}-SWAP" ext2 $sixthpartstart ` expr $seventhpartstart - 1 ` 
+	swappartlabel="${brandshort}-SWAP"
+	[ "$swapblocks" -lt 32 ] && swappartlabel=empty
+	parted -s $device unit B mkpart "${swappartlabel}" ext2 $sixthpartstart ` expr $seventhpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 45 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 45 > /splash.fifo
 	
 	# Seventh partition - ISO image reserved
-	parted -s $device unit B mkpart "${brandshort}-SYS" ext2 $seventhpartstart ` expr $eighthpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-SYS2" ext2 $seventhpartstart ` expr $eighthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 50 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 50 > /splash.fifo
 	
 	# Eight partition - ISO image
-	parted -s $device unit B mkpart "${brandshort}-SYS" ext2 $eighthpartstart ` expr '(' $deviceblocks - 1 ')' '*' 8388608 - 1 `
+	parted -s $device unit B mkpart "${brandshort}-SYS1" ext2 $eighthpartstart ` expr '(' $deviceblocks - 1 ')' '*' 8388608 - 1 `
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 55 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 55 > /splash.fifo
 	
