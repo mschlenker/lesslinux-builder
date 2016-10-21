@@ -3773,12 +3773,12 @@ iso_gpt_convert() {
 	[ -p /splash.fifo ] && echo 5 > /splash.fifo
 	
 	# First partition - data
-	parted -s $device unit B mkpart primary fat32 8388608 ` expr $secpartstart - 1 `  
+	parted -s $device unit B mkpart "${brandshort}-DATA" fat32 8388608 ` expr $secpartstart - 1 `  
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 10 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 10 > /splash.fifo
 	
 	# Second partition - legacy boot
-	parted -s $device unit B mkpart primary ext2 $secpartstart ` expr $thirdpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-BIOS" ext2 $secpartstart ` expr $thirdpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 15 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 15 > /splash.fifo
 	parted -s $device unit B set 2 legacy_boot on
@@ -3786,34 +3786,34 @@ iso_gpt_convert() {
 	[ -p /splash.fifo ] && echo 20 > /splash.fifo
 	
 	# Third partition - EFI Boot
-	parted -s $device unit B mkpart primary fat32 $thirdpartstart ` expr $fourthpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-UEFI" fat32 $thirdpartstart ` expr $fourthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 25 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ "$efisize" -gt 0 ] && parted -s $device unit B set 3 boot on
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 30 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 30 > /splash.fifo
 	
 	# Fourth partition - Blob
-	parted -s $device unit B mkpart primary ext2 $fourthpartstart ` expr $fifthpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-BLOB" ext2 $fourthpartstart ` expr $fifthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 35 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 35 > /splash.fifo
 	
 	# Fifth partition - encrypted container
-	parted -s $device unit B mkpart primary ext2 $fifthpartstart ` expr $sixthpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-HOME" ext2 $fifthpartstart ` expr $sixthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 40 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 40 > /splash.fifo
 	
 	# Sixth partition - Swap
-	parted -s $device unit B mkpart primary ext2 $sixthpartstart ` expr $seventhpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-SWAP" ext2 $sixthpartstart ` expr $seventhpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 45 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 45 > /splash.fifo
 	
 	# Seventh partition - ISO image reserved
-	parted -s $device unit B mkpart primary ext2 $seventhpartstart ` expr $eighthpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-SYS" ext2 $seventhpartstart ` expr $eighthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 50 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 50 > /splash.fifo
 	
 	# Eight partition - ISO image
-	parted -s $device unit B mkpart primary ext2 $eighthpartstart ` expr '(' $deviceblocks - 1 ')' '*' 8388608 - 1 `
+	parted -s $device unit B mkpart "${brandshort}-SYS" ext2 $eighthpartstart ` expr '(' $deviceblocks - 1 ')' '*' 8388608 - 1 `
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 55 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 55 > /splash.fifo
 	
@@ -4430,7 +4430,7 @@ case $1 in
 esac
 		]]>
 		</scriptdata>
-		<scriptdata location="/etc/rc.d/0120-update.sh" mode="0755" group="0" owner="0">
+		<!-- <scriptdata location="/etc/rc.d/0120-update.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides update
@@ -4460,7 +4460,7 @@ case $1 in
 	        for i in ` cat /lesslinux/cdrom/${contdir}/mount.txt | awk '{print $1}' ` ; do
 		    delta=` echo $i | sed 's/\.sqs/.xd3/g' `
 		    if [ -f /lesslinux/cdrom/${contdir}/$delta ] ; then
-		        printf "$bold---> Applying update for $i $normal\n"
+		        printf "$bold===> Applying update for $i $normal\n"
 			xdelta3 -d -s /lesslinux/cdrom/${contdir}/$i /lesslinux/cdrom/${contdir}/$delta /tmp/$i && \
 			    rm /lesslinux/cdrom/${contdir}/$delta && \
 			    rm /lesslinux/cdrom/${contdir}/$i && \
@@ -4497,12 +4497,12 @@ case $1 in
 		thatversion=` cat /lesslinux/update_iso/${contdir}/version.txt ` 2> /dev/null
 		if [ "$thisversion" = "$thatversion" ] ; then
 		    if ( cd /lesslinux/update_iso/${contdir}/ ; sha1sum -c squash.sha ) ; then
-		        printf "$bold---> Check of new files successful... $normal\n"
+		        printf "$bold===> Check of new files successful... $normal\n"
 			rm /lesslinux/cdrom/${contdir}/*.sqs
 		        ( cd /lesslinux/update_iso/${contdir}/ ; tar -cvf - . | tar -C /lesslinux/cdrom/${contdir} -xf - )
 		        update_found=1
 		    else
-		        printf "$bold---> Check of new files failed... $normal\n"
+		        printf "$bold===> Check of new files failed... $normal\n"
 			printf "$bold     Maybe drive is damaged - consider reinstallation $normal\n"
 			printf "$bold     Sleeping 30 seconds $normal\n"
 			sleep 30
@@ -4521,7 +4521,7 @@ case $1 in
 esac    
 
 		]]>
-		</scriptdata>
+		</scriptdata> -->
 		<scriptdata location="/etc/rc.d/0135-toram.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
@@ -4810,6 +4810,8 @@ export PATH
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
 
 format_and_mount_swap() {
 	auxuuid=$1
@@ -4819,7 +4821,7 @@ format_and_mount_swap() {
 	mkdir -m 0700 /lesslinux/cryptkeys
 	dd if=/dev/urandom bs=1M count=4 of=${swapkey} 
 	chmod 0600 ${swapkey} 
-	cryptsetup luksFormat --uuid=${auxuuid} -c aes-cbc-essiv:sha256 -s 256 -q ${auxpart} ${swapkey} 
+	cryptsetup luksFormat --uuid=${auxuuid} -c aes-xts-plain64 -s 512 -h sha512 -i 5000 -q ${auxpart} ${swapkey} 
 	shortpart=` echo $auxpart | sed 's%/dev/%%g' `
 	cryptsetup luksOpen --key-file ${swapkey} ${auxpart} ${shortpart} && \
 		ln -s /dev/mapper/${shortpart} /dev/mapper/cryptoswap && \
@@ -4842,7 +4844,8 @@ case $1 in
 			swapon $swappart
 		fi
 	else
-		swappart=` blkid -L LessLinuxSwap `
+		swappart=` blkid -o device -t PARTLABEL="${brandshort}-SWAP" `
+		[ -z "$swappart" ] && swappart=` blkid -L LessLinuxSwap `
 		[ -z "$swappart" ] && exit 1 
 		swapuuid=` blkid -o udev $swappart | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
 		format_and_mount_swap $swapuuid $swappart
@@ -4905,6 +4908,15 @@ case $1 in
 		else
 			mount -t btrfs -o relatime,compress $blobdev /lesslinux/blobpart
 		fi
+		thisversion=` cat /etc/lesslinux/updater/version.txt `
+		if [ -f /lesslinux/blobpart/updates/update-${thisversion}.txz ] ; then
+			# Check signature first!
+			# Import the key
+			/usr/bin/gpg --import /etc/lesslinux/updater/updatekey.asc
+			if /usr/bin/gpg --verify /lesslinux/blobpart/updates/update-${thisversion}.txz.asc ; then
+				tar -C / -xf /lesslinux/blobpart/updates/update-${thisversion}.txz
+			fi
+		fi
 	fi
     ;;
     stop)
@@ -4914,6 +4926,25 @@ case $1 in
 	umount /lesslinux/blobpart
     ;;
 esac
+	
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0143-update.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides updateoverlay1
+#lesslinux license BSD
+#lesslinux description
+# Overwrite this script at update time
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+exit 0
 	
 		]]>
 		</scriptdata>
@@ -5489,7 +5520,7 @@ esac
 
 # END		]]>
 		</scriptdata>
-		<scriptdata location="/etc/rc.d/0600-ntpd.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0650-ntpd.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides ntpd
@@ -5511,6 +5542,25 @@ case $1 in
 esac
 
 # END		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/9998-update.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides updateoverlay2
+#lesslinux license BSD
+#lesslinux description
+# Overwrite this script at update time
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+exit 0
+	
+		]]>
 		</scriptdata>
 		<scriptdata location="/etc/rc.d/9999-local.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
