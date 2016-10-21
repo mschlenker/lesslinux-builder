@@ -6,7 +6,7 @@ require 'gtk2'
 window = Gtk::Window.new
 pgbar = Gtk::ProgressBar.new
 pgbar.width_request = 400
-pgbar.height_request = 40
+pgbar.height_request = 32
 
 window.signal_connect("delete_event") {
         puts "delete event occurred"

@@ -4821,7 +4821,7 @@ format_and_mount_swap() {
 	mkdir -m 0700 /lesslinux/cryptkeys
 	dd if=/dev/urandom bs=1M count=4 of=${swapkey} 
 	chmod 0600 ${swapkey} 
-	cryptsetup luksFormat --uuid=${auxuuid} -c aes-xts-plain64 -s 512 -h sha512 -i 5000 -q ${auxpart} ${swapkey} 
+	cryptsetup luksFormat --uuid=${auxuuid} -c aes-xts-plain64 -s 512 -h sha512 --use-urandom -i 5000 -q ${auxpart} ${swapkey} 
 	shortpart=` echo $auxpart | sed 's%/dev/%%g' `
 	cryptsetup luksOpen --key-file ${swapkey} ${auxpart} ${shortpart} && \
 		ln -s /dev/mapper/${shortpart} /dev/mapper/cryptoswap && \
@@ -4863,6 +4863,12 @@ esac
 	
 		]]>
 		</scriptdata>
+		<modlist provides="swap" hwenv="default">
+			<module>dm-crypt</module>
+			<module>sha256</module>
+			<module>sha512</module>
+			<module>aes</module>
+		</modlist>
 		<scriptdata location="/etc/rc.d/0142-blobpart.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		

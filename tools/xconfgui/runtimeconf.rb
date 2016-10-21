@@ -333,6 +333,9 @@ def find_home_container
 	}
 	# Search partitions by label 
 	cryptpart = ` blkid -L LessLinuxCrypt `.strip if cryptpart == "" 
+	# ...or by partition label
+	cryptpart = ` blkid -o device -t  PARTLABEL=#{get_brandshort}-HOME `.strip if cryptpart == "" 
+	
 	unless cryptpart.to_s == ""
 		sha1sum = ` dd if=#{cryptpart} bs=4M count=1 | sha1sum `.split[0].strip 
 		fstype=` blkid -o udev -s TYPE #{cryptpart} `.split("=")[1].strip 
@@ -584,8 +587,6 @@ def reinit_container(container, pw, convert=false)
 	system(	"echo -n '" + pw.gsub("'", "\\\\" + '\'') + "' | openssl passwd -1 -stdin > /etc/lesslinux/surfer.hash") 
 	system( "/etc/rc.d/0040-roothash.sh start")
 	puts("== Reinitializing crypt container ==")
-	system("/sbin/modprobe -v dm-crypt")
-	system("/sbin/modprobe -v sha256")
 	system("mdev -s")
 	free_loop = "/dev/loop9999" # nil
 	IO.popen("losetup -f") { |i| 
@@ -604,9 +605,9 @@ def reinit_container(container, pw, convert=false)
 	puts("=== Writing random data to old container")
 	system("dd if=/dev/urandom bs=1M count=4 of=" + free_loop.to_s)
 	if contisdev == true
-		system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksFormat --uuid=#{uuid} -c aes-cbc-essiv:sha256 -s 256 -q " + free_loop ) 
+		system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksFormat --uuid=#{uuid} --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --use-random -q " + free_loop ) 
 	else
-		system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksFormat -c aes-cbc-essiv:sha256 -s 256 -q " + free_loop ) 
+		system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksFormat --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --use-random -q " + free_loop ) 
 	end
 	# open the container
 	system("echo '" + pw.gsub("'", "\\\\" + '\'') + "' | cryptsetup luksOpen -q " + free_loop + " " + free_loop.gsub("/dev/", "") )
