@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="lesslinux-eset"
+		version="20161027-00"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<manualcheck date="20160902" interval="120" page="http://distfiles.lesslinux.org/" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xset-1.2.3." />
+					<atext linktext="xset-1.2.4." />
+					<atext linktext="xset-1.2.5." />
+					<atext linktext="xset-1.2.6." />
+					<atext linktext="xset-1.3." />
+					<atext linktext="xset-1.4." />
+					<atext linktext="xset-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			/bin/true
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do here!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			# cd lesslinux-eset
+			mkdir -p ${TGTDIR}/etc/opt/eset
+			touch ${TGTDIR}/etc/opt/eset/.keep_me
+			mkdir -p ${TGTDIR}/opt/eset/esets
+			touch ${TGTDIR}/opt/eset/esets/.keep_me
+			mkdir -p ${TGTDIR}/var/opt/eset/esets
+			touch ${TGTDIR}/var/opt/eset/esets/.keep_me
+			]]>
+		</install>
+	</package>
+</llpackages>
