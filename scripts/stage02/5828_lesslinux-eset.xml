@@ -47,6 +47,15 @@
 			touch ${TGTDIR}/opt/eset/esets/.keep_me
 			mkdir -p ${TGTDIR}/var/opt/eset/esets
 			touch ${TGTDIR}/var/opt/eset/esets/.keep_me
+			
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/applications
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
+			install -m 0755 download-eset.rb ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0644 eset.xml ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0644 eset.desktop ${TGTDIR}/usr/share/applications
+			install -m 0755 eset.sh ${TGTDIR}/usr/bin
+			
 			]]>
 		</install>
 	</package>

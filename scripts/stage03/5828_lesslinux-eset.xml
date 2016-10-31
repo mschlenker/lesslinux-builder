@@ -50,7 +50,9 @@ case $1 in
 	if mountpoint -q /lesslinux/eset/sys ; then
 	    printf "$bold===> Skipping ESET, already mounted $normal\n"
 	else
-	    printf "$bold===> Preoparing ESET $normal\n"
+	    printf "$bold===> Preparing ESET $normal\n"
+	    esetiso=""
+	    esetsys=""
 	    if mountpoint -q /lesslinux/blobpart ; then
 		[ -f /lesslinux/blobpart/eset/eset.iso ] && esetiso="/lesslinux/blobpart/eset/eset.iso"
 		[ -f /lesslinux/blobpart/eset/eset.sqs ] && esetsys="/lesslinux/blobpart/eset/eset.sqs"
@@ -67,20 +69,21 @@ case $1 in
 	    mkdir -m 0755 -p /mnt/eset-live-rw
 	    mkdir -m 0755 -p /var/log/esets
 	    mkdir -m 0755 -p /etc/opt/eset
-	    esetiso=""
-	    esetsys=""
+	    
 	    
 	    # Mount the ISO if no SQS is available
 	    if [ -z "$esetsys" ] ; then
 		mount -o loop "$esetiso" /lesslinux/eset/iso
 		if mountpoint -q /lesslinux/blobpart ; then
 		    mkdir -p /lesslinux/blobpart/eset
-		    cp /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blobpart/eset/eset.sqs
-		    umount /lesslinux/eset/iso
+		    cp /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blobpart/eset/eset.sqs && \
+		    umount /lesslinux/eset/iso && \
 		    rm /lesslinux/blobpart/eset/eset.iso
 		    esetsys="/lesslinux/blobpart/eset/eset.sqs"
 		else
-		    ln -s /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blob/eset/eset.sqs
+		    cp -v /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blob/eset/eset.sqs && \
+		    umount /lesslinux/eset/iso && \
+		    rm /lesslinux/blobpart/eset/eset.iso
 		    esetsys="/lesslinux/blob/eset/eset.sqs"
 		fi
 	    fi
@@ -97,7 +100,7 @@ case $1 in
 		if [ -d /lesslinux/blobpart/eset/lib ] ; then
 		    mount --bind /lesslinux/blobpart/eset/etc /etc/opt/eset
 		else
-		    rsync -avHP /tmp/esetsys/mnt/eset-live-rw/lib/ /lesslinux/blobpart/eset/lib/
+		    rsync -avHP /lesslinux/eset/sys/mnt/eset-live-rw/lib/ /lesslinux/blobpart/eset/lib/
 		    rsync -avHP /lesslinux/eset/sys/etc/opt/eset/ /lesslinux/blobpart/eset/etc
 		    mount --bind /lesslinux/blobpart/eset/etc /etc/opt/eset
 		fi
@@ -105,8 +108,18 @@ case $1 in
 	    else
 		mkdir -p /mnt/eset-live-rw/lib
 		mount -t tmpfs -o mode=0755,size=512M tmpfs /mnt/eset-live-rw/lib/
-		rsync -avHP /tmp/esetsys/mnt/eset-live-rw/lib/ /mnt/eset-live-rw/lib/
+		rsync -avHP /lesslinux/eset/sys/mnt/eset-live-rw/lib/ /mnt/eset-live-rw/lib/
 		rsync -avHP /lesslinux/eset/sys/etc/opt/eset/ /etc/opt/eset/
+	    fi
+	    # Write username if available
+	    esetrand=""
+	    [ -f /lesslinux/blob/eset/esetrand ] && esetrand="/lesslinux/blob/eset/esetrand"
+	    [ -f /lesslinux/blobpart/eset/esetrand ] && esetrand="/lesslinux/blobpart/eset/esetrand"
+	    if grep av_update_username /etc/opt/eset/esets/esets.cfg  ; then
+		echo "Username is already written..." 
+	    elif [ -n "$esetrand" ] ; then
+	        install -m 0755 "$esetrand" /static/sbin
+		/static/sbin/esetrand >> /etc/opt/eset/esets/esets.cfg
 	    fi
 	    # Now start the daemon
 	    /opt/eset/esets/sbin/esets_daemon
