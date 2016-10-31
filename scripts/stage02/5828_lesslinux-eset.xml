@@ -1,12 +1,16 @@
 <llpackages>
 	<package 
 		name="lesslinux-eset"
-		version="20161027-00"
+		version="20161031-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<manualcheck date="20160902" interval="120" page="http://distfiles.lesslinux.org/" />
+			<file>
+				<pkg sha1="c587dc83b63390da93df50957c7be226cdb165b9">lesslinux-eset-20161031-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20161031" interval="120" page="http://distfiles.lesslinux.org/" />
 			<!--
 			https://download.eset.com/com/eset/tools/recovery/rescue_cd/latest/eset-sysrescue.1.0.9.0.enu.iso
 			-->
@@ -28,7 +32,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			/bin/true
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<patch />
@@ -40,14 +44,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			# cd lesslinux-eset
+			cd eset
 			mkdir -p ${TGTDIR}/etc/opt/eset
 			touch ${TGTDIR}/etc/opt/eset/.keep_me
 			mkdir -p ${TGTDIR}/opt/eset/esets
 			touch ${TGTDIR}/opt/eset/esets/.keep_me
 			mkdir -p ${TGTDIR}/var/opt/eset/esets
 			touch ${TGTDIR}/var/opt/eset/esets/.keep_me
-			
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/applications
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
