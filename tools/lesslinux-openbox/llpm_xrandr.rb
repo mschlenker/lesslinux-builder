@@ -30,14 +30,18 @@ lang = "en" if lang.nil?
 
 resolutions = Array.new 
 common_res = [
+	RandResolution.new(2560, 1600),
+	RandResolution.new(2560, 1440),
+	RandResolution.new(1920, 1440),
 	RandResolution.new(1920, 1200),
 	RandResolution.new(1920, 1080),
 	RandResolution.new(1680, 1050),
 	RandResolution.new(1600, 1200),
-	RandResolution.new(1440, 900),
-	RandResolution.new(1400, 1050),
+	RandResolution.new(1440, 1050),
+	RandResolution.new(1400, 900),
 	RandResolution.new(1366, 768),
 	RandResolution.new(1280, 1024),
+	RandResolution.new(1280, 960),
 	RandResolution.new(1280, 800),
 	RandResolution.new(1280, 768),
 	RandResolution.new(1280, 720),
@@ -54,6 +58,9 @@ root = REXML::Element.new "openbox_pipe_menu"
 
 IO.popen("xrandr") { |l|
 	while l.gets
+		if $_.strip =~ /current\s([0-9]*)\sx\s([0-9]*)\,/ 
+			selected = RandResolution.new($1.to_i, $2.to_i) 
+		end
 		if $_.strip =~ /^[0-9]/
 			ltoks = $_.strip.split
 			resolutions.push(RandResolution.new(ltoks[0].split("x")[0].to_i, ltoks[0].split("x")[1].to_i))
