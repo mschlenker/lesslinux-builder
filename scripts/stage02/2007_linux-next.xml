@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
-		name="linux-next-nopae"
-		version="4.8.0"
+		name="linux-next"
+		version="4.8.6"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
-		<sources>
+			<sources>
 			<file>                                  
-				<pkg sha1="76976b64035ad6aa6c0a08a8f1501eb4e776b88a">linux-4.8-config-nopae</pkg> 
+				<pkg sha1="fde4c349a3408c0cc7325764d536af6714bdd199">linux-4.8-config-32pae</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -18,16 +18,16 @@
 				<pkg sha1="e375f93600a7b96191498af39e5a2416b6666e59">linux-4.8.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<!-- <file>
-				<pkg sha1="c72e9aa28fc2a7816d21e69c24420382a70a8767">patch-4.4.23.xz</pkg>
+			<file>
+				<pkg sha1="b5857b80d17360320dff44202c445c78339e1146">patch-4.8.6.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
-			</file> -->
-			<manualcheck date="20160804" interval="60" page="http://www.kernel.org/" />
+			</file>
+			<manualcheck date="20161101" interval="60" page="http://www.kernel.org/" />
 			<check>
-				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.8.1." />
-					<atext linktext="patch-4.8.2." />
-					<atext linktext="patch-4.8.3." />
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
+					<atext linktext="patch-4.8.5." />
+					<atext linktext="patch-4.8.6." />
+					<atext linktext="patch-4.8.7." />
 					<atext linktext="patch-4.9." />
 					<atext linktext="patch-4.10." />
 					<atext linktext="patch-4.11." />
@@ -72,14 +72,14 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			localversion='ll-next-nopae-0'
+			localversion='ll-next-pae-0'
 			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/linux-${major}.${minor}-config-nopae .config
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-32pae .config
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
@@ -114,19 +114,19 @@
 		<test />
 		<install>
 			<![CDATA[
-			localversion='ll-nopae-0'
+			localversion='ll-next-pae-0'
 			
 			cd linux-${PKGVERSION}.build
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
-			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-nopae 
+			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-next
 			INSTALL_MOD_PATH=${TGTDIR} make modules_install
 			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
 				INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox/${mod} modules_install
 			done
 			rm -rf ${TGTDIR}/lib/firmware 
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
-			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-nopae
+			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-next
 			for link in source build ; do
 				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
@@ -140,11 +140,10 @@
 			  <![CDATA[
 			  
 			  rm -rf linux-${PKGVERSION}
-			  rm -rf linux-${PKGVERSION}.build 
+			  rm -rf linux-${PKGVERSION}.build
 			  rm -rf VirtualBox
 			  
 			  ]]>
 		</clean>
 	</package>
 </llpackages>
-

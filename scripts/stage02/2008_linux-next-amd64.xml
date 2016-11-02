@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
-		name="linux-next"
-		version="4.8.0"
+		name="linux-next-amd64"
+		version="4.8.6"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
-			<sources>
+		<sources>
 			<file>                                  
-				<pkg sha1="88b56c9de4fd2ad3300f718f545ddb10cc172f23">linux-4.8-config-32pae</pkg> 
+				<pkg sha1="5176e34ceedaebe08a5dbed79ce19e7efc5c0cec">linux-4.8-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -18,16 +18,16 @@
 				<pkg sha1="e375f93600a7b96191498af39e5a2416b6666e59">linux-4.8.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<!-- <file>
-				<pkg sha1="c72e9aa28fc2a7816d21e69c24420382a70a8767">patch-4.4.23.xz</pkg>
+			<file>
+				<pkg sha1="b5857b80d17360320dff44202c445c78339e1146">patch-4.8.6.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
-			</file> -->
-			<manualcheck date="20160804" interval="60" page="http://www.kernel.org/" />
+			</file>
+			<manualcheck date="20161101" interval="60" page="http://www.kernel.org/" />
 			<check>
-				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.8.1." />
-					<atext linktext="patch-4.8.2." />
-					<atext linktext="patch-4.8.3." />
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
+					<atext linktext="patch-4.8.5." />
+					<atext linktext="patch-4.8.6." />
+					<atext linktext="patch-4.8.7." />
 					<atext linktext="patch-4.9." />
 					<atext linktext="patch-4.10." />
 					<atext linktext="patch-4.11." />
@@ -41,6 +41,7 @@
                         <dep>diffutils</dep>
                         <dep>findutils</dep>
                         <dep>gcc</dep>
+			<dep>cross-gcc-amd64-klibc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>gzip</dep>
@@ -57,11 +58,12 @@
 			<dep>gzip</dep>
 			<dep>lesslinux-modextract</dep>
 			<dep>module-init-tools</dep>
-			<!-- <dep>linux-pax</dep> -->
+			<!-- artificial dependencies, do not build more than two kernels at once -->
+			<dep>linux</dep>
+			<dep>linux-nopae</dep>
 			<dep>bc</dep>
 			<dep>distcc</dep>
 			<dep>kmod</dep>
-			<dep>VirtualBox</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -72,76 +74,100 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			localversion='ll-next-pae-0'
+			localversion='ll-next-64-0'
 			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
 			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/linux-${major}.${minor}-config-32pae .config
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
 			mkdir linux-${PKGVERSION}.build
 			tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
+			
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
 			cd linux-${PKGVERSION}.build
-			yes '' | make oldconfig
-			cp -v .config ../linux-${PKGVERSION}
-			make clean
+			
+			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
+			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+			
+			echo 'PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH' > ../linux-${PKGVERSION}/environment.inc
+			echo 'OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump' >> ../linux-${PKGVERSION}/environment.inc
+			echo 'CC=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc'  >> ../linux-${PKGVERSION}/environment.inc
+			
+			echo 'ARCH=x86_64' > ../linux-${PKGVERSION}/arch.inc
+			echo 'CROSS_COMPILE="x86_64-linux-gnu-"' > ../linux-${PKGVERSION}/crosscompile.inc
+			
+			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
+			
 			jobcount=4 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-				make -j $jobcount bzImage CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount \
+					ARCH=x86_64 \
+					CROSS_COMPILE=x86_64-linux-gnu- \
+					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
+					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
+					bzImage
+				make -j $jobcount \
+					ARCH=x86_64 \
+					CROSS_COMPILE=x86_64-linux-gnu- \
+					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
+					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+				make -j $jobcount \
+					ARCH=x86_64 \
+					CROSS_COMPILE=x86_64-linux-gnu- \
+					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
+					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
+					bzImage
 			else
-				make -j $jobcount 
-				make -j $jobcount bzImage
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
 			fi
-			rsync -avHP /usr/local/VirtualBox/src/ ../VirtualBox/ 
-			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
-				make -C . M=../VirtualBox/${mod} modules
-			done
 			cd ../linux-${PKGVERSION}
-			make -j $jobcount modules_prepare 
+			make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_prepare 
 			tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			localversion='ll-pae-0'
+			
+			localversion='ll-next-64-0'
+			
+			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
+			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
 			
 			cd linux-${PKGVERSION}.build
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
-			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux
-			INSTALL_MOD_PATH=${TGTDIR} make modules_install
-			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
-				INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox/${mod} modules_install
-			done
-			rm -rf ${TGTDIR}/lib/firmware 
+			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-next-amd64 
+			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_install
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
-			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
+			rm -rf ${TGTDIR}/lib/firmware
+			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-next-amd64
 			for link in source build ; do
 				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
-			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec x86_64-linux-gnu-strip --strip-unneeded {} \; 
 			cd ../linux-${PKGVERSION}
 			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
+
 			]]>
 		</install>
 		<clean>
 			  <![CDATA[
 			  
 			  rm -rf linux-${PKGVERSION}
-			  rm -rf linux-${PKGVERSION}.build
-			  rm -rf VirtualBox
+			  rm -rf linux-${PKGVERSION}.build 
 			  
 			  ]]>
 		</clean>
