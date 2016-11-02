@@ -53,6 +53,7 @@ case $1 in
 	    printf "$bold===> Preparing ESET $normal\n"
 	    esetiso=""
 	    esetsys=""
+	    mkdir -m 0755 -p /lesslinux/eset/iso
 	    if mountpoint -q /lesslinux/blobpart ; then
 		[ -f /lesslinux/blobpart/eset/eset.iso ] && esetiso="/lesslinux/blobpart/eset/eset.iso"
 		[ -f /lesslinux/blobpart/eset/eset.sqs ] && esetsys="/lesslinux/blobpart/eset/eset.sqs"
@@ -61,11 +62,25 @@ case $1 in
 		[ -f /lesslinux/blob/eset/eset.iso ] && esetiso="/lesslinux/blob/eset/eset.iso"
 		[ -f /lesslinux/blob/eset/eset.sqs ] && esetsys="/lesslinux/blob/eset/eset.sqs"
 	    fi
+	    # Try to find any ISO image on DVD that contains a file casper/04_eset.squashfs
+	    if [ -z "$esetiso" -a -z "$esetsys" ] ; then
+	        find /lesslinux/cdrom -maxdepth 3 -name '*.iso' | while read isoname ; do
+		    mount -t iso9660 "$isoname" /lesslinux/eset/iso
+		    [ -f /lesslinux/eset/iso/casper/04_eset.squashfs ] && esetiso="$isoname"
+		    umount /lesslinux/eset/iso
+		done
+	    fi
 	    
 	    # ESET not found? Exit!
 	    [ -z "$esetiso" -a -z "$esetsys" ] && exit 0
+	    
+	    # Copy the squashfs if blobpart available but sqs not yet there!
+	    if [ -n "$esetsys" -a '!' -d /lesslinux/blobpart/eset ] ; then
+		mkdir -p /lesslinux/blobpart/eset 
+		cp -v "$esetsys" /lesslinux/blobpart/eset 
+	    fi
+	    
 	    mkdir -m 0755 -p /lesslinux/eset/sys
-	    mkdir -m 0755 -p /lesslinux/eset/iso
 	    mkdir -m 0755 -p /mnt/eset-live-rw
 	    mkdir -m 0755 -p /var/log/esets
 	    mkdir -m 0755 -p /etc/opt/eset
