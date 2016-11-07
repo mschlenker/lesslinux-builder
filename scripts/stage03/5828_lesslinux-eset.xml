@@ -63,9 +63,9 @@ case $1 in
 		[ -f /lesslinux/blob/eset/eset.sqs ] && esetsys="/lesslinux/blob/eset/eset.sqs"
 	    fi
 	    # Try to find any ISO image on DVD that contains a file casper/04_eset.squashfs
-	    if [ -z "$esetiso" -a -z "$esetsys" ] ; then
-	        find /lesslinux/cdrom -maxdepth 3 -name '*.iso' | while read isoname ; do
-		    mount -t iso9660 "$isoname" /lesslinux/eset/iso
+	    if [ -z "$esetiso" -a -z "$esetsys" ] && mountpoint -q /lesslinux/cdrom ; then
+	        for isoname in ` find /lesslinux/cdrom -maxdepth 3 -name '*.iso' ` ; do
+		    mount -t iso9660 -o loop "$isoname" /lesslinux/eset/iso
 		    [ -f /lesslinux/eset/iso/casper/04_eset.squashfs ] && esetiso="$isoname"
 		    umount /lesslinux/eset/iso
 		done
@@ -81,6 +81,7 @@ case $1 in
 	    fi
 	    
 	    mkdir -m 0755 -p /lesslinux/eset/sys
+	    mkdir -m 0755 -p /lesslinux/blob/eset
 	    mkdir -m 0755 -p /mnt/eset-live-rw
 	    mkdir -m 0755 -p /var/log/esets
 	    mkdir -m 0755 -p /etc/opt/eset
