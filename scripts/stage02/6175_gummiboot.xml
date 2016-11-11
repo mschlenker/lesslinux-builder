@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='gummiboot' version='20150311' install='chroot'>
+    <package name='gummiboot' version='20150311' install='destdir'>
         <license>
             unknown
         </license>
@@ -27,8 +27,9 @@ make -k
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}
-make install
+            <![CDATA[
+mkdir -p ${TGTDIR}/usr/share/gummiboot
+install -m 0644 ${PKGNAME}/gummibootia32.efi ${TGTDIR}/usr/share/gummiboot
 ]]>
         </install>
         <clean>
