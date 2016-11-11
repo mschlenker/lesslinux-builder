@@ -23,7 +23,7 @@
             <![CDATA[cd ${PKGNAME}
 bash autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+make -k 
 ]]>
         </build>
         <install>
