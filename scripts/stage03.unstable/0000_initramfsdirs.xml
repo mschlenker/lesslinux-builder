@@ -3765,7 +3765,7 @@ iso_gpt_convert() {
 	sync
 	# Now backup this partition table
 	dd if="$device" of=/tmp/legacy.mbr bs=512 count=1
-	dd if=/dev/zero bs=1024 count=1024 of="$device"
+	dd if=/dev/zero bs=1024 count=1 of="$device"
 	# Create the GPT partition table
 	parted -s $device unit B mklabel gpt
 	sync
@@ -3826,7 +3826,7 @@ iso_gpt_convert() {
 	[ -p /splash.fifo ] && echo 55 > /splash.fifo
 	
 	# Write the MSDOS MBR and the GPT boot legacy block
-	dd of="$device" if=/tmp/legacy.mbr bs=512 count=1
+	# dd of="$device" if=/tmp/legacy.mbr bs=512 count=1
 	cat /etc/syslinux/gptmbr.bin > "$device"
 	rm /tmp/legacy.mbr
 	
@@ -3894,6 +3894,7 @@ iso_gpt_convert() {
 	# Copy legacy boot files
 	tar -C /lesslinux/cdrom -cf - boot/isolinux boot/grub boot/kernel | tar -C /lesslinux/boot -xf -
 	touch /lesslinux/boot/cmdline
+	cp -v /tmp/legacy.mbr /lesslinux/boot
 	# Copy GRUBs file to properly detect the boot partition
 	idfile=` ls /lesslinux/boot/boot/grub/????????.cd `
 	idtarg=` echo $idfile | sed 's/\.cd/.pt/g' ` 
