@@ -3828,7 +3828,7 @@ iso_gpt_convert() {
 	# Write the MSDOS MBR and the GPT boot legacy block
 	# dd of="$device" if=/tmp/legacy.mbr bs=512 count=1
 	cat /etc/syslinux/gptmbr.bin > "$device"
-	rm /tmp/legacy.mbr
+	# rm /tmp/legacy.mbr
 	
 	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/06driveconf.ppm
 	[ "$ultraquiet" -lt 3 ] && echo '---> Creating file systems' > /dev/tty8
