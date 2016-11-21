@@ -3759,9 +3759,13 @@ iso_gpt_convert() {
 	dd if=/dev/zero bs=1024 count=1024 of="$device"
 	# First create an DOS MBR with an active partition 
 	parted -s $device unit B mklabel msdos
-	parted -s $device unit B mkpart primary fat32 $thirdpartstart ` expr $fourthpartstart - 1 ` 
-	parted -s $device unit B set 1 boot on
-	parted -s $device unit B set 1 esp on
+	parted -s $device unit B mkpart primary fat32 512 ` expr $thirdpartstart - 1 `
+	parted -s $device unit B mkpart primary fat32 $thirdpartstart ` expr $fourthpartstart - 1 `
+	parted -s $device unit B mkpart primary fat32 $fourthpartstart '100%'
+	parted -s $device unit B set 2 boot on
+	parted -s $device unit B set 2 esp on
+	printf "print\nt\n1\nee\nquit\n" | /static/sbin/fdisk $device
+	printf "print\nt\n3\n17\nquit\n" | /static/sbin/fdisk $device
 	sync
 	# Now backup this partition table
 	dd if="$device" of=/tmp/legacy.mbr bs=512 count=1
