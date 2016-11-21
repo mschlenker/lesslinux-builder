@@ -3764,8 +3764,8 @@ iso_gpt_convert() {
 	parted -s $device unit B mkpart primary fat32 $fourthpartstart '100%'
 	parted -s $device unit B set 2 boot on
 	parted -s $device unit B set 2 esp on
-	printf "print\nt\n1\nee\nquit\n" | /static/sbin/fdisk $device
-	printf "print\nt\n3\n17\nquit\n" | /static/sbin/fdisk $device
+	printf "print\nt\n3\n17\nwrite\nquit\n" | /static/sbin/fdisk $device
+	printf "print\nt\n1\nee\nwrite\nquit\n" | /static/sbin/fdisk $device
 	sync
 	# Now backup this partition table
 	dd if="$device" of=/tmp/legacy.mbr bs=512 count=1
