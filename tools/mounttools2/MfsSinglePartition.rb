@@ -125,7 +125,7 @@ class MfsSinglePartition
 		}
 		intersect = foundfiles & winfiles
 		# $stderr.puts "Intersection: " + intersect.size.to_s 
-		if intersect.size.to_f < winfiles.size.to_f * 0.95 && @winvers.nil?
+		if intersect.size.to_f < winfiles.size.to_f * 0.9 && @winvers.nil?
 			umount if was_mounted == false
 			@winpart = false
 			return false, nil
