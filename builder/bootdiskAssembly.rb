@@ -49,8 +49,8 @@ class BootdiskAssembly
 		efi_sha = File.new(@builddir  + "/stage03/efiimage/efi.sha", "w")
 		system("mkdir -p #{@builddir}/stage03/efiimage/EFI/BOOT")
 		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubx64.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GRUBX64.EFI") if @grub == true
-		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubia32.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GRUBIA32.EFI")
-		system("rsync -avHP #{@builddir}/stage01/chroot/usr/share/gummiboot/gummibootia32.efi #{@builddir}/stage03/efiimage/EFI/BOOT/BOOTIA32.EFI")
+		system("rsync -avHP #{@builddir}/stage03/grub.tmp/grubia32.efi #{@builddir}/stage03/efiimage/EFI/BOOT/BOOTIA32.EFI")
+		system("rsync -avHP #{@builddir}/stage01/chroot/usr/share/gummiboot/gummibootia32.efi #{@builddir}/stage03/efiimage/EFI/BOOT/GUMMIA32.EFI")
 		kcfg = REXML::Document.new(File.new(kconfig))
 		kcfg.elements.each("kernels/kernel") { |k|
 			if k.attributes["efi"].to_s == "true"
