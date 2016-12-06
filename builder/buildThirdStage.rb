@@ -528,7 +528,11 @@ class ThirdStage < AnyStage
 	end
 	
 	def ThirdStage.sync_overlay(builddir, overlaydir)
-		system("rsync -avHP '" + overlaydir + "/' " + builddir  + "/stage03/initramfs/")
+		system("rsync -avHP '" + overlaydir + "/' " + builddir  + "/stage03/initramfs/") if File.directory?(overlaydir) 
+	end
+	
+	def ThirdStage.sync_root_overlay(builddir, overlaydir)
+		system("rsync -avHP '" + overlaydir + "/' " + builddir  + "/stage03/squash/")
 	end
 	
 	def ThirdStage.write_branding(builddir, branding, brandfile, build_timestamp)

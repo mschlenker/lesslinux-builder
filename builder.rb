@@ -951,6 +951,7 @@ def run_stage_three
 	ThirdStage.create_softlinks_ng(@builddir, @dbh) unless @full_image == true
 	ThirdStage.copy_firmware(@builddir)
 	# raise "DebugBreakPoint"
+	ThirdStage.sync_root_overlay(@builddir, @overlays + "/rootfs")
 	if @singlecontainer == true
 		ThirdStage.create_single_squashfs(@builddir, @kernel_file)
 	else
