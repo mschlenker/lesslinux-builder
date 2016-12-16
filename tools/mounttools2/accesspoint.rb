@@ -130,10 +130,10 @@ passbox.pack_start_defaults(@passentry)
 passframe.add passbox 
 
 @passcheck.signal_connect("clicked") {
-	if passcheck.active?
-		passentry.sensitive = true
+	if @passcheck.active?
+		@passentry.sensitive = true
 	else
-		passentry.sensitive = false
+		@passentry.sensitive = false
 	end
 }
 
