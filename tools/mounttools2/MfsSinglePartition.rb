@@ -202,6 +202,7 @@ class MfsSinglePartition
 			node = h.node_get_child(node, "International")
 			val = h.node_get_value(node, "LocaleName")
 			hash = h.value_value(val)
+			h.close 
 			return hash[:value].to_s.gsub("\x00", "").strip
 		rescue
 			return nil

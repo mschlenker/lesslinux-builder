@@ -37,6 +37,7 @@ class MfsRegistryDatabase
 		# shell.encode!("UTF-8", "UTF-8", { :invalid => :replace } )
 		@partition.umount if was_mounted == false
 		$stderr.puts "Found shell: #{shell} #{shell.encoding}"
+		h.close
 		return shell
 	end
 	
@@ -78,9 +79,11 @@ class MfsRegistryDatabase
 			newshell = { :key => "Shell", :type => 1, :value => "explorer.exe" } #  .encode("UTF-16", "UTF-8") }
 			h.node_set_value(node, newshell)
 			h.commit(mnt[0] + "/" + @regfile)
+			h.close
 		rescue
 			return false
 		end
+		h.close 
 		return true
 	end
 
