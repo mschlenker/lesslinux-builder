@@ -38,24 +38,36 @@ def start_ap
 	iface = @wifidevices[@wificombo.active]
 	eface = @wireddevices[@wiredcombo.active]
 	cffile.write("interface=#{iface}\n")
-	cffile.write("ssid=\"#{@essid.text}\"\nhw_mode=g\nchannel=11\n")
+	cffile.write("ssid=#{@essid.text}\nhw_mode=g\nchannel=11\n")
 	if @passcheck.active?
 		cffile.write("wpa=3\nwpa_passphrase=#{@passentry.text}\n")
 		cffile.write("wpa_key_mgmt=WPA-PSK WPA-PSK-SHA256 WPA-EAP WPA-EAP-SHA256\n")
 	end
 	cffile.close
 	system("/etc/rc.d/0590-wicd.sh stop") 
+	system("rfkill unblock all")
 	system("dhcpcd -x")
 	# Put down all interfaces:
 	[ iface, eface ].each { |d| system("ip link set dev #{d} down") }
 	# Start bridge
-	system("brctl addbr bridge0")
-	system("brctl addif bridge0 #{eface}")
-	# Start hostapd
-	system("hostapd /etc/hostapd.conf.lesslinux &")
-	system("brctl addif bridge0 #{iface}")
-	# And up again
-	[ iface, eface, "bridge0" ].each { |d| system("ip link set dev #{d} up") }
+	if File.exists?("/usr/sbin/brctl") 
+		system("brctl addbr bridge0")
+		system("brctl addif bridge0 #{eface}")
+		# Start hostapd
+		system("hostapd /etc/hostapd.conf.lesslinux &")
+		system("brctl addif bridge0 #{iface}")
+		# And up again
+		[ iface, eface, "bridge0" ].each { |d| system("ip link set dev #{d} up") }
+	else
+		system("ip link add name bridge0 type bridge")
+		[ eface, "bridge0" ].each { |d| system("ip link set dev #{d} up") }
+		system("ip link set #{eface} master bridge0")
+		system("hostapd /etc/hostapd.conf.lesslinux &")
+		sleep 2.0
+		system("ip link set dev #{iface} up") 
+		system("ip link set #{iface} master bridge0")
+		# system("ip link set dev #{iface} up") 
+	end
 	# Start DHCPCD
 	system("dhcpcd -z bridge0")
 end
@@ -65,10 +77,14 @@ def stop_ap
 	eface = @wireddevices[@wiredcombo.active]
 	system("dhcpcd -x")
 	sleep 2.0
-	[ "bridge0", iface, eface ].each { |d| system("ip link set dev #{d} down") }
 	system("killall hostapd")
 	sleep 1.0
 	system("killall -9 hostapd")
+	[ iface, eface, "bridge0" ].each { |d| 
+		system("ip link set #{d} nomaster") 
+		system("ip link set dev #{d} down")
+	}
+	system("iplink delete bridge0 type bridge")
 	[ iface, eface ].each { |d| system("ip link set dev #{d} up") }
 	system("/etc/rc.d/0590-wicd.sh start") 
 end
