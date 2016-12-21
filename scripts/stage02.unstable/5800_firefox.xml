@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="45.4.0esr"
+		version="45.6.0esr"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="3892aa3ecadfd5fc0533f7847cd959baef3be10e">firefox-45.4.0esr.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/45.4.0esr/source/</mirror>
+				<pkg sha1="4dda3d1965aabf0963de43180e6cadfc4ce6f650">firefox-45.4.0esr.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/45.6.0esr/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -49,10 +49,10 @@ done
 			<manualcheck date="20160922" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
-					<atext linktext="45.4.3" />
-					<atext linktext="45.4.4" />
-					<atext linktext="45.4.2" />
-					<atext linktext="45.4.1" />
+					<atext linktext="45.6.3" />
+					<atext linktext="45.6.4" />
+					<atext linktext="45.6.2" />
+					<atext linktext="45.6.1" />
 					<atext linktext="45.5." />
 					<atext linktext="45.6." />
 					<atext linktext="45.7" />
