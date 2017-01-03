@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='xfontsel' version='1.0.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='fbd8fa8a1c87d8da2e71def964e97bca1d4c4adf'>
+                    xfontsel-1.0.5.tar.bz2
+                </pkg>
+                <mirror>
+                    https://www.x.org/archive/individual/app/
+                </mirror>
+            </file>
+            <manualcheck date='20170103' interval='60' mirror='https://www.x.org/archive/individual/app/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
