@@ -49,6 +49,7 @@
 			<dep>llvm</dep>
 			<dep>distcc</dep>
 			<dep>clamav-prep</dep>
+			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -65,11 +66,13 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
+				export CC="distcc /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc /usr/local/gcc54/bin/g++54" 
 				./configure --prefix=/opt --sysconfdir=/etc  # CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount 
 			else
+				export CC="/usr/local/gcc54/bin/gcc54"
+				export CXX="/usr/local/gcc54/bin/g++54" 
 				./configure --prefix=/opt --sysconfdir=/etc
 				make
 			fi
