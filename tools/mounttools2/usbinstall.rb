@@ -246,8 +246,13 @@ def run_installation(tgt, language, contsizes, pgbar, check=false)
 	system("sync") 
 	system("partprobe /dev/#{tgt.device}")
 	run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
-	while File.blockdev?("/dev/#{tgt.device}2") == false 
+	waitcount = 0
+	while File.blockdev?("/dev/#{tgt.device}2") == false && waitcount < 24
 		run_command(pgbar, "/bin/sleep", [ "/bin/sleep", "5" ], @tl.get_translation("waiting"))
+	end
+	if File.blockdev?("/dev/#{tgt.device}2") == false 
+		$stderr.puts("ERROR: Device #{tgt.device}2 missing, please check the targets!")
+		return false 
 	end
 	# tar the content of the legacy boot part 
 	run_command(pgbar, "mkfs.ext2", [ "mkfs.ext2", "-F", "/dev/#{tgt.device}1" ] , @tl.get_translation("write_boot")) 
