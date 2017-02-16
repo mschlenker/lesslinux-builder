@@ -3,6 +3,7 @@
 # Update the signatures
 
 PATH=$PATH:/opt/kaspersky/kav4ws/bin/
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lib:/usr/compat.old/qt4/lib
 export PATH
 
 today=` date '+%Y%m%d' `

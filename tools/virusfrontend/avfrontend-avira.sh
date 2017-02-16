@@ -3,7 +3,7 @@
 # Update the signatures
 
 PATH=$PATH:/opt/bin/
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lib/
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lib:/usr/compat.old/qt4/lib
 export PATH
 
 . /etc/rc.defaults
