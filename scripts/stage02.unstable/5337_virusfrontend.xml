@@ -37,6 +37,7 @@
 			install -m 0755 avfrontend-avira.sh ${TGTDIR}/usr/bin
 			for m in kaspersky clamav avira ; do
 				sed -i 's%:/opt/lib/%:/opt/lib:/usr/compat.old/qt4/lib%g' ${TGTDIR}/usr/bin/avfrontend-${m}.sh
+				sed -i 's%\./virusfrontend%LD_LIBRARY_PATH=/usr/compat.old/qt4/lib ./virusfrontend%g'  ${TGTDIR}/usr/bin/avfrontend-${m}.sh
 			done 
 			install -m 0755 virusfrontend ${TGTDIR}/usr/share/lesslinux/avfrontend
 			install -m 0644 virusfrontend_de.qm ${TGTDIR}/usr/share/lesslinux/avfrontend

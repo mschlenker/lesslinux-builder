@@ -1,0 +1,13 @@
+<llpackages>
+	<package name="virusfrontend" />
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/virusfrontend" mode="0440" group="0" owner="0">
+		<![CDATA[
+Defaults env_keep += "LD_LIBRARY_PATH"
+surfer   ALL = NOPASSWD: /usr/share/lesslinux/avfrontend/virusfrontend
+surfer   ALL = NOPASSWD: /AntiVirUpdate/avupdate
+surfer   ALL = NOPASSWD: /usr/share/lesslinux/avfrontend/avpremount.sh
+		]]>
+		</scriptdata>
+	</scripts>
+</llpackages>
