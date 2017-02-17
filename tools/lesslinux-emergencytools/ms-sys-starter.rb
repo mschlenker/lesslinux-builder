@@ -620,7 +620,7 @@ typecombo = Gtk::ComboBox.new
 mbr_types = [
 	[ "-m", "Windows 2000/XP/2003" ],
 	[ "-i", "Windows Vista" ],
-	[ "-7", "Windows 7/8" ],
+	[ "-7", "Windows 7/8/10" ],
 	[ "-s", "Syslinux Public Domain" ],
 	[ "-w", extract_lang_string("dropdown_auto") ],
 	[ "-z", extract_lang_string("dropdown_zero") ]
