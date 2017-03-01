@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='etherape' version='0.9.15' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='9e97875b76a1543bf7145632dd3e018987ea1c96'>
+                    etherape-0.9.15.tar.gz
+                </pkg>
+                <mirror>
+                    https://downloads.sourceforge.net/project/etherape/etherape/0.9.15/
+                </mirror>
+            </file>
+            <manualcheck date='20170301' interval='60' mirror='https://downloads.sourceforge.net/project/etherape/etherape/0.9.15/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
