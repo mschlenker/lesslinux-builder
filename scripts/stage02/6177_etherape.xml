@@ -21,6 +21,7 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+export PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make
 ]]>
