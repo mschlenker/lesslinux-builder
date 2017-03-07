@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='etherape' version='0.9.15' install='chroot'>
+    <package name='etherape' version='0.9.15' install='destdir'>
         <license>
             unknown
         </license>
@@ -110,7 +110,8 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+make install DESTDIR=${TGTDIR}
+sed -i 's%Exec=etherape%Exec=sudo /usr/bin/etherape%g' ${TGTDIR}/usr/share/applications/etherape.desktop
 ]]>
         </install>
         <clean>

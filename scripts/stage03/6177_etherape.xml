@@ -1,0 +1,16 @@
+<llpackages>
+	<package name="etherape" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+		<dir mode="0755">/etc/X11</dir>
+		<dir mode="0755">/etc/X11/xrdb.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/etherape" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/etherape
+		]]>
+		</scriptdata>
+	</script>
+</llpackages>
