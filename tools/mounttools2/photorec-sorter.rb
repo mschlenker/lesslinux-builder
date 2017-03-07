@@ -14,6 +14,29 @@ require 'id3tag'
 $lastpulse = Time.now.to_f 
 $actionmove = false
 
+def error_dialog(message)
+		title ="Error"
+		dialog = Gtk::Dialog.new(title,
+                             $main_application_window,
+                             Gtk::Dialog::MODAL,
+                             [ Gtk::Stock::OK, Gtk::Dialog::RESPONSE_NONE ] )
+		dialog.has_separator = false
+		label = Gtk::Label.new(message)
+		label.wrap = true
+		image = Gtk::Image.new(Gtk::Stock::DIALOG_INFO, Gtk::IconSize::DIALOG)
+		hbox = Gtk::HBox.new(false, 5)
+		hbox.border_width = 10
+		hbox.pack_start_defaults(image);
+		hbox.pack_start_defaults(label);
+			     
+		dialog.vbox.add(hbox)
+		dialog.show_all
+		dialog.run do |response|
+			# finito
+		end
+		dialog.destroy
+	end
+
 def traverse_dir(startdir, basedir, pgbar)
 	return true if startdir == "#{basedir}/sortiert"
 	now = Time.now.to_f 
@@ -200,10 +223,15 @@ gobutton.signal_connect('clicked') {
 	targetbutton.sensitive = false
 	pgbar.text = tl.get_translation("running")
 	pgbar.pulse 
-	traverse_dir(targetbutton.filename, targetbutton.filename, pgbar)
-	pgbar.fraction = 1.0
-	pgbar.text = tl.get_translation("done")
-	system("nohup thunar '#{targetbutton.filename}/sortiert' &") 
+	system("mkdir '#{targetbutton.filename}/sortiert'")
+	unless File.directory?("#{targetbutton.filename}/sortiert")
+		error_dialog(tl.get_translation("could_not_create_dir"))
+	else
+		traverse_dir(targetbutton.filename, targetbutton.filename, pgbar)
+		pgbar.fraction = 1.0
+		pgbar.text = tl.get_translation("done")
+		system("nohup thunar '#{targetbutton.filename}/sortiert' &") 
+	end
 }
 
 window.add(lvb) 
