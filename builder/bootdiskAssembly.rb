@@ -39,6 +39,7 @@ class BootdiskAssembly
 	end
 	
 	def create_efiimage(kconfig)
+		root = @branding.root
 		kcfg = REXML::Document.new(File.new(kconfig))
 		# Return if no overlay exists
 		return false unless File.directory?(@overlaydir + "/efiimage")
