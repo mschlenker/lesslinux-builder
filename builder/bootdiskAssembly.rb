@@ -311,7 +311,7 @@ class BootdiskAssembly
 				" -o " + root.elements["brandshort"].text.strip + "-" +
 				root.elements["updater/buildidentifier"].text.strip + 
 				@build_timestamp + "-bootonly.iso " + 
-				" -r /boot=#{@builddir}/stage03/cdmaster/boot --sort-weight 2 /boot/efi --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
+				" -r --graft-points /boot=#{@builddir}/stage03/cdmaster/boot --sort-weight 2 /boot/efi --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
 			puts xcomm
 			system xcomm
 			system "cat cdmaster/boot/efi/efi.img >> " + root.elements["brandshort"].text.strip + "-" +
@@ -369,7 +369,7 @@ class BootdiskAssembly
 				" -o " + root.elements["brandshort"].text.strip + "-" +
 				root.elements["updater/buildidentifier"].text.strip + 
 				@build_timestamp + "-bootonly.iso " + 
-				" -r /boot=./cdmaster/boot --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
+				" --graft-points -r /boot=./cdmaster/boot --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
 			puts xcomm
 			system xcomm
 		end
