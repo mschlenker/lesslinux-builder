@@ -282,11 +282,11 @@ sync
 
 echo "===> Install kickstart.iso, manuals and stuff on ${device}1"
 # Important: Create kickstart.iso
-mount -o ro "${device}3" /tmp/batchinstall/${tempdev}/efiboot 
+# mount -o ro "${device}3" /tmp/batchinstall/${tempdev}/efiboot 
 if [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
-	for f in ` grep 'i.*\.gz'  /tmp/batchinstall/${tempdev}/efiboot/efi.sha | awk '{print $2}' `; do
-		cat /tmp/batchinstall/${tempdev}/efiboot/${f} >> /tmp/batchinstall/${tempdev}/data/kickstart.raw
-	done
+	#for f in ` grep 'i.*\.gz'  /tmp/batchinstall/${tempdev}/efiboot/efi.sha | awk '{print $2}' `; do
+	#	cat /tmp/batchinstall/${tempdev}/efiboot/${f} >> /tmp/batchinstall/${tempdev}/data/kickstart.raw
+	#done
 	for f in ` cat /lesslinux/cdrom/lesslinux/boot.sha | awk '{print $2}' `; do
 		cat /lesslinux/cdrom/boot/kernel/${f} >> /tmp/batchinstall/${tempdev}/data/kickstart.raw
 	done
@@ -302,7 +302,7 @@ if [ -f /etc/lesslinux/branding/extrafiles.txt ] ; then
 	done
 fi
 sync
-umount /tmp/batchinstall/${tempdev}/efiboot 
+# umount /tmp/batchinstall/${tempdev}/efiboot 
 umount /tmp/batchinstall/${tempdev}/data
 mount -o ro "${device}8" /tmp/batchinstall/${tempdev}/cdrom 
 if ( cd /tmp/batchinstall/${tempdev}/cdrom/lesslinux ; sha1sum -c squash.sha ) ; then

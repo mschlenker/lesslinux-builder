@@ -64,8 +64,8 @@ class BootdiskAssembly
 				end
 				system( "rsync -vP #{@builddir}/stage01/chroot/boot/vmlinuz-#{klong} #{@builddir}/stage03/efiimage/#{ktarget}" )
 				system("cat #{@builddir}/stage03/initramfs.gz #{@builddir}/stage03/cpio-#{kname}.gz | gunzip -c | gzip -c > #{@builddir}/stage03/efiimage/i#{kname}.gz")
-				system("cat #{@builddir}/stage03/efiimage/i#{kname}.gz >> " + root.elements["brandshort"].text.strip + "-" +
-				root.elements["updater/buildidentifier"].text.strip + @build_timestamp + ".raw'")
+				# system("cat #{@builddir}/stage03/efiimage/i#{kname}.gz >> " + root.elements["brandshort"].text.strip + "-" +
+				# root.elements["updater/buildidentifier"].text.strip + @build_timestamp + ".raw'")
 				@build_timestamp + ".raw"
 				ksha = ` sha1sum #{@builddir}/stage03/efiimage/#{ktarget} `.strip.split
 				isha =  ` sha1sum #{@builddir}/stage03/efiimage/i#{kname}.gz `.strip.split
