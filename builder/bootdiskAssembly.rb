@@ -63,6 +63,9 @@ class BootdiskAssembly
 				end
 				system( "rsync -vP #{@builddir}/stage01/chroot/boot/vmlinuz-#{klong} #{@builddir}/stage03/efiimage/#{ktarget}" )
 				system("cat #{@builddir}/stage03/initramfs.gz #{@builddir}/stage03/cpio-#{kname}.gz | gunzip -c | gzip -c > #{@builddir}/stage03/efiimage/i#{kname}.gz")
+				system("cat #{@builddir}/stage03/efiimage/i#{kname}.gz >> " + root.elements["brandshort"].text.strip + "-" +
+				root.elements["updater/buildidentifier"].text.strip + 
+				@build_timestamp + ".raw"
 				ksha = ` sha1sum #{@builddir}/stage03/efiimage/#{ktarget} `.strip.split
 				isha =  ` sha1sum #{@builddir}/stage03/efiimage/i#{kname}.gz `.strip.split
 				efi_sha.write("#{ksha[0].to_s}  #{ktarget}\n")
@@ -314,9 +317,9 @@ class BootdiskAssembly
 				" -r --graft-points /boot=#{@builddir}/stage03/cdmaster/boot --sort-weight 2 /boot/efi --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
 			puts xcomm
 			system xcomm
-			system "cat cdmaster/boot/efi/efi.img >> " + root.elements["brandshort"].text.strip + "-" +
-				root.elements["updater/buildidentifier"].text.strip + 
-				@build_timestamp + ".raw"
+			#system "cat cdmaster/boot/efi/efi.img >> " + root.elements["brandshort"].text.strip + "-" +
+			#	root.elements["updater/buildidentifier"].text.strip + 
+			#	@build_timestamp + ".raw"
 			xcomm = "xdelta3 -9 -S djw -B 536870912 -s " +  root.elements["brandshort"].text.strip + "-" +
 				root.elements["updater/buildidentifier"].text.strip + 
 				@build_timestamp + ".raw " +  root.elements["brandshort"].text.strip + "-" +
