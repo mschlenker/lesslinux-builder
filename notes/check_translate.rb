@@ -46,3 +46,11 @@ doc.elements.each("lltranslation/language") { |l|
 	}
 }
 puts "#{@missing.to_s} missing translations" 
+
+@translations.keys.sort.each { |l|
+	@translations[l].each { |k,v|
+		unless @occurencies.keys.include?(k)
+			puts "#{l} - #{k} translated but never used"
+		end 
+	}
+}
