@@ -1,0 +1,76 @@
+<pkgdesc name='libdrm' version='2.4.54'>
+    <subpackage name='skel'>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm.so.2'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libkms.so.1'/>
+        <softlink owner='0' group='0' path='/usr/lib/libkms.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm_intel.so.1'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm_intel.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm_nouveau.so.2'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm_nouveau.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm_radeon.so.1'/>
+        <softlink owner='0' group='0' path='/usr/lib/libdrm_radeon.so'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
+        <directory owner='0' group='0' path='/usr/include'/>
+        <directory owner='0' group='0' path='/usr/include/libkms'/>
+        <directory owner='0' group='0' path='/usr/include/libdrm'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file owner='0' group='0' path='/usr/lib/libdrm.so.2.4.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libkms.so.1.0.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libdrm_intel.so.1.0.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libdrm_nouveau.so.2.0.0' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libdrm_radeon.so.1.0.1' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file owner='0' group='0' path='/usr/lib/libdrm.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libdrm.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libkms.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libdrm_intel.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libdrm_nouveau.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libdrm_radeon.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/libkms.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libdrm_intel.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libdrm_nouveau.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/lib/libdrm_radeon.la' mode='100755'/>
+        <file owner='0' group='0' path='/usr/include/xf86drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/xf86drmMode.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libkms/libkms.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/intel_bufmgr.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/intel_aub.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/intel_debug.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/nouveau.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_bo.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_cs.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_surface.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_bo_gem.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_cs_gem.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_bo_int.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_cs_int.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/r600_pci_ids.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/drm_mode.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/drm_fourcc.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/drm_sarea.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/i915_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/mga_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/nouveau_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/r128_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/radeon_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/savage_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/sis_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/via_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/mach64_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/qxl_drm.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/libdrm/vmwgfx_drm.h' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

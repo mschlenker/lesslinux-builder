@@ -1,0 +1,34 @@
+<pkgdesc name='ncurses-8bit' version='6.0'>
+    <subpackage name='skel'>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/etc/lesslinux' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'>
+        <file path='/etc/lesslinux/ncurses-6.0-dummy' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='bin'/>
+        <subpackage name='minimal'>
+            <file path='/usr/lib/libform.so.5.9'/>
+            <file path='/usr/lib/libmenu.so.5.9'/>
+            <file path='/usr/lib/libncurses.so.5.9'/>
+            <file path='/usr/lib/libpanel.so.5.9'/>
+        </subpackage>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
+</pkgdesc>

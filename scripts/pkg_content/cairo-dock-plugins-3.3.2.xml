@@ -1,0 +1,660 @@
+<pkgdesc name='cairo-dock-plugins' version='3.3.2'>
+    <subpackage name='skel'>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/cairo-dock' owner='0' group='0'/>
+        <directory path='/usr/lib/ruby' owner='0' group='0'/>
+        <directory path='/usr/lib/ruby/2.2.0' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/lib/python2.7' owner='0' group='0'/>
+        <directory path='/usr/lib/python2.7/site-packages' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/gauges' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/gauges/Battery-Mono' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/gauges/Sound-Mono' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/gauges/Battery' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/gauges/Wifi_default' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/musicPlayer' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/musicPlayer/themes' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/musicPlayer/themes/cd_box_simple' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/show_mouse' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/rendering' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/drop-indicator' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/xfce-integration' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Sound-Effects' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Animated-icons' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/systray' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/shortcuts' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/motion-blur' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Composite-Manager' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Folders' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/weather' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/weather/themes' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/switcher' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/logout' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Status-Notifier' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/System-monitor' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/dialog-rendering' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/keyboard-indicator' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/quick_browser' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/dustbin' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/dustbin/themes' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/dustbin/themes/default' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/slider' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Remote-Control' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/icon-effect' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Xgamma' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/AlsaMixer' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/shared-files' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/shared-files/scripts' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/shared-files/images' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/clock' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/clock/digital' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/clock/digital/default' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/clock/themes' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/clock/themes/default' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Messaging-Menu' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/kde-integration' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/RSSreader' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/stack' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Clipper' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/netspeed' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/showDesktop' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/illusion' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/wifi' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Toons' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Toons/themes' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Toons/themes/Classic' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/gnome-integration' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/tomboy' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Screenshot' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/powermanager' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/dnd2share' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/GMenu' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Indicator-Generic' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/desklet-rendering' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/weblets' owner='0' group='0'/>
+        <directory path='/usr/share/cairo-dock/plug-ins/Dbus' owner='0' group='0'/>
+        <directory path='/usr/share/vala' owner='0' group='0'/>
+        <directory path='/usr/share/vala/vapi' owner='0' group='0'/>
+        <directory path='/usr/share/locale' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/cs' owner='0' group='0'/>
+        <directory path='/usr/share/locale/cs/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eu' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eu/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/et' owner='0' group='0'/>
+        <directory path='/usr/share/locale/et/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_TW' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_TW/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr@latin' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr@latin/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sk' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sk/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/el' owner='0' group='0'/>
+        <directory path='/usr/share/locale/el/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/he' owner='0' group='0'/>
+        <directory path='/usr/share/locale/he/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ar' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ar/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lt' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lt/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hu' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hu/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt_BR' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt_BR/LC_MESSAGES' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/lib/cairo-dock/libcd-dnd2share.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Messaging-Menu.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-status-notifier.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Dbus.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Screenshot.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-dustbin.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Cairo-Penguin.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-weblets.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-powermanager.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-GMenu.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-desklet-rendering.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd_gnome-integration.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-clock.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-icon-effect.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd_xfce-integration.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-weather.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-system-monitor.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-AlsaMixer.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Composite-Manager.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-tomboy.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Animated-icons.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-switcher.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Indicator-Generic.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-keyboard-indicator.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd_kde-integration.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Xgamma.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-wifi.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Remote-Control.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-rendering.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-slider.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-showDesktop.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-systray.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-quick-browser.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-musicPlayer.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-stack.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-motion_blur.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Clipper.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-logout.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Toons.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-drop_indicator.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Sound-Effects.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-Folders.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-illusion.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-rssreader.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-dialog-rendering.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-shortcuts.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-show_mouse.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/libcd-netspeed.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libCDApplet.so' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/CDApplet.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/vala/vapi/CDApplet.vapi' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/cs/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hr/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/eu/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/id/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/et/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ru/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/uk/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_TW/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sr@latin/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/tr/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sr/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sk/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/el/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/he/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ca/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ar/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nl/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/lt/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hu/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ja/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt_BR/LC_MESSAGES/cairo-dock-plugins.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/cairo-dock/status-notifier-watcher' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cairo-dock/cairo-dock-launcher-API-daemon' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/ruby/2.2.0/CDApplet.rb' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CDBashApplet-1.0-py2.7.egg-info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CDApplet-1.0-py2.7.egg-info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CDApplet.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CDBashApplet.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CairoDock.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CDBashApplet.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CDApplet.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/python2.7/site-packages/CairoDock.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/preview' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/theme.xml' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/2.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/0.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/version' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/3.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/4.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/5.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery-Mono/1.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/preview' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/theme.xml' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/2.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/undef.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/0.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/version' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/3.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Sound-Mono/1.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery5.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/theme.xml' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery2.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/foreground.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery3.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery0.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery4.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery1.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/background.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery7.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Battery/battery6.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/link-5.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/link-1.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/preview' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/theme.xml' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/link-2.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/link-0.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/link-4.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/version' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/gauges/Wifi_default/link-3.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/broken.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/musicPlayer.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/play.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/2.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/broken.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/0.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/play.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/pause.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/default.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/default.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/stop.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/stop.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/themes/cd_box_simple/frame.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/themes/cd_box_simple/preview' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/themes/cd_box_simple/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/themes/cd_box_simple/theme.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/themes/cd_box_simple/reflect.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/3.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/pause.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/musicPlayer/1.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/show_mouse/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/show_mouse/show_mouse.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/show_mouse/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/readme-3D-plane-view' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/readme-panel-view' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/preview-rainbow.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/preview-panel.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/readme-curve-view' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/preview-parabolic.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/rendering.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/preview-slide.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/readme-parabolic-view' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/preview-caroussel.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/readme-caroussel-view' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/preview-3D-plane.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/readme-slide-view' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/readme-rainbow-view' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/rendering/preview-curve.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/drop-indicator/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/drop-indicator/default-drop-indicator.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/drop-indicator/default-hover-indicator.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/drop-indicator/drop_indicator.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/drop-indicator/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/xfce-integration/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/Cairo-Penguin.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/bridger.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/drownwalk.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/floater.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/walker.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/waiter.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/bomber.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/blocker.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/tumble.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/xmas-walker.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/basher.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/climber.xpm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/reader.xpm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/boarder.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/theme.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/exit.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/superman.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/slider.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/sitter.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/faller.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/digger.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/drownfall.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/themes/Classic/miner.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Cairo-Penguin/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Sound-Effects/on-click.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Sound-Effects/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Sound-Effects/Sound-Effects.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Sound-Effects/on-middle-click.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Sound-Effects/preview.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Sound-Effects/on-hover.wav' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/spot.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/icon-wave.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/texture-chrome.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/Animated-icons.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/busy.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/ray.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/icon-rotation.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/icon-busy.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Animated-icons/halo.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/systray/systray.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/systray/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/systray/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shortcuts/shortcuts.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shortcuts/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shortcuts/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/motion-blur/motion_blur.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/motion-blur/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Composite-Manager/Composite-Manager.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Composite-Manager/composite-on.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Composite-Manager/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Composite-Manager/composite-off.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Composite-Manager/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Folders/Folders.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Folders/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Folders/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/weather.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/broken.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/2.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/0.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/28.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/19.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/32.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/35.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/42.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/9.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/3.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/29.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/4.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/47.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/preview' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/44.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/23.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/43.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/36.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/37.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/39.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/46.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/21.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/12.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/41.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/na.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/45.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/24.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/33.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/1.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/20.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/6.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/8.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/10.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/40.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/26.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/7.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/18.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/25.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/13.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/27.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/17.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/31.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/22.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/5.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/14.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/34.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/30.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/15.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/11.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/38.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/themes/Classic/16.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weather/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/switcher/workspaces.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/switcher/switcher.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/switcher/broken.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/switcher/default.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/switcher/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/logout.sh' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/locked.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/system-log-out.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/system-suspend.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/system-restart.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/system-guest.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/system-shutdown.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/system-hibernate.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/logout.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/logout/icon-scheduling.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Status-Notifier/Status-Notifier.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Status-Notifier/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Status-Notifier/icon-broken.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Status-Notifier/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/System-monitor/nvidia-config' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/cairo-dock/plug-ins/System-monitor/button-ram.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/System-monitor/button-cpu.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/System-monitor/System-Monitor.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/System-monitor/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/System-monitor/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dialog-rendering/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dialog-rendering/dialog-rendering.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/keyboard-indicator/num-lock.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/keyboard-indicator/keyboard-indicator.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/keyboard-indicator/caps-lock.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/keyboard-indicator/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/keyboard-indicator/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/quick_browser/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/quick_browser/quick-browser.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/quick_browser/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dustbin/dustbin.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dustbin/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dustbin/themes/default/preview' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dustbin/themes/default/trashcan_empty.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dustbin/themes/default/trashcan_full.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dustbin/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/slider/slider.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/slider/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/slider/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Remote-Control/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Remote-Control/arrows.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Remote-Control/Remote-Control.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Remote-Control/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/star.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/icon-effect.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/icon-storm.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/icon-fire.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/rain.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/snow.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/icon-firework.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/icon-effect/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Xgamma/Xgamma.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Xgamma/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Xgamma/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/AlsaMixer/mute.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/AlsaMixer/AlsaMixer.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/AlsaMixer/broken.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/AlsaMixer/emblem-mute.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/AlsaMixer/default.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/AlsaMixer/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/AlsaMixer/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shared-files/scripts/lock-screen.sh' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shared-files/images/show-desktop.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shared-files/images/expose-desktops.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shared-files/images/icon-gauge.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shared-files/images/widget-layer.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shared-files/images/expose-windows.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/shared-files/images/icon-graph.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/clock.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/digital/default/frame_1.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/digital/default/config' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/digital/default/frame_0.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/digital/default/frame_2.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/digital/default/frame_3.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/dates.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/icon-task.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-hour-hand-shadow.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-face-shadow.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-frame.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-face.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-second-hand.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/theme.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-minute-hand.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-marks.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-hour-hand.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-drop-shadow.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-minute-hand-shadow.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-glass.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/themes/default/clock-second-hand-shadow.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/clock/icon-alarm.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Messaging-Menu/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Messaging-Menu/indicator-messages.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Messaging-Menu/indicator-messages-new.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Messaging-Menu/Messaging-Menu.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Messaging-Menu/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/kde-integration/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/RSSreader/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/RSSreader/RSSreader.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/RSSreader/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/stack/url-icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/stack/text-icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/stack/stack.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/stack/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/stack/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Clipper/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Clipper/Clipper-actions-kde.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Clipper/Clipper-actions-xfce.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Clipper/Clipper-actions-gnome.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Clipper/Clipper.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Clipper/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/bad.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/ok.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/netspeed.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/netspeed' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/unknown.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/netspeed/default.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/showDesktop/icon-active.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/showDesktop/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/showDesktop/showDesktop.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/icon-black-hole.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/icon-break.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/icon-fade-out.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/icon-explode.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/illusion.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/illusion/icon-evaporate.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/wifi/wifi.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/wifi/default.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/wifi/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/wifi/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/wifi/no-signal.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/Toons.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/themes/Classic/readme' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/themes/Classic/toon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/themes/Classic/theme.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/themes/Classic/pupil.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/themes/Classic/eyelid.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Toons/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/gnome-integration/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/tomboy/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/tomboy/tomboy.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/tomboy/close.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/tomboy/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/tomboy/note.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Screenshot/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Screenshot/Screenshot.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Screenshot/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/powermanager/charge.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/powermanager/default-battery.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/powermanager/sector.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/powermanager/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/powermanager/default-charge.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/powermanager/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/powermanager/powermanager.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dnd2share/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dnd2share/dnd2share.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dnd2share/upload2free.sh' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/cairo-dock/plug-ins/dnd2share/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/GMenu/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/GMenu/system-log-out.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/GMenu/GMenu.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/GMenu/system-shutdown.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/GMenu/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Indicator-Generic/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Indicator-Generic/Indicator-Generic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Indicator-Generic/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/board.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/frame.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/water-drop-bg.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/branche2.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/cd_box.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/light-bg.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/cd_box_cover.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/branche1.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/reflect.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/clear-bg.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/dark-bg.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/starcraft2.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/water-dark-bg.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/scotch.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/desklet-rendering/scotch+frame.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weblets/icon.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weblets/weblets.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/weblets/preview.jpg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Dbus/icon.svg' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Dbus/Dbus.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Dbus/CDApplet.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/cairo-dock/plug-ins/Dbus/CDBashApplet.sh' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/vala/vapi/CDApplet.deps' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

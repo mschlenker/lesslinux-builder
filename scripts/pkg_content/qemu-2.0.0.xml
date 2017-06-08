@@ -1,0 +1,148 @@
+<pkgdesc name='qemu' version='2.0.0'>
+    <subpackage name='skel'>
+        <directory group='0' path='/etc' owner='0'/>
+        <directory group='0' path='/etc/qemu' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/doc' owner='0'/>
+        <directory group='0' path='/usr/share/doc/qemu-2.0.0' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/man8' owner='0'/>
+        <directory group='0' path='/usr/share/qemu' owner='0'/>
+        <directory group='0' path='/usr/share/qemu/keymaps' owner='0'/>
+        <directory group='0' path='/usr/share/locale' owner='0'/>
+        <directory group='0' path='/usr/share/locale/tr' owner='0'/>
+        <directory group='0' path='/usr/share/locale/tr/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/it' owner='0'/>
+        <directory group='0' path='/usr/share/locale/it/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/hu' owner='0'/>
+        <directory group='0' path='/usr/share/locale/hu/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fr_FR' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fr_FR/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de_DE' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de_DE/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/var' owner='0'/>
+        <directory group='0' path='/usr/var/run' owner='0'/>
+        <directory group='0' path='/usr/bin' owner='0'/>
+        <directory group='0' path='/usr/lib' owner='0'/>
+        <directory group='0' path='/usr/lib/qemu' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file group='0' path='/usr/bin/qemu-ga' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-nbd' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-img' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-io' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/virtfs-proxy-helper' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-system-x86_64' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-system-arm' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-arm' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-armeb' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-i386' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/qemu-x86_64' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/qemu/qemu-bridge-helper' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' path='/usr/share/doc/qemu-2.0.0/qemu-doc.html' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/doc/qemu-2.0.0/qemu-tech.html' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/doc/qemu-2.0.0/qmp-commands.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/qemu.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/qemu-img.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/virtfs-proxy-helper.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/qemu-nbd.8' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file group='0' path='/etc/qemu/target-x86_64.conf' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'>
+        <file group='0' path='/usr/share/locale/tr/LC_MESSAGES/qemu.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/locale/it/LC_MESSAGES/qemu.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/locale/hu/LC_MESSAGES/qemu.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/locale/fr_FR/LC_MESSAGES/qemu.mo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/locale/de_DE/LC_MESSAGES/qemu.mo' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' path='/usr/share/qemu/bios.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/bios-256k.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/sgabios.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/vgabios.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/vgabios-cirrus.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/vgabios-stdvga.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/vgabios-vmware.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/vgabios-qxl.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/acpi-dsdt.aml' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/q35-acpi-dsdt.aml' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/ppc_rom.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/openbios-sparc32' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/openbios-sparc64' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/openbios-ppc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/QEMU,tcx.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/QEMU,cgthree.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/pxe-e1000.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/pxe-eepro100.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/pxe-ne2k_pci.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/pxe-pcnet.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/pxe-rtl8139.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/pxe-virtio.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/efi-e1000.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/efi-eepro100.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/efi-ne2k_pci.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/efi-pcnet.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/efi-rtl8139.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/efi-virtio.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/qemu-icon.bmp' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/qemu_logo_no_text.svg' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/bamboo.dtb' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/petalogix-s3adsp1800.dtb' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/petalogix-ml605.dtb' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/multiboot.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/linuxboot.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/kvmvapic.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/s390-zipl.rom' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/s390-ccw.img' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/spapr-rtas.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/slof.bin' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/palcode-clipper' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/da' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/en-gb' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/et' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/fr' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/fr-ch' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/is' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/lt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/modifiers' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/no' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/pt-br' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/sv' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/ar' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/de' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/en-us' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/fi' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/fr-be' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/hr' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/it' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/lv' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/nl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/pl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/ru' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/th' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/common' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/de-ch' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/es' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/fo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/fr-ca' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/hu' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/ja' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/mk' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/nl-be' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/pt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/sl' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/tr' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/bepo' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/qemu/keymaps/cz' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,32 @@
+<pkgdesc version='1.2.8' name='zlib'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/lib/libz.so.1' owner='0'/>
+        <softlink group='0' path='/usr/lib/libz.so' owner='0'/>
+        <directory group='0' path='/lib' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/include' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/man3' owner='0'/>
+        <directory group='0' path='/usr/lib' owner='0'/>
+        <directory group='0' path='/usr/lib/pkgconfig' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file group='0' path='/lib/libz.so.1.2.8' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' path='/usr/share/man/man3/zlib.3' owner='0' fileout='gzip compressed data' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file group='0' path='/usr/include/zconf.h' owner='0' fileout='ASCII C program text' mode='100644'/>
+        <file group='0' path='/usr/include/zlib.h' owner='0' fileout='ASCII C program text' mode='100644'/>
+        <file group='0' path='/usr/lib/libz.a' owner='0' fileout='current ar archive' mode='100644'/>
+        <file group='0' path='/usr/lib/pkgconfig/zlib.pc' owner='0' fileout='ASCII text' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

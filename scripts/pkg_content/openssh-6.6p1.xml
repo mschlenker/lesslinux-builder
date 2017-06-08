@@ -1,0 +1,71 @@
+<pkgdesc name='openssh' version='6.6p1'>
+    <subpackage name='skel'>
+        <softlink owner='0' path='/usr/bin/slogin' group='0'/>
+        <softlink owner='0' path='/usr/share/man/man1/slogin.1' group='0'/>
+        <directory owner='0' path='/etc' group='0'/>
+        <directory owner='0' path='/etc/openssh' group='0'/>
+        <directory owner='0' path='/usr' group='0'/>
+        <directory owner='0' path='/usr/sbin' group='0'/>
+        <directory owner='0' path='/usr/bin' group='0'/>
+        <directory owner='0' path='/usr/share' group='0'/>
+        <directory owner='0' path='/usr/share/man' group='0'/>
+        <directory owner='0' path='/usr/share/man/man5' group='0'/>
+        <directory owner='0' path='/usr/share/man/man1' group='0'/>
+        <directory owner='0' path='/usr/share/man/man8' group='0'/>
+        <directory owner='0' path='/usr/libexec' group='0'/>
+        <directory owner='0' path='/var' group='0'/>
+        <directory owner='0' path='/var/empty' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file owner='0' mode='100755' path='/usr/sbin/sshd' group='0'/>
+        <file owner='0' mode='100755' path='/usr/bin/ssh-add' group='0'/>
+        <file owner='0' mode='100755' path='/usr/bin/ssh' group='0'/>
+        <file owner='0' mode='100755' path='/usr/bin/ssh-agent' group='0'/>
+        <file owner='0' mode='100755' path='/usr/bin/ssh-keygen' group='0'/>
+        <file owner='0' mode='100755' path='/usr/bin/ssh-keyscan' group='0'/>
+        <file owner='0' mode='100755' path='/usr/bin/scp' group='0'/>
+        <file owner='0' mode='100755' path='/usr/bin/sftp' group='0'/>
+        <file owner='0' mode='100755' path='/usr/libexec/ssh-pkcs11-helper' group='0'/>
+        <file owner='0' mode='100755' path='/usr/libexec/sftp-server' group='0'/>
+        <file owner='0' mode='104711' path='/usr/libexec/ssh-keysign' group='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' mode='100644' path='/usr/share/man/man5/sshd_config.5' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man5/ssh_config.5' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man5/moduli.5' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man1/ssh-keyscan.1' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man1/ssh-add.1' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man1/scp.1' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man1/sftp.1' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man1/ssh.1' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man1/ssh-agent.1' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man1/ssh-keygen.1' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man8/sftp-server.8' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man8/ssh-pkcs11-helper.8' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man8/sshd.8' group='0'/>
+        <file owner='0' mode='100644' path='/usr/share/man/man8/ssh-keysign.8' group='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file owner='0' mode='100644' path='/etc/openssh/ssh_config' group='0'/>
+        <file owner='0' mode='100644' path='/etc/openssh/moduli' group='0'/>
+        <file owner='0' mode='100644' path='/etc/openssh/sshd_config' group='0'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='localization'/>
+        <subpackage name='skel'/>
+        <subpackage name='devel'/>
+        <subpackage name='bin'/>
+        <subpackage name='config'/>
+        <subpackage name='doc'/>
+        <subpackage name='minimal'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+        <subpackage name='tzdata'/>
+    </vanished>
+</pkgdesc>

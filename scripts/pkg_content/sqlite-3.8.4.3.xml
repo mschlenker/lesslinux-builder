@@ -1,0 +1,34 @@
+<pkgdesc version='3.8.4.3' name='sqlite'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libsqlite3.so.0' group='0' owner='0'/>
+        <softlink path='/usr/lib/libsqlite3.so' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/pkgconfig' group='0' owner='0'/>
+        <directory path='/usr/bin' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/man' group='0' owner='0'/>
+        <directory path='/usr/share/man/man1' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libsqlite3.so.0.8.6' group='0' owner='0' mode='100755'/>
+        <file path='/usr/bin/sqlite3' group='0' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/sqlite3.1' group='0' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libsqlite3.la' group='0' owner='0' mode='100755'/>
+        <file path='/usr/lib/libsqlite3.a' group='0' owner='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/sqlite3.pc' group='0' owner='0' mode='100644'/>
+        <file path='/usr/include/sqlite3.h' group='0' owner='0' mode='100644'/>
+        <file path='/usr/include/sqlite3ext.h' group='0' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

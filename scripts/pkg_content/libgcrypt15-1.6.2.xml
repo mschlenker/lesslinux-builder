@@ -1,0 +1,42 @@
+<pkgdesc name='libgcrypt15' version='1.6.2'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libgcrypt.so.20' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgcrypt.so' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/aclocal' owner='0' group='0'/>
+        <directory path='/usr/share/info' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/libgcrypt.so.20.0.2' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/hmac256' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/mpicalc' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/dumpsexp' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/info/gcrypt.info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/dir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/gcrypt.info-2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/gcrypt.info-1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/hmac256.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/gcrypt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgcrypt.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/bin/libgcrypt-config' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/aclocal/libgcrypt.m4' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

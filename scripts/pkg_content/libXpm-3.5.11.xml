@@ -1,0 +1,49 @@
+<pkgdesc version='3.5.11' name='libXpm'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libXpm.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libXpm.so.4' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/pkgconfig' group='0' owner='0'/>
+        <directory path='/usr/bin' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/usr/include/X11' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/man' group='0' owner='0'/>
+        <directory path='/usr/share/man/man1' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libXpm.so.4.11.0' group='0' mode='100755' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/cxpm' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/sxpm' group='0' mode='100755' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/cxpm.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/sxpm.1' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libXpm.a' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/pkgconfig/xpm.pc' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/libXpm.la' group='0' mode='100755' owner='0'/>
+        <file path='/usr/include/X11/xpm.h' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='tzdata'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='ignore'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='bin'/>
+        <subpackage name='skel'/>
+        <subpackage name='localization'/>
+        <subpackage name='devel'/>
+        <subpackage name='minimal'/>
+    </vanished>
+</pkgdesc>

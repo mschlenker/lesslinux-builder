@@ -1,0 +1,75 @@
+<pkgdesc name='nfs-utils' version='1.3.0'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/sbin/mount.nfs4' owner='0'/>
+        <softlink group='0' path='/sbin/umount.nfs' owner='0'/>
+        <softlink group='0' path='/sbin/umount.nfs4' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man8/rpc.mountd.8' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man8/rpc.nfsd.8' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man8/rpc.statd.8' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man8/rpc.sm-notify.8' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man8/rpc.idmapd.8' owner='0'/>
+        <directory group='0' path='/sbin' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/sbin' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/man8' owner='0'/>
+        <directory group='0' path='/usr/share/man/man5' owner='0'/>
+        <directory group='0' path='/usr/share/man/man7' owner='0'/>
+        <directory group='0' path='/var' owner='0'/>
+        <directory group='0' path='/var/lib' owner='0'/>
+        <directory group='0' path='/var/lib/nfs' owner='0'/>
+        <directory group='0' path='/var/lib/nfs/sm' owner='99'/>
+        <directory group='0' path='/var/lib/nfs/sm.bak' owner='99'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file group='0' path='/sbin/mount.nfs' owner='0' mode='104511'/>
+        <file group='0' path='/usr/sbin/rpcdebug' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/exportfs' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/rpc.mountd' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/rpc.nfsd' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/nfsstat' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/showmount' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/sm-notify' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/rpc.statd' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/rpc.idmapd' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/blkmapd' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/nfsdcltrack' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' path='/usr/share/man/man8/rpcdebug.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/mountstats.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/nfsiostat.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/exportfs.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/mountd.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/nfsd.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/nfsstat.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/showmount.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/statd.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/sm-notify.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/idmapd.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/blkmapd.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/mount.nfs.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/umount.nfs.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man8/nfsdcltrack.8' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man5/exports.5' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man5/nfs.5' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man7/nfsd.7' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' path='/sbin/osd_login' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/mountstats' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/nfsiostat' owner='0' mode='100755'/>
+        <file group='0' path='/usr/sbin/start-statd' owner='0' mode='100755'/>
+        <file group='0' path='/var/lib/nfs/xtab' owner='0' mode='100644'/>
+        <file group='0' path='/var/lib/nfs/etab' owner='0' mode='100644'/>
+        <file group='0' path='/var/lib/nfs/rmtab' owner='0' mode='100644'/>
+        <file group='0' path='/var/lib/nfs/state' owner='99' mode='100600'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

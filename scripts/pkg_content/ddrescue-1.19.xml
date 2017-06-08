@@ -1,0 +1,27 @@
+<pkgdesc name='ddrescue' version='1.19'>
+    <subpackage name='skel'>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/info' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/bin/ddrescuelog' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ddrescue' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/ddrescue.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/ddrescuelog.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/ddrescue.info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/dir' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

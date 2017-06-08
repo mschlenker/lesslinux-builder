@@ -1,0 +1,112 @@
+<pkgdesc name='xrdp' version='20130527'>
+    <subpackage name='skel'>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libxrdpapi.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libscp.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libxup.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libvnc.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/librdp.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libcommon.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libcommon.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libmc.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libvnc.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libxrdpapi.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libxrdp.so'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/librdp.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libxrdp.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libmc.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libxup.so.0'/>
+        <softlink group='0' owner='0' path='/usr/lib/xrdp/libscp.so'/>
+        <directory group='0' owner='0' path='/etc'/>
+        <directory group='0' owner='0' path='/etc/xrdp'/>
+        <directory group='0' owner='0' path='/etc/init.d'/>
+        <directory group='0' owner='0' path='/etc/pam.d'/>
+        <directory group='0' owner='0' path='/etc/default'/>
+        <directory group='0' owner='0' path='/usr'/>
+        <directory group='0' owner='0' path='/usr/sbin'/>
+        <directory group='0' owner='0' path='/usr/bin'/>
+        <directory group='0' owner='0' path='/usr/share'/>
+        <directory group='0' owner='0' path='/usr/share/xrdp'/>
+        <directory group='0' owner='0' path='/usr/share/man'/>
+        <directory group='0' owner='0' path='/usr/share/man/man5'/>
+        <directory group='0' owner='0' path='/usr/share/man/man8'/>
+        <directory group='0' owner='0' path='/usr/lib'/>
+        <directory group='0' owner='0' path='/usr/lib/xrdp'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file mode='100755' group='0' owner='0' path='/usr/sbin/xrdp-sessvc'/>
+        <file mode='100755' group='0' owner='0' path='/usr/sbin/xrdp'/>
+        <file mode='100755' group='0' owner='0' path='/usr/sbin/xrdp-sesman'/>
+        <file mode='100755' group='0' owner='0' path='/usr/sbin/xrdp-chansrv'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/xrdp-sesrun'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/xrdp-keygen'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/xrdp-sesadmin'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/xrdp-genkeymap'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/xrdp-dis'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/xrdp-sestest'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/xrdp-xcon'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libxrdp.so.0.0.0'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libxrdpapi.so.0.0.0'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/librdp.so.0.0.0'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libscp.so.0.0.0'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libxup.so.0.0.0'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libcommon.so.0.0.0'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libmc.so.0.0.0'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libvnc.so.0.0.0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man5/xrdp.ini.5'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man5/sesman.ini.5'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man8/xrdp.8'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man8/xrdp-sesrun.8'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man8/xrdp-sesman.8'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/xrdp.ini'/>
+        <file mode='100755' group='0' owner='0' path='/etc/xrdp/startwm.sh'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/km-0407.ini'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/km-0816.ini'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/km-040c.ini'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/sesman.ini'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/xrdp.ini.dist'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/km-0409.ini'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/km-041d.ini'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/km-0410.ini'/>
+        <file mode='100644' group='0' owner='0' path='/etc/xrdp/km-0419.ini'/>
+        <file mode='100755' group='0' owner='0' path='/etc/xrdp/xrdp.sh'/>
+        <file mode='100755' group='0' owner='0' path='/etc/init.d/xrdp'/>
+        <file mode='100644' group='0' owner='0' path='/etc/pam.d/xrdp-sesman'/>
+        <file mode='100644' group='0' owner='0' path='/etc/default/xrdp'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/libvnc.a'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libscp.la'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/libscp.a'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libxrdp.la'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libvnc.la'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/libxrdpapi.a'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/libmc.a'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libxrdpapi.la'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/librdp.a'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libcommon.la'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/libcommon.a'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/libxup.a'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libxup.la'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/librdp.la'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/xrdp/libmc.la'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/xrdp/libxrdp.a'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file mode='100644' group='0' owner='0' path='/usr/share/xrdp/xrdp256.bmp'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/xrdp/cursor1.cur'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/xrdp/ad24b.bmp'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/xrdp/xrdp24b.bmp'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/xrdp/ad256.bmp'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/xrdp/cursor0.cur'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/xrdp/sans-10.fv1'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

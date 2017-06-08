@@ -1,0 +1,208 @@
+<pkgdesc version='1.7.2.4' name='wicd'>
+    <subpackage name='skel'>
+        <directory group='0' path='/etc/acpi' owner='0'/>
+        <directory group='0' path='/etc/acpi/resume.d' owner='0'/>
+        <directory group='0' path='/etc/acpi/suspend.d' owner='0'/>
+        <directory group='0' path='/etc/logrotate.d' owner='0'/>
+        <directory group='0' path='/etc/wicd' owner='0'/>
+        <directory group='0' path='/etc/wicd/encryption' owner='0'/>
+        <directory group='0' path='/etc/wicd/encryption/templates' owner='0'/>
+        <directory group='0' path='/etc/wicd/scripts' owner='0'/>
+        <directory group='0' path='/etc/wicd/scripts/postconnect' owner='0'/>
+        <directory group='0' path='/etc/wicd/scripts/postdisconnect' owner='0'/>
+        <directory group='0' path='/etc/wicd/scripts/preconnect' owner='0'/>
+        <directory group='0' path='/etc/wicd/scripts/predisconnect' owner='0'/>
+        <directory group='0' path='/lib/systemd' owner='0'/>
+        <directory group='0' path='/lib/systemd/system' owner='0'/>
+        <directory group='0' path='/usr/lib/pm-utils' owner='0'/>
+        <directory group='0' path='/usr/lib/pm-utils/sleep.d' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/wicd' owner='0'/>
+        <directory group='0' path='/usr/share/doc/wicd' owner='0'/>
+        <directory group='0' path='/usr/share/man/nl' owner='0'/>
+        <directory group='0' path='/usr/share/man/nl/man1' owner='0'/>
+        <directory group='0' path='/usr/share/man/nl/man5' owner='0'/>
+        <directory group='0' path='/usr/share/man/nl/man8' owner='0'/>
+        <directory group='0' path='/usr/share/pixmaps/wicd' owner='0'/>
+        <directory group='0' path='/usr/share/wicd' owner='0'/>
+        <directory group='0' path='/usr/share/wicd/backends' owner='0'/>
+        <directory group='0' path='/usr/share/wicd/cli' owner='0'/>
+        <directory group='0' path='/usr/share/wicd/curses' owner='0'/>
+        <directory group='0' path='/usr/share/wicd/daemon' owner='0'/>
+        <directory group='0' path='/usr/share/wicd/gtk' owner='0'/>
+        <directory group='0' path='/var/lib/wicd' owner='0'/>
+        <directory group='0' path='/var/lib/wicd/configurations' owner='0'/>
+        <directory group='0' path='/var/log/wicd' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'/>
+    <subpackage name='doc'>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/doc/wicd/AUTHORS' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/doc/wicd/CHANGES' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/doc/wicd/INSTALL' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/doc/wicd/LICENSE' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/doc/wicd/README' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/doc/wicd/README.cli' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/doc/wicd/README.curses' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/man1/wicd-client.1' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/man5/wicd-manager-settings.conf.5' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/man5/wicd-wired-settings.conf.5' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/man5/wicd-wireless-settings.conf.5' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/man8/wicd-cli.8' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/man8/wicd-curses.8' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/man8/wicd.8' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/nl/man1/wicd-client.1' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/nl/man5/wicd-manager-settings.conf.5' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/nl/man5/wicd-wired-settings.conf.5' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/nl/man5/wicd-wireless-settings.conf.5' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/nl/man8/wicd-curses.8' mode='100664' owner='0'/>
+        <file fileout='gzip compressed data' group='0' path='/usr/share/man/nl/man8/wicd.8' mode='100664' owner='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file fileout='POSIX shell script text executable' group='0' path='/etc/acpi/resume.d/80-wicd-connect.sh' mode='100775' owner='0'/>
+        <file fileout='POSIX shell script text executable' group='0' path='/etc/acpi/suspend.d/50-wicd-suspend.sh' mode='100775' owner='0'/>
+        <file fileout='exported SGML document text' group='0' path='/etc/dbus-1/system.d/wicd.conf' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/logrotate.d/wicd.logrotate' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/etc/wicd/dhclient.conf.template.default' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/active' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/active_wired' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/eap' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/eap-tls' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/leap' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/peap' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/peap-tkip' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/psu' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/ttls' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wep-hex' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wep-passphrase' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wep-shared' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wired_8021x' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wpa' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wpa-peap' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wpa-psk' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wpa2-leap' mode='100664' owner='0'/>
+        <file fileout='ASCII text' group='0' path='/etc/wicd/encryption/templates/wpa2-peap' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/etc/wicd/scripts/.empty_on_purpose' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/etc/wicd/scripts/postconnect/.empty_on_purpose' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/etc/wicd/scripts/postdisconnect/.empty_on_purpose' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/etc/wicd/scripts/preconnect/.empty_on_purpose' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/etc/wicd/scripts/predisconnect/.empty_on_purpose' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/etc/xdg/autostart/wicd-tray.desktop' mode='100664' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file fileout='ASCII text' group='0' path='/lib/systemd/system/wicd.service' mode='100664' owner='0'/>
+        <file fileout='Bourne-Again shell script text executable' group='0' path='/usr/bin/wicd-cli' mode='100775' owner='0'/>
+        <file fileout='POSIX shell script text executable' group='0' path='/usr/bin/wicd-client' mode='100775' owner='0'/>
+        <file fileout='POSIX shell script text executable' group='0' path='/usr/bin/wicd-curses' mode='100775' owner='0'/>
+        <file fileout='POSIX shell script text executable' group='0' path='/usr/bin/wicd-gtk' mode='100775' owner='0'/>
+        <file fileout='POSIX shell script text executable' group='0' path='/usr/lib/pm-utils/sleep.d/55wicd' mode='100775' owner='0'/>
+        <file fileout='empty' group='0' path='/usr/lib/python2.7/site-packages/wicd/__init__.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1316335693 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/__init__.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/backend.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1316335693 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/backend.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/configmanager.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1324104910 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/configmanager.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/dbusmanager.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1316335693 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/dbusmanager.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/logfile.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1323945764 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/logfile.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/misc.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1335813609 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/misc.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/networking.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1329041475 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/networking.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/translations.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1334608992 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/translations.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/wnettools.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1329041475 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/wnettools.pyc' mode='100644' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/lib/python2.7/site-packages/wicd/wpath.py' mode='100644' owner='0'/>
+        <file fileout='DBase 3 data file (1340374492 records)' group='0' path='/usr/lib/python2.7/site-packages/wicd/wpath.pyc' mode='100644' owner='0'/>
+        <file fileout='POSIX shell script text executable' group='0' path='/usr/sbin/wicd' mode='100775' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/usr/share/applications/wicd.desktop' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/usr/share/dbus-1/system-services/org.wicd.daemon.service' mode='100664' owner='0'/>
+        <file fileout='PNG image, 128 x 128, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/128x128/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 16 x 16, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/16x16/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 192 x 192, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/192x192/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/22x22/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 24 x 24, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/24x24/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 32 x 32, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/32x32/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 36 x 36, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/36x36/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 48 x 48, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/48x48/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 64 x 64, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/64x64/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 72 x 72, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/72x72/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 96 x 96, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/icons/hicolor/96x96/apps/wicd-gtk.png' mode='100664' owner='0'/>
+        <file fileout='SVG Scalable Vector Graphics image' group='0' path='/usr/share/icons/hicolor/scalable/apps/wicd-gtk.svg' mode='100664' owner='0'/>
+        <file fileout='X pixmap image text' group='0' path='/usr/share/pixmaps/wicd-gtk.xpm' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/bad-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/bad-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-bad-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-bad-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-good-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-good-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-high-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-high-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-low-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/both-low-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/good-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/good-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/high-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/high-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-bad-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-bad-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-good-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-good-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-high-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-high-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-low-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/idle-low-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/low-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/low-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/no-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-bad-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-bad-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-good-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-good-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-high-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-high-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-low-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/receiving-low-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 51 x 31, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/signal-100.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 51 x 31, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/signal-25.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 51 x 31, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/signal-50.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 51 x 31, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/signal-75.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-bad-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-bad-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-good-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-good-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-high-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-high-signal.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-low-signal-lock.png' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/transmitting-low-signal.png' mode='100664' owner='0'/>
+        <file fileout='SVG Scalable Vector Graphics image' group='0' path='/usr/share/pixmaps/wicd/wired-gui.svg' mode='100664' owner='0'/>
+        <file fileout='PNG image, 22 x 22, 8-bit/color RGBA, non-interlaced' group='0' path='/usr/share/pixmaps/wicd/wired.png' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/backends/be-external.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/backends/be-ioctl.py' mode='100664' owner='0'/>
+        <file fileout='python script text executable' group='0' path='/usr/share/wicd/cli/wicd-cli.py' mode='100775' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/curses/configscript_curses.py' mode='100775' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/curses/curses_misc.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/curses/netentry_curses.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/curses/prefs_curses.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/curses/wicd-curses.py' mode='100775' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/daemon/autoconnect.py' mode='100775' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/daemon/monitor.py' mode='100775' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/daemon/suspend.py' mode='100775' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/daemon/wicd-daemon.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/gtk/configscript.py' mode='100775' owner='0'/>
+        <file fileout='python script text executable' group='0' path='/usr/share/wicd/gtk/gui.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/gtk/guiutil.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/gtk/netentry.py' mode='100664' owner='0'/>
+        <file fileout='python script text executable' group='0' path='/usr/share/wicd/gtk/prefs.py' mode='100664' owner='0'/>
+        <file fileout='a python script text executable' group='0' path='/usr/share/wicd/gtk/wicd-client.py' mode='100644' owner='0'/>
+        <file fileout='XML  document text' group='0' path='/usr/share/wicd/gtk/wicd.ui' mode='100644' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/var/lib/wicd/WHEREAREMYFILES' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/var/lib/wicd/configurations/.empty_on_purpose' mode='100664' owner='0'/>
+        <file fileout='ASCII English text' group='0' path='/var/log/wicd/.empty_on_purpose' mode='100664' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

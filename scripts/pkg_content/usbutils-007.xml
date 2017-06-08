@@ -1,0 +1,37 @@
+<pkgdesc name='usbutils' version='007'>
+    <subpackage name='skel'>
+        <softlink owner='0' path='/usr/sbin/lsusb' group='0'/>
+        <directory owner='0' path='/usr' group='0'/>
+        <directory owner='0' path='/usr/bin' group='0'/>
+        <directory owner='0' path='/usr/share' group='0'/>
+        <directory owner='0' path='/usr/share/pkgconfig' group='0'/>
+        <directory owner='0' path='/usr/share/man' group='0'/>
+        <directory owner='0' path='/usr/share/man/man8' group='0'/>
+        <directory owner='0' path='/usr/share/man/man1' group='0'/>
+        <directory owner='0' path='/usr/sbin' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file mode='100755' owner='0' path='/usr/bin/usbhid-dump' group='0'/>
+        <file mode='100755' owner='0' path='/usr/bin/lsusb' group='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100644' owner='0' path='/usr/share/man/man8/usbhid-dump.8' group='0'/>
+        <file mode='100644' owner='0' path='/usr/share/man/man8/lsusb.8' group='0'/>
+        <file mode='100644' owner='0' path='/usr/share/man/man1/usb-devices.1' group='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file mode='100644' owner='0' path='/usr/share/pkgconfig/usbutils.pc' group='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file mode='100755' owner='0' path='/usr/bin/lsusb.py' group='0'/>
+        <file mode='100755' owner='0' path='/usr/bin/usb-devices' group='0'/>
+        <file mode='100644' owner='0' path='/usr/share/usb.ids.gz' group='0'/>
+        <file mode='100644' owner='0' path='/usr/share/usb.ids' group='0'/>
+        <file mode='100755' owner='0' path='/usr/sbin/update-usbids.sh' group='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

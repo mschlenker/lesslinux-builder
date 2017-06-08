@@ -1,0 +1,147 @@
+<pkgdesc name='libsmbios' version='2.2.28'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/usr/lib/libsmbios.so' owner='0'/>
+        <softlink group='0' path='/usr/lib/libsmbios.so.2' owner='0'/>
+        <softlink group='0' path='/usr/lib/libsmbios_c.so' owner='0'/>
+        <softlink group='0' path='/usr/lib/libsmbios_c.so.2' owner='0'/>
+        <directory group='0' path='/etc' owner='0'/>
+        <directory group='0' path='/etc/libsmbios' owner='0'/>
+        <directory group='0' path='/etc/yum' owner='0'/>
+        <directory group='0' path='/etc/yum/pluginconf.d' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/bin' owner='0'/>
+        <directory group='0' path='/usr/include' owner='0'/>
+        <directory group='0' path='/usr/lib' owner='0'/>
+        <directory group='0' path='/usr/lib/pkgconfig' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.6' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/libsmbios_c' owner='0'/>
+        <directory group='0' path='/usr/lib/yum-plugins' owner='0'/>
+        <directory group='0' path='/usr/sbin' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/locale' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de' owner='0'/>
+        <directory group='0' path='/usr/share/locale/de/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@boldquot' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@boldquot/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@quot' owner='0'/>
+        <directory group='0' path='/usr/share/locale/en@quot/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/es' owner='0'/>
+        <directory group='0' path='/usr/share/locale/es/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fr' owner='0'/>
+        <directory group='0' path='/usr/share/locale/fr/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/it' owner='0'/>
+        <directory group='0' path='/usr/share/locale/it/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ja' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ja/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ko' owner='0'/>
+        <directory group='0' path='/usr/share/locale/ko/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/nl' owner='0'/>
+        <directory group='0' path='/usr/share/locale/nl/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_CN' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_CN/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_TW' owner='0'/>
+        <directory group='0' path='/usr/share/locale/zh_TW/LC_MESSAGES' owner='0'/>
+        <directory group='0' path='/usr/share/smbios-utils' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file group='0' mode='100755' path='/usr/lib/libsmbios.so.2.1.0' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/libsmbios_c.so.2.2.1' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file group='0' mode='100755' path='/usr/sbin/dellBiosUpdate-compat' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/dellLEDCtl' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/dellMediaDirectCtl' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-get-ut-data' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-state-byte-ctl' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-sys-info-lite' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-upflag-ctl' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'>
+        <file group='0' mode='100644' path='/etc/libsmbios/logging.conf' owner='0'/>
+        <file group='0' mode='100644' path='/etc/yum/pluginconf.d/dellsysid.conf' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file group='0' mode='100644' path='/usr/lib/libsmbios.a' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/libsmbios.la' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/libsmbios_c.a' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/libsmbios_c.la' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/pkgconfig/libsmbios_c++.pc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/pkgconfig/libsmbios_c.pc' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file group='0' mode='100644' path='/usr/share/locale/de/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@boldquot/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/en@quot/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/es/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/fr/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/it/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/ja/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/ko/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/nl/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/zh_CN/LC_MESSAGES/libsmbios.mo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/locale/zh_TW/LC_MESSAGES/libsmbios.mo' owner='0'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/__init__.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/__init__.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/__init__.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_common.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_common.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_common.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_peak_util_decorators.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_peak_util_decorators.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_peak_util_decorators.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_vars.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_vars.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/_vars.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/cmos.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/cmos.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/cmos.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/memory.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/memory.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/memory.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/rbu_hdr.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/rbu_hdr.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/rbu_hdr.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/rbu_update.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/rbu_update.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/rbu_update.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/smbios.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/smbios.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/smbios.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/smi.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/smi.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/smi.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/system_info.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/system_info.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/system_info.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/token.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/token.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/token.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/trace_decorator.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/trace_decorator.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/python2.7/site-packages/libsmbios_c/trace_decorator.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/yum-plugins/dellsysid.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/yum-plugins/dellsysid.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/yum-plugins/dellsysid.pyo' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-lcd-brightness' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-passwd' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-rbu-bios-update' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-sys-info' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-token-ctl' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-wakeup-ctl' owner='0'/>
+        <file group='0' mode='100755' path='/usr/sbin/smbios-wireless-ctl' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/smbios-utils/cli.py' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/smbios-utils/cli.pyc' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/smbios-utils/cli.pyo' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/smbios-utils/token_blacklist.csv' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/smbios-utils/token_list.csv' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

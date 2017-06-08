@@ -1,0 +1,112 @@
+<pkgdesc name='libchipcard' version='5.0.2'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/usr/lib/libchipcard.so' owner='0'/>
+        <softlink group='0' path='/usr/lib/libchipcard.so.6' owner='0'/>
+        <directory group='0' path='/etc/chipcard' owner='0'/>
+        <directory group='0' path='/usr/include/libchipcard5' owner='0'/>
+        <directory group='0' path='/usr/include/libchipcard5/chipcard' owner='0'/>
+        <directory group='0' path='/usr/include/libchipcard5/chipcard/cards' owner='0'/>
+        <directory group='0' path='/usr/include/libchipcard5/chipcard/ct' owner='0'/>
+        <directory group='0' path='/usr/include/libchipcard5/chipcard/sharedstuff' owner='0'/>
+        <directory group='0' path='/usr/share/chipcard' owner='0'/>
+        <directory group='0' path='/usr/share/chipcard/apps' owner='0'/>
+        <directory group='0' path='/usr/share/chipcard/cards' owner='0'/>
+        <directory group='0' path='/usr/share/chipcard/cards/cyberjack_pcsc' owner='0'/>
+        <directory group='0' path='/usr/share/chipcard/cards/generic_pcsc' owner='0'/>
+        <directory group='0' path='/usr/share/chipcard/drivers' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file group='0' mode='100755' path='/usr/lib/libchipcard.so.6.0.2' fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file group='0' mode='100755' path='/usr/bin/cardcommander' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/chipcard-tool' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/geldkarte' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/kvkcard' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/bin/memcard' fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.25, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/gwenhywfar/plugins/60/ct/ddvcard.so' fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/gwenhywfar/plugins/60/ct/starcoscard.so' fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/zkacard.xml' fileout='ASCII HTML document text' owner='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file group='0' mode='100644' path='/etc/chipcard/chipcardc.conf.default' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/etc/chipcard/chipcardc.conf.example' fileout='ASCII text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/ddv.xml' fileout='exported SGML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/ddv0.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/ddv1.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/egk.xml' fileout='exported SGML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/examplecard.xml' fileout='exported SGML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/kvkcard.xml' fileout='exported SGML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/memorycard.xml' fileout='exported SGML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/processorcard.xml' fileout='exported SGML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/starcoscard-hvb.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/starcoscard-vr.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/starcoscard.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/cyberjack_pcsc/card.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/cyberjack_pcsc/kvk.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/cyberjack_pcsc/processorcard.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/ddv0.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/ddv1.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/egk.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/geldkarte.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/generic_pcsc/card.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/generic_pcsc/kvk.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/generic_pcsc/processorcard.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/kvkcard.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/memorycard.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/processorcard.xml' fileout='ASCII HTML document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/starcoscard.xml' fileout='ASCII HTML document text' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/card.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/card_imp.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/card_l.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/ddvcard.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/egkcard.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/geldkarte.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/geldkarte_blog.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/geldkarte_llog.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/geldkarte_values.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/hiinsurancedata.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/hipersonaldata.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/kvkcard.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/memorycard.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/processorcard.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/starcos.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/starcos_keydescr.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/cards/zkacard.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/chipcard.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/client.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/ct/ct_card.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/sharedstuff/driverinfo.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/sharedstuff/misc.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/sharedstuff/msgengine.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/sharedstuff/pininfo.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/tlv.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/include/libchipcard5/chipcard/version.h' fileout='ASCII C program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/gwenhywfar/plugins/60/ct/ddvcard.a' fileout='current ar archive' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/gwenhywfar/plugins/60/ct/ddvcard.la' fileout='libtool library file' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/gwenhywfar/plugins/60/ct/starcoscard.a' fileout='current ar archive' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/gwenhywfar/plugins/60/ct/starcoscard.la' fileout='libtool library file' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/libchipcard.a' fileout='current ar archive' owner='0'/>
+        <file group='0' mode='100755' path='/usr/lib/libchipcard.la' fileout='libtool library file' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' mode='100755' path='/usr/bin/chipcard-config' fileout='POSIX shell script text executable' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/gwenhywfar/plugins/60/ct/ddvcard.xml' fileout='XML  document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/lib/gwenhywfar/plugins/60/ct/starcoscard.xml' fileout='XML  document text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/aclocal/chipcard.m4' fileout='Lisp/Scheme program text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/README' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/geldkarte.xml' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/apps/zkacard.xml' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/README' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/cards/card.xml' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/drivers/cyberjack_pcsc.xml' fileout='ASCII English text' owner='0'/>
+        <file group='0' mode='100644' path='/usr/share/chipcard/drivers/generic_pcsc.xml' fileout='ASCII text' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,56 @@
+<pkgdesc name='connman' version='1.24'>
+    <subpackage name='skel'>
+        <directory owner='0' group='0' path='/etc'/>
+        <directory owner='0' group='0' path='/etc/dbus-1'/>
+        <directory owner='0' group='0' path='/etc/dbus-1/system.d'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/sbin'/>
+        <directory owner='0' group='0' path='/usr/include'/>
+        <directory owner='0' group='0' path='/usr/include/connman'/>
+        <directory owner='0' group='0' path='/usr/share'/>
+        <directory owner='0' group='0' path='/usr/share/man'/>
+        <directory owner='0' group='0' path='/usr/share/man/man5'/>
+        <directory owner='0' group='0' path='/usr/share/man/man8'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
+        <directory owner='0' group='0' path='/usr/lib/connman'/>
+        <directory owner='0' group='0' path='/usr/lib/connman/scripts'/>
+        <directory owner='0' group='0' path='/usr/bin'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file owner='0' mode='100755' group='0' path='/usr/sbin/connmand'/>
+        <file owner='0' mode='100755' group='0' path='/usr/bin/connmanctl'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man5/connman.conf.5'/>
+        <file owner='0' mode='100644' group='0' path='/usr/share/man/man8/connman.8'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file owner='0' mode='100644' group='0' path='/etc/dbus-1/system.d/connman.bak'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/log.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/plugin.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/notifier.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/service.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/resolver.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/ipconfig.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/device.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/network.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/inet.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/storage.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/provision.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/session.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/ipaddress.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/agent.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/inotify.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/peer.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/include/connman/version.h'/>
+        <file owner='0' mode='100644' group='0' path='/usr/lib/pkgconfig/connman.pc'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

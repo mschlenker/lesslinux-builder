@@ -1,0 +1,104 @@
+<pkgdesc name='udev' version='1.9'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libgudev-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgudev-1.0.so.0' owner='0' group='0'/>
+        <directory path='/usr/include/gudev-1.0' owner='0' group='0'/>
+        <directory path='/usr/include/gudev-1.0/gudev' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/lib/udev/ata_id' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/collect' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/v4l_id' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/mtd_probe' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/accelerometer' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/cdrom_id' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/scsi_id' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/udevadm' owner='0' group='0' mode='100755'/>
+	<file path='/lib/libudev.so.1.4.1' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libgudev-1.0.so.0.2.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/sbin/udevd' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/doc/udev-20140408/lfs/README' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/udev-20140408/lfs/55-lfs.txt' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/udev/udev.conf' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/rules.d/83-cdrom-symlinks.rules' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/rules.d/55-lfs.rules' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/rules.d/81-cdrom.rules' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-pci-vendor-model.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-sdio-classes.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-bluetooth-vendor-product.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-acpi-vendor.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/60-keyboard.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-OUI.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-pci-classes.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-sdio-vendor-model.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-usb-classes.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/etc/udev/hwdb.d/20-usb-vendor-model.hwdb' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/80-drivers.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/78-sound-card.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-persistent-v4l.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/75-probe_mtd.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-persistent-alsa.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/61-accelerometer.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-persistent-serial.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/75-cd-aliases-generator.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/50-udev-default.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/42-usb-hid-pm.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/75-net-description.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-persistent-input.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-persistent-storage-tape.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-persistent-storage.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/75-persistent-net-generator.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/95-udev-late.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-cdrom_id.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/75-tty-description.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/write_net_rules' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/write_cd_rules' owner='0' group='0' mode='100755'/>
+        <file path='/lib/udev/rule_generator.functions' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/gudev-1.0/gudev/gudev.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gudev-1.0/gudev/gudevenumerator.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gudev-1.0/gudev/gudevclient.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gudev-1.0/gudev/gudevdevice.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gudev-1.0/gudev/gudevtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gudev-1.0/gudev/gudevenums.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gudev-1.0/gudev/gudevenumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/udev.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libudev.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libudev.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gudev-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libudev.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libudev.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgudev-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pkgconfig/udev.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/lib/udev/init-net-rules.sh' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/64-btrfs.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/50-firmware.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-keyboard.rules' owner='0' group='0' mode='100644'/>
+        <file path='/lib/udev/rules.d/60-drm.rules' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgudev-1.0.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
+</pkgdesc>

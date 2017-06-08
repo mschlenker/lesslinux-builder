@@ -1,0 +1,45 @@
+<pkgdesc name='libvshadow' version='20140731'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libvshadow.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libvshadow.so.1' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/libvshadow' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man3' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libvshadow.so.1.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/vshadowinfo' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/vshadowmount' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/vshadowmount.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/vshadowinfo.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/libvshadow.3' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/libvshadow/error.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libvshadow/extern.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libvshadow/types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libvshadow/codepage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libvshadow/definitions.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libvshadow/features.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libvshadow.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libvshadow.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libvshadow.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libvshadow.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

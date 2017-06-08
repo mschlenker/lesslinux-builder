@@ -1,0 +1,28 @@
+<pkgdesc version='1.9.0' name='conky'>
+    <subpackage name='skel'>
+        <directory path='/etc' group='0' owner='0'/>
+        <directory path='/etc/conky' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/bin' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/man' group='0' owner='0'/>
+        <directory path='/usr/share/man/man1' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/bin/conky' group='0' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/conky.1' group='0' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/conky/conky.conf' group='0' owner='0' mode='100644'/>
+        <file path='/etc/conky/conky_no_x11.conf' group='0' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

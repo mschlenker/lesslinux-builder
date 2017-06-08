@@ -1,0 +1,36 @@
+<pkgdesc version='1.17' name='ddrescue'>
+    <subpackage name='skel'/>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file mode='100755' path='/usr/bin/ddrescue' group='0' owner='0'/>
+        <file mode='100755' path='/usr/bin/ddrescuelog' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100644' path='/usr/share/info/dir' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/info/ddrescue.info' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/man/man1/ddrescue.1' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/man/man1/ddrescuelog.1' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file mode='100644' path='/etc/ld.so.cache' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'>
+        <file mode='100600' path='/var/cache/ldconfig/aux-cache' group='0' owner='0'/>
+    </subpackage>
+    <vanished>
+        <subpackage name='ignore'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='localization'/>
+        <subpackage name='devel'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='minimal'/>
+        <subpackage name='skel'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='bin'/>
+    </vanished>
+</pkgdesc>

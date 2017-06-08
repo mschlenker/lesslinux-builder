@@ -1,0 +1,78 @@
+<pkgdesc name='libarchive' version='3.1.2'>
+    <subpackage name='skel'>
+        <softlink owner='0' group='0' path='/usr/lib/libarchive.so'/>
+        <softlink owner='0' group='0' path='/usr/lib/libarchive.so.13'/>
+        <directory owner='0' group='0' path='/usr'/>
+        <directory owner='0' group='0' path='/usr/include'/>
+        <directory owner='0' group='0' path='/usr/lib'/>
+        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
+        <directory owner='0' group='0' path='/usr/bin'/>
+        <directory owner='0' group='0' path='/usr/share'/>
+        <directory owner='0' group='0' path='/usr/share/man'/>
+        <directory owner='0' group='0' path='/usr/share/man/man5'/>
+        <directory owner='0' group='0' path='/usr/share/man/man1'/>
+        <directory owner='0' group='0' path='/usr/share/man/man3'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file owner='0' group='0' path='/usr/lib/libarchive.so.13.1.2' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file owner='0' group='0' path='/usr/bin/bsdtar' mode='100755'/>
+        <file owner='0' group='0' path='/usr/bin/bsdcpio' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' group='0' path='/usr/share/man/man5/tar.5' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man5/cpio.5' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man5/mtree.5' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man5/libarchive-formats.5' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man1/bsdcpio.1' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man1/bsdtar.1' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_util.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_entry_acl.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_entry_linkify.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_blocksize.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_header.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_entry_stat.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_set_options.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_format.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/libarchive.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_open.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_finish_entry.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_header.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_entry_time.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_filter.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_open.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_disk.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_filter.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_format.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/libarchive_internals.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_new.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_set_options.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/libarchive_changes.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_disk.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_extract.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_free.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_write_data.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_new.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_entry_perms.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_entry_paths.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_entry.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_data.3' mode='100644'/>
+        <file owner='0' group='0' path='/usr/share/man/man3/archive_read_free.3' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file owner='0' group='0' path='/usr/include/archive_entry.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/include/archive.h' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/libarchive.a' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/pkgconfig/libarchive.pc' mode='100644'/>
+        <file owner='0' group='0' path='/usr/lib/libarchive.la' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

@@ -1,0 +1,38 @@
+<pkgdesc name='file' version='5.21'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libmagic.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libmagic.so.1' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man4' owner='0' group='0'/>
+        <directory path='/usr/share/man/man3' owner='0' group='0'/>
+        <directory path='/usr/share/man/man5' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/misc' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libmagic.so.1.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/misc/magic.mgc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/file' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man4/magic.4' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/libmagic.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/file.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/magic.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libmagic.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

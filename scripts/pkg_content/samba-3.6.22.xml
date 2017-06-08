@@ -1,0 +1,277 @@
+<pkgdesc version='3.6.22' name='samba'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libtevent.so.0' group='0' owner='0'/>
+        <softlink path='/usr/lib/libtevent.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libtdb.so.1' group='0' owner='0'/>
+        <softlink path='/usr/lib/libtdb.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libwbclient.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libnetapi.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libsmbclient.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libsmbsharemodes.so' group='0' owner='0'/>
+        <directory path='/etc' group='0' owner='0'/>
+        <directory path='/etc/samba' group='0' owner='0'/>
+        <directory path='/etc/samba/private' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/bin' group='0' owner='0'/>
+        <directory path='/usr/sbin' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/samba' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/vfs' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/pdb' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/idmap' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/nss_info' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/charset' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/auth' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/gpext' group='0' owner='0'/>
+        <directory path='/usr/lib/samba/perfcount' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/man' group='0' owner='0'/>
+        <directory path='/usr/share/man/man1' group='0' owner='0'/>
+        <directory path='/usr/share/man/man5' group='0' owner='0'/>
+        <directory path='/usr/share/man/man7' group='0' owner='0'/>
+        <directory path='/usr/share/man/man8' group='0' owner='0'/>
+        <directory path='/usr/share/locale' group='0' owner='0'/>
+        <directory path='/usr/share/locale/de' group='0' owner='0'/>
+        <directory path='/usr/share/locale/de/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ar' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ar/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/cs' group='0' owner='0'/>
+        <directory path='/usr/share/locale/cs/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/da' group='0' owner='0'/>
+        <directory path='/usr/share/locale/da/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/es' group='0' owner='0'/>
+        <directory path='/usr/share/locale/es/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fi' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fi/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fr' group='0' owner='0'/>
+        <directory path='/usr/share/locale/fr/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/hu' group='0' owner='0'/>
+        <directory path='/usr/share/locale/hu/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/it' group='0' owner='0'/>
+        <directory path='/usr/share/locale/it/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ja' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ja/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ko' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ko/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/nb' group='0' owner='0'/>
+        <directory path='/usr/share/locale/nb/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/nl' group='0' owner='0'/>
+        <directory path='/usr/share/locale/nl/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/pl' group='0' owner='0'/>
+        <directory path='/usr/share/locale/pl/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/pt_BR' group='0' owner='0'/>
+        <directory path='/usr/share/locale/pt_BR/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ru' group='0' owner='0'/>
+        <directory path='/usr/share/locale/ru/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/sv' group='0' owner='0'/>
+        <directory path='/usr/share/locale/sv/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/zh_CN' group='0' owner='0'/>
+        <directory path='/usr/share/locale/zh_CN/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/share/locale/zh_TW' group='0' owner='0'/>
+        <directory path='/usr/share/locale/zh_TW/LC_MESSAGES' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/var' group='0' owner='0'/>
+        <directory path='/var/run' group='0' owner='0'/>
+        <directory path='/var/lib' group='0' owner='0'/>
+        <directory path='/var/lib/samba' group='0' owner='0'/>
+        <directory path='/var/nmbd' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/samba/vfs/recycle.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/audit.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/extd_audit.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/full_audit.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/netatalk.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/fake_perms.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/default_quota.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/readonly.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/cap.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/expand_msdfs.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/shadow_copy.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/shadow_copy2.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/xattr_tdb.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/catia.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/streams_xattr.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/streams_depot.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/readahead.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/fileid.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/preopen.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/syncops.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/notify_fam.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/acl_xattr.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/acl_tdb.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/smb_traffic_analyzer.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/dirsort.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/scannedonly.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/crossrename.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/linux_xfs_sgid.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/vfs/time_audit.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/idmap/autorid.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/charset/CP850.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/charset/CP437.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/auth/script.so' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/libtevent.so.0.9.11' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/libtdb.so.1.2.9' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/libwbclient.so.0' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/libnetapi.so.0' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/libsmbclient.so.0' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/libsmbsharemodes.so.0' group='0' mode='100755' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/wbinfo' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbclient' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/net' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbspool' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/testparm' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbstatus' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbget' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbta-util' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbcontrol' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbtree' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/tdbbackup' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/nmblookup' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/pdbedit' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/tdbdump' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/tdbrestore' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/tdbtool' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbpasswd' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/rpcclient' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbcacls' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/profiles' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/ntlm_auth' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/sharesec' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/smbcquotas' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/eventlogadm' group='0' mode='100755' owner='0'/>
+        <file path='/usr/sbin/smbd' group='0' mode='100755' owner='0'/>
+        <file path='/usr/sbin/nmbd' group='0' mode='100755' owner='0'/>
+        <file path='/usr/sbin/winbindd' group='0' mode='100755' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/dbwrap_tool.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/findsmb.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/log2pcap.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/nmblookup.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/ntlm_auth.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/profiles.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/rpcclient.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/sharesec.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbcacls.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbclient.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbcontrol.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbcquotas.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbget.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbstatus.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbtar.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/smbtree.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/testparm.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/vfstest.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man1/wbinfo.1' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man5/lmhosts.5' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man5/pam_winbind.conf.5' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man5/smb.conf.5' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man5/smbgetrc.5' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man5/smbpasswd.5' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man7/libsmbclient.7' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man7/samba.7' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man7/winbind_krb5_locator.7' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/eventlogadm.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_ad.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_adex.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_autorid.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_hash.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_ldap.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_nss.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_rid.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_tdb.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/idmap_tdb2.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/net.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/nmbd.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/pam_winbind.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/pdbedit.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/smbd.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/smbpasswd.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/smbspool.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/smbta-util.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/swat.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/tdbbackup.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/tdbdump.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/tdbtool.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_acl_tdb.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_acl_xattr.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_aio_fork.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_aio_pthread.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_audit.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_cacheprime.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_cap.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_catia.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_commit.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_crossrename.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_default_quota.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_dirsort.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_extd_audit.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_fake_perms.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_fileid.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_full_audit.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_gpfs.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_netatalk.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_notify_fam.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_prealloc.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_preopen.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_readahead.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_readonly.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_recycle.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_scannedonly.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_shadow_copy.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_shadow_copy2.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_smb_traffic_analyzer.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_streams_depot.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_streams_xattr.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_time_audit.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/vfs_xattr_tdb.8' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/man/man8/winbindd.8' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/samba/smb.conf.default' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/tevent.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/tevent_internal.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/tdb.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/wbclient.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/netapi.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/libsmbclient.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/smb_share_modes.h' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/de/LC_MESSAGES/net.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/ar/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/cs/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/da/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/fi/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/hu/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/ja/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/ko/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/nb/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/nl/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/pt_BR/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/ru/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/locale/zh_TW/LC_MESSAGES/pam_winbind.mo' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/bin/smbtar' group='0' mode='100755' owner='0'/>
+        <file path='/usr/bin/findsmb' group='0' mode='100755' owner='0'/>
+        <file path='/usr/lib/samba/lowcase.dat' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/samba/upcase.dat' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/samba/valid.dat' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

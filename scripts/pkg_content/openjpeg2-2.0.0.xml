@@ -1,0 +1,42 @@
+<pkgdesc name='openjpeg2' version='2.0.0'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libopenjp2.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libopenjp2.so.6' group='0' owner='0'/>
+        <directory path='/usr/lib/openjpeg-2.0' group='0' owner='0'/>
+        <directory path='/usr/include/openjpeg-2.0' group='0' owner='0'/>
+        <directory path='/usr/share/doc/openjpeg-2.0' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file mode='100755' path='/usr/lib/libopenjp2.so.2.0.0' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100644' path='/usr/share/man/man1/opj_decompress.1' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/man/man1/opj_dump.1' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/man/man1/opj_compress.1' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/man/man3/libopenjp2.3' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/doc/openjpeg-2.0/LICENSE' group='0' owner='0'/>
+        <file mode='100644' path='/usr/share/doc/openjpeg-2.0/CHANGES' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file mode='100644' path='/etc/ld.so.cache' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file mode='100644' path='/usr/include/openjpeg-2.0/openjpeg.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/openjpeg-2.0/opj_stdint.h' group='0' owner='0'/>
+        <file mode='100644' path='/usr/include/openjpeg-2.0/opj_config.h' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file mode='100644' path='/usr/lib/openjpeg-2.0/OpenJPEGTargets.cmake' group='0' owner='0'/>
+        <file mode='100644' path='/usr/lib/openjpeg-2.0/OpenJPEGConfig.cmake' group='0' owner='0'/>
+        <file mode='100644' path='/usr/lib/openjpeg-2.0/OpenJPEGTargets-noconfig.cmake' group='0' owner='0'/>
+        <file mode='100755' path='/usr/bin/opj_compress' group='0' owner='0'/>
+        <file mode='100755' path='/usr/bin/opj_dump' group='0' owner='0'/>
+        <file mode='100755' path='/usr/bin/opj_decompress' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'>
+        <file mode='100600' path='/var/cache/ldconfig/aux-cache' group='0' owner='0'/>
+    </subpackage>
+</pkgdesc>

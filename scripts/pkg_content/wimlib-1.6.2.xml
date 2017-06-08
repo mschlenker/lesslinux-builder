@@ -1,0 +1,82 @@
+<pkgdesc name='wimlib' version='1.6.2'>
+    <subpackage name='skel'>
+        <softlink group='0' path='/usr/lib/libwim.so.9' owner='0'/>
+        <softlink group='0' path='/usr/lib/libwim.so' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimappend.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimapply.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimcapture.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimdelete.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimdir.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimexport.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimextract.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wiminfo.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimjoin.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimmount.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimmountrw.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimoptimize.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimsplit.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimunmount.1' owner='0'/>
+        <softlink group='0' path='/usr/share/man/man1/wimupdate.1' owner='0'/>
+        <directory group='0' path='/usr' owner='0'/>
+        <directory group='0' path='/usr/lib' owner='0'/>
+        <directory group='0' path='/usr/lib/pkgconfig' owner='0'/>
+        <directory group='0' path='/usr/bin' owner='0'/>
+        <directory group='0' path='/usr/include' owner='0'/>
+        <directory group='0' path='/usr/share' owner='0'/>
+        <directory group='0' path='/usr/share/man' owner='0'/>
+        <directory group='0' path='/usr/share/man/man1' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file group='0' path='/usr/lib/libwim.so.9.5.0' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file group='0' path='/usr/bin/wimlib-imagex' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimappend' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimapply' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimcapture' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimdelete' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimdir' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimexport' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimextract' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wiminfo' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimjoin' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimmount' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimmountrw' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimoptimize' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimsplit' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimunmount' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/wimupdate' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-append.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-apply.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-capture.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-delete.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-dir.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-export.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-extract.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-info.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-join.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-mount.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-mountrw.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-optimize.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-split.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-unmount.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/wimlib-imagex-update.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/mkwinpeimg.1' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file group='0' path='/usr/lib/libwim.la' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/libwim.a' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/pkgconfig/wimlib.pc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/include/wimlib.h' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' path='/usr/bin/mkwinpeimg' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,89 @@
+<pkgdesc name='libva' version='1.6.2'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libva-tpi.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-egl.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-egl.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-x11.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-tpi.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-glx.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-glx.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-drm.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-drm.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libva-x11.so.1' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/va' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/lib/dri' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/dri/dummy_drv_video.so' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libva-glx.so.1.3801.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-egl.so.1.3801.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva.so.1.3801.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-x11.so.1.3801.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-tpi.so.1.3801.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-drm.so.1.3801.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/vainfo' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/loadjpeg' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/putsurface' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/avcenc' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/mpeg2vldemo' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/h264encode' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/jpegenc' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/mpeg2vaenc' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/va/va_enc_jpeg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_tpi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_x11.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_dri2.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_enc_hevc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_backend_tpi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_backend_vpp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_glx.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_backend_glx.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_enc_vp8.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_compat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_dricommon.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_vpp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_enc_h264.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_dec_hevc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_dec_jpeg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_drmcommon.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_egl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_backend.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_dec_vp8.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_dec_vp9.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_version.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_enc_mpeg2.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/va/va_backend_egl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libva-egl.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libva-glx.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libva-x11.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libva-drm.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libva.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libva-tpi.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libva-egl.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/dri/dummy_drv_video.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-drm.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-x11.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-glx.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libva-tpi.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

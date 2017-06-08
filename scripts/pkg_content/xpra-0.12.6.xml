@@ -1,0 +1,530 @@
+<pkgdesc name='xpra' version='0.12.6'>
+    <subpackage name='skel'>
+        <directory group='0' path='/etc/xpra' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/platform' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/xor' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/argb' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_opencl' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_proxy' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_x264' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/dec_avcodec' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_swscale' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_cython' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/vpx' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/keyboard' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/net' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/net/rencode' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bencode' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/server' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/x11' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/client' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl' owner='0'/>
+        <directory group='0' path='/usr/lib/python2.7/site-packages/xpra/sound' owner='0'/>
+        <directory group='0' path='/usr/share/xpra' owner='0'/>
+        <directory group='0' path='/usr/share/xpra/icons' owner='0'/>
+        <directory group='0' path='/usr/share/xpra/webm' owner='0'/>
+        <directory group='0' path='/usr/share/xpra/www' owner='0'/>
+        <directory group='0' path='/usr/share/xpra/www/include' owner='0'/>
+        <directory group='0' path='/usr/share/xpra/www/include/web-socket-js' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/xor/cyxor.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/argb/argb.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_x264/encoder.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/dec_avcodec/decoder.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_swscale/colorspace_converter.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_cython/colorspace_converter.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/vpx/encoder.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/vpx/decoder.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/rencode/_rencode.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bencode/cython_bencode.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats/cymaths.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gdk_atoms.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/gdk_display_source.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/gdk_bindings.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/wait_for_x_server.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/display_source.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/core_bindings.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/randr_bindings.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/keyboard_bindings.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/window_bindings.so' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/ximage.so' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file group='0' path='/usr/share/man/man1/xpra.1' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/man/man1/xpra_launcher.1' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file group='0' path='/etc/xpra/xorg.conf' owner='0' mode='100644'/>
+        <file group='0' path='/etc/xpra/xpra.conf' owner='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file group='0' path='/usr/bin/xpra' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/xpra_launcher' owner='0' mode='100755'/>
+        <file group='0' path='/usr/bin/xpra_Xdummy' owner='0' mode='100755'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/simple_stats.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/deque.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/signal_object.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/log.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/dotxpra.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/version_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/os_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/src_info.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/daemon_thread.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/keyboard.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/ui_thread_watcher.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/shadow_server.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/features.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/paths.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/keyboard_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/gui.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/options_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/info.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/options.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/keyboard.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/shadow_server.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/features.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/paths.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/gui.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/appindicator_tray.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/info.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/options.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/keyboard.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/shadow_server.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/features.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/paths.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/gui.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/appindicator_tray.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/info.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/xposix/options.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/keyboard.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/ui_thread_watcher.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/shadow_server.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/features.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/paths.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/keyboard_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/gui.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/options_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/info.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/platform/options.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/image_wrapper.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/loader.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/codec_constants.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/video_helper.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/xor/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/xor/numpyxor.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/xor/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/xor/numpyxor.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/argb/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/argb/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/decode.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/encode.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/handlers.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/decode.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/encode.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/webm/handlers.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_opencl/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_opencl/opencl_kernels.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_opencl/colorspace_converter.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_opencl/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_opencl/opencl_kernels.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_opencl/colorspace_converter.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_proxy/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_proxy/encoder.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_proxy/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_proxy/encoder.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_x264/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/enc_x264/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/dec_avcodec/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/dec_avcodec/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_swscale/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_swscale/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_cython/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/csc_cython/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/vpx/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/vpx/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/image_wrapper.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/loader.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/codec_constants.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/codecs/video_helper.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/main.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/exec_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/server.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/config.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/main.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/exec_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/server.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/scripts/config.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/keyboard/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/keyboard/layouts.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/keyboard/mask.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/keyboard/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/keyboard/layouts.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/keyboard/mask.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/net_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/mmap_pipe.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bytestreams.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/protocol.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/avahi_publisher.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/rencode/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/rencode/rencode_orig.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/rencode/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/rencode/rencode_orig.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bencode/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bencode/bencode.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bencode/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bencode/bencode.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/net_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/mmap_pipe.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/bytestreams.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/protocol.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/net/avahi_publisher.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/batch_config.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/batch_delay_calculator.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/gtk_server_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/picture_encode.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/server_uuid.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/server_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/source_stats.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/gtk_root_window_model.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/background_worker.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/proxy_instance_process.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/proxy_server.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/window_source.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/proxy.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/source.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/shadow_server_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/server_core.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/window_stats.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/window_video_source.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats/pymaths.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats/maths.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats/pymaths.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/stats/maths.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/fail_auth.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/pam.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/pam_auth.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/win32_auth.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/sys_auth_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/allow_auth.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/none_auth.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/file_auth.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/reject_auth.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/fail_auth.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/pam.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/pam_auth.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/win32_auth.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/sys_auth_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/allow_auth.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/none_auth.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/file_auth.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/auth/reject_auth.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/batch_config.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/batch_delay_calculator.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/gtk_server_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/picture_encode.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/server_uuid.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/server_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/source_stats.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/gtk_root_window_model.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/background_worker.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/proxy_instance_process.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/proxy_server.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/window_source.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/proxy.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/source.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/shadow_server_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/server_core.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/window_stats.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/server/window_video_source.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/graph.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk2common.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/cursor_names.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/nested_main.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/pixbuf_to_rgb.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/keymap.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gobject_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/quit.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_view_keyboard.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/region.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gobject_compat.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_view_clipboard.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_spinner.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/graph.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk2common.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/cursor_names.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/nested_main.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/pixbuf_to_rgb.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/keymap.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gobject_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/quit.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_view_keyboard.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/region.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gobject_compat.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_view_clipboard.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/gtk_common/gtk_spinner.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/translated_clipboard.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/gdk_clipboard.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/clipboard_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/translated_clipboard.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/gdk_clipboard.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/clipboard/clipboard_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/dbus_notifications_forwarder.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/x11_server_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xsettings_prop.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/server.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/server_keyboard_config.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/shadow_x11_server.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xkbhelper.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/dbus_common.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xsettings.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xroot_props.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/dbus_helper.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/composite.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/prop.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/selection.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/pointer_grab.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/error.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/keys.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/tray.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/wm.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/send_wm.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/world_window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/composite.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/prop.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/selection.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/pointer_grab.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/error.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/keys.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/tray.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/wm.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/send_wm.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/gtk_x11/world_window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/bindings/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/dbus_notifications_forwarder.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/x11_server_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xsettings_prop.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/server.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/server_keyboard_config.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/shadow_x11_server.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xkbhelper.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/dbus_common.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xsettings.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/xroot_props.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/x11/dbus_helper.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/window_backing_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/tray_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/window_border.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/fake_window_backing.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_widget_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/keyboard_helper.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/ui_client_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gobject_client_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_tray.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_window_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/notifier_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/pynotify_notifier.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/dbus_notifier.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/notifier_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/pynotify_notifier.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/notifications/dbus_notifier.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/client_launcher.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/tray_menu.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/window_backing.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/gtk2_notifier.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/debuginfo_client_window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/client_window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/pixmap_backing.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/custom_client_window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/topbar_client_window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/border_client_window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/client.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/gtk2_window_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/client_launcher.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/tray_menu.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/window_backing.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/gtk2_notifier.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/debuginfo_client_window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/client_window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/pixmap_backing.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/custom_client_window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/topbar_client_window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/border_client_window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/client.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk2/gtk2_window_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/cairo_backing.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/about.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_keyboard_helper.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/session_info.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_window_backing_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_client_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_tray_menu_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_client_window_base.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/statusicon_tray.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/cairo_backing.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/about.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_keyboard_helper.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/session_info.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_window_backing_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_client_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_tray_menu_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/gtk_client_window_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gtk_base/statusicon_tray.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_window_backing.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_colorspace_conversions.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_client_window.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_check.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_window_backing.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_colorspace_conversions.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_client_window.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gl/gl_check.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/window_backing_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/tray_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/window_border.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/fake_window_backing.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_widget_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/keyboard_helper.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/ui_client_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/gobject_client_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_tray.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/client/client_window_base.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/__init__.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/gstreamer_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/sink.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/src.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/sound_pipeline.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/pulseaudio_util.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/gstreamer_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/sink.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/src.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/sound_pipeline.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/sound/pulseaudio_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/build_info.py' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/__init__.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/simple_stats.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/deque.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/signal_object.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/log.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/dotxpra.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/version_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/os_util.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/src_info.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/daemon_thread.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra/build_info.pyc' owner='0' mode='100644'/>
+        <file group='0' path='/usr/lib/python2.7/site-packages/xpra-0.12.6-py2.7.egg-info' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/applications/xpra_launcher.desktop' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/applications/xpra.desktop' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/icons/xpra.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/README' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/COPYING' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/keyboard.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/package.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/encoding.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/raise.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/retry.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/unticked-small.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/connect.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/statistics.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/opengl.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/slider.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/ticked-small.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/quit.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/speaker.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/xpra.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/browse.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/microphone.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/compressed.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/information.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/close.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/features.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/clipboard.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/icons/speed.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/webm/LICENSE' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/index.html' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/favicon.ico' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/favicon.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/util.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/websock.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/shapes.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/webutil.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/minimize.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/inflate.min.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/window.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/protocol.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/bencode.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/deflate.min.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/keycodes.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/maximize.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/close.png' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/web-socket-js/swfobject.js' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/web-socket-js/README.txt' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/web-socket-js/WebSocketMain.swf' owner='0' mode='100644'/>
+        <file group='0' path='/usr/share/xpra/www/include/web-socket-js/web_socket.js' owner='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

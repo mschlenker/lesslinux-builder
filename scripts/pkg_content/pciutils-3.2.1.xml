@@ -1,0 +1,27 @@
+<pkgdesc name='pciutils' version='3.2.1'>
+    <subpackage name='skel'>
+        <softlink owner='0' path='/usr/lib/libpci.so.3' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file mode='100644' owner='0' path='/usr/lib/libpci.so.3.2.1' group='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file mode='100755' owner='0' path='/usr/sbin/lspci' group='0'/>
+        <file mode='100755' owner='0' path='/usr/sbin/setpci' group='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100644' owner='0' path='/usr/share/man/man8/update-pciids.8' group='0'/>
+        <file mode='100644' owner='0' path='/usr/share/man/man8/setpci.8' group='0'/>
+        <file mode='100644' owner='0' path='/usr/share/man/man8/lspci.8' group='0'/>
+        <file mode='100644' owner='0' path='/usr/share/man/man7/pcilib.7' group='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file mode='100644' owner='0' path='/usr/share/pci.ids.gz' group='0'/>
+        <file mode='100755' owner='0' path='/usr/sbin/update-pciids' group='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

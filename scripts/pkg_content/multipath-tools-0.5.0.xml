@@ -1,0 +1,72 @@
+<pkgdesc name='multipath-tools' version='0.5.0'>
+    <subpackage name='skel'>
+        <softlink owner='0' path='/lib/libmpathpersist.so' group='0'/>
+        <directory owner='0' path='/etc' group='0'/>
+        <directory owner='0' path='/etc/udev' group='0'/>
+        <directory owner='0' path='/etc/udev/rules.d' group='0'/>
+        <directory owner='0' path='/etc/init.d' group='0'/>
+        <directory owner='0' path='/lib' group='0'/>
+        <directory owner='0' path='/lib/udev' group='0'/>
+        <directory owner='0' path='/lib/multipath' group='0'/>
+        <directory owner='0' path='/sbin' group='0'/>
+        <directory owner='0' path='/usr' group='0'/>
+        <directory owner='0' path='/usr/include' group='0'/>
+        <directory owner='0' path='/usr/share' group='0'/>
+        <directory owner='0' path='/usr/share/doc' group='0'/>
+        <directory owner='0' path='/usr/share/doc/mpathpersist' group='0'/>
+        <directory owner='0' path='/usr/share/man' group='0'/>
+        <directory owner='0' path='/usr/share/man/man5' group='0'/>
+        <directory owner='0' path='/usr/share/man/man3' group='0'/>
+        <directory owner='0' path='/usr/share/man/man8' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file owner='0' path='/lib/libmpathpersist.so.0' group='0' mode='100755'/>
+        <file owner='0' path='/lib/libmultipath.so.0' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libprioweightedpath.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libcheckrdac.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libprioconst.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libpriohp_sw.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libpriorandom.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libpriohds.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libcheckemc_clariion.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libpriordac.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libprioontap.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libcheckcciss_tur.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libcheckhp_sw.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libpriodatacore.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libprioiet.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libcheckreadsector0.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libprioalua.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libprioemc.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libchecktur.so' group='0' mode='100755'/>
+        <file owner='0' path='/lib/multipath/libcheckdirectio.so' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file owner='0' path='/sbin/kpartx' group='0' mode='100755'/>
+        <file owner='0' path='/sbin/multipathd' group='0' mode='100755'/>
+        <file owner='0' path='/sbin/mpathpersist' group='0' mode='100755'/>
+        <file owner='0' path='/sbin/multipath' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file owner='0' path='/usr/share/man/man5/multipath.conf.5.gz' group='0' mode='100644'/>
+        <file owner='0' path='/usr/share/man/man3/mpath_persistent_reserve_out.3.gz' group='0' mode='100644'/>
+        <file owner='0' path='/usr/share/man/man3/mpath_persistent_reserve_in.3.gz' group='0' mode='100644'/>
+        <file owner='0' path='/usr/share/man/man8/multipath.8.gz' group='0' mode='100644'/>
+        <file owner='0' path='/usr/share/man/man8/kpartx.8.gz' group='0' mode='100644'/>
+        <file owner='0' path='/usr/share/man/man8/multipathd.8.gz' group='0' mode='100644'/>
+        <file owner='0' path='/usr/share/man/man8/mpathpersist.8.gz' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file owner='0' path='/etc/udev/rules.d/kpartx.rules' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file owner='0' path='/usr/include/mpath_persist.h' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file owner='0' path='/lib/udev/kpartx_id' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

@@ -1,0 +1,59 @@
+<pkgdesc version='2.9.3' name='fuse'>
+    <subpackage name='skel'/>
+    <subpackage name='minimal'>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/libulockmgr.so.1.0.1'/>
+	<file mode='100755' group='0' owner='0' path='/usr/lib/libfuse.so.2.9.3'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file mode='100755' group='0' owner='0' path='/sbin/mount.fuse'/>
+        <file mode='104755' group='0' owner='0' path='/usr/bin/fusermount'/>
+        <file mode='100755' group='0' owner='0' path='/usr/bin/ulockmgr_server'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man1/fusermount.1'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man1/ulockmgr_server.1'/>
+        <file mode='100644' group='0' owner='0' path='/usr/share/man/man8/mount.fuse.8'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file mode='100755' group='0' owner='0' path='/etc/init.d/fuse'/>
+        <file mode='100644' group='0' owner='0' path='/etc/udev/rules.d/99-fuse.rules'/>
+        <file mode='100644' group='0' owner='0' path='/etc/ld.so.cache'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/fuse.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/fuse_compat.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/fuse_common.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/fuse_common_compat.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/fuse_lowlevel.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/fuse_lowlevel_compat.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/fuse_opt.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse/cuse_lowlevel.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/fuse.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/include/ulockmgr.h'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/pkgconfig/fuse.pc'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/libfuse.la'/>
+        <file mode='100755' group='0' owner='0' path='/usr/lib/libulockmgr.la'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/libfuse.a'/>
+        <file mode='100644' group='0' owner='0' path='/usr/lib/libulockmgr.a'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'>
+        <file mode='100600' group='0' owner='0' path='/var/cache/ldconfig/aux-cache'/>
+    </subpackage>
+    <vanished>
+        <subpackage name='ignore'/>
+        <subpackage name='doc'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='bin'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='devel'/>
+        <subpackage name='minimal'>
+            <file path='/usr/lib/libfuse.so.2.9.2'/>
+        </subpackage>
+        <subpackage name='skel'/>
+        <subpackage name='localization'/>
+        <subpackage name='config'/>
+    </vanished>
+</pkgdesc>

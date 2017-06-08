@@ -1,0 +1,46 @@
+<pkgdesc version='1.43' name='ktoblzcheck'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libktoblzcheck.so' group='0' owner='0'/>
+        <softlink path='/usr/lib/libktoblzcheck.so.1' group='0' owner='0'/>
+        <directory path='/usr' group='0' owner='0'/>
+        <directory path='/usr/lib' group='0' owner='0'/>
+        <directory path='/usr/lib/pkgconfig' group='0' owner='0'/>
+        <directory path='/usr/lib/python2.7' group='0' owner='0'/>
+        <directory path='/usr/lib/python2.7/site-packages' group='0' owner='0'/>
+        <directory path='/usr/bin' group='0' owner='0'/>
+        <directory path='/usr/include' group='0' owner='0'/>
+        <directory path='/usr/share' group='0' owner='0'/>
+        <directory path='/usr/share/ktoblzcheck' group='0' owner='0'/>
+        <directory path='/usr/share/man' group='0' owner='0'/>
+        <directory path='/usr/share/man/man1' group='0' owner='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/bin/ktoblzcheck' group='0' mode='100755' owner='0'/>
+        <file path='/usr/share/ktoblzcheck/ibandata.txt' group='0' mode='100644' owner='0'/>
+	 <file path='/usr/lib/libktoblzcheck.so.1.5.21' group='0' mode='100755' owner='0'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/share/ktoblzcheck/online_update.pl' group='0' mode='100755' owner='0'/>
+        <file path='/usr/share/ktoblzcheck/bundesbank.pl' group='0' mode='100755' owner='0'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/ktoblzcheck.1' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/ktoblzcheck.pc' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/libktoblzcheck.la' group='0' mode='100755' owner='0'/>
+        <file path='/usr/include/iban.h' group='0' mode='100644' owner='0'/>
+        <file path='/usr/include/ktoblzcheck.h' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/python2.7/site-packages/ktoblzcheck.py' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/python2.7/site-packages/ktoblzcheck.pyo' group='0' mode='100644' owner='0'/>
+        <file path='/usr/lib/python2.7/site-packages/ktoblzcheck.pyc' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/ktoblzcheck/bankdata_20130909.txt' group='0' mode='100644' owner='0'/>
+        <file path='/usr/share/ktoblzcheck/bankdata_20130603.txt' group='0' mode='100644' owner='0'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
