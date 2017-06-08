@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="binutils"
-		version="2.25.1"
+		version="2.27"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                 
-				<pkg sha1="1d597ae063e3947a5f61e23ceda8aebf78405fcd">binutils-2.25.1.tar.bz2</pkg>
+				<pkg sha1="6e472ddae565a2b1447e6f2393809bb8799982cf">binutils-2.27.tar.bz2</pkg>
 				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<manualcheck date="20160629" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/binutils/">
-					<atext linktext="binutils-2.25.4." />
-					<atext linktext="binutils-2.25.2." />
-					<atext linktext="binutils-2.25.3" />
-					<atext linktext="binutils-2.26." />
-					<atext linktext="binutils-2.27." />
+					<atext linktext="binutils-2.27.1." />
+					<atext linktext="binutils-2.27.2." />
+					<atext linktext="binutils-2.27.3" />
+					<atext linktext="binutils-2.28." />
+					<atext linktext="binutils-2.29." />
 				</page>
 			</check>
 		</sources>
@@ -27,6 +27,7 @@
 			<dep>man-pages</dep>
 			<dep>readjust</dep>
 			<dep>zlib</dep>
+			<dep>file</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -37,18 +38,16 @@
 		<!-- <patch>			
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			## cat ${SRCDIR}/${PKGNAME}-2.19-pt-pax-flags-200811041810.patch | patch -p1
-			sed -i -e 's/@colophon/@@colophon/' -e 's/doc@cygnus.com/doc@@cygnus.com/' bfd/doc/bfd.texinfo
-			rm -fv etc/standards.info
-			sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in
+			# cat ${SRCDIR}/binutils-2.26-upstream_fixes-3.patch | patch -p1
 			
 			]]>
 		</patch> -->
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-build
+			jobcount=`grep -c processor /proc/cpuinfo`
 			../${PKGNAME}-${PKGVERSION}/configure --prefix=/usr --enable-shared --disable-werror
-			make tooldir=/usr
+			make -j $jobcount tooldir=/usr
 			]]>
 		</build>
 		<test>
@@ -62,7 +61,7 @@
 			cd ${PKGNAME}-build
 			make tooldir=/usr install DESTDIR=${TGTDIR}
 			mkdir -p ${TGTDIR}/usr/include
-			cp -v ../${PKGNAME}-${PKGVERSION}/include/libiberty.h ${TGTDIR}/usr/include
+			# cp -v ../${PKGNAME}-${PKGVERSION}/include/libiberty.h ${TGTDIR}/usr/include
 			]]>
 		</install>
 		<clean>

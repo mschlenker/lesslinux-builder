@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="pidgin"
-		version="2.10.11"
+		version="2.11.0"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="5e0062b81bdb01300804e12bc0b6a04a91984631">pidgin-2.10.11.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/pidgin/Pidgin/2.10.11/</mirror>
+				<pkg sha1="9738a424ac9f6da8b68ebf11af00c55cafd6b4d2">pidgin-2.11.0.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/pidgin/Pidgin/2.11.0/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="180" page="http://sourceforge.net/projects/pidgin/files/" />
+			<manualcheck date="20160701" interval="180" page="http://sourceforge.net/projects/pidgin/files/" />
 			<check>
 				<page html="http://sourceforge.net/projects/pidgin/files/">
-					<atext linktext="pidgin-2.10.14." />
-					<atext linktext="pidgin-2.10.12." />
-					<atext linktext="pidgin-2.10.13." />
-					<atext linktext="pidgin-2.11." />
+					<atext linktext="pidgin-2.11.1." />
+					<atext linktext="pidgin-2.11.2." />
+					<atext linktext="pidgin-2.11.3." />
 					<atext linktext="pidgin-2.12." />
+					<atext linktext="pidgin-2.13." />
 					<atext linktext="pidgin-3." />
 				</page>
 			</check>
@@ -86,10 +86,18 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/opt --sysconfdir=/etc  --disable-screensaver \
 				--disable-gtkspell --disable-vv --disable-meanwhile \
 				--disable-nm  --disable-tcl
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

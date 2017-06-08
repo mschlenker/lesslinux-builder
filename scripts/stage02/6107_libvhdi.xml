@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libvhdi-alpha' version='20150110' install='chroot'>
+    <package name='libvhdi-alpha' version='20160424' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='2eb0d07fd45ba774c284830edc7f16ec799a7dfb'>
-                    libvhdi-alpha-20150110.tar.gz
+                <pkg sha1='9e13feca30de5ae01a19fcaba63db7f23a248706'>
+                    libvhdi-alpha-20160424.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libvhdi/releases/download/20150110/
+                    https://github.com/libyal/libvhdi/releases/download/20160424/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libvhdi/releases/download/20150110/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libvhdi/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -39,7 +39,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -48,9 +48,16 @@
         <patch/>
         <build>
             <![CDATA[cd libvhdi-${PKGVERSION}
-CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
-make
+	       jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python2
+make -j $jobcount 
 ]]>
         </build>
         <install>

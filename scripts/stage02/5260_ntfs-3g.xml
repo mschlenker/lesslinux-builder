@@ -1,29 +1,31 @@
 <llpackages>
 	<package 
 		name="ntfs-3g_ntfsprogs"
-		version="2015.3.14"
+		version="2016.2.22"
 		class="user"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                
-				<pkg sha1="0ebd9adffd5a6ddcfbacade6be8efe1eba4b1a08">ntfs-3g_ntfsprogs-2015.3.14.tgz</pkg>
+				<pkg sha1="382df40c366711003cf24d2342033c23e2580b42">ntfs-3g_ntfsprogs-2016.2.22.tgz</pkg>
 				<mirror>http://tuxera.com/opensource/</mirror>
 			</file>
-			<manualcheck date="20150530" interval="90" page="http://tuxera.com/" />
+			<manualcheck date="20160701" interval="90" page="http://tuxera.com/" />
 			<check>
 				<page html="http://www.tuxera.com/community/open-source-ntfs-3g/">
-					<atext linktext="ntfs-3g_ntfsprogs-2015.4." />
-					<atext linktext="ntfs-3g_ntfsprogs-2015.5." />
-					<atext linktext="ntfs-3g_ntfsprogs-2015.6." />
-					<atext linktext="ntfs-3g_ntfsprogs-2015.8." />
-					<atext linktext="ntfs-3g_ntfsprogs-2015.9." />
-					<atext linktext="ntfs-3g_ntfsprogs-2015.10." />
-					<atext linktext="ntfs-3g_ntfsprogs-2015.11." />
-					<atext linktext="ntfs-3g_ntfsprogs-2015.12." />
-					<atext linktext="ntfs-3g_ntfsprogs-2016." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.3." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.4." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.5." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.6." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.7." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.8." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.9." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.10." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.11." />
+					<atext linktext="ntfs-3g_ntfsprogs-2016.12." />
 					<atext linktext="ntfs-3g_ntfsprogs-2017." />
 					<atext linktext="ntfs-3g_ntfsprogs-2018." />
+					<atext linktext="ntfs-3g_ntfsprogs-2019." />
 				</page>
 			</check> 
 		</sources>
@@ -60,9 +62,19 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal \
+				&& make -j $jobcount
 			cd ../${PKGNAME}-${PKGVERSION}.static
-			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal --enable-static && make -j3 LDFLAGS=-all-static
+			./configure --sysconfdir=/etc --prefix=/usr --enable-crypto --with-fuse=internal --enable-static \
+				&& make -j $jobcount LDFLAGS=-all-static
 			]]>
 		</build>
 		<test />

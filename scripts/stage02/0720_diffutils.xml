@@ -1,35 +1,46 @@
 <llpackages>
 	<package 
 		name="diffutils"
-		version="3.3"
+		version="3.5"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                  
-				<pkg sha1="6463cce7d3eb73489996baefd0e4425928ecd61e">diffutils-3.3.tar.xz</pkg>
+				<pkg sha1="1169cce8eaaf7290dc087d65db7ed75de0dceb93">diffutils-3.5.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/diffutils/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/diffutils/" />
+			<manualcheck date="20160823" interval="365" page="http://ftp.gnu.org/gnu/diffutils/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/diffutils/">
-					<atext linktext="diffutils-3.5." />
-					<atext linktext="diffutils-3.4." />
+					<atext linktext="diffutils-3.6." />
+					<atext linktext="diffutils-3.7." />
+					<atext linktext="diffutils-3.8." />
+					<atext linktext="diffutils-3.9." />
 					<atext linktext="diffutils-4." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
-                        <dep>binutils</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<!-- <dep>e2fsprogs</dep> -->
                         <dep>coreutils</dep>
-                        <dep>gcc</dep>
-                        <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>linux_headers</dep>
-                        <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -38,13 +49,22 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			sed -i -e '/gets is a/d' ${PKGNAME}-${PKGVERSION}/lib/stdio.in.h
+			sed -i 's:= @mkdir_p@:= /bin/mkdir -p:' po/Makefile.in.in
+			# sed -i -e '/gets is a/d' ${PKGNAME}-${PKGVERSION}/lib/stdio.in.h
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test />

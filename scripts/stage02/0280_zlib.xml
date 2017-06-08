@@ -36,7 +36,7 @@
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/usr
-			make
+			make -j4
 			]]>
 		</build>
 		<test>

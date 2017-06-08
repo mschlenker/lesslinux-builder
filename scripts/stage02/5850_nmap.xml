@@ -1,32 +1,32 @@
 <llpackages>
 	<package 
 		name="nmap"
-		version="6.49BETA1"
+		version="7.12"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="812cf0cfbe7bb12a363afcf24ee326db120d2353">nmap-6.49BETA1.tar.bz2</pkg>
+				<pkg sha1="0c25e4089f93adec2ad50e99b92dc8c5bf85c231">nmap-7.12.tar.bz2</pkg>
 				<mirror>http://nmap.org/dist/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="120" page="http://nmap.org/dist/" />
+			<manualcheck date="20160701" interval="120" page="http://nmap.org/dist/" />
 			<check>
 				<page html="http://nmap.org/dist/">
-					<atext linktext="nmap-6.50.t" />
-					<atext linktext="nmap-6.51.t" />
-					<atext linktext="nmap-6.52.t" />
-					<atext linktext="nmap-6.53.t" />
-					<atext linktext="nmap-6.54.t" />
-					<atext linktext="nmap-6.55.t" />
-					<atext linktext="nmap-6.56.t" />
-					<atext linktext="nmap-6.57.t" />
-					<atext linktext="nmap-6.49.t" />
-					<atext linktext="nmap-6.5" />
-					<atext linktext="nmap-6.6" />
+					<atext linktext="nmap-7.13.t" />
+					<atext linktext="nmap-7.14.t" />
+					<atext linktext="nmap-7.15.t" />
+					<atext linktext="nmap-7.16.t" />
+					<atext linktext="nmap-7.17.t" />
+					<atext linktext="nmap-7.18.t" />
+					<atext linktext="nmap-7.19.t" />
+					<atext linktext="nmap-7.20.t" />
+					<atext linktext="nmap-7.21.t" />
+					<atext linktext="nmap-7.22." />
+					<atext linktext="nmap-7.23." />
 					<atext linktext="nmap-8." />
 					<atext linktext="nmap-9." />
-					<atext linktext="nmap-7." />
+					<atext linktext="nmap-10." />
 				</page>
 			</check>
 		</sources>
@@ -52,7 +52,7 @@
                         <dep>sed</dep>
                         <dep>subversion</dep>
                         <dep>util-linux-ng</dep>
-			<dep>gcc49</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -65,10 +65,19 @@
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
-			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
-				./configure --prefix=/usr --sysconfdir=/etc --with-libpcap=included --without-nmap-update
-			make -j3 -k
-			make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --with-libpcap=included --without-nmap-update
+			
+			make -j $jobcount -k
+			make -j $jobcount
+			make 
 			
 			]]>
 		</build>
@@ -77,8 +86,7 @@
 			
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
-			# sed -i 's%Exec=zenmap%Exec=sudo /usr/bin/zenmap%' ${TGTDIR}/usr/share/applications/zenmap.desktop
-			# sed -i 's%Categories=%Categories=CB-Other;%' ${TGTDIR}/usr/share/applications/zenmap.desktop
+			[ -f ${TGTDIR}/usr/bin/nmap ] || exit 1 
 			rm ${TGTDIR}/usr/share/applications/zenmap*.desktop
 			
 			cat > ${TGTDIR}/usr/share/applications/zenmap.desktop  << EOF

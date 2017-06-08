@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <llpackages>
-	<package name="iasl" version="20150515" class="user" install="destdir">
+	<package name="iasl" version="20160527" class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="91fe03d871619fcfd1bf11ec06de46b538fa48e0">acpica-unix2-20150515.tar.gz</pkg>
+				<pkg sha1="52495ced43532748f1955dcf6c1aa343a03cd67b">acpica-unix2-20160527.tar.gz</pkg>
 				<mirror>https://acpica.org/sites/acpica/files/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="120" page="https://acpica.org/sites/acpica/files/" />
+			<manualcheck date="20160701" interval="120" page="https://acpica.org/downloads" />
 			<!-- <check>
 				<page html="http://www.hyperrealm.com/libconfig/">
 					<atext linktext="libconfig-1.4.10." />
@@ -65,6 +65,7 @@
                         <dep>which</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

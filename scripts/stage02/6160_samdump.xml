@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='samdump2' version='3.0.0' install='chroot'>
+    <package name='samdump2' version='3.0.0' install='destdir'>
         <license>
             unknown
         </license>
@@ -30,6 +30,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[
@@ -47,12 +48,24 @@ sed -i 's/uninstall: infos/uninstall:/g' Makefile
 	</patch>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make PREFIX=/usr 
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+make -j $jobcount PREFIX=/usr 
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install PREFIX=/usr 
+# make install PREFIX=/usr 
+mkdir -p ${TGTDIR}/usr/bin
+install -m 0755 samdump2 ${TGTDIR}/usr/bin
+mkdir -p ${TGTDIR}/usr/share/man/man1
+install -m 0644 samdump2.1 ${TGTDIR}/usr/share/man/man1
 ]]>
         </install>
         <clean>

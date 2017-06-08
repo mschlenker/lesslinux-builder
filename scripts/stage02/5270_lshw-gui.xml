@@ -1,20 +1,16 @@
 <llpackages>
 	<package 
 		name="lshw-gui"
-		version="B.02.17"
+		version="B.02.18"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file> 
-				<pkg sha1="3560506670da931f2305e202d4775db385d88732">lshw-B.02.17.tar.gz</pkg>
+				<pkg sha1="c0240f5e53cf40769d52e316719e8010ea6bdea3">lshw-B.02.18.tar.gz</pkg>
 				<mirror>http://ezix.org/software/files/</mirror>
 			</file>
-			<manualcheck date="20140518" interval="180" page="http://ezix.org/project/wiki/HardwareLiSter" />
-			<!-- <file>   
-				<pkg sha1="b6e41703f1113823bd5471561c95726fa2fccda8">lshw-B.02.14-gcc-4.5.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/lshw/</mirror>
-			</file> -->
+			<manualcheck date="20160701" interval="180" page="http://ezix.org/project/wiki/HardwareLiSter" />
 		</sources>
 		<builddeps>
 			<dep>atk</dep>
@@ -66,6 +62,7 @@
 			cd lshw-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			make install-gui DESTDIR=${TGTDIR}
+			ln -sf lshw ${TGTDIR}/usr/sbin/lshw-static 
 			]]>
 		</install>
 		<clean>

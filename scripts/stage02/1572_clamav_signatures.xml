@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="clamav_signatures"
-		version="20140926"
+		version="20160701"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                        
-				<pkg sha1="3932848a0780bd908b31110dc5c199d32eb76f23">daily-20140926.cvd</pkg>
+				<pkg sha1="608d3733992381d9c88b163a2ddb663c46431138">daily-20160701.cvd</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="536d4ebf600f1ca8acf4329b6ace5e5bb49675d7">clamav-main-v55.cvd</pkg>
+				<pkg sha1="b65423ee9a3a4fc1215ad330387e8827d9528991">main-20160701.cvd</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140926" interval="45" page="http://www.clamav.net/lang/en/" />
+			<manualcheck date="20160701" interval="45" page="http://www.clamav.net/lang/en/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -41,8 +41,8 @@
 			
 			mkdir -p ${TGTDIR}/opt/share/clamav
 			chown -R 60002:60002 ${TGTDIR}/opt/share/clamav
-			install -m 0644 -o clamav -g clamav ${SRCDIR}/clamav-main-v55.cvd ${TGTDIR}/opt/share/clamav/main.cvd
-			install -m 0644 -o clamav -g clamav ${SRCDIR}/daily-20140926.cvd ${TGTDIR}/opt/share/clamav/daily.cvd
+			install -m 0644 -o clamav -g clamav ${SRCDIR}/main-${PKGVERSION}.cvd ${TGTDIR}/opt/share/clamav/main.cvd
+			install -m 0644 -o clamav -g clamav ${SRCDIR}/daily-${PKGVERSION}.cvd ${TGTDIR}/opt/share/clamav/daily.cvd
 			
 			]]>
 		</install>

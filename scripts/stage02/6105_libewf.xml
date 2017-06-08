@@ -1,15 +1,15 @@
 <llpackages>
-    <package name='libewf' version='20140406' install='chroot'>
+    <package name='libewf' version='20160424' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='907d1e9c466bdf20946e34211c8834d102beac3b'>
-                    libewf-20140406.tar.gz
+                <pkg sha1='1224c0297e9b7bd44a8100a449c71d356da6b5a5'>
+                   libewf-experimental-20160424.tar.gz 
                 </pkg>
                 <mirror>
-                    https://53efc0a7187d0baa489ee347026b8278fe4020f6.googledrive.com/host/0B3fBvzttpiiSMTdoaVExWWNsRjg/
+                    https://github.com/libyal/libewf/releases/download/20160424/
                 </mirror>
             </file>
             <manualcheck date='20150421' interval='60' mirror='https://53efc0a7187d0baa489ee347026b8278fe4020f6.googledrive.com/host/0B3fBvzttpiiSMTdoaVExWWNsRjg/'/>
@@ -44,18 +44,25 @@
                         <dep>setuptools</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-experimental-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
-make
+	      jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python2
+make -j $jobcount 
 ]]>
         </build>
         <install>

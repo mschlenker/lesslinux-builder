@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="Remmina"
-		version="20150605"
+		version="20160704"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="c3c04246731ff6bb91f1fba2043ba4eb17e0fa62">Remmina-20150605.tar.bz2</pkg>
+				<pkg sha1="52657adfa1daa0691a93f46248f7f8174f5b2b31">Remmina-20160704.tar.xz</pkg>
 				<mirror>http://cloud.github.com/downloads/FreeRDP/Remmina</mirror>
 			</file>
-			<manualcheck date="20150605" interval="60" page="https://github.com/FreeRDP" />
+			<manualcheck date="20160701" interval="60" page="https://github.com/FreeRDP" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -74,19 +74,29 @@
                         <dep>pkg-config</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
+			<dep>webkit26</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cd Remmina
 			# git checkout master
 			cmake -DCMAKE_INSTALL_PREFIX=/usr   -DWITH_APPINDICATOR=OFF -DWITH_TELEPATHY=OFF  .
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

@@ -1,24 +1,25 @@
 <llpackages>
 	<package 
 		name="regulatory.bin"
-		version="2013.01.11"
+		version="2016.06.10"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="a152577246d35299ff195dc650d1097935bda830">2013.01.11-regulatory.bin</pkg>
-				<mirror>http://wireless.kernel.org/download/wireless-regdb/regulatory.bins/</mirror>
+				<pkg sha1="cd343efd6cebb205ccd24ff84b54d66119f8380e">wireless-regdb-2016.06.10.tar.xz</pkg>
+				<mirror>http://kernel.org/pub/software/network/wireless-regdb/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="180" page="http://wireless.kernel.org/download/wireless-regdb/regulatory.bins/" />
+			<manualcheck date="20160701" interval="90" page="http://kernel.org/pub/software/network/wireless-regdb/" />
 		</sources>
 		<builddeps>
                         <dep>coreutils</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			
-			echo 'Nothing to unpack!'
+			tar xf ${SRCDIR}/wireless-regdb-${PKGVERSION}.tar.xz
 			
 			]]>
 		</unpack>
@@ -34,7 +35,7 @@
 			<![CDATA[
 			
 			mkdir -p ${TGTDIR}/usr/lib/crda
-			install -m 0644 ${SRCDIR}/${PKGVERSION}-${PKGNAME} ${TGTDIR}/usr/lib/crda/regulatory.bin
+			install -m 0644  wireless-regdb-${PKGVERSION}/regulatory.bin ${TGTDIR}/usr/lib/crda/regulatory.bin
 			
 			]]>
 		</install>

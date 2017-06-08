@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='sqlitebrowser' version='3.8.0' install='chroot'>
+    <package name='sqlitebrowser' version='3.8.0' install='destdir'>
         <license>
             unknown
         </license>
@@ -12,6 +12,7 @@
                     https://github.com/sqlitebrowser/sqlitebrowser/archive/
                 </mirror>
             </file>
+	    <!-- check the reasons for failed builds with 3.9, cmake?  -->
             <manualcheck date='20160125' interval='60' mirror='http://sqlitebrowser.org/'/>
 	        <check>
 				<page html="http://sqlitebrowser.org/">
@@ -36,7 +37,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
-                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>qt5</dep>
                         <dep>sqlite</dep>
                 </builddeps>
         <unpack>
@@ -46,15 +47,17 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+	    mkdir _build
+	    cd _build 
+cmake -DCMAKE_INSTALL_PREFIX=/usr  -Wno-dev -DUSE_QT5=yes ..
 make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
-sed -i 's/Development/CB-Other/g' /usr/share/applications/sqlitebrowser.desktop
-sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' /usr/share/applications/sqlitebrowser.desktop
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/_build 
+make install DESTDIR=${TGTDIR}
+sed -i 's/Development/CB-Other/g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
+sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
 ]]>
         </install>
         <clean>

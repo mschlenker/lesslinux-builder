@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="musl"
-		version="1.1.12"
+		version="1.1.15"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="e098ce88e7dd4398c178240b4c380771c5b4fe6b">musl-1.1.12.tar.gz</pkg>
+				<pkg sha1="027c3ae2182fa53c2b554ca98a28dc5cfca4b2c3">musl-1.1.15.tar.gz</pkg>
 				<mirror>http://www.musl-libc.org/releases/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="60" page="http://www.musl-libc.org/download.html" />
+			<manualcheck date="20160701" interval="60" page="http://www.musl-libc.org/download.html" />
 			<check>
 				<page html="http://www.musl-libc.org/releases/">
 					<atext linktext="musl-1.1.16." />
 					<atext linktext="musl-1.1.17." />
-					<atext linktext="musl-1.1.13." />
-					<atext linktext="musl-1.1.14." />
-					<atext linktext="musl-1.1.15." />
+					<atext linktext="musl-1.1.18." />
+					<atext linktext="musl-1.1.19." />
+					<atext linktext="musl-1.1.20." />
 					<atext linktext="musl-1.2." />
 					<atext linktext="musl-1.3." />
 					<atext linktext="musl-2.0." />
@@ -26,6 +26,7 @@
 		</sources>
 		<builddeps>
                      <dep>cross-gcc-musl1</dep>
+		     <dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -40,6 +41,10 @@ for f in utmp paths ; do
         sed -i 's%/dev/null/wtmp%/var/log/wtmp%g' include/${f}.h
         sed -i 's%/dev/null/utmp%/var/run/utmp%g' include/${f}.h
 done
+
+./configure 
+make 
+exit 0
 
 export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
 export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
@@ -59,6 +64,8 @@ CFLAGS=-fno-toplevel-reorder CC=${CLFS_TARGET}-gcc make
 			<![CDATA[
 			
 cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+exit 0
 
 export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
 export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")

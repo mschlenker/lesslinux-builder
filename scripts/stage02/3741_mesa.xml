@@ -1,25 +1,29 @@
 <llpackages>
 	<package 
 		name="Mesa"
-		version="10.6.9"
+		version="12.0.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="6f2a8bffcb37f233998dcda84ca8adce3563f9a0">mesa-10.6.9.tar.xz</pkg>
-				<mirror>ftp://ftp.freedesktop.org/pub/mesa/10.6.9/</mirror>
+				<pkg sha1="3c36c91faf4d06a3d5e7bdaf3b2eabb28b21c2a9">mesa-12.0.3.tar.xz</pkg>
+				<mirror>ftp://ftp.freedesktop.org/pub/mesa/12.0.3</mirror>
 			</file>
-			<manualcheck date="20151128" interval="30" page="http://www.mesa3d.org/" />
+			<file>                                                                                     
+				<pkg sha1="c8658df3959ead67cd9f4321e98fce0c03945024">mesa-12.0.3-add_xdemos-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<manualcheck date="20160927" interval="30" page="http://www.mesa3d.org/" />
 			<check>
 				<page html="ftp://ftp.freedesktop.org/pub/mesa//">
-					<atext linktext="10.7" />
-					<atext linktext="10.8" />
-					<atext linktext="10.6.11" />
-					<atext linktext="10.6.12" />
-					<atext linktext="10.6.10" />
-					<atext linktext="10.6.6" />
-					<atext linktext="10.6.7" />
+					<atext linktext="12.0.7" />
+					<atext linktext="12.0.4" />
+					<atext linktext="12.0.5" />
+					<atext linktext="12.0.6" />
+					<atext linktext="12.1." />
+					<atext linktext="12.2." />
+					<atext linktext="12.0." />
 				</page>
 			</check> 
 		</sources>
@@ -73,6 +77,14 @@
 			tar xJf ${SRCDIR}/mesa-${PKGVERSION}.tar.xz 
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd mesa-${PKGVERSION}
+			patch -Np1 -i ${SRCDIR}/mesa-12.0.3-add_xdemos-1.patch
+			sed -i "/pthread-stubs/d" configure.ac     
+			sed -i "/seems to be moved/s/^/: #/" bin/ltmain.sh 
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			

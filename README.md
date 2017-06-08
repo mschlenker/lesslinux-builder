@@ -4,9 +4,11 @@ This repository contains the scripts used for building LessLinux. They are not c
 
 **Legacy: Yellow** Build with `--legacy` - this uses headers and kernels from the 3.18.x LTS series. Not as extensively tested as stable.
 
-**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Works quite good, need some fine tuning. Has been updated to kernel 4.1.x, but kernel configuration might receive some fine tuning. Still minor issues with some games that use cogl and clutter.
+**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Works quite good, need some fine tuning. Has been updated to kernel 4.4.x, but kernel configuration might receive some fine tuning. Still issues with some games that use cogl and clutter.
  
-**Unstable: Red** Build with `--unstable`. DO NOT USE. Currenty we are updating to kernel 4.4, GCC 6.1, glibc 2.23, nearly everything will fail to build!
+**Unstable: Red** Build with `--unstable`. DO NOT USE. Currenty we are updating to kernel 4.9, GCC 7 nearly everything will fail to build!
+
+Check out a revision before June 6th, 2017 to access stable with 4.1 kernel.
 
 ## Checking out
 

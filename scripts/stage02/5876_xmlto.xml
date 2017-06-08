@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="xmlto"
-		version="0.0.26"
+		version="0.0.28"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="c5a982239c738c76d0e67bc416d835cf102cd422">xmlto-0.0.26.tar.bz2</pkg>
+				<pkg sha1="aa63af9a86ab6ed0c92ea8b177dc808c18902c73">xmlto-0.0.28.tar.bz2</pkg>
 				<mirror>https://fedorahosted.org/releases/x/m/xmlto/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="https://fedorahosted.org/releases/x/m/xmlto/" />
+			<manualcheck date="20160701" interval="180" page="https://fedorahosted.org/releases/x/m/xmlto/" />
 			<!-- <check>
 				<page html="http://sourceforge.net/projects/xchat/files/">
 					<atext linktext="xchat-2.8.9." />
@@ -42,6 +42,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zip</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -51,8 +52,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="gettext"
-		version="0.19.6"
+		version="0.19.8.1"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="4d236852bd8d63e14d09eb6fc1f4da20a99f568b">gettext-0.19.6.tar.gz</pkg>
+				<pkg sha1="b5d24ba2958c91fc5cc0058165837c99a0f58784">gettext-0.19.8.1.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/gettext/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
+			<manualcheck date="20160630" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gettext/">
 					<atext linktext="gettext-0.19.9." />
-					<atext linktext="gettext-0.19.7." />
-					<atext linktext="gettext-0.19.8." />
+					<atext linktext="gettext-0.19.10." />
+					<atext linktext="gettext-0.19.11." />
 					<atext linktext="gettext-0.20." />
 					<atext linktext="gettext-0.21." />
 					<atext linktext="gettext-1." />
@@ -24,20 +24,20 @@
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
-                        <dep>binutils</dep>
                         <dep>bison</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>findutils</dep>
-                        <dep>gawk</dep>
-                        <dep>gcc</dep>
-                        <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>linux_headers</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
                         <dep>perl</dep>
-                        <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -55,7 +55,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			EMACS="no" ./configure --prefix=/usr --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			EMACS="no" ./configure --prefix=/usr --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make -j $jobcount
 			]]>
 		</build>
 		<test>
@@ -68,6 +76,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
+			chmod -v 0755 ${TGTDIR}/usr/lib/preloadable_libintl.so
 			]]>
 		</install>
 		<clean>

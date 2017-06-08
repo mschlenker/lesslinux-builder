@@ -1,27 +1,27 @@
 <llpackages>
 	<package 
 		name="xorg-server"
-		version="1.17.4"
+		version="1.18.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                        
-				<pkg sha1="139c4d6795eb4c3848616cc514d134532975e49e">xorg-server-1.17.4.tar.bz2</pkg>
+				<pkg sha1="ff088ee29dee46a2d68925c8df3f0515ef15ec52">xorg-server-1.18.4.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/xserver/</mirror>
 			</file>
 			<!-- <file>                                                                                                        
 				<pkg sha1="79681041d37b6cafb7f3a78ea191f3b4cc1655d3">xorg-server-1.17.1-gcc5_fixes-1.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
-			<manualcheck date="20151128" interval="90" page="http://xorg.freedesktop.org/archive/individual/xserver/" />
+			<manualcheck date="20161018" interval="90" page="http://xorg.freedesktop.org/archive/individual/xserver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/xserver/">
-					<atext linktext="xorg-server-1.17.5." />
-					<atext linktext="xorg-server-1.17.6." />
-					<atext linktext="xorg-server-1.17.7." />
-					<atext linktext="xorg-server-1.18." />
+					<atext linktext="xorg-server-1.18.7." />
+					<atext linktext="xorg-server-1.18.5." />
+					<atext linktext="xorg-server-1.18.6." />
 					<atext linktext="xorg-server-1.19." />
+					<atext linktext="xorg-server-1.20." />
 					<atext linktext="xorg-server-2." />
 				</page>
 			</check> 
@@ -112,11 +112,11 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --prefix=/usr \
-					--enable-glamor  \
+					--enable-glamor \
 					--enable-install-setuid \
 					--enable-suid-wrapper \
 					--disable-systemd-logind \
-					--disable-kdrive \
+					--enable-kdrive \
 					--sysconfdir=/etc \
 					--localstatedir=/var \
 					--with-xkb-output=/var/lib/xkb \
@@ -128,7 +128,7 @@
 					--enable-install-setuid \
 					--enable-suid-wrapper \
 					--disable-systemd-logind \
-					--disable-kdrive \
+					--enable-kdrive \
 					--sysconfdir=/etc \
 					--localstatedir=/var \
 					--with-xkb-output=/var/lib/xkb

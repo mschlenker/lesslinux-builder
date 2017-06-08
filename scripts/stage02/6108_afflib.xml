@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='AFFLIBv3' version='2015.04.21.0' install='chroot'>
+    <package name='AFFLIBv3' version='3.7.7' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='e4ba918714bcac115f5ee558154f8ac64e9c12c1'>
-                    AFFLIBv3-2015.04.21.0.tar.bz2
+                <pkg sha1='72bb16fadd128d524a1a11a0a50ed0129fb50680'>
+                    AFFLIBv3-3.7.7.tar.gz
                 </pkg>
                 <mirror>
                     http://distfiles.lesslinux.org/
                 </mirror>
             </file>
-            <manualcheck date='20150422' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+            <manualcheck date='20160701' interval='60' mirror='http://distfiles.lesslinux.org/'/>
         </sources>
 	<builddeps>
                         <dep>ORBit2</dep>
@@ -74,26 +74,35 @@
                         <dep>which</dep>
                         <dep>xtrans</dep>
                         <dep>zlib</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 bash bootstrap.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
 ]]>
         </clean>
     </package>

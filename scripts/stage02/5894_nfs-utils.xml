@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="nfs-utils"
-		version="1.3.3"
+		version="1.3.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                      
-				<pkg sha1="ad61e75dea72f25a9124afbca538cd7ac1b114ce">nfs-utils-1.3.3.tar.xz</pkg>
-				<mirror>https://www.kernel.org/pub/linux/utils/nfs-utils/1.3.3/</mirror>
+				<pkg sha1="54707d8e171d9c8048a20aeb1181e4582e935b82">nfs-utils-1.3.4.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/nfs-utils/1.3.4/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="180" page="rsync://www.kernel.org/pub/linux/utils/nfs-utils/" />
+			<manualcheck date="20160823" interval="180" page="rsync://www.kernel.org/pub/linux/utils/nfs-utils/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/nfs-utils/">
 					<atext linktext="1.3.6" />
 					<atext linktext="1.3.7" />
 					<atext linktext="1.3.8" />
-					<atext linktext="1.3.4" />
+					<atext linktext="1.3.9" />
 					<atext linktext="1.3.5" />
 					<atext linktext="1.4.0" />
 					<atext linktext="1.4.1" />
@@ -49,6 +49,7 @@
                         <dep>sqlite</dep>
                         <dep>tcp_wrappers</dep>
                         <dep>util-linux-ng</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -58,8 +59,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-gss
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

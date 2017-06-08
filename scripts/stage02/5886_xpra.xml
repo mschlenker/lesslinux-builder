@@ -1,23 +1,25 @@
 <llpackages>
 	<package 
 		name="xpra"
-		version="0.15.4"
+		version="0.17.5"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="1161cc8033147a0fcb3d6c74af82406c5d4b0014">xpra-0.15.4.tar.xz</pkg>
+				<pkg sha1="72cc041b390200e68ac6bdd2b1f474f91ea7d482">xpra-0.17.5.tar.xz</pkg>
 				<mirror>http://www.xpra.org/src/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="90" page="http://winswitch.org/src/" />
+			<manualcheck date="20160701" interval="90" page="http://winswitch.org/src/" />
 			<check>
 				<page html="http://www.xpra.org/src/">
-					<atext linktext="xpra-0.15.5." />
-					<atext linktext="xpra-0.15.6." />
-					<atext linktext="xpra-0.15.7." />
-					<atext linktext="xpra-0.15.8." />
-					<atext linktext="xpra-0.16." />
-					<atext linktext="xpra-0.17." />
+					<atext linktext="xpra-0.17.9." />
+					<atext linktext="xpra-0.17.6." />
+					<atext linktext="xpra-0.17.7." />
+					<atext linktext="xpra-0.17.8." />
+					<atext linktext="xpra-0.18." />
+					<atext linktext="xpra-0.19." />
+					<atext linktext="xpra-0.20." />
+					<atext linktext="xpra-0.21." />
 					<atext linktext="xpra-1." />
 				</page>
 			</check>
@@ -56,6 +58,8 @@
                         <dep>subversion</dep>
                         <dep>x264</dep>
                         <dep>xproto-base</dep>
+			<dep>gcc54</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -65,14 +69,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			python setup.py build
+			export PATH=/usr/local/gcc54/bin:$PATH
+			CFLAGS='-Wno-error=strict-prototypes -Wno-error=strict-aliasing' python setup.py config
+			CFLAGS='-Wno-error=strict-prototypes -Wno-error=strict-aliasing' python setup.py build
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			python setup.py install
+			export PATH=/usr/local/gcc54/bin:$PATH
+			CFLAGS='-Wno-error=strict-prototypes -Wno-error=strict-aliasing' python setup.py install
 			]]>
 		</install>
 		<clean>

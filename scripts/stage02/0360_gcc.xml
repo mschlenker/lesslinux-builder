@@ -1,27 +1,23 @@
 <llpackages>
 	<package 
 		name="gcc"
-		version="5.2.0"
+		version="6.2.0"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<!-- <file>                                                                                  
-				<pkg sha1="b99c476c128fed6538bc76ade0f382e42615b662">gcc-5.1.0-upstream_fixes-1.patch</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-5.1.0/</mirror>
-			</file> -->
 			<file>                                                                                  
-				<pkg sha1="fe3f5390949d47054b613edc36c557eb1d51c18e">gcc-5.2.0.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-5.2.0/</mirror>
+				<pkg sha1="583e29c7fe69d9a1031a89752c2551ab5aeacb91">gcc-6.2.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.2.0/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20160822" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
-					<atext linktext="gcc-5.2.1" />
-					<atext linktext="gcc-5.2.2" />
-					<atext linktext="gcc-5.2.3" />
-					<atext linktext="gcc-5.3"/>
-					<atext linktext="gcc-5.4." />
-					<atext linktext="gcc-6." />
+					<atext linktext="gcc-6.2.1" />
+					<atext linktext="gcc-6.2.2" />
+					<atext linktext="gcc-6.2.3" />
+					<atext linktext="gcc-6.3."/>
+					<atext linktext="gcc-6.4." />
+					<atext linktext="gcc-7." />
 				</page>
 			</check>
 		</sources>
@@ -42,12 +38,12 @@
 			mkdir ${PKGNAME}-build
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			patch -Np1 -i ${SRCDIR}/gcc-${PKGVERSION}-upstream_fixes-1.patch
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-build
@@ -56,7 +52,9 @@
 			../${PKGNAME}-${PKGVERSION}/configure --prefix=/usr \
 				--enable-shared \
 				--enable-languages=c,c++ \
-				--disable-multilib --disable-bootstrap --with-system-zlib
+				--disable-multilib \
+				--disable-bootstrap \
+				--with-system-zlib
 			make -j ` grep -c processor /proc/cpuinfo ` 
 			]]>
 		</build>

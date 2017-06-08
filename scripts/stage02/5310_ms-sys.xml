@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="ms-sys"
-		version="2.4.0"
+		version="2.4.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                         
-				<pkg sha1="09da17de95f9c6e8bd400432898fd99053b7408e">ms-sys-2.4.0.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/ms-sys/ms-sys%20stable/2.4.0</mirror>
+				<pkg sha1="92953cc684499b71c919c055bf9e23bd850be04e">ms-sys-2.4.1.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/ms-sys/ms-sys%20stable/2.4.1</mirror>
 			</file>
-			<manualcheck date="20140724" interval="180" page="http://sourceforge.net/projects/ms-sys/files/ms-sys%20stable/" />
+			<manualcheck date="20160701" interval="180" page="http://sourceforge.net/projects/ms-sys/files/ms-sys%20stable/" />
 			<check>
 				<page html="http://sourceforge.net/projects/ms-sys/files/ms-sys%20stable/">
-					<atext linktext="2.4.0" />
+					<atext linktext="2.4.6" />
 					<atext linktext="2.4.1" />
 					<atext linktext="2.4.2" />
 					<atext linktext="2.4.3" />
@@ -51,7 +51,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

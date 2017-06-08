@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='python-gflags' version='2.0' install='chroot'>
+    <package name='python-gflags' version='3.0.5' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='1529a1102da2fc671f2a9a5e387ebabd1ceacbbf'>
-                    python-gflags-2.0.tar.gz
+                <pkg sha1='67e1c99d9ca7d0b29c685e8ae2698d1331a9f0b0'>
+                    python-gflags-3.0.5.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/p/python-gflags/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='https://pypi.python.org/packages/source/p/python-gflags/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/python-gflags'/>
         </sources>
 	<builddeps>
                         <dep>Cython</dep>
@@ -22,7 +22,6 @@
                         <dep>WebOb</dep>
                         <dep>antlr_python_runtime</dep>
                         <dep>bash</dep>
-                        
                         <dep>distcc</dep>
                         <dep>distribute</dep>
                         <dep>docutils</dep>

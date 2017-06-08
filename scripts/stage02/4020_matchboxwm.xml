@@ -33,7 +33,7 @@
                         <dep>libXft</dep>
                         <dep>libXrender</dep>
                         <dep>libmatchbox</dep>
-                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libpng12</dep>
                         <dep>libpthread-stubs</dep>
                         <dep>libxcb</dep>
                         <dep>libxsettings-client</dep>
@@ -55,6 +55,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig \
+			PNG_LIBS='-L/usr/compat.old/lib -lpng12' PNG_CFLAGS='-I/usr/compat.old/include/libpng12' \
 			LDFLAGS='-L/usr/compat.old/lib -lX11 -lm' CFLAGS='-I/usr/compat.old/include' CXXFLAGS='-I/usr/compat.old/include'  \
 			LIBMB_LIBS='-L/usr/compat.old/lib -lmb -lpng -lz -lXsettings-client -lX11 -lXext -lpangoxft-1.0 -lpangoft2-1.0 -lXft -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lglib-2.0' \
 			LIBMB_CFLAGS='-pthread -I/usr/compat.old/include -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/freetype2' \

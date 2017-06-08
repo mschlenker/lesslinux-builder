@@ -15,7 +15,11 @@
 				<pkg sha1="20536831011b07015913964ddedbce916375e5ad">nasm-2.11.05.tar.xz</pkg>
 				<mirror>http://www.nasm.us/pub/nasm/releasebuilds/2.11.05/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://www.kernel.org/pub/linux/utils/boot/syslinux/" />
+			<file>                  
+				<pkg sha1="780c3ae1ff1ccbdae226eefec9a6a02b422bd40c">syslinux_6.03+dfsg-11ubuntu1.debian.tar.xz</pkg>
+				<mirror>https://launchpad.net/ubuntu/+archive/primary/+files/</mirror>
+			</file>
+			<manualcheck date="20161004" interval="180" page="http://www.kernel.org/pub/linux/utils/boot/syslinux/" />
 			<check>
 				<page html="http://www.kernel.org/pub/linux/utils/boot/syslinux/">
 					<atext linktext="syslinux-6.07." />
@@ -43,14 +47,20 @@
                         <dep>perl</dep>
                         <dep>sed</dep>
 			<dep>distcc</dep>
-			<dep>gcc49</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
 			tar xf ${SRCDIR}/nasm-2.11.05.tar.xz
+			tar xf ${SRCDIR}/syslinux_6.03+dfsg-11ubuntu1.debian.tar.xz
 			]]>
 		</unpack>
+		<patch>
+		<![CDATA[
+		cd ${PKGNAME}-${PKGVERSION}
+		cat ../debian/patches/series | while read fname ; do cat ../debian/patches/$fname | patch -p1; done
+		]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd nasm-2.11.05 
@@ -59,16 +69,11 @@
 			NASMPATH=` pwd `/nasm
 			cd ../${PKGNAME}-${PKGVERSION}
 			make -k clean
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	make -k -j $jobcount CC="distcc gcc" NASM=${NASMPATH} 
-			#	make -k -j $jobcount bios CC="distcc gcc"  NASM=${NASMPATH} 
-			#fi
-			make -k -j 6 NASM=${NASMPATH} CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
-			make -k -j 6 bios NASM=${NASMPATH}  CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
+			make -k -j 6 NASM=${NASMPATH}  
+			make -k -j 6 bios NASM=${NASMPATH}  
 			mv bios/extlinux/extlinux ../extlinux.dynamic
 			mv bios/mtools/syslinux   ../syslinux.dynamic
-			make -k bios LDFLAGS=-static NASM=${NASMPATH} CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
+			make -k bios LDFLAGS=-static NASM=${NASMPATH}  
 			
 			]]>
 		</build>

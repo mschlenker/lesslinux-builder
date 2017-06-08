@@ -23,6 +23,7 @@
 		</sources>
 		<builddeps>
 			<dep>cross-gcc-musl2</dep>
+			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -31,19 +32,16 @@
 		</unpack>
 		<build>
 			<![CDATA[ 
-			export PATH=/usr/local/crosstools-ia32-musl/i386-linux-musl/bin:/usr/local/crosstools-ia32-musl/bin:$PATH
-			export CC=i386-linux-musl-gcc
+			export CC=/usr/local/musl/bin/musl-gcc
 			cd zlib-${PKGVERSION}
-			./configure --shared
+			./configure --shared --static --prefix=/usr/local/musl
 			make
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd zlib-${PKGVERSION}
-			export PATH=/usr/local/crosstools-ia32-musl/i386-linux-musl/bin:/usr/local/crosstools-ia32-musl/bin:$PATH
-			export CC=i386-linux-musl-gcc
-			make prefix=${TGTDIR}/usr/local/crosstools-ia32-musl/i386-linux-musl install
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>

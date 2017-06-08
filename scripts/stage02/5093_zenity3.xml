@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="zenity3"
-		version="3.16.2"
+		version="3.22.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="d9690d71d57e4a7fc0a5e4b534403b768e5c7795">zenity-3.16.2.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/zenity/3.16/</mirror>
+				<pkg sha1="a1f53e73f53f7f7eccd4328a1c45309bb2d47be8">zenity-3.22.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/zenity/3.22/</mirror>
 			</file>
-			<manualcheck date="20150530" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/" />
+			<manualcheck date="20160927" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/3.14/">
-					<atext linktext="zenity-3.16.6." />
-					<atext linktext="zenity-3.16.7." />
-					<atext linktext="zenity-3.16.3." />
-					<atext linktext="zenity-3.16.4." />
-					<atext linktext="zenity-3.16.5." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/3.22/">
+					<atext linktext="zenity-3.22.1." />
+					<atext linktext="zenity-3.22.2." />
+					<atext linktext="zenity-3.22.3." />
+					<atext linktext="zenity-3.22.4." />
+					<atext linktext="zenity-3.22.5." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/">
-					<atext linktext="3.20" />
-					<atext linktext="3.22" />
-					<atext linktext="3.18" />
+					<atext linktext="3.28" />
+					<atext linktext="3.24" />
+					<atext linktext="3.26" />
 					<atext linktext="4." />
 				</page>
 			</check>
@@ -76,8 +76,16 @@
 			<![CDATA[
 			cd zenity-${PKGVERSION}
 			# export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

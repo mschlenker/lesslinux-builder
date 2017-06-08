@@ -1,26 +1,28 @@
 <llpackages>
 	<package 
 		name="ethtool"
-		version="4.2"
+		version="4.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                       
-				<pkg sha1="ca7ba8b50ca68b4e09109c02973d8abae46e2c77">ethtool-4.2.tar.xz</pkg>
+				<pkg sha1="877f302b37f0d058aa4847cb85b6170e07348db0">ethtool-4.6.tar.xz</pkg>
 				<mirror>https://www.kernel.org/pub/software/network/ethtool/</mirror>
 			</file><!-- -cCGbf -->
-			<manualcheck date="20160113" interval="120" page="https://www.kernel.org/pub/software/network/ethtool/" />
+			<manualcheck date="20160701" interval="120" page="https://www.kernel.org/pub/software/network/ethtool/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/software/network/ethtool/">
 					<atext linktext="ethtool-4.9." />
 					<atext linktext="ethtool-4.10." />
-					<atext linktext="ethtool-4.3." />
-					<atext linktext="ethtool-4.4." />
-					<atext linktext="ethtool-4.5." />
-					<atext linktext="ethtool-4.6." />
+					<atext linktext="ethtool-4.11." />
+					<atext linktext="ethtool-4.12." />
+					<atext linktext="ethtool-4.13." />
+					<atext linktext="ethtool-4.14." />
 					<atext linktext="ethtool-4.7." />
 					<atext linktext="ethtool-4.8." />
+					<atext linktext="ethtool-5." />
+					<atext linktext="ethtool-6." />
 				</page>
 			</check>
 		</sources>

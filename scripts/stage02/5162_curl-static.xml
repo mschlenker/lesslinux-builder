@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="curl-static"
-		version="7.46.0"
+		version="7.49.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="96fbe5abe8ecfb923e4ab0a579b3d6be43ef0e96">curl-7.46.0.tar.bz2</pkg>
+				<pkg sha1="18ae1e5429d5bcf9a35832eda5b4762a1041f715">curl-7.50.3.tar.bz2</pkg>
 				<mirror>http://curl.haxx.se/download/</mirror>
 			</file>
-			<manualcheck date="20151231" interval="90" page="http://curl.haxx.se/download/" />
+			<manualcheck date="20160923" interval="90" page="http://curl.haxx.se/download/" />
 			<check>
 				<page html="http://curl.haxx.se/download/">
-					<atext linktext="curl-7.46.1." />
-					<atext linktext="curl-7.46.2." />
-					<atext linktext="curl-7.46.3." />
-					<atext linktext="curl-7.48." />
-					<atext linktext="curl-7.49." />
-					<atext linktext="curl-7.47." />
+					<atext linktext="curl-7.50.4." />
+					<atext linktext="curl-7.50.5." />
+					<atext linktext="curl-7.50.6." />
+					<atext linktext="curl-7.53." />
+					<atext linktext="curl-7.51." />
+					<atext linktext="curl-7.52." />
 					<atext linktext="curl-8." />
 				</page>
 			</check>
@@ -51,9 +51,9 @@
 		<build>
 			<![CDATA[
 			cd curl-${PKGVERSION}
-			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
+			export CC=/usr/local/musl/bin/musl-gcc
 			./configure --prefix=/usr --sysconfdir=/etc --without-libidn \
-				--without-nss --without-gnutls --without-ssl --without-zlib --host=i386-linux-musl
+				--without-nss --without-gnutls --without-ssl  
 			make -j4 LDFLAGS=-all-static
 			 
 			]]>

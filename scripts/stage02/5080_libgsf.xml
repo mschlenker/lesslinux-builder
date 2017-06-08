@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="libgsf"
-		version="1.14.34"
+		version="1.14.40"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                               
-				<pkg sha1="940e98776263dac4f99f057d8da83b453c6d2e15">libgsf-1.14.34.tar.xz</pkg>
+				<pkg sha1="9d8b27bfd381c674a1aced159e00aefa2e485a67">libgsf-1.14.40.tar.xz</pkg>
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libgsf/1.14/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/libgsf/" />
+			<manualcheck date="20160923" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/libgsf/" />
 			<check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libgsf/1.14/">
-					<atext linktext="libgsf-1.14.37." />
-					<atext linktext="libgsf-1.14.35." />
-					<atext linktext="libgsf-1.14.36." />
+					<atext linktext="libgsf-1.14.43." />
+					<atext linktext="libgsf-1.14.41." />
+					<atext linktext="libgsf-1.14.42." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libgsf/">
 					<atext linktext="1.16" />
@@ -71,8 +71,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

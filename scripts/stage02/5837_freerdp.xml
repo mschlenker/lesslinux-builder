@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="freerdp"
-		version="20151204"
+		version="20160704"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="ee2524093e3db539a089341bb09233514847c71f">FreeRDP-20151204.tar.xz</pkg>
+				<pkg sha1="a30e0480e94f3fe4d4e5847915e870d47620527e">FreeRDP-20160704.tar.xz</pkg>
 				<mirror>http://cloud.github.com/downloads/FreeRDP/FreeRDP/</mirror>
 			</file>
-			<manualcheck date="20151204" interval="60" page="http://pub.freerdp.com/releases/" />
+			<manualcheck date="20160704" interval="60" page="http://pub.freerdp.com/releases/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -59,6 +59,7 @@
                         <dep>zlib</dep>
 			<dep>cups</dep>
 			<dep>llvm</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -74,6 +75,13 @@ cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF -DWITH_CHANNELS=ON  -DWIT
 			<![CDATA[
 			cd FreeRDP
 			export CC=/usr/bin/clang 
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc /usr/bin/clang"
+			fi
 			cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=ON \
 				-DWITH_CHANNELS=ON  -DWITH_PCSC=ON -DWITH_JPEG=ON \
 				-DWITH_PULSE=OFF -DWITH_CUPS=ON -DWITH_WAYLAND=OFF \
@@ -81,7 +89,7 @@ cmake -DCHANNEL_URBDRC_CLIENT=on -DSTATIC_CHANNELS=OFF -DWITH_CHANNELS=ON  -DWIT
 				-DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release \
 				-DWITH_ALSA=ON -DWITH_CHANNELS=ON -DWITH_X264=ON \
 				-DWITH_OSS=OFF -DCMAKE_INSTALL_PREFIX=/usr .
-			make -j3 VERBOSE=1 
+			make -j $jobcount VERBOSE=1 
 			]]>
 		</build>
 		<test />

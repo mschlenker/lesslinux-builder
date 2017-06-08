@@ -627,8 +627,8 @@ exit 0
 		]]>
 		</scriptdata>
 		<scriptdata location="/etc/passwd" mode="0644" group="0" owner="0">
-		<![CDATA[root:x:0:0:root:/root:/static/bin/ash
-toro:x:0:0:root:/root:/bin/bash
+		<![CDATA[root:x:0:0:root:/root:/bin/bash
+toro:x:0:0:root:/root:/static/bin/ash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
 bin:x:2:2:bin:/bin:/bin/sh
 sys:x:3:3:sys:/dev:/bin/sh
@@ -711,7 +711,8 @@ tty3::respawn:/static/sbin/getty -l /static/bin/login 38400 tty3
 tty4::askfirst:/static/bin/ash
 tty5::askfirst:/bin/bash
 tty6::respawn:/static/bin/x_user_start
-hvc0::askfirst:/static/bin/ash
+xenconsole::askfirst:/static/bin/ash
+serialconsole::askfirst:/static/bin/ash
 ::ctrlaltdel:/static/sbin/reboot
 ::shutdown:/etc/rc.shutdown]]>
 		</scriptdata>
@@ -781,6 +782,40 @@ showpgbar() {
 	printf '\33[0m' > /dev/tty1
 }
 
+### Function for showing graphical progress bar
+
+showsplash() {
+    fraction=$1
+    total=$2
+    serv=$3
+    if [ '!' -p /splash.fifo ] ; then
+	if fbset ; then
+		# disable the cursor
+		# echo -n -e '\e[?17;14;224c' > /dev/tty1
+		echo -n -e '\e[?25l' > /dev/tty8
+		chvt 8
+		# create a fifo
+		mkfifo /splash.fifo
+		# Write config
+		fbwidth=` fbset | grep '^mode' | awk -F '["x-]' '{print $2}' `
+		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
+		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
+	fi
+    fi
+    if [ -p /splash.fifo ] ; then
+	expr ${fraction}00 / ${total} > /splash.fifo
+	if [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_${serv}.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 
+	elif [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_gears.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_gears.ppm 
+	fi
+	if [ -f /etc/lesslinux/branding/fbsplash/textblank.ppm -a -f  /etc/lesslinux/fbsplash_text.cfg ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/textblank.ppm
+	fi
+    fi
+}
+
 ### FIXME: Change RAM message according to settings for fbsplash!
 ### In this build when fbsplash and different console is selected
 ### nothing will be shown, the computer will just shutdown!
@@ -810,7 +845,7 @@ fi
 ####
 scriptcount=0 
 scripttotal=` ls /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? | wc -l ` 
-[ "$console" = tty2 ] && showpgbar 0 $scripttotal 
+[ "$console" = tty2 -a "$ultraquiet" -gt 1 ] && showpgbar 0 $scripttotal 
 
 for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
         provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
@@ -826,8 +861,9 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	elif [ -f /var/run/lesslinux/boot_failed ] ; then
 	    printf "$bold---> Skipping $provides - prerequisites failed\n" 
 	elif [ -z "$debuglev" ] ; then
-	    [ "$ultraquiet" = 2 ] && showpgbar $scriptcount $scripttotal $provides
-	    [ "$ultraquiet" = 1 ] && printf "[${bold}${provides}${normal}] "
+	    [ "$ultraquiet" -eq 3 ] && showsplash $scriptcount $scripttotal $provides
+	    [ "$ultraquiet" -gt 1 ] && showpgbar $scriptcount $scripttotal $provides
+	    [ "$ultraquiet" -eq 1 ] && printf "[${bold}${provides}${normal}] "
 	    if [ -f "/etc/rc.confd/$provides.$hwenv.modules" ] ; then
 		[ "$ultraquiet" -gt 0 ] && \
 		    /etc/rc.subr/loadmodules.sh "/etc/rc.confd/$provides.$hwenv.modules" > /dev/null 2>&1 || \
@@ -859,13 +895,36 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 done
 ####
 
+ # Softlink /dev/hvc0 so that there is no constant respawning on Console 0
+hv=` cat /sys/hypervisor/type `
+if [ "$hv" '!=' "xen" ] ; then
+	ln -s /dev/tty8 /dev/xenconsole
+else
+	ln -s /dev/hvc0 /dev/xenconsole
+fi
+
+if [ -c /dev/ttyS0 ] ; then
+	ln -s /dev/ttyS0 /dev/serialconsole
+else
+	ln -s /dev/tty9 /dev/serialconsole
+fi
+
 # Running local startup script -- containers and encrypted home should be available right now:
 if [ -f "/etc/rc.local" ] ; then
 	printf "\n${bold}===> Running local startup scripts from /etc/rc.local ${normal}\n"
 	/etc/rc.local
 fi
-
 printf "$normal\n"
+
+# Exit the splash and remove the fifo:
+if [ -p /splash.fifo ] ; then
+	echo "exit" > /splash.fifo
+	rm /splash.fifo
+	# re-enable the cursor...
+	echo -n -e '\e[?25h' > /dev/tty8
+	chvt 1
+fi
+
 #		]]>
 		</scriptdata>
 		<scriptdata location="/etc/rc.shutdown" mode="0744" group="0" owner="0">
@@ -886,9 +945,9 @@ ultraquiet=0
 [ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
 . /etc/rc.subr/progressbar
 
-chvt 1
 [ "$console" = tty2 ] && chvt 2 
 [ "$ultraquiet" -gt 1 ] && chvt 1 
+[ "$ultraquiet" -eq 3 ] && fbset && chvt 8 
 
 # define some common functions
 
@@ -931,10 +990,40 @@ showpgbar() {
 	printf '\33[0m' > /dev/tty1
 }
 
+# Graphical progressbar for shutdown
+
+showsplash() {
+    fraction=$1
+    total=$2
+    serv=$3
+    if [ '!' -p /splash.fifo ] ; then
+	if fbset ; then
+		# disable the cursor
+		# echo -n -e '\e[?17;14;224c' > /dev/tty1
+		echo -n -e '\e[?25l' > /dev/tty8
+		# create a fifo
+		mkfifo /splash.fifo
+		# Write config
+		fbwidth=` fbset | grep '^mode' | awk -F '["x-]' '{print $2}' `
+		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
+		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
+	fi
+    fi
+     if [ -p /splash.fifo ] ; then
+	expr ${fraction}00 / ${total} > /splash.fifo
+	if [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_${serv}.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_${serv}.ppm 
+	elif [ -f /etc/lesslinux/fbsplash_icon.cfg -a -f  /etc/lesslinux/branding/fbsplash/i_gears.ppm ] ; then
+		fbsplash -i /etc/lesslinux/fbsplash_icon.cfg -s /etc/lesslinux/branding/fbsplash/i_gears.ppm 
+	fi
+    fi 
+}
+
 ####
 scriptcount=0 
 scripttotal=` ls /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? | wc -l ` 
-[ "$console" = tty2 ] && showpgbar 0 $scripttotal 
+[ "$console" = tty2 -a "$ultraquiet" -eq 2 ] && showpgbar 0 $scripttotal 
 
 # Clear the terminal with empty newlines
 for i in ` seq 50 ` ; do
@@ -959,7 +1048,7 @@ fi
 
 printf "${bold}${stop_remaining}${normal}\n"
 [ "$ultraquiet" -gt 1 ] && clearscreen
-[ "$ultraquiet" -gt 1 ] && centertext 34 1 "${stop_remaining}"
+[ "$ultraquiet" -eq 2 ] && centertext 34 1 "${stop_remaining}"
 
 [ "$ultraquiet" -gt 0 ] || printf "$bold---> Running rc scripts in reverse order $normal\n" 
 
@@ -973,7 +1062,8 @@ do
         if echo "$skipservices" | grep '|'$provides'|' > /dev/null 2>&1 ; then 
 	    [ "$ultraquiet" -gt 0 ] || printf "$bold---> Skipping $provides \n" 
         else
-	    [ "$ultraquiet" -gt 1 ] && showpgbar $scriptcount $scripttotal $provides
+	    [ "$ultraquiet" -eq 2 ] && showpgbar $scriptcount $scripttotal $provides
+	    [ "$ultraquiet" -eq 3 ] && showsplash $scriptcount $scripttotal $provides
 	    [ "$ultraquiet" -gt 0 ] && $i stop > /dev/null 2>&1
 	    [ "$ultraquiet" -gt 0 ] || $i stop
         fi
@@ -981,7 +1071,7 @@ do
     scriptcount=` expr $scriptcount + 1 `
 done
 
-[ "$ultraquiet" -gt 1 ] && chvt 1
+[ "$ultraquiet" -eq 2 ] && chvt 1
 
 # first find and unmount all fuseblk devices
 fuseblks=` cat /proc/mounts | grep ' fuseblk ' | awk '{print $2}' ` 
@@ -1083,6 +1173,7 @@ if [ -f /var/run/lesslinux/shutdown_requested_reboot ] ; then
 fi
 
 [ "$ultraquiet" -gt 1 ] && chvt 1
+# [ "$ultraquiet" -eq 3 ] && fbset && chvt 8 
 shutdown_msg=` echo $shut_down_in | sed 's/COUNT/'$shutdown_seconds'/g' ` 
 printf "\n${bold}${shutdown_msg}${normal}\n\n"
 [ "$ultraquiet" -gt 1 ] && clearscreen tty1
@@ -1234,7 +1325,8 @@ dhcp='1'				# use dhcp or static settings in earlynet script
 regdom=''				# regulatory domain for WIFI
 
 loadmodules=''				# list of modules to load very early in the boot process
-defermods='|drivers/net/wireless|drivers/gpu/drm|sound|drivers/net/ethernet|'
+defermods='|drivers/net/wireless|sound|' #
+					# was |drivers/net/wireless|drivers/gpu/drm|sound|drivers/net/ethernet|
 					# specify module directories to be loaded later by udev
 hwenv='default'				# influences the behaviour for loading modules
 searchiso=''				# search content directories only on ISOs with the given ISOID and count of bytes
@@ -1765,9 +1857,9 @@ run_self_test() {
 	mdir=$1
 	bootok=0
 	shaok=0
-	echo "---> Checking boot files" > /dev/tty8
 	if [ "$ultraquiet" -gt 1 ] ; then
 		genericpgbar 10 32 "$check_head" "${check_boot}" "" tty1
+		[ -p /splash.fifo ] && echo 10 /splash.fifo
 	else
 		echo "---> Checking boot files"
 	fi
@@ -1777,9 +1869,10 @@ run_self_test() {
 		bootok=1
 	fi
 	if [ "$bootok" -gt 0 ] ; then
-		echo "---> Checking system files" > /dev/tty8
+		[ "$ultraquiet" -lt 1 ] && echo "---> Checking system files" > /dev/tty8
 		if [ "$ultraquiet" -gt 1 ] ; then
 			genericpgbar 40 32 "$check_head" "${check_squash}" "" tty1
+			[ -p /splash.fifo ] && echo 40 /splash.fifo
 		else
 			echo "---> Checking system files"
 		fi
@@ -1797,11 +1890,84 @@ run_self_test() {
 			upperredbar tty1
 			centertext 64 1 "$convert_failed" tty1
 			lowerredbar tty1
+			chvt 1
 		fi
 		read nix
 		poweroff
 	fi
 }
+
+#		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.subr/write_fbsplash_config" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+PATH=/static/bin:/static/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+width=$1
+height=$2
+
+# Default logo is 174x106 pixels, pgbar 24px under logo and 10px high
+# pgbar 90% of screen width, everything centered
+
+pgbar_offset_x=` expr ${width} / 20 `
+img_offset_x=` expr ${width} / 2 - 87 `
+img_offset_y=` expr ${height} / 2 - 65 `
+pgbar_offset_y=` expr ${img_offset_y} + 130 `
+pgbar_width=` expr ${width} - 2 '*' ${pgbar_offset_x} ` 
+
+# Show an icon beneath the bar
+icon_offset_x=` expr ${width} / 2 - 32 ` 
+icon_offset_y=` expr ${pgbar_offset_y} + 34 ` 
+
+# In some scripts you want to show a text message which is larger 
+# than the icons, see for example the USB conversion script
+# text_offset_x=` expr ${width} / 2 - 200 ` 
+text_offset_x=$pgbar_offset_x
+# text_offset_y=` expr ${pgbar_offset_y} + 20 ` 
+text_offset_y=` expr ${height} - 150 ` 
+
+# Config file for main logo
+
+cat << EOF > /etc/lesslinux/fbsplash.cfg
+#  Generated by /etc/rc.subr/write_fbsplash_config
+BAR_LEFT=${pgbar_offset_x}
+BAR_TOP=${pgbar_offset_y}
+BAR_WIDTH=${pgbar_width}
+BAR_HEIGHT=12
+BAR_R=0
+BAR_G=254
+BAR_B=0
+# Image position
+IMG_LEFT=${img_offset_x}
+IMG_TOP=${img_offset_y}
+# Black background
+BG_R=0
+BG_G=0
+BG_B=0
+NOFILL=0
+EOF
+
+# Config file for icons below progress bar
+cat << EOF > /etc/lesslinux/fbsplash_icon.cfg
+#  Generated by /etc/rc.subr/write_fbsplash_config
+# Image position
+IMG_LEFT=${icon_offset_x}
+IMG_TOP=${icon_offset_y}
+# Do not repaint the BG
+NOFILL=1
+EOF
+
+# Config file for text below progress bar
+cat << EOF > /etc/lesslinux/fbsplash_text.cfg
+#  Generated by /etc/rc.subr/write_fbsplash_config
+# Image position
+IMG_LEFT=${text_offset_x}
+IMG_TOP=${text_offset_y}
+# Do not repaint the BG
+NOFILL=1
+EOF
 
 #		]]>
 		</scriptdata>
@@ -1923,12 +2089,6 @@ case $1 in
     # Change some access modes of devices
     chmod 0666 /dev/tty
     chmod 0666 /dev/pty*
-    
-    # Softlink /dev/hvc0 so that there is no constant respawning on Console 0
-    hv=` cat /sys/hypervisor/type `
-    if [ "$hv" '!=' "xen" ] ; then
-	ln -sf /dev/null /dev/hvc0
-    fi
     
     # mdev needs a shell at /bin/sh
     [ '!' -f /bin/sh ] && ln /static/bin/busybox /bin/sh
@@ -2371,6 +2531,19 @@ case $1 in
 	    for dir in $defmods ; do
 		umount /lib/modules/${kversion}/kernel/${dir}
 	    done
+	fi
+	if [ -p /splash.fifo ] ; then
+		echo "exit" > /splash.fifo
+		# Re-Write config
+		fbwidth=` fbset | grep '^mode' | awk -F '["x-]' '{print $2}' `
+		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
+		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
+		chvt 8
+		# Remove old fifo
+		rm /splash.fifo
+		# Create new (empty fifo)
+		mkfifo /splash.fifo
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
 	fi
     ;;
 esac
@@ -3009,7 +3182,7 @@ export PATH
 
 case $1 in 
 	start)
-		if cat /proc/cmdline | grep -q ' uninstall=full' && [ '!' "$uuid" = "all" ] && [ -n "$uuid" ] ; then 
+		if grep -q ' uninstall=full' /proc/cmdline && [ '!' "$uuid" = "all" ] && [ -n "$uuid" ] ; then 
 			for i in ` seq $usbwait ` ; do
 				devname=` blkid.static -U $uuid `
 				if [ -n "$devname" ] ; then
@@ -3420,11 +3593,30 @@ export PATH
 iso_gpt_convert() {
 	echo -e '\033[9;0]\033[14;0]' > /dev/console
 	device="$1"
-	[ "$ultraquiet" -lt 2 ] && chvt 8
-	echo "===> Converting ISOhybrid to GPT drive with proper FS, this may take some time" > /dev/tty8
-	echo "     but it is done only once..." > /dev/tty8
+	# Text mode conversion on TTY8 when ultraquiet is not set:
+	if [ "$ultraquiet" -lt 2 ] ; then
+		chvt 8
+		echo "===> Converting ISOhybrid to GPT drive with proper FS, this may take some time" > /dev/tty8
+		echo "     but it is done only once..." > /dev/tty8
+	fi
+	# GUI conversion on TTY8 when fbsplash is running
+	if [ "$ultraquiet" -eq 3 -a -p /splash.fifo ] ; then
+		echo 0 > /splash.fifo
+		fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/01driveconf.ppm 
+	fi
 	[ "$skipcheck" -lt 2 ] && run_self_test cdrom
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "$convert_prepare" "" tty1
+	[ "$ultraquiet" -eq 3 -a -p /splash.fifo ] && echo 90 > /splash.fifo
+	
+	# When installed from batchinstall or USB install the ISOhybrid MBR gets nuked,
+	# it should be saved to a file than. Try to find it! On a drirect install
+	# from Win32DiskImager or dd we should not need it.
+	
+	# Copy the saved MBR first
+	mkdir -p /lesslinux/boot
+	mount -t ext4 -o ro ${device}2 /lesslinux/boot
+	[ -f /lesslinux/boot/isohybridmbr.bin ] && cp -v /lesslinux/boot/isohybridmbr.bin /tmp
+	umount /lesslinux/boot
 	
 	# Size of boot/isolinux directory in kilobytes
 	bootsize=` du -sk /lesslinux/cdrom/boot | awk '{print $1}' `
@@ -3483,9 +3675,9 @@ iso_gpt_convert() {
 			hcmaxblocks=0 
 			neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $efiblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
 			if [ "$deviceblocks" -lt "$neededblocks" ] ; then
-				echo "===> FAILED. Device too small." > /dev/tty8
+				[ "$ultraquiet" -lt 3 ] && echo "===> FAILED. Device too small." > /dev/tty8
 				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
-				chvt 1
+				[ "$ultraquiet" -lt 3 ] && chvt 1
 				return 1
 			fi
 		fi
@@ -3497,16 +3689,21 @@ iso_gpt_convert() {
 	# Let the games begin...
 	umount /lesslinux/cdrom
 	lastct=` expr $isoblocks - 1 ` 
-	echo '---> Moving filesystem' > /dev/tty8
-	echo -n '0%' > /dev/tty8
-	
+	[ "$ultraquiet" -lt 3 ] && echo '---> Moving filesystem' > /dev/tty8
+	[ "$ultraquiet" -lt 3 ] && echo -n '0%' > /dev/tty8
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "$convert_move" "" tty1
+	
+	if [ "$ultraquiet" -eq 3 -a -p /splash.fifo ] ; then
+		echo 0 > /splash.fifo
+		fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/02driveconf.ppm 
+	fi
 	
 	for i in ` seq 0 $lastct ` ; do
 		percentage=` expr ${i}00 / ${isoblocks} `
-		printf '\033[10D' > /dev/tty8 
-		printf "${percentage}" > /dev/tty8
-		echo -n '%' > /dev/tty8
+		[ "$ultraquiet" -lt 3 ] && printf '\033[10D' > /dev/tty8 
+		[ "$ultraquiet" -lt 3 ] && printf "${percentage}" > /dev/tty8
+		[ "$ultraquiet" -lt 3 ] && echo -n '%' > /dev/tty8
+		[ -p /splash.fifo ] && echo "${percentage}" > /splash.fifo
 		# go backwards
 		copyblock=` expr $lastct - $i ` 
 		tries=0
@@ -3525,22 +3722,19 @@ iso_gpt_convert() {
 			else
 				echo "COPY FAILED on $i - trying again. Please consider replacing the target drive!" > /dev/tty8
 				[ "$ultraquiet" -gt 1 ] && genericpgbar ${percentage} 32 "$convert_head" "${convert_move} - ${percentage}%" "${convert_error} ${i}" tty1
+				[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/07driveconf.ppm 
 			fi
 		done
 	done
-	printf '\033[10D' > /dev/tty8 
-	echo '100%' > /dev/tty8
+	[ "$ultraquiet" -lt 3 ] && printf '\033[10D' > /dev/tty8 
+	[ "$ultraquiet" -lt 3 ] && echo '100%' > /dev/tty8
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 100 32 "$convert_head" "${convert_move} - 100%" "" tty1
+	[ -p /splash.fifo ] && echo 100 > /splash.fifo
 	rm /lesslinux/copyblock.bin /lesslinux/checkblock.bin 
 	
-	echo '---> Creating partition table and bootloader' > /dev/tty8
+	[ "$ultraquiet" -lt 3 ] && echo '---> Creating partition table and bootloader' > /dev/tty8
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "${convert_mkfs}" "" tty1
-	
-	# Now overwrite the start of the device and create a new MBR
-	dd if=/dev/zero bs=1024 count=1024 of="$device"
-	parted -s $device unit B mklabel gpt
-	cat /etc/syslinux/gptmbr.bin > "$device"
-	mdev -s
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/05driveconf.ppm
 	
 	# Recalculate the possible size of the partition for the encrypted home container
 	hcblocks=1
@@ -3564,53 +3758,87 @@ iso_gpt_convert() {
 	thirdpartstart=`    expr '(' $deviceblocks - $isoblocks - $isoblocks - $swapblocks - $hcblocks - $blobblocks - $efiblocks - 1 ')' '*' 8388608 `
  	secpartstart=`      expr '(' $deviceblocks - $isoblocks - $isoblocks - $swapblocks - $hcblocks - $blobblocks - $efiblocks - $bootblocks - 1 ')' '*' 8388608 `
 	
-	# Create seven partitions: userdata (1), legacy boot (2), EFI boot (3), blob (4), encrypted home (5), system reserved (for updates, 6), system ISO (7)
-	# seventhpartstart=`  expr '(' $deviceblocks - $isoblocks - 1 ')' '*' 8388608 `
-	# sixthpartstart=`  expr '(' $deviceblocks - $isoblocks - $isoblocks - 1 ')' '*' 8388608 `
-	# fifthpartstart=` expr '(' $deviceblocks - $isoblocks - $isoblocks - $hcblocks - 1 ')' '*' 8388608 `
-	# fourthpartstart=` expr '(' $deviceblocks - $isoblocks - $isoblocks - $hcblocks - $blobblocks - 1 ')' '*' 8388608 `
-	# thirdpartstart=`  expr '(' $deviceblocks - $isoblocks - $isoblocks - $hcblocks - $blobblocks - $efiblocks - 1 ')' '*' 8388608 `
- 	# secpartstart=`    expr '(' $deviceblocks - $isoblocks - $isoblocks - $hcblocks - $blobblocks - $efiblocks - $bootblocks - 1 ')' '*' 8388608 `
+	# Now overwrite the start of the device
+	dd if=/dev/zero bs=1024 count=1024 of="$device"
+	# First create an DOS MBR with an active partition 
+	##parted -s $device unit B mklabel msdos
+	##parted -s $device unit B mkpart primary fat32 512 ` expr $thirdpartstart - 1 `
+	##parted -s $device unit B mkpart primary fat32 $thirdpartstart ` expr $fourthpartstart - 1 `
+	##parted -s $device unit B mkpart primary fat32 $fourthpartstart '100%'
+	##parted -s $device unit B set 2 boot on
+	##parted -s $device unit B set 2 esp on
+	##printf "print\nt\n3\n17\nwrite\nquit\n" | /static/sbin/fdisk $device
+	##printf "print\nt\n1\nee\nwrite\nquit\n" | /static/sbin/fdisk $device
+	sync
+	# Now backup this partition table
+	##dd if="$device" of=/tmp/legacy.mbr bs=512 count=1
+	##dd if=/dev/zero bs=1024 count=1 of="$device"
+	# Create the GPT partition table
+	parted -s $device unit B mklabel gpt
+	sync
+	mdev -s
 	
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 5 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 5 > /splash.fifo
 	
 	# First partition - data
-	parted -s $device unit B mkpart primary fat32 8388608 ` expr $secpartstart - 1 `  
+	parted -s $device unit B mkpart "${brandshort}-DATA" fat32 8388608 ` expr $secpartstart - 1 `  
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 10 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 10 > /splash.fifo
 	
 	# Second partition - legacy boot
-	parted -s $device unit B mkpart primary ext2 $secpartstart ` expr $thirdpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-BIOS" ext2 $secpartstart ` expr $thirdpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 15 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 15 > /splash.fifo
 	parted -s $device unit B set 2 legacy_boot on
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 20 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 20 > /splash.fifo
 	
 	# Third partition - EFI Boot
-	parted -s $device unit B mkpart primary fat32 $thirdpartstart ` expr $fourthpartstart - 1 ` 
+	parted -s $device unit B mkpart "${brandshort}-UEFI" fat32 $thirdpartstart ` expr $fourthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 25 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ "$efisize" -gt 0 ] && parted -s $device unit B set 3 boot on
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 30 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 30 > /splash.fifo
 	
 	# Fourth partition - Blob
-	parted -s $device unit B mkpart primary ext2 $fourthpartstart ` expr $fifthpartstart - 1 ` 
+	blobpartlabel="${brandshort}-BLOB"
+	[ "$blobblocks" -lt 32 ] && blobpartlabel=empty
+	parted -s $device unit B mkpart "${blobpartlabel}" ext2 $fourthpartstart ` expr $fifthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 35 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 35 > /splash.fifo
 	
 	# Fifth partition - encrypted container
-	parted -s $device unit B mkpart primary ext2 $fifthpartstart ` expr $sixthpartstart - 1 ` 
+	homepartlabel="${brandshort}-HOME"
+	[ "$hcblocks" -lt 32 ] && homepartlabel=empty
+	parted -s $device unit B mkpart "${homepartlabel}" ext2 $fifthpartstart ` expr $sixthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 40 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 40 > /splash.fifo
 	
 	# Sixth partition - Swap
-	parted -s $device unit B mkpart primary ext2 $sixthpartstart ` expr $seventhpartstart - 1 ` 
+	swappartlabel="${brandshort}-SWAP"
+	[ "$swapblocks" -lt 32 ] && swappartlabel=empty
+	parted -s $device unit B mkpart "${swappartlabel}" ext2 $sixthpartstart ` expr $seventhpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 45 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 45 > /splash.fifo
 	
-	# Sixth partition - ISO image reserved
-	parted -s $device unit B mkpart primary ext2 $seventhpartstart ` expr $eighthpartstart - 1 ` 
+	# Seventh partition - ISO image reserved
+	parted -s $device unit B mkpart "${brandshort}-SYS2" ext2 $seventhpartstart ` expr $eighthpartstart - 1 ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 50 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 50 > /splash.fifo
 	
-	# Seventh partition - ISO image
-	parted -s $device unit B mkpart primary ext2 $eighthpartstart ` expr '(' $deviceblocks - 1 ')' '*' 8388608 - 1 `
+	# Eight partition - ISO image
+	parted -s $device unit B mkpart "${brandshort}-SYS1" ext2 $eighthpartstart ` expr '(' $deviceblocks - 1 ')' '*' 8388608 - 1 `
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 55 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 55 > /splash.fifo
 	
-	echo '---> Creating file systems' > /dev/tty8
+	# Write the MSDOS MBR and the GPT boot legacy block
+	# dd of="$device" if=/tmp/legacy.mbr bs=512 count=1
+	cat /etc/syslinux/gptmbr.bin > "$device"
+	# rm /tmp/legacy.mbr
+	
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/06driveconf.ppm
+	[ "$ultraquiet" -lt 3 ] && echo '---> Creating file systems' > /dev/tty8
 	sync 
 	sleep 2
 	mdev -s
@@ -3620,6 +3848,7 @@ iso_gpt_convert() {
 		dd if=/dev/zero bs=1M count=8 of=${device}${part} 
 		pgfrac=` expr $pgfrac + 2 `
 		[ "$ultraquiet" -gt 1 ] && genericpgbar $pgfrac 32 "$convert_head" "${convert_mkfs}" "" tty1
+		[ -p /splash.fifo ] && echo $pgfrac > /splash.fifo
 		sync
 	done
 	if [ -x /static/sbin/mkntfs.static ] && [ "$secpartstart" -gt 4294967295 ] ; then
@@ -3628,16 +3857,27 @@ iso_gpt_convert() {
 		mkfs.vfat -n USBDATA "${device}1"
 	fi
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 75 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 75 > /splash.fifo
 	sleep 2
 	sync
 	mdev -s
 	sleep 2
+	
+	# Copy the saved ISOhybrid MBR: 
+	if [ -f /tmp/isohybridmbr.bin ] ; then
+		dd if=/tmp/isohybridmbr.bin of=${device}8 conv=notrunc
+		sync
+		rm /tmp/isohybridmbr.bin
+	fi
+	
 	mkfs.ext2 -L LessLinuxBoot "${device}2"
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 85 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 85 > /splash.fifo
 	[ "$blobblocks" -gt 1 ] && mkfs.ext2 -L LessLinuxBlob "${device}4"
 	[ "$hcblocks" -gt 1 ]   && mkfs.ext2 -L LessLinuxCrypt "${device}5"
 	[ "$swapblocks" -gt 1 ] && mkfs.ext2 -L LessLinuxSwap  "${device}6"
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 95 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 95 > /splash.fifo
 	mkdir -p /lesslinux/boot
 	mkdir -p /lesslinux/data
 	mkdir -p /lesslinux/efiboot
@@ -3656,9 +3896,12 @@ iso_gpt_convert() {
 	[ "$hcblocks" -gt 1 ]   && cryptuuid=` blkid.static -o udev "${device}5" | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
 	[ "$swapblocks" -gt 1 ] && swapuuid=`  blkid.static -o udev "${device}6" | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 33 32 "$convert_head" "${convert_bios}" "" tty1
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/03driveconf.ppm
+	[ -p /splash.fifo ] && echo 33 > /splash.fifo
 	# Copy legacy boot files
 	tar -C /lesslinux/cdrom -cf - boot/isolinux boot/grub boot/kernel | tar -C /lesslinux/boot -xf -
 	touch /lesslinux/boot/cmdline
+	cp -v /tmp/legacy.mbr /lesslinux/boot
 	# Copy GRUBs file to properly detect the boot partition
 	idfile=` ls /lesslinux/boot/boot/grub/????????.cd `
 	idtarg=` echo $idfile | sed 's/\.cd/.pt/g' ` 
@@ -3671,6 +3914,8 @@ iso_gpt_convert() {
 	fi
 	
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 66 32 "$convert_head" "${convert_efi}" "" tty1
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/04driveconf.ppm
+	[ -p /splash.fifo ] && echo 66 > /splash.fifo
 	# Copy EFI boot image
 	if [ -f /lesslinux/cdrom/boot/efi/efi.img ] ; then
 		dd if=/lesslinux/cdrom/boot/efi/efi.img of="${device}3"
@@ -3687,6 +3932,8 @@ iso_gpt_convert() {
 			[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' "${cfgfile}"
 			[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    "${cfgfile}"
 		done
+		mkdir -p /lesslinux/efiboot/boot/isolinux
+		extlinux --install /lesslinux/efiboot/boot/isolinux
 		sync
 		umount /lesslinux/efiboot
 	fi
@@ -3729,8 +3976,10 @@ iso_gpt_convert() {
 	echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
 	echo -n "${device}8" > /var/run/lesslinux/install_source
 	echo "bootdevice=${device}8" >> /var/run/lesslinux/startup_vars
-	echo "===> Done." > /dev/tty8
-	chvt 1
+	[ "$ultraquiet" -lt 3 ] && echo "===> Done." > /dev/tty8
+	[ "$ultraquiet" -lt 3 ] && chvt 1
+	[ -p /splash.fifo ] && echo 100 > /splash.fifo
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/textblank.ppm	
 }
 
 mount_and_check() {
@@ -4204,7 +4453,7 @@ case $1 in
 esac
 		]]>
 		</scriptdata>
-		<scriptdata location="/etc/rc.d/0120-update.sh" mode="0755" group="0" owner="0">
+		<!-- <scriptdata location="/etc/rc.d/0120-update.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides update
@@ -4234,7 +4483,7 @@ case $1 in
 	        for i in ` cat /lesslinux/cdrom/${contdir}/mount.txt | awk '{print $1}' ` ; do
 		    delta=` echo $i | sed 's/\.sqs/.xd3/g' `
 		    if [ -f /lesslinux/cdrom/${contdir}/$delta ] ; then
-		        printf "$bold---> Applying update for $i $normal\n"
+		        printf "$bold===> Applying update for $i $normal\n"
 			xdelta3 -d -s /lesslinux/cdrom/${contdir}/$i /lesslinux/cdrom/${contdir}/$delta /tmp/$i && \
 			    rm /lesslinux/cdrom/${contdir}/$delta && \
 			    rm /lesslinux/cdrom/${contdir}/$i && \
@@ -4271,12 +4520,12 @@ case $1 in
 		thatversion=` cat /lesslinux/update_iso/${contdir}/version.txt ` 2> /dev/null
 		if [ "$thisversion" = "$thatversion" ] ; then
 		    if ( cd /lesslinux/update_iso/${contdir}/ ; sha1sum -c squash.sha ) ; then
-		        printf "$bold---> Check of new files successful... $normal\n"
+		        printf "$bold===> Check of new files successful... $normal\n"
 			rm /lesslinux/cdrom/${contdir}/*.sqs
 		        ( cd /lesslinux/update_iso/${contdir}/ ; tar -cvf - . | tar -C /lesslinux/cdrom/${contdir} -xf - )
 		        update_found=1
 		    else
-		        printf "$bold---> Check of new files failed... $normal\n"
+		        printf "$bold===> Check of new files failed... $normal\n"
 			printf "$bold     Maybe drive is damaged - consider reinstallation $normal\n"
 			printf "$bold     Sleeping 30 seconds $normal\n"
 			sleep 30
@@ -4295,7 +4544,7 @@ case $1 in
 esac    
 
 		]]>
-		</scriptdata>
+		</scriptdata> -->
 		<scriptdata location="/etc/rc.d/0135-toram.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
@@ -4372,14 +4621,20 @@ case $1 in
 		kblocks=`expr $isoblocks + 8192 ` 
 		mount -t tmpfs -o mode=0755,size=${kblocks}k tmpfs /lesslinux/ramiso 
 		if [ "$ultraquiet" -gt 1 ] ; then
+			if [ "$ultraquiet" -eq 3 -a -p /splash.fifo ] ; then
+				echo 0 > /splash.fifo
+				fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/toram.ppm 
+			fi
 			genericpgbar 0 32 "$copying_toram" "0%" "" tty1
 			largeblocks=` expr $copyblocks / 2048 ` 
 			for n in ` seq 0 $largeblocks `; do
 				percentage=` expr ${n}00 / $largeblocks ` 
 				dd if=$copydevice of=/lesslinux/ramiso/lesslinux.iso bs=4194304 count=1 seek=$n skip=$n
 				genericpgbar $percentage 32 "$copying_toram" "${percentage}%" "" tty1
+				[ -p /splash.fifo ] && echo $percentage > /splash.fifo
 			done
 			genericpgbar 100 32 "$copying_toram" "100%" "" tty1
+			[ -p /splash.fifo ] && echo 100 > /splash.fifo
 		else
 			dd if=$copydevice of=/lesslinux/ramiso/lesslinux.iso bs=2048 count=$copyblocks
 		fi
@@ -4578,6 +4833,8 @@ export PATH
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
 
 format_and_mount_swap() {
 	auxuuid=$1
@@ -4587,7 +4844,7 @@ format_and_mount_swap() {
 	mkdir -m 0700 /lesslinux/cryptkeys
 	dd if=/dev/urandom bs=1M count=4 of=${swapkey} 
 	chmod 0600 ${swapkey} 
-	cryptsetup luksFormat --uuid=${auxuuid} -c aes-cbc-essiv:sha256 -s 256 -q ${auxpart} ${swapkey} 
+	cryptsetup luksFormat --uuid=${auxuuid} -c aes-xts-plain64 -s 512 -h sha512 --use-urandom -i 5000 -q ${auxpart} ${swapkey} 
 	shortpart=` echo $auxpart | sed 's%/dev/%%g' `
 	cryptsetup luksOpen --key-file ${swapkey} ${auxpart} ${shortpart} && \
 		ln -s /dev/mapper/${shortpart} /dev/mapper/cryptoswap && \
@@ -4610,7 +4867,8 @@ case $1 in
 			swapon $swappart
 		fi
 	else
-		swappart=` blkid -L LessLinuxSwap `
+		swappart=` blkid -o device -t PARTLABEL="${brandshort}-SWAP" `
+		[ -z "$swappart" ] && swappart=` blkid -L LessLinuxSwap `
 		[ -z "$swappart" ] && exit 1 
 		swapuuid=` blkid -o udev $swappart | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
 		format_and_mount_swap $swapuuid $swappart
@@ -4628,6 +4886,12 @@ esac
 	
 		]]>
 		</scriptdata>
+		<modlist provides="swap" hwenv="default">
+			<module>dm-crypt</module>
+			<module>sha256</module>
+			<module>sha512</module>
+			<module>aes</module>
+		</modlist>
 		<scriptdata location="/etc/rc.d/0142-blobpart.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
@@ -4673,6 +4937,15 @@ case $1 in
 		else
 			mount -t btrfs -o relatime,compress $blobdev /lesslinux/blobpart
 		fi
+		thisversion=` cat /etc/lesslinux/updater/version.txt `
+		if [ -f /lesslinux/blobpart/updates/update-${thisversion}.txz ] ; then
+			# Check signature first!
+			# Import the key
+			/usr/bin/gpg --import /etc/lesslinux/updater/updatekey.asc
+			if /usr/bin/gpg --verify /lesslinux/blobpart/updates/update-${thisversion}.txz.asc ; then
+				tar -C / -xf /lesslinux/blobpart/updates/update-${thisversion}.txz
+			fi
+		fi
 	fi
     ;;
     stop)
@@ -4682,6 +4955,25 @@ case $1 in
 	umount /lesslinux/blobpart
     ;;
 esac
+	
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0143-update.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides updateoverlay1
+#lesslinux license BSD
+#lesslinux description
+# Overwrite this script at update time
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+exit 0
 	
 		]]>
 		</scriptdata>
@@ -5257,6 +5549,48 @@ esac
 
 # END		]]>
 		</scriptdata>
+		<scriptdata location="/etc/rc.d/0650-ntpd.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides ntpd
+#lesslinux license BSD
+#lesslinux description
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+		
+case $1 in
+    start)
+	printf "$bold===> Setting clock $normal"
+	/static/sbin/ntpd -q -p ptbtime1.ptb.de
+    ;;
+esac
+
+# END		]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/9998-update.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+		
+#lesslinux provides updateoverlay2
+#lesslinux license BSD
+#lesslinux description
+# Overwrite this script at update time
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+exit 0
+	
+		]]>
+		</scriptdata>
 		<scriptdata location="/etc/rc.d/9999-local.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
@@ -5298,7 +5632,7 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>
-	<package name="busybox" version="1.23.2" allowfail="yes">
+	<package name="busybox" version="1.24.2" allowfail="yes">
 		<sources>
 			<file>
 				<pkg sha1="1c79e0eb88281bf4f734ab934a2d9f1d1b00de60">busybox-1.7.2-smack-static-ulibc-i686.tar.gz</pkg>

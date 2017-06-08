@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="4.1.31"
+		version="4.4.52"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="16d36586a3d56dff73b7cb7553a41a527b593c8d">linux-4.1-config-amd64</pkg> 
+				<pkg sha1="7f93c856fe791202c52176af23f073090760ea6c">linux-4.4-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="2470435c2218f0bcbd46ef2a0000694aca340273">linux-4.1.tar.xz</pkg>
+				<pkg sha1="af7d0cd188292d4d6c7bbaabde0f30ec6b521884">linux-4.4.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="f4f40f1d945d10b64500abf687830d3d0b87d771">patch-4.1.31.xz</pkg>
+				<pkg sha1="b0472f6ed80618d28be47cfaee1f1eeb0ff4f211">patch-4.4.52.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20160828" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20170309" interval="60" page="http://www.kernel.org/" />
 			<check>
-				<page html="rsync://www.kernel.org/pub/linux/kernel/v3.x/">
-					<atext linktext="patch-4.1.32." />
-					<atext linktext="patch-4.1.33." />
-					<atext linktext="patch-4.1.34." />
-					<atext linktext="patch-4.2." />
-					<atext linktext="patch-4.3." />
-					<atext linktext="patch-4.4." />
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
+					<atext linktext="patch-4.4.53." />
+					<atext linktext="patch-4.4.54." />
+					<atext linktext="patch-4.4.55." />
+					<atext linktext="patch-4.5." />
+					<atext linktext="patch-4.6." />
+					<atext linktext="patch-4.7." />
 				</page>
 			</check>
 		</sources>
@@ -74,31 +74,39 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			
 			localversion='ll-64-0'
 			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			cd linux-${major}.${minor}
-			
-			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
-			
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
-			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config 
+			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
+			mkdir linux-${PKGVERSION}.build
+			tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
+			tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
-			cd linux-${PKGVERSION}
+			cd linux-${PKGVERSION}.build
 			
 			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
 			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
 			
+			echo 'PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH' > ../linux-${PKGVERSION}/environment.inc
+			echo 'OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump' >> ../linux-${PKGVERSION}/environment.inc
+			echo 'CC=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc'  >> ../linux-${PKGVERSION}/environment.inc
+			
+			echo 'ARCH=x86_64' > ../linux-${PKGVERSION}/arch.inc
+			echo 'CROSS_COMPILE="x86_64-linux-gnu-"' > ../linux-${PKGVERSION}/crosscompile.inc
+			
 			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
 			
+			jobcount=4 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				make -j $jobcount \
@@ -119,10 +127,12 @@
 					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
 					bzImage
 			else
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
-				make -j 4 ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
 			fi
+			cd ../linux-${PKGVERSION}
+			make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_prepare 
 			
 			]]>
 		</build>
@@ -135,7 +145,7 @@
 			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
 			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
 			
-			cd linux-${PKGVERSION}
+			cd linux-${PKGVERSION}.build
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-amd64 
@@ -148,15 +158,16 @@
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec x86_64-linux-gnu-strip --strip-unneeded {} \; 
-			make clean
-			make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_prepare 
-			tar -cvJf ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}/linux.tar.xz .  
+			cd ../linux-${PKGVERSION}
+			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
+
 			]]>
 		</install>
 		<clean>
 			  <![CDATA[
 			  
 			  rm -rf linux-${PKGVERSION}
+			  rm -rf linux-${PKGVERSION}.build 
 			  
 			  ]]>
 		</clean>

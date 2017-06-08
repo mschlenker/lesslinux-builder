@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='plaso' version='1.2.0' install='chroot'>
+    <package name='plaso' version='1.5.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='eb4cc1e1f6e9aa579d52c1420323191591a153f7'>
-                    plaso-1.2.0.tar.gz
+                <pkg sha1='c77640e633ee009bd5ace5013995768c471873c3'>
+                    plaso-1.5.0.tar.gz
                 </pkg>
                 <mirror>
-                    https://e366e647f8637dd31e0a13f75e5469341a9ab0ee.googledrive.com/host/0B30H7z4S52FleW5vUHBnblJfcjg/1.2.0/final/
+                    https://github.com/log2timeline/plaso/releases/download/1.5.0/
                 </mirror>
             </file>
-            <manualcheck date='20150423' interval='60' mirror='https://e366e647f8637dd31e0a13f75e5469341a9ab0ee.googledrive.com/host/0B30H7z4S52FleW5vUHBnblJfcjg/1.2.0/final/'/>
+            <manualcheck date='20160921' interval='60' mirror='https://github.com/log2timeline/plaso/releases'/>
         </sources>
 	<builddeps>
                         <dep>Cython</dep>

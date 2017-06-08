@@ -1,31 +1,31 @@
 <llpackages>
 	<package 
 		name="udev"
-		version="3.1.5"
+		version="3.2"
 		class="user"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                   
-				<pkg sha1="2e2e8a6ef4f2f4e13e09c90f3089eebe711e0b32">eudev-3.1.5.tar.gz</pkg>
+				<pkg sha1="4463db5b584b6e2bcf617d7c1b0c3cf27a1fc13d">eudev-3.2.tar.gz</pkg>
 				<mirror>http://dev.gentoo.org/~blueness/eudev/</mirror>
 			</file>
 			<file>      
 				<pkg sha1="7e79b839f7a0adf11a22fbb49c43531f19e55b7f">udev-lfs-20140408.tar.bz2</pkg>
 				<mirror>http://anduin.linuxfromscratch.org/sources/other/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="90" page="http://www.kernel.org/pub/linux/utils/kernel/hotplug/" />
+			<manualcheck date="20160701" interval="90" page="http://www.kernel.org/pub/linux/utils/kernel/hotplug/" />
 			<check>
 				<page html="http://dev.gentoo.org/~blueness/eudev/">
-					<atext linktext="eudev-3.1.8." />
-					<atext linktext="eudev-3.1.9." />
-					<atext linktext="eudev-3.1.10." />
-					<atext linktext="eudev-3.1.6." />
-					<atext linktext="eudev-3.1.7." />
-					<atext linktext="eudev-3.2." />
+					<atext linktext="eudev-3.2.1." />
+					<atext linktext="eudev-3.2.2." />
+					<atext linktext="eudev-3.2.3." />
+					<atext linktext="eudev-3.2.4." />
+					<atext linktext="eudev-3.2.5." />
 					<atext linktext="eudev-3.3." />
 					<atext linktext="eudev-3.4." />
 					<atext linktext="eudev-3.5." />
+					<atext linktext="eudev-3.6." />
 					<atext linktext="eudev-4." />
 					<atext linktext="eudev-5." />
 				</page>
@@ -77,6 +77,14 @@ EOF
 		<build>
 			<![CDATA[
 			cd e${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr           \
 				--bindir=/sbin          \
 				--sbindir=/sbin         \
@@ -92,7 +100,7 @@ EOF
 				--disable-introspection \
 				--disable-gtk-doc-html  \
 				--with-firmware-path=/lib/firmware 
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

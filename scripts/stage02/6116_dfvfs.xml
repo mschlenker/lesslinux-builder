@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='dfvfs' version='2015.04.22.0' install='chroot'>
+    <package name='dfvfs' version='20160108' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='a3600e8988e3ff632b17c3ac0c9e96018a890410'>
-                    dfvfs-2015.04.22.0.tar.xz
+                <pkg sha1='cbf6f51a14d248d0e30d5f5fe0d5169e13a8e737'>
+                    dfvfs-20160108.tar.gz
                 </pkg>
                 <mirror>
-                    http://distfiles.lesslinux.org/
+                    https://github.com/log2timeline/dfvfs/releases/download/20160108/
                 </mirror>
             </file>
-            <manualcheck date='20150422' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/log2timeline/dfvfs/releases'/>
         </sources><builddeps>
                         <dep>Cython</dep>
                         <dep>M2Crypto</dep>
@@ -52,23 +52,23 @@
                         <dep>six</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py config
 python setup.py build
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
 ]]>
         </clean>
     </package>

@@ -25,31 +25,43 @@
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>gawk</dep>
-                        <dep>gcc</dep>
-                        <dep>gettext</dep>
-                        <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>linux_headers</dep>
-                        <dep>make</dep>
-                        <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
+                         <dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -e '/mf\.buffer = NULL/a next->coder->mf.size = 0;'  -i src/liblzma/lz/lz_encoder.c
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test />

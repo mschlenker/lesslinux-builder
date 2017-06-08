@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="texinfo"
-		version="6.0"
+		version="6.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
-		<sources>
+	<sources>
 			<file>
-				<pkg sha1="39d9b15029a49c4ac106e7686b87d374a99c207f">texinfo-6.0.tar.xz</pkg>
+				<pkg sha1="e0cf05fa968203ded69b6bc2aeef9053fded0fa6">texinfo-6.2.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/texinfo/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="120" page="http://ftp.gnu.org/gnu/texinfo/" />
+			<manualcheck date="20160922" interval="120" page="http://ftp.gnu.org/gnu/texinfo/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/texinfo/">
-					<atext linktext="texinfo-6.1" />
-					<atext linktext="texinfo-6.2" />
+					<atext linktext="texinfo-6.5" />
+					<atext linktext="texinfo-6.6" />
 					<atext linktext="texinfo-6.3" />
 					<atext linktext="texinfo-6.4" />
 					<atext linktext="texinfo-7" />
@@ -48,7 +48,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test>

@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='mercurial' version='3.4.2' install='chroot'>
+    <package name='mercurial' version='3.8.4' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='c2dc6cb1ec8cd31c1270e36db8149b6bd3dcaa2b'>
-                    mercurial-3.4.2.tar.gz
+                <pkg sha1='3fca166ff37f7900fc9ac361f67d259d63c09710'>
+                    mercurial-3.8.4.tar.gz
                 </pkg>
                 <mirror>
-                    https://mercurial.selenic.com/release/
+                    https://www.mercurial-scm.org/release/
                 </mirror>
             </file>
-            <manualcheck date='20150710' interval='60' mirror='https://mercurial.selenic.com/release/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://www.mercurial-scm.org'/>
         </sources>
 	<builddeps>
                         <dep>M2Crypto</dep>
@@ -26,11 +26,11 @@
                         <dep>glibc</dep>
                         <dep>linux_headers</dep>
                         <dep>openssl</dep>
-                        <dep>plaso</dep>
                         <dep>protobuf</dep>
                         <dep>pygobject</dep>
                         <dep>python-dateutil</dep>
                         <dep>setuptools</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz

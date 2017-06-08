@@ -1,24 +1,23 @@
 <llpackages>
 	<package 
 		name="shared-mime-info"
-		version="1.5"
-		class="user"
-		>
+		version="1.6"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="2252f9093e72f2dc81b47d4f2a3eda50d19f0f70">shared-mime-info-1.5.tar.xz</pkg>
+				<pkg sha1="9860e569b4ac31423539f4cccfb5e54e2d28f8ab">shared-mime-info-1.6.tar.xz</pkg>
 				<mirror>http://freedesktop.org/~hadess/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="180" page="http://people.freedesktop.org/~hadess/" />
+			<manualcheck date="20160701" interval="180" page="http://people.freedesktop.org/~hadess/" />
 			<check>
 				<page html="http://people.freedesktop.org/~hadess/">
 					<atext linktext="shared-mime-info-1.11" />
 					<atext linktext="shared-mime-info-1.12" />
 					<atext linktext="shared-mime-info-1.13" />
+					<atext linktext="shared-mime-info-1.14" />
 					<atext linktext="shared-mime-info-1.7" />
-					<atext linktext="shared-mime-info-1.8" />
-					<atext linktext="shared-mime-info-1.5." />
+					<atext linktext="shared-mime-info-1.8." />
 					<atext linktext="shared-mime-info-2." />
 				</page>
 			</check>
@@ -55,7 +54,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which pump ; then
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 

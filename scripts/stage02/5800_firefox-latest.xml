@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox-latest"
-		version="45.0.1"
+		version="50.0"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -24,9 +24,9 @@ app.partner.computerbild="computerbild"
 		<license>GPLv2</license>
 		<!-- official branding -->
 		<sources>
-			<file>                                                                         
-				<pkg sha1="14081166adc1a18e1150ac264d810d6539818d67">firefox-45.0.1.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/45.0.1/source/</mirror>
+			<file>                                                                     
+				<pkg sha1="0770365882cecfbedf76c577b621a5a0d4ca69da">firefox-50.0.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/50.0/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -34,30 +34,38 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 
-fftag=FIREFOX_45_0_1_RELEASE
+# fftag=FIREFOX_50_0_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
-( cd $l ; hg checkout $fftag ) ; 
+# ( cd $l ; hg checkout $fftag ) ; 
 done
 			
 			-->
 			<file>                                    
-				<pkg sha1="45e32bddf961b5d89161e3ce59f4a27af0348064">firefox-45.0.1.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="12487584003b79f8ab9078f71c29440d92540d82">firefox-50.0.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20160408" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
+			<!-- <file>                                    
+				<pkg sha1="d7e196bb01c95faa6b9a97b6d6825afe7bacb46f">firefox-48.0.1-gcc6-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<!-- <file>                                    
+				<pkg sha1="768e424e24b58533ce7f3980e5c12f1ee3399c77">firefox-48.0.1-gtk320-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20161115" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
-					<atext linktext="45.0.5" />
-					<atext linktext="45.0.2" />
-					<atext linktext="45.0.3" />
-					<atext linktext="45.0.4" />
-					<atext linktext="45.1." />
-					<atext linktext="45.2." />
-					<atext linktext="46.0" />
-					<atext linktext="47.0" />
-					<atext linktext="48.0" />
+					<atext linktext="50.0.1" />
+					<atext linktext="50.0.2" />
+					<atext linktext="50.0.3" />
+					<atext linktext="50.0.4" />
+					<atext linktext="50.1." />
+					<atext linktext="50.2." />
+					<atext linktext="51.0" />
+					<atext linktext="52.0" />
+					<atext linktext="53.0" />
 				</page>
 			</check>
 		</sources>
@@ -136,7 +144,7 @@ done
 			<dep>libmng</dep>
 			<dep>lcms</dep>
 			<dep>nspr</dep>
-			<dep>distcc</dep>
+			<!-- dep>distcc</dep -->
 			<dep>gst-libav</dep>
 			<dep>gst-plugins-bad1</dep>
 			<dep>gst-plugins-good1</dep>
@@ -149,45 +157,58 @@ done
 			<dep>nspr</dep>
 			<dep>nss</dep>
 			<dep>icu</dep>
-			<!-- <dep>gcc49</dep> -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
+			# exit 0
+			
 			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			mv firefox-${PKGVERSION} mozilla-release
 			mkdir l10n
-			tar -C l10n -xf ${SRCDIR}/firefox-${PKGVERSION}.source.de-es-pl-ru.tar.xz
+			tar -C l10n -xf ${SRCDIR}/firefox-50.0.source.de-es-pl-ru.tar.xz
 			]]>
 		</unpack>
 		<patch>
 		<![CDATA[
-			cp ${SRCDIR}/mozconfig-firefox-33.0-20141115 mozilla-release/.mozconfig
+			cd mozilla-release
+			cp ${SRCDIR}/mozconfig-firefox-33.0-20141115 .mozconfig
 		]]>
 		</patch>
 		<build>
 			<![CDATA[
-			echo $SHELL
-			export SHELL=/bin/bash
-			echo $SHELL
-			dir=`pwd `
-			sed -i 's%PWD%'${dir}'/%g' mozilla-release/.mozconfig 
-			sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
-			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
-			sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' mozilla-release/.mozconfig 
-			sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' mozilla-release/.mozconfig 
-			echo 'ac_add_options --disable-gconf' >> mozilla-release/.mozconfig 
-			cd mozilla-release
+
+# exit 0
+
+# export PATH=/usr/local/gcc54/bin:$PATH 
+echo $SHELL
+export SHELL=/bin/bash
+echo $SHELL
+export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
+export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
+dir=`pwd `
+sed -i 's%PWD%'${dir}'/%g' mozilla-release/.mozconfig 
+sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
+sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-libevent%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --enable-gstreamer%# ac_add_options --enable-gstreamer%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-nss%# ac_add_options --with-system-nss%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-nspr%# ac_add_options --with-system-nspr%g' mozilla-release/.mozconfig 
+
+echo 'ac_add_options --disable-gconf' >> mozilla-release/.mozconfig 
+cd mozilla-release
+
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 12 ] && jobcount=12
+				export CC='distcc gcc'
+				export CXX='distcc g++'
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
-				make -f client.mk clean
-				make -f client.mk configure 
-				make -f client.mk build  
+					make -f client.mk 
 			else
-				# sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49\"%g" .mozconfig 
-				make -f client.mk clean
-				make -f client.mk configure	
-				make -f client.mk build
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=gcc CXX=g++\"%g" .mozconfig 
+					make -f client.mk
 			fi
 			echo '===> Trying to find libxul.so...'
 			find ff-build -type f -name libxul.so
@@ -217,6 +238,11 @@ done
 		<test />
 		<install>
 			<![CDATA[
+
+# mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
+# touch ${TGTDIR}/opt/firefox-${PKGVERSION}/investigate_failed_build_later 
+# exit 0
+		
 shortvers=` echo ${PKGVERSION} | sed 's/esr//g' ` 
 TARFILE=mozilla-release/ff-build/dist/firefox-${shortvers}.en-US.linux-` uname -m `.tar.bz2
 [ -f "$TARFILE" ] || exit 1

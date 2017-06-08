@@ -1,22 +1,17 @@
 <llpackages>
 	<package 
 		name="lshw"
-		version="B.02.17"
+		version="B.02.18"
 		class="user"
 		allowfail="yes"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file> 
-				<pkg sha1="3560506670da931f2305e202d4775db385d88732">lshw-B.02.17.tar.gz</pkg>
+				<pkg sha1="c0240f5e53cf40769d52e316719e8010ea6bdea3">lshw-B.02.18.tar.gz</pkg>
 				<mirror>http://ezix.org/software/files/</mirror>
 			</file>
-			<manualcheck date="20140518" interval="180" page="http://ezix.org/project/wiki/HardwareLiSter" />
-			<!-- <file>   
-				<pkg sha1="b6e41703f1113823bd5471561c95726fa2fccda8">lshw-B.02.14-gcc-4.5.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/lshw/</mirror>
-			</file> -->
+			<manualcheck date="20160701" interval="180" page="http://ezix.org/project/wiki/HardwareLiSter" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -29,35 +24,34 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			echo 'Nothing to unpack!'
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc-4.5.patch | patch -p0
+			echo 'Nothing to patch!'
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/src
-			make static
+			echo 'Nothing to build!'
 			]]>
 		</build>
-		<test />
+		<test>
+			<![CDATA[
+			echo 'Nothing to test!'
+			]]>
+		</test>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/src
-			mkdir -p ${TGTDIR}/usr/sbin
-			install -m 0755 lshw-static ${TGTDIR}/usr/sbin
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
 		<clean>
-			  <![CDATA[
-			  
-			  rm -rf ${PKGNAME}-${PKGVERSION}
-			  
-			  ]]>
+			 <![CDATA[
+			echo 'Nothing to clean!'
+			]]>
 		</clean>
 	</package>
 </llpackages>

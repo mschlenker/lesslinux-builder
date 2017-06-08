@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="jpegsrc"
-		version="1.4.0"
+		version="1.5.0"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                    
-				<pkg sha1="a9ed7a99a6090e0848836c5df8e836f300a098b9">libjpeg-turbo-1.4.0.tar.gz</pkg>
+				<pkg sha1="9adc21b927e48e4c6889e77079f6c1f3eecf98ab">libjpeg-turbo-1.5.0.tar.gz</pkg>
 				<mirror>http://downloads.sourceforge.net/libjpeg-turbo/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="90" page="http://downloads.sourceforge.net/libjpeg-turbo/" />
-			<check>
+			<manualcheck date="20160701" interval="90" page="http://downloads.sourceforge.net/libjpeg-turbo/" />
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/libjpeg-turbo/files/">
 					<atext linktext="libusb-compat-1.4.2" />
 					<atext linktext="libusb-compat-1.4.3" />
@@ -26,7 +26,7 @@
 					<atext linktext="libusb-compat-1.7." />
 					<atext linktext="libusb-compat-2." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
 			<dep>bash</dep>

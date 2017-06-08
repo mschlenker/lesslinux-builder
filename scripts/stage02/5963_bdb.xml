@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="db"
-		version="6.1.23"
+		version="6.2.23"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="c6105d495ee70406d169b9f555774b73c29bd9e0">db-6.1.23.tar.gz</pkg>
+				<pkg sha1="646c57b99799dc300207976e2270cdaca1a2f198">db-6.2.23.tar.gz</pkg>
 				<mirror>http://download.oracle.com/berkeley-db/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="90" page="http://www.linuxfromscratch.org/blfs/view/svn/server/db.html" />
+			<manualcheck date="20160701" interval="90" page="http://www.linuxfromscratch.org/blfs/view/svn/server/db.html" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -38,6 +38,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -47,13 +48,21 @@
 		<patch />
 		<build>
 			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cd ${PKGNAME}-${PKGVERSION}/build_unix
 			../dist/configure --prefix=/usr      \
 				--enable-compat185 \
 				--enable-dbm       \
 				--disable-static   \
 				--enable-cxx   
-			make
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

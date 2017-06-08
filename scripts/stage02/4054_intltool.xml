@@ -10,7 +10,7 @@
 				<pkg sha1="a0c3bcb99d1bcfc5db70f8d848232a47c47da090">intltool-0.51.0.tar.gz</pkg>
 				<mirror>https://launchpad.net/intltool/trunk/0.51.0/+download/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="365" page="https://launchpad.net/intltool/trunk/" />
+			<manualcheck date="20160701" interval="365" page="https://launchpad.net/intltool/trunk/" />
 			<check>
 				<page html="https://launchpad.net/intltool/trunk/">
 					<atext href="intltool-0.51.1." />
@@ -26,27 +26,39 @@
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>gawk</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>make</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
                         <dep>p5-xml</dep>
                         <dep>perl</dep>
-                        <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's:\\\${:\\\$\\{:' intltool-update.in
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test />

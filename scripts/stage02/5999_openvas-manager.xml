@@ -1,18 +1,18 @@
 <llpackages>
 	<package 
 		name="openvas-manager"
-		version="6.0.8"
+		version="6.0.9"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="97a995f75e959edfe70f7f211207b2028c80bbf2">openvas-manager-6.0.8.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/2295/</mirror>
+				<pkg sha1="bb8b1652e2c6539a80fe861584a844f1ae38c4ff">openvas-manager-6.0.9.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2359/</mirror>
 			</file>
-			<manualcheck date="20160412" interval="90" page="http://www.openvas.org/install-source.html" />
+			<manualcheck date="20160923" interval="90" page="http://www.openvas.org/install-source.html" />
 			<check>
 				<page html="http://www.openvas.org/install-source.html">
-					<atext href="openvas-manager-6.0.9." />
+					<atext href="openvas-manager-6.0.14." />
 					<atext href="openvas-manager-6.0.10." />
 					<atext href="openvas-manager-6.0.11." />
 					<atext href="openvas-manager-6.0.12." />
@@ -52,9 +52,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 			find . -type f -exec sed -i 's/-Werror/ /g' {} \;
-			make
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

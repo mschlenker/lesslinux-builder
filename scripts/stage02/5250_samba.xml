@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="samba"
-		version="3.6.25"
+		version="4.5.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="86fbfcfe80454cc7dbe510e7d58c02922cac3efa">samba-3.6.25.tar.gz</pkg>
-				<mirror>http://www.samba.org/samba/ftp/</mirror>
+				<pkg sha1="efe00a9b4358dc4e0fdef779cdfe85f9d0d361c4">samba-4.5.0.tar.gz</pkg>
+				<mirror>https://download.samba.org/pub/samba/stable/samba-4.5.0.tar.gz</mirror>
 			</file>
-			<manualcheck date="20150530" interval="120" page="http://www.samba.org/" />
-			<check>
+			<manualcheck date="20160922" interval="120" page="http://www.samba.org/" />
+			<!-- <check>
 				<page html="http://www.samba.org/samba/ftp/">
 					<atext linktext="samba-3.6.33." />
 					<atext linktext="samba-3.6.26." />
@@ -22,7 +22,7 @@
 					<atext linktext="samba-3.6.31." />
 					<atext linktext="samba-3.6.32." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
                         <dep>Python</dep>
@@ -64,39 +64,29 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/source3
+			cd ${PKGNAME}-${PKGVERSION}/
+			jobcount=4
+			export LDFLAGS=-lncurses
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr  --sysconfdir=/etc  --localstatedir=/var  --with-piddir=/var/run \
-					--with-pammodulesdir=/lib/security  --with-fhs --enable-swat=no --with-pam=no \
-					--with-cluster-support=no --with-acl-support=no  --with-quotas=no --with-sys-quotas=no CC="distcc gcc" CXX="distcc g++" 
-				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
-				./configure --prefix=/usr  --sysconfdir=/etc  --localstatedir=/var  --with-piddir=/var/run \
-					--with-pammodulesdir=/lib/security  --with-fhs --enable-swat=no --with-pam=no \
-					--with-cluster-support=no --with-acl-support=no  --with-quotas=no --with-sys-quotas=no
-				make
 			fi
+			./configure --prefix=/usr  --sysconfdir=/etc  --localstatedir=/var  \
+				--with-piddir=/var/run --with-pammodulesdir=/lib/security --enable-fhs \
+				--without-pam --without-cluster-support --without-acl-support  --without-quotas \
+				--without-ad-dc --without-systemd --without-ldap --without-ads
+			make -j $jobcount  
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			mkdir -p ${TGTDIR}/etc/samba
-			cd ${PKGNAME}-${PKGVERSION}/source3
+			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			install -v -m644 ../examples/smb.conf.default ${TGTDIR}/etc/samba
-
-#mv -v /usr/lib/samba/libsmbclient.so /usr/lib &&
-#ln -v -sf ../libsmbclient.so /usr/lib/samba &&
-#ln -v -sf libsmbclient.so /usr/lib/libsmbclient.so.0 &&
-#chmod -v 644 /usr/include/lib{smbclient,msrpc}.h &&
-#install -v -m755 nsswitch/libnss_win{s,bind}.so /lib &&
-#ln -v -sf libnss_winbind.so /lib/libnss_winbind.so.2 &&
-#ln -v -sf libnss_wins.so /lib/libnss_wins.so.2 &&
-#install -v -m644 ../examples/smb.conf.default /etc/samba
+			[ -x ${TGTDIR}/usr/sbin/smbd ] || exit 1 
+			install -v -m 644 examples/smb.conf.default ${TGTDIR}/etc/samba
 			
 			]]>
 		</install>

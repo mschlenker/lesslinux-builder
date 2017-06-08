@@ -1,20 +1,16 @@
 <llpackages>
 	<package 
 		name="bash"
-		version="4.3.30"
+		version="4.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                          
-				<pkg sha1="33b1bcc5dca1b72f28b2baeca6efa0d422097964">bash-4.3.30.tar.gz</pkg>
+				<pkg sha1="8de012df1e4f3e91f571c3eb8ec45b43d7c747eb">bash-4.4.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
 			</file>
-			<file>                                                     
-				<pkg sha1="bcec5a2240abbdf172a0602aee1dcd4814525e64">bash-4.3.30-upstream_fixes-2.patch</pkg>
-				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20150529" interval="90" page="http://ftp.gnu.org/gnu/bash/" />
+			<manualcheck date="20160922" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/bash/">
 					<atext linktext="bash-4.3.31." />
@@ -25,21 +21,6 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>linux_headers</dep>
-			<dep>glibc</dep>
-			<dep>man-pages</dep>
-			<dep>readjust</dep>
-			<dep>zlib</dep>
-			<dep>binutils</dep>
-			<dep>gmp</dep>
-			<dep>mpfr</dep>
-			<dep>mpc</dep>
-			<dep>gcc</dep>
-			<dep>sed</dep>
-			<dep>util-linux-ng</dep>
-			<dep>coreutils</dep>
-			<dep>ncurses</dep>
-			<dep>ncurses-8bit</dep>
 			<dep>readline</dep>
 			<dep>bison</dep>
 		</builddeps>
@@ -51,14 +32,23 @@
 		<patch>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-2.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-3.patch | patch -p1
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.3.30 --without-bash-malloc --with-installed-readline \
-			&& make -j 4
+			jobcount=2
+			export LDFLAGS=-lncurses
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --bindir=/bin --docdir=/usr/share/doc/bash-4.4 --without-bash-malloc  --with-installed-readline  \
+			&& make -j $jobcount
 			]]>
 		</build>
 		<!--<test />-->

@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="libva"
-		version="1.6.2"
+		version="1.7.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="8a857db50305e9e3ddb8fe4e342ddd2924ae16f6">libva-1.6.2.tar.bz2</pkg>
+				<pkg sha1="6405ce9adcad2bc31122d766f2a99250657f9f8a">libva-1.7.1.tar.bz2</pkg>
 				<mirror>http://www.freedesktop.org/software/vaapi/releases/libva/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="90" page="http://www.freedesktop.org/software/vaapi/releases/libva/" />
+			<manualcheck date="20160701" interval="90" page="http://www.freedesktop.org/software/vaapi/releases/libva/" />
 			<check>
 				<page html="http://www.freedesktop.org/software/vaapi/releases/libva/">
-					<atext linktext="libva-1.6.6." />
-					<atext linktext="libva-1.6.3." />
-					<atext linktext="libva-1.6.4." />
-					<atext linktext="libva-1.6.5." />
-					<atext linktext="libva-1.7." />
+					<atext linktext="libva-1.7.2." />
+					<atext linktext="libva-1.7.3." />
+					<atext linktext="libva-1.7.4." />
+					<atext linktext="libva-1.7.5." />
 					<atext linktext="libva-1.8." />
 					<atext linktext="libva-1.9." />
+					<atext linktext="libva-1.10." />
 					<atext linktext="libva-2." />
 				</page>
 			</check>
@@ -51,6 +51,7 @@
                         <dep>udev</dep>
                         <dep>xproto-base</dep>
 			<dep>wayland</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -65,8 +66,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc --enable-wayland=no --disable-wayland 
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

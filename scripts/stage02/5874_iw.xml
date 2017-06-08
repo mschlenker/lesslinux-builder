@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="iw"
-		version="4.3"
+		version="4.7"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="1ca0cbf00c99069b7445507cddf6f7f4d227b097">iw-4.3.tar.xz</pkg>
+				<pkg sha1="90d3034e596a77f12ed6a3b2b2a3c633813f2c92">iw-4.7.tar.xz</pkg>
 				<mirror>http://kernel.org/pub/software/network/iw/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="90" page="http://www.kernel.org/pub/software/network/iw" />
+			<manualcheck date="20160701" interval="90" page="http://www.kernel.org/pub/software/network/iw" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/software/network/iw/">
-					<atext linktext="iw-4.3.1." />
-					<atext linktext="iw-4.3.2." />
-					<atext linktext="iw-4.3.3." />
-					<atext linktext="iw-4.7." />
+					<atext linktext="iw-4.7.1." />
+					<atext linktext="iw-4.7.2." />
+					<atext linktext="iw-4.7.3." />
 					<atext linktext="iw-4.8." />
-					<atext linktext="iw-4.4." />
-					<atext linktext="iw-4.5." />
-					<atext linktext="iw-4.6." />
+					<atext linktext="iw-4.9." />
+					<atext linktext="iw-4.10." />
+					<atext linktext="iw-4.11." />
+					<atext linktext="iw-4.12." />
 				</page>
 			</check>
 		</sources>
@@ -35,6 +35,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -44,7 +45,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="avahi"
-		version="0.6.31"
+		version="0.6.32"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                      
-				<pkg sha1="7e05bd78572c9088b03b1207a0ad5aba38490684">avahi-0.6.31.tar.gz</pkg>
-				<mirror>http://avahi.org/download/</mirror>
+				<pkg sha1="1c6d234058fd7883b3a4515e99216fdc8f71b223">avahi-0.6.32.tar.gz</pkg>
+				<mirror>https://github.com/lathiat/avahi/releases/download/v0.6.32/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://avahi.org/download/" />
+			<manualcheck date="20160701" interval="180" page="http://avahi.org/download/" />
 			<!-- <check>
 				<page html="http://sourceforge.net/projects/xchat/files/">
 					<atext linktext="xchat-2.8.9." />
@@ -80,7 +80,7 @@
                         <dep>qt-everywhere-opensource-src</dep>
                         <dep>sed</dep>
                         <dep>tar</dep>
-			<dep>distcc</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -97,15 +97,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export PATH=/usr/compat.old/qt4/bin:$PATH
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig ./configure \
+			PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig:/usr/compat.old/qt4/lib/pkgconfig ./configure \
 				--prefix=/usr --sysconfdir=/etc --localstatedir=/var \
 				--disable-mono --disable-monodoc --disable-qt3 \
-				--with-distro=none --disable-python
+				--with-distro=none --disable-python 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
@@ -117,6 +118,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>

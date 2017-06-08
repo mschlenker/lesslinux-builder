@@ -1,19 +1,18 @@
 <llpackages>
 	<package 
 		name="tcl"
-		version="8.6.4"
-		>
+		version="8.6.5">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                          
-				<pkg sha1="33c5a083a23cf54f15e25a9e787dc39ef3fa0a2b">tcl8.6.4-src.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/tcl/Tcl/8.6.4/</mirror>
+				<pkg sha1="c3a50ea58dac00a3c7e83cb4a4651c40d0f55160">tcl8.6.5-src.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/tcl/Tcl/8.6.5/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="180" page="http://sourceforge.net/projects/tcl/" />
+			<manualcheck date="20160629" interval="180" page="http://sourceforge.net/projects/tcl/" />
 			<check>
 				<page html="http://sourceforge.net/projects/tcl/files/">
-					<atext linktext="tcl8.6.3" />
-					<atext linktext="tcl8.6.2" />
+					<atext linktext="tcl8.6.6" />
+					<atext linktext="tcl8.6.7" />
 					<atext linktext="tcl8.7" />
 				</page>
 			</check>
@@ -27,7 +26,9 @@
 		<build>
 			<![CDATA[ 
 			cd tcl${PKGVERSION}/unix
-			./configure --prefix=/tools && make
+			./configure --prefix=/tools 
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
 			]]>
 		</build>
 		<install>

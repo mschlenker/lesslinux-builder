@@ -1,12 +1,12 @@
 <llpackages>
-    <package name='i3' version='4.11' install='destdir'>
+    <package name='i3' version='4.12' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='85d04492214bd26c2804dfa83c979fda54b51c08'>
-                    i3-4.11.tar.bz2
+                <pkg sha1='264e682c7404ee8d5da76e3d652c546db1662a2b'>
+                    i3-4.12.tar.bz2
                 </pkg>
                 <mirror>
                     http://i3wm.org/downloads/
@@ -15,12 +15,12 @@
             <manualcheck date='20160113' interval='60' mirror='http://i3wm.org/downloads/'/>
 	        <check>
 				<page html="http://i3wm.org/downloads/">
-					<atext linktext=" i3-4.11.1." />
-					<atext linktext=" i3-4.11.2." />
-					<atext linktext=" i3-4.11.3." />
-					<atext linktext=" i3-4.11.4.." />
+					<atext linktext=" i3-4.12.1." />
+					<atext linktext=" i3-4.12.2." />
+					<atext linktext=" i3-4.12.3." />
+					<atext linktext=" i3-4.12.4.." />
 					<atext linktext=" i3-4.15." />
-					<atext linktext=" i3-4.12." />
+					<atext linktext=" i3-4.16." />
 					<atext linktext=" i3-4.13." />
 					<atext linktext=" i3-4.14." />
 					<atext linktext=" i3-5." />
@@ -54,6 +54,7 @@
                         <dep>xproto-base</dep>
                         <dep>yajl</dep>
 			<dep>libxkbcommon</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
@@ -62,7 +63,15 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	    make
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+	    make -j $jobcount 
 ]]>
         </build>
         <install>

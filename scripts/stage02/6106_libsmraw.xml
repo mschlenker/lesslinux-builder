@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libsmraw-alpha' version='20150105' install='chroot'>
+    <package name='libsmraw-alpha' version='20160424' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='db3bc5f38e6f48aa8c787647b015531c07f0e07b'>
-                    libsmraw-alpha-20150105.tar.gz
+                <pkg sha1='ff2c33d964573846b4eccef6e2327b365d7f6033'>
+                    libsmraw-alpha-20160424.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libsmraw/releases/download/20150105/
+                    https://github.com/libyal/libsmraw/releases/download/20160424/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libsmraw/releases/download/20150105/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libsmraw/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -40,7 +40,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -49,9 +49,16 @@
         <patch/>
         <build>
             <![CDATA[cd libsmraw-${PKGVERSION}
-CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
+	      jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

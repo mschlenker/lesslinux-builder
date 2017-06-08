@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="FileZilla"
-		version="3.14.1"
+		version="3.21.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="c36f0d7089b94241bccfebc7ac5d6b42a7fe0c54">FileZilla_3.14.1_src.tar.bz2</pkg>
-				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.14.1/</mirror>
+				<pkg sha1="18f5cb6dbae22c0d394e0807acc067940db7b584">FileZilla_3.21.0_src.tar.bz2</pkg>
+				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.21.0/</mirror>
 			</file>
 			<manualcheck date="20151023" interval="90" page="http://filezilla-project.org/" />
 		</sources>
@@ -40,6 +40,7 @@
                         <dep>sqlite</dep>
                         <dep>wxWidgets3</dep>
                         <dep>xdg-utils</dep>
+			<dep>libfilezilla</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -48,13 +49,15 @@
 		</unpack>
 		<build>
 			<![CDATA[
+			export PATH=/usr/compat.new/bin:$PATH 
 			cd filezilla-${PKGVERSION}
 				if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
-					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin CC="distcc gcc" CXX="distcc g++"
+					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin \
+					CC="distcc gcc" CXX="distcc g++"
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \

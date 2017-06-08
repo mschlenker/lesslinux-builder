@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="wget"
-		version="1.17.1"
+		version="1.18"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                         
-				<pkg sha1="a4b9ca464e0cfb8d57b0d890e3d7df99b486b01a">wget-1.17.1.tar.gz</pkg>
+				<pkg sha1="02d451e658f600ee519c42cbf4d3bfe4e49b6c4f">wget-1.18.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/wget/</mirror>
 			</file>
-			<manualcheck date="20151231" interval="180" page="http://ftp.gnu.org/gnu/wget/" />
+			<manualcheck date="20160701" interval="180" page="http://ftp.gnu.org/gnu/wget/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/wget/">
-					<atext linktext="wget-1.17.5." />
-					<atext linktext="wget-1.17.2." />
-					<atext linktext="wget-1.17.3." />
-					<atext linktext="wget-1.17.4." />
+					<atext linktext="wget-1.18.1." />
+					<atext linktext="wget-1.18.2." />
+					<atext linktext="wget-1.18.3." />
+					<atext linktext="wget-1.18.4." />
 					<atext linktext="wget-1.22." />
-					<atext linktext="wget-1.18." />
+					<atext linktext="wget-1.23." />
 					<atext linktext="wget-1.19." />
 					<atext linktext="wget-1.20." />
 					<atext linktext="wget-1.21." />
@@ -50,13 +50,21 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc --with-openssl=yes --with-ssl=openssl && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --with-openssl=yes --with-ssl=openssl && make -j $jobcount
 			]]>
 		</build>
 		<test />

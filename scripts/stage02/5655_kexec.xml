@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="kexec-tools"
-		version="2.0.11"
+		version="2.0.13"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>           
-				<pkg sha1="6160be260ab1ac28d32cdbb751302600cf664691">kexec-tools-2.0.11.tar.xz</pkg>
+				<pkg sha1="f84c6b0c0fd25621f87f3255ca4b72d14e5a1ef5">kexec-tools-2.0.13.tar.xz</pkg>
 				<mirror>https://www.kernel.org/pub/linux/utils/kernel/kexec/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="90" page="https://www.kernel.org/pub/linux/utils/kernel/kexec/" />
+			<manualcheck date="20160823" interval="90" page="https://www.kernel.org/pub/linux/utils/kernel/kexec/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/kernel/kexec/">
-					<atext linktext="kexec-tools-2.0.12." />
-					<atext linktext="kexec-tools-2.0.13." />
+					<atext linktext="kexec-tools-2.0.15." />
+					<atext linktext="kexec-tools-2.0.16." />
 					<atext linktext="kexec-tools-2.0.14." />
 					<atext linktext="kexec-tools-2.1." />
 					<atext linktext="kexec-tools-2.2." />
@@ -48,8 +48,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc 
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

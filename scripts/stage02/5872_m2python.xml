@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="M2Crypto"
-		version="0.22.3"
+		version="0.24.0"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                         
-				<pkg sha1="c5e39d928aff7a47e6d82624210a7a31b8220a50">M2Crypto-0.22.3.tar.gz</pkg>
+				<pkg sha1="409ea87453352140f449f7379882fedfaf9c655f">M2Crypto-0.24.0.tar.gz</pkg>
 				<mirror>http://pypi.python.org/packages/source/M/M2Crypto/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="30" page="http://pypi.python.org/packages/source/M/M2Crypto/" />
+			<manualcheck date="20160701" interval="60" page="http://pypi.python.org/packages/source/M/M2Crypto/" />
 			<check>
 				<page html="https://pypi.python.org/pypi/M2Crypto/">
-					<atext href="M2Crypto-0.22.4." />
-					<atext href="M2Crypto-0.22.5." />
-					<atext href="M2Crypto-0.22.6." />
-					<atext href="M2Crypto-0.22.7." />
-					<atext href="M2Crypto-0.22.8." />
-					<atext href="M2Crypto-0.23." />
-					<atext href="M2Crypto-0.24." />
+					<atext href="M2Crypto-0.24.1." />
+					<atext href="M2Crypto-0.24.2." />
+					<atext href="M2Crypto-0.24.3." />
+					<atext href="M2Crypto-0.24.4." />
+					<atext href="M2Crypto-0.24.5." />
+					<atext href="M2Crypto-0.25." />
+					<atext href="M2Crypto-0.26." />
 					<atext href="M2Crypto-1." />
 				</page>
 			</check>
@@ -35,6 +35,7 @@
                         <dep>pygobject</dep> -->
                         <dep>swig</dep>
 			<dep>setuptools</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

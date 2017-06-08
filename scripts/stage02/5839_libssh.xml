@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="libssh"
-		version="0.7.2"
+		version="0.7.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="8a90e5ca14e4bc83e7073fb56992fa780ccd2a5a">libssh-0.7.2.tar.xz</pkg>
-				<mirror>https://red.libssh.org/attachments/download/177/</mirror>
+				<pkg sha1="9de2a8fde51aa7b7855008fafd5bf47ebb01289f">libssh-0.7.3.tar.xz</pkg>
+				<mirror>https://red.libssh.org/attachments/download/195/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="120" page="http://www.libssh.org/" />
+			<manualcheck date="20160701" interval="120" page="http://www.libssh.org/" />
 			<check>
 				<page html="https://red.libssh.org/projects/libssh/files">
 					<atext linktext="libssh-0.7.5." />
 					<atext linktext="libssh-0.7.6." />
-					<atext linktext="libssh-0.7.3." />
+					<atext linktext="libssh-0.7.7." />
 					<atext linktext="libssh-0.7.4." />
 					<atext linktext="libssh-0.7.5." />
 					<atext linktext="libssh-0.8." />
@@ -36,7 +36,7 @@
                         <dep>openssl</dep>
                         <dep>pkg-config</dep>
                         <dep>zlib</dep>
-			<dep>distcc</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -46,13 +46,21 @@
 		<patch />
 		<build>
 			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			export SHELL=/bin/bash
 			env
 			mkdir -pv libssh.build
 			cd libssh.build
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  ../${PKGNAME}-${PKGVERSION}
 			find . -name 'build.make' -exec sed -i 's%/usr/lib/libcrypto.so%%g' {} \;
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

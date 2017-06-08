@@ -1,17 +1,21 @@
 <llpackages>
 	<package 
 		name="nbd-client-static"
-		version="3.12.1"
+		version="3.14"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="e9ba5825ca7ce2585131ba2ab5698d9af29cb156">nbd-3.12.1.tar.xz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/nbd/nbd/3.12.1/</mirror>
+				<pkg sha1="58bf2c82a7cb1f1143a5f1989f6a0756de74e997">nbd-3.14.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/nbd/nbd/3.14/</mirror>
 			</file>
-			<manualcheck date="20151216" interval="90" page="http://downloads.sourceforge.net/project/nbd" />
+			<manualcheck date="20160701" interval="90" page="http://downloads.sourceforge.net/project/nbd" />
 		</sources>
+		<builddeps>
+			<dep>cross-gcc-musl2</dep>
+			<dep>distcc</dep>
+		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/nbd-${PKGVERSION}.tar.xz
@@ -21,8 +25,8 @@
 		<build>
 			<![CDATA[
 			cd nbd-${PKGVERSION}
-			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
-			./configure --prefix=/usr --sysconfdir=/etc --host=i386-linux-musl --disable-glibtest
+			export CC=/usr/local/musl/bin/musl-gcc
+			./configure --prefix=/usr --sysconfdir=/etc --disable-glibtest
 			make -j4 LDFLAGS=-all-static
 			make -j4 LDFLAGS=-all-static nbd-client
 			]]>

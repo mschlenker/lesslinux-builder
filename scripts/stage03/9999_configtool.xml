@@ -38,12 +38,34 @@ case $1 in
 	
 	# FIXME: Starting the Xserver twice is needed on some Ati cards with Kernel 3.10.5
 	# This behaviour might be fixed with later kernel or firmware versions
+	# if [ -z "$xvfb" ] ; then
+	#	scrn=""
+	#	[ -n "$xorgscreen" ] && scrn="-screen $xorgscreen"
+	#	/usr/bin/xinit /usr/bin/Esetroot /usr/local/xconfgui/testbild.png -- /usr/bin/Xorg -retro -nolisten tcp $scrn -br -dpi "$dpi"
+	#	/usr/bin/xinit /usr/bin/Esetroot /usr/local/xconfgui/testbild.png -- /usr/bin/Xorg -retro -nolisten tcp $scrn -br -dpi "$dpi"
+	# fi
+	
+	# Remove an old indicator
+	rm ${HOME}/.lesslinux/xsetroot_successful
+	
+	# The Xorg server crashes on some ATI cards, try to show a quick progressbar on those and fallback to
+	# framebuffer X when failed:
 	
 	if [ -z "$xvfb" ] ; then
-		scrn=""
-		[ -n "$xorgscreen" ] && scrn="-screen $xorgscreen"
-		/usr/bin/xinit /usr/bin/Esetroot /usr/local/xconfgui/testbild.png -- /usr/bin/Xorg -retro -nolisten tcp $scrn -br -dpi "$dpi"
-		/usr/bin/xinit /usr/bin/Esetroot /usr/local/xconfgui/testbild.png -- /usr/bin/Xorg -retro -nolisten tcp $scrn -br -dpi "$dpi"
+		if [ -n "$xorgscreen" ] ; then
+			/usr/bin/xinit /usr/local/xconfgui/pgbar -- /usr/bin/Xorg -retro -nolisten tcp -screen "$xorgscreen" -br -dpi "$dpi"
+		else
+			/usr/bin/xinit /usr/local/xconfgui/pgbar -- /usr/bin/Xorg -retro -nolisten tcp -br -dpi "$dpi"
+		fi
+		if [ -f /var/run/lesslinux/display_opened_successfully ] ; then
+			echo "OK, display opened successfully..."
+			mkdir ${HOME}/.lesslinux
+			touch ${HOME}/.lesslinux/xsetroot_successful
+		elif [ -c /dev/fb0 ] ; then
+			cp -v /etc/X11/xorg.conf.fbdev /etc/X11/xorg.conf
+		else
+			cp -v /etc/X11/xorg.conf.vesa /etc/X11/xorg.conf
+		fi
 	fi
 	
 	if [ -f /var/run/lesslinux/skip_monitortest ] ; then
@@ -64,8 +86,7 @@ case $1 in
 		. /var/run/lesslinux/xorg_vars
 	fi
 
-	# Remove an old indicator
-	rm ${HOME}/.lesslinux/xsetroot_successful
+	
 
 	if [ -n "$xvfb" ] ; then
 		# xvfb=WIDTHxHEIGHTxDEPTH
@@ -94,6 +115,16 @@ case $1 in
 				/usr/bin/xinit "$XINITRC" -- /usr/bin/Xorg -config xorg.conf.vesa -nolisten tcp -br -dpi "$dpi"
 			fi
 		fi
+	fi
+	
+	if [ -p /splash.fifo ] ; then
+		echo "exit" > /splash.fifo
+		chvt 8
+		# Remove old fifo
+		rm /splash.fifo
+		# Create new (empty fifo)
+		mkfifo /splash.fifo
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
 	fi
 	
 	# FIXME! Move blobsearch to a separate function
@@ -173,10 +204,10 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>  
-	<package name="xconfgui" version="20160530-00" allowfail="yes">
+	<package name="xconfgui" version="20161021-00" allowfail="yes">
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="741703b85461dcdb5d888a60df748393eabff22b">xconfgui-20160530-00.tar.bz2</pkg>
+				<pkg sha1="32f05437ff23cbc88395413f58a3546ba542769a">xconfgui-20161021-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 		</sources>
@@ -193,7 +224,7 @@ esac
 		for i in configtest conftest.rb  langselect.rb \
 		    installer.rb monitortest monitortest.rb \
 		    runtimeconf.rb trigger_configtest \
-		    xinitrc xinitrc_installer \
+		    xinitrc xinitrc_installer pgbar pgbar.rb \
 		    xinitrc_runtimeconf ; do
 			install -m 0755 $i ${SQUASHFS}/usr/local/xconfgui
 		done

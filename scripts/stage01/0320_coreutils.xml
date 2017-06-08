@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="coreutils"
-		version="8.24">
+		version="8.25">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                           
-				<pkg sha1="cf3d9983461c2b0c074a76804c18464e9a474883">coreutils-8.24.tar.xz</pkg>
+				<pkg sha1="301f186c24afb882a3ca73d19a102a2ce6f456c3">coreutils-8.25.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
+			<manualcheck date="20160630" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/coreutils/">
-					<atext linktext="coreutils-8.24.1" />
-					<atext linktext="coreutils-8.25." />
+					<atext linktext="coreutils-8.25.1" />
 					<atext linktext="coreutils-8.26." />
+					<atext linktext="coreutils-8.27." />
 					<atext linktext="coreutils-9." />
 				</page>
 			</check>
@@ -35,7 +35,9 @@
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
 			export FORCE_UNSAFE_CONFIGURE=1
-			./configure --prefix=/tools --enable-install-program=hostname && make
+			./configure --prefix=/tools --enable-install-program=hostname 
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
 			]]>
 		</build>
 		<install>

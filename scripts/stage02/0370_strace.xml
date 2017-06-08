@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="strace"
-		version="4.11"
+		version="4.13"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="8fd717dc3c51b69fde51ce0bdb066404a678363c">strace-4.11.tar.xz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/strace/strace/4.11/</mirror>
+				<pkg sha1="7e1fc622e2b166cb74799a14c23d6bfde9ddbc3c">strace-4.13.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/strace/strace/4.13/</mirror>
 			</file>
 			<!-- <file>    
 				<pkg sha1="aa6f6edbd5ae84556536a7ec0f322ea3a02355b8">strace-4.8-glibc_2.18_build_fix-1.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
-			<manualcheck date="20160113" interval="180" page="http://sourceforge.net/projects/strace/files/" />
+			<manualcheck date="20160927" interval="180" page="http://sourceforge.net/projects/strace/files/" />
 			<check>
 				<page html="http://sourceforge.net/projects/strace/files/">
-					<atext linktext="strace-4.11.1." />
-					<atext linktext="strace-4.12." />
+					<atext linktext="strace-4.13.1." />
+					<atext linktext="strace-4.14." />
 					<atext linktext="strace-5.0." />
 				</page>
 			</check>

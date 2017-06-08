@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="gnome-calculator"
-		version="3.16.2"
+		version="3.22.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="49284cc089ad6e11d0cd5606f2f51eb2eb799371">gnome-calculator-3.16.2.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.16/</mirror>
+				<pkg sha1="7c12a649cde91dd02ce7d58d73b8d4a3c6537174">gnome-calculator-3.22.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.22/</mirror>
 			</file>
-			<manualcheck date="20150710" interval="180" page="http://ftp.acc.umu.se/pub/gnome/sources/gnome-calculator/3.16/" />
+			<manualcheck date="20160927" interval="180" page="http://ftp.acc.umu.se/pub/gnome/sources/gnome-calculator/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.16/">
-					<atext linktext="gnome-calculator-3.16.4." />
-					<atext linktext="gnome-calculator-3.16.5." />
-					<atext linktext="gnome-calculator-3.16.6." />
-					<atext linktext="gnome-calculator-3.16.3." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.22/">
+					<atext linktext="gnome-calculator-3.22.2." />
+					<atext linktext="gnome-calculator-3.22.3." />
+					<atext linktext="gnome-calculator-3.22.4." />
+					<atext linktext="gnome-calculator-3.22.1." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
-					<atext linktext="3.18" />
-					<atext linktext="3.20" />
+					<atext linktext="3.26" />
+					<atext linktext="3.24" />
 					<atext linktext="4." />
 				</page>
 			</check>
@@ -55,6 +55,7 @@
                         <dep>pkg-config</dep>
                         <dep>pygobject</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -69,8 +70,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			# ./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old && make
-			./configure --sysconfdir=/etc --prefix=/usr && make
+			./configure --sysconfdir=/etc --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test />

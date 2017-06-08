@@ -2,7 +2,7 @@
 	<package 
 		name="qtwebkit"
 		version="2.3.4"
-		class="user" install="destdir">
+		class="user" install="chroot">
 		<license>GPLv2</license>
 		<sources>                                                                                                
 			<file>
@@ -73,6 +73,7 @@
 			<dep>gst-plugins-base1</dep>
 			<dep>distcc</dep>
 			<dep>qt-everywhere-opensource-src</dep>
+			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -89,23 +90,40 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc5-1.patch | patch -p1
-
 			]]>
-		</patch>
+		</patch> 
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
-			echo 'Skip building!'
+			jobcount=2
+			export PATH=/usr/local/gcc54/bin:$PATH 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
+				export CC="distcc /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc /usr/local/gcc54/bin/g++54"
+				export QTDIR=/usr/compat.old/qt4 
+				PATH=$PATH:$QTDIR/bin Tools/Scripts/build-webkit --qt --no-webkit2 \
+					--prefix=$QTDIR \
+					--makeargs="-j${jobcount} CC='distcc /usr/local/gcc54/bin/gcc54' CXX='distcc /usr/local/gcc54/bin/g++54'"
+			else
+				export CC="/usr/local/gcc54/bin/gcc54"
+				export CXX="/usr/local/gcc54/bin/g++54"
+				export QTDIR=/usr/compat.old/qt4 
+				PATH=$PATH:$QTDIR/bin Tools/Scripts/build-webkit --qt --no-webkit2 \
+					--prefix=$QTDIR \
+					--makeargs="-j${jobcount} CC='/usr/local/gcc54/bin/gcc54' CXX='/usr/local/gcc54/bin/g++54'"
+			fi
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			mkdir -p ${TGTDIR}/etc/lesslinux/packages/
-			touch ${TGTDIR}/etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_is_not_needed_on_stable
+			export QTDIR=/usr/compat.old/qt4 
+			make -C WebKitBuild/Release install
+			# mkdir -p ${TGTDIR}/etc/lesslinux/packages/
+			# touch ${TGTDIR}/etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_is_not_needed_on_stable
 			]]>
 		</install>
 		<clean>

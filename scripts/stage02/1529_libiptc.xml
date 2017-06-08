@@ -1,26 +1,25 @@
 <llpackages>
 	<package 
 		name="libiptc"
-		version="1.4.21"
+		version="1.6.0"
 		class="user"
-		install="destdir"
-		>
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                              
-				<pkg sha1="85d4160537546a23a7e42bc26dd7ee62a0ede4c8">iptables-1.4.21.tar.bz2</pkg>
+				<pkg sha1="21a694e75b0d6863cc001f85fb15915d12b8cc22">iptables-1.6.0.tar.bz2</pkg>
 				<mirror>ftp://ftp.netfilter.org/pub/iptables/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://www.netfilter.org/" />
+			<manualcheck date="20160701" interval="180" page="http://www.netfilter.org/" />
 			<check>
 				<page html="http://www.netfilter.org/projects/iptables/downloads.html">
-					<atext linktext="iptables-1.4.21.1.t" />
-					<atext linktext="iptables-1.4.21.2.t" />
-					<atext linktext="iptables-1.4.24.t" />
-					<atext linktext="iptables-1.4.22.t" />
-					<atext linktext="iptables-1.4.23.t" />
-					<atext linktext="iptables-1.5." />
-					<atext linktext="iptables-1.6." />
+					<atext linktext="iptables-1.6.1.t" />
+					<atext linktext="iptables-1.6.2.t" />
+					<atext linktext="iptables-1.6.3.t" />
+					<atext linktext="iptables-1.6.4.t" />
+					<atext linktext="iptables-1.6.5.t" />
+					<atext linktext="iptables-1.8." />
+					<atext linktext="iptables-2." />
 				</page>
 			</check> 
 		</sources>

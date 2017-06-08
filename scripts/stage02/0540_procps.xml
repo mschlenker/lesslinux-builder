@@ -1,21 +1,17 @@
 <llpackages>
 	<package 
 		name="procps"
-		version="3.2.8"
+		version="3.3.11"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
-				<pkg sha1="a0c86790569dec26b5d9037e8868ca907acc9829">procps-3.2.8.tar.gz</pkg>
-				<mirror>http://procps.sourceforge.net/</mirror>
+				<pkg sha1="1bdca65547df9ed019bd83649b0f8b8eaa017e25">procps-ng-3.3.11.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/procps-ng/Production/</mirror>
 			</file>
-			<file>  
-				<pkg sha1="70eb76e7370448213130d5520d8132f0bd1c761f">procps-3.2.8-watch_unicode-1.patch</pkg>
-				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20150823" interval="365" page="http://procps.sourceforge.net/" />
-			<check>
+			<manualcheck date="20160630" interval="365" page="http://procps.sourceforge.net/" />
+			<!-- <check>
 				<page html="http://procps.sourceforge.net/download.html">
 					<atext linktext="procps-3.2.9.tar.gz" />
 					<atext linktext="procps-3.2.10.tar.gz" />
@@ -23,52 +19,61 @@
 					<atext linktext="procps-3.3.0.tar.gz" />
 					<atext linktext="procps-4.0.0.tar.gz" />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
-			<dep>linux_headers</dep>
-			<dep>glibc</dep>
-			<dep>man-pages</dep>
-			<dep>readjust</dep>
-			<dep>zlib</dep>
-			<dep>binutils</dep>
-			<dep>gmp</dep>
-			<dep>mpfr</dep>
-			<dep>mpc</dep>
-			<dep>gcc</dep>
-			<dep>sed</dep>
-			<dep>util-linux-ng</dep>
-			<dep>coreutils</dep>
-			<dep>ncurses</dep>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-ng-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[ 
-			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-watch_unicode-1.patch | patch -p1
-			sed -i -e 's@\*/module.mk@proc/module.mk ps/module.mk@' Makefile
-			]]>
-		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			make
+			cd ${PKGNAME}-ng-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr                            \
+            --exec-prefix=                           \
+            --libdir=/usr/lib                        \
+            --docdir=/usr/share/doc/${PKGNAME}-ng-${PKGVERSION} \
+            --disable-static                         \
+            --disable-kill
+			make -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-ng-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-ng-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

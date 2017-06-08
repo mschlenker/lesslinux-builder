@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="cacerts"
-		version="20160412-00"
+		version="20160922-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="e7de7d9f3a59cd7e1e1ff628947eb7d3bf808d60">lesslinux-cacerts-20160412-00.tar.bz2</pkg>
+				<pkg sha1="3ad9a89569fc6cf37e070efa0eaf203451958bf1">lesslinux-cacerts-20160922-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20160412" interval="90" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20160922" interval="90" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -30,6 +30,7 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>zlib</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

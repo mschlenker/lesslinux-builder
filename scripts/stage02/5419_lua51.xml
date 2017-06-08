@@ -2,8 +2,7 @@
 	<package 
 		name="lua51"
 		version="5.1.5"
-		class="user"
-		>
+		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                       
@@ -33,34 +32,34 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/lua-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/lua-${PKGVERSION}.tar.gz
-			fi
+			echo 'Nothing to unpack!'
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/src
-			cat ${SRCDIR}/patch-${PKGNAME}-${PKGVERSION}-2 | patch -p0
+			echo 'Nothing to patch!'
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
-			cd lua-${PKGVERSION}
-			make linux INSTALL_TOP=/usr/compat.old
+			echo 'Nothing to build!'
 			]]>
 		</build>
-		<test />
+		<test>
+			<![CDATA[
+			echo 'Nothing to test!'
+			]]>
+		</test>
 		<install>
 			<![CDATA[
-			cd lua-${PKGVERSION}
-			make install INSTALL_TOP=/usr/compat.old
-			mkdir -p /usr/compat.old/lib/pkgconfig
-			sed -i 's%/usr/local%/usr/compat.old%g' etc/lua.pc
-			install -m 0644 etc/lua.pc /usr/compat.old/lib/pkgconfig
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
+		<clean>
+			 <![CDATA[
+			echo 'Nothing to clean!'
+			]]>
+		</clean>
 	</package>
 </llpackages>

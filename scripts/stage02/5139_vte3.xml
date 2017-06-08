@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="vte3"
-		version="0.40.2"
+		version="0.46.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                     
-				<pkg sha1="9fe3ec301060666145e776d924a9de2508ec84f8">vte-0.40.2.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/vte/0.40/</mirror>
+				<pkg sha1="0d5e3fc274eabe0e4891fc1218c282bb79aba03a">vte-0.46.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/vte/0.46/</mirror>
 			</file>
-			<manualcheck date="20150530" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/vte" />
+			<manualcheck date="20160927" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/vte" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/vte/0.40/">
-					<atext linktext="vte-0.38.5." />
-					<atext linktext="vte-0.38.3." />
-					<atext linktext="vte-0.38.4." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/vte/0.46/">
+					<atext linktext="vte-0.46.1." />
+					<atext linktext="vte-0.46.2." />
+					<atext linktext="vte-0.46.3." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/vte/">
-					<atext linktext="0.42" />
-					<atext linktext="0.44" />
-					<atext linktext="0.40" />
+					<atext linktext="0.52" />
+					<atext linktext="0.48" />
+					<atext linktext="0.50" />
 				</page>
 			</check>
 		</sources>
@@ -70,7 +70,6 @@
                         <dep>pygobject</dep>
                         <dep>sed</dep>
                         <dep>xproto-base</dep>
-			<dep>pcre2</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

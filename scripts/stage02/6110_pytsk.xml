@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='pytsk3' version='3.2.3-20150406' install='chroot'>
+    <package name='pytsk3' version='20160325' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='1f210c8db846f3b7e7e03b928f04a6d51b6ff712'>
-                    pytsk3-3.2.3-20150406.tar.gz
+                <pkg sha1='b4f4ec27b609b7d8121e67f1db3c5286e31426ee'>
+                    pytsk3-20160325.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/p/pytsk3/
                 </mirror>
             </file>
-            <manualcheck date='20150422' interval='60' mirror='https://pypi.python.org/packages/source/p/pytsk3/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/packages/source/p/pytsk3/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -30,6 +30,7 @@
                         <dep>setuptools</dep>
                         <dep>sleuthkit</dep>
                         <dep>talloc</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz

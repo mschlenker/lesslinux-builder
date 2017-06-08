@@ -11,10 +11,10 @@
 				<mirror>http://ftp.gnu.org/gnu/parted/</mirror>
 			</file>
 			<file>                                                                                          
-				<pkg sha1="2e7b5d48d55aaf4aba1214c3211a194e4c13aa3e">LVM2.2.02.111.tgz</pkg>
+				<pkg sha1="5e2dd5bcae8a55c1721bf5c24e8c263895818b44">LVM2.2.02.166.tgz</pkg>
 				<mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
+			<manualcheck date="20160923" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/parted/">
 					<atext linktext="parted-3.2.1." />
@@ -25,10 +25,16 @@
 					<atext linktext="parted-4." />
 				</page>
 				<page html="http://mirrors.kernel.org/sources.redhat.com/lvm2/">
-					<atext linktext="LVM2.2.02.112.t" />
-					<atext linktext="LVM2.2.02.113.t" />
-					<atext linktext="LVM2.2.02.114.t" />
-					<atext linktext="LVM2.2.02.12" />
+					<atext linktext="LVM2.2.02.168.t" />
+					<atext linktext="LVM2.2.02.169.t" />
+					<atext linktext="LVM2.2.02.170.t" />
+					<atext linktext="LVM2.2.02.171.t" />
+					<atext linktext="LVM2.2.02.172.t" />
+					<atext linktext="LVM2.2.02.173.t" />
+					<atext linktext="LVM2.2.02.174.t" />
+					<atext linktext="LVM2.2.02.167.t" />
+					<atext linktext="LVM2.2.02.17" />
+					<atext linktext="LVM2.2.02.18" />
 					<atext linktext="LVM2.2.03" />
 					<atext linktext="LVM2.2.04" />
 					<atext linktext="LVM2.3" />
@@ -56,28 +62,33 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
+			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/parted-${PKGVERSION}.tar.xz | tar xf - 
-			tar -xf ${SRCDIR}/LVM2.2.02.111.tgz
+			tar -xf ${SRCDIR}/LVM2.2.02.166.tgz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			THISDIR=` pwd ` 
-			cd LVM2.2.02.111
-			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link
-			make -k
+			cd LVM2.2.02.166
+			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link # CFLAGS=-fPIE LDFLAGS=-pie
+			make lib
 			cd ../parted-${PKGVERSION}                    
-			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no
-			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.111/libdm/ioctl -pthread"
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no 
+			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.166/libdm/ioctl -pthread"
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
+			export CC="/usr/local/gcc54/bin/gcc54"
+			export CXX="/usr/local/gcc54/bin/g++54"
 			cd parted-${PKGVERSION}
 			mkdir -p $TGTDIR/static/sbin
 			install -m 0755 parted/parted $TGTDIR/static/sbin/parted
@@ -87,7 +98,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf parted-${PKGVERSION}
-			rm -rf LVM2.2.02.111
+			rm -rf LVM2.2.02.166
 			]]>
 		</clean>
 	</package>

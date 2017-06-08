@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='ipython' version='3.1.0' install='chroot'>
+    <package name='ipython' version='4.2.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='e81b5b9730b3392948cdc69aa107b407028dba5e'>
-                    ipython-3.1.0.tar.gz
+                <pkg sha1='96ce4c5e9ae63c6749f338c4ce758198a63cbf41'>
+                    ipython-4.2.1.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/i/ipython/
                 </mirror>
             </file>
-            <manualcheck date='20150422' interval='60' mirror='https://pypi.python.org/packages/source/i/ipython/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/ipython/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -25,6 +25,7 @@
                         <dep>protobuf</dep>
                         <dep>pygobject</dep>
                         <dep>setuptools</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz

@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="xrdp"
-		version="20130527"
+		version="20160705"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="3c557557eb8ec6a54966c2d664076482e1ff9dcd">xrdp-20130527.tar.bz2</pkg>
+				<pkg sha1="8d3e0d9f6162f9f375a0df75a456fb149e6d89c5">xrdp-20160705.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                        
 				<pkg sha1="1814fce354b45a9ffa05ff58ff60f479281fbadb">xrdp-20130527.ini</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20130527" interval="60" page="https://github.com/FreeRDP/xrdp/" />
+			<manualcheck date="20160701" interval="60" page="https://github.com/neutrinolabs/xrdp" />
 		</sources>
 		<builddeps>
                         <dep>GConf</dep>
@@ -79,19 +79,28 @@
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
                         <dep>xtrans</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.ini ./ 
+			cp ${SRCDIR}/${PKGNAME}-20130527.ini ./ 
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./bootstrap
 			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var 
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />
@@ -100,7 +109,7 @@
 			cd ${PKGNAME}
 			make install DESTDIR=${TGTDIR} 
 			mv ${TGTDIR}/etc/xrdp/xrdp.ini ${TGTDIR}/etc/xrdp/xrdp.ini.dist
-			install -m 0644 ../${PKGNAME}-${PKGVERSION}.ini ${TGTDIR}/etc/xrdp/xrdp.ini
+			install -m 0644 ../${PKGNAME}-20130527.ini ${TGTDIR}/etc/xrdp/xrdp.ini
 			sed -i 's%SBINDIR=/usr/local/sbin%SBINDIR=/usr/sbin%g' ${TGTDIR}/etc/xrdp/xrdp.sh 
 			]]>
 		</install>

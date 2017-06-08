@@ -11,7 +11,7 @@
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/ptlib/2.10/</mirror>
 			</file>
 			<file>                                                                               
-				<pkg sha1="b62e6e524c0cf64aacdd1b0d62c21c6fb464f09b">ptlib-2.10.11-bison_fixes-1.patch</pkg>
+				<pkg sha1="ab419d46a3860b69bb142cdb19e7be8dadba85fd">ptlib-2.10.11-bison_fixes-2.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
 			<manualcheck date="20160113" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/ptlib/2.10/" />
@@ -53,8 +53,7 @@
                         <dep>util-linux-ng</dep>
 			<dep>subversion</dep>
                         <dep>which</dep>
-			<dep>distcc</dep>
-			<dep>gcc49</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -64,7 +63,7 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-bison_fixes-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-bison_fixes-2.patch | patch -p1
 			]]>
 		</patch>
 		<build>
@@ -72,18 +71,14 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			PATH=/usr/compat.old/bin:/usr/compat/old/sbin:$PATH
 			export PATH
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC='distcc  /usr/local/gcc49/bin/gcc49'
-				export CXX='distcc  /usr/local/gcc49/bin/g++49'
-				./configure --sysconfdir=/etc --prefix=/usr 
-				make -j $jobcount 
-			else
-				export CC=/usr/local/gcc49/bin/gcc49 
-				export CXX=/usr/local/gcc49/bin/g++49
-				./configure --sysconfdir=/etc --prefix=/usr 
-				make
-			fi
+				export CC='distcc  gcc'
+				export CXX='distcc g++'
+			fi	
+			./configure --sysconfdir=/etc --prefix=/usr --disable-httpsvc
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="tar"
-		version="1.28">
+		version="1.29">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                              
-				<pkg sha1="668ea52014ef7e70afc4ff7324410ee32f2970ef">tar-1.28.tar.bz2</pkg>
+				<pkg sha1="057977c86293fddcbb04075ca70f41079e044949">tar-1.29.tar.bz2</pkg>
 				<mirror>http://ftp.gnu.org/gnu/tar/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/tar/" />
+			<manualcheck date="20160630" interval="180" page="http://ftp.gnu.org/gnu/tar/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/tar/">
-					<atext linktext="tar-1.28.1." />
+					<atext linktext="tar-1.29.1." />
 					<atext linktext="tar-1.30." />
 					<atext linktext="tar-1.31." />
-					<atext linktext="tar-1.29." />
+					<atext linktext="tar-1.32." />
 					<atext linktext="tar-2." />
 				</page>
 			</check>
@@ -36,7 +36,9 @@
 			<![CDATA[ 
 			export FORCE_UNSAFE_CONFIGURE=1
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools && make
+			./configure --prefix=/tools 
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
 			]]>
 		</build>
 		<install>

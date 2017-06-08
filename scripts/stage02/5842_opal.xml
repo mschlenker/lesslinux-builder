@@ -35,7 +35,7 @@
                         <dep>compositeproto</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>distcc</dep>
+                        <!-- dep>distcc</dep -->
                         <dep>ffmpeg</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
@@ -65,25 +65,30 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-ffmpeg2-1.patch | patch -p1
+			sed -e 's/CODEC_ID/AV_&/' \
+				-e 's/PIX_FMT_/AV_&/' \
+				-i plugins/video/H.263-1998/h263-1998.cxx \
+				plugins/video/common/dyna.cxx          \
+				plugins/video/H.264/h264-x264.cxx      \
+				plugins/video/MPEG4-ffmpeg/mpeg4.cxx   
+
+			sed -e '/<< mime.PrintContents/ s/mime/(const std::string\&)&/' \
+				-i src/im/msrp.cxx 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			PATH=/usr/compat.old/bin:/usr/compat/old/sbin:$PATH
-			export PATH
+			# PATH=/usr/compat.old/bin:/usr/compat/old/sbin:$PATH
+			# export PATH
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				export CC='distcc  /usr/local/gcc49/bin/gcc49'
-				export CXX='distcc  /usr/local/gcc49/bin/g++49'
+				export CC='distcc  gcc'
+				export CXX='distcc  g++'
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				./configure --sysconfdir=/etc --prefix=/usr 
-				make -j $jobcount 
-			else
-				export CC=/usr/local/gcc49/bin/gcc49 
-				export CXX=/usr/local/gcc49/bin/g++49
-				./configure --sysconfdir=/etc --prefix=/usr 
-				make
 			fi
+			./configure --sysconfdir=/etc --prefix=/usr 
+			CXXFLAGS=-Wno-deprecated-declarations make -j $jobcount 
 			]]>
 		</build>
 		<test />

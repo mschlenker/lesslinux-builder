@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="libssh2"
-		version="1.6.0"
+		version="1.7.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="93563084168bd2595f3cbd54585c9abe8ddb0fa9">libssh2-1.6.0.tar.gz</pkg>
+				<pkg sha1="02fef9bdafce3da466b36581a4ff53d519637aca">libssh2-1.7.0.tar.gz</pkg>
 				<mirror>http://www.libssh2.org/download</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://www.libssh2.org/download" />
+			<manualcheck date="20160701" interval="180" page="http://www.libssh2.org/download" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -40,6 +40,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -50,7 +51,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			 ./configure --prefix=/usr --sysconfdir=/etc && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			 ./configure --prefix=/usr --sysconfdir=/etc && make -j $jobcount
 			]]>
 		</build>
 		<test />

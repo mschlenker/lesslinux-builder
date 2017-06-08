@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="makeself"
-		version="2.1.5"
+		version="2.2.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="803ca42ea64e51af72a4ee50b4d8f7a6107c926d">makeself-2.1.5.run</pkg>
-				<mirror>http://megastep.org/makeself/</mirror>
+				<pkg sha1="d6876ffdfa49a2a01bad4e20898132627e0a575b">makeself-2.2.0.run</pkg>
+				<mirror>http://cdn.megastep.org/makeself/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="120" page="http://megastep.org/makeself/" />
+			<manualcheck date="20160701" interval="180" page="http://megastep.org/makeself/" />
 			<!-- <check>
 				<page html="http://www.hyperrealm.com/libconfig/">
 					<atext linktext="libconfig-1.4.10." />
@@ -30,6 +30,7 @@
                         <dep>gzip</dep>
                         <dep>tar</dep>
                         <dep>which</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

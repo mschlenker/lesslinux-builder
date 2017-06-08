@@ -1,17 +1,16 @@
 <llpackages>
 	<package 
 		name="p7zip"
-		version="9.38.1"
-		class="user"
-		>
+		version="15.14.1"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
-				<pkg sha1="6b1eccf272d8b141a94758f80727ae633568ba69">p7zip_9.38.1_src_all.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/p7zip/p7zip/9.38.1</mirror>
+				<pkg sha1="9b15a79f94230fab9b9d4f9f532c723117145c7a">p7zip_15.14.1_src_all.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/p7zip/p7zip/15.14.1</mirror>
 			</file>
-			<manualcheck date="20150530" interval="180" page="http://downloads.sourceforge.net/project/p7zip/p7zip" />
-			<check>
+			<manualcheck date="20160701" interval="180" page="http://downloads.sourceforge.net/project/p7zip/p7zip" />
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/p7zip/files/p7zip/">
 					<atext linktext="9.38.2" />
 					<atext linktext="9.38.3" />
@@ -40,7 +39,7 @@
 					<atext linktext="9.61" />
 					<atext linktext="10." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -60,23 +59,25 @@
 			fi
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[
-			cd ${PKGNAME}_${PKGVERSION}
-			sed -i 's/DEST_HOME=\/usr\/local/DEST_HOME=\/usr/g' install.sh
-			]]>
-		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}_${PKGVERSION}
-			make all
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount all3
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}_${PKGVERSION}
-			make DEST_HOME=/usr install
+			make DEST_HOME=/usr DEST_MAN=/usr/share/man install
 			]]>
 		</install>
 		<clean>

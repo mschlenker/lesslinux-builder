@@ -1,26 +1,27 @@
 <llpackages>
 	<package 
 		name="gst-plugins-good1"
-		version="1.4.5"
+		version="1.8.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                              
-				<pkg sha1="9a416b2111429d22ff83fc492c46141d58aa3f2a">gst-plugins-good-1.4.5.tar.xz</pkg>
+				<pkg sha1="d174ea2c42facaaff790f6235ba735c3b4fa2810">gst-plugins-good-1.8.3.tar.xz</pkg>
 				<mirror>http://gstreamer.freedesktop.org/src/gst-plugins-good/</mirror>
 			</file>
-			<manualcheck date="20150530" interval="120" page="http://gstreamer.freedesktop.org/src/gst-plugins-good/" />
+			<manualcheck date="20160927" interval="120" page="http://gstreamer.freedesktop.org/src/gst-plugins-good/" />
 			<check>
 				<page html="http://gstreamer.freedesktop.org/src/gst-plugins-good/">
-					<atext linktext="gst-plugins-good-1.4.10." />
-					<atext linktext="gst-plugins-good-1.4.11." />
-					<atext linktext="gst-plugins-good-1.4.6." />
-					<atext linktext="gst-plugins-good-1.4.7." />
-					<atext linktext="gst-plugins-good-1.4.8." />
-					<atext linktext="gst-plugins-good-1.4.9." />
-					<atext linktext="gst-plugins-good-1.5." />
-					<atext linktext="gst-plugins-good-1.6." />
+					<atext linktext="gst-plugins-good-1.8.10." />
+					<atext linktext="gst-plugins-good-1.8.4." />
+					<atext linktext="gst-plugins-good-1.8.5." />
+					<atext linktext="gst-plugins-good-1.8.6." />
+					<atext linktext="gst-plugins-good-1.8.7." />
+					<atext linktext="gst-plugins-good-1.8.8." />
+					<atext linktext="gst-plugins-good-1.8.9." />
+					<atext linktext="gst-plugins-good-1.10." />
+					<atext linktext="gst-plugins-good-1.12." />
 					<atext linktext="gst-plugins-good-2." />
 				</page>
 			</check>
@@ -85,7 +86,6 @@
                         <dep>xz</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
-			<dep>gcc48</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -96,18 +96,17 @@
 		<build>
 			<![CDATA[
 			cd gst-plugins-good-${PKGVERSION}
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-			#	export CC="distcc /usr/local/gcc48/bin/gcc48"
-			#	export CXX="distcc /usr/local/gcc48/bin/g++48" 
-			#	./configure --sysconfdir=/etc --prefix=/usr --disable-hal  CC="distcc gcc" CXX="distcc g++" 
-			#	make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			#else
-			#	export CC="/usr/local/gcc48/bin/gcc48"
-			#	export CXX="/usr/local/gcc48/bin/g++48" 
-				./configure --sysconfdir=/etc --prefix=/usr --disable-hal
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --enable-static --enable-shared --enable-experimental \
+					CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr --disable-hal --enable-static --enable-shared --enable-experimental
 				make
-			#fi
+			fi
 			]]>
 		</build>
 		<test />

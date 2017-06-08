@@ -11,10 +11,10 @@
 				<mirror>http://www.memtest.org/download/5.01/</mirror>
 			</file>
 			<manualcheck date="20150530" interval="180" page="http://www.memtest.org/" />
-			<!-- <file>    
-				<pkg sha1="f7cb7eed0d794010e89c09922c0a9b69a9600be0">memtest86+-4.10-remove-img.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
+			<file>    
+				<pkg sha1="839c34e74531d159a8ec80974bd6c6574c69d11c">memtest86+_5.01-3ubuntu2.debian.tar.xz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/m/memtest86+/</mirror>
+			</file>
 			<check>
 				<page html="http://www.memtest.org/download/">
 					<atext linktext="5.02" />
@@ -41,25 +41,25 @@
                         <dep>glibc</dep>
                         <dep>make</dep>
 			<dep>nasm</dep>
-			<dep>gcc49</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/${PKGNAME}+-${PKGVERSION}.tar.gz
+			tar xvf ${SRCDIR}/${PKGNAME}+_${PKGVERSION}-3ubuntu2.debian.tar.xz
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-remove-img.patch | patch -p1
+			cd ${PKGNAME}+-${PKGVERSION}
+			cat ../debian/patches/series | while read fname ; do cat ../debian/patches/$fname | patch -p1; done
+			sed -i 's/scp/echo scp/g' Makefile
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}+-${PKGVERSION}
-			# make 
-			sed -i 's/scp/echo scp/g' Makefile
-			make CC=/usr/local/gcc49/bin/gcc49 -k -j 4
+			make -k -j 4
+			make 
 			# enlarge the size of memtest.bin
 			SIZE=$(wc -c memtest.bin | awk '{print $1}')
 			FILL=$((1474560 - $SIZE))
@@ -83,6 +83,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}+-${PKGVERSION}
+			rm -rf debian
 			]]>
 		</clean>
 	</package>

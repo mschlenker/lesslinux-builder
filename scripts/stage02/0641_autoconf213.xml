@@ -22,7 +22,7 @@
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>m4</dep>
+                        <dep>autoconf</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -33,7 +33,15 @@
 		<build>
 			<![CDATA[
 			cd autoconf-${PKGVERSION}
-			./configure --prefix=/usr/local/autoconf213 && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr/local/autoconf213 && make -j $jobcount
 			]]>
 		</build>
 		<install>

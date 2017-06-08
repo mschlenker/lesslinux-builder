@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libolecf-alpha' version='20150413' install='chroot'>
+    <package name='libolecf-alpha' version='20160423' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='e0b535fca886a4fa04a258312d5da7936233b562'>
-                    libolecf-alpha-20150413.tar.gz
+                <pkg sha1='a3427727029b04184ec9447aa3937824775311a7'>
+                    libolecf-alpha-20160423.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libolecf/releases/download/20150413/
+                    https://github.com/libyal/libolecf/releases/download/20160423/
                 </mirror>
             </file>
-            <manualcheck date='20150423' interval='60' mirror='https://github.com/libyal/libolecf/releases/download/20150413/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libolecf/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -40,6 +40,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -48,8 +49,16 @@
         <patch/>
         <build>
             <![CDATA[cd libolecf-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python 
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

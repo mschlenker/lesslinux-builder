@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="wayland"
-		version="1.9.0"
+		version="1.12.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>              
-				<pkg sha1="39dedba2a5c8a83e7b3a3076fc8f4c4495289f81">wayland-1.9.0.tar.xz</pkg>
+				<pkg sha1="9a0dd96f53fff3e227035ed76caaa209b632ea8d">wayland-1.12.0.tar.xz</pkg>
 				<mirror>http://wayland.freedesktop.org/releases/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="90" page="http://wayland.freedesktop.org/releases/" />
+			<manualcheck date="20160923" interval="90" page="http://wayland.freedesktop.org/releases/" />
 			<check>
 				<page html="http://wayland.freedesktop.org/releases/">
-					<atext linktext="wayland-1.9.1." />
-					<atext linktext="wayland-1.9.2." />
-					<atext linktext="wayland-1.9.3." />
-					<atext linktext="wayland-1.9.4." />
-					<atext linktext="wayland-1.10." />
-					<atext linktext="wayland-1.11." />
-					<atext linktext="wayland-1.12." />
+					<atext linktext="wayland-1.12.1." />
+					<atext linktext="wayland-1.12.2." />
+					<atext linktext="wayland-1.12.3." />
+					<atext linktext="wayland-1.12.4." />
+					<atext linktext="wayland-1.13." />
+					<atext linktext="wayland-1.14." />
+					<atext linktext="wayland-1.15." />
 					<atext linktext="wayland-2." />
 				</page>
 			</check>
@@ -43,6 +43,7 @@
                         <dep>libXfixes</dep>
                         <dep>libXxf86vm</dep>
                         <dep>libdrm</dep>
+			 <dep>libffi</dep>
                         <dep>libxcb</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
@@ -50,6 +51,7 @@
                         <dep>sed</dep>
                         <dep>udev</dep>
                         <dep>xproto-base</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -64,8 +66,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc --disable-documentation
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

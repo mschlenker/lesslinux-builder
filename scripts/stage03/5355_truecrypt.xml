@@ -1,9 +1,7 @@
 <llpackages>
 	<package 
-		name="truecrypt"
-		version="7.1a"
-		class="user"
-		>
+		name="VeraCrypt"
+		class="user">
 	</package>
 	<dirs>
 		<dir mode="0750">/etc/sudoers.lax.d</dir>
@@ -13,12 +11,14 @@
 		<scriptdata location="/etc/sudoers.lax.d/truecrypt" mode="0440" group="0" owner="0">
 		<![CDATA[
 surfer  ALL = NOPASSWD: /usr/bin/truecrypt
+surfer  ALL = NOPASSWD: /usr/bin/veracrypt
 		]]>
 		</scriptdata>
 		<scriptdata location="/etc/sudoers.strict.d/truecrypt" mode="0440" group="0" owner="0">
 		<![CDATA[
 surfer  ALL = /usr/bin/truecrypt
-		]]>
+surfer  ALL = /usr/bin/veracrypt
+]]>
 		</scriptdata>
 		<modlist provides="tc" hwenv="default">
 			<module>fuse</module>

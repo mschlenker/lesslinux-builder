@@ -27,7 +27,7 @@ case $1 in
 	fi
 	[ "$security" = "smack" ] && \
 		echo netmgr > /proc/self/attr/current
-	/usr/bin/dbus-daemon --config-file=/etc/dbus-1/system.conf
+	/usr/bin/dbus-daemon --config-file=/usr/share/dbus-1/system.conf
     ;;
     stop)
 	true

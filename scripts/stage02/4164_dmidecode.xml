@@ -1,22 +1,21 @@
 <llpackages>
 	<package 
 		name="dmidecode"
-		version="2.12"
-		class="lib"
-		>
+		version="3.0"
+		class="lib">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                   
-				<pkg sha1="d264591f27cc0e918f299feb3ef990ef122c609b">dmidecode-2.12.tar.bz2</pkg>
-				<mirror>http://mirrors.zerg.biz/nongnu/dmidecode/</mirror>
+				<pkg sha1="db8f00fe743bf563db99fa4ba7185df78e492762">dmidecode-3.0.tar.xz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/dmidecode/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="180" page="http://mirrors.zerg.biz/nongnu/dmidecode/" />
+			<manualcheck date="20160701" interval="180" page="http://download.savannah.gnu.org/releases/dmidecode/" />
 			<check>
-				<page html="http://mirrors.zerg.biz/nongnu/dmidecode/">
-					<atext linktext="dmidecode-2.15." />
-					<atext linktext="dmidecode-2.13." />
-					<atext linktext="dmidecode-2.14." />
-					<atext linktext="dmidecode-3." />
+				<page html="http://download.savannah.gnu.org/releases/dmidecode/">
+					<atext linktext="dmidecode-3.1." />
+					<atext linktext="dmidecode-3.2." />
+					<atext linktext="dmidecode-3.3." />
+					<atext linktext="dmidecode-3.4." />
 					<atext linktext="dmidecode-4" />
 				</page>
 			</check>
@@ -36,7 +35,7 @@
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>

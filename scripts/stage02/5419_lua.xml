@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="lua"
-		version="5.2.4"
+		version="5.3.3"
 		class="user"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                       
-				<pkg sha1="ef15259421197e3d85b7d6e4871b8c26fd82c1cf">lua-5.2.4.tar.gz</pkg>
+				<pkg sha1="a0341bc3d1415b814cc738b2ec01ae56045d64ef">lua-5.3.3.tar.gz</pkg>
 				<mirror>http://www.lua.org/ftp/</mirror>
 			</file>  
 			<file>                       
-				<pkg sha1="e92d2ab3a10cd93c92e4b4ef861b159da9ab1b6b">lua-5.2.3-shared_library-1.patch</pkg>
+				<pkg sha1="42da708817f408bb06e90097b65646472e11fffa">lua-5.3.3-shared_library-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="90" page="http://www.lua.org/ftp/" />
+			<manualcheck date="20160820" interval="90" page="http://www.lua.org/ftp/" />
 			<check>
 				<page html="http://www.lua.org/ftp/">
-					<atext linktext="lua-5.2.8." />
-					<atext linktext="lua-5.2.5." />
-					<atext linktext="lua-5.2.6." />
-					<atext linktext="lua-5.2.7." />
-					<atext linktext="lua-5.3." />
+					<atext linktext="lua-5.3.4." />
+					<atext linktext="lua-5.3.5." />
+					<atext linktext="lua-5.3.6." />
+					<atext linktext="lua-5.3.7." />
 					<atext linktext="lua-5.4." />
+					<atext linktext="lua-5.5." />
 					<atext linktext="lua-6." />
 				</page>
 			</check>
@@ -49,27 +49,39 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-5.2.3-shared_library-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-5.3.3-shared_library-1.patch | patch -p1
 			sed -i '/#define LUA_ROOT/s:/usr/local/:/usr/:' src/luaconf.h
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make linux INSTALL_TOP=/usr
+			jobcount=2
+			export 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount INSTALL_TOP=/usr \
+				MYCFLAGS="-DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1 -lncurses" \
+				LDFLAGS=-lncurses linux 
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.2 liblua.so.5.2.4" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
-			mkdir -pv /usr/share/doc/lua-5.2.4
-			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.2.4
+			[ -x src/lua ] || exit 1
+			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.3 liblua.so.5.3.3" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
+			mkdir -pv /usr/share/doc/lua-5.3.3
+			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.3.3
 
 cat > /usr/lib/pkgconfig/lua.pc << "EOF"
-V=5.2
-R=5.2.3
+V=5.3
+R=5.3.3
 
 prefix=/usr
 INSTALL_BIN=${prefix}/bin

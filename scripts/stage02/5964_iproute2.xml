@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="iproute2"
-		version="4.4.0"
+		version="4.7.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="68372be70c5c0503196d03913f4b1e201956d1b6">iproute2-4.4.0.tar.xz</pkg>
+				<pkg sha1="eafdefb9ebe7c840fa4ea8ea111554e3650a3c5a">iproute2-4.7.0.tar.xz</pkg>
 				<mirror>https://www.kernel.org/pub/linux/utils/net/iproute2/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="90" page="https://www.kernel.org/pub/linux/utils/net/iproute2/" />
+			<manualcheck date="20160823" interval="90" page="https://www.kernel.org/pub/linux/utils/net/iproute2/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/net/iproute2/">
-					<atext linktext="iproute2-4.4.1" />
-					<atext linktext="iproute2-4.4.2" />
-					<atext linktext="iproute2-4.5" />
-					<atext linktext="iproute2-4.6" />
-					<atext linktext="iproute2-4.7" />
+					<atext linktext="iproute2-4.7.1" />
+					<atext linktext="iproute2-4.7.2" />
 					<atext linktext="iproute2-4.8" />
+					<atext linktext="iproute2-4.9" />
+					<atext linktext="iproute2-4.10" />
+					<atext linktext="iproute2-4.11" />
 				</page>
 			</check>
 		</sources>
@@ -37,17 +37,31 @@
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/m_ipt.o//' tc/Makefile
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make 
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make  -j $jobcount 
 			]]>
 		</build>
 		<test />

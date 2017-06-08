@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="xorriso"
-		version="1.4.2"
+		version="1.4.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="9be3a9d7cd3695df35ef7dd71f1857ba47043713">xorriso-1.4.2.tar.gz</pkg>
+				<pkg sha1="bb8a2d9587784495818e374a56cc5318a4e8580b">xorriso-1.4.6.tar.gz</pkg>
 				<mirror>http://www.gnu.org/software/xorriso/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="90" page="http://www.gnu.org/software/xorriso/" />
+			<manualcheck date="20160923" interval="90" page="http://www.gnu.org/software/xorriso/" />
 			<check>
 				<page html="http://www.gnu.org/software/xorriso/">
 					<atext linktext="xorriso-1.4.14." />
-					<atext linktext="xorriso-1.4.4." />
-					<atext linktext="xorriso-1.4.6." />
+					<atext linktext="xorriso-1.4.16." />
+					<atext linktext="xorriso-1.4.18." />
 					<atext linktext="xorriso-1.4.8." />
 					<atext linktext="xorriso-1.4.10." />
 					<atext linktext="xorriso-1.4.12." />
@@ -44,7 +44,7 @@
                         <dep>syslinux</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
-			<dep>distcc</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

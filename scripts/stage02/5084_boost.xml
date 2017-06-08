@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="boost"
-		version="1_60_0"
+		version="1_61_0"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="ac74db1324e6507a309c5b139aea41af624c8110">boost_1_60_0.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.60.0</mirror>
+				<pkg sha1="2d2b80771f584f327827193fcf3abf836edcdfaa">boost_1_61_0.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/boost/boost/1.61.0</mirror>
 			</file>
-			<manualcheck date="20160113" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
+			<manualcheck date="20160701" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
 			<check>
 				<page html="http://sourceforge.net/projects/boost/files/boost/">
-					<atext linktext="1.60.1" />
-					<atext linktext="1.60.2" />
-					<atext linktext="1.61." />
+					<atext linktext="1.61.1" />
+					<atext linktext="1.61.2" />
+					<atext linktext="1.64." />
 					<atext linktext="1.62." />
 					<atext linktext="1.63." />
 				</page>
@@ -46,7 +46,7 @@
                         <dep>diffutils</dep>
                         <dep>dmidecode</dep>
                         <dep>dosfstools</dep>
-                        <dep>e2fsprogs</dep>
+                        <!-- <dep>e2fsprogs</dep> -->
                         <dep>eggdbus</dep>
                         <!-- <dep>evince</dep> --> 
                         <dep>expat</dep>
@@ -144,20 +144,23 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}_${PKGVERSION}
+			
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
+				[ "$jobcount" -gt 10 ] && jobcount=10 
+				CURRENTPWD=` pwd ` 
+				mkdir bin
+				for b in gcc cc g++ c++ ; do
+					ln -sf  /usr/bin/distcc ./bin/${b} 
+				done
+				export PATH=${CURRENTPWD}/bin:$PATH 
 			fi
+			cd ${PKGNAME}_${PKGVERSION}
+			
 			sh bootstrap.sh --prefix=/usr
-			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-			#	sed -i 's%# using gcc ;%using gcc \: \: /usr/bin/distcc g++ ;%g' tools/build/v2/user-config.jam
-			#	pump ./bjam -a -j $jobcount --debug-configuration
-			#else
-				# ./b2 -a
-				./b2 stage threading=multi link=shared
-			#fi
+			./b2 -j $jobcount stage threading=multi link=shared
+			
 			]]>
 		</build>
 		<test />

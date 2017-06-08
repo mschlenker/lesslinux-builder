@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="openvas-libraries"
-		version="8.0.7"
+		version="8.0.8"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="d3870e5fc2eee583b6c7d01c320f53206cd16b6a">openvas-libraries-8.0.7.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/2291/</mirror>
+				<pkg sha1="d26267c5974f031237a20ccbd3fe64b6fbadf543">openvas-libraries-8.0.8.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2351/</mirror>
 			</file>
 			<file>            
 				<pkg sha1="917913955040e5a312178f838c71ef74645dac6b">openvas-check-setup-20140930.sh</pkg>
@@ -55,7 +55,7 @@
                         <dep>subversion</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -63,13 +63,66 @@
 			tar xf ${SRCDIR}/lesslinux-openvas-20160415-00.tar.bz2
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[ 
+
+cd ${PKGNAME}-${PKGVERSION} 
+cat << EOPATCH | patch -p1
+
+diff -ru openvas-libraries-8.0.8/nasl/iconv.c openvas-libraries-8.0.8.patched/nasl/iconv.c
+--- openvas-libraries-8.0.8/nasl/iconv.c        2015-08-03 10:14:30.000000000 +0000
++++ openvas-libraries-8.0.8.patched/nasl/iconv.c        2016-09-21 11:59:33.849240986 +0000
+@@ -33,11 +33,11 @@
+ 
+ static size_t iconv_copy_ntlmssp(void *,const char **, size_t *, char **, size_t *);
+ 
+-static const struct charset_functions_ntlmssp builtin_functions_ntlmssp[] = {
+-        /* windows is closest to UTF-16 */
+-        {"UCS-2LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
+-        {"UTF-16LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
+-};
++// static const struct charset_functions_ntlmssp builtin_functions_ntlmssp[] = {
++//        /* windows is closest to UTF-16 */
++//        {"UCS-2LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
++//        {"UTF-16LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
++// };
+ 
+ static struct charset_functions_ntlmssp *charsets = NULL;
+ 
+
+diff -ru openvas-libraries-8.0.8/nasl/nasl_builtin_synscan.c openvas-libraries-8.0.8.patched/nasl/nasl_builtin_synscan.c
+--- openvas-libraries-8.0.8/nasl/nasl_builtin_synscan.c 2015-08-03 10:14:31.000000000 +0000
++++ openvas-libraries-8.0.8.patched/nasl/nasl_builtin_synscan.c 2016-09-21 12:00:19.761243175 +0000
+@@ -800,8 +800,9 @@
+   inaddr.s_addr = dst6->s6_addr32[3];
+   dst = &inaddr;
+ 
+-  if (islocalhost (dst))
++  if (islocalhost (dst)) {
+     return NULL;
++  }
+ 
+     rtt = htonl (1 << 28);
+ 
+
+EOPATCH
+
+
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			find nasl -type f -exec sed -i 's/-Werror/ /g' {} \;
-			make
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

@@ -1,29 +1,29 @@
 <llpackages>
 	<package 
 		name="cryptsetup"
-		version="1.6.8"
+		version="1.7.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                      
-				<pkg sha1="fbcf5bee3396ea8004a9f08217a11cc4aea25052">cryptsetup-1.6.8.tar.xz</pkg>
-				<mirror>https://www.kernel.org/pub/linux/utils/cryptsetup/v1.6/</mirror>
+				<pkg sha1="1b7005c0f8ad286a7f3d65e99cb555597666605c">cryptsetup-1.7.2.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/cryptsetup/v1.7/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="180" page="http://code.google.com/p/cryptsetup/" />
+			<manualcheck date="20160630" interval="180" page="http://code.google.com/p/cryptsetup/" />
 			<check>
-				<page html="rsync://www.kernel.org/pub/linux/utils/cryptsetup/v1.6/">
-					<atext linktext="cryptsetup-1.6.11." />
-					<atext linktext="cryptsetup-1.6.12." />
-					<atext linktext="cryptsetup-1.6.13." />
-					<atext linktext="cryptsetup-1.6.9." />
-					<atext linktext="cryptsetup-1.6.10." />
-					<atext linktext="cryptsetup-1.7." />
+				<page html="rsync://www.kernel.org/pub/linux/utils/cryptsetup/v1.7/">
+					<atext linktext="cryptsetup-1.7.3." />
+					<atext linktext="cryptsetup-1.7.4." />
+					<atext linktext="cryptsetup-1.7.5." />
+					<atext linktext="cryptsetup-1.7.6." />
+					<atext linktext="cryptsetup-1.7.7." />
 					<atext linktext="cryptsetup-1.8." />
+					<atext linktext="cryptsetup-1.9." />
 					<atext linktext="cryptsetup-2." />
 				</page>
 				<page html="rsync://www.kernel.org/pub/linux/utils/cryptsetup/">
-					<atext linktext="v1.7" />
+					<atext linktext="v2.1" />
 					<atext linktext="v1.8" />
 					<atext linktext="v1.9" />
 					<atext linktext="v2.0" />

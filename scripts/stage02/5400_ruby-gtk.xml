@@ -1,24 +1,16 @@
 <llpackages>
 	<package 
 		name="ruby-gnome2-all"
-		version="2.2.5"
+		version="3.0.8"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
-			<!-- <file>                 
-				<pkg sha1="9d2b42eea3509605ed8a42951fc829cb589f55b8">ruby-gnome2-all-2.0.1.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/ruby-gnome2-2.0.1/</mirror>
-			</file> -->
 			<file>                 
-				<pkg sha1="646a2486df575b3eb6cf9143e9a741f09a7a2af3">ruby-gnome2-all-2.2.5.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/ruby-gnome2-2.2.5/</mirror>
+				<pkg sha1="1b5e6eeba766a9a9ea2eecc2f02de75ddb2948cd">ruby-gnome2-all-3.0.8.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/ruby-gnome2-3.0.8/</mirror>
 			</file>
 			<manualcheck date="20150823" interval="90" page="http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/" />
-			<!-- <file>
-				<pkg sha1="0ab34c99a720da4bf7e2d6f6f05d126417fe41ca">ruby-gnome2-all-0.19.4-glib-mkenums.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
-			<check>
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/ruby-gnome2/files/ruby-gnome2/">
 					<atext linktext="ruby-gnome2-all-2.2.6" />
 					<atext linktext="ruby-gnome2-all-2.2.7" />
@@ -29,7 +21,7 @@
 					<atext linktext="ruby-gnome2-all-2.3." />
 					<atext linktext="ruby-gnome2-all-2.4." />
 				</page>
-			</check> 
+			</check>  -->
 		</sources>
 		<builddeps>
                         <dep>GConf</dep>
@@ -54,7 +46,7 @@
                         <dep>dbus-glib</dep>
                         <dep>dbus-python</dep>
                         <dep>dbus</dep>
-                        <dep>e2fsprogs</dep>
+                        <!-- <dep>e2fsprogs</dep> -->
                         <dep>eggdbus</dep>
                         <dep>evieext</dep>
                         <!-- <dep>evince</dep> -->
@@ -216,6 +208,7 @@
                         <dep>gtk3</dep>
 			<dep>gtksourceview3</dep>
 			<dep>vte3</dep>
+			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -235,9 +228,18 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				export CC='distcc gcc'
+				export CXX='distcc g++'
+			else
+				export CC='gcc'
+				export CXX='g++'
+			fi
 			ruby extconf.rb 
 			#  glib2 gio2 gdk_pixbuf2 pango atk gtk2 gstreamer gobject-introspection vte gtksourceview2 rsvg2 poppler && make
-			make
+			make -j${jobcount}
 			]]>
 		</build>
 		<test />

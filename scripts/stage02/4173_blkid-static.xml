@@ -1,29 +1,29 @@
 <llpackages>
 	<package 
 		name="blkid-static"
-		version="2.26.2"
+		version="2.28.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                                                                                               
-				<pkg sha1="ac0b880a12392b2cbbe12239ab7613c25349093d">util-linux-2.26.2.tar.xz</pkg>
-				<mirror>https://www.kernel.org/pub/linux/utils/util-linux/v2.26/</mirror>
+			<file>                                                                                                                                    
+				<pkg sha1="76053b05a6c8bf3f6fcbef8679cfaa01135bf67f">util-linux-2.28.2.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/util-linux/v2.28/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="120" page="https://www.kernel.org/pub/linux/utils/util-linux/" />
+			<manualcheck date="20160924" interval="120" page="https://www.kernel.org/pub/linux/utils/util-linux/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/">
-					<atext linktext="v2.27" />
-					<atext linktext="v2.28" />
 					<atext linktext="v2.29" />
+					<atext linktext="v2.30" />
+					<atext linktext="v2.31" />
 					<atext linktext="v3." />
 				</page>
-				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/v2.26/">
-					<atext linktext="util-linux-2.26.6." />
-					<atext linktext="util-linux-2.26.7." />
-					<atext linktext="util-linux-2.26.3." />
-					<atext linktext="util-linux-2.26.4." />
-					<atext linktext="util-linux-2.26.5." />
+				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/v2.28/">
+					<atext linktext="util-linux-2.28.6." />
+					<atext linktext="util-linux-2.28.7." />
+					<atext linktext="util-linux-2.28.3." />
+					<atext linktext="util-linux-2.28.4." />
+					<atext linktext="util-linux-2.28.5." />
 				</page>
 			</check>
 		</sources>

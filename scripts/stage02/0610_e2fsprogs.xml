@@ -1,44 +1,47 @@
 <llpackages>
 	<package 
 		name="e2fsprogs"
-		version="1.42.13"
+		version="1.43.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="77d1412472ac5a67f8954166ec16c37616074c37">e2fsprogs-1.42.13.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.42.13/</mirror>
+				<pkg sha1="26b75c27ba434e72ef630b160782a01b4d992b7a">e2fsprogs-1.43.1.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.43.1/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="180" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<manualcheck date="20160630" interval="180" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
 			<check>
 				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
-					<atext linktext="1.42.14." />
-					<atext linktext="1.42.15." />
-					<atext linktext="1.42.16." />
-					<atext linktext="1.43." />
+					<atext linktext="1.43.2." />
+					<atext linktext="1.43.3." />
+					<atext linktext="1.43.4." />
 					<atext linktext="1.44." />
 					<atext linktext="1.45." />
+					<atext linktext="1.46." />
 					<atext linktext="2.0." />
 					<atext linktext="2.00." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-			<dep>linux_headers</dep>
-			<dep>glibc</dep>
-			<dep>man-pages</dep>
-			<dep>readjust</dep>
-			<dep>zlib</dep>
-			<dep>binutils</dep>
-			<dep>gmp</dep>
-			<dep>mpfr</dep>
-			<dep>mpc</dep>
-			<dep>gcc</dep>
-			<dep>sed</dep>
-			<dep>pkg-config</dep>
-			<dep>ncurses</dep>
-			<dep>ncurses-8bit</dep>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
 			<dep>util-linux-ng</dep>
 		</builddeps>
 		<unpack>
@@ -49,13 +52,9 @@
 		</unpack>
 		<patch>
 		<![CDATA[ 
-			
-			# First, fix a potential security issue identified upstream: 
-			
-			cd ${PKGNAME}-${PKGVERSION}
-			sed -e '/int.*old_desc_blocks/s/int/blk64_t/' \
-    -e '/if (old_desc_blocks/s/super->s_first_meta_bg/desc_blocks/' \
-    -i lib/ext2fs/closefs.c
+
+# First, fix a script that adjusts testing output:
+sed -i -e 's:\[\.-\]::' tests/filter.sed
 			
 			]]>
 		</patch>
@@ -63,6 +62,14 @@
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}/build
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			../configure --prefix=/usr \
 				--with-root-prefix="" \
 				--enable-elf-shlibs \
@@ -70,7 +77,7 @@
 				--disable-libuuid \
 				--disable-uuidd \
 				--disable-fsck
-			
+			make -j $jobcount 
 			]]>
 		</build>
 		<test>

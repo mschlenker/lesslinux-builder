@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="libxml2"
-		version="2.9.3"
+		version="2.9.4"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>               
-				<pkg sha1="0301ce933637e0ceda049047dbefd18714f59b6e">libxml2-2.9.3.tar.gz</pkg>
+				<pkg sha1="958ae70baf186263a4bd801a81dd5d682aedd1db">libxml2-2.9.4.tar.gz</pkg>
 				<mirror>ftp://xmlsoft.org/libxml2/</mirror>
 			</file>
-			<manualcheck date="20160412" interval="180" page="ftp://xmlsoft.org/libxml2/" />
+			<manualcheck date="20160701" interval="180" page="ftp://xmlsoft.org/libxml2/" />
 			<check>
 				<page html="ftp://xmlsoft.org/libxml2/">
 					<atext linktext="libxml2-2.9.10." />
 					<atext linktext="libxml2-2.9.11." />
-					<atext linktext="libxml2-2.9.4." />
+					<atext linktext="libxml2-2.9.12." />
 					<atext linktext="libxml2-2.9.5." />
 					<atext linktext="libxml2-2.9.6." />
 					<atext linktext="libxml2-2.9.7." />
@@ -76,7 +76,7 @@ sed \
 				;;
 			esac 
 			
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which pump ; then
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 

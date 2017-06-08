@@ -1,16 +1,15 @@
 <llpackages>
 	<package 
 		name="testdisk"
-		version="7.0"
-		class="user"
-		>
+		version="7.1-WIP"
+		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                       
-				<pkg sha1="3badfd88fea3d785f0d14ba0368866a085041c50">testdisk-7.0.tar.bz2</pkg>
+				<pkg sha1="21993c52cf2234918afd9674e3c836a2e05204ec">testdisk-7.1-WIP.tar.bz2</pkg>
 				<mirror>http://www.cgsecurity.org/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="90" page="http://www.cgsecurity.org/" />
+			<manualcheck date="20160930" interval="90" page="http://www.cgsecurity.org/" />
 			<check>
 				<page html="http://www.cgsecurity.org/wiki/TestDisk_Download">
 					<atext linktext="testdisk-7.1." />
@@ -44,7 +43,7 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
-			<dep>qt-everywhere-opensource-src</dep>
+			<dep>qt5</dep>
 			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
@@ -72,7 +71,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			./configure --sysconfdir=/etc --prefix=/usr --without-ntfs --enable-qt 
+			./configure --sysconfdir=/etc --prefix=/usr --without-ntfs --enable-qt --without-ewf
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount
 			else
@@ -84,13 +83,13 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			mkdir -p /usr/share/icons
-			install -m 0644 src/photorec_64x64.png /usr/share/icons
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/share/icons
+			install -m 0644 src/photorec_64x64.png ${TGTDIR}/usr/share/icons
 
 			# Icon erstellen
   
-cat >> /usr/share/applications/qphotorec.desktop << QPICON
+cat >> ${TGTDIR}/usr/share/applications/qphotorec.desktop << QPICON
 
 [Desktop Entry]
 Version=1.0

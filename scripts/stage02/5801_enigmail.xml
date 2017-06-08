@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="enigmail"
-		version="1.8.2"
+		version="1.9.5"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="484158091985bb06ffa175348bafccea0250a348">enigmail-1.8.2.tar.gz</pkg>
+				<pkg sha1="82f2a48a168649d5d351b2a534977cb17d2dd1cc">enigmail-1.9.5.tar.gz</pkg>
 				<mirror>http://www.enigmail.net/download/source/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="60" page="http://www.enigmail.net/download/source/" />
+			<manualcheck date="20150921" interval="60" page="http://www.enigmail.net/download/source/" />
 			<check>
 				<page html="http://www.enigmail.net/download/source/">
-					<atext linktext="enigmail-1.8.2." />
-					<atext linktext="enigmail-1.8.3." />
-					<atext linktext="enigmail-1.8.4." />
-					<atext linktext="enigmail-1.8.5." />
-					<atext linktext="enigmail-1.8.6." />
-					<atext linktext="enigmail-1.8.7." />
-					<atext linktext="enigmail-1.8.8." />
-					<atext linktext="enigmail-1.9." />
+					<atext linktext="enigmail-1.9.9." />
+					<atext linktext="enigmail-1.9.10." />
+					<atext linktext="enigmail-1.9.11." />
+					<atext linktext="enigmail-1.9.12." />
+					<atext linktext="enigmail-1.9.6." />
+					<atext linktext="enigmail-1.9.7." />
+					<atext linktext="enigmail-1.9.8." />
+					<atext linktext="enigmail-1.12." />
 					<atext linktext="enigmail-1.10." />
 					<atext linktext="enigmail-1.11." />
 					<atext linktext="enigmail-2." />
@@ -99,9 +99,8 @@
 			<dep>libpng15</dep><dep>libpng16</dep>
 			<dep>lcms</dep>
 			<dep>nspr</dep>
-			<dep>distcc</dep>
+			<!-- dep>distcc</dep -->
 			<dep>thunderbird</dep>
-			<dep>gcc49</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -112,10 +111,9 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
-			export CC=/usr/local/gcc49/bin/gcc49
-			export CXX=/usr/local/gcc49/bin/g++49
-			./configure --prefix=/usr --sysconfdir=/etc CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49
+			./configure --prefix=/usr --sysconfdir=/etc  
 			make 
+			make xpi
 			echo '==> Searching XPI'
 			find . -name '*.xpi'
 			]]>
@@ -125,7 +123,7 @@
 			<![CDATA[
 			cd ${PKGNAME}
 			mkdir -p ${TGTDIR}/usr/share/mozilla-addons
-			install -m 0644 build/enigmail-*-linux-*-gcc3.xpi ${TGTDIR}/usr/share/mozilla-addons
+			install -m 0644 build/enigmail-*.xpi ${TGTDIR}/usr/share/mozilla-addons
 			]]>
 		</install>
 		<clean>

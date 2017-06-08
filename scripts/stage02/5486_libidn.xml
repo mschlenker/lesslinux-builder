@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="libidn"
-		version="1.32"
+		version="1.33"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                    
-				<pkg sha1="ddd018611b98af7c67d434aa42d15d39f45129f5">libidn-1.32.tar.gz</pkg>
+				<pkg sha1="57872fdc665dcc585e16f4ac0bb35374b1103f7e">libidn-1.33.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/libidn/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="ftp://ftp.gnu.org/gnu/libidn/" />
+			<manualcheck date="20160823" interval="180" page="ftp://ftp.gnu.org/gnu/libidn/" />
 			<check>
 				<page html="ftp://ftp.gnu.org/gnu/libidn/">
 					<atext linktext="libidn-1.34." />
 					<atext linktext="libidn-1.35." />
 					<atext linktext="libidn-1.36." />
 					<atext linktext="libidn-1.37." />
-					<atext linktext="libidn-1.33." />
+					<atext linktext="libidn-1.38." />
 					<atext linktext="libidn-2." />
 				</page>
 			</check>
@@ -49,7 +49,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc && make -j $jobcount
 			]]>
 		</build>
 		<test />

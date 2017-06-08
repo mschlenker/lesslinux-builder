@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="connman-ui"
-		version="20150601"
+		version="20160701"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                      
-				<pkg sha1="924d2f3216423e42235139ae7bc2ad3835422a9e">connman-ui-20150601.tar.bz2</pkg>
+				<pkg sha1="f1bef1e44288c6bff797b03e9e2e5f68d8d05ec5">connman-ui-20160701.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20150601" interval="60" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20160701" interval="120" page="https://github.com/tbursztyka/connman-ui" />
 		</sources>
 		<builddeps>
                         <dep>GConf</dep>
@@ -76,6 +76,7 @@
                         <dep>vala</dep>
                         <dep>xorg-server</dep>
                         <dep>xtrans</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -85,9 +86,17 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			bash autogen.sh
 			./configure --prefix=/usr --sysconfdir=/etc
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

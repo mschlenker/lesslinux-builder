@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="libbde"
-		version="20150204"
+		version="20160731"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="66e1aa8745b9d69d71a5ac202d496e3107524a02">libbde-alpha-20150204.tar.gz</pkg>
-				<mirror>https://github.com/libyal/libbde/releases/download/20150204/</mirror>
+				<pkg sha1="59823f4958ab9a0b2484662e3b40c8bffef097e6">libbde-alpha-20160731.tar.gz</pkg>
+				<mirror>https://github.com/libyal/libbde/releases/download/20160731/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="90" page="https://github.com/libyal/libbde/releases" />
+			<manualcheck date="20160731" interval="90" page="https://github.com/libyal/libbde/releases" />
 			<check>
 				<page html="https://github.com/libyal/libbde/releases">
-					<atext href="libbde-alpha-201505" />
-					<atext href="libbde-alpha-201506" />
-					<atext href="libbde-alpha-201507" />
-					<atext href="libbde-alpha-201508" />
-					<atext href="libbde-alpha-201509" />
-					<atext href="libbde-alpha-20151" />
-					<atext href="libbde-alpha-2016" />
+					<atext href="libbde-alpha-201610" />
+					<atext href="libbde-alpha-201611" />
+					<atext href="libbde-alpha-201607" />
+					<atext href="libbde-alpha-201608" />
+					<atext href="libbde-alpha-201609" />
+					<atext href="libbde-alpha-20161" />
+					<atext href="libbde-alpha-2017" />
 				</page>
 			</check>
 		</sources>
@@ -41,7 +41,7 @@
                         <dep>openssl</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -52,9 +52,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc --enable-python
-			make 
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

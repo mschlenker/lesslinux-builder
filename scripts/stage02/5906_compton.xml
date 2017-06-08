@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="compton"
-		version="20150601"
+		version="20160921"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="1fdead1c8233bd93047733b9dede7b35fcdf0fc8">compton-20150601.tar.bz2</pkg>
+				<pkg sha1="36fe721f0b7c8a7ae819fc68383cc96d4627fb52">compton-20160921.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file><!-- -cCGbf -->
-			<manualcheck date="20150601" interval="120" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20160921" interval="120" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
                         <dep>Mesa</dep>
@@ -36,7 +36,7 @@
                         <dep>pkg-config</dep>
                         <dep>xproto-base</dep>
 			<dep>cmake</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -46,7 +46,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}
-			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

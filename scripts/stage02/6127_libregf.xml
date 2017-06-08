@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libregf-alpha' version='20150315' install='chroot'>
+    <package name='libregf-alpha' version='20160424' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='72aba53a4b0f94343ded4a7aee782985cdba5efc'>
-                    libregf-alpha-20150315.tar.gz
+                <pkg sha1='81f994b248a10452162716846272eaf874eb7a91'>
+                    libregf-alpha-20160424.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libregf/releases/download/20150315/
+                    https://github.com/libyal/libregf/releases/download/20160424/
                 </mirror>
             </file>
-            <manualcheck date='20150423' interval='60' mirror='https://github.com/libyal/libregf/releases/download/20150315/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libregf/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -41,6 +41,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -49,8 +50,16 @@
         <patch/>
         <build>
             <![CDATA[cd libregf-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python 
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

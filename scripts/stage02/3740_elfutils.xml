@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="elfutils"
-		version="0.165"
+		version="0.167"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="b994f2f31e6638415d7f8a3c0c7e04e6bc4ca4a9">elfutils-0.165.tar.bz2</pkg>
-				<mirror>https://fedorahosted.org/releases/e/l/elfutils/0.165/</mirror>
+				<pkg sha1="91cec7fec0031758cc0c842a87ee8c5faa4d8107">elfutils-0.167.tar.bz2</pkg>
+				<mirror>https://fedorahosted.org/releases/e/l/elfutils/0.167/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="180" page="https://fedorahosted.org/releases/e/l/" />
+			<manualcheck date="20160923" interval="180" page="https://fedorahosted.org/releases/e/l/" />
 			<check>
 				<page html="https://fedorahosted.org/releases/e/l/elfutils/">
 					<atext linktext="0.174" />
 					<atext linktext="0.175" />
 					<atext linktext="0.176" />
 					<atext linktext="0.177" />
-					<atext linktext="0.166" />
-					<atext linktext="0.167" />
+					<atext linktext="0.178" />
+					<atext linktext="0.179" />
 					<atext linktext="0.168" />
 					<atext linktext="0.169" />
 					<atext linktext="0.170" />
@@ -67,8 +67,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --program-prefix="eu-"
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libevtx-alpha' version='20150105' install='chroot'>
+    <package name='libevtx-alpha' version='20160421' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='20506afb73ce9b83fea0aaf39034e565f7f97d6b'>
-                    libevtx-alpha-20150105.tar.gz
+                <pkg sha1='b765e5805e422138222a3c3820166cb69b0b9ba3'>
+                    libevtx-alpha-20160421.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libevtx/releases/download/20150105/
+                    https://github.com/libyal/libevtx/releases/download/20160421/
                 </mirror>
             </file>
-            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/libevtx/releases/download/20150105/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libevtx/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -40,6 +40,7 @@
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
 			<dep>libevt-alpha</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -48,8 +49,16 @@
         <patch/>
         <build>
             <![CDATA[cd libevtx-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

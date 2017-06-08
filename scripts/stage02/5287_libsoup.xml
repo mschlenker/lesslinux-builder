@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="libsoup"
-		version="2.50.0"
+		version="2.56.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                           
-				<pkg sha1="8bd422bd5d19b5e2630bbb35dfb06354b1d56442">libsoup-2.50.0.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/2.50/</mirror>
+				<pkg sha1="faf72c678d013b8ad9d1d9eecc7e7da8a93c4dd1">libsoup-2.56.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/2.56/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="90" page="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/" />
+			<manualcheck date="20160927" interval="90" page="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/2.50/">
-					<atext linktext="libsoup-2.50.1." />
-					<atext linktext="libsoup-2.50.2." />
-					<atext linktext="libsoup-2.50.3." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/2.56/">
+					<atext linktext="libsoup-2.56.1." />
+					<atext linktext="libsoup-2.56.2." />
+					<atext linktext="libsoup-2.56.3." />
 				</page>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/">
-					<atext linktext="2.54" />
-					<atext linktext="2.52" />
+					<atext linktext="2.60" />
+					<atext linktext="2.58" />
 					<atext linktext="3." />
 				</page>
 			</check>
@@ -68,7 +68,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --sysconfdir=/etc --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test />

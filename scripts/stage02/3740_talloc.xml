@@ -1,22 +1,26 @@
 <llpackages>
 	<package 
 		name="talloc"
-		version="2.1.5"
+		version="2.1.8"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                                                   
-				<pkg sha1="bdf3b3d8449e2c354f1ebc43d3e1058160eb4adb">talloc-2.1.5.tar.gz</pkg>
+				<pkg sha1="c91fded4fad84a42dd91c9feb0951ea43a29893e">talloc-2.1.8.tar.gz</pkg>
 				<mirror>http://samba.org/ftp/talloc/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="180" page="http://samba.org/ftp/talloc/" />
+			<file>
+				<pkg sha1='8c0b99ed874c6af6c384b4f160f6cd08f01a6bc5'>waf-1.9.3.tar.bz2</pkg>
+				<mirror>https://waf.io/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://samba.org/ftp/talloc/" />
 			<check>
 				<page html="https://www.samba.org/ftp/talloc/">
-					<atext linktext="talloc-2.1.7." />
-					<atext linktext="talloc-2.1.8." />
+					<atext linktext="talloc-2.1.11." />
+					<atext linktext="talloc-2.1.12." />
 					<atext linktext="talloc-2.1.9." />
-					<atext linktext="talloc-2.1.6." />
+					<atext linktext="talloc-2.1.10." />
 					<atext linktext="talloc-2.4." />
 					<atext linktext="talloc-2.2." />
 					<atext linktext="talloc-2.3." />
@@ -49,15 +53,31 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/waf-1.9.3.tar.bz2
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr 
+			cd waf-1.9.3
+			./configure 
 			make
+			currentwd=`pwd `
+			export PATH=${currentwd}:$PATH
+			export WAFDIR=${currentwd}
+			cd ../${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --sysconfdir=/etc --prefix=/usr 
+			# waf configure --sysconfdir=/etc --prefix=/usr 
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

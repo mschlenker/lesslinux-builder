@@ -40,10 +40,16 @@ esac
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
 		
+if [ -f $HOME/.xinitrc ] ; then
+	exec bash $HOME/.xinitrc
+fi
+		
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors		
 . /etc/lesslinux/branding/branding.en.sh
+
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
@@ -67,7 +73,7 @@ done
 # setxkbmap -rules xorg -model pc105 -layout "$xkbmap"
 xfsettingsd --replace
 setxkbmap -layout "$xkbmap"
-esetroot -scale /etc/lesslinux/branding/desktop.jpg
+esetroot -scale /etc/lesslinux/branding/wintile.png # desktop.jpg
 Thunar --daemon &
 if xdpyinfo | grep -q -i composite ; then
 	sed -i 's/fake transparency=true/fake transparency=false/g' $HOME/.config/cairo-dock/current_theme/cairo-dock.conf
@@ -81,17 +87,25 @@ if xdpyinfo | grep -q -i composite ; then
 	# xcompmgr -c &
 fi
 openbox &
-conky -d 
+
+# Open the assistant when the background image is provided:
+if [ -f /etc/lesslinux/branding/bg_assistant.png ] ; then
+	( cd /usr/share/lesslinux/drivetools ; ruby -I . assistant.rb ) & 
+fi
+
+# conky -d 
 # Weird hack!
 xfct=0
 while true ; do
 	sleep 5
-	if [ "$xfct" -lt 3 ] ; then
+	if [ "$xfct" -lt 2 ] ; then
 		killall -9 compton
 		xfsettingsd --replace
 		compton --shadow-exclude '_GTK_FRAME_EXTENTS@:c' --fade-exclude '_GTK_FRAME_EXTENTS@:c' -cCGbf 
 		xfct=` expr $xfct + 1 ` 
-		sleep 5
+		sleep 3
+		killall -9 conky
+		conky -d 
 	else
 		sleep 9999999
 	fi
@@ -375,10 +389,10 @@ done
 		]]>
 		</scriptdata>
 	</scripts> 
-	<package name="initramfs-rescue-neutral" version="20150929-00" allowfail="yes">
+	<package name="initramfs-rescue-neutral" version="20160930-00" allowfail="yes">
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="4a61153fc47fa1c57502972fcc7b35e6013d5f07">surfer-neutral-20150929-00.tar.gz</pkg>
+				<pkg sha1="6f32610407610695955d4fc109530d2ce586bcbb">surfer-neutral-20160930-00.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 		</sources>

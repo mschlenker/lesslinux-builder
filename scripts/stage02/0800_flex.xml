@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="flex"
-		version="2.6.0"
+		version="2.6.1"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="159af4b68e562872049b9907f530c757156409ee">flex-2.6.0.tar.bz2</pkg>
+				<pkg sha1="f344d892aee6eb512c9b613a6b7feab2dbcc1200">flex-2.6.1.tar.xz</pkg>
 				<mirror>http://prdownloads.sourceforge.net/flex/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="180" page="http://sourceforge.net/projects/flex/files/" />
-			<check>
+			<manualcheck date="20160922" interval="180" page="https://github.com/westes/flex/releases/" />
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/flex/files/">
 					<atext linktext="flex-2.6.4." />
 					<atext linktext="flex-2.6.1." />
@@ -22,39 +22,50 @@
 					<atext linktext="flex-3." />
 					<atext linktext="flex-4." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
-			<dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>bison</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>gawk</dep>
-                        <dep>gcc</dep>
+			<dep>gcc</dep>
                         <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
                         <dep>linux_headers</dep>
-                        <dep>m4</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
+			<dep>acl</dep>
+			<dep>libcap</dep>
                         <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
+			<dep>shadow</dep>
+			<dep>psmisc</dep>
+			<dep>iana-etc</dep>
+			<dep>m4</dep>
+                        <dep>bison</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			sed -i -e '/test-bison/d' tests/Makefile.in
+			# sed -i -e '/test-bison/d' tests/Makefile.in
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test>

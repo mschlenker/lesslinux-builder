@@ -36,6 +36,10 @@
 			install -m 0755 dc3dd-starter.rb ${TGTDIR}/usr/bin
 			install -m 0755 dc3dd-starter.sh ${TGTDIR}/usr/bin
 			install -m 0755 ms-sys-starter.rb ${TGTDIR}/usr/bin
+			
+			# Remove this when packaging again!
+			sed -i 's%Windows 7/8%Windows 7/8/10%g' ${TGTDIR}/usr/bin/ms-sys-starter.rb
+			
 			install -m 0755 ms-sys-starter.sh ${TGTDIR}/usr/bin
 			install -m 0755 ddrescue-starter.rb ${TGTDIR}/usr/bin
 			install -m 0755 ddrescue-starter.sh ${TGTDIR}/usr/bin

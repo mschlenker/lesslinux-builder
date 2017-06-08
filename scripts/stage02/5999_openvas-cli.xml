@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="openvas-cli"
-		version="1.4.3"
+		version="1.4.4"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="25159c8bef3e3b704569fcf217aa16a548eabf99">openvas-cli-1.4.3.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/1803/</mirror>
+				<pkg sha1="352fdfa30713321e74f0052c87cd4dce7a3c3321">openvas-cli-1.4.4.tar.gz</pkg>
+				<mirror>http://wald.intevation.org/frs/download.php/2332/</mirror>
 			</file>
-			<manualcheck date="20160412" interval="90" page="http://www.openvas.org/install-source.html" />
+			<manualcheck date="20160923" interval="90" page="http://www.openvas.org/install-source.html" />
 			<check>
 				<page html="http://www.openvas.org/install-source.html">
 					<atext href="openvas-cli-1.4.5." />
 					<atext href="openvas-cli-1.4.6." />
 					<atext href="openvas-cli-1.4.7." />
-					<atext href="openvas-cli-1.4.4." />
+					<atext href="openvas-cli-1.4.8." />
 					<atext href="openvas-cli-1.5." />
 					<atext href="openvas-cli-1.6." />
 				</page>
@@ -46,8 +46,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			make
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

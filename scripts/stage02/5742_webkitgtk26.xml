@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="webkit26"
-		version="2.8.5"
+		version="2.14.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="ff983e38b8632aec283c918da2ae0153a465efcb">webkitgtk-2.8.5.tar.xz</pkg>
+				<pkg sha1="cc3419a369a3a41edd57a395373f71bbdfcfcaaf">webkitgtk-2.14.0.tar.xz</pkg>
 				<mirror>http://webkitgtk.org/releases/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="60" page="http://webkitgtk.org/releases/" />
+			<manualcheck date="20160927" interval="60" page="http://webkitgtk.org/releases/" />
 			<check>
 				<page html="http://webkitgtk.org/releases/">
-					<atext linktext="webkitgtk-2.8.10." />
-					<atext linktext="webkitgtk-2.8.11." />
-					<atext linktext="webkitgtk-2.8.6." />
-					<atext linktext="webkitgtk-2.8.7." />
-					<atext linktext="webkitgtk-2.8.8." />
-					<atext linktext="webkitgtk-2.8.9." />
-					<atext linktext="webkitgtk-2.10." />
-					<atext linktext="webkitgtk-2.12." />
+					<atext linktext="webkitgtk-2.14.4." />
+					<atext linktext="webkitgtk-2.14.5." />
+					<atext linktext="webkitgtk-2.14.6." />
+					<atext linktext="webkitgtk-2.14.1." />
+					<atext linktext="webkitgtk-2.14.2." />
+					<atext linktext="webkitgtk-2.14.3." />
+					<atext linktext="webkitgtk-2.16." />
+					<atext linktext="webkitgtk-2.18." />
 				</page>
 			</check>
 		</sources>
@@ -116,6 +116,9 @@
 				-DCMAKE_INSTALL_PREFIX=/usr \
 				-DCMAKE_SKIP_RPATH=ON \
 				-DPORT=GTK \
+				-DUSE_LIBHYPHEN=OFF         \
+				-DENABLE_MINIBROWSER=ON     \
+				-DENABLE_GEOLOCATION=OFF \
 				-DLIB_INSTALL_DIR=/usr/lib \
 				-Wno-dev ../webkitgtk-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then

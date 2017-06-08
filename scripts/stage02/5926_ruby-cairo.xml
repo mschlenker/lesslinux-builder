@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="ruby-cairo"
-		version="1.14.1"
+		version="1.15.2"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="5004067d807dfd8c81c5d0093f431ea61d0c7b82">rcairo-1.14.1.tar.gz</pkg>
+				<pkg sha1="fd0064a3feae29c2b9dd3992561e530e86fc2cb8">rcairo-1.15.2.tar.gz</pkg>
 				<mirror>http://cairographics.org/releases/</mirror>  
 			</file>
-			<manualcheck date="20150601" interval="90" page="http://cairographics.org/releases/" />
+			<manualcheck date="20160701" interval="90" page="http://cairographics.org/releases/" />
 			<check>
 				<page html="http://cairographics.org/releases/">
-					<atext linktext="rcairo-1.14.2." />
-					<atext linktext="rcairo-1.14.3." />
-					<atext linktext="rcairo-1.14.4." />
-					<atext linktext="rcairo-1.14.5." />
-					<atext linktext="rcairo-1.14.6." />
-					<atext linktext="rcairo-1.14.7." />
-					<atext linktext="rcairo-1.14.8." />
+					<atext linktext="rcairo-1.15.9." />
+					<atext linktext="rcairo-1.15.3." />
+					<atext linktext="rcairo-1.15.4." />
+					<atext linktext="rcairo-1.15.5." />
+					<atext linktext="rcairo-1.15.6." />
+					<atext linktext="rcairo-1.15.7." />
+					<atext linktext="rcairo-1.15.8." />
 					<atext linktext="rcairo-1.16." />
 					<atext linktext="rcairo-1.18." />
 					<atext linktext="rcairo-1.20." />
@@ -48,8 +48,16 @@
 		<build>
 			<![CDATA[
 			cd rcairo-${PKGVERSION}/
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			ruby extconf.rb
-			make
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />

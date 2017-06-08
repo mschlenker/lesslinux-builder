@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="scite"
-		version="362"
+		version="366"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="5390d28a9cfd82e48f6eb01465f6633adefd9ecb">scintilla362.tgz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/3.6.2/</mirror>
+				<pkg sha1="582efe82287c110fbee1d0877363ec73bf6393ea">scintilla366.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/3.6.6/</mirror>
 			</file>
 			<file>                                                                               
-				<pkg sha1="b608994b4c46178a5302d682da2d00d2605e19de">scite362.tgz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/scintilla/SciTE/3.6.2/</mirror>
+				<pkg sha1="86651845f28aeee659286d5a4564a469407e9fcd">scite366.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/SciTE/3.6.6/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="90" page="http://sourceforge.net/projects/scintilla/files/SciTE/" />
+			<manualcheck date="20160701" interval="90" page="http://sourceforge.net/projects/scintilla/files/SciTE/" />
 			<check>
 				<page html="http://sourceforge.net/projects/scintilla/files/SciTE/">
-					<atext linktext="3.6.5" />
-					<atext linktext="3.6.6" />
-					<atext linktext="3.6.3" />
-					<atext linktext="3.6.4" />
+					<atext linktext="3.6.7" />
+					<atext linktext="3.6.8" />
+					<atext linktext="3.6.9" />
+					<atext linktext="3.6.10" />
 					<atext linktext="3.7." />
 					<atext linktext="3.8." />
 					<atext linktext="3.9." />
@@ -44,7 +44,7 @@
                         <dep>make</dep>
                         <dep>pango</dep><dep>pangox-compat</dep>
                         <dep>pkg-config</dep>
-			<dep>distcc</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

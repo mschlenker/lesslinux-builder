@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='requests' version='2.4.3' install='chroot'>
+    <package name='requests' version='2.10.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='411f1bfa44556f7dd0f34cd822047c31baa7d741'>
-                    requests-2.4.3.tar.gz
+                <pkg sha1='1b9a2395402692262fc61fa15bedbc3e112b1029'>
+                  requests-2.10.0.tar.gz
                 </pkg>
                 <mirror>
-                    https://pypi.python.org/packages/source/r/requests/
+                   https://pypi.python.org/packages/49/6f/183063f01aae1e025cf0130772b55848750a2f3a89bfa11b385b35d7329d/
                 </mirror>
             </file>
-            <manualcheck date='20141026' interval='60' mirror='https://pypi.python.org/packages/source/r/requests/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/requests'/>
         </sources>
 	<builddeps>
                         <dep>antlr_python_runtime</dep>

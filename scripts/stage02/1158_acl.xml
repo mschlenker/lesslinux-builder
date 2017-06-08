@@ -22,34 +22,33 @@
 			</check> -->
 		</sources>
 		<builddeps>
-                        <dep>attr</dep>
-                        <dep>bash</dep>
-                        <dep>binutils</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>findutils</dep>
                         <dep>gcc</dep>
-                        <dep>gettext</dep>
                         <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>gzip</dep>
-                        <dep>inetutils</dep>
                         <dep>linux_headers</dep>
-                        <dep>make</dep>
-                        <dep>makedepend</dep>
-                        <dep>sed</dep>
-                        <dep>tar</dep>
-                        <dep>util-linux-ng</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.gz
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e 's|/@pkg_name@|&-@pkg_version@|' include/builddefs.in
+			sed -i "s:| sed.*::g" test/{sbits-restore,cp,misc}.test
+			sed -i -e "/TABS-1;/a if (x > (TABS-1)) x = (TABS-1);" libacl/__acl_to_any_text.c
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc --enable-static --enable-shared && make
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --enable-shared --libexecdir=/usr/lib && make
 			]]>
 		</build>
 		<test />

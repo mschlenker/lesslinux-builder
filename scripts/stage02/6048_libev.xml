@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libev' version='4.20' install='destdir'>
+    <package name='libev' version='4.22' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='2b9e01e0ceda77bb214f66a663b374813a3296d0'>
-                    libev-4.20.tar.gz
+                <pkg sha1='4affcba78dc17239f2ccd84d6e3e6dec2bd1f8ba'>
+                    libev-4.22.tar.gz
                 </pkg>
                 <mirror>
                     http://dist.schmorp.de/libev/
                 </mirror>
             </file>
-            <manualcheck date='20150823' interval='180' mirror='http://dist.schmorp.de/libev/'/>
+            <manualcheck date='20160701' interval='180' mirror='http://dist.schmorp.de/libev/'/>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -27,6 +27,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -35,8 +36,16 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

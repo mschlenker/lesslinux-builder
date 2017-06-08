@@ -1,30 +1,34 @@
 <llpackages>
 	<package 
 		name="cross-busybox-musl"
-		version="1.23.2"
+		version="1.24.2"
 		class="lib"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
-				<pkg sha1="7f37193cb249f27630e0b2a2c6c9bbb7b1d24c16">busybox-1.23.2.tar.bz2</pkg>
+				<pkg sha1="03e6cfc8ddb2f709f308719a9b9f4818bc0a28d0">busybox-1.24.2.tar.bz2</pkg>
 				<mirror>http://busybox.net/downloads/</mirror>
 			</file>
 			<file>  
-				<pkg sha1="70d18f87dbb2bb8dd2303aae1cb4ac6d23c0e29f">busybox-1.23.2.config</pkg>
+				<pkg sha1="670366e42097cc33dded6636928f1d6c0a78b0ad">busybox-1.24.2.config</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20150622" interval="180" page="http://busybox.net/downloads/" />
+			<file>  
+				<pkg sha1="07cd562e709f6d1ce9ef1dc7aefcd8ddc192481e">busybox-1.25.0-fbset-nofill.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://busybox.net/downloads/" />
 			<check>
 				<page html="http://busybox.net/">
-					<atext href="busybox-1.23.3." />
-					<atext href="busybox-1.23.4." />
-					<atext href="busybox-1.23.5." />
-					<atext href="busybox-1.23.6." />
-					<atext href="busybox-1.24." />
+					<atext href="busybox-1.24.3." />
+					<atext href="busybox-1.24.4." />
+					<atext href="busybox-1.24.5." />
+					<atext href="busybox-1.24.6." />
 					<atext href="busybox-1.25." />
 					<atext href="busybox-1.26." />
+					<atext href="busybox-1.27." />
 					<atext href="busybox-2." />
 				</page>
 			</check>
@@ -32,34 +36,39 @@
 		<builddeps>
 			<dep>cross-gcc-musl2</dep>
 			<dep>cross-zlib</dep>
+			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/busybox-${PKGVERSION}.tar.bz2
 			cp -v ${SRCDIR}/busybox-${PKGVERSION}.config busybox-${PKGVERSION}/.config
-			sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' busybox-${PKGVERSION}/.config
-			sed -i 's/CONFIG_BRCTL=y/# CONFIG_BRCTL is not set/g' busybox-${PKGVERSION}/.config
 			]]>
 		</unpack>
+		<patch>
+		<![CDATA[ 
+			cd busybox-${PKGVERSION}
+			cat ${SRCDIR}/busybox-1.25.0-fbset-nofill.patch | patch -p1
+			sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' .config
+			# sed -i 's/CONFIG_BRCTL=y/# CONFIG_BRCTL is not set/g' .config
+			sed -i 's/CONFIG_FEATURE_WTMP=y/# CONFIG_FEATURE_WTMP is not set/g' .config
+			sed -i 's/CONFIG_FEATURE_UTMP=y/# CONFIG_FEATURE_UTMP is not set/g' .config
+			sed -i 's/CONFIG_FEATURE_UPTIME_UTMP=y/# CONFIG_FEATURE_UPTIME_UTMP is not set/g' .config
+			]]>
+		</patch>
 		<build>
 			<![CDATA[ 
-			export PATH=/usr/local/crosstools-ia32-musl/bin:$PATH
 			cd busybox-${PKGVERSION}
-			# ARCH=x86 make defconfig
-			# sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
-			# sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config
-			# sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/g'  .config
-			# sed -i 's/# CONFIG_INSTALL_NO_USR is not set/CONFIG_INSTALL_NO_USR=y/g'  .config
-			# sed -i 's/# CONFIG_AR is not set/CONFIG_AR=y/g' .config
-			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make oldconfig
-			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make 
-			ARCH=x86 CROSS_COMPILE="i386-linux-musl-" make install
+			make oldconfig CC=/usr/local/musl/bin/musl-gcc
+			make CC=/usr/local/musl/bin/musl-gcc
+			make install
 			]]>
 		</build>
 		<install>
 			<![CDATA[
-			mkdir -p ${TGTDIR}/usr/share/staticstuff
-			tar cvjf ${TGTDIR}/usr/share/staticstuff/busybox-static-musl-i686-${PKGVERSION}.tar.bz2 busybox-${PKGVERSION}
+			if [ -f busybox-${PKGVERSION}/busybox ] ; then
+				mkdir -p ${TGTDIR}/usr/share/staticstuff
+				tar cvjf ${TGTDIR}/usr/share/staticstuff/busybox-static-musl-i686-${PKGVERSION}.tar.bz2 busybox-${PKGVERSION}
+			fi
 			]]>
 		</install>
 		<clean>

@@ -27,15 +27,9 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>binutils</dep>
 			<dep>bash</dep>
-			<dep>coreutils</dep>
-			<dep>linux_headers</dep>
-			<dep>gcc</dep>
-			<dep>glibc</dep>
-			<dep>grep</dep>
-			<dep>sed</dep>
-			<dep>util-linux-ng</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -46,7 +40,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount 
 			]]>
 		</build>
 		<test>

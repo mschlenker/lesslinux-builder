@@ -1,16 +1,16 @@
 <llpackages>
-    <package name='libxkbcommon' version='20150610' install='destdir'>
+    <package name='libxkbcommon' version='0.6.1' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='89577c13e643d36c5b1ad4dc656125ace267d7c6'>libxkbcommon-20150610.tar.bz2</pkg>
+                <pkg sha1='0575ab35bba913d739267fbc1ed963fe7f8e386e'>xkbcommon-0.6.1.tar.gz</pkg>
                 <mirror>
-                    http://distfiles.lesslinux.org/
+                    https://github.com/xkbcommon/libxkbcommon/archive/
                 </mirror>
             </file>
-            <manualcheck date='20150610' interval='60' mirror='https://github.com/xkbcommon/libxkbcommon'/>
+            <manualcheck date='20150610' interval='60' mirror='https://github.com/xkbcommon/libxkbcommon/releases'/>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -37,26 +37,35 @@
                         <dep>xcb-util</dep>
                         <dep>xproto-base</dep>
                         <dep>yajl</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+            <![CDATA[tar xf ${SRCDIR}/xkbcommon-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME} 
+            <![CDATA[cd libxkbcommon-xkbcommon-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 	    bash autogen.sh
 	    ./configure --prefix=/usr --sysconfdir=/etc 
-	    make
+	    make -j $jobcount 
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME} 
+            <![CDATA[cd  libxkbcommon-xkbcommon-${PKGVERSION}
 	    make install DESTDIR=${TGTDIR}
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME} 
+            <![CDATA[rm -rf libxkbcommon-xkbcommon-${PKGVERSION}
 ]]>
         </clean>
     </package>

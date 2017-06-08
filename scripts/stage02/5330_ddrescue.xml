@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="ddrescue"
-		version="1.20"
+		version="1.21"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                          
-				<pkg sha1="7e64aea5744a195094f11f9d24486853141a7d49">ddrescue-1.20.tar.lz</pkg>
+				<pkg sha1="0a216c53b486979bc97cd8e7e7b79c621c305862">ddrescue-1.21.tar.lz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/ddrescue/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="180" page="http://ftp.gnu.org/gnu/ddrescue/" />
+			<manualcheck date="20160701" interval="180" page="http://ftp.gnu.org/gnu/ddrescue/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/ddrescue/">
 					<atext linktext="ddrescue-1.22." />
 					<atext linktext="ddrescue-1.23." />
-					<atext linktext="ddrescue-1.21." />
-					<atext linktext="ddrescue-1.20.1." />
-					<atext linktext="ddrescue-1.20.2." />
+					<atext linktext="ddrescue-1.24." />
+					<atext linktext="ddrescue-1.21.1." />
+					<atext linktext="ddrescue-1.21.2." />
 					<atext linktext="ddrescue-2." />
 				</page>
 			</check>
@@ -41,7 +41,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --sysconfdir=/etc --prefix=/usr && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --sysconfdir=/etc --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<test />

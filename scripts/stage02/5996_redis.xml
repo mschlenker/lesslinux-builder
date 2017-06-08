@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='redis' version='3.0.7' install='chroot'>
+    <package name='redis' version='3.2.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='e56b4b7e033ae8dbf311f9191cf6fdf3ae974d1c'>
-                    redis-3.0.7.tar.gz
+                <pkg sha1='26c0fc282369121b4e278523fce122910b65fbbf'>
+                    redis-3.2.1.tar.gz
                 </pkg>
                 <mirror>
                     http://download.redis.io/releases/
                 </mirror>
             </file>
-            <manualcheck date='20160412' interval='60' mirror='http://download.redis.io/releases/'/>
+            <manualcheck date='20160701' interval='60' mirror='http://download.redis.io/releases/'/>
         </sources>
 	<builddeps>
                         <dep>autoconf</dep>
@@ -30,6 +30,7 @@
                         <dep>make</dep>
                         <dep>openssl</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -38,7 +39,15 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make PREFIX=/usr 
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+make -j $jobcount PREFIX=/usr 
 ]]>
         </build>
         <install>

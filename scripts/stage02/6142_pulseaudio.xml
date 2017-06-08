@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='pulseaudio' version='7.1' install='chroot'>
+    <package name='pulseaudio' version='9.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='dc35a8aa66c513ac989319e13a18e317d8e432b3'>
-                    pulseaudio-7.1.tar.xz
+                <pkg sha1='d9a9d7cb667ed95ee1de4b6544d5c7444c5a0064'>
+                    pulseaudio-9.0.tar.xz
                 </pkg>
                 <mirror>
                     http://freedesktop.org/software/pulseaudio/releases/
                 </mirror>
             </file>
-            <manualcheck date='20160115' interval='60' mirror='http://freedesktop.org/software/pulseaudio/releases/'/>
+            <manualcheck date='20160701' interval='60' mirror='http://freedesktop.org/software/pulseaudio/releases/'/>
         </sources>
 	<builddeps>
                         <dep>alsa-lib</dep>
@@ -63,6 +63,7 @@
                         <dep>udev</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
@@ -71,8 +72,16 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

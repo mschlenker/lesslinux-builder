@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="libpcap"
-		version="1.7.4"
+		version="1.8.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="3f31a7706c1487fca36b8379e511965a8d7cbd70">libpcap-1.7.4.tar.gz</pkg>
+				<pkg sha1="428d91c6db1646ffa8d72dd9565dc8d54dd355bb">libpcap-1.8.0.tar.gz</pkg>
 				<mirror>http://www.tcpdump.org/release/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="120" page="http://www.tcpdump.org/release/" />
+			<manualcheck date="20160923" interval="120" page="http://www.tcpdump.org/release/" />
 			<check>
 				<page html="http://www.tcpdump.org/release/">
-					<atext linktext="libpcap-1.7.7." />
-					<atext linktext="libpcap-1.7.8." />
-					<atext linktext="libpcap-1.7.9." />
-					<atext linktext="libpcap-1.7.5." />
-					<atext linktext="libpcap-1.7.6." />
-					<atext linktext="libpcap-1.8." />
+					<atext linktext="libpcap-1.8.1." />
+					<atext linktext="libpcap-1.8.2." />
+					<atext linktext="libpcap-1.8.3." />
+					<atext linktext="libpcap-1.8.4." />
+					<atext linktext="libpcap-1.8.5." />
 					<atext linktext="libpcap-1.9." />
 					<atext linktext="libpcap-1.10." />
+					<atext linktext="libpcap-1.11." />
 					<atext linktext="libpcap-2." />
 				</page>
 			</check>
@@ -56,7 +56,15 @@
 			
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/usr --sysconfdir=/etc
-			make
+			  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount 
 			
 			]]>
 		</build>

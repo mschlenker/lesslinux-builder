@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='google-api-python-client' version='20141008' install='chroot'>
+    <package name='google-api-python-client' version='1.5.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='ce8ebc570e62f0eda585da42120fa3784ecdba13'>
-                    google-api-python-client-20141008.tar.bz2
+                <pkg sha1='f46b94b03bf7b9ba2f8671f62a341b5aa2a4c07c'>
+                    google-api-python-client-1.5.1.tar.gz
                 </pkg>
                 <mirror>
-                    http://distfiles.lesslinux.org/
+                    https://pypi.python.org/packages/b5/b4/e7030ec96ce8eb5b00707d2530906c0c6389eb61af8f5a7ca4ee29d02643/
                 </mirror>
             </file>
-            <manualcheck date='20141008' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+            <manualcheck date='20160701' interval='60' mirror='http://distfiles.lesslinux.org/'/>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -36,23 +36,23 @@
                         <dep>xpra</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py config
 python setup.py build
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
 ]]>
         </clean>
     </package>

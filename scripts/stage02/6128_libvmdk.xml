@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libvmdk-alpha' version='20150325' install='chroot'>
+    <package name='libvmdk-alpha' version='20160119' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='a16469073686a0c6bab5374ff4892a9977342e49'>
-                    libvmdk-alpha-20150325.tar.gz
+                <pkg sha1='e08503738d28abd287d38506ec7d1da2079d5737'>
+                    libvmdk-alpha-20160119.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libvmdk/releases/download/20150325/
+                    https://github.com/libyal/libvmdk/releases/download/20160119/
                 </mirror>
             </file>
-            <manualcheck date='20150423' interval='60' mirror='https://github.com/libyal/libvmdk/releases/download/20150325/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libvmdk/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -41,6 +41,7 @@
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -49,8 +50,16 @@
         <patch/>
         <build>
             <![CDATA[cd libvmdk-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

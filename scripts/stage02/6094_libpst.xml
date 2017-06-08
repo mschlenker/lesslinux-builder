@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libpst' version='0.6.64' install='destdir'>
+    <package name='libpst' version='0.6.66' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='28b7717c8526acfbc93f88819b9ac89cb29d942e'>
-                    libpst-0.6.64.tar.gz
+                <pkg sha1='02fe2035df93e4006ac92df20038c9c82f77f13e'>
+                    libpst-0.6.66.tar.gz
                 </pkg>
                 <mirror>
                     http://www.five-ten-sg.com/libpst/packages/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='http://www.five-ten-sg.com/libpst/packages/'/>
+            <manualcheck date='20160701' interval='60' mirror='http://www.five-ten-sg.com/libpst/packages/'/>
         </sources>
 	<builddeps>
                         <dep>ImageMagick</dep>
@@ -35,6 +35,7 @@
                         <dep>sed</dep>
                         <dep>xz</dep>
 			<dep>boost</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -43,8 +44,16 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-libpst-shared --enable-python 
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

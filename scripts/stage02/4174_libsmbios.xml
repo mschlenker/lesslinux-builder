@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="libsmbios"
-		version="2.2.28"
+		version="2.3.0"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="54c267411d2225cd54a3c8a696ca5c2a74e9d66e">libsmbios-2.2.28.tar.bz2</pkg>
-				<mirror>http://linux.dell.com/libsmbios/download/libsmbios/libsmbios-2.2.28/</mirror>
+				<pkg sha1="34d011e4ef79b07c66db566a611360314ddf2d50">libsmbios-2.3.0.tar.xz</pkg>
+				<mirror>http://linux.dell.com/libsmbios/download/libsmbios/libsmbios-2.3.0/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://linux.dell.com/libsmbios/download/libsmbios/" />
+			<manualcheck date="20160701" interval="180" page="http://linux.dell.com/libsmbios/download/libsmbios/" />
 			<check>
 				<page html="http://linux.dell.com/libsmbios/download/libsmbios/">
-					<atext linktext="libsmbios-2.2.29" />
-					<atext linktext="libsmbios-2.2.30" />
-					<atext linktext="libsmbios-2.2.31" />
-					<atext linktext="libsmbios-2.3" />
+					<atext linktext="libsmbios-2.3.1" />
+					<atext linktext="libsmbios-2.3.2" />
+					<atext linktext="libsmbios-2.3.3" />
 					<atext linktext="libsmbios-2.4" />
+					<atext linktext="libsmbios-2.5" />
 					<atext linktext="libsmbios-3." />
 				</page>
 			</check>
@@ -49,7 +49,7 @@
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>

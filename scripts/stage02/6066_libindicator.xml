@@ -51,26 +51,50 @@
                         <dep>tar</dep>
 			<dep>gnome-common</dep>
 			<dep>ido</dep>
+			<dep>gcc54</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+	 <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+sed '/-Werror/s/$/ -Wno-deprecated-declarations/' -i libindicator/Makefile.{am,in}
+  sed 's/LIBINDICATOR_LIBS+="$LIBM"/LIBINDICATOR_LIBS+=" $LIBM"/g' -i configure
+  sed 's/LIBM="-lmw"/LIBM=" -lmw"/g' -i configure
+  sed 's/LIBM="-lm"/LIBM=" -lm"/g' -i configure
+  sed 's/LIBS="-lm  $LIBS"/LIBS=" -lm  $LIBS"/g' -i configure
+  sed 's/LIBS="-lmw  $LIBS"/LIBS=" -lmw  $LIBS"/g' -i configure
+]]>
+	
+	</patch>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-find . -type f -exec sed -i 's/lglib-2\.0-lm/lglib-2.0 -lm/g' {} \; 
-sed -i 's/-Werror//g' Makefile
-sed -i 's/-Werror//g' tests/Makefile
-sed -i 's/-Werror//g' tools/Makefile
-sed -i 's/-Werror//g' libindicator/Makefile
-find . -type f -exec sed -i 's/lglib-2\.0-lm/lglib-2.0 -lm/g' {} \; 
-make
+export CC="/usr/local/gcc54/bin/gcc54"
+export CXX="/usr/local/gcc54/bin/g++54"
+  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc /usr/local/gcc54/bin/g++54" 
+			fi
+./configure \
+    --prefix='/usr' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --disable-static \
+    --disable-tests
+make -j $jobcount 
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+export CC="/usr/local/gcc54/bin/gcc54"
+export CXX="/usr/local/gcc54/bin/g++54"
 make install DESTDIR=${TGTDIR} 
 ]]>
         </install>

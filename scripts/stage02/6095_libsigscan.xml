@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libsigscan' version='20150125' install='chroot'>
+    <package name='libsigscan' version='20160312' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='63bf98bc154adf0c1f2d3814f8a254357b1714ae'>
-                    libsigscan-experimental-20150125.tar.gz
+                <pkg sha1='0cceabc4bb8d04cfdbe72f6e127dd337c122a592'>
+                    libsigscan-experimental-20160312.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libsigscan/releases/download/20150125/
+                    https://github.com/libyal/libsigscan/releases/download/20160312/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libsigscan/releases/download/20150125/'/>
+            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libsigscan/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -39,6 +39,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-experimental-${PKGVERSION}.tar.gz
@@ -47,8 +48,16 @@
         <patch/>
         <build>
             <![CDATA[cd libsigscan-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

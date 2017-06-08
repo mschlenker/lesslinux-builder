@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="desktop-file-utils"
-		version="0.22"
+		version="0.23"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                   
-				<pkg sha1="617f130091dbcc5e739d82ee48e2b3932da5957d">desktop-file-utils-0.22.tar.xz</pkg>
+				<pkg sha1="10e9df65fdf2b896ce4d5f16616ea0df7c01d8f8">desktop-file-utils-0.23.tar.xz</pkg>
 				<mirror>http://www.freedesktop.org/software/desktop-file-utils/releases/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://www.freedesktop.org/software/desktop-file-utils/releases/" />
+			<manualcheck date="20160701" interval="180" page="http://www.freedesktop.org/software/desktop-file-utils/releases/" />
 			<check>
 				<page html="http://www.freedesktop.org/software/desktop-file-utils/releases/">
 					<atext linktext="desktop-file-utils-0.24.t" />
 					<atext linktext="desktop-file-utils-0.25.t" />
 					<atext linktext="desktop-file-utils-0.26.t" />
 					<atext linktext="desktop-file-utils-0.27.t" />
-					<atext linktext="desktop-file-utils-0.23.t" />
+					<atext linktext="desktop-file-utils-0.28.t" />
 					<atext linktext="desktop-file-utils-1." />
 				</page>
 			</check>
@@ -47,8 +47,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="libvshadow"
-		version="20150106"
+		version="20160110"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="18ee3ace9f06b807f59e1cd194f0c9d5f2bb11fa">libvshadow-alpha-20150106.tar.gz</pkg>
-				<mirror>https://github.com/libyal/libvshadow/releases/download/20150106/</mirror>
+				<pkg sha1="e4c1d375dfdd040bbe539949cb9b7f37c520cdc9">libvshadow-alpha-20160110.tar.gz</pkg>
+				<mirror>https://github.com/libyal/libvshadow/releases/download/20160110/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="120" page="https://github.com/libyal/libvshadow/releases" />
+			<manualcheck date="20160701" interval="120" page="https://github.com/libyal/libvshadow/releases" />
 			<check>
 				<page html="https://github.com/libyal/libvshadow/releases">
-					<atext href="libvshadow-alpha-201505" />
-					<atext href="libvshadow-alpha-201506" />
-					<atext href="libvshadow-alpha-201507" />
-					<atext href="libvshadow-alpha-201508" />
-					<atext href="libvshadow-alpha-201509" />
-					<atext href="libvshadow-alpha-20151" />
-					<atext href="libvshadow-alpha-2016" />
+					<atext href="libvshadow-alpha-201610" />
+					<atext href="libvshadow-alpha-201611" />
+					<atext href="libvshadow-alpha-201607" />
+					<atext href="libvshadow-alpha-201608" />
+					<atext href="libvshadow-alpha-201609" />
+					<atext href="libvshadow-alpha-20161" />
+					<atext href="libvshadow-alpha-2017" />
 				</page>
 			</check>
 		</sources>
@@ -40,7 +40,7 @@
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -51,9 +51,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc --enable-python 
-			make 
+			make  -j $jobcount
 			]]>
 		</build>
 		<test />

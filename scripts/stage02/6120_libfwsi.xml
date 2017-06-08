@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libfwsi-experimental' version='20150124' install='chroot'>
+    <package name='libfwsi-experimental' version='20160110' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='baaab148ac727c459af64a288e7375cfa9c1e463'>
-                    libfwsi-experimental-20150124.tar.gz
+                <pkg sha1='cefbd0409f80124cc0218fc42ae15b2a3bdc6365'>
+                    libfwsi-experimental-20160110.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libfwsi/releases/download/20150124/
+                    https://github.com/libyal/libfwsi/releases/download/20160110/
                 </mirror>
             </file>
-            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/libfwsi/releases/download/20150124/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libfwsi/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -39,6 +39,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -47,8 +48,16 @@
         <patch/>
         <build>
             <![CDATA[cd libfwsi-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

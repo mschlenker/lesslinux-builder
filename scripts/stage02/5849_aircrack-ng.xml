@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="aircrack-ng"
-		version="1.1"
+		version="1.2-rc4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="16eed1a8cf06eb8274ae382150b56589b23adf77">aircrack-ng-1.1.tar.gz</pkg>
+				<pkg sha1="2b2fbe50fedb606b3bd96a34d49f07760e8e618a">aircrack-ng-1.2-rc4.tar.gz</pkg>
 				<mirror>http://download.aircrack-ng.org/</mirror>
 			</file>
-			<!-- <manualcheck date="20120822" interval="120" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
-			<check>
+			<manualcheck date="20160701" interval="180" page="https://www.aircrack-ng.org/downloads.html" />
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
 					<atext linktext="1.42.7." />
 					<atext linktext="1.42.8." />
@@ -35,6 +35,7 @@
                         <dep>openssl</dep>
                         <dep>sed</dep>
 			<dep>wireless_tools</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -45,10 +46,17 @@
 		</unpack>
 		<build>
 			<![CDATA[ 
-			
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -i 's/-Werror//g' common.mak
-			make
+			make -j $jobcount
 
 			]]>
 		</build>

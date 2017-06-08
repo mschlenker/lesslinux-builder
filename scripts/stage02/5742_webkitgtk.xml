@@ -1,20 +1,24 @@
 <llpackages>
 	<package 
 		name="webkit"
-		version="2.4.9"
+		version="2.4.11"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="fbe02db8a4f01a70e7cdf0d16f8a18463e18b104">webkitgtk-2.4.9.tar.xz</pkg>
+				<pkg sha1="e425ae86084ab6335dadb368c9e8f53600665d54">webkitgtk-2.4.11.tar.xz</pkg>
 				<mirror>http://webkitgtk.org/releases/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="60" page="http://webkitgtk.org/releases/" />
+			<file>                                                                                          
+				<pkg sha1="b6d1457ad05a63aa1a40d53db65e9c9983cd9ac0">webkitgtk-2.4.11-gcc6-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="60" page="http://webkitgtk.org/releases/" />
 			<check>
 				<page html="http://webkitgtk.org/releases/">
-					<atext linktext="webkitgtk-2.4.10." />
-					<atext linktext="webkitgtk-2.4.11." />
+					<atext linktext="webkitgtk-2.4.16." />
+					<atext linktext="webkitgtk-2.4.17." />
 					<atext linktext="webkitgtk-2.4.12." />
 					<atext linktext="webkitgtk-2.4.13." />
 					<atext linktext="webkitgtk-2.4.14." />
@@ -95,36 +99,30 @@
 			<dep>distcc</dep>
 			<dep>nspr</dep>
 			<dep>nss</dep>
-			<dep>gcc49</dep>
                 </builddeps> 
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}gtk-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}-gcc6-1.patch | patch -p1 
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}gtk-${PKGVERSION}
-			# FIXME: Try to build with distcc
+			jobcount=` grep -c processor /proc/cpuinfo `
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc49/bin/gcc49"
-				export CXX="distcc /usr/local/gcc49/bin/g++49"
-			else
-				export CC=/usr/local/gcc49/bin/gcc49 
-				export CXX=/usr/local/gcc49/bin/g++49
+				export CC="distcc gcc"
+				export CXX="distcc g++"
 			fi
-			# ./configure --prefix=/usr --sysconfdir=/etc  --enable-geolocation=no --enable-gtk-doc=no --disable-webgl 
 			./configure  --prefix=/usr --sysconfdir=/etc \
 				--enable-geolocation=no --enable-gtk-doc=no --enable-introspection  
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				make -j $jobcount
-				make
-			else
-				make -j ` grep -c processor /proc/cpuinfo ` 
-			fi
-			make -j ` grep -c processor /proc/cpuinfo ` LIBS='-ldl -lGL -lglapi'
-			make 
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

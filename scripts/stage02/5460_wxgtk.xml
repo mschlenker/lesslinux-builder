@@ -2,8 +2,7 @@
 	<package 
 		name="wxWidgets"
 		version="2.8.12"
-		class="user"
-		>
+		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<!-- <file>                         
@@ -14,9 +13,9 @@
 				<pkg sha1="191d313d540c2735172a53199a997c52d4eef31b">wxWidgets-2.8.12.tar.gz</pkg>
 				<mirror>http://downloads.sourceforge.net/project/wxwindows/2.8.12/</mirror>
 			</file>
-			<file>                         
-				<pkg sha1="7ed46708edd87bb74cf99126b6e83fea6d5c7055">scintilla303.tgz</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+			<file>                                                                               
+				<pkg sha1="582efe82287c110fbee1d0877363ec73bf6393ea">scintilla366.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/3.6.6/</mirror>
 			</file>
 		</sources>
 		<builddeps>
@@ -56,10 +55,15 @@
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
+			<dep>gcc54</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/scintilla303.tgz
+			
+			echo 'Nothing to unpack!'
+			exit 0
+			
+			tar xzf ${SRCDIR}/scintilla366.tgz
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
@@ -73,6 +77,11 @@
 		</patch> -->
 		<build>
 			<![CDATA[
+			
+			echo 'Nothing to build!'
+			exit 0
+			
+			export PATH=/usr/local/gcc54/bin:$PATH
 			cd scintilla/gtk
 			make prefix=/usr
 			cd ../../${PKGNAME}-${PKGVERSION}
@@ -82,6 +91,13 @@
 		<test />
 		<install>
 			<![CDATA[
+			
+			echo 'Nothing to install!'
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			exit 0
+			
+			export PATH=/usr/local/gcc54/bin:$PATH
 			cd ${PKGNAME}-${PKGVERSION}
 			make install
 			]]>

@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="davfs2"
-		version="1.5.2"
+		version="1.5.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="438ea6e08fcdfe0b9ce3e284f11b3b3a4ab371f4">davfs2-1.5.2.tar.gz</pkg>
+				<pkg sha1="e5156ef3a9fd8f7c21f82c337c8d12e0fe56a6ea">davfs2-1.5.4.tar.gz</pkg>
 				<mirror>http://download.savannah.gnu.org/releases/davfs2/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://download.savannah.gnu.org/releases/davfs2/" />
+			<manualcheck date="20160701" interval="180" page="http://download.savannah.gnu.org/releases/davfs2/" />
 			<check>
 				<page html="http://download.savannah.gnu.org/releases/davfs2/">
-					<atext linktext="davfs2-1.5.3." />
-					<atext linktext="davfs2-1.5.4." />
+					<atext linktext="davfs2-1.5.8." />
+					<atext linktext="davfs2-1.5.9." />
 					<atext linktext="davfs2-1.5.5." />
 					<atext linktext="davfs2-1.5.6." />
 					<atext linktext="davfs2-1.5.7." />
@@ -39,6 +39,7 @@
                         <dep>make</dep>
                         <dep>neon</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -53,7 +54,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --sysconfdir=/etc
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

@@ -1,13 +1,17 @@
 <llpackages>
 	<package 
 		name="qt5"
-		version="5.5.0"
+		version="5.7.0"
 		class="user">
 		<license>GPLv2</license>
 		<sources>                                                                                                
 			<file>
-				<pkg sha1="4409ef12d1017a9b5e6733ea27596a6ca637a88c">qt-everywhere-opensource-src-5.5.0.tar.xz</pkg>
-				<mirror>http://download.qt-project.org/official_releases/qt/5.5/5.5.0/</mirror>
+				<pkg sha1="bfc3d07ffba27d96cf070f74148f34a668646a19">qt-everywhere-opensource-src-5.7.0.tar.xz</pkg>
+				<mirror>http://download.qt-project.org/official_releases/qt/5.7/5.7.0/</mirror>
+			</file>
+			<file>
+				<pkg sha1="53da4c810ec04a0e7e5e1da4715b4eabea1e0d30">qt-5.7.0-qtwebengine_glibc224-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
 			<!-- <file>
 				<pkg sha1="5b85c6127b22d0c1c25a21dcb147ad3c023f8196">qt-everywhere-opensource-src-4.8.1-gcc_fix-1.patch</pkg>
@@ -17,7 +21,7 @@
 				<pkg sha1="c2b2b4f20bc76f298171e35af10866094f60d574">qt-everywhere-opensource-src-4.8.2-glib_fix-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file> -->
-			<manualcheck date="20150610" interval="180" page="http://qt-project.org/downloads" />
+			<manualcheck date="20160701" interval="180" page="http://qt-project.org/downloads" />
 			<!-- <check>
 				<page html="http://releases.qt-project.org/qt4/source/">
 					<atext linktext="qt-everywhere-opensource-src-4.8.8." />
@@ -110,27 +114,53 @@
 			tar xf ${SRCDIR}/qt-everywhere-opensource-src-${PKGVERSION}.tar.xz 
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glib_fix-1.patch | patch -p1
-			sed -i '/-Werror/d' src/3rdparty/webkit/Source/WebKit.pri
+			cat ${SRCDIR}/qt-5.7.0-qtwebengine_glibc224-1.patch | patch -p1
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
 			cd qt-everywhere-opensource-src-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
 				export CC='distcc gcc'
 				export CXX='distcc g++'
-				./configure -prefix /usr/compat.new -gtkstyle -opensource -release -system-sqlite \
-				-silent -no-nis -confirm-license -nomake examples -nomake tests -no-pch -skip qtwebengine
+				./configure -prefix /usr \
+					-bindir         /usr/bin/qt5                \
+					-plugindir      /usr/lib/qt5/plugins        \
+					-importdir      /usr/lib/qt5/imports        \
+					-headerdir      /usr/include/qt5            \
+					-datadir        /usr/share/qt5              \
+					-docdir         /usr/share/doc/qt5          \
+					-translationdir /usr/share/qt5/translations \
+					-examplesdir    /usr/share/doc/qt5/examples \
+					-opensource \
+					-release -system-sqlite \
+					-silent -no-nis -confirm-license \
+					-nomake examples \
+					-nomake tests \
+					-no-pch -optimized-qmake -dbus-linked -openssl-linked
 				make -j $jobcount 
 			else
-				./configure -prefix /usr/compat.new -gtkstyle -opensource -release -system-sqlite \
-				-silent -no-nis -confirm-license -nomake examples -nomake tests -skip qtwebengine
-				make -j 6
+				./configure -prefix /usr \
+					-bindir         /usr/bin/qt5                \
+					-plugindir      /usr/lib/qt5/plugins        \
+					-importdir      /usr/lib/qt5/imports        \
+					-headerdir      /usr/include/qt5            \
+					-datadir        /usr/share/qt5              \
+					-docdir         /usr/share/doc/qt5          \
+					-translationdir /usr/share/qt5/translations \
+					-examplesdir    /usr/share/doc/qt5/examples \
+					-opensource \
+					-release -system-sqlite \
+					-silent -no-nis -confirm-license \
+					-nomake examples \
+					-nomake tests \
+					-no-pch -optimized-qmake -dbus-linked -openssl-linked
+				make -j 4
 			fi
 			]]>
 		</build>
@@ -139,6 +169,9 @@
 			<![CDATA[
 			cd qt-everywhere-opensource-src-${PKGVERSION}
 			make install 
+			for file in moc uic rcc qmake lconvert lrelease lupdate; do
+				ln -sfrvn /usr/bin/qt5/$file /usr/bin/$file-qt5
+			done
 			]]>
 		</install>
 		<clean>

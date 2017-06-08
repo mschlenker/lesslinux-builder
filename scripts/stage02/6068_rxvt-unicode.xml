@@ -1,21 +1,21 @@
 <llpackages>
-    <package name='rxvt-unicode' version='9.21' install='destdir'>
+    <package name='rxvt-unicode' version='9.22' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='33297e5303e45d27e07f40060d3655ae019eefdc'>
-                    rxvt-unicode-9.21.tar.bz2
+                <pkg sha1='e575b869782fbfed955f84f48b204ec888d91ba1'>
+                    rxvt-unicode-9.22.tar.bz2
                 </pkg>
                 <mirror>
                     http://dist.schmorp.de/rxvt-unicode/Attic/
                 </mirror>
             </file>
-            <manualcheck date='20150823' interval='180' mirror='http://dist.schmorp.de/rxvt-unicode/Attic/'/>
+            <manualcheck date='20160701' interval='180' mirror='http://dist.schmorp.de/rxvt-unicode/Attic/'/>
 	        <check>
 				<page html="http://dist.schmorp.de/rxvt-unicode/Attic/">
-					<atext href="rxvt-unicode-9.22." />
+					<atext href="rxvt-unicode-9.28." />
 					<atext href="rxvt-unicode-9.23." />
 					<atext href="rxvt-unicode-9.24." />
 					<atext href="rxvt-unicode-9.25." />
@@ -53,6 +53,7 @@
                         <dep>startup-notification</dep>
                         <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
@@ -61,8 +62,16 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-everything 
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

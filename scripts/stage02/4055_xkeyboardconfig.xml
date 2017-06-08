@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="xkeyboard-config"
-		version="2.16"
+		version="2.18"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>          
-				<pkg sha1="6b2f374ccef542eed8ac29f81996cf9ca81cd3b6">xkeyboard-config-2.16.tar.bz2</pkg>
+				<pkg sha1="d41335ec37b363ddaf2f0dcb121436dfc627ced5">xkeyboard-config-2.18.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="180" page="http://cgit.freedesktop.org/xkeyboard-config/log/" />
+			<manualcheck date="20160701" interval="180" page="http://cgit.freedesktop.org/xkeyboard-config/log/" />
 			<check>
 				<page html="ftp://ftp.x.org/pub/individual/data/xkeyboard-config/">
 					<atext linktext="xkeyboard-config-2.20." />
-					<atext linktext="xkeyboard-config-2.17." />
-					<atext linktext="xkeyboard-config-2.18." />
+					<atext linktext="xkeyboard-config-2.21." />
+					<atext linktext="xkeyboard-config-2.22." />
 					<atext linktext="xkeyboard-config-2.19." />
 					<atext linktext="xkeyboard-config-3." />
 				</page>
@@ -50,7 +50,15 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			# bash autogen.sh
-			./configure --prefix=/usr --sysconfdir=/etc  --with-xkb-rules-symlink=xorg && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc  --with-xkb-rules-symlink=xorg && make -j $jobcount
 			]]>
 		</build>
 		<test />

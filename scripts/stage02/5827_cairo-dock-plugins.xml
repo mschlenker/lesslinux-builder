@@ -80,6 +80,7 @@
                         <dep>webkit</dep>
 			<dep>webkit26</dep>
                         <dep>xproto-base</dep>
+			<!-- dep>distcc</dep -->
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -98,20 +99,14 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			mkdir build ; cd build
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc49/bin/gcc49"
-				export CXX="distcc /usr/local/gcc49/bin/g++49"
-			else
-				export CC=/usr/local/gcc49/bin/gcc49 
-				export CXX=/usr/local/gcc49/bin/g++49
+				export CC="distcc gcc"
+				export CXX="distcc g++"
 			fi
 			cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				make -j $jobcount
-			else
-				make
-			fi
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

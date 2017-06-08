@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='hivex' version='1.3.11' install='destdir'>
+    <package name='hivex' version='1.3.13' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='27861b1b72835647d57cf32fb6830f7d7282bae7'>
-                  hivex-1.3.11.tar.gz
+                <pkg sha1='cf5bced58d1a6c33a29cf2647c3ac40649700711'>
+                  hivex-1.3.13.tar.gz
                 </pkg>
                 <mirror>
                     http://libguestfs.org/download/hivex/
                 </mirror>
             </file>
-            <manualcheck date='20150823' interval='180' mirror='http://archive.ubuntu.com/ubuntu/pool/universe/h/hivex/'/>
+            <manualcheck date='20160701' interval='180' mirror='http://archive.ubuntu.com/ubuntu/pool/universe/h/hivex/'/>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -44,6 +44,7 @@
                         <dep>setuptools</dep>
                         <dep>WebOb</dep>
                         <dep>xz</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[
@@ -54,8 +55,17 @@ tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
         <build>
             <![CDATA[
 cd ${PKGNAME}-${PKGVERSION}
+jobcount=2
+export LDFLAGS=-lncurses
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="libass"
-		version="0.12.3"
+		version="0.13.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="47d5850a358df899f468837d0928ee529c54ee45">libass-0.12.3.tar.xz</pkg>
-				<mirror>https://github.com/libass/libass/releases/download/0.12.3/</mirror>
+				<pkg sha1="cd6f5821bbea8a7316f9685a6054531cdd801458">libass-0.13.3.tar.xz</pkg>
+				<mirror>https://github.com/libass/libass/releases/download/0.13.3/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="https://github.com/libass/libass/releases" />
+			<manualcheck date="20160923" interval="180" page="https://github.com/libass/libass/releases" />
 			<check>
 				<page html="https://github.com/libass/libass/releases">
-					<atext href="libass-0.12.8." />
-					<atext href="libass-0.12.4." />
-					<atext href="libass-0.12.5." />
-					<atext href="libass-0.12.6." />
-					<atext href="libass-0.12.7." />
-					<atext href="libass-0.13." />
+					<atext href="libass-0.13.8." />
+					<atext href="libass-0.13.4." />
+					<atext href="libass-0.13.5." />
+					<atext href="libass-0.13.6." />
+					<atext href="libass-0.13.7." />
 					<atext href="libass-0.14." />
+					<atext href="libass-0.15." />
 					<atext href="libass-1.0." />
 				</page>
 			</check>
@@ -45,6 +45,7 @@
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -59,8 +60,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 			./configure --prefix=/usr --disable-static 
-			make
+			make -j $jobcount
 			]]>
 		</build>
 		<test />

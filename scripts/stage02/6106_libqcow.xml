@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libqcow-alpha' version='20150105' install='chroot'>
+    <package name='libqcow-alpha' version='20160123' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='9724dc8030084db7ea5a37135177712308a9c553'>
-                    libqcow-alpha-20150105.tar.gz
+                <pkg sha1='4b670f8af2791d42e0be9bc6d37d13229bcf44c5'>
+                    libqcow-alpha-20160123.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libqcow/releases/download/20150105/
+                    https://github.com/libyal/libqcow/releases/download/20160123/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='https://github.com/libyal/libqcow/releases/download/20150105/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libqcow/releases'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -41,7 +41,7 @@
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
-			<dep>gcc49</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -50,9 +50,16 @@
         <patch/>
         <build>
             <![CDATA[cd libqcow-${PKGVERSION}
-CC=/usr/local/gcc49/bin/gcc49 CXX=/usr/local/gcc49/bin/g++49 \
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python
-make
+	      jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python2
+make -j $jobcount 
 ]]>
         </build>
         <install>

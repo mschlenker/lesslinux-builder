@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="lxqt-about"
-		version="0.7.0"
+		version="0.10.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="cdb875bc5a09a426d28d3ce623afb2c09384a10f">lxqt-about-0.7.0.tar.xz</pkg>
-				<mirror>http://lxqt.org/downloads/lxqt/0.7.0/</mirror>
+				<pkg sha1="f40336f99ceb57643e81ffc18bf6e35a48ec4559">lxqt-about-0.10.0.tar.xz</pkg>
+				<mirror>http://lxqt.org/downloads/lxqt/0.10.0/</mirror>
 			</file>
 			<manualcheck date="20140731" interval="60" page="http://lxqt.org/downloads/lxqt/" />
 			<!-- <check>
@@ -26,42 +26,56 @@
 			</check> -->
 		</sources>
 		<builddeps>
+                        <dep>Mesa</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
+                        <dep>distcc</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
+                        <dep>kwindowsystem</dep>
                         <dep>liblxqt</dep>
+                        <dep>libqtxdg</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
-                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			mkdir ${PKGNAME}
-			tar -C ${PKGNAME} -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar -xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			make 
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
+			# export PATH=/usr/compat.old/qt4/bin:$PATH
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

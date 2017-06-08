@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="readline"
-		version="6.3"
+		version="7.0"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                     
-				<pkg sha1="017b92dc7fd4e636a2b5c9265a77ccc05798c9e1">readline-6.3.tar.gz</pkg>
+				<pkg sha1="d9095fa14a812495052357e1d678b3f2ac635463">readline-7.0.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/readline/</mirror>
 			</file>
-			<file>                                     
-				<pkg sha1="d6e300cd6f7ffbe680af400b98895a2abeaedd10">readline-6.3-upstream_fixes-1.patch</pkg>
+			<!-- <file>                                     
+				<pkg sha1="3b61771c11b5858dfbeac205cde2791e4f142c82">readline-6.3-upstream_fixes-3.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file>
-			<manualcheck date="20150823" interval="365" page="http://ftp.gnu.org/gnu/readline/" />
+			</file> -->
+			<manualcheck date="20160923" interval="365" page="http://ftp.gnu.org/gnu/readline/" />
 			<!-- <check>
 				<page html="http://ftp.gnu.org/gnu/readline/">
 					<atext linktext="readline-6.2.1." />
@@ -25,21 +25,7 @@
 			</check> -->
 		</sources>
 		<builddeps>
-			<dep>linux_headers</dep>
-			<dep>glibc</dep>
-			<dep>man-pages</dep>
-			<dep>readjust</dep>
-			<dep>zlib</dep>
-			<dep>binutils</dep>
-			<dep>gmp</dep>
-			<dep>mpfr</dep>
-			<dep>mpc</dep>
-			<dep>gcc</dep>
-			<dep>sed</dep>
-			<dep>util-linux-ng</dep>
-			<dep>coreutils</dep>
-			<dep>ncurses</dep>
-			<dep>ncurses-8bit</dep>
+			<dep>grep</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -49,7 +35,7 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-1.patch | patch -p1
+			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-1.patch | patch -p1
 			sed -i '/MV.*old/d' Makefile.in
 			sed -i '/{OLDSUFF}/c:' support/shlib-install
 			
@@ -58,14 +44,22 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=` grep -c processor /proc/cpuinfo ` 
+			# if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+			#	DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+			#	export DISTCC_HOSTS
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	export CC="distcc gcc"
+			#	export CXX="distcc g++" 
+			# fi
 			case $(uname -m) 
 			in
 				x86_64) 
 					export CFLAGS="-fPIC"
-					./configure --prefix=/usr --libdir=/lib && make SHLIB_LIBS=-lncurses CFLAGS="-fPIC"
+					./configure --prefix=/usr --libdir=/lib && make -j $jobcount SHLIB_LIBS=-lncurses CFLAGS="-fPIC"
 				;;
 				*)
-					./configure --prefix=/usr --libdir=/lib && make SHLIB_LIBS=-lncurses
+					./configure --prefix=/usr --libdir=/lib && make -j $jobcount SHLIB_LIBS=-lncurses
 				;;
 			esac 
 			
@@ -76,7 +70,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			make DESTDIR=${TGTDIR} SHLIB_LIBS=-lncurses install
 			mkdir -p ${TGTDIR}/usr/lib
 			mv -v ${TGTDIR}/lib/lib{readline,history}.a ${TGTDIR}/usr/lib
 			rm -v ${TGTDIR}/lib/lib{readline,history}.so

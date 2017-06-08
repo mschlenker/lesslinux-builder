@@ -1,29 +1,25 @@
 <llpackages>
 	<package 
 		name="fuse"
-		version="2.9.4"
+		version="2.9.7"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                          
-				<pkg sha1="c8b25419f33624dc5240af6a5d26f2c04367ca71">fuse-2.9.4.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/fuse/fuse-2.X/2.9.4/</mirror>
+				<pkg sha1="cd174e3d37995a42fad32fac92f76cd18e24174f">fuse-2.9.7.tar.gz</pkg>
+				<mirror>https://github.com/libfuse/libfuse/releases/download/fuse-2.9.7/</mirror>
 			</file>  
-			<!-- <file>                          
-				<pkg sha1="215917455d1927cf552c5b8c2a535232b841a3c7">fuse-2.8.6.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
-			<manualcheck date="20150601" interval="180" page="http://sourceforge.net/projects/fuse/files/fuse-2.X/" />
+			<manualcheck date="20160701" interval="180" page="https://github.com/libfuse/libfuse/releases" />
 			<check>
-				<page html="http://sourceforge.net/projects/fuse/files/fuse-2.X/">
-					<atext linktext="2.9.7" />
-					<atext linktext="2.9.5" />
-					<atext linktext="2.9.6" />
+				<page html="https://github.com/libfuse/libfuse/releases">
+					<atext linktext="2.9.8" />
+					<atext linktext="2.9.9" />
+					<atext linktext="2.9.10" />
 					<atext linktext="2.11." />
 					<atext linktext="2.10." />
 					<atext linktext="3.0." />
 				</page>
-			</check>
+			</check> 
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

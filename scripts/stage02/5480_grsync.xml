@@ -1,20 +1,22 @@
 <llpackages>
 	<package 
 		name="grsync"
-		version="1.2.5"
+		version="1.2.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                       
-				<pkg sha1="c5bbf21d33f13e83af9ae650f683e3ba6c1e40ab">grsync-1.2.5.tar.gz</pkg>
+				<pkg sha1="7f834bf641c597cd189d4356e619d5f83267480c">grsync-1.2.6.tar.gz</pkg>
 				<mirror>http://downloads.sourceforge.net/project/grsync/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://sourceforge.net/projects/grsync/files/" />
+			<manualcheck date="20160701" interval="180" page="http://sourceforge.net/projects/grsync/files/" />
 			<check>
 				<page html="http://sourceforge.net/projects/grsync/files/">
-					<atext linktext="grsync-1.2.6." />
 					<atext linktext="grsync-1.2.7." />
+					<atext linktext="grsync-1.2.8." />
+					<atext linktext="grsync-1.2.9." />
+					<atext linktext="grsync-1.2.10." />
 					<atext linktext="grsync-1.3." />
 					<atext linktext="grsync-2." />
 				</page>
@@ -63,7 +65,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc --enable-unity=no && make LDFLAGS="-lm"
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --enable-unity=no && make -j $jobcount LDFLAGS="-lm"
 			]]>
 		</build>
 		<test />

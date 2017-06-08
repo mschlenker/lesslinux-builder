@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libesedb-experimental' version='20150409' install='chroot'>
+    <package name='libesedb-experimental' version='20151213' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='b2d8941aa74e8b5189b689810c125b194588463b'>
-                    libesedb-experimental-20150409.tar.gz
+                <pkg sha1='c12c75c3115f13787e19774e6cd4a9c02c8b27cb'>
+                    libesedb-experimental-20151213.tar.gz
                 </pkg>
                 <mirror>
-                    https://github.com/libyal/libesedb/releases/download/20150409/
+                    https://github.com/libyal/libesedb/releases/download/20151213/
                 </mirror>
             </file>
-            <manualcheck date='20150422' interval='60' mirror='https://github.com/libyal/libesedb/releases/download/20150409/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://github.com/libyal/libesedb/releases/'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -39,6 +39,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
@@ -47,8 +48,16 @@
         <patch/>
         <build>
             <![CDATA[cd libesedb-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
-make
+make -j $jobcount 
 ]]>
         </build>
         <install>

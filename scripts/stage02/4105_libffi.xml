@@ -2,15 +2,14 @@
 	<package 
 		name="libffi"
 		version="3.2.1"
-		class="lib"
-		>
+		class="lib">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                         
 				<pkg sha1="280c265b789e041c02e5c97815793dfc283fb1e6">libffi-3.2.1.tar.gz</pkg>
 				<mirror>ftp://sources.redhat.com/pub/libffi/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="180" page="http://mirrors.kernel.org/sources.redhat.com/libffi/" />
+			<manualcheck date="20160701" interval="180" page="http://mirrors.kernel.org/sources.redhat.com/libffi/" />
 			<check>
 				<page html="http://mirrors.kernel.org/sources.redhat.com/libffi/">
 					<atext linktext="libffi-3.2.4." />
@@ -47,11 +46,25 @@
 			fi
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/'  -i include/Makefile.in &&
+sed -e '/^includedir/ s/=.*$/=@includedir@/'  -e 's/^Cflags: -I${includedir}/Cflags:/'  -i libffi.pc.in  
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc && make -j $jobcount
 			]]>
 		</build>
 		<test />

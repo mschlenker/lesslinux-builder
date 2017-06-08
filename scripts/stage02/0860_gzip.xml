@@ -1,40 +1,51 @@
 <llpackages>
 	<package 
 		name="gzip"
-		version="1.6"
+		version="1.8"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="05bd01fc90178b806e0c13f9526e2ad392084085">gzip-1.6.tar.xz</pkg>
+				<pkg sha1="224bc2af5202eccf47f22357023d222011f9de78">gzip-1.8.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/gzip/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://ftp.gnu.org/gnu/gzip/" />
+			<manualcheck date="20160630" interval="365" page="http://ftp.gnu.org/gnu/gzip/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gzip/">
-					<atext linktext="gzip-1.6.1.t" />
-					<atext linktext="gzip-1.6.2.t" />
-					<atext linktext="gzip-1.6.3.t" />
-					<atext linktext="gzip-1.7." />
-					<atext linktext="gzip-1.8." />
+					<atext linktext="gzip-1.8.1.t" />
+					<atext linktext="gzip-1.8.2.t" />
+					<atext linktext="gzip-1.8.3.t" />
+					<atext linktext="gzip-1.9." />
+					<atext linktext="gzip-1.10." />
 					<atext linktext="gzip-2." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
-                        <dep>binutils</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<!-- <dep>e2fsprogs</dep> -->
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
                         <dep>gawk</dep>
-                        <dep>gcc</dep>
-                        <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
-                        <dep>linux_headers</dep>
-                        <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
+                        <dep>findutils</dep>
+                        <dep>groff</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -44,7 +55,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --bindir=/bin && make
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --bindir=/bin && make -j $jobcount
 			]]>
 		</build>
 		<test>

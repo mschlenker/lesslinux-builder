@@ -1,32 +1,16 @@
 <llpackages>
 	<package 
-		name="truecrypt"
-		version="7.1a"
+		name="VeraCrypt"
+		version="1.18a"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="d43e0dbe05c04e316447d87413c4f74c68f5de24">truecrypt-7.1a.tar.gz</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
+				<pkg sha1="f97bff49a7dfb992df18fed6051f84db3a6fb865">VeraCrypt_1.18a.tar.gz</pkg>
+				<mirror>https://github.com/veracrypt/VeraCrypt/archive/</mirror>
 			</file>
-			<file>                         
-				<pkg sha1="191d313d540c2735172a53199a997c52d4eef31b">wxWidgets-2.8.12.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/wxwindows/2.8.12/</mirror>
-			</file>
-			<!-- <file>                         
-				<pkg sha1="5b0e985afd77153e8e4b9e14987d4b1a9de53acc">wxWidgets-2.8.10-glib.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file> -->
-			<file>  
-				<pkg sha1="417d38d4cdab6b75b26082c8a94bb981e4e6dd80">truecrypt-6.3a-pkcs.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<file>    
-				<pkg sha1="8bbb22898c84e35efb29524a4daca3ca16082141">truecrypt-6.3a-exo-open.patch</pkg>
-				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
-			<manualcheck date="20150823" interval="365" page="http://www.truecrypt.org/" />
+			<manualcheck date="20160922" interval="90" page="http://www.truecrypt.org/" />
 		</sources>
 		<builddeps>
                         <dep>atk</dep>
@@ -62,65 +46,47 @@
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
-			<dep>wxWidgets</dep>
+			<dep>wxWidgets3</dep>
 			<dep>ImageMagick</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}-source
-			cat ${SRCDIR}/${PKGNAME}-6.3a-pkcs.patch | patch -p1
-			cat ${SRCDIR}/${PKGNAME}-6.3a-exo-open.patch | patch -p1
-			sed -i 's%export LFLAGS :=%export LFLAGS := -ldl%g' Makefile
-			]]>
-		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}-source
-			make
-			convert Mount/Logo_288dpi.bmp -resize '48x48!' truecrypt.png
+			cd ${PKGNAME}-${PKGNAME}_${PKGVERSION}/src
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			export PATH=/usr/compat.new/bin:$PATH 
+			make -j $jobcount
+			convert ./Setup/Linux/usr/share/pixmaps/veracrypt.xpm -resize '48x48!'  ./Setup/Linux/usr/share/pixmaps/veracrypt.png
+			sed -i 's%Categories=Encryption;Encryption Tools;Utility;%Categories=Utility;Encryption;Encryption Tools;%g'  ./Setup/Linux/usr/share/applications/veracrypt.desktop
+			echo '===> searching files'
+			find . -type f | sort 
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
+			cd ${PKGNAME}-${PKGNAME}_${PKGVERSION}/src
 			mkdir -p ${TGTDIR}/usr/bin
-			mkdir -p ${TGTDIR}/usr/share/icons
-			mkdir -p ${TGTDIR}/usr/share/applications
-			install -m 0755 ${PKGNAME}-${PKGVERSION}-source/Main/truecrypt ${TGTDIR}/usr/bin
-			install -m 0644 ${PKGNAME}-${PKGVERSION}-source/truecrypt.png ${TGTDIR}/usr/share/icons
-			paxctl -m ${TGTDIR}/usr/bin/truecrypt
-			
-cat >> ${TGTDIR}/usr/share/applications/truecrypt.desktop << TCDESKTOP
-
-[Desktop Entry]
-Version=1.0
-Encoding=UTF-8
-Type=Application
-Name=TrueCrypt
-Comment=
-Categories=Utility;
-Exec=/usr/bin/truecrypt
-Icon=/usr/share/icons/truecrypt.png
-Terminal=false
-StartupNotify=true
-
-TCDESKTOP
-
-
+			mkdir -p ${TGTDIR}/usr/share 
+			tar -C ./Setup/Linux/ -cvf - . | tar -C ${TGTDIR}/ -xf - 
+			ln -sf veracrypt ${TGTDIR}/usr/bin/truecrypt 
+			rm veracrypt ${TGTDIR}/usr/bin/veracrypt-uninstall.sh
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}-source
+			rm -rf ${PKGNAME}-${PKGNAME}_${PKGVERSION}
 			]]>
 		</clean>
 	</package>

@@ -1,33 +1,33 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.6.2"
+		version="3.9.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="7a00257eb2bc9431e4c77c3a36b033072c54bc7e">llvm-3.6.2.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.6.2/</mirror>
+				<pkg sha1="da792f11a208d5b994c4fe1c8faa20f90ff0e4a3">llvm-3.9.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.9.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="7ba809c9c17819a16b668640a642ed134d7052f0">cfe-3.6.2.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.6.2/</mirror>
+				<pkg sha1="00d49ee82451130a8e1e7b1d56cffa37b783bcb2">cfe-3.9.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.9.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="c6c52d2923a60f1a2ca2f22fea1770fd2e25728d">compiler-rt-3.6.2.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.6.2/</mirror>
+				<pkg sha1="a306d576e84b7ee048ebb0ae5ca72e6ec9e1c549">compiler-rt-3.9.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/3.9.0/</mirror>
 			</file>
-			<manualcheck date="20150529" interval="120" page="http://www.llvm.org/" />
+			<manualcheck date="20160923" interval="120" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="3.6.4" />
-					<atext href="3.6.5" />
-					<atext href="3.6.3" />
+					<atext href="3.9.1" />
+					<atext href="3.9.2" />
+					<atext href="3.9.3" />
 					<atext href="3.10." />
-					<atext href="3.7." />
-					<atext href="3.8." />
-					<atext href="3.9." />
+					<atext href="3.11." />
+					<atext href="3.12." />
+					<atext href="3.13." />
 					<atext href="4.0." />
 				</page>
 			</check>
@@ -48,6 +48,7 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
+			<dep>cmake</dep>
                         <!-- <dep>xproto-base</dep> 
 			<dep>talloc</dep>
 			<dep>makedepend</dep> -->
@@ -56,6 +57,7 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.xz
+			mkdir ${PKGNAME}-build
 			cd ${PKGNAME}-${PKGVERSION}.src
 			tar -xf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.xz -C tools 
 			tar -xf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.xz -C projects
@@ -69,31 +71,35 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}.src
 			sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
+			cd ../${PKGNAME}-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
-				export CC='distcc gcc'
-				export CXX='distcc g++'
-			else
-				export CC='gcc'
-				export CXX='g++'
-			fi
-			./configure --prefix=/usr              \
-				--sysconfdir=/etc          \
-				--enable-libffi            \
-				--enable-optimized         \
-				--enable-shared            \
-				--disable-assertions --disable-bindings
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				CC='distcc gcc' \
+				CXX='distcc g++' \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+					-DLLVM_ENABLE_FFI=ON                  \
+					-DCMAKE_BUILD_TYPE=Release            \
+					-DBUILD_SHARED_LIBS=ON                \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
+					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
 				make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
 			else
-				make -j 4
+				CC='gcc' \
+				CXX='g++'  \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+					-DLLVM_ENABLE_FFI=ON                  \
+					-DCMAKE_BUILD_TYPE=Release            \
+					-DBUILD_SHARED_LIBS=ON                \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
+					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
+				make -j 4 CC='gcc' CXX='g++' 
 			fi
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}.src
+			cd ${PKGNAME}-build # ${PKGVERSION}.src
 			make install DESTDIR=${TGTDIR}
 			for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
 				test -f $file && chmod -v 644 $file
@@ -109,6 +115,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}-${PKGVERSION}.src
+			rm -rf ${PKGNAME}-build
 			]]>
 		</clean>
 	</package>

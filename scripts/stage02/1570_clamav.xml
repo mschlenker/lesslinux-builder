@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="clamav"
-		version="0.98.7"
+		version="0.99.2"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                           
-				<pkg sha1="c9793d67c041e2b944116d912f8681c8bd6e4432">clamav-0.98.7.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/clamav/clamav/0.98.7/</mirror>
+				<pkg sha1="c1a47411834d8527f7b40727aebee63f01d488af">clamav-0.99.2.tar.gz</pkg>
+				<mirror>http://www.clamav.net/downloads/production/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://sourceforge.net/projects/clamav/files/" />
-			<check>
+			<manualcheck date="20160701" interval="180" page="http://sourceforge.net/projects/clamav/files/" />
+			<!-- <check>
 				<page html="http://sourceforge.net/projects/clamav/files/">
 					<atext linktext="clamav-0.98.8." />
 					<atext linktext="clamav-0.98.9." />
@@ -19,7 +19,7 @@
 					<atext linktext="clamav-0.100." />
 					<atext linktext="clamav-1." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -49,6 +49,7 @@
 			<dep>llvm</dep>
 			<dep>distcc</dep>
 			<dep>clamav-prep</dep>
+			<dep>gcc54</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -65,11 +66,13 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
+				export CC="distcc /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc /usr/local/gcc54/bin/g++54" 
 				./configure --prefix=/opt --sysconfdir=/etc  # CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount 
 			else
+				export CC="/usr/local/gcc54/bin/gcc54"
+				export CXX="/usr/local/gcc54/bin/g++54" 
 				./configure --prefix=/opt --sysconfdir=/etc
 				make
 			fi
