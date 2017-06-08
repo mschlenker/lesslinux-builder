@@ -1,0 +1,48 @@
+<llpackages>
+	<package 
+		name="grep"
+		version="3.0">
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                                                         
+				<pkg sha1="7b742a6278f28ff056da799c62c1b9e417fe86ba">grep-3.0.tar.xz</pkg> 
+				<mirror>http://ftp.gnu.org/gnu/grep/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="http://ftp.gnu.org/gnu/grep/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/grep/">
+					<atext linktext="grep-3.0.1.t" />
+					<atext linktext="grep-3.0.2.t" />
+					<atext linktext="grep-3.0.3.t" />
+					<atext linktext="grep-3.1." />
+					<atext linktext="grep-3.2." />
+					<atext linktext="grep-4." />
+				</page>
+			</check>
+			<!-- <file>
+				<pkg sha1="77b5967bc0aa25fa827f892cd0f4625e18d0361f">grep-2.5.4-debian_fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools 
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

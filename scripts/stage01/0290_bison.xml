@@ -1,0 +1,42 @@
+<llpackages>
+	<package 
+		name="bison"
+		version="3.0.4">
+		<license>GPLv2</license>
+		<sources>
+                        <file>                                                 
+                                <pkg sha1="8270497aad88c7dd4f2c317298c50513fb0c3c8e">bison-3.0.4.tar.xz</pkg>
+                                <mirror>http://ftp.gnu.org/gnu/bison/</mirror>
+                        </file>
+                        <manualcheck date="20150309" interval="180" page="http://ftp.gnu.org/gnu/bison/" />
+                        <check>
+                                <page html="http://ftp.gnu.org/gnu/bison/">
+                                        <atext linktext="bison-3.0.5." />
+                                        <atext linktext="bison-3.0.6." />
+                                        <atext linktext="bison-3.0.7." />
+                                        <atext linktext="bison-3.0.8." />
+                                        <atext linktext="bison-3.1." />
+                                        <atext linktext="bison-3.2." />
+                                        <atext linktext="bison-4." />
+                                </page>
+                        </check>
+                </sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools && make -j ` grep -c  processor /proc/cpuinfo ` 
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

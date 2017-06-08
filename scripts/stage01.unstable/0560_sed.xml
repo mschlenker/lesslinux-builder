@@ -1,0 +1,44 @@
+<llpackages>
+	<package 
+		name="sed"
+		version="4.4">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="a196cd036efd52a8e349cfe88ab4baa555fb29d5">sed-4.4.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/sed/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="ftp://ftp.gnu.org/gnu/sed/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/sed/">
+					<atext linktext="sed-4.4.2." />
+					<atext linktext="sed-4.4.3." />
+					<atext linktext="sed-4.4.5." />
+					<atext linktext="sed-4.4.6." />
+					<atext linktext="sed-4.4.1." />
+					<atext linktext="sed-4.5." />
+					<atext linktext="sed-4.6." />
+					<atext linktext="sed-5." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

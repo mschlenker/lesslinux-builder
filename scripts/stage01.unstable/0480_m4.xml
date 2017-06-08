@@ -1,0 +1,47 @@
+<llpackages>
+	<package 
+		name="m4"
+		version="1.4.18">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="63224a10becb5f527542b2e7baf2a1572666dbed">m4-1.4.18.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/m4/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="365" page="http://ftp.gnu.org/gnu/m4/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/m4/">
+					<atext linktext="m4-1.4.19." />
+					<atext linktext="m4-1.4.20." />
+					<atext linktext="m4-1.5." />
+					<atext linktext="m4-2." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}/
+			# sed -i -e '/gets is a/d' lib/stdio.in.h
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
