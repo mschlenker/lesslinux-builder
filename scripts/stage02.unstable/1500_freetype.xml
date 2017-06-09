@@ -1,0 +1,82 @@
+<llpackages>
+	<package 
+		name="freetype"
+		version="2.8"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                   
+				<pkg sha1="42c6b1f733fe13a3eba135f5025b22cb68450f91">freetype-2.8.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/freetype/freetype2/2.8/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="120" page="http://sourceforge.net/projects/freetype/files/freetype2/" />
+			<check>
+				<page html="http://sourceforge.net/projects/freetype/files/freetype2/">
+					<atext linktext="2.8.1" />
+					<atext linktext="2.8.2" />
+					<atext linktext="2.8.3" />
+					<atext linktext="2.9." />
+					<atext linktext="3.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>libpng16</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg &&
+			sed -r "s:.*(#.*SUBPIXEL_(RENDERING|HINTING 2)) .*:\1:g" \
+				-i include/freetype/config/ftoption.h
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr 
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
