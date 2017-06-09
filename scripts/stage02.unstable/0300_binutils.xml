@@ -46,7 +46,7 @@
 			<![CDATA[ 
 			cd ${PKGNAME}-build
 			jobcount=`grep -c processor /proc/cpuinfo`
-			../${PKGNAME}-${PKGVERSION}/configure../configure --prefix=/usr       \
+			../${PKGNAME}-${PKGVERSION}/configure --prefix=/usr       \
 			--enable-gold       \
 			--enable-ld=default \
 			--enable-plugins    \
