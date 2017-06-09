@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="perl"
-		version="5.26.0">
+		version="5.24.1">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                             
-				<pkg sha1="2ca1b28f2c3ed4cc3b74be89d150ed0377f0336a">perl-5.26.0.tar.bz2</pkg>
+				<pkg sha1="d43ac3d39686462f86eed35b3c298ace74f1ffa0">perl-5.24.1.tar.bz2</pkg>
 				<mirror>http://www.cpan.org/src/5.0/</mirror>
 			</file>
 			<manualcheck date="20170608" interval="180" page="http://www.cpan.org/" />
@@ -29,7 +29,7 @@
 			]]>
 		</unpack>
 		<patch />
-		<patch>
+		<!-- <patch>
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
@@ -38,7 +38,7 @@ sed -e '9751 a#ifndef PERL_IN_XSUB_RE' \
     -i regexec.c
 			
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[ 
 			
