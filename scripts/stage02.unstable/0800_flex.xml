@@ -1,0 +1,103 @@
+<llpackages>
+	<package 
+		name="flex"
+		version="2.6.4"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="fafece095a0d9890ebd618adb1f242d8908076e1">flex-2.6.4.tar.xz</pkg>
+				<mirror>http://prdownloads.sourceforge.net/flex/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="https://github.com/westes/flex/releases/" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/flex/files/">
+					<atext linktext="flex-2.6.4." />
+					<atext linktext="flex-2.6.1." />
+					<atext linktext="flex-2.6.2." />
+					<atext linktext="flex-2.6.3." />
+					<atext linktext="flex-2.7." />
+					<atext linktext="flex-2.8." />
+					<atext linktext="flex-3." />
+					<atext linktext="flex-4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
+			<dep>acl</dep>
+			<dep>libcap</dep>
+                        <dep>sed</dep>
+			<dep>shadow</dep>
+			<dep>psmisc</dep>
+			<dep>iana-etc</dep>
+			<dep>m4</dep>
+                        <dep>bison</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			# sed -i -e '/test-bison/d' tests/Makefile.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/lib
+			mkdir -p ${TGTDIR}/usr/bin
+			make install DESTDIR=${TGTDIR}
+			ln -sv libfl.a ${TGTDIR}/usr/lib/libl.a
+			cat > ${TGTDIR}/usr/bin/lex << "EOF"
+#!/bin/sh
+# Begin /usr/bin/lex
+
+exec /usr/bin/flex -l "$@"
+
+# End /usr/bin/lex
+EOF
+			chmod -v 755 ${TGTDIR}/usr/bin/lex
+			mkdir -pv ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			cp    -v doc/flex.pdf ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
