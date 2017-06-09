@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="Python3"
+		version="3.6.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                      
+				<pkg sha1="91d880a2a9fcfc6753cbfa132bf47a47e17e7b16">Python-3.6.1.tar.xz</pkg>
+				<mirror>http://python.org/ftp/python/3.6.1/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="http://www.python.org/" />
+			<check>
+				<page html="http://python.org/ftp/python/">
+					<atext linktext="3.6.3" />
+					<atext linktext="3.6.4" />
+					<atext linktext="3.6.5" />
+					<atext linktext="3.6.6" />
+					<atext linktext="3.6.7" />
+					<atext linktext="3.6.2" />
+					<atext linktext="3.7." />
+					<atext linktext="3.8." />
+					<atext linktext="4.0." />
+				</page>
+			</check>
+		</sources> 
+		<builddeps>
+			<dep>Python</dep>
+			<dep>expat</dep>
+			<dep>libffi</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/Python-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			export CC="gcc"
+			export CXX="g++" 
+			jobcount=4 
+			cd Python-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			
+			case $(uname -m) 
+			in
+				x86_64) 
+					export CFLAGS="-fPIC"
+				;;
+			esac 
+			./configure --prefix=/usr       \
+				--enable-shared     \
+				--with-system-expat \
+				--with-system-ffi   \
+				--without-ensurepip
+			make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd Python-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf Python-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
