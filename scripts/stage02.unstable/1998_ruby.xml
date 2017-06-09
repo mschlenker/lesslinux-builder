@@ -67,10 +67,10 @@
 			in
 				x86_64) 
 					export CFLAGS="-fPIC"
-					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr CFLAGS="-fPIC"
+					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr --disable-install-doc CFLAGS="-fPIC"
 				;;
 				*)
-					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr 
+					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr --disable-install-doc
 				;;
 			esac 
 			
