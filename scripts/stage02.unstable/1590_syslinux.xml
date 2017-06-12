@@ -1,0 +1,134 @@
+<llpackages>
+	<package 
+		name="syslinux"
+		version="6.04-pre1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                  
+				<pkg sha1="599b7a85d522b1b6658a1fe290e4d23dc64b1470">syslinux-6.04-pre1.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/utils/boot/syslinux/</mirror>
+			</file>
+			<!-- nasm 2.11.06 breaks some asm files, so explicitly use nasm 2.11.05 -->
+			<file>                  
+				<pkg sha1="20536831011b07015913964ddedbce916375e5ad">nasm-2.11.05.tar.xz</pkg>
+				<mirror>http://www.nasm.us/pub/nasm/releasebuilds/2.11.05/</mirror>
+			</file>
+			<!-- <file>                  
+				<pkg sha1="780c3ae1ff1ccbdae226eefec9a6a02b422bd40c">syslinux_6.03+dfsg-11ubuntu1.debian.tar.xz</pkg>
+				<mirror>https://launchpad.net/ubuntu/+archive/primary/+files/</mirror>
+			</file> -->
+			<manualcheck date="20161004" interval="180" page="http://www.kernel.org/pub/linux/utils/boot/syslinux/" />
+			<check>
+				<page html="http://www.kernel.org/pub/linux/utils/boot/syslinux/">
+					<atext linktext="syslinux-6.07." />
+					<atext linktext="syslinux-6.04." />
+					<atext linktext="syslinux-6.05." />
+					<atext linktext="syslinux-6.06." />
+					<atext linktext="syslinux-6.1" />
+					<atext linktext="syslinux-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>nasm</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			tar xf ${SRCDIR}/nasm-2.11.05.tar.xz
+			# tar xf ${SRCDIR}/syslinux_6.03+dfsg-11ubuntu1.debian.tar.xz
+			]]>
+		</unpack>
+		<!-- <patch>
+		<![CDATA[
+		cd ${PKGNAME}-${PKGVERSION}
+		cat ../debian/patches/series | while read fname ; do cat ../debian/patches/$fname | patch -p1; done
+		]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd nasm-2.11.05 
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			NASMPATH=` pwd `/nasm
+			cd ../${PKGNAME}-${PKGVERSION}
+			make -k clean
+			make -k -j 6 NASM=${NASMPATH}  
+			make -k -j 6 bios NASM=${NASMPATH}  
+			mv bios/extlinux/extlinux ../extlinux.dynamic
+			mv bios/mtools/syslinux   ../syslinux.dynamic
+			make -k bios LDFLAGS=-static NASM=${NASMPATH}  
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			test -f  ${PKGNAME}-${PKGVERSION}/bios/extlinux/extlinux || exit 1
+			
+			mkdir -p ${TGTDIR}/usr/share/syslinux
+			mkdir -p ${TGTDIR}/static/sbin
+			mkdir -p ${TGTDIR}/usr/sbin
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/etc/syslinux
+			
+			install -m 0755 syslinux.dynamic 	  			  ${TGTDIR}/usr/sbin/syslinux
+			install -m 0755 extlinux.dynamic                                  ${TGTDIR}/usr/sbin/extlinux
+			
+			install -m 0755 ${PKGNAME}-${PKGVERSION}/bios/extlinux/extlinux        ${TGTDIR}/static/sbin/extlinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/core/isolinux.bin        ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/core/pxelinux.bin        ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/gpxe/pxelinux.gpxe       ${TGTDIR}/usr/share/syslinux
+			
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/menu/menu.c32      ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/menu/vesamenu.c32  ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/modules/ifcpu.c32  ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/modules/ifcpu64.c32  ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/modules/reboot.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/chain/chain.c32    ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/elflink/ldlinux/ldlinux.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/libutil/libutil.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/cmenu/libmenu/libmenu.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/cmenu/libmenu/complex.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/lib/libcom32.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/lib/libbios/com32.c32   ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/lua/src/liblua.c32 ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/com32/gpllib/libgpl.c32  ${TGTDIR}/usr/share/syslinux
+			
+			install -m 0755 ${PKGNAME}-${PKGVERSION}/bios/utils/isohybrid          ${TGTDIR}/usr/bin
+			install -m 0755 ${PKGNAME}-${PKGVERSION}/bios/utils/isohybrid.pl       ${TGTDIR}/usr/share/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/mbr/mbr.bin              ${TGTDIR}/etc/syslinux
+			install -m 0644 ${PKGNAME}-${PKGVERSION}/bios/mbr/gptmbr.bin           ${TGTDIR}/etc/syslinux
+			for f in ${PKGNAME}-${PKGVERSION}/bios/mbr/*.bin ; do
+				install -m 0644 ${f} ${TGTDIR}/usr/share/syslinux/
+			done
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			
+			rm -rf nasm-2.11.05 
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm syslinux.dynamic extlinux.dynamic
+			
+			]]>
+		</clean>
+	</package>
+</llpackages>
