@@ -74,9 +74,9 @@
 				export CXX="distcc g++" 
 			fi
 		
-			sed -e "/pthread-stubs/d" -i configure.ac
-			autoreconf -fiv
-			./configure --prefix=/usr --enable-udev --disable-valgrind
+			# sed -e "/pthread-stubs/d" -i configure.ac
+			# autoreconf -fiv
+			./configure --prefix=/usr --enable-udev 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
