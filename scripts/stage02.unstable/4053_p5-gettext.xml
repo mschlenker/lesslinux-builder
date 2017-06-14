@@ -28,7 +28,7 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd gettext-${PKGVERSION}
+			cd Locale-gettext--${PKGVERSION}
 			/usr/bin/perl Makefile.PL 
 			make
 			]]>
@@ -36,13 +36,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd gettext-${PKGVERSION}
+			cd Locale-gettext-${PKGVERSION}
 			make install DESTDIR="${TGTDIR}"
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf gettext-${PKGVERSION}
+			rm -rf Locale-gettext-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
