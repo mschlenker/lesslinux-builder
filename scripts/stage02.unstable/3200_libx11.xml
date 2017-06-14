@@ -1,0 +1,91 @@
+<llpackages>
+	<package 
+		name="libX11"
+		version="1.6.5"
+		class="devel"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>  
+			<!-- <file>    
+				<pkg sha1="8e58c3d9070cd164a960dc89b20cf0e35bade8c8">libX11-1.2.1.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
+			</file> -->
+			<file>                                                                                     
+				<pkg sha1="c32155467508dfe783f9296ef22ee6ed53cae7df">libX11-1.6.5.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
+			</file>
+			<manualcheck date="20170610" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
+					<atext linktext="libX11-1.6.9" />
+					<atext linktext="libX11-1.6.6" />
+					<atext linktext="libX11-1.6.7" />
+					<atext linktext="libX11-1.6.8" />
+					<atext linktext="libX11-1.7." />
+					<atext linktext="libX11-1.8." />
+					<atext linktext="libX11-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>inetutils</dep>
+                        <dep>libXau</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xtrans</dep>
+			<!-- <dep>xextproto</dep>
+			<dep>kbproto</dep> -->
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr 
+				make  
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install # DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
