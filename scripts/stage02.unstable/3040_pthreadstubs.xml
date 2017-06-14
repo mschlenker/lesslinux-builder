@@ -1,0 +1,60 @@
+ <llpackages>
+	<package 
+		name="libpthread-stubs"
+		version="0.4"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>      
+				<pkg sha1="c42503a2ae0067b2238b2f3fefc86656baa4dd8e">libpthread-stubs-0.4.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
+				<mirror>http://xcb.freedesktop.org/dist/</mirror>
+			</file>
+			<manualcheck date="20170610" interval="365" page="http://xcb.freedesktop.org/dist/" />
+			<check>
+				<page html="http://xcb.freedesktop.org/dist/">
+					<atext linktext="libpthread-stubs-0.7.tar.bz2" />
+					<atext linktext="libpthread-stubs-0.5.tar.bz2" />
+					<atext linktext="libpthread-stubs-0.6.tar.bz2" />
+					<atext linktext="libpthread-stubs-1.0.tar.bz2" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+	</package>
+</llpackages>
