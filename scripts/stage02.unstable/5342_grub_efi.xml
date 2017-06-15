@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="grub-efi-amd64"
+		version="2.02"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+			<sources>
+			<file>                         
+				<pkg sha1="43c86119478215aa4f6e833942ae97e08a839c3c">grub-2.02.tar.xz</pkg>
+				<mirror>ftp://ftp.gnu.org/gnu/grub/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="ftp://ftp.gnu.org/gnu/grub/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/grub/">
+					<atext linktext="grub-2.06." />
+					<atext linktext="grub-2.07." />
+					<atext linktext="grub-2.03." />
+					<atext linktext="grub-2.04." />
+					<atext linktext="grub-2.05." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+			<dep>cross-gcc-amd64</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>ruby</dep>
+                        <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/grub-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			sed -i -e '/gets is a/d' grub/grub-core/gnulib/stdio.in.h
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			export PATH=/usr/local/crosstools-amd64/bin:/usr/bin:/usr/sbin:/bin:/sbin
+			cd grub-${PKGVERSION}
+			bash autogen.sh
+			./configure --prefix=/usr/local/crosstools-amd64 --with-platform=efi --target=amd64-linux-uclibc --disable-werror
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			export PATH=/usr/local/crosstools-amd64/bin:/usr/bin:/usr/sbin:/bin:/sbin
+			cd grub-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf grub-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
