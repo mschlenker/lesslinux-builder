@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="libvpx"
+		version="1.6.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                            
+				<pkg sha1="a8bd0596915489d3bd8eded98d408ab8705e2f5d">libvpx-1.6.1.tar.bz2</pkg>
+				<mirror>http://webm.googlecode.com/files/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://downloads.webmproject.org/releases/webm/index.html" />
+			<check>
+				<page html="http://downloads.webmproject.org/releases/webm/index.html">
+					<atext linktext="libvpx-v1.6.6." />
+					<atext linktext="libvpx-v1.6.2." />
+					<atext linktext="libvpx-v1.6.3." />
+					<atext linktext="libvpx-v1.6.4." />
+					<atext linktext="libvpx-v1.6.5." />
+					<atext linktext="libvpx-v1.10." />
+					<atext linktext="libvpx-v1.11." />
+					<atext linktext="libvpx-v1.12." />
+					<atext linktext="libvpx-v1.7." />
+					<atext linktext="libvpx-v1.8." />
+					<atext linktext="libvpx-v1.9." />
+					<atext linktext="libvpx-v2." />
+					<atext linktext="libvpx-v3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>yasm</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --enable-shared && make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
