@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="libssh"
+		version="0.7.5"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="0cf54e96e91d73e730ae4bc76d3f5277100c0f1a">libssh-0.7.5.tar.xz</pkg>
+				<mirror>https://red.libssh.org/attachments/download/218/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="120" page="http://www.libssh.org/" />
+			<check>
+				<page html="https://red.libssh.org/projects/libssh/files">
+					<atext linktext="libssh-0.7.10." />
+					<atext linktext="libssh-0.7.6." />
+					<atext linktext="libssh-0.7.7." />
+					<atext linktext="libssh-0.7.8." />
+					<atext linktext="libssh-0.7.9." />
+					<atext linktext="libssh-0.8." />
+					<atext linktext="libssh-0.9." />
+					<atext linktext="libssh-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>zlib</dep>
+			<!-- dep>distcc</dep -->
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			export SHELL=/bin/bash
+			env
+			mkdir -pv libssh.build
+			cd libssh.build
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  ../${PKGNAME}-${PKGVERSION}
+			find . -name 'build.make' -exec sed -i 's%/usr/lib/libcrypto.so%%g' {} \;
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd libssh.build
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf libssh.build
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
