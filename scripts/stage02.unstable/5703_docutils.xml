@@ -1,0 +1,58 @@
+<llpackages>
+	<package 
+		name="docutils"
+		version="0.13.1"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                   
+				<pkg sha1="c16e14ef18142fa248400cd174edb4fa40e51d5b">docutils-0.13.1.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/docutils/docutils/0.13.1/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://sourceforge.net/projects/docutils/files/docutils/" />
+			<check>
+				<page html="http://sourceforge.net/projects/docutils/files/docutils/">
+					<atext linktext="0.13.2" />
+					<atext linktext="0.13.3" />
+					<atext linktext="0.13.4" />
+					<atext linktext="0.13.5" />
+					<atext linktext="0.18" />
+					<atext linktext="0.14" />
+					<atext linktext="0.15" />
+					<atext linktext="0.16" />
+					<atext linktext="0.17" />
+					<atext linktext="1.0" />
+					<atext linktext="1.1" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>pygobject</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			python setup.py config
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			python setup.py install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
