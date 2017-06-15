@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>   
-				<pkg sha1="20cd4cc5cfaa904b12abf6d584deb568367f4d83">xdg-utils-1.1.2.tgz</pkg>
+				<pkg sha1="20cd4cc5cfaa904b12abf6d584deb568367f4d83">xdg-utils-1.1.2.tar.gz</pkg>
 				<mirror>http://portland.freedesktop.org/download/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="365" page="http://portland.freedesktop.org/download/" />
@@ -32,7 +32,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tgz
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<build>
