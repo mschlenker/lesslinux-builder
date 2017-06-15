@@ -57,6 +57,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			bash autogen.sh
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
