@@ -6,7 +6,7 @@
         <sources>
             <file>
                 <pkg sha1='7b89fe6e22e6739257c0f03c9f034c9c579a8bce'>
-                    xf86-video-amdgpu-1.3.0.tar.gz
+                    xf86-video-amdgpu-1.3.0.tar.bz2
                 </pkg>
                 <mirror>
                     https://www.x.org/releases/individual/driver/
@@ -39,7 +39,7 @@
                         <dep>xproto-base</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>
         </unpack>
         <patch/>
