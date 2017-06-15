@@ -1,0 +1,66 @@
+<llpackages>
+	<package 
+		name="apr"
+		version="1.6.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="01b0d4faa0194825e8e525b9ac7ccfb832471d50">apr-1.6.2.tar.bz2</pkg>
+				<mirror>http://apache.easy-webs.de/apr/</mirror>
+			</file>
+			<manualcheck date="20150601" interval="180" page="https://apr.apache.org/" />
+			<check>
+				<page html="http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/apr/">
+					<atext linktext="apr-1.6.7." />
+					<atext linktext="apr-1.6.3." />
+					<atext linktext="apr-1.6.4." />
+					<atext linktext="apr-1.6.5." />
+					<atext linktext="apr-1.6.6." />
+					<atext linktext="apr-1.6." />
+					<atext linktext="apr-1.7." />
+					<atext linktext="apr-1.8." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=$TGTDIR 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
