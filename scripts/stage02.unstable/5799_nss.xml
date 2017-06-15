@@ -52,6 +52,7 @@
 					NSPR_INCLUDE_DIR=/usr/include/nspr  \
 					USE_SYSTEM_ZLIB=1                   \
 					ZLIB_LIBS=-lz                       \
+					NSS_ENABLE_WERROR=0                 \
 					NSS_USE_SYSTEM_SQLITE=1 USE_64=1
 				;;
 				*)
@@ -59,6 +60,7 @@
 					NSPR_INCLUDE_DIR=/usr/include/nspr  \
 					USE_SYSTEM_ZLIB=1                   \
 					ZLIB_LIBS=-lz                       \
+					NSS_ENABLE_WERROR=0                 \
 					NSS_USE_SYSTEM_SQLITE=1
 				;;
 			esac
