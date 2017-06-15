@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="iso-codes"
-		version="3.68"
+		version="3.75"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                                                                  
-				<pkg sha1="9cd62cf471b7a269c86fb8e97d63b1e53fbc166c">iso-codes_3.68.orig.tar.xz</pkg>
+				<pkg sha1="61a95d96f46a074fe3611ec1a505d549bb7b7f15">iso-codes_3.75.orig.tar.xz</pkg>
 				<mirror>http://ftp.de.debian.org/debian/pool/main/i/iso-codes/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="180" page="http://packages.debian.org/source/unstable/iso-codes" />
+			<manualcheck date="20170615" interval="180" page="http://packages.debian.org/source/unstable/iso-codes" />
 			<check>
 				<page html="http://ftp.de.debian.org/debian/pool/main/i/iso-codes/">
-					<atext linktext="iso-codes_3.69" />
-					<atext linktext="iso-codes_3.70" />
-					<atext linktext="iso-codes_3.71" />
-					<atext linktext="iso-codes_3.72" />
-					<atext linktext="iso-codes_3.73" />
+					<atext linktext="iso-codes_3.76" />
+					<atext linktext="iso-codes_3.77" />
+					<atext linktext="iso-codes_3.78" />
+					<atext linktext="iso-codes_3.79" />
+					<atext linktext="iso-codes_3.80" />
 					<atext linktext="iso-codes_4." />
 				</page>
 			</check>
@@ -44,7 +44,12 @@
 			fi
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i '/^LN_S/s/s/sfvn/' */Makefile
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
