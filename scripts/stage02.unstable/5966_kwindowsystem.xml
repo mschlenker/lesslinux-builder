@@ -1,0 +1,90 @@
+<llpackages>
+    <package name='kwindowsystem' version='5.35.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='64d2e08fd5e39b1cec21ecf6add6bc33e8c70b5d'>
+                    kwindowsystem-5.35.0.tar.xz
+                </pkg>
+                <mirror>
+                    http://download.kde.org/stable/frameworks/5.35/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='http://download.kde.org/stable/frameworks/5.35/'/>
+        </sources>
+	<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>extra-cmake-modules</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXScrnSaver</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXft</dep>
+                        <dep>libXi</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXtst</dep>
+                        <dep>libXv</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>qt5</dep>
+                        <dep>util-keysyms</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+jobcount=2
+if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+	DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+	export DISTCC_HOSTS
+	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+	export CC="distcc gcc"
+	export CXX="distcc g++" 
+fi
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
