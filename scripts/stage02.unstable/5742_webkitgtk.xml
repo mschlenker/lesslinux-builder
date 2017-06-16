@@ -106,12 +106,12 @@
 			unxz -c ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[ 
 			cd ${PKGNAME}gtk-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}-gcc6-1.patch | patch -p1 
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}gtk-${PKGVERSION}
