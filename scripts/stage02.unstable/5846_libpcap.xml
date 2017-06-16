@@ -1,0 +1,85 @@
+<llpackages>
+	<package 
+		name="libpcap"
+		version="1.8.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="32d7526dde8f8a2f75baf40c01670602aeef7e39">libpcap-1.8.1.tar.gz</pkg>
+				<mirror>http://www.tcpdump.org/release/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="120" page="http://www.tcpdump.org/release/" />
+			<check>
+				<page html="http://www.tcpdump.org/release/">
+					<atext linktext="libpcap-1.8.6." />
+					<atext linktext="libpcap-1.8.2." />
+					<atext linktext="libpcap-1.8.3." />
+					<atext linktext="libpcap-1.8.4." />
+					<atext linktext="libpcap-1.8.5." />
+					<atext linktext="libpcap-1.9." />
+					<atext linktext="libpcap-1.10." />
+					<atext linktext="libpcap-1.11." />
+					<atext linktext="libpcap-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libnl</dep><dep>libnl3</dep>
+                        <dep>libusb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount 
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
