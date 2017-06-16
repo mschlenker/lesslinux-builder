@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="lunzip"
+		version="1.9"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="cc24cbd3ea3bfdc443e6e37442a0ad47b35db0d6">lunzip-1.9.tar.gz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/lzip/lunzip/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://download.savannah.gnu.org/releases/lzip/lunzip/" />
+			<!-- <check>
+				<page html="http://www.hyperrealm.com/libconfig/">
+					<atext linktext="libconfig-1.4.10." />
+					<atext linktext="libconfig-1.4.11." />
+					<atext linktext="libconfig-1.4.12." />
+					<atext linktext="libconfig-1.4.13." />
+					<atext linktext="libconfig-1.4.14." />
+					<atext linktext="libconfig-1.5." />
+					<atext linktext="libconfig-1.6." />
+					<atext linktext="libconfig-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
