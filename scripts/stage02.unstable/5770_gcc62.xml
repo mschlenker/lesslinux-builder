@@ -50,6 +50,7 @@
 			SED=sed
 			export SED
 			export CFLAGS=-Wno-error
+			export CXXFLAGS=-Wno-error
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
