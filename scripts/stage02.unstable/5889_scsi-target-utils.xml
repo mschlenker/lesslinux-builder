@@ -49,14 +49,15 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			make -j $jobcount
+			export CFLAGS=-Wno-error
+			make -k -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd tgt-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make -k install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
