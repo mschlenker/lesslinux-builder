@@ -100,29 +100,30 @@
 			<dep>nspr</dep>
 			<dep>nss</dep>
 			<dep>gcc62</dep>
+			<dep>gcc54</dep>
                 </builddeps> 
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[ 
 			cd ${PKGNAME}gtk-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}-gcc6-1.patch | patch -p1 
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}gtk-${PKGVERSION}
 			jobcount=` grep -c processor /proc/cpuinfo `
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc54/bin/gcc54"
-				export CXX="distcc /usr/local/gcc54/bin/g++54"
+				export CC="distcc /usr/local/gcc62/bin/gcc62"
+				export CXX="distcc /usr/local/gcc62/bin/g++62"
 			else
-				export CC='/usr/local/gcc54/bin/gcc54'
-				export CXX='/usr/local/gcc54/bin/g++54'
+				export CC='/usr/local/gcc62/bin/gcc62'
+				export CXX='/usr/local/gcc62/bin/g++62'
 			fi
 			./configure  --prefix=/usr --sysconfdir=/etc \
 				--enable-geolocation=no --enable-gtk-doc=no --enable-introspection  
