@@ -108,13 +108,13 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar xf ${SRCDIR}/libfm-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd libfm-${PKGVERSION}
 			bash autogen.sh
 			./configure --prefix=/usr --sysconfdir=/etc --with-extra-only
 			make 
@@ -123,13 +123,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd libfm-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf libfm-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
