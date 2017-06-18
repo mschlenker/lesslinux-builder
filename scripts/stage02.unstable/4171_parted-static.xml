@@ -77,7 +77,7 @@
 		<patch>
 			<![CDATA[
 			cd parted-${PKGVERSION} 
-			cat parted-${PKGVERSION}-devmapper-1.patch |  patch -p1 
+			cat ${SRCDIR}/parted-${PKGVERSION}-devmapper-1.patch |  patch -p1 
 			]]>
 		</patch>
 		<build>
