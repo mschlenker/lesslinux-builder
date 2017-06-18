@@ -14,6 +14,10 @@
                                 <pkg sha1="134498350084fe1371e48e1bdcf558913a112a78">LVM2.2.02.171.tgz</pkg>
                                 <mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
                         </file>
+			<file>                                                                                          
+                                <pkg sha1="a37703ea474f2ce228fb7869c761865cd22f0bac">parted-3.2-devmapper-1.patch</pkg>
+                                <mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+                        </file>
 			<manualcheck date="20170615" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/parted/">
@@ -70,7 +74,12 @@
 			tar -xf ${SRCDIR}/LVM2.2.02.171.tgz
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd parted-${PKGVERSION} 
+			true
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			# export CC="/usr/local/gcc54/bin/gcc54"
@@ -82,7 +91,7 @@
 			make lib
 			cd ../parted-${PKGVERSION}                    
 			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no 
-			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.166/libdm/ioctl -pthread"
+			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.171/libdm/ioctl -pthread"
 			]]>
 		</build>
 		<test />
