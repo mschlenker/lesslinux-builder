@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
-		name="menu-cache"
-		version="1.0.2"
+		name="libfm-extra"
+		version="1.2.5"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="64d58dc7810f47ebb4d64d1c53fd1d965f6a78e7">menu-cache-1.0.2.tar.xz</pkg>
+				<pkg sha1="f4e6a8457a16158ed3999b30ed6309e7d67d9083">libfm-1.2.5.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20170615" interval="60" page="https://github.com/lxde/menu-cache" />
+			<manualcheck date="20170615" interval="60" page="http://lxqt.org/downloads/lxqt/" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -29,19 +29,25 @@
                         <dep>ORBit2</dep>
                         <dep>SDL</dep>
                         <dep>alsa-lib</dep>
+                        <dep>atk</dep>
                         <dep>autoconf</dep>
                         <dep>automake</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>bison</dep>
+                        <dep>cairo</dep>
                         <dep>cmake</dep>
                         <dep>coreutils</dep>
                         <dep>curl</dep>
                         <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
                         <dep>font-util</dep>
+                        <dep>fontconfig</dep>
                         <dep>freetype</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
@@ -56,26 +62,38 @@
                         <dep>gtkglext</dep>
                         <dep>guile</dep>
                         <dep>gwenhywfar</dep>
+                        <dep>harfbuzz</dep>
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
                         <!-- <dep>libchipcard</dep> -->
                         <dep>libdvdnav</dep>
                         <dep>libdvdread</dep>
+                        <dep>libexif</dep>
                         <dep>libffi</dep>
-                        <dep>libfm-extra</dep>
-			<dep>libgcrypt15</dep>
+                        <dep>libgcrypt15</dep>
                         <dep>libgpg-error</dep>
                         <dep>libogg</dep>
+                        <dep>libpng15</dep><dep>libpng16</dep>
                         <dep>libtool</dep>
                         <dep>libvorbis</dep>
+                        <dep>libxcb</dep>
                         <dep>libxml2</dep>
                         <dep>libxslt</dep>
                         <dep>linux_headers</dep>
                         <dep>m4</dep>
                         <dep>make</dep>
+                        <!-- <dep>menu-cache</dep> -->
                         <dep>nspr</dep>
                         <dep>opus</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
                         <dep>perl</dep>
+                        <dep>pixman</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>speex</dep>
@@ -83,6 +101,7 @@
                         <dep>util-macros</dep>
                         <dep>vala</dep>
                         <dep>wayland</dep>
+                        <dep>which</dep>
                         <dep>wxWidgets</dep>
                         <dep>xorg-server</dep>
                         <dep>xtrans</dep>
@@ -97,7 +116,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			bash autogen.sh
-			./configure --prefix=/usr --sysconfdir=/etc 
+			./configure --prefix=/usr --sysconfdir=/etc --with-extra-only
 			make 
 			]]>
 		</build>
