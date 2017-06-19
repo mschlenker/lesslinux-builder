@@ -629,32 +629,34 @@ def run_stage_two
 						p = build_top_queue.shift
 						queue_name = "top"
 					end
-					puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " skipping " + p.pkg_name 
-					thread_info[n] = "w"
-					built_packages.push(p.pkg_name)
-					pkg_deps.delete(p)
-					work_in_progress[n] = nil
-					pkg_deps.each { |k,v|
-						if (v - built_packages).size < 1 && 
-							!built_packages.include?(k.pkg_name) && 
-							!work_in_progress.include?(k.pkg_name)
-								if bottom_packages.include?(k.pkg_name)
-									# Revert to push if trouble occurs!
-									# build_queue.unshift(k)
-									build_bottom_queue.push(k)
-								else
-									# build_queue.push(k)
-									build_top_queue.push(k)
-								end
-								build_bottom_queue.uniq!
-								build_top_queue.uniq!
-								unless build_top_queue.include?(k) ||  build_bottom_queue.include?(k)
-									puts sprintf("%015.4f", Time.now.to_f) + " queue  > Dependencies for package " +
-										k.pkg_name + " resolved, queueing " # unless  build_queue.include?(k)
-									$stdout.flush
-								end
-						end
-					}
+					if !@buildpkgs.include?(p.pkg_name) 
+						puts sprintf("%015.4f", Time.now.to_f) + " queue  > Thread #" + n.to_s + " skipping " + p.pkg_name 
+						thread_info[n] = "w"
+						built_packages.push(p.pkg_name)
+						pkg_deps.delete(p)
+						work_in_progress[n] = nil
+						pkg_deps.each { |k,v|
+							if (v - built_packages).size < 1 && 
+								!built_packages.include?(k.pkg_name) && 
+								!work_in_progress.include?(k.pkg_name)
+									if bottom_packages.include?(k.pkg_name)
+										# Revert to push if trouble occurs!
+										# build_queue.unshift(k)
+										build_bottom_queue.push(k)
+									else
+										# build_queue.push(k)
+										build_top_queue.push(k)
+									end
+									build_bottom_queue.uniq!
+									build_top_queue.uniq!
+									unless build_top_queue.include?(k) ||  build_bottom_queue.include?(k)
+										puts sprintf("%015.4f", Time.now.to_f) + " queue  > Dependencies for package " +
+											k.pkg_name + " resolved, queueing " # unless  build_queue.include?(k)
+										$stdout.flush
+									end
+							end
+						}
+					end
 				else
 					if build_bottom_queue.size > 0
 						p = build_bottom_queue.shift
