@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
-		name="gcc62"
-		version="6.2.0"
+		name="gcc63"
+		version="6.3.0"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="583e29c7fe69d9a1031a89752c2551ab5aeacb91">gcc-6.2.0.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.2.0/</mirror>
+				<pkg sha1="928ab552666ee08eed645ff20ceb49d139205dea">gcc-6.3.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.3.0/</mirror>
 			</file>
-			<manualcheck date="20160822" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20170615" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
-					<atext linktext="gcc-6.2.1" />
-					<atext linktext="gcc-6.2.2" />
-					<atext linktext="gcc-6.2.3" />
-					<atext linktext="gcc-6.3."/>
-					<atext linktext="gcc-6.4." />
+					<atext linktext="gcc-6.3.1" />
+					<atext linktext="gcc-6.3.2" />
+					<atext linktext="gcc-6.3.3" />
+					<atext linktext="gcc-6.4."/>
+					<atext linktext="gcc-6.5." />
 					<atext linktext="gcc-7." />
 				</page>
 			</check>
@@ -60,7 +60,7 @@
 				--enable-shared \
 				--enable-threads=posix --enable-__cxa_atexit  \
 				--enable-clocale=gnu --enable-languages=c,c++ \
-				--disable-multilib --with-system-zlib --program-suffix=62 --disable-bootstrap 
+				--disable-multilib --with-system-zlib --program-suffix=63 --disable-bootstrap 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
@@ -80,7 +80,7 @@
 			cd ${PKGNAME}-build
 			mkdir -p ${TGTDIR}/usr/bin 
 			make install DESTDIR=${TGTDIR}
-			version=62
+			version=63
 			for fname in gcc g++ c++ cpp ; do
 				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
 				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
