@@ -621,7 +621,7 @@ def run_stage_two
 					thread_info[n] = "w"
 					$stdout.flush
 					sleep @thread_count * 3
-				elsif ( @buildonly.size > 0 && !@buildpkgs.include?(p.pkg_name) )
+				elsif ( @buildonly.size > 0 ) # && !@buildpkgs.include?(p.pkg_name) )
 					if build_bottom_queue.size > 0
 						p = build_bottom_queue.shift
 						queue_name = "bottom"
