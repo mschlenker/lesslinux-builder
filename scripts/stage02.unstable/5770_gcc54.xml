@@ -1,0 +1,82 @@
+<llpackages>
+	<package 
+		name="gcc54"
+		version="5.4.0"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="07524df2b4ab9070bad9c49ab668da72237b8115">gcc-5.4.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-5.4.0/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-5.4.1" />
+					<atext linktext="gcc-5.4.2" />
+					<atext linktext="gcc-5.4.3" />
+					<atext linktext="gcc-5.5"/>
+					<atext linktext="gcc-5.6." />
+					<atext linktext="gcc-6." />
+				</page>
+			</check>
+		</sources>	
+		<builddeps>
+			<dep>gcc62</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			bunzip2 -c ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2 | tar xf -
+			mkdir ${PKGNAME}-build
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			SED=sed
+			export SED
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc /usr/local/gcc62/bin/gcc62"
+				export CXX="distcc /usr/local/gcc62/bin/g++62"
+			else
+				export CC='/usr/local/gcc62/bin/gcc62'
+				export CXX='/usr/local/gcc62/bin/g++62'
+			fi
+			jobcount=4
+			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
+				--enable-shared --disable-libsanitizer \
+				--enable-threads=posix --enable-__cxa_atexit    \
+				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++,go \
+				--disable-multilib --with-system-zlib --program-suffix=54 --disable-bootstrap 
+			make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make -k check
+			../gcc-${PKGVERSION}/contrib/test_summary
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			mkdir -p ${TGTDIR}/usr/bin 
+			make install DESTDIR=${TGTDIR}
+			version=54
+			for fname in gcc g++ c++ cpp ; do
+				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
+				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
+			done
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf gcc-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
