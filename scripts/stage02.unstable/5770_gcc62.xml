@@ -44,6 +44,12 @@
 			mkdir ${PKGNAME}-build
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[
+			cd gcc-${PKGVERSION}
+			cat ${SRCDIR}/gcc-6.3.0-ubsan.patch | patch -p1
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-build
