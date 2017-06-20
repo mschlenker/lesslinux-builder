@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="cacerts"
-		version="20160922-00"
+		version="52.2.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -9,6 +9,10 @@
 			<file>                           
 				<pkg sha1="3ad9a89569fc6cf37e070efa0eaf203451958bf1">lesslinux-cacerts-20160922-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                           
+				<pkg sha1="8dde2a8dd3e2b625ab55f81818da2f9451ebec7e">thunderbird-52.2.0.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/thunderbird/releases/52.2.0/source/</mirror>
 			</file>
 			<manualcheck date="20160922" interval="90" page="http://distfiles.lesslinux.org/" />
 		</sources>
@@ -34,11 +38,13 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/lesslinux-${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xjf ${SRCDIR}/lesslinux-${PKGNAME}-20160922-00.tar.bz2
+			tar xjf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
+			cp -v thunderbird-${PKGVERSION}/mozilla/security/nss/lib/ckfw/builtins/certdata.txt ${PKGNAME}/ 
 			cd ${PKGNAME}
 			bash make-ca.sh
 			bash remove-expired-certs.sh certs
@@ -59,6 +65,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}
+			rm -rf thunderbird-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
