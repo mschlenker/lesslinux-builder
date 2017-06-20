@@ -1,0 +1,68 @@
+<llpackages>
+    <package name='dmenu' version='4.7' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='f0f4a30ed0797099fef8d83990a91c8c3c9847e2'>dmenu-4.7.tar.gz</pkg>
+                <mirror>http://dl.suckless.org/tools/</mirror>
+            </file>
+	   <!-- <file>
+                <pkg sha1='75c5d4201428a03ad01de8171c6440f580c49c6a'>dmenu-Fix-segfault-on-systems-with-broken-locale-support.patch</pkg>
+                <mirror>http://distfiles.lesslinux.org/</mirror>
+            </file> -->
+            <manualcheck date='20170615' interval='180' mirror='http://dl.suckless.org/tools/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libX11</dep>
+                        <dep>libXinerama</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>xproto-base</dep>
+			<dep>freetype</dep>
+			<dep>distcc</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <!-- <patch>
+	    <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cat ${SRCDIR}/${PKGNAME}-Fix-segfault-on-systems-with-broken-locale-support.patch | patch -p0
+]]>
+	</patch> -->
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+sed -i 's%usr/X11R6%usr%g' config.mk
+#export CC="/usr/local/gcc54/bin/gcc54"
+#export CXX="/usr/local/gcc54/bin/g++54"
+make -j $jobcount PREFIX=/usr
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+#export CC="/usr/local/gcc54/bin/gcc54"
+#export CXX="/usr/local/gcc54/bin/g++54"	    
+make install PREFIX=/usr DESTDIR="$TGTDIR"
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
