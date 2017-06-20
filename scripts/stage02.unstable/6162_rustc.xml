@@ -21,14 +21,14 @@
         <patch/>
         <build>
             <![CDATA[
-cd ${PKGNAME}-${PKGVERSION}
+cd ${PKGNAME}-${PKGVERSION}-src
 jobcount=4
-export CC='/usr/local/gcc54/bin/gcc54'
-export CXX='/usr/local/gcc54/bin/g++54'
+# export CC='/usr/local/gcc54/bin/gcc54'
+# export CXX='/usr/local/gcc54/bin/g++54'
 if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-	export CC='distcc /usr/local/gcc54/bin/gcc54'
-	export CXX='distcc /usr/local/gcc54/bin/g++54'
+	export CC='distcc gcc'
+	export CXX='distcc g++'
 fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make -j $jobcount
@@ -36,12 +36,12 @@ make -j $jobcount all
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}-src
 make install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}-src
 ]]>
         </clean>
     </package>
