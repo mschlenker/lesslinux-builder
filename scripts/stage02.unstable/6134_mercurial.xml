@@ -1,0 +1,56 @@
+<llpackages>
+    <package name='mercurial' version='4.2.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3fb8e228c8e3129cae1b222085984f4f90c7140b'>
+                    mercurial-4.2.1.tar.gz
+                </pkg>
+                <mirror>
+                    https://www.mercurial-scm.org/release/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://www.mercurial-scm.org'/>
+        </sources>
+	<builddeps>
+                        <dep>M2Crypto</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>fusepy</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>openssl</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>setuptools</dep>
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
