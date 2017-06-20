@@ -35,6 +35,7 @@ class FileChecker
 			return 0 if @file_to_check =~ /\/etc\/lesslinux\/pkglist.d\// 
 			return 0 if @file_to_check =~ /\/var\/cache\/ldconfig\/aux-cache$/
 			return 0 if @file_to_check =~ /\/etc\/ld\.so\.cache$/ 
+			return 0 if @file_to_check =~ /\/etc\/distcc\/hosts$/ 
 			begin 
 				if (@ftype == "f")
 					@size = File.stat(@fullpath).size
