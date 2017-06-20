@@ -1,0 +1,84 @@
+<llpackages>
+    <package name='x265' version='2.4' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='f8bfb348defa86fbfdce4dcc1d0c48c855e0e987'>
+                    x265_2.4.tar.gz
+                </pkg>
+                <mirror>
+                    https://bitbucket.org/multicoreware/x265/downloads/
+                </mirror>
+            </file>
+	       <file>
+                <pkg sha1='17abf75e2d655607445fa5da805c2890eab7bc25'>
+                    x265_2.4-enable_static-1.patch
+                </pkg>
+                <mirror>
+                    http://www.linuxfromscratch.org/patches/blfs/svn/
+                </mirror>
+            </file>
+            <manualcheck date='20160927' interval='60' mirror='https://bitbucket.org/multicoreware/x265/downloads/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>distcc</dep>
+                        <dep>fusepy</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>mercurial</dep>
+                        <dep>openssl</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>rekall</dep>
+                        <dep>setuptools</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>yasm</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/x265_2.4.tar.gz
+]]>
+        </unpack>
+        <patch>
+		<![CDATA[cd x265_2.4
+		patch -Np1 -i ${SRCDIR}/x265_2.4-enable_static-1.patch
+		mkdir _build
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd x265_2.4/_build
+	jobcount=2
+	if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+		jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+		export CC="distcc gcc"
+		export CXX="distcc g++" 
+	fi
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+		-DENABLE_STATIC=OFF         \
+		../source
+	make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd x265_2.4/_build 
+	    make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf x265_2.4
+]]>
+        </clean>
+    </package>
+</llpackages>

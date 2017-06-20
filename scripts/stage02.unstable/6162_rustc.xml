@@ -1,0 +1,48 @@
+<llpackages>
+    <package name='rustc' version='1.18.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='1195775bea5c524d4033f03c7289b357d5dc4a84'>
+                    rustc-1.18.0-src.tar.gz
+                </pkg>
+                <mirror>
+                    https://static.rust-lang.org/dist/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://static.rust-lang.org/dist/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+jobcount=4
+export CC='/usr/local/gcc54/bin/gcc54'
+export CXX='/usr/local/gcc54/bin/g++54'
+if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+	export CC='distcc /usr/local/gcc54/bin/gcc54'
+	export CXX='distcc /usr/local/gcc54/bin/g++54'
+fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make -j $jobcount
+make -j $jobcount all
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
