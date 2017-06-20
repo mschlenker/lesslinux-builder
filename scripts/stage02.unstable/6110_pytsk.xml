@@ -1,0 +1,56 @@
+<llpackages>
+    <package name='pytsk3' version='20170508' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='09de0594c005f27c09e61dd73620ca72ca5d95f9'>
+                    pytsk3-20170508.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/p/pytsk3/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/packages/source/p/pytsk3/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>fusepy</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>openssl</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>setuptools</dep>
+                        <dep>sleuthkit</dep>
+                        <dep>talloc</dep>
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

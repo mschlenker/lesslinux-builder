@@ -1,0 +1,74 @@
+<llpackages>
+    <package name='libevtx-alpha' version='20170122' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='610842e621e762fe99d84a21774abfcad457cb6b'>
+                    libevtx-alpha-20170122.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libevtx/releases/download/20170122/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://github.com/libyal/libevtx/releases/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fusepy</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>protobuf</dep>
+                        <dep>psutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>setuptools</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>libevt-alpha</dep>
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libevtx-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var  --enable-python
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libevtx-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libevtx-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

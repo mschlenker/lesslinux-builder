@@ -1,0 +1,75 @@
+<llpackages>
+    <package name='libqcow-alpha' version='20170222' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8e9621142c0f69aa67ce2f4fce39b40a654c2a79'>
+                    libqcow-alpha-20170222.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libyal/libqcow/releases/download/20170222/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://github.com/libyal/libqcow/releases'/>
+        </sources>
+	<builddeps>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fuse</dep>
+                        <dep>fusepy</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>setuptools</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libqcow-${PKGVERSION}
+	      jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-python2
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libqcow-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libqcow-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
