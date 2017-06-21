@@ -14,6 +14,26 @@
             </file>
             <manualcheck date='20170620' interval='60' mirror='https://github.com/Airblader/xcb-util-xrm/releases/download/v1.2/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>libX11</dep>
+                        <dep>libev</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+			<dep>xcb-util-cursor</dep>
+                        <dep>xcb-util-wm</dep>
+                        <dep>xcb-util</dep>
+                        <dep>xproto-base</dep>
+                        <dep>yajl</dep>
+                        <dep>libxkbcommon</dep>
+                        <dep>distcc</dep>
+	<builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>
