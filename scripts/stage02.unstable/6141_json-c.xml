@@ -38,19 +38,19 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME}-${PKGNAME}-${PKGVERSION}
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 # find . -type f -name Makefile -exec sed -i 's/-Werror//g' {} \; 
 make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME}-${PKGNAME}-${PKGVERSION}
 make install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGNAME}-${PKGVERSION}
 ]]>
         </clean>
     </package>
