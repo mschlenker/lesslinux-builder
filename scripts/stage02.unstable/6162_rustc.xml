@@ -1,25 +1,17 @@
 <llpackages>
-    <package name='rustc' version='1.18.0' install='chroot'>
+    <package name='rustc' version='1.16.0' install='chroot'>
         <license>
             unknown
         </license>
-        <sources>
+	<sources>
             <file>
-                <pkg sha1='1b7f0f25d38fb3b3aee3a7bc0f391707824d2dfe'>rustc-1.18.0-src-lesslinux.tar.gz</pkg>
-                <mirror>https://distfiles.lesslinux.org/</mirror>
+                <pkg sha1='c0a66ad539b1ca9f3b1d174f4a233228cb422cd7'>
+                    rustc-1.16.0-src.tar.gz
+                </pkg>
+                <mirror>
+                    https://static.rust-lang.org/dist/
+                </mirror>
             </file>
-	    <!-- <file>
-                <pkg sha1='d823658205a6a4a61f3b0c79d4970094b28d6ee6'>rust-std-1.17.0-i686-unknown-linux-gnu.tar.gz</pkg>
-                <mirror>https://static.rust-lang.org/dist/2017-04-27/</mirror>
-            </file>
-	    <file>
-                <pkg sha1='f8d89ead9877a63a7d6f84cbb04aa5f000550805'>rustc-1.17.0-i686-unknown-linux-gnu.tar.gz</pkg>
-                <mirror>https://static.rust-lang.org/dist/2017-04-27/</mirror>
-            </file>
-	       <file>
-                <pkg sha1='de3a369af554d6c65f623c299be58e75b6f76fe9'>cargo-0.18.0-i686-unknown-linux-gnu.tar.gz</pkg>
-                <mirror>https://static.rust-lang.org/dist/2017-04-27/</mirror>
-            </file> -->
             <manualcheck date='20170615' interval='60' mirror='https://static.rust-lang.org/dist/'/>
         </sources>
 	<builddeps>
