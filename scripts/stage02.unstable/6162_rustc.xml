@@ -5,17 +5,47 @@
         </license>
         <sources>
             <file>
-                <pkg sha1='1195775bea5c524d4033f03c7289b357d5dc4a84'>
-                    rustc-1.18.0-src.tar.gz
-                </pkg>
-                <mirror>
-                    https://static.rust-lang.org/dist/
-                </mirror>
+                <pkg sha1='1b7f0f25d38fb3b3aee3a7bc0f391707824d2dfe'>rustc-1.18.0-src-lesslinux.tar.gz</pkg>
+                <mirror>https://distfiles.lesslinux.org/</mirror>
             </file>
+	    <!-- <file>
+                <pkg sha1='d823658205a6a4a61f3b0c79d4970094b28d6ee6'>rust-std-1.17.0-i686-unknown-linux-gnu.tar.gz</pkg>
+                <mirror>https://static.rust-lang.org/dist/2017-04-27/</mirror>
+            </file>
+	    <file>
+                <pkg sha1='f8d89ead9877a63a7d6f84cbb04aa5f000550805'>rustc-1.17.0-i686-unknown-linux-gnu.tar.gz</pkg>
+                <mirror>https://static.rust-lang.org/dist/2017-04-27/</mirror>
+            </file>
+	       <file>
+                <pkg sha1='de3a369af554d6c65f623c299be58e75b6f76fe9'>cargo-0.18.0-i686-unknown-linux-gnu.tar.gz</pkg>
+                <mirror>https://static.rust-lang.org/dist/2017-04-27/</mirror>
+            </file> -->
             <manualcheck date='20170615' interval='60' mirror='https://static.rust-lang.org/dist/'/>
         </sources>
+	<builddeps>
+                        <dep>autoconf</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+			<dep>Python</dep>
+                        <dep>Python3</dep>
+                        <dep>llvm</dep>
+                </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src.tar.gz
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src-lesslinux.tar.gz
 ]]>
         </unpack>
         <patch/>
