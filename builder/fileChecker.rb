@@ -36,6 +36,7 @@ class FileChecker
 			return 0 if @file_to_check =~ /\/var\/cache\/ldconfig\/aux-cache$/
 			return 0 if @file_to_check =~ /\/etc\/ld\.so\.cache$/ 
 			return 0 if @file_to_check =~ /\/etc\/distcc\/hosts$/ 
+			return 0 if @file_to_check =~ /\/etc\/resolv\.conf$/ 
 			begin 
 				if (@ftype == "f")
 					@size = File.stat(@fullpath).size

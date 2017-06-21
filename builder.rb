@@ -418,6 +418,7 @@ def run_stage_two
 		@distcchosts.each { |h| distcc_hostfile.write( h + "\n" ) }
 		distcc_hostfile.close 
 	end
+	system("install -m 0644 /etc/resolv.conf " + @builddir + "/stage01/chroot/etc/resolv.conf") 
 	pkg_count = @stage_two_objs.size
 	# Stage 02 abfrühstücken
 	# Alle Scripte in stage02 suchen
