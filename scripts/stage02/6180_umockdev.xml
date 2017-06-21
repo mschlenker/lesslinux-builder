@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libgudev' version='231' install='destdir'>
+    <package name='umockdev' version='0.9.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='b48d867a488ebfca8cf2bec12e112bac9f3bf122'>
-                    libgudev-231.tar.xz
+                <pkg sha1='9ce251ebcda0271633303454504dc96acadad054'>
+                    umockdev-0.9.1.tar.gz
                 </pkg>
                 <mirror>
-                    http://ftp.gnome.org/pub/gnome/sources/libgudev/231/
+                    https://github.com/martinpitt/umockdev/archive/
                 </mirror>
             </file>
-            <manualcheck date='20170615' interval='60' mirror='http://ftp.gnome.org/pub/gnome/sources/libgudev/230/'/>
+            <manualcheck date='20170621' interval='60' mirror='https://github.com/martinpitt/umockdev/archive/'/>
         </sources>
 	<builddeps>
                         <dep>GConf</dep>
@@ -48,30 +48,22 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>udev</dep>
-			<dep>umockdev</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	      jobcount=2
-			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
-				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
-				export DISTCC_HOSTS
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-			fi
+bash autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make -j $jobcount 
+make
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install DESTDIR=${TGTDIR} 
+make install
 ]]>
         </install>
         <clean>
