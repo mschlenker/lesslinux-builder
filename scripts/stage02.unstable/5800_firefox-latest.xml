@@ -182,8 +182,8 @@ export PATH=` pwd `/.cargo/bin:$PATH
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL
-export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
-export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
+# export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
+# export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
 dir=`pwd `
 sed -i 's%PWD%'${dir}'/%g' mozilla-release/.mozconfig 
 # sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
@@ -323,7 +323,7 @@ chown -R 0:0 ${TGTDIR}/opt/firefox-${PKGVERSION}
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf mozilla-release l10n
+			rm -rf mozilla-release l10n .cargo
 			]]>
 		</clean>
 	</package>
