@@ -43,7 +43,7 @@ done
 			
 			-->
 			<file>                                    
-				<pkg sha1="ae60a7258d6cd85b04b6ebb9ae07f9fdde4e640c">dotcargo-i686-20170621.tar.gz</pkg>
+				<pkg sha1="13b5c8a518b7226d05eaa9ac4ba203ee2c6adf53">dotcargo-i686-20170622.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<!-- <file>                                    
@@ -164,7 +164,7 @@ done
 			
 			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			mv firefox-${PKGVERSION} mozilla-release
-			tar xf ${SRCDIR}/dotcargo-i686-20170621.tar.gz 
+			tar xf ${SRCDIR}/dotcargo-i686-20170622.tar.gz 
 			]]>
 		</unpack>
 		<patch>
@@ -178,7 +178,9 @@ done
 
 # exit 0
 
-export PATH=` pwd `/.cargo/bin:$PATH 
+export PATH=` pwd `/cargo/bin:$PATH
+export CARGO_HOME=` pwd `/cargo
+export RUSTUP_HOME=` pwd `/rustup
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL

@@ -32,7 +32,7 @@ done
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                    
-				<pkg sha1="ae60a7258d6cd85b04b6ebb9ae07f9fdde4e640c">dotcargo-i686-20170621.tar.gz</pkg>
+				<pkg sha1="13b5c8a518b7226d05eaa9ac4ba203ee2c6adf53">dotcargo-i686-20170622.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<!-- <file>                                                               
@@ -151,7 +151,7 @@ done
 			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 comm-esr/.mozconfig
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.de-es-pl-ru.tar.xz
-			tar xf ${SRCDIR}/dotcargo-i686-20170621.tar.gz 
+			tar xf ${SRCDIR}/dotcargo-i686-20170622.tar.gz 
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -172,8 +172,9 @@ sed -e '/#include/a\
 		</patch> -->
 		<build>
 			<![CDATA[
-			
-export PATH=` pwd `/.cargo/bin:$PATH 
+export PATH=` pwd `/cargo/bin:$PATH
+export CARGO_HOME=` pwd `/cargo
+export RUSTUP_HOME=` pwd `/rustup 
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL
