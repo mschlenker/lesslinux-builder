@@ -48,7 +48,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>udev</dep>
-			<dep>umockdev</dep>
+			<!-- <dep>umockdev</dep> -->
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
@@ -65,7 +65,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-umockdev 
 make -j $jobcount 
 ]]>
         </build>
