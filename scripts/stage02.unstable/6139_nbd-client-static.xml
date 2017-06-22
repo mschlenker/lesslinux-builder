@@ -25,6 +25,7 @@
 		<![CDATA[
 			cd nbd-${PKGVERSION}
 			sed -i 's/HAVE_GNUTLS, 1/HAVE_GNUTLS, 0/g' configure.ac
+			sed -i 's/HAVE_GNUTLS=1/HAVE_GNUTLS=0/g' configure.ac
 		]]>
 		</patch>
 		<build>
@@ -33,8 +34,8 @@
 			bash autogen.sh
 			export CC=/usr/local/musl/bin/musl-gcc
 			./configure --prefix=/usr --sysconfdir=/etc --disable-glibtest
-			make -j4 LDFLAGS=-all-static
-			make -j4 LDFLAGS=-all-static nbd-client
+			make -j4 -k LDFLAGS=-all-static
+			make -j4 -k LDFLAGS=-all-static nbd-client
 			]]>
 		</build>
 		<test />
