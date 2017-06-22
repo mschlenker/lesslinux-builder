@@ -21,7 +21,12 @@
 			tar xf ${SRCDIR}/nbd-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+		<![CDATA[
+			cd nbd-${PKGVERSION}
+			sed -i 's/HAVE_GNUTLS, 1/HAVE_GNUTLS, 0/g' configure.ac
+		]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd nbd-${PKGVERSION}
