@@ -2,7 +2,9 @@
     <subpackage name='skel'>
         <softlink path='/usr/local/lib/libyajl.so.2' owner='0' group='0'/>
         <softlink path='/usr/local/lib/libyajl.so' owner='0' group='0'/>
-        <directory path='/usr' owner='0' group='0'/>
+        <softlink path='/usr/local/libyajl.so.2' owner='0' group='0'/>
+        <softlink path='/usr/local/libyajl.so' owner='0' group='0'/>
+	<directory path='/usr' owner='0' group='0'/>
         <directory path='/usr/local' owner='0' group='0'/>
         <directory path='/usr/local/include' owner='0' group='0'/>
         <directory path='/usr/local/include/yajl' owner='0' group='0'/>
@@ -12,7 +14,8 @@
         <directory path='/usr/local/share/pkgconfig' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-     <file path='/usr/local/lib/libyajl.so.2.1.0' owner='0' group='0' mode='100755'/>
+     	<file path='/usr/local/lib/libyajl.so.2.1.0' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libyajl.so.2.1.0' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/usr/local/bin/json_verify' owner='0' group='0' mode='100755'/>
