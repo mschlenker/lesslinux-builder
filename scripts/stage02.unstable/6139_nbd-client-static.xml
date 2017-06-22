@@ -30,6 +30,7 @@
 		<build>
 			<![CDATA[
 			cd nbd-${PKGVERSION}
+			bash autogen.sh
 			export CC=/usr/local/musl/bin/musl-gcc
 			./configure --prefix=/usr --sysconfdir=/etc --disable-glibtest
 			make -j4 LDFLAGS=-all-static
