@@ -71,11 +71,12 @@
 			export CXX="distcc g++" 
 	    fi
 	    ./configure --prefix=/usr --sysconfdir=/etc 
+	    cd i686-pc-linux-gnu/
 	    make -j $jobcount 
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/i686-pc-linux-gnu
 	    make install DESTDIR=${TGTDIR}
 ]]>
         </install>
