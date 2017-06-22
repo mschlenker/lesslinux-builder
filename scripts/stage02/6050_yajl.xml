@@ -35,7 +35,7 @@
         <patch/>
         <build>
             <![CDATA[cd lloyd-${PKGNAME}-66cb08c
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+cmake -DCMAKE_INSTALL_PREFIX=/usr  .
 make
 ]]>
         </build>
