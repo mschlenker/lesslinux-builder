@@ -1,0 +1,34 @@
+<pkgdesc name='wavpack' version='5.1.0'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libwavpack.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libwavpack.so' owner='0' group='0'/>
+        <directory path='/usr/include/wavpack' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/bin/wavpack' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/wvgain' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/wvunpack' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libwavpack.so.1.2.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/wvtag' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/wavpack.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/wvtag.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/wvunpack.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/wvgain.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/wavpack/wavpack.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/wavpack.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libwavpack.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libwavpack.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

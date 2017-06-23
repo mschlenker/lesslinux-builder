@@ -1,0 +1,320 @@
+<pkgdesc name='pulseaudio' version='10.0'>
+    <subpackage name='skel'>
+        <softlink path='/usr/share/man/man1/pamon.1' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man1/paplay.1' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man1/parecord.1' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man1/parec.1' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/paplay' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/pacmd' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/pacat' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/parec' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/pactl' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/parecord' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/pasuspender' owner='0' group='0'/>
+        <softlink path='/usr/share/bash-completion/completions/padsp' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpulse-mainloop-glib.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpulse-mainloop-glib.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpulse.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpulse.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpulse-simple.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpulse-simple.so.0' owner='0' group='0'/>
+        <softlink path='/usr/bin/paplay' owner='0' group='0'/>
+        <softlink path='/usr/bin/pamon' owner='0' group='0'/>
+        <softlink path='/usr/bin/parec' owner='0' group='0'/>
+        <softlink path='/usr/bin/parecord' owner='0' group='0'/>
+        <directory path='/etc/pulse' owner='0' group='0'/>
+        <directory path='/usr/share/zsh' owner='0' group='0'/>
+        <directory path='/usr/share/zsh/site-functions' owner='0' group='0'/>
+        <directory path='/usr/share/pulseaudio' owner='0' group='0'/>
+        <directory path='/usr/share/pulseaudio/alsa-mixer' owner='0' group='0'/>
+        <directory path='/usr/share/pulseaudio/alsa-mixer/paths' owner='0' group='0'/>
+        <directory path='/usr/share/pulseaudio/alsa-mixer/profile-sets' owner='0' group='0'/>
+        <directory path='/usr/libexec/pulse' owner='0' group='0'/>
+        <directory path='/usr/include/pulse' owner='0' group='0'/>
+        <directory path='/usr/lib/cmake/PulseAudio' owner='0' group='0'/>
+        <directory path='/usr/lib/pulse-10.0' owner='0' group='0'/>
+        <directory path='/usr/lib/pulse-10.0/modules' owner='0' group='0'/>
+        <directory path='/usr/lib/pulseaudio' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libpulse-simple.so.0.1.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulseaudio/libpulsedsp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libpulse-mainloop-glib.so.0.0.5' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libpulse.so.0.20.1' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulseaudio/libpulsecore-10.0.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulseaudio/libpulsecommon-10.0.so' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/libexec/pulse/gconf-helper' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-switch-on-port-available.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-suspend-on-idle.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-virtual-source.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-native-protocol-tcp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-pipe-source.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-raop-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-echo-cancel.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-alsa-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-console-kit.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libprotocol-cli.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-zeroconf-publish.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-mmkbd-evdev.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-null-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-cli-protocol-tcp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-filter-apply.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-gconf.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-raop-discover.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-tunnel-source-new.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-virtual-surround-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-always-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-sine.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/liboss-util.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-udev-detect.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-oss.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-sine-source.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-esound-protocol-unix.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-x11-publish.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libprotocol-esound.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-stream-restore.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libprotocol-simple.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-http-protocol-unix.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-combine.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-native-protocol-unix.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-http-protocol-tcp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/librtp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-cli.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libalsa-util.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-remap-source.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-allow-passthrough.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-volume-restore.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-loopback.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libraop.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-virtual-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-position-event-sounds.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-combine-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-native-protocol-fd.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-rtp-send.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-filter-heuristics.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-esound-compat-spawnpid.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-remap-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-role-cork.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libcli.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-null-source.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-simple-protocol-tcp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-tunnel-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-simple-protocol-unix.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-cli-protocol-unix.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libprotocol-http.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-card-restore.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-rtp-recv.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-x11-cork-request.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-x11-xsmp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-default-device-restore.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libprotocol-native.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-alsa-source.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-match.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-tunnel-sink-new.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-x11-bell.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-pipe-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-esound-protocol-tcp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-device-manager.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-role-ducking.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-hal-detect.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-detect.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-rescue-streams.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-switch-on-connect.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-tunnel-source.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-esound-compat-spawnfd.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-ladspa-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-augment-properties.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-intended-roles.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-device-restore.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-esound-sink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-dbus-protocol.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-alsa-card.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/libavahi-wrap.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-zeroconf-discover.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulse-10.0/modules/module-rygel-media-server.so' owner='0' group='0' mode='100755'/>
+        
+        <file path='/usr/bin/pacmd' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pacat' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pax11publish' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pactl' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pulseaudio' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pasuspender' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man5/pulse-client.conf.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/default.pa.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/pulse-cli-syntax.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/pulse-daemon.conf.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pactl.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pacmd.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/padsp.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/esdcompat.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/start-pulseaudio-x11.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pacat.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pulseaudio.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pax11publish.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pasuspender.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/pulse/client.conf' owner='0' group='0' mode='100644'/>
+        <file path='/etc/pulse/system.pa' owner='0' group='0' mode='100644'/>
+        <file path='/etc/pulse/daemon.conf' owner='0' group='0' mode='100644'/>
+        <file path='/etc/pulse/default.pa' owner='0' group='0' mode='100644'/>
+        <file path='/etc/xdg/autostart/pulseaudio.desktop' owner='0' group='0' mode='100644'/>
+        <file path='/etc/dbus-1/system.d/pulseaudio-system.conf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/pulse/util.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/utf8.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/proplist.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/cdecl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/introspect.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/ext-stream-restore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/scache.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/timeval.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/stream.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/format.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/context.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/simple.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/thread-mainloop.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/def.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/mainloop-signal.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/ext-device-restore.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/direction.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/ext-device-manager.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/gccmacro.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/version.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/volume.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/xmalloc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/pulseaudio.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/mainloop-api.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/rtclock.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/channelmap.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/mainloop.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/subscribe.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/error.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/glib-mainloop.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/sample.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/pulse/operation.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libpulse-simple.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libpulse.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libpulse-mainloop-glib.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ml/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/gl/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/be/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/uk/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/lt/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/kn/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sk/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/cs/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ru/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ta/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ko/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/gu/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hi/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sr@latin/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sr/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/or/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/el/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/mr/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/te/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ja/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/he/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt_BR/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/as/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/bn_IN/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fi/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de_CH/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hu/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/tr/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nl/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pa/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ca/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/id/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_TW/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/oc/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/pulseaudio.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/lib/udev/rules.d/90-pulseaudio.rules' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/zsh/site-functions/_pulseaudio' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-linein.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-headphone-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-aux.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-internal-mic-always.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-video.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-5.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input.conf.common' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/iec958-stereo-output.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-3.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output-mono.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-7.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-dock-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-0.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output-speaker-always.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-tvtuner.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-mic.conf.common' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones-2.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-rear-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-headset-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output-speaker.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-fm.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-internal-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-front-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-4.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output.conf.common' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-1.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-input-mic-line.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-6.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/analog-output-lineout.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/paths/hdmi-output-2.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/native-instruments-traktorkontrol-s4.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/kinect-audio.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/sb-omni-surround-5.1.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/native-instruments-korecontroller.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/native-instruments-traktor-audio6.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/native-instruments-traktor-audio2.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/maudio-fasttrack-pro.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/native-instruments-audio8dj.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/force-speaker-and-int-mic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/native-instruments-audio4dj.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/force-speaker.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/default.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/pulseaudio/alsa-mixer/profile-sets/native-instruments-traktor-audio10.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/vala/vapi/libpulse-mainloop-glib.vapi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/vala/vapi/libpulse-simple.deps' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/vala/vapi/libpulse-simple.vapi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/vala/vapi/libpulse.vapi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/vala/vapi/libpulse-mainloop-glib.deps' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/vala/vapi/libpulse.deps' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/bash-completion/completions/pulseaudio' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libpulse.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libpulse-simple.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cmake/PulseAudio/PulseAudioConfig.cmake' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/cmake/PulseAudio/PulseAudioConfigVersion.cmake' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pulseaudio/libpulsedsp.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulseaudio/libpulsecore-10.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulseaudio/libpulsecommon-10.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libpulse-mainloop-glib.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/esdcompat' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/start-pulseaudio-x11' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/padsp' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
