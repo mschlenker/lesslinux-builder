@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='sqlitebrowser' version='3.9.1' install='destdir'>
+    <package name='sqlitebrowser' version='3.9.1' install='chroot'>
         <license>
             unknown
         </license>
@@ -53,7 +53,7 @@ make -j 4
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}/
-make install DESTDIR=${TGTDIR}
+make install
 sed -i 's/Development/CB-Other/g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
 sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
 ]]>
