@@ -1,0 +1,738 @@
+<pkgdesc name='grub' version='2.02'>
+    <subpackage name='skel'>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/etc/bash_completion.d' owner='0' group='0'/>
+        <directory path='/etc/grub.d' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/grub' owner='0' group='0'/>
+        <directory path='/usr/share/locale' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/gl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/gl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lt' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lt/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@hebrew' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@hebrew/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ko' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ko/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nb' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nb/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ast' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ast/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eo' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eo/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de@hebrew' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de@hebrew/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@quot' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@quot/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@arabic' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@arabic/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt_BR' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt_BR/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@cyrillic' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@cyrillic/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fi' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fi/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de_CH' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de_CH/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/da' owner='0' group='0'/>
+        <directory path='/usr/share/locale/da/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hu' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hu/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@piglatin' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@piglatin/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pa' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pa/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_TW' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_TW/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/vi' owner='0' group='0'/>
+        <directory path='/usr/share/locale/vi/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@greek' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en@greek/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/info' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/grub' owner='0' group='0'/>
+        <directory path='/usr/lib/grub/i386-pc' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/sbin/grub-probe' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/grub-ofpathname' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/grub-macbless' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/grub-bios-setup' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/grub-sparc64-setup' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/chain.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/video_fb.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/videotest.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/luks.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mpi.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/search.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/play.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_pl2303.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/video_bochs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/relocator.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/legacy_password_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/udf.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_camellia.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/offsetio.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/datehook.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gfxmenu.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gfxterm.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/loadenv.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/affs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/scsi.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/bswap_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mmap.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/sleep.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_acorn.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/read.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_serpent.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/luks.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/echo.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/setjmp_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/minix_be.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/password.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/font.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/videotest_checksum.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/div_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/bsd.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cbls.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/archelp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_sha256.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cdboot.image' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gptsync.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_sha512.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ldm.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/bitmap_scale.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/setjmp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mpi.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/macho.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ufs1.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lsacpi.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/parttool.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/video_cirrus.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ntldr.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/boot.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/macho.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/hexdump.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/reboot.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/configfile.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/truecrypt.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/aout.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/multiboot2.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/linux.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/freedos.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usb_keyboard.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/all_video.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/font.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/nilfs2.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/loopback.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/romfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/geli.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/hfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cbfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/pcidump.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/random.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/testload.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_sun.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/true.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/tar.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/keystatus.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mdraid09.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/vga.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hfsplus.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_seed.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ctz_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cryptodisk.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/memdisk.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_crc.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_msdos.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/bitmap.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hello.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/png.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/reiserfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pbkdf2.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/legacycfg.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/efiemu.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/search_fs_uuid.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/play.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/kernel.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/shift_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/tr.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/normal.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_dvh.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_whirlpool.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/serial.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hdparm.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/affs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/hfspluscomp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/tftp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/hdparm.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lzma_decompress.image' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/tar.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cs5536.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cbtime.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gfxterm.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/legacycfg.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/minicmd.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/video_fb.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/search_label.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/mul_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/read.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/keystatus.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/blocklist.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cryptodisk.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/sleep_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/memdisk.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix_be.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_plan.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/regexp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_gpt.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/plan9.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/crc64.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/usbms.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_md5.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/msdospart.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_sunpc.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/search_fs_file.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rsa.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/hello.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cmp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/exfctest.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cmdline_cat_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ufs2.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_amiga.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/aout.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/setjmp_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ctz_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ohci.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/fshelp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/bsd.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/memrw.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lzopio.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/spkmodem.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usbtest.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lspci.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/zfscrypt.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/chain.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ehci.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ldm.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/configfile.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/memrw.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/password_pbkdf2.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_crc.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/password_pbkdf2.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/efiemu.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/multiboot2.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/bitmap.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_arcfour.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usb.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/exfat.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pbkdf2_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/file.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/progress.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gfxterm_background.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/testload.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cat.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/zfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/tga.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/dm_nv.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/tr.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/bitmap_scale.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/diskfilter.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lvm.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/all_video.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/raid6rec.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cmostest.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_cast5.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gzio.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ntfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/video.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/password.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_md5.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/file.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_blowfish.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/search_fs_uuid.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/xzio.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_apple.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ext2.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ntfscomp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_apple.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usb.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/http.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/afs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_dfly.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/xnu.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rfc2268.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/pbkdf2.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/squash4.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/truecrypt.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/pxechain.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lsmmap.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/blocklist.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/xnu_uuid.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rijndael.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_ftdi.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_plan.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cbtime.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/disk.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/datehook.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/bfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cbmemc.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/jpeg.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/sfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/date.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/xzio.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/video_cirrus.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/odc.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/linux16.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/spkmodem.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/procfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gdb.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/sendkey.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/squash4.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rsa.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/videotest.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_usbdebug.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_twofish.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/usb_keyboard.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/sfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pata.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_usbdebug.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/linux16.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hexdump.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/testspeed.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/bufio.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lspci.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_des.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gfxterm_background.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/diskboot.image' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix2_be.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/uhci.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/net.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/halt.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cmp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cpio.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/plan9.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/test_blockarg.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/test_blockarg.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/priority_queue.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ahci.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/romfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/acpi.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_seed.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rijndael.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/help.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ufs2.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cs5536.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/backtrace.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/priority_queue.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cbtable.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/png.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/zfsinfo.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/syslinuxcfg.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_bsd.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gdb.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_camellia.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cbls.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/eval.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cmosdump.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/video_colors.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/xnu_uuid_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mul_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/loopback.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/net.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ufs1.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/vga_text.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/newc.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_blowfish.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/normal.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/biosdisk.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/zfsinfo.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/uhci.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/mdraid1x.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_ftdi.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lzopio.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/backtrace.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/setjmp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/at_keyboard.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/trig.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/search_label.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/reboot.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/exfat.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lsapm.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/halt.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/div.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/iorw.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_dsa.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_idea.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/adler32.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/minix3.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_acorn.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/bswap_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/minix3_be.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_cast5.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gfxterm_menu.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_sha1.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ata.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lnxboot.image' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/video_colors.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/udf.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_pl2303.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_tiger.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/fat.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/sendkey.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ahci.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/true.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_whirlpool.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/disk.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/jfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/nilfs2.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/raid5rec.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/boot.image' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/boot.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/sleep_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ntldr.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/setpci.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ata.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cpuid.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/jpeg.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/xnu.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pbkdf2_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_dvh.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/bufio.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ls.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/vga_text.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/morse.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cmdline_cat_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_dfly.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hashsum.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/kernel.exec' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cpio_be.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/zfscrypt.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/progress.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/jfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/search_fs_file.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/parttool.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cbmemc.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cmostest.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lvm.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pxe.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/iso9660.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/bfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_tiger.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/videoinfo.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/signature_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/newc.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gzio.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/testspeed.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_common.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gfxterm_menu.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pci.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_sha512.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/boot_hybrid.image' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/vbe.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usbserial_common.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/minicmd.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/macbless.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/diskfilter.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/multiboot.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_gpt.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/btrfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/exfctest.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/probe.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pci.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix3.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/verify.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ntfscomp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/syslinuxcfg.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/adler32.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/probe.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/xnu_uuid.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/time.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cmp_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cmosdump.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/multiboot.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_bsd.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rmd160.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/cat.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/eval.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/btrfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/relocator.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_sha256.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/video_bochs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_md4.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ohci.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/datetime.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix2.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_amiga.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/offsetio.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pxe.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mda_text.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/terminfo.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/terminfo.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/keylayouts.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/part_sunpc.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gettext.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/videotest_checksum.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/functional_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/xfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_msdos.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/terminal.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rmd160.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/geli.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hfspluscomp.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mda_text.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/archelp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/raid6rec.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ufs1_be.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lsmmap.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_des.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lsapm.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/mmap.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ext2.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_serpent.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/iso9660.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/div_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hfsplus.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pata.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/crc64.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/odc.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/elf.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/extcmd.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/ehci.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/minix.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/usbms.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/legacy_password_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/verify.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/zfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/part_sun.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/usbtest.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/dm_nv.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/vga.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/drivemap.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/afs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/acpi.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/macbless.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/at_keyboard.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cbtable.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/regexp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cbfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/shift_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cpuid.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/mdraid09_be.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_sha1.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/http.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/video.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/videoinfo.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/mdraid1x.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/functional_test.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/keylayouts.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cmp_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/drivemap.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gettext.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cpio.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cpio_be.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/search.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/date.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/crypto.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/time.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gptsync.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/random.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_twofish.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix2_be.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/elf.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ufs1_be.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_idea.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gfxmenu.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/biosdisk.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_dsa.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/echo.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/fshelp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/vbe.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/xnu_uuid_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/reiserfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/fat.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/setpci.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_md4.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/procfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/nativedisk.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/tga.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/hashsum.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/mdraid09_be.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/div.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/scsi.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_rfc2268.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pxechain.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/iorw.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pxeboot.image' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/serial.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/trig.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/pcidump.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/lsacpi.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix3_be.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/xfs.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/tftp.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ntfs.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/ls.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/sleep.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/signature_test.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/crypto.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/datetime.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/extcmd.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/morse.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/help.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/freedos.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gcry_arcfour.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/loadenv.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/terminal.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/msdospart.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/linux.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/minix2.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/nativedisk.module' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/raid5rec.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/mdraid09.mod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/bin/grub-mkpasswd-pbkdf2' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-render-label' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-mkrelpath' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-glue-efi' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-script-check' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-mknetdir' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-syslinux2cfg' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-mkfont' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-editenv' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-mklayout' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-mount' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-fstest' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-mkimage' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-file' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-menulst2cfg' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/info/grub.info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/grub-dev.info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/dir' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/bash_completion.d/grub' owner='0' group='0' mode='100644'/>
+        <file path='/etc/grub.d/41_custom' owner='0' group='0' mode='100755'/>
+        <file path='/etc/grub.d/30_os-prober' owner='0' group='0' mode='100755'/>
+        <file path='/etc/grub.d/10_linux' owner='0' group='0' mode='100755'/>
+        <file path='/etc/grub.d/40_custom' owner='0' group='0' mode='100755'/>
+        <file path='/etc/grub.d/00_header' owner='0' group='0' mode='100755'/>
+        <file path='/etc/grub.d/README' owner='0' group='0' mode='100644'/>
+        <file path='/etc/grub.d/20_linux_xen' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/gl/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/uk/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/lt/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sl/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ru/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@hebrew/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ko/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nb/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ast/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/eo/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sr/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hr/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de@hebrew/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ja/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@quot/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@arabic/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt_BR/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@cyrillic/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fi/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de_CH/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/da/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hu/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/tr/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@piglatin/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nl/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pa/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ca/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/id/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_TW/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/vi/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@greek/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/grub.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/share/grub/grub-mkconfig_lib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/sbin/grub-set-default' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/grub-reboot' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/grub-install' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/grub-mkconfig' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/grub/i386-pc/partmap.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/moddep.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/pxeboot.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/cdboot.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/command.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/diskboot.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/boot_hybrid.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/fs.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/parttool.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gdb_grub' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/terminal.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/gmodule.pl' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lzma_decompress.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/boot.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/lnxboot.img' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/video.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/crypto.lst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/modinfo.sh' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/grub/i386-pc/config.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/bin/grub-mkstandalone' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-kbdcomp' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/grub-mkrescue' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

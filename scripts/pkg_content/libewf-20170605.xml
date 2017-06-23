@@ -1,0 +1,66 @@
+<pkgdesc name='libewf' version='20170605'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libewf.so.3' owner='0' group='0'/>
+        <softlink path='/usr/lib/libewf.so' owner='0' group='0'/>
+        <directory path='/usr/include/libewf' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libewf.so.3.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/libewf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libewf/definitions.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libewf/extern.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libewf/codepage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libewf/error.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libewf/features.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libewf/types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libewf.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libewf.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'>
+            <file path='/usr/lib/python2.7/site-packages/pyewf.so'/>
+        </subpackage>
+        <subpackage name='bin'>
+            <file path='/usr/bin/ewfrecover'/>
+            <file path='/usr/bin/ewfexport'/>
+            <file path='/usr/bin/ewfacquire'/>
+            <file path='/usr/bin/ewfinfo'/>
+            <file path='/usr/bin/ewfacquirestream'/>
+            <file path='/usr/bin/ewfdebug'/>
+            <file path='/usr/bin/ewfmount'/>
+            <file path='/usr/bin/ewfverify'/>
+        </subpackage>
+        <subpackage name='doc'>
+            <file path='/usr/share/man/man3/libewf.3'/>
+            <file path='/usr/share/man/man1/ewfexport.1'/>
+            <file path='/usr/share/man/man1/ewfinfo.1'/>
+            <file path='/usr/share/man/man1/ewfacquire.1'/>
+            <file path='/usr/share/man/man1/ewfmount.1'/>
+            <file path='/usr/share/man/man1/ewfrecover.1'/>
+            <file path='/usr/share/man/man1/ewfverify.1'/>
+            <file path='/usr/share/man/man1/ewfacquirestream.1'/>
+        </subpackage>
+        <subpackage name='config'/>
+        <subpackage name='devel'>
+            <file path='/usr/lib/pkgconfig/libewf.pc'/>
+            <file path='/usr/lib/python2.7/site-packages/pyewf.a'/>
+        </subpackage>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'>
+            <file path='/usr/lib/python2.7/site-packages/pyewf.la'/>
+        </subpackage>
+        <subpackage name='ignore'/>
+    </vanished>
+</pkgdesc>
