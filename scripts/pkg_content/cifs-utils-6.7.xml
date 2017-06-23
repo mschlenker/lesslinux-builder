@@ -1,0 +1,34 @@
+<pkgdesc name='cifs-utils' version='6.7'>
+    <subpackage name='skel'>
+        <directory path='/sbin' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/security' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/sbin/mount.cifs' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/security/pam_cifscreds.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/cifscreds' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/cifscreds.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mount.cifs.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/pam_cifscreds.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/cifsidmap.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

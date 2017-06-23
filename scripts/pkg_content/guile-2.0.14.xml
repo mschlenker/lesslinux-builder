@@ -1,0 +1,790 @@
+<pkgdesc name='guile' version='2.0.14'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libguile-2.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libguile-2.0.so.22' owner='0' group='0'/>
+        <softlink path='/usr/lib/libguilereadline-v-18.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libguilereadline-v-18.so.18' owner='0' group='0'/>
+        <softlink path='/usr/bin/guile-tools' owner='0' group='0'/>
+        <directory path='/usr/share/guile' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/texinfo' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/rnrs' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/rnrs/arithmetic' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/rnrs/io' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/rnrs/records' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/system' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/system/vm' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/system/repl' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/system/base' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/web' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/web/server' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/ice-9' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/srfi' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/srfi/srfi-67' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/srfi/srfi-9' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/srfi/srfi-4' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/srfi/srfi-64' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/srfi/srfi-42' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/scripts' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/value' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/ecmascript' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/objcode' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/glil' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/bytecode' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/tree-il' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/scheme' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/elisp' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/elisp/runtime' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/brainfuck' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/language/assembly' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/oop' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/oop/goops' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/sxml' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/sxml/ssax' owner='0' group='0'/>
+        <directory path='/usr/share/guile/2.0/sxml/upstream' owner='0' group='0'/>
+        <directory path='/usr/include/guile' owner='0' group='0'/>
+        <directory path='/usr/include/guile/2.0' owner='0' group='0'/>
+        <directory path='/usr/include/guile/2.0/libguile' owner='0' group='0'/>
+        <directory path='/usr/lib/guile' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/texinfo' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/rnrs' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/rnrs/arithmetic' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/rnrs/io' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/rnrs/records' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/system' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/system/vm' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/system/repl' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/system/base' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/web' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/web/server' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/ice-9' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/srfi' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/srfi/srfi-9' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/srfi/srfi-4' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/scripts' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/value' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/ecmascript' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/objcode' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/glil' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/bytecode' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/tree-il' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/scheme' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/elisp' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/elisp/runtime' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/brainfuck' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/language/assembly' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/oop' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/oop/goops' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/sxml' owner='0' group='0'/>
+        <directory path='/usr/lib/guile/2.0/ccache/sxml/ssax' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/share/guile/2.0/texinfo/html.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/texinfo/docbook.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/texinfo/string-utils.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/texinfo/plain-text.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/texinfo/indexing.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/texinfo/serialize.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/texinfo/reflection.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/exceptions.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/r5rs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/files.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/base.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/sorting.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/enums.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/mutable-strings.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/bytevectors.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/eval.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/mutable-pairs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/arithmetic/fixnums.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/arithmetic/flonums.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/arithmetic/bitwise.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/hashtables.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/io/ports.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/io/simple.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/programs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/unicode.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/control.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/conditions.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/lists.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/records/inspection.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/records/procedural.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/records/syntactic.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/rnrs/syntax-case.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/program.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/objcode.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/vm.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/trace.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/traps.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/inspect.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/trap-state.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/coverage.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/frame.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/vm/instruction.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/command.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/repl.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/server.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/error-handling.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/common.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/coop-server.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/debug.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/repl/describe.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/foreign.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/xref.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/pmatch.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/lalr.upstream.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/lalr.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/ck.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/message.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/compile.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/target.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/types.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/syntax.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/system/base/language.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/web/http.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/web/server/http.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/web/client.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/web/response.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/web/request.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/web/uri.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/web/server.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/runq.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/r4rs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/vlist.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/hcons.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/pretty-print.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/save-stack.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/rw.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/r5rs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/time.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/eval-string.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/ls.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/stack-catch.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/receive.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/syncase.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/history.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/curried-definitions.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/r6rs-libraries.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/boot-9.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/binary-ports.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/posix.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/safe-r5rs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/hash-table.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/iconv.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/i18n.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/calling.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/serialize.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/gap-buffer.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/poe.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/eval.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/q.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/documentation.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/occam-channel.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/ftw.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/networking.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/streams.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/and-let-star.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/popen.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/session.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/readline.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/safe.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/string-fun.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/match.upstream.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/psyntax-pp.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/lineio.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/format.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/match.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/unicode.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/expect.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/control.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/top-repl.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/threads.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/common-list.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/list.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/channel.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/weak-vector.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/null.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/scm-style-repl.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/regex.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/futures.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/optargs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/rdelim.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/debug.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/command-line.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/getopt-long.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/deprecated.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/psyntax.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/poll.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/buffered-input.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/local-eval.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/mapping.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/slib.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/ice-9/quasisyntax.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-34.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-67/compare.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-98.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-67.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-41.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-60.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-64.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-17.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-8.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-9.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-6.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-16.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-31.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-45.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-13.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-9/gnu.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-1.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-4/gnu.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-4.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-26.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-42.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-19.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-69.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-14.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-2.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-88.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-28.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-64/testing.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-10.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-11.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-39.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-18.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-27.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-111.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-42/ec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-38.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-43.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-35.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/srfi/srfi-37.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/autofrisk.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/frisk.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/generate-autoload.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/snarf-check-and-output-texi.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/help.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/read-scheme-source.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/punify.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/compile.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/doc-snarf.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/use2dot.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/api-diff.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/list.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/scan-api.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/disassemble.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/lint.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/read-text-outline.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/read-rfc822.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/display-commentary.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/snarf-guile-m4-docs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/scripts/summarize-guile-TODO.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/value/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/base.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/parse.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/tokenize.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/impl.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/function.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/compile-tree-il.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/array.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/ecmascript/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/objcode/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/glil/compile-assembly.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/glil/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/bytecode/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/glil.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/fix-letrec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/effects.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/canonicalize.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/analyze.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/peval.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/optimize.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/compile-glil.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/inline.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/cse.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/primitives.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/tree-il/debug.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/scheme/decompile-tree-il.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/scheme/compile-tree-il.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/scheme/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/bindings.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/runtime.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/parser.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/lexer.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/compile-tree-il.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/runtime/function-slot.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/runtime/subrs.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/runtime/value-slot.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/runtime/macros.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/elisp/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/brainfuck/compile-scheme.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/brainfuck/parse.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/brainfuck/compile-tree-il.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/brainfuck/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/assembly/disassemble.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/assembly/compile-bytecode.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/assembly/decompile-bytecode.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/assembly/spec.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/language/assembly.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/statprof.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/save.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/dispatch.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/active-slot.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/internal.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/util.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/compile.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/stklos.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/simple.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/accessors.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/composite-slot.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/oop/goops/describe.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/texinfo.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/xpath.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/ssax.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/fold.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/transform.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/ssax/input-parse.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/match.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/sxml-match.ss' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/simple.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/upstream/SXML-tree-trans.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/upstream/SSAX.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/upstream/assert.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/upstream/input-parse.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/upstream/SXPath-old.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/guile/2.0/sxml/apply-templates.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libguilereadline-v-18.so.18.0.0' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libguile-2.0.so.22.8.1' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/guile' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/guile.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/r5rs.info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-10' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-9' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/dir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-6' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/guile.info-4' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/share/aclocal/guile.m4' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/readline.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/__scm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/ioext.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/poll.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/keywords.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/bitvectors.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/debug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/evalext.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/programs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/macros.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/arbiters.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/inline.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/null-threads.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/gsubr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/modules.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/trees.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/srfi-14.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/alist.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/instructions.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/net_db.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/strings.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/list.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/chars.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/stacks.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/scmsigs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/finalizers.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/srcprop.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/threads.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/promises.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/feature.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/boolean.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/script.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/goops.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/read.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/array-map.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/procs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/random.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/simpos.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/load.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/gdb_interface.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/objcodes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/pthread-threads.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/gc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/gettext.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/print.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/srfi-1.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/gdbint.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/unicode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/struct.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/async.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/r6rs-ports.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/sort.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/vports.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/eval.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/validate.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/rdelim.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/socket.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/mallocs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/rw.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/extensions.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/fluids.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/root.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/dynwind.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/srfi-13.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/deprecation.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/expand.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/tags.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/fports.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/debug-malloc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/arrays.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/stime.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/options.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/memoize.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/ports.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/throw.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/iselect.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/hashtab.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/regex-posix.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/foreign.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/strports.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/backtrace.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/frames.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/vectors.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/deprecated.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/posix.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/version.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/continuations.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/weaks.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/vm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/array-handle.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/vm-expand.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/i18n.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/strorder.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/numbers.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/generalized-vectors.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/srfi-60.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/init.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/variable.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/filesys.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/bdw-gc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/hash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/pairs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/control.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/srfi-4.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/error.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/values.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/guardians.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/scmconfig.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/stackchk.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/objprop.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/smob.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/symbols.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/procprop.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/generalized-arrays.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/eq.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/dynl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/bytevectors.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/snarf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/vm-engine.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/uniform.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/guile/2.0/libguile/hooks.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/guile-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libguile-2.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libguilereadline-v-18.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libguilereadline-v-18.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libguile-2.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/guile-config' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/share/guile/2.0/guile-procedures.txt' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libguile-2.0.so.22.8.1-gdb.scm' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo/plain-text.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo/reflection.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo/html.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo/indexing.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo/string-utils.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo/docbook.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo/serialize.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/lists.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/files.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/exceptions.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/enums.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/conditions.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/unicode.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/mutable-strings.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/control.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/arithmetic/flonums.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/arithmetic/fixnums.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/arithmetic/bitwise.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/mutable-pairs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/io/simple.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/io/ports.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/eval.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/base.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/sorting.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/hashtables.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/syntax-case.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/bytevectors.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/records/syntactic.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/records/procedural.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/records/inspection.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/r5rs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/rnrs/programs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/foreign.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/xref.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/trap-state.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/frame.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/instruction.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/objcode.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/vm.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/traps.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/trace.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/inspect.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/coverage.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/vm/program.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/repl/repl.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/repl/debug.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/repl/error-handling.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/repl/server.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/repl/coop-server.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/repl/command.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/repl/common.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/message.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/types.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/lalr.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/language.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/pmatch.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/syntax.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/target.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/compile.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/system/base/ck.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/web/uri.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/web/server/http.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/web/response.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/web/http.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/web/request.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/web/client.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/web/server.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/boot-9.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/i18n.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/syncase.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/getopt-long.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/pretty-print.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/scm-style-repl.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/slib.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/optargs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/save-stack.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/occam-channel.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/local-eval.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/debug.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/futures.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/deprecated.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/networking.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/format.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/ftw.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/streams.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/runq.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/common-list.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/and-let-star.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/curried-definitions.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/safe-r5rs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/session.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/r4rs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/expect.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/poe.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/regex.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/unicode.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/mapping.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/control.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/receive.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/weak-vector.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/ls.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/binary-ports.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/rdelim.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/eval.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/calling.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/top-repl.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/match.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/threads.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/string-fun.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/safe.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/q.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/gap-buffer.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/documentation.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/poll.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/history.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/eval-string.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/hash-table.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/time.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/buffered-input.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/vlist.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/list.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/posix.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/stack-catch.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/popen.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/rw.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/psyntax-pp.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/readline.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/serialize.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/null.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/hcons.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/command-line.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/channel.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/iconv.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/r5rs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/ice-9/lineio.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-31.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-42.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-1.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-13.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-39.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-18.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-9.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-34.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-8.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-4.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-19.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-35.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-88.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-26.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-17.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-10.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-37.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-64.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-16.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-28.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-60.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-67.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-9/gnu.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-4/gnu.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-69.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-27.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-98.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-45.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-14.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-43.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-11.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-6.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-2.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-38.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-41.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/srfi/srfi-111.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/read-scheme-source.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/scan-api.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/use2dot.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/read-rfc822.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/snarf-check-and-output-texi.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/punify.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/autofrisk.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/frisk.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/summarize-guile-TODO.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/snarf-guile-m4-docs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/disassemble.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/help.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/read-text-outline.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/doc-snarf.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/api-diff.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/list.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/display-commentary.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/compile.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/generate-autoload.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/scripts/lint.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/statprof.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/value/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/impl.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/array.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/function.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/base.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/compile-tree-il.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/parse.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/ecmascript/tokenize.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/objcode/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/glil/compile-assembly.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/glil/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/bytecode/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/glil.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/analyze.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/compile-glil.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/canonicalize.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/cse.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/debug.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/inline.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/peval.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/fix-letrec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/effects.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/optimize.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il/primitives.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/tree-il.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/scheme/decompile-tree-il.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/scheme/compile-tree-il.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/scheme/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/lexer.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/bindings.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/runtime.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/compile-tree-il.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/runtime/macros.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/runtime/value-slot.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/runtime/function-slot.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/runtime/subrs.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/elisp/parser.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/assembly.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/brainfuck/compile-tree-il.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/brainfuck/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/brainfuck/parse.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/brainfuck/compile-scheme.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/assembly/decompile-bytecode.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/assembly/compile-bytecode.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/assembly/disassemble.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/language/assembly/spec.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/dispatch.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/composite-slot.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/accessors.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/simple.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/util.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/save.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/active-slot.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/internal.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/describe.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/stklos.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/oop/goops/compile.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/xpath.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/ssax.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/simple.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/ssax/input-parse.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/match.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/apply-templates.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/transform.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/sxml/fold.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/guile/2.0/ccache/texinfo.go' owner='0' group='0' mode='100644'/>
+        <file path='/usr/bin/guild' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/guile-snarf' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

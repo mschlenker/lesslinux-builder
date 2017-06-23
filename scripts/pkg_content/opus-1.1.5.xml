@@ -1,0 +1,33 @@
+<pkgdesc name='opus' version='1.1.5'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libopus.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libopus.so' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/aclocal' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/opus' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libopus.so.0.5.5' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/opus/opus_multistream.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/opus/opus_types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/opus/opus.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/opus/opus_defines.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/opus.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libopus.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/share/aclocal/opus.m4' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
