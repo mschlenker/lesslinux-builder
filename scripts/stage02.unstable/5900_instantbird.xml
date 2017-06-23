@@ -7,8 +7,8 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="bd95c25d5c4bcdc2118c84008cd64bcd9804251b">thunderbird-45.4.0.source.tar.xz</pkg>
-				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/45.4.0/source/</mirror>
+				<pkg sha1="8dde2a8dd3e2b625ab55f81818da2f9451ebec7e">thunderbird-52.2.0.source.tar.xz</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/52.2.0/source/</mirror>
 			</file>  
 			<!-- <file>                                                                                          
 				<pkg sha1="07a34387b550e2fed690eb5884b00679b6735022">thunderbird-38.0.1-gcc5-1.patch</pkg>
@@ -16,7 +16,7 @@
 			</file> -->
 			<!-- 
 
-tbtag=THUNDERBIRD_45_4_0_RELEASE
+tbtag=THUNDERBIRD_52_2_0_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
 echo '==> Cloning: '"$l"
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
@@ -24,11 +24,15 @@ hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
 done
 			-->
 			<file>                                                                                               
-				<pkg sha1="7527829f2dc1310e961397a6427c6ba1c142cdc1">thunderbird-45.4.0.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="8a804ab8ee410e21c5829f8288e07b80f5206762">thunderbird-52.2.0.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                           
 				<pkg sha1="39116467fefa91d4eda92ff4bad21f698d05ef8a">mozconfig-thunderbird-31.0-20141118</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                    
+				<pkg sha1="13b5c8a518b7226d05eaa9ac4ba203ee2c6adf53">dotcargo-i686-20170622.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<!-- <file>                                                               
@@ -39,15 +43,15 @@ done
 				<pkg sha1="51a7eb7d86ce24d8199f741a0079f0d56ecd6368">enigmail-1.6.tar.gz</pkg>
 				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
 			</file> -->
-			<manualcheck date="20161020" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
+			<manualcheck date="20170615" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
-					<atext linktext="45.4.1" />
-					<atext linktext="45.4.2" />
-					<atext linktext="45.4.3" />
-					<atext linktext="45.6." />
-					<atext linktext="45.5." />
-					<atext linktext="46.0." />
+					<atext linktext="52.2.4" />
+					<atext linktext="52.2.2" />
+					<atext linktext="52.2.3" />
+					<atext linktext="52.3." />
+					<atext linktext="52.4." />
+					<atext linktext="59.0." />
 				</page>
 			</check>
 		</sources>
@@ -141,16 +145,16 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			
-			exit 0
-			
+			rm -rf comm-esr l10n 
 			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
 			mv thunderbird-${PKGVERSION} comm-esr
+			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 comm-esr/.mozconfig
 			mkdir l10n
-			tar -C l10n -xf ${SRCDIR}/thunderbird-45.2.0.source.de-es-pl-ru.tar.xz
+			tar -C l10n -xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.de-es-pl-ru.tar.xz
+			tar xf ${SRCDIR}/dotcargo-i686-20170622.tar.gz 
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			
 			exit 0
@@ -167,12 +171,18 @@ sed -e '/#include/a\
 			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 .mozconfig
 			
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
-			
-			exit 0
-			
+export PATH=` pwd `/cargo/bin:$PATH
+export CARGO_HOME=` pwd `/cargo
+export RUSTUP_HOME=` pwd `/rustup 
+echo $SHELL
+export SHELL=/bin/bash
+echo $SHELL
+# export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
+# export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
+
 			workdir=` pwd ` 
 			cd comm-esr
 			echo $SHELL
@@ -190,6 +200,8 @@ sed -e '/#include/a\
 			sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' .mozconfig 
 			sed -i 's%ac_add_options --enable-calendar%# ac_add_options --enable-calendar%g' .mozconfig 
 			sed -i 's%ac_add_options --enable-application=mail%ac_add_options --enable-application=im%g'  .mozconfig 
+			sed -i 's%ac_add_options --enable-gstreamer%ac_add_options --enable-alsa%g' .mozconfig 
+			echo 'ac_add_options --disable-gconf' >> .mozconfig 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -241,9 +253,9 @@ sed -e '/#include/a\
 		<install>
 			<![CDATA[
 
-mkdir -p ${TGTDIR}/etc/lesslinux/
-touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
-exit 0
+#mkdir -p ${TGTDIR}/etc/lesslinux/
+#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+#exit 0
 
 TARFILE=comm-esr/obj-` uname -m `-pc-linux-gnu/dist/instantbird-1.6a1pre.en-US.linux-` uname -m `.tar.bz2
 case $(uname -m) 
