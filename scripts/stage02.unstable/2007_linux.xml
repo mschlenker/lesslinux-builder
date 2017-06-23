@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="4.4.52"
+		version="4.9.33"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
-			<sources>
+		<sources>
 			<file>                                  
-				<pkg sha1="f0281e06d880b2a90a5657f8d8fb696484b70d82">linux-4.4-config-32pae</pkg> 
+				<pkg sha1="f338e376ec996bf940bdeec5a582d0ac03004127">linux-4.9-config-32pae</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="af7d0cd188292d4d6c7bbaabde0f30ec6b521884">linux-4.4.tar.xz</pkg>
+				<pkg sha1="fa46da077c077467776cdc45a7b50d327a081ab4">linux-4.9.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="b0472f6ed80618d28be47cfaee1f1eeb0ff4f211">patch-4.4.52.xz</pkg>
+				<pkg sha1="727b77b22e8ec913c158f88e9d88287c2759e084">patch-4.9.33.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20170309" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20170615" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
-					<atext linktext="patch-4.4.53." />
-					<atext linktext="patch-4.4.54." />
-					<atext linktext="patch-4.4.55." />
-					<atext linktext="patch-4.5." />
-					<atext linktext="patch-4.6." />
-					<atext linktext="patch-4.7." />
+					<atext linktext="patch-4.9.36." />
+					<atext linktext="patch-4.9.34." />
+					<atext linktext="patch-4.9.35." />
+					<atext linktext="patch-4.12." />
+					<atext linktext="patch-4.13." />
+					<atext linktext="patch-4.14." />
 				</page>
 			</check>
 		</sources>
@@ -65,8 +65,6 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			exit 0
-			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
 			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
 			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
@@ -74,8 +72,6 @@
 		</unpack>
 		<patch>
 			<![CDATA[ 
-			exit 0
-			
 			localversion='ll-pae-0'
 			
 			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
@@ -93,9 +89,6 @@
 		</patch>
 		<build>
 			<![CDATA[ 
-			
-			exit 0
-			
 			cd linux-${PKGVERSION}.build
 			yes '' | make oldconfig
 			cp -v .config ../linux-${PKGVERSION}
@@ -122,9 +115,9 @@
 		<install>
 			<![CDATA[
 			
-			mkdir -p ${TGTDIR}/etc/lesslinux/
-			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
-			exit 0 
+			#mkdir -p ${TGTDIR}/etc/lesslinux/
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0 
 			
 			localversion='ll-pae-0'
 			
