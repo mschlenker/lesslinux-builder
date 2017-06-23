@@ -47,14 +47,12 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-	    mkdir _build
-	    cd _build 
-cmake -DCMAKE_INSTALL_PREFIX=/usr  -Wno-dev -DUSE_QT5=yes ..
-make
+qmake-qt5
+make -j 4 
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/_build 
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/
 make install DESTDIR=${TGTDIR}
 sed -i 's/Development/CB-Other/g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
 sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
