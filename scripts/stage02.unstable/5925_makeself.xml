@@ -10,6 +10,10 @@
 				<pkg sha1="9cffb7066cce4466d4304e0847f62f8bb789159f">makeself-2.3.0.run</pkg>
 				<mirror>https://github.com/megastep/makeself/releases/download/release-2.3.0/</mirror>
 			</file>
+			<file>                                                                        
+				<pkg sha1="d5caf07034e71d55247d46a1dbd0bc43de43b0ee">makeself-header-2.3.0.sh</pkg>
+				<mirror>https://distfiles.lesslinux.org/</mirror>
+			</file>
 			<manualcheck date="20170615" interval="180" page="http://megastep.org/makeself/" />
 			<!-- <check>
 				<page html="http://www.hyperrealm.com/libconfig/">
@@ -35,6 +39,7 @@
 		<unpack>
 			<![CDATA[ 
 			install -m 0755 ${SRCDIR}/${PKGNAME}-${PKGVERSION}.run . 
+			install -m 0755 ${SRCDIR}/${PKGNAME}-header-${PKGVERSION}.sh . 
 			]]>
 		</unpack>
 		<build>
@@ -47,11 +52,12 @@
 			<![CDATA[
 			mkdir -p ${TGTDIR}/usr/bin
 			install -m 0755 ${PKGNAME}-${PKGVERSION}/makeself.sh ${TGTDIR}/usr/bin/makeself
+			install -m 0755 ${PKGNAME}-header-${PKGVERSION}.sh ${TGTDIR}/usr/bin/makeself-header.sh 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.run
+			rm -rf ${PKGNAME}-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.run ${PKGNAME}-header-${PKGVERSION}.sh 
 			]]>
 		</clean>
 	</package>
