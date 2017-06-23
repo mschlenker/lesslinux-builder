@@ -54,8 +54,8 @@ make -j 4
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}/
 make install
-sed -i 's/Development/CB-Other/g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
-sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
+sed -i 's/Development/CB-Other/g' /usr/share/applications/sqlitebrowser.desktop
+sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g'  /usr/share/applications/sqlitebrowser.desktop
 ]]>
         </install>
         <clean>
