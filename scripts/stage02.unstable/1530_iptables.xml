@@ -40,6 +40,7 @@
                         <dep>util-linux-ng</dep>
 			<dep>libiptc</dep>
 			<dep>distcc</dep>
+			<dep>libmnl</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -58,10 +59,10 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --sysconfdir=/etc --prefix=/usr --enable-devel --disable-nftables CC="distcc gcc" CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr --enable-devel  CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --sysconfdir=/etc --prefix=/usr --enable-devel --disable-nftables
+				./configure --sysconfdir=/etc --prefix=/usr --enable-devel  
 				make
 			fi
 			]]>
