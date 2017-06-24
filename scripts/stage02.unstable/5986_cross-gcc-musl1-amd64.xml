@@ -130,6 +130,7 @@
 				--disable-libvtv                               \
 				--disable-libstdcxx                            \
 				--disable-libitm \
+				--disable-libsanitizer \
 				--enable-languages=c,c++	\
 				--with-arch=${CLFS_CPU}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then

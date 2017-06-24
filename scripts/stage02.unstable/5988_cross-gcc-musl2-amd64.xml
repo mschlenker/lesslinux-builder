@@ -124,6 +124,7 @@
 				--disable-libgomp \
 				--disable-nls \
 				--disable-libitm \
+				--disable-libsanitizer \
 				--with-arch=${CLFS_CPU}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
