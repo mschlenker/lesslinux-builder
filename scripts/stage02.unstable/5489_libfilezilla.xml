@@ -47,7 +47,27 @@
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+	<![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+cat << EOF | patch -p1 --verbose 
+diff -ruN libfilezilla-0.9.2.orig/lib/libfilezilla/util.hpp libfilezilla-0.9.2/lib/libfilezilla/util.hpp
+--- libfilezilla-0.9.2.orig/lib/libfilezilla/util.hpp	2017-05-25 18:35:14.000000000 +0000
++++ libfilezilla-0.9.2/lib/libfilezilla/util.hpp	2017-06-24 07:13:57.801508782 +0000
+@@ -28,7 +28,7 @@
+ 
+ /** \brief Get random uniformly distributed bytes
+  */
+-std::vector<uint8_t> random_bytes(size_t size);
++std::vector<uint8_t> FZ_PUBLIC_SYMBOL random_bytes(size_t size);
+ 
+ }
+ 
+
+EOF
+
+	]]>
+	</patch>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 	jobcount=2
