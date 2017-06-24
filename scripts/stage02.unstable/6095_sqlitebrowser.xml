@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='sqlitebrowser' version='3.9.1' install='chroot'>
+    <package name='sqlitebrowser' version='3.9.1' install='destdir'>
         <license>
             unknown
         </license>
@@ -53,9 +53,18 @@ make -j 4
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}/
-make install
-sed -i 's/Development/CB-Other/g' /usr/share/applications/sqlitebrowser.desktop
-sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g'  /usr/share/applications/sqlitebrowser.desktop
+	    
+mkdir -p ${TGTDIR}/usr/share/applications
+mkdir -p ${TGTDIR}/usr/share/appdata
+mkdir -p ${TGTDIR}/usr/bin
+mkdir -p ${TGTDIR}/usr/share/icons/hicolor/256x256/apps
+install -m 0755 distri/sqlitebrowser.desktop ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
+sed -i 's/Development/CB-Other/g' ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
+sed -i 's%Icon=sqlitebrowser%Icon=/usr/share/icons/Faenza/mimetypes/scalable/application-x-sqlite3.svg%g'  ${TGTDIR}/usr/share/applications/sqlitebrowser.desktop
+install -m 0644 src/icons/sqlitebrowser.png ${TGTDIR}/usr/share/icons/hicolor/256x256/apps/sqlitebrowser.png
+install -m 0644 distri/sqlitebrowser.desktop.appdata.xml ${TGTDIR}/usr/share/appdata/sqlitebrowser.desktop.appdata.xml
+install -m 0755 src/sqlitebrowser ${TGTDIR}/usr/bin/sqlitebrowser 
+
 ]]>
         </install>
         <clean>
