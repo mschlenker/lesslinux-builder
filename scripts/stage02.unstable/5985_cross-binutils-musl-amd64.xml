@@ -67,7 +67,7 @@
 		<build>
 			<![CDATA[ 
 			
-			exit 0
+			# exit 0
 			
 			cd binutils-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
@@ -78,7 +78,6 @@
 					--prefix=/usr/local/crosstools-amd64-musl --disable-nls \
 					--with-sysroot=/usr/local/crosstools-amd64-musl/x86_64-linux-musl \
 					--disable-werror --disable-multilib CC="distcc gcc" CXX="distcc g++" 
-				make configure-host
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				../binutils-${PKGVERSION}/configure --target=x86_64-linux-musl \
@@ -92,9 +91,9 @@
 		<install>
 			<![CDATA[
 			
-			mkdir -p ${TGTDIR}/etc/lesslinux
-			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
-			exit 0
+			#mkdir -p ${TGTDIR}/etc/lesslinux
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0
 			
 			cd binutils-build
 			make install DESTDIR=${TGTDIR}
