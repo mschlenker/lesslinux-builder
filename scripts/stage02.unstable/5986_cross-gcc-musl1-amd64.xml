@@ -115,6 +115,8 @@
 				--host=${CLFS_HOST} \
 				--target=${CLFS_TARGET} \
 				--with-sysroot=/usr/local/crosstools-amd64-musl/${CLFS_TARGET} \
+				--with-newlib                                  \
+				--without-headers                              \
 				--disable-nls                                  \
 				--disable-shared                               \
 				--disable-multilib                             \
