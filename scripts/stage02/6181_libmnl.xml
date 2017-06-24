@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libmnl' version='1.0.4' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='2db40dea612e88c62fd321906be40ab5f8f1685a'>
+                    libmnl-1.0.4.tar.bz2
+                </pkg>
+                <mirror>
+                    ftp://ftp.netfilter.org/pub/libmnl/
+                </mirror>
+            </file>
+            <manualcheck date='20170624' interval='60' mirror='ftp://ftp.netfilter.org/pub/libmnl/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
