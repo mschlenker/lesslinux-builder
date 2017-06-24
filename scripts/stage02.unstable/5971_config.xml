@@ -77,7 +77,7 @@
 			]]>
 		</unpack>
 		<patch><![CDATA[
-
+cd ${PKGNAME}-${PKGVERSION}
 cat << EOPATCH | patch -p1  
 diff -ruN lxqt-config-0.11.1.orig/liblxqt-config-cursor/selectwnd.cpp lxqt-config-0.11.1/liblxqt-config-cursor/selectwnd.cpp
 --- lxqt-config-0.11.1.orig/liblxqt-config-cursor/selectwnd.cpp	2017-01-01 22:03:41.000000000 +0000
