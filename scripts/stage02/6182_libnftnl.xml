@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libnftnl' version='1.0.7' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='381b2b3cbb3fad186cb3f57bbf32d70f0b3c3c8e'>
+                    libnftnl-1.0.7.tar.bz2
+                </pkg>
+                <mirror>
+                    https://netfilter.org/projects/libnftnl/files/
+                </mirror>
+            </file>
+            <manualcheck date='20170624' interval='60' mirror='https://netfilter.org/projects/libnftnl/files/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
