@@ -116,7 +116,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			bash autogen.sh
-			./configure --prefix=/usr --sysconfdir=/etc 
+			./configure --prefix=/usr --sysconfdir=/etc --enable-actions=no
 			make 
 			]]>
 		</build>
