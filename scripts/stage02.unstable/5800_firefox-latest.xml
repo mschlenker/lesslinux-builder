@@ -196,7 +196,7 @@ sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-l
 sed -i 's%ac_add_options --enable-gstreamer%ac_add_options --enable-alsa%g' mozilla-release/.mozconfig 
 # sed -i 's%ac_add_options --with-system-nss%# ac_add_options --with-system-nss%g' mozilla-release/.mozconfig 
 # sed -i 's%ac_add_options --with-system-nspr%# ac_add_options --with-system-nspr%g' mozilla-release/.mozconfig 
-
+echo 'ac_add_options --disable-pulseaudio' >> mozilla-release/.mozconfig 
 echo 'ac_add_options --disable-gconf' >> mozilla-release/.mozconfig 
 cd mozilla-release
 

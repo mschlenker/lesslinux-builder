@@ -201,6 +201,7 @@ echo $SHELL
 			sed -i 's%ac_add_options --enable-calendar%# ac_add_options --enable-calendar%g' .mozconfig 
 			sed -i 's%ac_add_options --enable-application=mail%ac_add_options --enable-application=im%g'  .mozconfig 
 			sed -i 's%ac_add_options --enable-gstreamer%ac_add_options --enable-alsa%g' .mozconfig 
+			echo 'ac_add_options --disable-pulseaudio' >> .mozconfig 
 			echo 'ac_add_options --disable-gconf' >> .mozconfig 
 			
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
