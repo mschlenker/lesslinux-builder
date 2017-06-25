@@ -96,7 +96,7 @@
 				export CXX="distcc g++" 
 			fi
 			# export PATH=/usr/compat.old/qt4/bin:$PATH
-			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  -DKBINDICATOR_PLUGIN=No .
 			make -j $jobcount 
 			]]>
 		</build>
