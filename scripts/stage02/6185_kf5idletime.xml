@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='kidletime' version='5.35.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='4dcea1927a90ee120b74cacc4b9e8ae9ce371c6d'>
+                    kidletime-5.35.0.tar.xz
+                </pkg>
+                <mirror>
+                    https://download.kde.org/stable/frameworks/5.35/
+                </mirror>
+            </file>
+            <manualcheck date='20170625' interval='60' mirror='https://download.kde.org/stable/frameworks/5.35/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
