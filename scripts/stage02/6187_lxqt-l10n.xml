@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='lxqt-l10n' version='0.11.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='9a0dadb3f5855cb7d2af84de2bf509a14b9904af'>
+                    lxqt-l10n-0.11.2.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/lxde/lxqt-l10n/releases/download/0.11.2/
+                </mirror>
+            </file>
+            <manualcheck date='20170625' interval='60' mirror='https://github.com/lxde/lxqt-l10n/releases/download/0.11.2/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
