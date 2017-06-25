@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libstatgrab' version='0.91' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='dd443de8556ca4760c7e33f384208167b266b9cd'>
+                    libstatgrab-0.91.tar.gz
+                </pkg>
+                <mirror>
+                    ftp://ftp.i-scream.org/pub/i-scream/libstatgrab/
+                </mirror>
+            </file>
+            <manualcheck date='20170625' interval='60' mirror='ftp://ftp.i-scream.org/pub/i-scream/libstatgrab/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
