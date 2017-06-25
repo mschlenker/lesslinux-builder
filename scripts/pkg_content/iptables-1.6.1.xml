@@ -1,14 +1,27 @@
 <pkgdesc name='iptables' version='1.6.1'>
     <subpackage name='skel'>
+        <softlink path='/usr/sbin/iptables-restore-translate' owner='0' group='0'/>
         <softlink path='/usr/sbin/iptables-restore' owner='0' group='0'/>
+        <softlink path='/usr/sbin/ebtables-compat' owner='0' group='0'/>
+        <softlink path='/usr/sbin/ip6tables-compat-restore' owner='0' group='0'/>
         <softlink path='/usr/sbin/ip6tables-restore' owner='0' group='0'/>
+        <softlink path='/usr/sbin/ip6tables-restore-translate' owner='0' group='0'/>
         <softlink path='/usr/sbin/iptables' owner='0' group='0'/>
         <softlink path='/usr/sbin/ip6tables-save' owner='0' group='0'/>
         <softlink path='/usr/sbin/iptables-save' owner='0' group='0'/>
+        <softlink path='/usr/sbin/ip6tables-translate' owner='0' group='0'/>
         <softlink path='/usr/sbin/ip6tables' owner='0' group='0'/>
+        <softlink path='/usr/sbin/iptables-translate' owner='0' group='0'/>
+        <softlink path='/usr/sbin/iptables-compat-restore' owner='0' group='0'/>
+        <softlink path='/usr/sbin/ip6tables-compat' owner='0' group='0'/>
+        <softlink path='/usr/sbin/iptables-compat' owner='0' group='0'/>
+        <softlink path='/usr/sbin/iptables-compat-save' owner='0' group='0'/>
+        <softlink path='/usr/sbin/ip6tables-compat-save' owner='0' group='0'/>
+        <softlink path='/usr/sbin/arptables-compat' owner='0' group='0'/>
         <softlink path='/usr/lib/libxtables.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libxtables.so.12' owner='0' group='0'/>
         <softlink path='/usr/bin/iptables-xml' owner='0' group='0'/>
+        <directory path='/etc' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
         <directory path='/usr/share' owner='0' group='0'/>
         <directory path='/usr/share/man' owner='0' group='0'/>
@@ -23,15 +36,17 @@
         <directory path='/usr/bin' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-	 <file path='/usr/lib/libxtables.so.12.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libxtables.so.12.0.0' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/usr/sbin/xtables-multi' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/xtables-compat-multi' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libipt_NETMAP.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_TPROXY.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_TCPMSS.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_rt.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_pkttype.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xtables/libarpt_mangle.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_osf.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_HL.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_icmp6.so' owner='0' group='0' mode='100755'/>
@@ -83,6 +98,7 @@
         <file path='/usr/lib/xtables/libxt_mac.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_NETMAP.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_MASQUERADE.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xtables/libebt_nflog.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libipt_CLUSTERIP.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_devgroup.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_mark.so' owner='0' group='0' mode='100755'/>
@@ -135,7 +151,9 @@
         <file path='/usr/lib/xtables/libxt_DSCP.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_owner.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_SYNPROXY.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xtables/libebt_mark.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libxt_iprange.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xtables/libebt_limit.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_ipv6header.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_hl.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/xtables/libip6t_mh.so' owner='0' group='0' mode='100755'/>
@@ -150,7 +168,9 @@
         <file path='/usr/share/man/man8/iptables-save.8' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/man/man8/ip6tables-restore.8' owner='0' group='0' mode='100644'/>
     </subpackage>
-    <subpackage name='config'/>
+    <subpackage name='config'>
+        <file path='/etc/ethertypes' owner='0' group='0' mode='100644'/>
+    </subpackage>
     <subpackage name='devel'>
         <file path='/usr/include/xtables.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/libiptc/libiptc.h' owner='0' group='0' mode='100644'/>
@@ -166,4 +186,16 @@
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>
