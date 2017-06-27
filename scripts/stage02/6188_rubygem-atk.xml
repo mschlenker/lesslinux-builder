@@ -15,6 +15,20 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
 		</sources>
+		<builddeps>
+                        <dep>exifr</dep>
+                        <dep>id3tag</dep>
+                        <dep>mini_portile2</dep>
+                        <dep>mini_portile</dep>
+                        <dep>native-package-installer</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-glib2</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			exit 0
