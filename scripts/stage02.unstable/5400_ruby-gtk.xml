@@ -241,7 +241,7 @@
 				export CC='gcc'
 				export CXX='g++'
 			fi
-			ruby extconf.rb 
+			ruby extconf.rb gio2 pango gtk2 gtk3 gtksourceview2 vte cairo-gobject poppler gstreamer 
 			#  glib2 gio2 gdk_pixbuf2 pango atk gtk2 gstreamer gobject-introspection vte gtksourceview2 rsvg2 poppler && make
 			make -j${jobcount}
 			]]>
