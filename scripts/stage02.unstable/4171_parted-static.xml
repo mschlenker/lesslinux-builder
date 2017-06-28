@@ -11,7 +11,7 @@
 				<mirror>http://ftp.gnu.org/gnu/parted/</mirror>
 			</file>
 			<file>                                                                                          
-                                <pkg sha1="134498350084fe1371e48e1bdcf558913a112a78">LVM2.2.02.171.tgz</pkg>
+                                <pkg sha1="032277219d6d9acd4adbed9c000ed06a074b8200">LVM2.2.02.164.tgz</pkg>
                                 <mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
                         </file>
 			<file>                                                                                          
@@ -71,34 +71,30 @@
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/parted-${PKGVERSION}.tar.xz | tar xf - 
-			tar -xf ${SRCDIR}/LVM2.2.02.171.tgz
+			tar -xf ${SRCDIR}/LVM2.2.02.164.tgz
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			cd parted-${PKGVERSION} 
 			cat ${SRCDIR}/parted-${PKGVERSION}-devmapper-1.patch |  patch -p1 
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
-			# export CC="/usr/local/gcc54/bin/gcc54"
-			# export CXX="/usr/local/gcc54/bin/g++54"
 			THISDIR=` pwd ` 
-			cd LVM2.2.02.171
+			cd LVM2.2.02.164
 			export CFLAGS=-Wno-error
 			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link # CFLAGS=-fPIE LDFLAGS=-pie
 			make lib
 			cd ../parted-${PKGVERSION}                    
 			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no 
-			make LDFLAGS="-all-static"  ##  -L${THISDIR}/LVM2.2.02.171/libdm/ioctl -pthread"
+			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.164/libdm/ioctl -pthread"
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
 			cd parted-${PKGVERSION}
 			mkdir -p $TGTDIR/static/sbin
 			install -m 0755 parted/parted $TGTDIR/static/sbin/parted
@@ -108,7 +104,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf parted-${PKGVERSION}
-			rm -rf LVM2.2.02.166
+			rm -rf LVM2.2.02.164
 			]]>
 		</clean>
 	</package>
