@@ -213,6 +213,8 @@
 			<dep>rubygem-atk</dep>
 			<dep>rubygem-glib2</dep>
 			<dep>rubygem-gobject-introspection</dep>
+			<dep>rubygem-gio2</dep>
+			<dep>rubygem-gdk_pixbuf2</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -241,7 +243,7 @@
 				export CC='gcc'
 				export CXX='g++'
 			fi
-			ruby extconf.rb gio2 pango gtk2 gtk3 gtksourceview2 vte cairo-gobject poppler gstreamer 
+			ruby extconf.rb pango gtk2 gtk3 gtksourceview2 vte cairo-gobject poppler gstreamer 
 			#  glib2 gio2 gdk_pixbuf2 pango atk gtk2 gstreamer gobject-introspection vte gtksourceview2 rsvg2 poppler && make
 			make -j${jobcount}
 			]]>
