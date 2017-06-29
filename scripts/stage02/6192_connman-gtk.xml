@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='connman-gtk' version='1.1.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0cf1a730888606c78e39d1d5b8fdcda1a509ac17'>
+                    connman-gtk-1.1.1.tar.bz2
+                </pkg>
+                <mirror>
+                    https://github.com/jgke/connman-gtk/releases/download/v1.1.1/
+                </mirror>
+            </file>
+            <manualcheck date='20170629' interval='60' mirror='https://github.com/jgke/connman-gtk/releases/download/v1.1.1/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
