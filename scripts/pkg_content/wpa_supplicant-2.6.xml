@@ -7,10 +7,15 @@
         <file path='/usr/sbin/wpa_passphrase' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'/>
-    <subpackage name='config'/>
+    <subpackage name='config'>
+        <file path='/etc/dbus-1/system.d/wpa_supplicant.conf' owner='0' group='0' mode='100644'/>
+	<file path='/usr/share/dbus-1/system-services/fi.w1.wpa_supplicant1.service' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/dbus-1/system-services/fi.epitest.hostap.WPASupplicant.service' owner='0' group='0' mode='100644'/>
+    </subpackage>
     <subpackage name='devel'/>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'/>
+    <subpackage name='uncategorized'>
+    </subpackage>
     <subpackage name='ignore'/>
 </pkgdesc>
