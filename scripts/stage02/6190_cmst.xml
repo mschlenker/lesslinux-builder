@@ -1,0 +1,35 @@
+<llpackages>
+    <package name='cmst' version='2017.03.18' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='f5a884f51ba841319b25a081f484439d70e4f0b6'>
+                    cmst-2017.03.18.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/andrew-bibb/cmst/releases/download/cmst-2017.03.18/
+                </mirror>
+            </file>
+            <manualcheck date='20170629' interval='60' mirror='https://github.com/andrew-bibb/cmst/releases/download/cmst-2017.03.18/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
