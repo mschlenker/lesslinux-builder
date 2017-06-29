@@ -54,6 +54,7 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
+sed -i 's%Categories=GTK%Categories=Network;GTK%g'  /usr/share/applications/connman-gtk.desktop 
 ]]>
         </install>
         <clean>

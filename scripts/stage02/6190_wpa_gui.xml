@@ -69,7 +69,8 @@
 			mkdir -p ${TGTDIR}/usr/share/applications
 			mkdir -p ${TGTDIR}/usr/share/pixmaps
 			install -m 0755 wpa_supplicant-${PKGVERSION}/wpa_supplicant/wpa_gui-qt4/wpa_gui ${TGTDIR}/usr/bin
-			install -m 0755 wpa_supplicant-${PKGVERSION}/wpa_supplicant/wpa_gui-qt4/wpa_gui.desktop  ${TGTDIR}/usr/share/applications
+			install -m 0755 wpa_supplicant-${PKGVERSION}/wpa_supplicant/wpa_gui-qt4/wpa_gui.desktop  ${TGTDIR}/usr/share/applications/wpa_gui.desktop.hidden
+			touch ${TGTDIR}/usr/share/applications/wpa_gui.desktop
 			install -m 0755 wpa_supplicant-${PKGVERSION}/wpa_supplicant/wpa_gui-qt4/icons/wpa_gui.svg ${TGTDIR}/usr/share/pixmaps
 			]]>
 		</install>
