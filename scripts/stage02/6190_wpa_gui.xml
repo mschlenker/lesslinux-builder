@@ -22,6 +22,23 @@
 				</page>
 			</check>
 		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>kguiaddons</dep>
+                        <dep>kidletime</dep>
+                        <dep>kwayland</dep>
+                        <dep>kwindowsystem</dep>
+                        <dep>libkscreen</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
+                        <dep>solid</dep>
+			<dep>wpa_supplicant</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/wpa_supplicant-${PKGVERSION}.tar.bz2 ] ; then
