@@ -21,10 +21,13 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}
+	    qmake-qt5
+	    make -j4
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}
+	    make install 
 ]]>
         </install>
         <clean>
