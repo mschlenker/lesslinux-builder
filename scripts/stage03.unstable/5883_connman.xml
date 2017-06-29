@@ -52,7 +52,7 @@ case $1 in
 	else
 		printf "$bold===> Starting connection manager (connman) $normal\n"
 		connmand 
-		wpa_supplicant -u &
+		wpa_supplicant -u -B 
 	fi
     ;;
 esac
