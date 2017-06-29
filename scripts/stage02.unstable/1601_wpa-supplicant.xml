@@ -98,6 +98,10 @@ EOF
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}/wpa_supplicant
 			make install
+			mkdir -p /usr/share/dbus-1/system-services/
+			mkdir -p /etc/dbus-1/system.d/
+			install -v -m644 dbus/fi.{epitest.hostap.WPASupplicant,w1.wpa_supplicant1}.service /usr/share/dbus-1/system-services/
+			install -v -m644 dbus/dbus-wpa_supplicant.conf /etc/dbus-1/system.d/wpa_supplicant.conf
 			]]>
 		</install>
 		<clean>
