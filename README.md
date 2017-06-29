@@ -1,12 +1,12 @@
 This repository contains the scripts used for building LessLinux. They are not complete yet since I am cleaning up during the move from subversion to git. See the documentation on http://blog.lesslinux.org/ for details. 
 
-## Today's state 
+## Today's state - updated 2017-06-29
 
-**Legacy: Yellow** Build with `--legacy` - this uses headers and kernels from the 3.18.x LTS series. Not as extensively tested as stable.
+**Legacy: Red** Build with `--legacy` - this uses headers and kernels from the 3.18.x LTS series. Not as extensively tested as stable. Do not use anymore.
 
-**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Works quite good, need some fine tuning. Has been updated to kernel 4.4.x, but kernel configuration might receive some fine tuning. Still issues with some games that use cogl and clutter.
+**Stable: Green**  Build with neither  `--legacy` nor `--unstable`.  Works quite good, need some fine tuning. Has been updated to kernel 4.4.x, but kernel configuration might receive some fine tuning. Still issues with some games that use cogl and clutter. Some packages may fail, since they rely on now obsolete (first stage) cross compilers, either take those cross compilers from bitrot or build with `--allow-fail=grub-efi-i386,grub-efi-image-i386,grub-efi-amd64,grub-efi-image` 
  
-**Unstable: Red** Build with `--unstable`. DO NOT USE. Currenty we are updating to kernel 4.9, GCC 6.3 nearly everything will fail to build!
+**Unstable: Yellow** Build with `--unstable`. USE ON YOUR OWN RISK. Currenty we are updating to kernel 4.9, GCC 6.3. Network management for release builds is now handled by connman. Language packs for Firefox are missing. Some packages may fail to build. Works mostly, but still needs some testing. 
 
 Check out a revision before June 6th, 2017 to access stable with 4.1 kernel.
 
