@@ -30,6 +30,13 @@ icons = [
 	"/usr/share/icons/Faenza/apps/48/gnome-disks.png",
 	"/usr/share/icons/Faenza/apps/48/comix.png"
 ]
+# Change virus scanner according to found scanners
+if File.executable? "/opt/eset/esets/bin/esets_gui" 
+	labels[-1] = "<b>Virenscan</b>\nStarten Sie den Virenscanner ESET NOD32 und führen Sie mit diesem eine Suche nach Schadsoftware durch"
+	commands[-1] = "/usr/bin/eset.sh"
+elsif File.executable? "/opt/avg/av/bin/avgscan" 
+	labels[-1] = "<b>Virenscan</b>\nStarten Sie den Virenscanner AVG Free und führen Sie mit diesem eine Suche nach Schadsoftware durch"
+end
 
 window = Gtk::Window.new
 
