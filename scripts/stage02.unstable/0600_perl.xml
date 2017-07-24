@@ -1,24 +1,27 @@
 <llpackages>
 	<package 
 		name="perl"
-		version="5.24.1"
+		version="5.24.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                             
-				<pkg sha1="d43ac3d39686462f86eed35b3c298ace74f1ffa0">perl-5.24.1.tar.bz2</pkg>
+				<pkg sha1="82172d72aca2cb4b0d7d00b9fbff3501c2ff03d6">perl-5.24.2.tar.gz</pkg>
 				<mirror>http://www.cpan.org/src/5.0/</mirror>
 			</file>
-			<manualcheck date="20170608" interval="180" page="http://www.cpan.org/" />
+			<manualcheck date="20170724" interval="180" page="http://www.cpan.org/" />
 			<check>
 				<page html="http://www.cpan.org/src/5.0/">
 					<atext linktext="perl-5.26.1." />
 					<atext linktext="perl-5.26.2." />
 					<atext linktext="perl-5.26.3." />
-					<atext linktext="perl-5.26." />
+					<atext linktext="perl-5.24.4." />
+					<atext linktext="perl-5.24.5." />
+					<atext linktext="perl-5.24.3." />
 					<atext linktext="perl-5.28." />
 					<atext linktext="perl-5.30." />
+					<atext linktext="perl-5.32." />
 					<atext linktext="perl-6." />
 				</page>
 			</check>
@@ -35,7 +38,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<!-- <patch>
