@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="cross-gcc-musl1-amd64"
-		version="6.3.0"
+		version="6.4.0"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="928ab552666ee08eed645ff20ceb49d139205dea">gcc-6.3.0.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.3.0/</mirror>
+				<pkg sha1="f237974b2d3af0f60936ce6a2f35b912a91e0239">gcc-6.4.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.4.0/</mirror>
 			</file>
 			<!-- <file>                                                                                  
 				<pkg sha1="f9cbd9aa639f4f96e25399372b9e655e3cb09f4b">musl-gcc-patches-5.3.0.tar.xz</pkg>
@@ -65,7 +65,7 @@
 			
 			# exit 0
 			
-			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
 			# tar xf ${SRCDIR}/musl-gcc-patches-${PKGVERSION}.tar.xz
 			
 			tar xf ${SRCDIR}/mpfr-3.1.5.tar.bz2
