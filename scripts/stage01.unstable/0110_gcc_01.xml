@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="gcc_pass1"
-		version="6.3.0"
+		version="6.4.0"
 		buildas="unpriv">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="928ab552666ee08eed645ff20ceb49d139205dea">gcc-6.3.0.tar.bz2</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.3.0/</mirror>
+				<pkg sha1="f237974b2d3af0f60936ce6a2f35b912a91e0239">gcc-6.4.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.4.0/</mirror>
 			</file>
 			<file>                                                                       
 				<pkg sha1="874e84bb5959fd5a19c032cfb5d673dded4b5cff">mpfr-3.1.5.tar.bz2</pkg>
@@ -63,7 +63,7 @@
 		</sources>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
 			tar xf ${SRCDIR}/mpfr-3.1.5.tar.bz2
 			tar xf ${SRCDIR}/gmp-6.1.2.tar.lz
 			tar zxf ${SRCDIR}/mpc-1.0.3.tar.gz
