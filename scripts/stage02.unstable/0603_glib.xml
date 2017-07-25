@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="glib"
-		version="2.52.2"
+		version="2.52.3"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                
-				<pkg sha1="50a5af7569af1a489e17f207142cd5a4cdefbf68">glib-2.52.2.tar.xz</pkg>
+				<pkg sha1="9e31cce788d018894e6e0b1350263bc11b41cff8">glib-2.52.3.tar.xz</pkg>
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/glib/2.52/</mirror>
 			</file>
 			<!--
@@ -28,10 +28,10 @@
 				<pkg sha1="6faf85f52e1f43a1e6018cd5f913d4fd71edfd0c">glib-2.24.1-copyright.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
-			<manualcheck date="20170609" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/glib/" />
+			<manualcheck date="20170725" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/glib/" />
 			<check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/glib/2.52/">
-					<atext linktext="glib-2.52.1." />
+					<atext linktext="glib-2.52.4." />
 					<atext linktext="glib-2.52.2." />
 					<atext linktext="glib-2.52.3." />
 				</page>
@@ -65,7 +65,6 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			# tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
 			]]>
 		</unpack>
