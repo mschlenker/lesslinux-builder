@@ -78,10 +78,10 @@ patch -Np1 -i ${SRCDIR}/glibc-2.25-fhs-1.patch
 				;;
 			esac
 			make 
-			echo '=== Build finished, testing...'
-			make -k check 2>&1 | tee glibc-check-log
-			echo '=== Testing finished, grepping...'
-			grep Error glibc-check-log
+			# echo '=== Build finished, testing...'
+			# make -k check 2>&1 | tee glibc-check-log
+			# echo '=== Testing finished, grepping...'
+			# grep Error glibc-check-log
 			]]>
 		</build>
 		<test>
