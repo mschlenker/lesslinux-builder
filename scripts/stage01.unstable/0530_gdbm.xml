@@ -1,0 +1,60 @@
+<llpackages>
+	<package 
+		name="gdbm"
+		version="1.13"
+		class="devel">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                      
+				<pkg sha1="7f2a8301497bbcac91808b011ca533380914fd21">gdbm-1.13.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gdbm/</mirror>
+			</file>
+			<manualcheck date="20170727" interval="180" page="http://ftp.gnu.org/gnu/gdbm/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gdbm/">
+					<atext linktext="gdbm-1.13.1." />
+					<atext linktext="gdbm-1.13.2." />
+					<atext linktext="gdbm-1.13.3." />
+					<atext linktext="gdbm-1.15." />
+					<atext linktext="gdbm-1.14." />
+					<atext linktext="gdbm-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>binutils</dep>
+			<dep>coreutils</dep>
+			<dep>gcc</dep>
+			<dep>glibc</dep>
+			<dep>grep</dep>
+			<dep>sed</dep>
+			<dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			sed -i 's/elif$/else/g' ${PKGNAME}-${PKGVERSION}/src/gdbmopen.c
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
