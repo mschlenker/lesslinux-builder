@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="talloc"
-		version="2.1.9"
+		version="2.1.10"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                                                   
-				<pkg sha1="e1e79fec4c0b6bd92be904a9c03b0a168478711a">talloc-2.1.9.tar.gz</pkg>
+				<pkg sha1="4b59061f0ee5f337aacef0c258a4ffd05b3fec6c">talloc-2.1.10.tar.gz</pkg>
 				<mirror>http://samba.org/ftp/talloc/</mirror>
 			</file>
 			<file>
 				<pkg sha1='8c0b99ed874c6af6c384b4f160f6cd08f01a6bc5'>waf-1.9.3.tar.bz2</pkg>
 				<mirror>https://waf.io/</mirror>
 			</file>
-			<manualcheck date="20170610" interval="180" page="http://samba.org/ftp/talloc/" />
+			<manualcheck date="20170627" interval="180" page="http://samba.org/ftp/talloc/" />
 			<check>
 				<page html="https://www.samba.org/ftp/talloc/">
 					<atext linktext="talloc-2.1.11." />
 					<atext linktext="talloc-2.1.12." />
-					<atext linktext="talloc-2.1.9." />
+					<atext linktext="talloc-2.1.13." />
 					<atext linktext="talloc-2.1.10." />
 					<atext linktext="talloc-2.4." />
 					<atext linktext="talloc-2.2." />
@@ -90,7 +90,6 @@
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}-${PKGVERSION}
-			rm -rf waf-1.9.3
 			]]>
 		</clean>
 	</package>
