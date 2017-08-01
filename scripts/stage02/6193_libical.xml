@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='libical' version='2.0.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8540d5d73422496e1d350b86ff32333daa08144c'>
+                    libical-2.0.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libical/libical/releases/download/v2.0.0/
+                </mirror>
+            </file>
+            <manualcheck date='20170801' interval='60' mirror='https://github.com/libical/libical/releases/download/v2.0.0/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='bluez' version='5.46' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e6a811cd125fee387044f371b15ac4c72dbc0187'>
+                    bluez-5.46.tar.xz
+                </pkg>
+                <mirror>
+                    http://www.kernel.org/pub/linux/bluetooth/
+                </mirror>
+            </file>
+            <manualcheck date='20170801' interval='60' mirror='http://www.kernel.org/pub/linux/bluetooth/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
