@@ -178,6 +178,9 @@ class SecondStage < AnyStage
 			tscript.close
 			File.chmod(0755, @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/build_in_chroot.sh")
 			sleep 0.5
+			# "CREATE TABLE llbuildstats (id INTEGER PRIMARY KEY ASC, pkg_name VARCHAR(80), action CHAR(5), tstamp INTEGER(12))"
+			@sqlite.execute("INSERT INTO llbuildstats " + 
+				" (pkg_name, action, tstamp) VALUES (?, ?, ?)",  [ @pkg_name, "start", Time.now.to_i ])
 			if log == true
 				puts sprintf("%015.4f", Time.now.to_f) + " build  > be patient... logging in progress"
 				retval = system(@builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/chroot_and_build.sh > " + @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + ".build.log 2>&1" )
@@ -185,6 +188,8 @@ class SecondStage < AnyStage
 				retval = system(@builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/chroot_and_build.sh")
 			end
 			end_time = Time.new.to_i
+			@sqlite.execute("INSERT INTO llbuildstats " + 
+				" (pkg_name, action, tstamp) VALUES (?, ?, ?)",  [ @pkg_name, "end", end_time ])
 			### if (retval == true)
 			File.open(@builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/build.success", "w") { |f| f.write(end_time.to_s + "\n") }
 			### end

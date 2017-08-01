@@ -164,7 +164,8 @@ end
 
 [ "CREATE INDEX ftype_idx ON llfiles (cleaned_type, pkg_name, stage)", 
 	"CREATE INDEX nameversion_idx ON llfiles (pkg_name ASC, pkg_version ASC)",
-	"CREATE INDEX fname_idx ON llfiles (fname ASC, pkg_name ASC)" ].each { |sql|
+	"CREATE INDEX fname_idx ON llfiles (fname ASC, pkg_name ASC)", 
+	"CREATE TABLE llbuildstats (id INTEGER PRIMARY KEY ASC, pkg_name VARCHAR(80), action CHAR(5), tstamp INTEGER(12))" ].each { |sql|
 		begin
 			@sqlite.execute(sql)
 		rescue
