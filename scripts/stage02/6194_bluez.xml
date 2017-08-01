@@ -21,7 +21,7 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-library --disable-systemd
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-library --disable-systemd --disable-client
 make
 ]]>
         </build>
