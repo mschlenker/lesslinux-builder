@@ -1,41 +1,45 @@
 <llpackages>
 	<package 
-		name="gtksourceview3"
-		version="3.24.3"
+		name="ghex"
+		version="3.18.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                       
-				<pkg sha1="f23289eac0c67717633a7ce34be459c296c9036d">gtksourceview-3.24.3.tar.xz</pkg>
-				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gtksourceview/3.24</mirror>
+			<file>                           
+				<pkg sha1="f8c0492468b8817c38fac2fe36bdbf0498eaaf8d">ghex-3.18.3.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/ghex/3.18/</mirror>
 			</file>
-			<manualcheck date="20170801" interval="120" page="http://ftp.acc.umu.se/pub/gnome/sources/gtksourceview/" />
+			<manualcheck date="20160801" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/ghex/" />
 			<check>
-				<page html="http://ftp.acc.umu.se/pub/gnome/sources/gtksourceview/3.24/">
-					<atext linktext="gtksourceview-3.24.5." />
-					<atext linktext="gtksourceview-3.24.6." />
-					<atext linktext="gtksourceview-3.24.7." />
-					<atext linktext="gtksourceview-3.24.4." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/ghex/3.18/">
+					<atext linktext="ghex-3.18.6." />
+					<atext linktext="ghex-3.18.7." />
+					<atext linktext="ghex-3.18.4." />
+					<atext linktext="ghex-3.18.5." />
 				</page>
-				<page html="http://ftp.acc.umu.se/pub/gnome/sources/gtksourceview/">
-					<atext linktext="3.28" />
-					<atext linktext="3.30" />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/ghex/">
+					<atext linktext="3.20" />
+					<atext linktext="3.22" />
+					<atext linktext="3.24" />
 					<atext linktext="3.26" />
-					<atext linktext="4.0" />
+					<atext linktext="4." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>GConf</dep>
                         <dep>Python</dep>
+                        <dep>acl</dep>
+                        <dep>at-spi2-atk</dep>
+                        <dep>at-spi2-core</dep>
                         <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
                         <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>desktop-file-utils</dep>
                         <dep>diffutils</dep>
-                        <dep>distcc</dep>
                         <dep>expat</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
@@ -43,21 +47,27 @@
                         <dep>gcc</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
-                        <dep>glib-networking</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gobject-introspection</dep>
                         <dep>grep</dep>
                         <dep>gtk3</dep>
                         <dep>harfbuzz</dep>
-                        <dep>icon-naming-utils</dep>
-                        <dep>icu</dep>
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
+                        <dep>itstool</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
                         <dep>libXdmcp</dep>
                         <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXi</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXrandr</dep>
                         <dep>libXrender</dep>
                         <dep>libffi</dep>
                         <dep>libpng15</dep><dep>libpng16</dep>
@@ -71,29 +81,33 @@
                         <dep>perl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
-                        <dep>procps</dep>
                         <dep>pygobject</dep>
                         <dep>sed</dep>
-                        <dep>tar</dep>
-                        <dep>xz</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/gtksourceview-${PKGVERSION}.tar.xz
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd gtksourceview-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
-				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc
 				make
 			fi
 			]]>
@@ -101,13 +115,14 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd gtksourceview-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
+			sed -i 's%;Development;%;CB-Other;%g' ${TGTDIR}/usr/share/applications/ghex.desktop
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf gtksourceview-${PKGVERSION}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
