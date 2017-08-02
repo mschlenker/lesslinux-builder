@@ -1,26 +1,27 @@
 <llpackages>
 	<package 
-		name="screen"
-		version="4.6.1"
+		name="tcpdump"
+		version="4.9.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                                    
-				<pkg sha1="444dae1c6d2ff0b7dfd774b4e53e49c69de811ee">screen-4.6.1.tar.gz</pkg>
-				<mirror>http://ftp.gnu.org/gnu/screen/</mirror>
+			<file>                                                               
+				<pkg sha1="9cad93f6dd2cc52bc6ef90765d278b9fa090e027">tcpdump-4.9.1.tar.gz</pkg>
+				<mirror>http://www.tcpdump.org/release/</mirror>
 			</file>
-			<manualcheck date="20170801" interval="180" page="http://ftp.gnu.org/gnu/screen/" />
+			<manualcheck date="20170801" interval="120" page="http://www.tcpdump.org/release/" />
 			<check>
-				<page html="ftp://ftp.gnu.org/gnu/screen/">
-					<atext linktext="screen-4.6.5" />
-					<atext linktext="screen-4.6.2" />
-					<atext linktext="screen-4.6.3" />
-					<atext linktext="screen-4.6.4" />
-					<atext linktext="screen-4.8." />
-					<atext linktext="screen-4.6." />
-					<atext linktext="screen-4.7." />
-					<atext linktext="screen-5." />
+				<page html="http://www.tcpdump.org/release/">
+					<atext linktext="tcpdump-4.9.6." />
+					<atext linktext="tcpdump-4.9.2." />
+					<atext linktext="tcpdump-4.9.3." />
+					<atext linktext="tcpdump-4.9.4." />
+					<atext linktext="tcpdump-4.9.5." />
+					<atext linktext="tcpdump-4.12." />
+					<atext linktext="tcpdump-4.10." />
+					<atext linktext="tcpdump-4.11." />
+					<atext linktext="tcpdump-5." />
 				</page>
 			</check>
 		</sources>
@@ -29,45 +30,51 @@
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
+                        <dep>libpcap</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
+                        <dep>openssl</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-			<dep>ncurses</dep>
-			<dep>ncurses-8bit</dep>
+			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
+			
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			
 			]]>
 		</unpack>
 		<build>
-			<![CDATA[
+			<![CDATA[ 
+			
 			cd ${PKGNAME}-${PKGVERSION}
-			jobcount=2
-			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
-				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+			export LIBS="-ldl"
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS"
 				export DISTCC_HOSTS
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc && make -j $jobcount
+			./configure --prefix=/usr --sysconfdir=/etc
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make
+			fi
 			]]>
 		</build>
-		<test />
 		<install>
 			<![CDATA[
+			
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
-			mkdir -p ${TGTDIR}/usr/etc
-			install -m 0644 ./etc/etcscreenrc ${TGTDIR}/usr/etc/screenrc
-
+			
 			]]>
 		</install>
 		<clean>

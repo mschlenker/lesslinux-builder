@@ -1,34 +1,33 @@
 <llpackages>
 	<package 
-		name="evince3"
+		name="libwnck3"
 		version="3.24.1"
-		class="user"
+		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
-		<sources>  
-			<file>   
-				<pkg sha1="53f13c0b0369248ebe58b735fec18d3068d5ef22">evince-3.24.1.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/evince/3.24/</mirror>
+		<sources>
+			<file>                                                 
+				<pkg sha1="5c16cd0c63022cfa7cf2f824d037482cfbd9068b">libwnck-3.24.1.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libwnck/3.24/</mirror>
 			</file>
-			<manualcheck date="20170801" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/evince/" />
+			<manualcheck date="20170801" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/libwnck/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/evince/3.24/">
-					<atext linktext="evince-3.24.2." />
-					<atext linktext="evince-3.24.3." />
-					<atext linktext="evince-3.24.4." />
-					<atext linktext="evince-3.24.5." />
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libwnck/3.24/">
+					<atext linktext="libwnck-3.24.4." />
+					<atext linktext="libwnck-3.24.2." />
+					<atext linktext="libwnck-3.24.3." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/evince/">
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libwnck/">
+					<atext linktext="3.28" />
 					<atext linktext="3.30" />
 					<atext linktext="3.26" />
-					<atext linktext="3.28" />
 					<atext linktext="4." />
 				</page>
-			</check> 
+			</check>
 		</sources>
 		<builddeps>
+                        <dep>GConf</dep>
                         <dep>Python</dep>
-			<dep>adwaita-icon-theme</dep>
                         <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
@@ -36,7 +35,6 @@
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
                         <dep>expat</dep>
-                        <dep>findutils</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
                         <dep>gawk</dep>
@@ -44,35 +42,25 @@
                         <dep>gconf3</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
+                        <dep>glib-networking</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gnome-doc-utils</dep>
-                        <dep>gnome-icon-theme</dep>
                         <dep>gobject-introspection1</dep>
+                        <dep>gobject-introspection</dep>
                         <dep>grep</dep>
                         <dep>gtk3</dep>
+                        <dep>imake</dep>
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
-                        <dep>jpegsrc</dep>
                         <dep>libICE</dep>
                         <dep>libSM</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
-                        <dep>libXcomposite</dep>
-                        <dep>libXcursor</dep>
-                        <dep>libXdamage</dep>
                         <dep>libXdmcp</dep>
-                        <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libXi</dep>
-                        <dep>libXrandr</dep>
                         <dep>libXrender</dep>
                         <dep>libffi</dep>
-                        <dep>libgnome-keyring</dep>
                         <dep>libpng15</dep><dep>libpng16</dep>
-                        <dep>libwnck3</dep>
                         <dep>libxcb</dep>
-                        <dep>libxml2</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
@@ -81,54 +69,47 @@
                         <dep>perl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
-                        <dep>poppler</dep>
                         <dep>pygobject</dep>
                         <dep>sed</dep>
-                        <dep>tiff</dep>
+                        <dep>startup-notification</dep>
+                        <dep>tar</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>which</dep>
+                        <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
-                        <dep>xz</dep>
-                        <dep>zlib</dep>
-			<dep>itstool</dep>
-			<dep>libsecret</dep>
 			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/evince-${PKGVERSION}.tar.xz | tar xf - 
+			unxz -c ${SRCDIR}/libwnck-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd evince-${PKGVERSION}
-			# export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			cd libwnck-${PKGVERSION}
+			export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
-				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc --disable-nautilus
-				make -j $jobcount
+				export CXX="distcc g++" 
+				./configure --prefix=/usr/compat.new --sysconfdir=/etc/compat.new CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --prefix=/usr --sysconfdir=/etc --disable-nautilus
-				make
+				./configure --prefix=/usr/compat.new --sysconfdir=/etc/compat.new
+				make  
 			fi
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd evince-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
-			# /sbin/paxctl -m /usr/bin/evince
-			# /sbin/paxctl -m /usr/bin/evince-previewer
-			# /sbin/paxctl -m /usr/bin/evince-thumbnailer
+			cd libwnck-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf evince-${PKGVERSION}
+			rm -rf libwnck-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

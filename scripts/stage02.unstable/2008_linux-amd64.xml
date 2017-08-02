@@ -113,30 +113,30 @@
 			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" oldconfig 
 			
 			jobcount=4 
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				make -j $jobcount \
-					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-musl- \
-					CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
-					bzImage
-				make -j $jobcount \
-					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-musl- \
-					CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
-				make -j $jobcount \
-					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-musl- \
-					CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
-					bzImage
-			else
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	make -j $jobcount \
+			#		ARCH=x86_64 \
+			#		CROSS_COMPILE=x86_64-linux-musl- \
+			#		CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
+			#		OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
+			#		bzImage
+			#	make -j $jobcount \
+			#		ARCH=x86_64 \
+			#		CROSS_COMPILE=x86_64-linux-musl- \
+			#		CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
+			#		OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
+			#	make -j $jobcount \
+			#		ARCH=x86_64 \
+			#		CROSS_COMPILE=x86_64-linux-musl- \
+			#		CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
+			#		OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
+			#		bzImage
+			#else
 				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump bzImage
 				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump
 				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump bzImage
-			fi
+			#fi
 			cd ../linux-${PKGVERSION}
 			make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump modules_prepare 
 			

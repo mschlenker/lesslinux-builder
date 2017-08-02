@@ -1,38 +1,39 @@
 <llpackages>
 	<package 
-		name="xfce4-terminal"
-		version="0.8.6"
-		class="user"
-		install="destdir">
+		name="xfce4-xkb-plugin"
+		version="0.8.0"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
-			<file>             
-				<pkg sha1="1fa31cddf2bae52a22498856c438981874eccabd">xfce4-terminal-0.8.6.tar.bz2</pkg>
-				<mirror>http://archive.xfce.org/src/apps/xfce4-terminal/0.8/</mirror>
+			<file>
+				<pkg sha1="e46e9c1a335478ef228926510fb65278e8c9e8ba">xfce4-xkb-plugin-0.8.0.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/panel-plugins/xfce4-xkb-plugin/0.8/</mirror>
 			</file>
-			<manualcheck date="20170801" interval="180" page="http://archive.xfce.org/src/apps/xfce4-terminal/" />
+			<manualcheck date="20170801" interval="180" page="http://archive.xfce.org/src/panel-plugins/xfce4-xkb-plugin/" />
 			<check>
-				<page html="http://archive.xfce.org/src/apps/xfce4-terminal/0.8/">
-					<atext linktext="0.8.10" />
-					<atext linktext="0.8.7" />
-					<atext linktext="0.8.8" />
-					<atext linktext="0.8.9" />
+				<page html="http://archive.xfce.org/src/panel-plugins/xfce4-xkb-plugin/0.8/">
+					<atext linktext="xfce4-xkb-plugin-0.8.1." />
+					<atext linktext="xfce4-xkb-plugin-0.8.2." />
+					<atext linktext="xfce4-xkb-plugin-0.8.3." />
+					<atext linktext="xfce4-xkb-plugin-0.8.4." />
+					<atext linktext="xfce4-xkb-plugin-0.8.5." />
+					<atext linktext="xfce4-xkb-plugin-0.8.6." />
 				</page>
-				<page html="http://archive.xfce.org/src/apps/xfce4-terminal/">
+				<page html="http://archive.xfce.org/src/panel-plugins/xfce4-xkb-plugin/">
+					<atext linktext="0.12" />
+					<atext linktext="0.9" />
 					<atext linktext="0.10" />
+					<atext linktext="0.11" />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-			<dep>atk</dep>
+                        <dep>atk</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
                         <dep>coreutils</dep>
-                        <dep>dbus-glib</dep>
-                        <dep>dbus</dep>
                         <dep>diffutils</dep>
-                        <dep>exo</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
                         <dep>gawk</dep>
@@ -49,11 +50,19 @@
                         <dep>libSM</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXi</dep>
                         <dep>libXrender</dep>
+                        <dep>libgsf</dep>
                         <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
                         <dep>libpthread-stubs</dep>
+                        <dep>librsvg</dep>
+                        <dep>libwnck</dep>
                         <dep>libxcb</dep>
                         <dep>libxfce4util</dep>
+                        <dep>libxfcegui4</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>libxklavier</dep>
                         <dep>libxml2</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
@@ -63,49 +72,30 @@
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
+                        <dep>startup-notification</dep>
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>vte</dep>
-			<dep>vte3</dep>
+                        <dep>xfce4-panel</dep>
                         <dep>xproto-base</dep>
-			<!-- soft -->
-			<dep>imake</dep>
-			<dep>distcc</dep>
-		</builddeps>
+			 <dep>imake</dep> 
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
-				make -j $jobcount
-			else
-				./configure --prefix=/usr --sysconfdir=/etc
-				make
-			fi
+			 cd ${PKGNAME}-${PKGVERSION}
+			 ./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
-			ln -sf xfce4-terminal ${TGTDIR}/usr/bin/Terminal
-			ln -sf xfce4-terminal ${TGTDIR}/usr/bin/terminal
-			paxctl -m  -r ${TGTDIR}/usr/bin/Terminal
-			paxctl -m  -r ${TGTDIR}/opt/bin/Terminal
+			 make install
 			]]>
 		</install>
 		<clean>

@@ -1,117 +1,114 @@
 <llpackages>
 	<package 
-		name="evince3"
-		version="3.24.1"
+		name="brasero3"
+		version="3.12.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
-		<sources>  
-			<file>   
-				<pkg sha1="53f13c0b0369248ebe58b735fec18d3068d5ef22">evince-3.24.1.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/evince/3.24/</mirror>
+		<sources>
+			<file>                         
+				<pkg sha1="2f3677c2aafa1c6a832befe45e0aeb25f9f95089">brasero-3.12.2.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/brasero/3.12/</mirror>
 			</file>
-			<manualcheck date="20170801" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/evince/" />
+			<manualcheck date="20170801" interval="180" page="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/" />
 			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/evince/3.24/">
-					<atext linktext="evince-3.24.2." />
-					<atext linktext="evince-3.24.3." />
-					<atext linktext="evince-3.24.4." />
-					<atext linktext="evince-3.24.5." />
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/3.12/">
+					<atext linktext="brasero-3.12.4." />
+					<atext linktext="brasero-3.12.5." />
+					<atext linktext="brasero-3.12.3." />
 				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/evince/">
-					<atext linktext="3.30" />
-					<atext linktext="3.26" />
-					<atext linktext="3.28" />
+				<page html="ftp://ftp2.nluug.nl/pub/windowing/gnome/sources/brasero/">
+					<atext linktext="3.16" />
+					<atext linktext="3.18" />
+					<atext linktext="3.14" />
 					<atext linktext="4." />
 				</page>
-			</check> 
+			</check>
 		</sources>
 		<builddeps>
+                        <dep>GConf</dep>
                         <dep>Python</dep>
-			<dep>adwaita-icon-theme</dep>
                         <dep>atk</dep>
+                        <dep>attr</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
                         <dep>expat</dep>
-                        <dep>findutils</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
-                        <dep>gconf3</dep>
                         <dep>gdk-pixbuf</dep>
                         <dep>gettext</dep>
+                        <dep>glib-networking</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-                        <dep>gnome-doc-utils</dep>
-                        <dep>gnome-icon-theme</dep>
-                        <dep>gobject-introspection1</dep>
+                        <dep>gobject-introspection</dep>
                         <dep>grep</dep>
+                        <dep>gst-plugins-base1</dep>
+                        <dep>gstreamer1</dep>
                         <dep>gtk3</dep>
+                        <dep>harfbuzz</dep>
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
-                        <dep>jpegsrc</dep>
+                        <dep>itstool</dep>
                         <dep>libICE</dep>
                         <dep>libSM</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
-                        <dep>libXcomposite</dep>
-                        <dep>libXcursor</dep>
-                        <dep>libXdamage</dep>
                         <dep>libXdmcp</dep>
                         <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libXi</dep>
-                        <dep>libXrandr</dep>
                         <dep>libXrender</dep>
+                        <dep>libburn</dep>
+                        <dep>libcanberra</dep>
                         <dep>libffi</dep>
-                        <dep>libgnome-keyring</dep>
+                        <dep>libisofs</dep>
+			<dep>libisoburn</dep>
+                        <dep>libnotify</dep>
+                        <dep>libogg</dep>
                         <dep>libpng15</dep><dep>libpng16</dep>
-                        <dep>libwnck3</dep>
+                        <dep>libtool</dep>
+                        <dep>libvorbis</dep>
                         <dep>libxcb</dep>
                         <dep>libxml2</dep>
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
                         <dep>p5-xml</dep>
-                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pango</dep>
                         <dep>perl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
-                        <dep>poppler</dep>
                         <dep>pygobject</dep>
                         <dep>sed</dep>
-                        <dep>tiff</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>which</dep>
                         <dep>xproto-base</dep>
                         <dep>xz</dep>
-                        <dep>zlib</dep>
-			<dep>itstool</dep>
-			<dep>libsecret</dep>
 			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/evince-${PKGVERSION}.tar.xz | tar xf - 
+			tar xJf ${SRCDIR}/brasero-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd evince-${PKGVERSION}
+			cd brasero-${PKGVERSION}
 			# export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc --disable-nautilus
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+				--enable-nautilus=no --enable-libburnia=yes \
+				--enable-cdrtools=no --enable-cdrdao=no
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc --disable-nautilus
 				make
 			fi
 			]]>
@@ -119,16 +116,15 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd evince-${PKGVERSION}
+			cd brasero-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			# /sbin/paxctl -m /usr/bin/evince
-			# /sbin/paxctl -m /usr/bin/evince-previewer
-			# /sbin/paxctl -m /usr/bin/evince-thumbnailer
+			# mkdir -p ${TGTDIR}/etc/lesslinux
+			# touch ${TGTDIR}/etc/lesslinux/brasero-${PKGVERSION}_might_fail_because_of_libcanberra
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf evince-${PKGVERSION}
+			rm -rf brasero-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
