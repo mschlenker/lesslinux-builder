@@ -82,7 +82,7 @@ cat > ${TGTDIR}/etc/bluetooth/rfcomm.conf << "EOF"
 # End of rfcomm.conf
 EOF
 
-cat > /etc/bluetooth/uart.conf << "EOF"
+cat > ${TGTDIR}/etc/bluetooth/uart.conf << "EOF"
 # Start uart.conf
 # Attach serial devices via UART HCI to BlueZ stack
 # Use one line per device
