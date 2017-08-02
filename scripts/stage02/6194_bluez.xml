@@ -42,6 +42,7 @@
                         <dep>sed</dep>
                         <dep>tar</dep>
                         <dep>udev</dep>
+			<dep>distcc</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
@@ -54,6 +55,12 @@
 	</patch>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+	    if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+		jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+		export CC="distcc gcc"
+		export CXX="distcc g++" 
+	    fi
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-library --disable-systemd --disable-client
 make
 ]]>
