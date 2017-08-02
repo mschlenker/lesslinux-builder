@@ -58,9 +58,9 @@
 			<dep>gzip</dep>
 			<dep>lesslinux-modextract</dep>
 			<dep>module-init-tools</dep>
-			<!-- artificial dependencies, do not build more than two kernels at once -->
-			<!-- <dep>linux</dep>
-			<dep>linux-nopae</dep> -->
+			<!-- artificial dependencies, make sure the 64 bit kernel is the last kernel built -->
+			<dep>linux</dep>
+			<dep>linux-nopae</dep>
 			<dep>bc</dep>
 			<dep>distcc</dep>
 			<dep>kmod</dep>
