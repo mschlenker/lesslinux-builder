@@ -88,6 +88,7 @@
 		<build>
 			<![CDATA[
 			 cd ${PKGNAME}-${PKGVERSION}
+			 export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
 			 ./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
