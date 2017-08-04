@@ -46,6 +46,7 @@
                         <dep>wpa_supplicant</dep>
 			<dep>bluez</dep>
 			<dep>openvpn</dep>
+			<dep>openconnect</dep>
 			<dep>distcc</dep>
                 </builddeps>
 		<unpack>
@@ -65,7 +66,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc XTABLES_LIBS=-I/usr/lib XTABLES_CFLAGS=-lxtables
+			./configure --prefix=/usr --sysconfdir=/etc --enable-openvpn --enable-openconnect XTABLES_LIBS=-I/usr/lib XTABLES_CFLAGS=-lxtables
 			make -j $jobcount 
 			]]>
 		</build>
