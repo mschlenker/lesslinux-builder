@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='openconnect' version='7.08' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='ac106457c6a94808096552b6dc2037ad4cce7858'>
+                    openconnect-7.08.tar.gz
+                </pkg>
+                <mirror>
+                    ftp://ftp.infradead.org/pub/openconnect/
+                </mirror>
+            </file>
+            <manualcheck date='20170804' interval='60' mirror='ftp://ftp.infradead.org/pub/openconnect/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
