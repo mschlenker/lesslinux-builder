@@ -21,7 +21,7 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --with-vpnc-script=/etc/vpnc/vpnc-script 
 make
 ]]>
         </build>
