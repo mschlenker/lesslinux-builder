@@ -1,0 +1,69 @@
+<llpackages>
+	<package name="openvas-libraries" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/openvas" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/openvas-wrapper
+surfer  ALL = NOPASSWD: /usr/bin/ruby /usr/bin/openvas-wrapper.rb
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0610-openvas.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides openvas
+#lesslinux parallel
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	if mountpoint -q /usr/var/lib/openvas ; then
+	    printf "$bold===> Skipping OPENVAS, already mounted $normal\n"
+	else
+	    printf "$bold===> Preparing OPENVAS $normal\n"
+	    for d in lib log cache ; do
+		mkdir -p /usr/var/${d}/openvas
+	    done
+	    if mountpoint -q /lesslinux/blobpart ; then
+		mkdir -p /lesslinux/blobpart/openvas
+		mount --bind /lesslinux/blobpart/openvas /usr/var/lib/openvas
+	    else
+		mount -t tmpfs -o mode=0755,size=1536M tmpfs /usr/var/lib/openvas
+	    fi
+	    for d in CA private ; do
+		mkdir -p /usr/var/lib/openvas/${d}
+		mount -t tmpfs -o mode=0755,size=32M tmpfs /usr/var/lib/openvas/${d}
+	    done
+	    yes '' | openvas-mkcert
+	    openvas-mkcert-client -n -i 
+	fi
+	touch /var/log/lesslinux/bootlog/openvas.done
+    ;;
+    stop)
+	printf "$bold===> Removing OPENVAS, freeing memory $normal\n"
+	killall openvassd
+	killall openvasmd 
+	killall -9 openvassd
+	killall -9 openvasmd
+	for d in CA private ; do
+	    umount /usr/var/lib/openvas/${d}
+	done
+	umount /usr/var/lib/openvas
+	umount /usr/var/log/openvas
+    ;;
+esac
+
+]]>
+		</scriptdata>
+	</scripts>
+</llpackages>
