@@ -897,7 +897,7 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	    echo "Failed to switch_root, dropping to a shell"
 	    exec /static/bin/ash 
 	fi
-	touch /var/log/lesslinux/bootlog/${provides}.done
+	[ -z "$parallel" ] && touch /var/log/lesslinux/bootlog/${provides}.done
 done
 ####
 

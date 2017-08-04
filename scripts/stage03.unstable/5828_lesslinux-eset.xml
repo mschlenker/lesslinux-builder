@@ -141,6 +141,7 @@ case $1 in
 	    # Now start the daemon
 	    /opt/eset/esets/sbin/esets_daemon
 	fi
+	touch /var/log/lesslinux/bootlog/eset.done
     ;;
     stop)
 	printf "$bold===> Unmounting ESET $normal\n"

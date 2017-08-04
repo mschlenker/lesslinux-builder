@@ -93,6 +93,7 @@ case $1 in
 	    [ -f /opt/share/clamav/daily.cld -a -f /opt/share/clamav/daily.cvd ] && rm /opt/share/clamav/daily.cld
 	    /sbin/ldconfig -f /etc/ld.so.conf > /dev/null 2>&1
 	fi
+	touch /var/log/lesslinux/bootlog/clamav.done
     ;;
     stop)
 	printf "$bold===> Unmounting ClamAV signatures $normal\n"
