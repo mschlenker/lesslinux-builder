@@ -73,8 +73,10 @@ case $1 in
 	    fi
 	    
 	    # ESET not found? Exit!
-	    [ -z "$esetiso" -a -z "$esetsys" ] && exit 0
-	    
+	    if [ -z "$esetiso" -a -z "$esetsys" ] ; then
+		touch /var/log/lesslinux/bootlog/eset.done
+		exit 0
+	    fi
 	    # Copy the squashfs if blobpart available but sqs not yet there!
 	    if [ -n "$esetsys" -a '!' -d /lesslinux/blobpart/eset ] ; then
 		mkdir -p /lesslinux/blobpart/eset 
