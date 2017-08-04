@@ -731,6 +731,7 @@ mountpoint -q /dev     || mount -t devtmpfs devtmpfs /dev
 mkdir /dev/pts
 mkdir /dev/shm
 mkdir /dev/mapper
+mkdir -p /var/log/lesslinux/bootlog 
 mountpoint -q /proc    || mount -t proc none /proc
 mountpoint -q /sys     || mount -t sysfs sysfs /sys
 mountpoint -q /dev/pts || mount -t devpts -o rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 devpts /dev/pts
@@ -852,7 +853,9 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
         patience="` cat $i | grep '#lesslinux patience' | awk '{print $2}' `"
         verbose="` cat $i  | grep '#lesslinux verbose'  | awk '{print $2}' `"
         debuglev="` cat $i | grep '#lesslinux debug'    | awk '{print $3}' `"
+	parallel="` cat $i  | grep '#lesslinux parallel'  | awk '{print $2}' `"
         [ -z "$provides" ] && provides="$i"
+	touch /var/log/lesslinux/bootlog/${provides}.start
 	if echo "$skipservices" | grep '|'$provides'|' > /dev/null 2>&1 ; then 
 	    [ "$ultraquiet" -gt 0 ] || printf "$bold---> Skipping $provides \n" 
 	elif [ -n "$debuglev" ] && [ "$debug_threshold" -gt "$debuglev" ] ; then
@@ -875,9 +878,11 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	    fi
 	    [ "$ultraquiet" = 1 ] && [ -n "$patience" ] && printf "\n${bold}${be_patient}${normal}\n"
 	    if [ "$ultraquiet" -gt 0 ] ; then
-		$i start > /dev/null 2>&1
+		[ -z "$parallel" ] && $i start > /dev/null 2>&1
+		[ -n "$parallel" ] && $i start > /dev/null 2>&1 &
 	    else
-		$i start
+		[ -z "$parallel" ] && $i start
+		[ -n "$parallel" ] && $i start & 
 	    fi
 	fi
 	scriptcount=` expr $scriptcount + 1 `
@@ -892,6 +897,7 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	    echo "Failed to switch_root, dropping to a shell"
 	    exec /static/bin/ash 
 	fi
+	touch /var/log/lesslinux/bootlog/${provides}.done
 done
 ####
 
