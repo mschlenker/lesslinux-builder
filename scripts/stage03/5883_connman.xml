@@ -51,6 +51,7 @@ case $1 in
 		printf "$bold+++> Ignoring connection manager (connman) - wicd seems to be running $normal\n"
 	else
 		printf "$bold===> Starting connection manager (connman) $normal\n"
+		[ "$security" = "smack" ] && echo netmgr > /proc/self/attr/current
 		connmand 
 	fi
     ;;
