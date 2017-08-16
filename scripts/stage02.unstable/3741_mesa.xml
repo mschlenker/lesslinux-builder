@@ -1,26 +1,26 @@
 <llpackages>
 	<package 
 		name="Mesa"
-		version="17.1.5"
+		version="17.1.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="709a38eb9ecf54390c303071a016c23c1d4bd64b">mesa-17.1.5.tar.xz</pkg>
+				<pkg sha1="2acc201e24ea67c5231074d6746a42a747228ed6">mesa-17.1.6.tar.xz</pkg>
 				<mirror>ftp://ftp.freedesktop.org/pub/mesa/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="c8658df3959ead67cd9f4321e98fce0c03945024">mesa-17.1.5-add_xdemos-1.patch</pkg>
+				<pkg sha1="c8658df3959ead67cd9f4321e98fce0c03945024">mesa-17.1.6-add_xdemos-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
-			<manualcheck date="20170610" interval="30" page="http://www.mesa3d.org/" />
+			<manualcheck date="20170816" interval="30" page="http://www.mesa3d.org/" />
 			<check>
 				<page html="ftp://ftp.freedesktop.org/pub/mesa//">
 					<atext linktext="17.1.7" />
 					<atext linktext="17.1.8" />
 					<atext linktext="17.1.9" />
-					<atext linktext="17.1.6" />
+					<atext linktext="17.1.10" />
 					<atext linktext="17.2." />
 					<atext linktext="17.3." />
 					<atext linktext="18.0." />
