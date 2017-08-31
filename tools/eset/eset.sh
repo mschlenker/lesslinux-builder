@@ -15,6 +15,8 @@ export PATH
 . /etc/rc.lang/en/messages.sh
 [ -f "/etc/rc.lang/$lang/messages.sh" ] && . /etc/rc.lang/$lang/messages.sh
 
+ruby /usr/share/lesslinux/drivetools/waitservice.rb eset 
+
 esnotfound="Could not find ESETs filesystem image - make sure you have an internet connection to start the installation now."
 [ $lang = de ] && esnotfound="Konnte ESETs Dateisystem-Image nicht finden - Stellen Sie bitte sicher, dass Sie über eine Internetverbindung verfügen, um die Installation jetzt zu starten."
 
