@@ -10,6 +10,8 @@ export PATH
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
 
+ruby /usr/share/lesslinux/drivetools/waitservice.rb clamav 
+
 zmessage='The virus signatures were not yet updated today. Please make sure that an internet connection exists and then click "OK" to start the signature update.'
 ztitle='Updating virus signatures'
 

@@ -1,0 +1,57 @@
+<llpackages>
+	<package 
+		name="virusfrontend"
+		version="20170831"
+		class="user"
+		install="destdir">
+		<license>proprietary</license>
+		<sources>
+			<file>                                      
+				<pkg sha1="6f9873e7e5d01430e91e4f76140e6bb11f4f42f3">virusfrontend-20170831.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>qt-everywhere-opensource-src</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xvjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			mkdir -m 0755 -p ${TGTDIR}/usr/share/lesslinux/avfrontend
+			mkdir -m 0755 -p ${TGTDIR}/usr/bin
+			install -m 0755 avfrontend-kaspersky.sh ${TGTDIR}/usr/bin
+			install -m 0755 avfrontend-clamav.sh ${TGTDIR}/usr/bin
+			install -m 0755 avfrontend-avira.sh ${TGTDIR}/usr/bin
+			for m in kaspersky clamav avira ; do
+				sed -i 's%:/opt/lib/%:/opt/lib:/usr/compat.old/qt4/lib%g' ${TGTDIR}/usr/bin/avfrontend-${m}.sh
+				sed -i 's%\./virusfrontend%LD_LIBRARY_PATH=/usr/compat.old/qt4/lib ./virusfrontend%g'  ${TGTDIR}/usr/bin/avfrontend-${m}.sh
+			done 
+			install -m 0755 virusfrontend ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 virusfrontend_de.qm ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 virusfrontend_pl.qm ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 kaspersky.xml ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 clamav.xml ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 clamav.de.xml ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 clamav.pl.xml ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 avira.xml ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 avira.de.xml ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0755 avpremount.sh ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0755 avpremount.rb ${TGTDIR}/usr/share/lesslinux/avfrontend
+			install -m 0644 avpremount.xml ${TGTDIR}/usr/share/lesslinux/avfrontend
+			]]>
+		</install>
+	</package>
+</llpackages>
