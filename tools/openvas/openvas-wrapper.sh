@@ -37,6 +37,8 @@ else
 	ask_for_quit "BLOB partition"
 fi
 
+ruby /usr/share/lesslinux/drivetools/waitservice.rb openvas 
+
 openvas-nvt-sync || openvas-nvt-sync
 retval=$?
 [ "$retval" -gt 0 ] && ask_for_quit "Syncing NVT"
