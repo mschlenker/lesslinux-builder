@@ -10,8 +10,12 @@ require 'gtk2'
 
 @service = ARGV[0].strip 
 @exec = ARGV[2].to_s.strip 
-exit 0 if File.exists?("/var/log/lesslinux/bootlog/#{@service}.done")
 
+if File.exists?("/var/log/lesslinux/bootlog/#{@service}.done") 
+	exec(@exec) unless @exec == ""
+        exit 0
+end
+	
 window = Gtk::Window.new
 pgbar = Gtk::ProgressBar.new
 pgbar.width_request = 400
