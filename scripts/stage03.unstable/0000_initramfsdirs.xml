@@ -1338,6 +1338,7 @@ hwenv='default'				# influences the behaviour for loading modules
 searchiso=''				# search content directories only on ISOs with the given ISOID and count of bytes
 					# searchiso=isoid
 					# searchiso='' ignore
+offsetptable=0				# use an offsetted partition table after the ISO image 
 contdir="lesslinux"			# name of the content directory to search for 
 ntfsrw=0				# Access NTFS read-write with ntfs-3g? Useful for containers on NTFS.
 dropbearport=22222			# port to run dropbear
@@ -1643,6 +1644,9 @@ for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; 
      swap=*)
 	swap=` echo "$i" | awk -F '=' '{print $2}' ` 
 	[ "$swap" = "none" ] && swap='' 
+     ;;
+     offsetptable=*)
+	offsetptable=` echo "$i" | awk -F '=' '{print $2}' ` 
      ;;
      switchroot=*)
 	swtch=`echo "$i" | awk -F '=' '{print $2}'`
@@ -4020,6 +4024,8 @@ mount_and_check() {
 		if ( echo "$device" | grep -E  'd[a-z]$' > /dev/null 2>&1 ) && \
 		   ( cat /proc/mounts | grep "$device" | grep "iso9660" > /dev/null 2>&1 ) ; then
 			if echo "$skipservices" | grep -q '|convertiso|' ; then
+				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
+			elif [ "$offsetptable" -gt 0 ] ; then
 				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
 			elif echo "$skipservices" | grep -q force_mbr_conversion ; then
 				iso_convert "$device"
