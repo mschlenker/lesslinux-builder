@@ -3992,6 +3992,201 @@ iso_gpt_convert() {
 	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/textblank.ppm	
 }
 
+iso_hack_convert() {
+	echo -e '\033[9;0]\033[14;0]' > /dev/console
+	device="$1"
+	# Text mode conversion on TTY8 when ultraquiet is not set:
+	if [ "$ultraquiet" -lt 2 ] ; then
+		chvt 8
+		echo "===> Converting ISOhybrid to GPT drive with proper FS, this may take some time" > /dev/tty8
+		echo "     but it is done only once..." > /dev/tty8
+	fi
+	# GUI conversion on TTY8 when fbsplash is running
+	if [ "$ultraquiet" -eq 3 -a -p /splash.fifo ] ; then
+		echo 0 > /splash.fifo
+		fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/01driveconf.ppm 
+	fi
+	[ "$skipcheck" -lt 2 ] && run_self_test cdrom
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "$convert_prepare" "" tty1
+	[ "$ultraquiet" -eq 3 -a -p /splash.fifo ] && echo 90 > /splash.fifo
+	
+	# FIXME! FIXME!
+	# When installed from batchinstall or USB install the ISOhybrid MBR gets nuked,
+	# it should be saved to a file than. Try to find it! 
+	
+	# Size of boot directory in kilobytes, including the EFI boot directory and image
+	bootsize=` du -sk /lesslinux/cdrom/boot | awk '{print $1}' 
+	# Size of boot partition in count of 8MB blocks - roughly add 50% for updates
+	bootblocks=` expr $bootsize / 5461 + 1 ` 
+	
+	# Size of ISO image in kilobytes
+	isosize=` df -k | grep '/lesslinux/cdrom' | awk '{print $3}' `
+	# Size of ISO partition in count of 8MB blocks - roughly add 25% for updates
+	isoblocks=` expr $isosize / 6553 + 1 `
+	
+	# Size of device in kilobyte blocks
+	shortdev=` echo -n $device | sed 's%/dev/%%g' ` 
+	devicesize=` cat /proc/partitions | grep "$shortdev"'$' | awk '{print $3}' ` 
+	# Size of device in 8MB blocks - there might be little bit less than 8MB left out
+	deviceblocks=` expr $devicesize / 8192 ` 
+	
+	hcminblocks=0
+	hcmaxblocks=0 
+	if [ "$homecontmax" -gt 0 ] ; then
+		hcmaxblocks=` expr $homecontmax / 8 ` 
+		hcminblocks=` expr $homecontmin / 8 ` 
+	fi
+	# blobblocks 
+	blobblocks=0
+	if [ "$blobsize" -gt 63 ] ; then
+		blobblocks=` expr $blobsize / 8 ` 
+	else
+		blobblocks=1
+	fi
+	# Swap size
+	swapblocks=0
+	if [ "$swapsize" -gt 63 ] ; then
+		swapblocks=` expr $swapsize / 8 ` 
+	else
+		swapblocks=1
+	fi
+	# Now check for minimum free space - FIXME: 128MB are not good to be hard coded
+	neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+	if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+		# Try without swap:
+		swapblocks=1
+		neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+		if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+			# Try without encrypted /home
+			hcminblocks=0
+			hcmaxblocks=0 
+			neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+			if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+				[ "$ultraquiet" -lt 3 ] && echo "===> FAILED. Device too small." > /dev/tty8
+				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
+				[ "$ultraquiet" -lt 3 ] && chvt 1
+				return 1
+			fi
+		fi
+	fi
+	
+	# Delete some MB at the end of the disk to remove remaining GUID backup table
+	dd if=/dev/zero of=$device bs=8388608 seek=` expr $deviceblocks - 4 ` 2>/dev/null
+	
+	# Let the games begin...
+	umount /lesslinux/cdrom
+	
+	[ "$ultraquiet" -lt 3 ] && echo '---> Creating partition table and bootloader' > /dev/tty8
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/05driveconf.ppm
+	
+	# Recalculate the possible size of the partition for the encrypted home container
+	hcblocks=1
+	if [ "$homecontmax" -gt 0 ] ; then
+		hcmaxblocks=` expr $homecontmax / 8 ` 
+		hcminblocks=` expr $homecontmin / 8 ` 
+		hcpossible=` expr $deviceblocks - $isoblocks - $isoblocks - $bootblocks - $blobblocks - $swapblocks - 40 ` 
+		if [ "$hcpossible" -gt $hcmaxblocks ] ; then
+			hcblocks=$hcmaxblocks
+		else
+			hcblocks=$hcpossible
+		fi
+	fi
+	
+	# Create a single FAT32 partition holding legacy and EFI boot files
+	freespacestart=` expr '(' $deviceblocks - $isoblocks - $swapblocks - $hcblocks - $blobblocks - 2 ')' '*' 8388608 `
+	partstart=`      expr '(' $isoblocks + 2 ')' '*' 8388608 `
+	# Now overwrite the start of the device
+	dd if=/dev/zero bs=512 count=1 of="$device"
+	parted -s $device unit B mklabel msdos
+	sync
+	mdev -s
+	
+	# Single partition - data, legacy boot, EFI boot
+	parted -s $device unit B mkpart primary fat32 partstart ` expr freespacestart - 1 `  
+	parted -s $device unit B set 1 boot on
+	parted -s $device unit B set 1 esp on
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 10 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 10 > /splash.fifo
+	dd if=/dev/zero bs=1M count=8 of=${device}1
+	mkfs.vfat -n USBDATA "${device}1"
+	cat /etc/syslinux/mbr.bin > "$device"
+	mkdir -p /lesslinux/boot
+	mkdir -p /lesslinux/efiboot
+	mount -t vfat -o rw "${device}1" /lesslinux/data
+	mount -t iso9660 -o ro "${device}" /lesslinux/cdrom
+	newuuid=` blkid.static -o udev "${device}1" | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
+	
+	# Copy legacy boot files
+	tar -C /lesslinux/cdrom -cf - boot | tar -C /lesslinux/boot -xf -
+	touch /lesslinux/boot/cmdline
+	cp -v /tmp/legacy.mbr /lesslinux/boot
+	# Copy GRUBs file to properly detect the boot partition
+	idfile=` ls /lesslinux/boot/boot/grub/????????.cd `
+	idtarg=` echo $idfile | sed 's/\.cd/.pt/g' ` 
+	mv $idfile $idtarg
+	
+	# Copy EFI boot files
+	# Copy EFI boot image
+	if [ -f /lesslinux/cdrom/boot/efi/efi.img ] ; then
+		efiloop=` losetup -f `
+		losetup $efiloop /lesslinux/cdrom/boot/efi/efi.img
+		mount -t vfat -o ro $efiloop /lesslinux/efiboot
+		tar -C /lesslinux/efiboot -cvf - . | tar -C /lesslinux/boot -xf -
+		# Modify EFI boot files
+		find /lesslinux/boot/loader -type f -name '*.usb' | while read cfgfile ; do 
+			outfile=` echo ${cfgfile} | sed 's/\.usb$/.conf/g' `
+			cp -v ${cfgfile} ${outfile} 
+		done
+		find /lesslinux/boot/loader -type f -name '*.conf' | while read cfgfile ; do 
+			[ -f "${cfgfile}.${lang}" ] && cp "${cfgfile}.${lang}" "${cfgfile}"
+			sed -i 's/uuid=all/uuid='"${newuuid}"'/g' "${cfgfile}"
+			[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=all/crypt='"${cryptuuid}"'/g'  "${cfgfile}"
+			[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' "${cfgfile}"
+			[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    "${cfgfile}"
+		done
+		sync
+		umount /lesslinux/efiboot
+		losetup -d $efiloop
+	fi
+	
+	# Modify legacy boot files
+	find /lesslinux/boot/boot/isolinux -type f -name '*.cfg' | while read cfgfile ; do 
+		[ -f "${cfgfile}.${lang}" ] && cp "${cfgfile}.${lang}" "${cfgfile}"
+		sed -i 's/uuid=all/uuid='"${newuuid}"'/g' "${cfgfile}"
+		[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=all/crypt='"${cryptuuid}"'/g'  "${cfgfile}"
+		[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' "${cfgfile}"
+		[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    "${cfgfile}"
+		sed -i 's%^INCLUDE /boot/isolinux/boot0x80.cfg%# INCLUDE /boot/isolinux/boot0x80.cfg%g' "${cfgfile}"
+		sed -i 's%^INCLUDE /boot/isolinux/\([a-z]*\)/boot0x80.cfg%# INCLUDE /boot/isolinux/\1/boot0x80.cfg%g' "${cfgfile}"
+		sed -i 's%^MENU INCLUDE /boot/isolinux/\([a-z]*\)/boot0x80.cfg%# MENU INCLUDE /boot/isolinux/\1/boot0x80.cfg%g' "${cfgfile}"
+		sed -i 's%^# INCLUDE /boot/isolinux/usbonly%INCLUDE /boot/isolinux/usbonly%g' "${cfgfile}" 
+		sed -i 's%^# INCLUDE /boot/isolinux/\([a-z]*\)/usbonly%INCLUDE /boot/isolinux/\1/usbonly%g' "${cfgfile}" 
+		sed -i 's%^# MENU INCLUDE /boot/isolinux/\([a-z]*\)/usbonly% MENU INCLUDE /boot/isolinux/\1/usbonly%g' "${cfgfile}" 
+	done
+	cfg=/lesslinux/boot/boot/isolinux/isolinux.cfg
+	[ -f /lesslinux/boot/boot/isolinux/extlinux.conf ] && cfg=/lesslinux/boot/boot/isolinux/extlinux.conf
+	[ -f /lesslinux/boot/boot/isolinux/extlinux.conf.${lang} ] && cfg=/lesslinux/boot/boot/isolinux/extlinux.conf.${lang}
+	[ -f /lesslinux/boot/boot/isolinux/extlinux.cfg ] && cfg=/lesslinux/boot/boot/isolinux/extlinux.cfg
+	[ "$cfg" '!=' /lesslinux/boot/boot/isolinux/extlinux.conf ] && cp "$cfg" /lesslinux/boot/boot/isolinux/extlinux.conf
+	sed -i 's/uuid=all/uuid='"${newuuid}"'/g' /lesslinux/boot/boot/isolinux/extlinux.conf
+	[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=all/crypt='"${cryptuuid}"'/g'  /lesslinux/boot/boot/isolinux/extlinux.conf
+	[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' /lesslinux/boot/boot/isolinux/extlinux.conf
+	[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    /lesslinux/boot/boot/isolinux/extlinux.conf
+
+	echo -n "${newuuid}" > /lesslinux/boot/boot.uuid
+	extlinux --install /lesslinux/boot/boot/isolinux
+	umount /lesslinux/boot
+	
+	echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
+	echo -n "${device}" > /var/run/lesslinux/install_source
+	echo "bootdevice=${device}" >> /var/run/lesslinux/startup_vars
+	[ "$ultraquiet" -lt 3 ] && echo "===> Done." > /dev/tty8
+	[ "$ultraquiet" -lt 3 ] && chvt 1
+	[ -p /splash.fifo ] && echo 100 > /splash.fifo
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/textblank.ppm	
+}
+
 mount_and_check() {
 	# $1: device
 	# $2: filesystem
