@@ -4015,7 +4015,7 @@ iso_hack_convert() {
 	# it should be saved to a file than. Try to find it! 
 	
 	# Size of boot directory in kilobytes, including the EFI boot directory and image
-	bootsize=` du -sk /lesslinux/cdrom/boot | awk '{print $1}' 
+	bootsize=` du -sk /lesslinux/cdrom/boot | awk '{print $1}'  ` 
 	# Size of boot partition in count of 8MB blocks - roughly add 50% for updates
 	bootblocks=` expr $bootsize / 5461 + 1 ` 
 	
@@ -4103,18 +4103,21 @@ iso_hack_convert() {
 	mdev -s
 	
 	# Single partition - data, legacy boot, EFI boot
-	parted -s $device unit B mkpart primary fat32 partstart ` expr freespacestart - 1 `  
+	parted -s $device unit B mkpart primary fat32 $partstart ` expr $freespacestart - 1 `  
 	parted -s $device unit B set 1 boot on
 	parted -s $device unit B set 1 esp on
+	sync
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 10 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 10 > /splash.fifo
-	dd if=/dev/zero bs=1M count=8 of=${device}1
+	[ -b ${device}1 ] && dd if=/dev/zero bs=1M count=8 of=${device}1
 	mkfs.vfat -n USBDATA "${device}1"
 	cat /etc/syslinux/mbr.bin > "$device"
 	mkdir -p /lesslinux/boot
 	mkdir -p /lesslinux/efiboot
-	mount -t vfat -o rw "${device}1" /lesslinux/data
-	mount -t iso9660 -o ro "${device}" /lesslinux/cdrom
+	mount -t vfat -o rw "${device}1" /lesslinux/boot
+	stickloop=` losetup -f ` 
+	losetup -r ${stickloop} ${device} 
+	mount -t iso9660 -o ro "${stickloop}" /lesslinux/cdrom
 	newuuid=` blkid.static -o udev "${device}1" | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
 	
 	# Copy legacy boot files
