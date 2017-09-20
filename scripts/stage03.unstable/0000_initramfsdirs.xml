@@ -4188,6 +4188,7 @@ iso_hack_convert() {
 	echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
 	echo -n "${device}" > /var/run/lesslinux/install_source
 	echo "bootdevice=${device}" >> /var/run/lesslinux/startup_vars
+	echo "${device}" > /var/run/lesslinux/preppartitions
 	[ "$ultraquiet" -lt 3 ] && echo "===> Done." > /dev/tty8
 	[ "$ultraquiet" -lt 3 ] && chvt 1
 	[ -p /splash.fifo ] && echo 100 > /splash.fifo
@@ -5009,6 +5010,70 @@ esac
 			<module>loop</module>
 			<module>squashfs</module>
 		</modlist>
+		<scriptdata location="/etc/rc.d/0141-preppartitions.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+#lesslinux provides preppartitions
+#lesslinux patience
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
+. /etc/rc.lang/en/messages.sh
+[ -f "/etc/rc.lang/$lang/messages.sh" ] && . /etc/rc.lang/$lang/messages.sh
+. /etc/rc.subr/progressbar
+		
+case $1 in
+    start)
+	device=''
+	if [ -f /var/run/lesslinux/preppartitions ] ; then
+		device=`cat /var/run/lesslinux/preppartitions `
+	else
+		exit 0
+	fi
+	# Check if there is enough space behind the partition table for another ISO image
+	devsize=` parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
+	partend=` parted  -m -s ${device} unit b print | grep '^1' | awk -F ':|B:' '{print $3}'  `
+	isosize=` parted  -m -s ${device} unit b print | grep '^1' | awk -F ':|B:' '{print $2}'  `
+	isotwostart=` expr $devsize - $isosize - 8388608 ` 
+	# Exit gracefully if size is not sufficient
+	[ "$isotwostart" -lt $partend" ] && exit 0
+	# Determine the end of our new loop device by matching an 8M chunk towards the end of the device: 
+	loopendblock=` expr '(' $devsize - $isosize ')' / 8388608 - 1 ` 
+	# Create a loop device with correct parameters 
+	freeloop=` losetup -f ` 
+	losetup -o ` expr $partend + 1 ` --sizelimit ` expr $loopendblock '*' 8388608 - $partend - 1 ` $freeloop $device
+	dd if=/dev/zero bs=1M count=8 of=${freeloop} 
+	# Calculate numbers of blocks needed:
+	# BLOB first
+	blobblocks=0
+	if [ "$blobsize" -gt 63 ] ; then
+		blobblocks=` expr $blobsize / 8 ` 
+	else
+		blobblocks=1
+	fi
+	# Swap size
+	swapblocks=0
+	if [ "$swapsize" -gt 63 ] ; then
+		swapblocks=` expr $swapsize / 8 ` 
+	else
+		swapblocks=1
+	fi
+	# encrypted home for the rest 
+	
+	
+	exit 0
+    ;;
+esac
+		
+# The end	]]>
+		</scriptdata>
 		<!-- <scriptdata location="/etc/rc.d/0145-debug.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 	
