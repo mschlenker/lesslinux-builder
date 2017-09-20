@@ -4097,6 +4097,7 @@ iso_hack_convert() {
 	freespacestart=` expr '(' $deviceblocks - $isoblocks - $swapblocks - $hcblocks - $blobblocks - 2 ')' '*' 8388608 `
 	partstart=`      expr '(' $isoblocks + 2 ')' '*' 8388608 `
 	# Now overwrite the start of the device
+	dd if="$device" bs=512 count=1 of=/tmp/isohybrid.mbr 
 	dd if=/dev/zero bs=512 count=1 of="$device"
 	parted -s $device unit B mklabel msdos
 	sync
@@ -4115,6 +4116,9 @@ iso_hack_convert() {
 	mkdir -p /lesslinux/boot
 	mkdir -p /lesslinux/efiboot
 	mount -t vfat -o rw "${device}1" /lesslinux/boot
+	mkdir -p /lesslinux/boot/boot
+	cp -v /tmp/isohybrid.mbr /lesslinux/boot/boot
+	touch /lesslinux/boot/boot/dontconvert
 	stickloop=` losetup -f ` 
 	losetup -r ${stickloop} ${device} 
 	mount -t iso9660 -o ro "${stickloop}" /lesslinux/cdrom
@@ -4221,11 +4225,30 @@ mount_and_check() {
 		echo "bootmode=plain" >> /var/run/lesslinux/startup_vars
 		if ( echo "$device" | grep -E  'd[a-z]$' > /dev/null 2>&1 ) && \
 		   ( cat /proc/mounts | grep "$device" | grep "iso9660" > /dev/null 2>&1 ) ; then
+			doconvert=1
+			umount /lesslinux/cdrom 
+			mkdir -p /lesslinux/boot 
+			mount -o ro ${device}1 /lesslinux/boot
+			if [ -f /lesslinux/boot/boot/dontconvert ] ; then
+				doconvert=0
+			fi
+			umount /lesslinux/boot
 			if echo "$skipservices" | grep -q '|convertiso|' ; then
+				doconvert=0
+			fi
+			if [ "$doconvert" -gt 0 ]  ; then
+				umount /lesslinux/cdrom 
+				stickloop=` losetup -f ` 
+				losetup -r ${stickloop} ${device}
+				mount ${stickloop} /lesslinux/cdrom 
 				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
+				echo -n "$stickloop" > /var/run/lesslinux/install_source
+				echo "bootdevice=$stickloop" > /var/run/lesslinux/startup_vars
 			elif grep -q parttablehack /proc/cmdline ; then
+				mount -t $filesystem -o ro $device /lesslinux/cdrom
 				iso_hack_convert "$device"
 			else
+				mount -t $filesystem -o ro $device /lesslinux/cdrom
 				iso_gpt_convert "$device"
 			fi
 		else
@@ -5027,7 +5050,7 @@ case $1 in
 esac
 #		]]>
 		</scriptdata> -->
-		<scriptdata location="/etc/rc.d/0141-swap.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0143-swap.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides swap
@@ -5100,7 +5123,7 @@ esac
 			<module>sha512</module>
 			<module>aes</module>
 		</modlist>
-		<scriptdata location="/etc/rc.d/0142-blobpart.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0144-blobpart.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides blob
@@ -5166,7 +5189,7 @@ esac
 	
 		]]>
 		</scriptdata>
-		<scriptdata location="/etc/rc.d/0143-update.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0145-update.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides updateoverlay1
