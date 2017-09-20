@@ -4236,7 +4236,7 @@ mount_and_check() {
 			if echo "$skipservices" | grep -q '|convertiso|' ; then
 				doconvert=0
 			fi
-			if [ "$doconvert" -gt 0 ]  ; then
+			if [ "$doconvert" -lt 1 ]  ; then
 				umount /lesslinux/cdrom 
 				stickloop=` losetup -f ` 
 				losetup -r ${stickloop} ${device}
