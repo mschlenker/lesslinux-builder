@@ -5043,7 +5043,7 @@ case $1 in
 	isosize=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $2}'  `
 	isotwostart=` expr $devsize - $isosize - 8388608 ` 
 	# Exit gracefully if size is not sufficient
-	[ "$isotwostart" -lt $partend" ] && exit 0
+	[ "$isotwostart" -lt "$partend" ] && exit 0
 	# Determine the end of our new loop device by matching an 8M chunk towards the end of the device: 
 	loopendblock=` expr '(' $devsize - $isosize ')' / 8388608 - 1 ` 
 	# Create a loop device with correct parameters 
@@ -5067,7 +5067,7 @@ case $1 in
 	fi
 	# encrypted home
 	# Recalculate the possible size of the partition for the encrypted home container
-	loopblocks=` $loopendblock - '(' $partend / 8388608 ')' ` 
+	loopblocks=` expr $loopendblock - '(' $partend / 8388608 ')' ` 
 	hcblocks=1
 	if [ "$homecontmax" -gt 0 ] ; then
 		hcmaxblocks=` expr $homecontmax / 8 ` 
@@ -5102,12 +5102,12 @@ case $1 in
 	fi
 	sync 
 	kpartx -a "$freeloop"
-	[ "$swapblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=/dev/mapper/${freeloop#/dev}p1
-	[ "$swapblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxSwap    /dev/mapper/${freeloop#/dev}p1
-	[ "$blobblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=/dev/mapper/${freeloop#/dev}p2
-	[ "$blobblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxBlob    /dev/mapper/${freeloop#/dev}p2
-	[ "$hcblocks"   -gt 31 ] && if=/dev/zero bs=1M count=8 of=/dev/mapper/${freeloop#/dev}p3
-	[ "$hcblocks"   -gt 31 ] && mkfs.ext2 -L LessLinuxCrypt   /dev/mapper/${freeloop#/dev}p3
+	[ "$swapblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=${freeloop}p1
+	[ "$swapblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxSwap    ${freeloop}p1
+	[ "$blobblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=${freeloop}p2
+	[ "$blobblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxBlob    ${freeloop}p2
+	[ "$hcblocks"   -gt 31 ] && if=/dev/zero bs=1M count=8 of=${freeloop}p3
+	[ "$hcblocks"   -gt 31 ] && mkfs.ext2 -L LessLinuxCrypt   ${freeloop}p3
 	exit 0
     ;;
 esac
