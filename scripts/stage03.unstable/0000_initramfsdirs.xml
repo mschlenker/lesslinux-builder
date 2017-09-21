@@ -5038,9 +5038,9 @@ case $1 in
 		exit 0
 	fi
 	# Check if there is enough space behind the partition table for another ISO image
-	devsize=` parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
-	partend=` parted  -m -s ${device} unit b print | grep '^1' | awk -F ':|B:' '{print $3}'  `
-	isosize=` parted  -m -s ${device} unit b print | grep '^1' | awk -F ':|B:' '{print $2}'  `
+	devsize=`     parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
+	partend=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $3}'  `
+	isosize=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $2}'  `
 	isotwostart=` expr $devsize - $isosize - 8388608 ` 
 	# Exit gracefully if size is not sufficient
 	[ "$isotwostart" -lt $partend" ] && exit 0
@@ -5065,9 +5065,49 @@ case $1 in
 	else
 		swapblocks=1
 	fi
-	# encrypted home for the rest 
+	# encrypted home
+	# Recalculate the possible size of the partition for the encrypted home container
+	loopblocks=` $loopendblock - '(' $partend / 8388608 ')' ` 
+	hcblocks=1
+	if [ "$homecontmax" -gt 0 ] ; then
+		hcmaxblocks=` expr $homecontmax / 8 ` 
+		hcminblocks=` expr $homecontmin / 8 ` 
+		hcpossible=` expr $loopblocks - $blobblocks - $swapblocks ` 
+		if [ "$hcpossible" -gt $hcmaxblocks ] ; then
+			hcblocks=$hcmaxblocks
+		else
+			hcblocks=$hcpossible
+		fi
+	fi
 	
+	# Create partition table: 
+	parted -s "$freeloop" mklabel gpt
 	
+	# First partition - Swap
+	swappartlabel="${brandshort}-SWAP"
+	[ "$swapblocks" -lt 32 ] && swappartlabel=empty
+	parted -s $freeloop unit B mkpart "${swappartlabel}" ext2 1048576 ` expr $swapblocks '*' 8388608 - 1 ` 
+
+	# Second partition - Blob
+	blobpartlabel="${brandshort}-BLOB"
+	[ "$blobblocks" -lt 32 ] && blobpartlabel=empty
+	if [ "$hcblocks" -lt 32 ] ; then
+		parted -s $freeloop unit B mkpart "${blobpartlabel}" ext2 ` expr $swapblocks '*' 8388608 ` 100% 
+	else
+		parted -s $freeloop unit B mkpart "${blobpartlabel}" ext2 ` expr $swapblocks '*' 8388608 `  ` expr '(' $swapblocks + $hcblocks ')' '*' 8388608 - 1 `
+		# Third partition - encrypted container
+		homepartlabel="${brandshort}-HOME"
+		[ "$hcblocks" -lt 32 ] && homepartlabel=empty
+		parted -s $freeloop unit B mkpart "${homepartlabel}" ext2 ` expr '(' $swapblocks + $hcblocks ')' '*' 8388608 ` 100% 
+	fi
+	sync 
+	kpartx -a "$freeloop"
+	[ "$swapblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=/dev/mapper/${freeloop#/dev}p1
+	[ "$swapblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxSwap    /dev/mapper/${freeloop#/dev}p1
+	[ "$blobblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=/dev/mapper/${freeloop#/dev}p2
+	[ "$blobblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxBlob    /dev/mapper/${freeloop#/dev}p2
+	[ "$hcblocks"   -gt 31 ] && if=/dev/zero bs=1M count=8 of=/dev/mapper/${freeloop#/dev}p3
+	[ "$hcblocks"   -gt 31 ] && mkfs.ext2 -L LessLinuxCrypt   /dev/mapper/${freeloop#/dev}p3
 	exit 0
     ;;
 esac
