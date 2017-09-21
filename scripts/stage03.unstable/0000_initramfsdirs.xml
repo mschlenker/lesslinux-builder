@@ -5101,13 +5101,32 @@ case $1 in
 		parted -s $freeloop unit B mkpart "${homepartlabel}" ext2 ` expr '(' $swapblocks + $hcblocks ')' '*' 8388608 ` 100% 
 	fi
 	sync 
-	kpartx -a "$freeloop"
-	[ "$swapblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=${freeloop}p1
-	[ "$swapblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxSwap    ${freeloop}p1
-	[ "$blobblocks" -gt 1  ] && if=/dev/zero bs=1M count=8 of=${freeloop}p2
-	[ "$blobblocks" -gt 1  ] && mkfs.ext2 -L LessLinuxBlob    ${freeloop}p2
-	[ "$hcblocks"   -gt 31 ] && if=/dev/zero bs=1M count=8 of=${freeloop}p3
-	[ "$hcblocks"   -gt 31 ] && mkfs.ext2 -L LessLinuxCrypt   ${freeloop}p3
+	parted -s -m $freeloop unit B print > /var/run/lesslinux/looppart.txt
+	losetup -d $freeloop 
+	p1start=` grep '^1' | awk -F ':|B:' '{print $2}' `
+	p1size=`  grep '^1' | awk -F ':|B:' '{print $4}' `
+	p2start=` grep '^2' | awk -F ':|B:' '{print $2}' `
+	p2size=`  grep '^2' | awk -F ':|B:' '{print $4}' `
+	p3start=` grep '^3' | awk -F ':|B:' '{print $2}' `
+	p3size=`  grep '^3' | awk -F ':|B:' '{print $4}' `
+	if [ "$swapblocks" -gt 1  ] ; then
+		nextloop=` losetup -f ` 
+		losetup $nextloop -o $(( $p1start + $partend + 1 )) --sizelimit $p1size
+		if=/dev/zero bs=1M count=8 of=$nextloop
+		mkfs.ext2 -L LessLinuxSwap $nextloop
+	fi
+	if [ "$blobblocks" -gt 1  ] ; then
+		nextloop=` losetup -f ` 
+		losetup $nextloop -o $(( $p2start + $partend + 1 )) --sizelimit $p2size
+		if=/dev/zero bs=1M count=8 of=$nextloop
+		mkfs.ext2 -L LessLinuxBlob $nextloop
+	fi 
+	if [ "$hcblocks" -gt 31  ] ; then
+		nextloop=` losetup -f ` 
+		losetup $nextloop -o $(( $p3start + $partend + 1 )) --sizelimit $p3size
+		if=/dev/zero bs=1M count=8 of=$nextloop
+		mkfs.ext2 -L LessLinuxCrypt $nextloop
+	fi 
 	exit 0
     ;;
 esac
