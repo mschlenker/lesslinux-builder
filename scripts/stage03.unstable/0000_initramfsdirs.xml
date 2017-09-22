@@ -5103,30 +5103,31 @@ case $1 in
 	sync 
 	parted -s -m $freeloop unit B print > /var/run/lesslinux/looppart.txt
 	losetup -d $freeloop 
-	p1start=` grep '^1' | awk -F ':|B:' '{print $2}' `
-	p1size=`  grep '^1' | awk -F ':|B:' '{print $4}' `
-	p2start=` grep '^2' | awk -F ':|B:' '{print $2}' `
-	p2size=`  grep '^2' | awk -F ':|B:' '{print $4}' `
-	p3start=` grep '^3' | awk -F ':|B:' '{print $2}' `
-	p3size=`  grep '^3' | awk -F ':|B:' '{print $4}' `
+	p1start=` grep '^1' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
+	p1size=`  grep '^1' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
+	p2start=` grep '^2' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
+	p2size=`  grep '^2' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
+	p3start=` grep '^3' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
+	p3size=`  grep '^3' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
 	if [ "$swapblocks" -gt 1  ] ; then
 		nextloop=` losetup -f ` 
-		losetup $nextloop -o $(( $p1start + $partend + 1 )) --sizelimit $p1size
+		losetup $nextloop -o $(( $p1start + $partend + 1 )) --sizelimit $p1size $device
 		if=/dev/zero bs=1M count=8 of=$nextloop
 		mkfs.ext2 -L LessLinuxSwap $nextloop
 	fi
 	if [ "$blobblocks" -gt 1  ] ; then
 		nextloop=` losetup -f ` 
-		losetup $nextloop -o $(( $p2start + $partend + 1 )) --sizelimit $p2size
+		losetup $nextloop -o $(( $p2start + $partend + 1 )) --sizelimit $p2size $device
 		if=/dev/zero bs=1M count=8 of=$nextloop
 		mkfs.ext2 -L LessLinuxBlob $nextloop
 	fi 
 	if [ "$hcblocks" -gt 31  ] ; then
 		nextloop=` losetup -f ` 
-		losetup $nextloop -o $(( $p3start + $partend + 1 )) --sizelimit $p3size
+		losetup $nextloop -o $(( $p3start + $partend + 1 )) --sizelimit $p3size $device
 		if=/dev/zero bs=1M count=8 of=$nextloop
 		mkfs.ext2 -L LessLinuxCrypt $nextloop
 	fi 
+	# FIXME: Write UUIDs to bootloader config! 
 	exit 0
     ;;
 esac
