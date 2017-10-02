@@ -5184,7 +5184,7 @@ case $1 in
 	if [ -z "$p1start" ] ; then
 		losetup -d $freeloop
 	else
-		kpartx -a $freeloop 
+		partx -a $freeloop 
 	fi
     ;;
 esac
