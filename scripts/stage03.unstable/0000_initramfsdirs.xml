@@ -5116,6 +5116,7 @@ case $1 in
 		if=/dev/zero bs=1M count=8 of=$nextloop
 		mkfs.ext2 -L LessLinuxSwap $nextloop
 		sync
+		losetup -d $nextloop
 	fi
 	if [ "$blobblocks" -gt 1  ] ; then
 		nextloop=` losetup -f ` 
@@ -5123,6 +5124,7 @@ case $1 in
 		if=/dev/zero bs=1M count=8 of=$nextloop
 		mkfs.ext2 -L LessLinuxBlob $nextloop
 		sync
+		losetup -d $nextloop
 	fi 
 	if [ "$hcblocks" -gt 31  ] ; then
 		nextloop=` losetup -f ` 
@@ -5130,7 +5132,9 @@ case $1 in
 		if=/dev/zero bs=1M count=8 of=$nextloop
 		mkfs.ext2 -L LessLinuxCrypt $nextloop
 		sync 
+		losetup -d $nextloop
 	fi 
+	
 	# FIXME: Write UUIDs to bootloader config! 
 	exit 0
     ;;
@@ -5161,12 +5165,8 @@ export PATH
 case $1 in
     start)
 	device=''
-	if [ -f /var/run/lesslinux/preppartitions ] ; then
-		exit 0
-	else 
-		device=$outerdevice
-		[ -z "$device" ] && exit 0
-	fi
+	device=$outerdevice
+	[ -z "$device" ] && exit 0
 	# Check if there is enough space behind the partition table for another ISO image
 	devsize=`     parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
 	partend=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $3}'  `
@@ -5179,26 +5179,13 @@ case $1 in
 	losetup -o ` expr $partend + 1 ` --sizelimit ` expr $loopendblock '*' 8388608 - $partend - 1 ` $freeloop $device
 	# Backup the partition table 
 	parted -s -m $freeloop unit B print > /var/run/lesslinux/looppart.txt
-	losetup -d $freeloop 
 	p1start=` grep '^1' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
-	p1size=`  grep '^1' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
-	p2start=` grep '^2' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
-	p2size=`  grep '^2' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
-	p3start=` grep '^3' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
-	p3size=`  grep '^3' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
 	
-	# Try to access SWAP
-	nextloop=` losetup -f ` 
-	losetup $nextloop -o $(( $p1start + $partend + 1 )) --sizelimit $p1size $device
-	[ -z ` blkid -o udev $nextloop `] && losetup -d $nextloop
-	# Try to access BLOB
-	nextloop=` losetup -f ` 
-	losetup $nextloop -o $(( $p2start + $partend + 1 )) --sizelimit $p2size $device
-	[ -z ` blkid -o udev $nextloop `] && losetup -d $nextloop
-	# Try to access crypthome
-	nextloop=` losetup -f ` 
-	losetup $nextloop -o $(( $p3start + $partend + 1 )) --sizelimit $p3size $device
-	[ -z ` blkid -o udev $nextloop `] && losetup -d $nextloop
+	if [ -z "$p1start" ] ; then
+		losetup -d $freeloop
+	else
+		kpartx -a $freeloop 
+	fi
     ;;
 esac
 		
