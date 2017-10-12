@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="lesslinux-drivetools"
-		version="20170309-02"
+		version="20170901-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="f85f5524e848d33354bea5681ab883545ba6a22a">lesslinux-drivetools-20170309-02.tar.bz2</pkg>
+				<pkg sha1="de695d74e2a8f50a89a9132cc534a26d646d9316">lesslinux-drivetools-20170901-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20161008" interval="120" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20170830" interval="120" page="http://distfiles.lesslinux.org/" />
 			<!-- <check>
 				<page html="http://xorg.freedesktop.org/archive/individual/app/">
 					<atext linktext="xset-1.2.3." />
@@ -67,7 +67,8 @@
 				clonedisk chntpwgui resetshell usbinstall mountall mountnet runx11vnc llmounthelper ddrescueimage \
 				runsmbd XmlDriveList xmldrivelist_ blobinstall vdiskimage MfsSysProfile \
 				photorec-sorter history-extractor jumplist-extractor search-caches pst-importer \
-				qemustarter vshadowgui accesspoint LessLinuxInstaller batch-install assistant batchinstall-ng ; do
+				qemustarter vshadowgui accesspoint LessLinuxInstaller batch-install assistant batchinstall-ng \
+				waitservice ; do
 					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			install -m 0755 dothedirtyjob.sh ${TGTDIR}/usr/share/lesslinux/drivetools

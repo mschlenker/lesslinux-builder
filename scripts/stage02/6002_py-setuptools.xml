@@ -1,15 +1,15 @@
 <llpackages>
-    <package name='setuptools' version='24.0.2' install='chroot'>
+    <package name='setuptools' version='36.0.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='7eac36b2ee70029ffbb3134d16894577635482ba'>
-                    setuptools-24.0.2.tar.gz
+                <pkg sha1='1974a217062256dd3db5600dcfa2e35937daf1e6'>
+                    setuptools-36.0.1.zip
                 </pkg>
                 <mirror>
-                    https://pypi.python.org/packages/source/s/setuptools/
+https://pypi.python.org/packages/source/s/setuptools/https://pypi.python.org/packages/a9/23/720c7558ba6ad3e0f5ad01e0d6ea2288b486da32f053c73e259f7c392042/
                 </mirror>
             </file>
             <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/setuptools/'/>
@@ -43,7 +43,7 @@
                         <dep>xpra</dep> -->
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[ unzip ${SRCDIR}/${PKGNAME}-${PKGVERSION}.zip
 ]]>
         </unpack>
         <patch/>

@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="libfm"
-		version="20140521"
+		version="1.2.5"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="34670f3ef56aea585f1b1625af68828e301394ed">libfm-20140521.tar.xz</pkg>
+				<pkg sha1="f4e6a8457a16158ed3999b30ed6309e7d67d9083">libfm-1.2.5.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="60" page="http://lxqt.org/downloads/lxqt/" />
+			<manualcheck date="20170615" interval="60" page="http://lxqt.org/downloads/lxqt/" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -108,28 +108,28 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			bash autogen.sh
-			./configure --prefix=/usr --sysconfdir=/etc 
+			./configure --prefix=/usr --sysconfdir=/etc --enable-actions=no
 			make 
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

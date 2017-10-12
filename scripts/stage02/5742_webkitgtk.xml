@@ -102,17 +102,26 @@
                 </builddeps> 
 		<unpack>
 			<![CDATA[ 
+			
+			exit 0
+			
 			unxz -c ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
 		<patch>
-			<![CDATA[ 
+			<![CDATA[
+
+			exit 0
+
 			cd ${PKGNAME}gtk-${PKGVERSION}
 			cat ${SRCDIR}/${PKGNAME}gtk-${PKGVERSION}-gcc6-1.patch | patch -p1 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
+			
+			exit 0
+			
 			cd ${PKGNAME}gtk-${PKGVERSION}
 			jobcount=` grep -c processor /proc/cpuinfo `
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
@@ -128,6 +137,11 @@
 		<test />
 		<install>
 			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			exit 0 
+			
 			cd ${PKGNAME}gtk-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
 			]]>

@@ -1,23 +1,22 @@
 <llpackages>
 	<package 
 		name="lua"
-		version="5.3.3"
-		class="user"
-		>
+		version="5.3.4"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                       
-				<pkg sha1="a0341bc3d1415b814cc738b2ec01ae56045d64ef">lua-5.3.3.tar.gz</pkg>
+				<pkg sha1="79790cfd40e09ba796b01a571d4d63b52b1cd950">lua-5.3.4.tar.gz</pkg>
 				<mirror>http://www.lua.org/ftp/</mirror>
 			</file>  
 			<file>                       
-				<pkg sha1="42da708817f408bb06e90097b65646472e11fffa">lua-5.3.3-shared_library-1.patch</pkg>
+				<pkg sha1="42da708817f408bb06e90097b65646472e11fffa">lua-5.3.4-shared_library-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
-			<manualcheck date="20160820" interval="90" page="http://www.lua.org/ftp/" />
+			<manualcheck date="20170615" interval="90" page="http://www.lua.org/ftp/" />
 			<check>
 				<page html="http://www.lua.org/ftp/">
-					<atext linktext="lua-5.3.4." />
+					<atext linktext="lua-5.3.8." />
 					<atext linktext="lua-5.3.5." />
 					<atext linktext="lua-5.3.6." />
 					<atext linktext="lua-5.3.7." />
@@ -49,7 +48,7 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-5.3.3-shared_library-1.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-shared_library-1.patch | patch -p1
 			sed -i '/#define LUA_ROOT/s:/usr/local/:/usr/:' src/luaconf.h
 			]]>
 		</patch>
@@ -75,13 +74,13 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			[ -x src/lua ] || exit 1
-			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.3 liblua.so.5.3.3" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
-			mkdir -pv /usr/share/doc/lua-5.3.3
-			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.3.3
+			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.3 liblua.so.5.3.4" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
+			mkdir -pv /usr/share/doc/lua-${PKGVERSION}
+			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-${PKGVERSION}
 
 cat > /usr/lib/pkgconfig/lua.pc << "EOF"
 V=5.3
-R=5.3.3
+R=5.3.4
 
 prefix=/usr
 INSTALL_BIN=${prefix}/bin

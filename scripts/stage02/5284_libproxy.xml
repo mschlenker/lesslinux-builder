@@ -1,17 +1,16 @@
 <llpackages>
 	<package 
 		name="libproxy"
-		version="0.4.11"
-		class="user"
-		>
+		version="0.4.15"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                              
-				<pkg sha1="c037969434095bc65d29437e11a7c9e0293a5149">libproxy-0.4.11.tar.gz</pkg>
+				<pkg sha1="2dc0fc31cad78ce3d7a5ceb8fa8df07010f5c13e">libproxy-0.4.15.tar.gz</pkg>
 				<mirror>http://libproxy.googlecode.com/files/</mirror>
 			</file>
 			<manualcheck date="20150823" interval="365" page="http://libproxy.googlecode.com/files/" />
-			<check>
+			<!-- <check>
 				<page html="http://code.google.com/p/libproxy/downloads/list">
 					<atext linktext="libproxy-0.4.14.t" />
 					<atext linktext="libproxy-0.4.12.t" />
@@ -21,7 +20,7 @@
 					<atext linktext="libproxy-0.7." />
 					<atext linktext="libproxy-1." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
 			<dep>GConf</dep>

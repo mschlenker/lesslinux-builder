@@ -10,12 +10,16 @@
 				<pkg sha1="8de012df1e4f3e91f571c3eb8ec45b43d7c747eb">bash-4.4.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
 			</file>
-			<manualcheck date="20160922" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
+			<file>                                                          
+				<pkg sha1="a43437fdfb66db5ca988910be5642b28ab7bca5c">bash-4.4-upstream_fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20170801" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/bash/">
-					<atext linktext="bash-4.3.31." />
-					<atext linktext="bash-4.4." />
+					<atext linktext="bash-4.4.1." />
 					<atext linktext="bash-4.5." />
+					<atext linktext="bash-4.6." />
 					<atext linktext="bash-5." />
 				</page>
 			</check>
@@ -32,7 +36,7 @@
 		<patch>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upsteam_fixes-3.patch | patch -p1
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-1.patch | patch -p1
 			]]>
 		</patch>
 		<build>

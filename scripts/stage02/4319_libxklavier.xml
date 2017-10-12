@@ -1,16 +1,15 @@
 <llpackages>
 	<package 
 		name="libxklavier"
-		version="5.0"
-		class="user"
-		>
+		version="5.4"
+		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="e914adc00a7b1d39c5057aa415a5181856a697ae">libxklavier-5.0.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/gswitchit/libxklavier/5.0/</mirror>
+				<pkg sha1="6bd04a332700ad43d518167beaafbf734e94bd35">libxklavier-5.4.tar.bz2</pkg>
+				<mirror>http://pkgs.fedoraproject.org/repo/pkgs/libxklavier/libxklavier-5.4.tar.bz2/13af74dcb6011ecedf1e3ed122bd31fa/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://downloads.sourceforge.net/project/gswitchit/libxklavier/" />
+			<manualcheck date="20170801" interval="180" page="http://pkgs.fedoraproject.org/repo/pkgs/libxklavier/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -44,6 +43,7 @@
                         <dep>xorg-cf-files</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
+			<dep>vala</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

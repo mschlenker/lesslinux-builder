@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='protobuf' version='2.6.1' install='chroot'>
+    <package name='protobuf' version='3.3.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='3dff24d019729060eff569d7a718bdbb10db13a3'>
-                    protobuf-2.6.1.tar.gz
+                <pkg sha1='087f5bba8223acce4b9b31380ee872677aeff87f'>
+                    protobuf-3.3.0.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/p/protobuf/
                 </mirror>
             </file>
-            <manualcheck date='20150421' interval='60' mirror='https://pypi.python.org/packages/source/p/protobuf/'/>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/packages/source/p/protobuf/'/>
         </sources>
 	<builddeps>
                         <dep>Cython</dep>
@@ -22,7 +22,6 @@
                         <dep>WebOb</dep>
                         <dep>antlr_python_runtime</dep>
                         <dep>bash</dep>
-                        
                         <dep>construct</dep>
                         <dep>distcc</dep>
                         <dep>distribute</dep>

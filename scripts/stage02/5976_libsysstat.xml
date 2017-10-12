@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="libsysstat"
-		version="0.3.2"
+		version="0.3.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="d69ea2fc8350c73ae46859407023c3561612faa6">libsysstat-0.3.2.tar.xz</pkg>
-				<mirror>https://github.com/lxde/libsysstat/releases/download/0.3.2/</mirror>
+				<pkg sha1="f3c8985d7b5a33dcddae0aba641c2baa669338fe">libsysstat-0.3.3.tar.xz</pkg>
+				<mirror>https://github.com/lxde/libsysstat/releases/download/0.3.3/</mirror>
 			</file>
-			<manualcheck date="20160922" interval="60" page="https://github.com/lxde/libsysstat" />
+			<manualcheck date="20170615" interval="60" page="https://github.com/lxde/libsysstat" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -37,6 +37,7 @@
                         <dep>make</dep>
                         <dep>openssl</dep>
                         <dep>qt5</dep>
+			<dep>lxqt-build-tools</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

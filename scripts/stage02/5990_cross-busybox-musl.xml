@@ -1,34 +1,34 @@
 <llpackages>
 	<package 
 		name="cross-busybox-musl"
-		version="1.24.2"
+		version="1.27.1"
 		class="lib"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>  
-				<pkg sha1="03e6cfc8ddb2f709f308719a9b9f4818bc0a28d0">busybox-1.24.2.tar.bz2</pkg>
+				<pkg sha1="a154f70a10fe39062b6fb00eaff5baf39db535ec">busybox-1.27.1.tar.bz2</pkg>
 				<mirror>http://busybox.net/downloads/</mirror>
 			</file>
 			<file>  
-				<pkg sha1="670366e42097cc33dded6636928f1d6c0a78b0ad">busybox-1.24.2.config</pkg>
+				<pkg sha1="4a331042fc77127c48378ee974cb93ad0417871b">busybox-1.27.1.config</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>  
 				<pkg sha1="07cd562e709f6d1ce9ef1dc7aefcd8ddc192481e">busybox-1.25.0-fbset-nofill.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="180" page="http://busybox.net/downloads/" />
+			<manualcheck date="20170801" interval="180" page="http://busybox.net/downloads/" />
 			<check>
 				<page html="http://busybox.net/">
-					<atext href="busybox-1.24.3." />
-					<atext href="busybox-1.24.4." />
-					<atext href="busybox-1.24.5." />
-					<atext href="busybox-1.24.6." />
-					<atext href="busybox-1.25." />
-					<atext href="busybox-1.26." />
-					<atext href="busybox-1.27." />
+					<atext href="busybox-1.27.3." />
+					<atext href="busybox-1.27.4." />
+					<atext href="busybox-1.27.5." />
+					<atext href="busybox-1.27.2." />
+					<atext href="busybox-1.28." />
+					<atext href="busybox-1.29." />
+					<atext href="busybox-1.30." />
 					<atext href="busybox-2." />
 				</page>
 			</check>

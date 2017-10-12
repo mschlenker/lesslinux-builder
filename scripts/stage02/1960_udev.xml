@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="udev"
-		version="3.2"
+		version="3.2.2"
 		class="user"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                   
-				<pkg sha1="4463db5b584b6e2bcf617d7c1b0c3cf27a1fc13d">eudev-3.2.tar.gz</pkg>
+				<pkg sha1="240d7b589ef1da1bb85a950f919e826239363350">eudev-3.2.2.tar.gz</pkg>
 				<mirror>http://dev.gentoo.org/~blueness/eudev/</mirror>
 			</file>
 			<file>      
 				<pkg sha1="7e79b839f7a0adf11a22fbb49c43531f19e55b7f">udev-lfs-20140408.tar.bz2</pkg>
 				<mirror>http://anduin.linuxfromscratch.org/sources/other/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="90" page="http://www.kernel.org/pub/linux/utils/kernel/hotplug/" />
+			<manualcheck date="20160801" interval="90" page="http://www.kernel.org/pub/linux/utils/kernel/hotplug/" />
 			<check>
 				<page html="http://dev.gentoo.org/~blueness/eudev/">
-					<atext linktext="eudev-3.2.1." />
-					<atext linktext="eudev-3.2.2." />
+					<atext linktext="eudev-3.2.6." />
+					<atext linktext="eudev-3.2.7." />
 					<atext linktext="eudev-3.2.3." />
 					<atext linktext="eudev-3.2.4." />
 					<atext linktext="eudev-3.2.5." />

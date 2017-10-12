@@ -11,10 +11,14 @@
 				<mirror>http://ftp.gnu.org/gnu/parted/</mirror>
 			</file>
 			<file>                                                                                          
-				<pkg sha1="5e2dd5bcae8a55c1721bf5c24e8c263895818b44">LVM2.2.02.166.tgz</pkg>
-				<mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
-			</file>
-			<manualcheck date="20160923" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
+                                <pkg sha1="032277219d6d9acd4adbed9c000ed06a074b8200">LVM2.2.02.164.tgz</pkg>
+                                <mirror>ftp://sources.redhat.com/pub/lvm2/</mirror>
+                        </file>
+			<file>                                                                                          
+                                <pkg sha1="a37703ea474f2ce228fb7869c761865cd22f0bac">parted-3.2-devmapper-1.patch</pkg>
+                                <mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+                        </file>
+			<manualcheck date="20170615" interval="180" page="http://ftp.gnu.org/gnu/parted/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/parted/">
 					<atext linktext="parted-3.2.1." />
@@ -25,21 +29,21 @@
 					<atext linktext="parted-4." />
 				</page>
 				<page html="http://mirrors.kernel.org/sources.redhat.com/lvm2/">
-					<atext linktext="LVM2.2.02.168.t" />
-					<atext linktext="LVM2.2.02.169.t" />
-					<atext linktext="LVM2.2.02.170.t" />
-					<atext linktext="LVM2.2.02.171.t" />
-					<atext linktext="LVM2.2.02.172.t" />
-					<atext linktext="LVM2.2.02.173.t" />
-					<atext linktext="LVM2.2.02.174.t" />
-					<atext linktext="LVM2.2.02.167.t" />
-					<atext linktext="LVM2.2.02.17" />
-					<atext linktext="LVM2.2.02.18" />
-					<atext linktext="LVM2.2.03" />
-					<atext linktext="LVM2.2.04" />
-					<atext linktext="LVM2.3" />
-					<atext linktext="LVM2.4" />
-				</page>
+                                        <atext linktext="LVM2.2.02.176.t" />
+                                        <atext linktext="LVM2.2.02.178.t" />
+                                        <atext linktext="LVM2.2.02.179.t" />
+                                        <atext linktext="LVM2.2.02.171.t" />
+                                        <atext linktext="LVM2.2.02.172.t" />
+                                        <atext linktext="LVM2.2.02.173.t" />
+                                        <atext linktext="LVM2.2.02.174.t" />
+                                        <atext linktext="LVM2.2.02.175.t" />
+                                        <atext linktext="LVM2.2.02.17" />
+                                        <atext linktext="LVM2.2.02.18" />
+                                        <atext linktext="LVM2.2.03" />
+                                        <atext linktext="LVM2.2.04" />
+                                        <atext linktext="LVM2.3" />
+                                        <atext linktext="LVM2.4" />
+                                </page>
 			</check>
 		</sources>
 		<builddeps>
@@ -67,28 +71,30 @@
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/parted-${PKGVERSION}.tar.xz | tar xf - 
-			tar -xf ${SRCDIR}/LVM2.2.02.166.tgz
+			tar -xf ${SRCDIR}/LVM2.2.02.164.tgz
 			]]>
 		</unpack>
-		<patch />
+		<!-- <patch>
+			<![CDATA[
+			cd parted-${PKGVERSION} 
+			cat ${SRCDIR}/parted-${PKGVERSION}-devmapper-1.patch |  patch -p1 
+			]]>
+		</patch> -->
 		<build>
 			<![CDATA[
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
 			THISDIR=` pwd ` 
-			cd LVM2.2.02.166
+			cd LVM2.2.02.164
+			export CFLAGS=-Wno-error
 			./configure --prefix=/usr --sysconfdir=/etc --enable-dmeventd --enable-cmdlib --enable-static_link # CFLAGS=-fPIE LDFLAGS=-pie
 			make lib
 			cd ../parted-${PKGVERSION}                    
 			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no 
-			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.166/libdm/ioctl -pthread"
+			make LDFLAGS="-all-static -L${THISDIR}/LVM2.2.02.164/libdm/ioctl -pthread"
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
 			cd parted-${PKGVERSION}
 			mkdir -p $TGTDIR/static/sbin
 			install -m 0755 parted/parted $TGTDIR/static/sbin/parted
@@ -98,7 +104,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf parted-${PKGVERSION}
-			rm -rf LVM2.2.02.166
+			rm -rf LVM2.2.02.164
 			]]>
 		</clean>
 	</package>

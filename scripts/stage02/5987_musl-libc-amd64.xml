@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="musl-amd64"
-		version="1.1.15"
+		version="1.1.16"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="027c3ae2182fa53c2b554ca98a28dc5cfca4b2c3">musl-1.1.15.tar.gz</pkg>
+				<pkg sha1="5c2204b31b1ee08a01d4d3e34c6e46f6256bdac8">musl-1.1.16.tar.gz</pkg>
 				<mirror>http://www.musl-libc.org/releases/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="60" page="http://www.musl-libc.org/download.html" />
+			<manualcheck date="20170615" interval="60" page="http://www.musl-libc.org/download.html" />
 			<check>
 				<page html="http://www.musl-libc.org/releases/">
-					<atext linktext="musl-1.1.16." />
+					<atext linktext="musl-1.1.21." />
 					<atext linktext="musl-1.1.17." />
 					<atext linktext="musl-1.1.18." />
 					<atext linktext="musl-1.1.19." />
@@ -36,7 +36,7 @@
 		<build>
 			<![CDATA[
 			
-			exit 0
+			#exit 0
 			
 cd musl-${PKGVERSION}
 for f in utmp paths ; do
@@ -62,9 +62,9 @@ CFLAGS=-fno-toplevel-reorder CC=${CLFS_TARGET}-gcc make
 			<![CDATA[
 			
 			
-mkdir -p ${TGTDIR}/etc/lesslinux
-touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
-exit 0
+#mkdir -p ${TGTDIR}/etc/lesslinux
+#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+#exit 0
 			
 cd musl-${PKGVERSION}
 

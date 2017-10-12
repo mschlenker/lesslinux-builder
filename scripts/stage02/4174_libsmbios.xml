@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="libsmbios"
-		version="2.3.0"
+		version="2.3.3"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="34d011e4ef79b07c66db566a611360314ddf2d50">libsmbios-2.3.0.tar.xz</pkg>
-				<mirror>http://linux.dell.com/libsmbios/download/libsmbios/libsmbios-2.3.0/</mirror>
+				<pkg sha1="c0f9a8ddf5f13fd2ca9b3ab18bee07b54c74dd1a">libsmbios-2.3.3.tar.xz</pkg>
+				<mirror>http://linux.dell.com/libsmbios/download/libsmbios/libsmbios-2.3.3/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="180" page="http://linux.dell.com/libsmbios/download/libsmbios/" />
+			<manualcheck date="20170614" interval="180" page="http://linux.dell.com/libsmbios/download/libsmbios/" />
 			<check>
 				<page html="http://linux.dell.com/libsmbios/download/libsmbios/">
-					<atext linktext="libsmbios-2.3.1" />
-					<atext linktext="libsmbios-2.3.2" />
-					<atext linktext="libsmbios-2.3.3" />
+					<atext linktext="libsmbios-2.3.4" />
+					<atext linktext="libsmbios-2.3.5" />
+					<atext linktext="libsmbios-2.3.6" />
 					<atext linktext="libsmbios-2.4" />
 					<atext linktext="libsmbios-2.5" />
 					<atext linktext="libsmbios-3." />
@@ -57,6 +57,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			bash autogen.sh
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"

@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='mercurial' version='3.8.4' install='chroot'>
+    <package name='mercurial' version='4.2.1' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='3fca166ff37f7900fc9ac361f67d259d63c09710'>
-                    mercurial-3.8.4.tar.gz
+                <pkg sha1='3fb8e228c8e3129cae1b222085984f4f90c7140b'>
+                    mercurial-4.2.1.tar.gz
                 </pkg>
                 <mirror>
                     https://www.mercurial-scm.org/release/
                 </mirror>
             </file>
-            <manualcheck date='20160701' interval='60' mirror='https://www.mercurial-scm.org'/>
+            <manualcheck date='20170615' interval='60' mirror='https://www.mercurial-scm.org'/>
         </sources>
 	<builddeps>
                         <dep>M2Crypto</dep>

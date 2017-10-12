@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="VeraCrypt"
-		version="1.18a"
+		version="1.19"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="f97bff49a7dfb992df18fed6051f84db3a6fb865">VeraCrypt_1.18a.tar.gz</pkg>
+				<pkg sha1="8c2bcaa39fa601c70cd80c355f08403e9954c377">VeraCrypt_1.19.tar.gz</pkg>
 				<mirror>https://github.com/veracrypt/VeraCrypt/archive/</mirror>
 			</file>
-			<manualcheck date="20160922" interval="90" page="http://www.truecrypt.org/" />
+			<manualcheck date="20170615" interval="90" page="https://github.com/veracrypt/VeraCrypt/releases" />
 		</sources>
 		<builddeps>
                         <dep>atk</dep>
@@ -48,6 +48,7 @@
                         <dep>xproto-base</dep>
 			<dep>wxWidgets3</dep>
 			<dep>ImageMagick</dep>
+			<dep>makeself</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -66,7 +67,8 @@
 				export CXX="distcc g++" 
 			fi
 			export PATH=/usr/compat.new/bin:$PATH 
-			make -j $jobcount
+			export LD_LIBRARY_PATH=/usr/compat.new/bin:$LD_LIBRARY_PATH 
+			make -j $jobcount || exit 0 
 			convert ./Setup/Linux/usr/share/pixmaps/veracrypt.xpm -resize '48x48!'  ./Setup/Linux/usr/share/pixmaps/veracrypt.png
 			sed -i 's%Categories=Encryption;Encryption Tools;Utility;%Categories=Utility;Encryption;Encryption Tools;%g'  ./Setup/Linux/usr/share/applications/veracrypt.desktop
 			echo '===> searching files'

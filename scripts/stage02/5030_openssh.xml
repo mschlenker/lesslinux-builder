@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="openssh"
-		version="7.2p2"
+		version="7.5p1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                       
-				<pkg sha1="70e35d7d6386fe08abbd823b3a12a3ca44ac6d38">openssh-7.2p2.tar.gz</pkg>
+				<pkg sha1="5e8f185d00afb4f4f89801e9b0f8b9cee9d87ebd">openssh-7.5p1.tar.gz</pkg>
 				<mirror>ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/</mirror>
 			</file>
-			<manualcheck date="20160823" interval="120" page="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/" />
+			<manualcheck date="20170615" interval="120" page="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/" />
 			<check>
 				<page html="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/">
-					<atext linktext="openssh-7.2p3" />
-					<atext linktext="openssh-7.2p4" />
-					<atext linktext="openssh-7.2p5" />
-					<atext linktext="openssh-7.2.1" />
-					<atext linktext="openssh-7.3." />
-					<atext linktext="openssh-7.4." />
-					<atext linktext="openssh-7.5." />
+					<atext linktext="openssh-7.5p3" />
+					<atext linktext="openssh-7.5p4" />
+					<atext linktext="openssh-7.5p2" />
+					<atext linktext="openssh-7.5.1" />
+					<atext linktext="openssh-7.6." />
+					<atext linktext="openssh-7.7." />
+					<atext linktext="openssh-7.8." />
 					<atext linktext="openssh-8." />
 				</page>
 			</check>

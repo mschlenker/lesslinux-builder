@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="kbd"
-		version="2.0.3"
+		version="2.0.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                       
-				<pkg sha1="e37a6e6a43287afb4e678d4071d50cbf1ef8d581">kbd-2.0.3.tar.gz</pkg>
+				<pkg sha1="cf5d45c62d6af70b8b1f210d89193b52f5efb05d">kbd-2.0.4.tar.xz</pkg>
 				<mirror>http://ftp.altlinux.com/pub/people/legion/kbd/</mirror>
 			</file>
 			<file>  
-				<pkg sha1="44f2fb0ac18db4f717421db756db4897f88dc08c">kbd-2.0.3-backspace-1.patch</pkg>
+				<pkg sha1="44f2fb0ac18db4f717421db756db4897f88dc08c">kbd-2.0.4-backspace-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
 			</file>
-			<manualcheck date="20150824" interval="120" page="http://ftp.altlinux.com/pub/people/legion/kbd/" />
+			<manualcheck date="20160609" interval="120" page="http://ftp.altlinux.com/pub/people/legion/kbd/" />
 			<check>
 				<page html="http://ftp.altlinux.com/pub/people/legion/kbd/">
-					<atext linktext="kbd-2.0.4." />
+					<atext linktext="kbd-2.0.8." />
 					<atext linktext="kbd-2.0.5." />
 					<atext linktext="kbd-2.0.6." />
 					<atext linktext="kbd-2.0.7." />
@@ -56,7 +56,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch>

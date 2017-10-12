@@ -1,15 +1,15 @@
 <llpackages>
-    <package name='google-snappy' version='1.1.3-9-gd53de18' install='chroot'>
+    <package name='google-snappy' version='1.1.4' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='c40557fb5dfa02a9997d7ff60945d8a1fc36d26c'>
-                    google-snappy-1.1.3-9-gd53de18.tar.gz
+                <pkg sha1='0fac144661573c747ad612c01d03a89e0a2280c7'>
+                    snappy-1.1.4.tar.gz
                 </pkg>
                 <mirror>
-                    http://distfiles.lesslinux.org/
+                    https://github.com/google/snappy/releases/download/1.1.4/
                 </mirror>
             </file>
             <manualcheck date='20160512' interval='60' mirror='http://distfiles.lesslinux.org/'/>
@@ -75,24 +75,24 @@
                         <dep>zlib</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/snappy-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}-d53de18
+            <![CDATA[cd snappy-${PKGVERSION} 
 bash autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-d53de18
+            <![CDATA[cd snappy-${PKGVERSION}
 make install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}-d53de18
+            <![CDATA[rm -rf snappy-${PKGVERSION}
 ]]>
         </clean>
     </package>

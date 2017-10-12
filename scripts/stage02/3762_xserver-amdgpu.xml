@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='xf86-video-amdgpu' version='1.1.2' install='destdir'>
+    <package name='xf86-video-amdgpu' version='1.3.0' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='ab56de6b454c7490e51c164df13ccca8f3ef5b22'>
-                    xf86-video-amdgpu-1.1.2.tar.gz
+                <pkg sha1='7b89fe6e22e6739257c0f03c9f034c9c579a8bce'>
+                    xf86-video-amdgpu-1.3.0.tar.bz2
                 </pkg>
                 <mirror>
                     https://www.x.org/releases/individual/driver/
                 </mirror>
             </file>
-            <manualcheck date='20160923' interval='60' mirror='https://www.x.org/releases/individual/driver/'/>
+            <manualcheck date='20170614' interval='60' mirror='https://www.x.org/releases/individual/driver/'/>
         </sources>
 	<builddeps>
                         <dep>bash</dep>
@@ -39,7 +39,7 @@
                         <dep>xproto-base</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>
         </unpack>
         <patch/>

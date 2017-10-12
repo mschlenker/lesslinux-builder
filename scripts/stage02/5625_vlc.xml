@@ -1,31 +1,31 @@
 <llpackages>
 	<package 
 		name="vlc"
-		version="2.2.4"
+		version="2.2.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                            
-				<pkg sha1="ec171b0ad731d9d114540cd7b7fcb41fc3293696">vlc-2.2.4.tar.xz</pkg>
-				<mirror>http://download.videolan.org/pub/videolan/vlc/2.2.4/</mirror>
+				<pkg sha1="d299dce6a5c94af4292657b6cb99c44654024f70">vlc-2.2.6.tar.xz</pkg>
+				<mirror>http://download.videolan.org/pub/videolan/vlc/2.2.6/</mirror>
 			</file>
 			<file>                                                                            
-				<pkg sha1="528238eed35c1352e971165ed2a0fe8b8c8dc5bc">vlc-2.2.4-ffmpeg3-1.patch</pkg>
+				<pkg sha1="528238eed35c1352e971165ed2a0fe8b8c8dc5bc">vlc-2.2.6-ffmpeg3-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
-			</file>
-			<file>                                                                            
+			</file> 
+			<!-- <file>                                                                            
 				<pkg sha1="e084b3056d64a6f053363ac56c8214395ba17a95">vlc-2.2.4-gcc6_fixes-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
-			</file>
-			<manualcheck date="20160701" interval="90" page="http://download.videolan.org/pub/videolan/vlc/" />
+			</file> -->
+			<manualcheck date="20170614" interval="90" page="http://download.videolan.org/pub/videolan/vlc/" />
 			<check>
 				<page html="http://download.videolan.org/pub/videolan/vlc/">
 					<atext linktext="2.2.7" />
 					<atext linktext="2.2.8" />
 					<atext linktext="2.2.9" />
-					<atext linktext="2.2.5" />
-					<atext linktext="2.2.6" />
+					<atext linktext="2.2.10" />
+					<atext linktext="2.2.11" />
 					<atext linktext="2.3." />
 					<atext linktext="2.4." />
 					<atext linktext="3.0." />
@@ -130,7 +130,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			patch -Np1 -i ${SRCDIR}/${PKGNAME}-${PKGVERSION}-ffmpeg3-1.patch
-			patch -Np1 -i ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc6_fixes-1.patch
+			# patch -Np1 -i ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc6_fixes-1.patch
 			]]>
 		</patch>
 		<build>

@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="4.4.52"
+		version="4.9.54"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="7f93c856fe791202c52176af23f073090760ea6c">linux-4.4-config-amd64</pkg> 
+				<pkg sha1="407aad58aac86330ff45753519df02946908921d">linux-4.9-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="af7d0cd188292d4d6c7bbaabde0f30ec6b521884">linux-4.4.tar.xz</pkg>
+				<pkg sha1="fa46da077c077467776cdc45a7b50d327a081ab4">linux-4.9.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="b0472f6ed80618d28be47cfaee1f1eeb0ff4f211">patch-4.4.52.xz</pkg>
+				<pkg sha1="d67562ee4bd5e0031fcafc1ae8bc72948dcffe04">patch-4.9.54.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20170309" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20171010" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
-					<atext linktext="patch-4.4.53." />
-					<atext linktext="patch-4.4.54." />
-					<atext linktext="patch-4.4.55." />
-					<atext linktext="patch-4.5." />
-					<atext linktext="patch-4.6." />
-					<atext linktext="patch-4.7." />
+					<atext linktext="patch-4.9.55." />
+					<atext linktext="patch-4.9.56." />
+					<atext linktext="patch-4.9.57." />
+					<atext linktext="patch-4.14." />
+					<atext linktext="patch-4.15." />
+					<atext linktext="patch-4.16." />
 				</page>
 			</check>
 		</sources>
@@ -58,12 +58,13 @@
 			<dep>gzip</dep>
 			<dep>lesslinux-modextract</dep>
 			<dep>module-init-tools</dep>
-			<!-- artificial dependencies, do not build more than two kernels at once -->
+			<!-- artificial dependencies, make sure the 64 bit kernel is the last kernel built -->
 			<dep>linux</dep>
 			<dep>linux-nopae</dep>
 			<dep>bc</dep>
 			<dep>distcc</dep>
 			<dep>kmod</dep>
+			<dep>cross-gcc-musl2-amd64</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -93,46 +94,51 @@
 		<build>
 			<![CDATA[ 
 			cd linux-${PKGVERSION}.build
-			
-			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
-			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
-			
-			echo 'PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH' > ../linux-${PKGVERSION}/environment.inc
-			echo 'OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump' >> ../linux-${PKGVERSION}/environment.inc
-			echo 'CC=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc'  >> ../linux-${PKGVERSION}/environment.inc
-			
+			# x86_64-linux-musl
+			# export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
+			export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
+			# export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+			export OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump
+			# echo 'PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH' > ../linux-${PKGVERSION}/environment.inc
+			echo 'PATH=/usr/local/crosstools-amd64-musl/bin:$PATH' > ../linux-${PKGVERSION}/environment.inc
+			# echo 'OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump' >> ../linux-${PKGVERSION}/environment.inc
+			echo 'OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump' >> ../linux-${PKGVERSION}/environment.inc
+			# echo 'CC=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc'  >> ../linux-${PKGVERSION}/environment.inc
+			echo 'CC=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc'  >> ../linux-${PKGVERSION}/environment.inc
 			echo 'ARCH=x86_64' > ../linux-${PKGVERSION}/arch.inc
-			echo 'CROSS_COMPILE="x86_64-linux-gnu-"' > ../linux-${PKGVERSION}/crosscompile.inc
+			# echo 'CROSS_COMPILE="x86_64-linux-gnu-"' > ../linux-${PKGVERSION}/crosscompile.inc
+			echo 'CROSS_COMPILE="x86_64-linux-musl-"' > ../linux-${PKGVERSION}/crosscompile.inc
 			
-			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
+			# yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
+			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" oldconfig 
 			
 			jobcount=4 
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				make -j $jobcount \
-					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-gnu- \
-					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
-					bzImage
-				make -j $jobcount \
-					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-gnu- \
-					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
-				make -j $jobcount \
-					ARCH=x86_64 \
-					CROSS_COMPILE=x86_64-linux-gnu- \
-					CC='distcc /usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-gcc' \
-					OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump \
-					bzImage
-			else
-				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
-				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
-				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump bzImage
-			fi
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	make -j $jobcount \
+			#		ARCH=x86_64 \
+			#		CROSS_COMPILE=x86_64-linux-musl- \
+			#		CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
+			#		OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
+			#		bzImage
+			#	make -j $jobcount \
+			#		ARCH=x86_64 \
+			#		CROSS_COMPILE=x86_64-linux-musl- \
+			#		CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
+			#		OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
+			#	make -j $jobcount \
+			#		ARCH=x86_64 \
+			#		CROSS_COMPILE=x86_64-linux-musl- \
+			#		CC='distcc /usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-gcc' \
+			#		OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump \
+			#		bzImage
+			#else
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump bzImage
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump
+				make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump bzImage
+			#fi
 			cd ../linux-${PKGVERSION}
-			make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_prepare 
+			make -j $jobcount ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump modules_prepare 
 			
 			]]>
 		</build>
@@ -140,16 +146,20 @@
 		<install>
 			<![CDATA[
 			
+			#mkdir -p ${TGTDIR}/etc/lesslinux/
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0 
+			
 			localversion='ll-64-0'
 			
-			export PATH=/usr/local/crosstools-amd64-klibc/bin:$PATH
-			export OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump
+			export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
+			export OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump
 			
 			cd linux-${PKGVERSION}.build
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux-amd64 
-			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- OBJDUMP=/usr/local/crosstools-amd64-klibc/bin/x86_64-linux-gnu-objdump modules_install
+			INSTALL_MOD_PATH=${TGTDIR} make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-musl- OBJDUMP=/usr/local/crosstools-amd64-musl/bin/x86_64-linux-musl-objdump modules_install
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
 			rm -rf ${TGTDIR}/lib/firmware
 			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux-amd64
@@ -157,7 +167,7 @@
 				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
-			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec x86_64-linux-gnu-strip --strip-unneeded {} \; 
+			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec x86_64-linux-musl-strip --strip-unneeded {} \; 
 			cd ../linux-${PKGVERSION}
 			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
 

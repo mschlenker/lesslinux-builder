@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="4.4.39"
+		version="4.9.54"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="af7d0cd188292d4d6c7bbaabde0f30ec6b521884">linux-4.4.tar.xz</pkg>
+				<pkg sha1="fa46da077c077467776cdc45a7b50d327a081ab4">linux-4.9.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="a5a0cc06aae87337a4566108045e42c2cf90b592">patch-4.4.39.xz</pkg>
+				<pkg sha1="d67562ee4bd5e0031fcafc1ae8bc72948dcffe04">patch-4.9.54.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20161221" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20171010" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
-					<atext linktext="patch-4.4.40." />
-					<atext linktext="patch-4.4.41." />
-					<atext linktext="patch-4.4.42." />
-					<atext linktext="patch-4.5." />
-					<atext linktext="patch-4.6." />
-					<atext linktext="patch-4.7." />
+					<atext linktext="patch-4.9.55." />
+					<atext linktext="patch-4.9.56." />
+					<atext linktext="patch-4.9.57." />
+					<atext linktext="patch-4.14." />
+					<atext linktext="patch-4.15." />
+					<atext linktext="patch-4.16." />
 				</page>
 			</check>
 		</sources>

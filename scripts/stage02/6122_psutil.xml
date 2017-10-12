@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='psutil' version='4.3.0' install='chroot'>
+    <package name='psutil' version='5.2.2' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='062fc6745a16f91aed159bb81381bd1cb84acb81'>
-                    psutil-4.3.0.tar.gz
+                <pkg sha1='e22e2f6abdff051d438626f9a59a8782ace1a63e'>
+                    psutil-5.2.2.tar.gz
                 </pkg>
                 <mirror>
 		https://pypi.python.org/packages/22/a8/6ab3f0b3b74a36104785808ec874d24203c6a511ffd2732dd215cf32d689/
                 </mirror>
             </file>
-            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/psutil'/>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/pypi/psutil'/>
         </sources><builddeps>
                         <dep>Cython</dep>
                         <dep>M2Crypto</dep>

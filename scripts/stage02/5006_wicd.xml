@@ -64,6 +64,8 @@
 			LANG=en_US.UTF-8 python setup.py install
 			mkdir -p /var/log/wicd
 			mkdir -p /var/lib/wicd/configurations
+			mkdir -p /usr/share/udhcpc
+			ln -s /static/share/udhcpc/default.script /usr/share/udhcpc/default.script 
 			touch /var/log/wicd/.empty_on_purpose
 			touch /var/lib/wicd/configurations/.empty_on_purpose
 		]]>

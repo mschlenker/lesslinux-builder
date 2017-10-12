@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='libgudev' version='230' install='destdir'>
+    <package name='libgudev' version='231' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='964ff42115e012f7b52994251e73a48317867d43'>
-                    libgudev-230.tar.xz
+                <pkg sha1='b48d867a488ebfca8cf2bec12e112bac9f3bf122'>
+                    libgudev-231.tar.xz
                 </pkg>
                 <mirror>
-                    http://ftp.gnome.org/pub/gnome/sources/libgudev/230/
+                    http://ftp.gnome.org/pub/gnome/sources/libgudev/231/
                 </mirror>
             </file>
-            <manualcheck date='20160926' interval='60' mirror='http://ftp.gnome.org/pub/gnome/sources/libgudev/230/'/>
+            <manualcheck date='20170615' interval='60' mirror='http://ftp.gnome.org/pub/gnome/sources/libgudev/230/'/>
         </sources>
 	<builddeps>
                         <dep>GConf</dep>
@@ -48,6 +48,7 @@
                         <dep>setuptools</dep>
                         <dep>tar</dep>
                         <dep>udev</dep>
+			<!-- <dep>umockdev</dep> -->
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
@@ -64,7 +65,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-umockdev 
 make -j $jobcount 
 ]]>
         </build>

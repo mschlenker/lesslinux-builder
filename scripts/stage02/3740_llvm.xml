@@ -1,34 +1,34 @@
 <llpackages>
 	<package 
 		name="llvm"
-		version="3.9.0"
+		version="4.0.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="da792f11a208d5b994c4fe1c8faa20f90ff0e4a3">llvm-3.9.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.9.0/</mirror>
+				<pkg sha1="aee4524e2407f9fe5afc6f70c753180b907011d0">llvm-4.0.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/4.0.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="00d49ee82451130a8e1e7b1d56cffa37b783bcb2">cfe-3.9.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.9.0/</mirror>
+				<pkg sha1="e2762800c93d9335781ea6a45af3f80845542ef5">cfe-4.0.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/4.0.0/</mirror>
 			</file>
 			<file>                                                                                     
-				<pkg sha1="a306d576e84b7ee048ebb0ae5ca72e6ec9e1c549">compiler-rt-3.9.0.src.tar.xz</pkg>
-				<mirror>http://llvm.org/releases/3.9.0/</mirror>
+				<pkg sha1="a879b610e427ef3bba482bdc031ae371cabab81e">compiler-rt-4.0.0.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/4.0.0/</mirror>
 			</file>
-			<manualcheck date="20160923" interval="120" page="http://www.llvm.org/" />
+			<manualcheck date="20170610" interval="120" page="http://www.llvm.org/" />
 			<check>
 				<page html="http://llvm.org/releases/">
-					<atext href="3.9.1" />
-					<atext href="3.9.2" />
-					<atext href="3.9.3" />
-					<atext href="3.10." />
-					<atext href="3.11." />
-					<atext href="3.12." />
-					<atext href="3.13." />
-					<atext href="4.0." />
+					<atext href="4.0.1" />
+					<atext href="4.0.2" />
+					<atext href="4.0.3" />
+					<atext href="4.1." />
+					<atext href="4.2." />
+					<atext href="4.3." />
+					<atext href="4.4." />
+					<atext href="5.0." />
 				</page>
 			</check>
 		</sources>
@@ -70,7 +70,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}.src
-			sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
+			# sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
 			cd ../${PKGNAME}-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
@@ -101,15 +101,15 @@
 			<![CDATA[
 			cd ${PKGNAME}-build # ${PKGVERSION}.src
 			make install DESTDIR=${TGTDIR}
-			for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
-				test -f $file && chmod -v 644 $file
-			done
-			install -v -dm755 ${TGTDIR}/usr/lib/clang-analyzer
-			for prog in scan-build scan-view ; do
-				cp -rfv tools/clang/tools/$prog ${TGTDIR}/usr/lib/clang-analyzer/
-				ln -sfv ../lib/clang-analyzer/$prog/$prog ${TGTDIR}/usr/bin/
-			done
-			ln -sfv /usr/bin/clang ${TGTDIR}/usr/lib/clang-analyzer/scan-build/
+			#for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
+			#	test -f $file && chmod -v 644 $file
+			#done
+			#install -v -dm755 ${TGTDIR}/usr/lib/clang-analyzer
+			#for prog in scan-build scan-view ; do
+			#	cp -rfv tools/clang/tools/$prog ${TGTDIR}/usr/lib/clang-analyzer/
+			#	ln -sfv ../lib/clang-analyzer/$prog/$prog ${TGTDIR}/usr/bin/
+			#done
+			#ln -sfv /usr/bin/clang ${TGTDIR}/usr/lib/clang-analyzer/scan-build/
 			]]>
 		</install>
 		<clean>

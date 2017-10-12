@@ -1,32 +1,32 @@
 <llpackages>
 	<package 
 		name="sqlite"
-		version="3.14.2"
+		version="3.19.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                             
-				<pkg sha1="5d3a6bccd9154963641960db61df901a4e0b3ca0">sqlite-autoconf-3140200.tar.gz</pkg>
-				<mirror>http://sqlite.org/2016/</mirror>
+				<pkg sha1="58f2cabffb3ff4761a3ac7f834d9db7b46307c1f">sqlite-autoconf-3190300.tar.gz</pkg>
+				<mirror>http://sqlite.org/2017/</mirror>
 			</file>
-			<manualcheck date="20160923" interval="90" page="http://www.sqlite.org/" />
+			<manualcheck date="20170615" interval="90" page="http://www.sqlite.org/" />
 			<check>
 				<page html="http://sqlite.org/download.html">
-					<atext linktext="sqlite-autoconf-31402001" />
-					<atext linktext="sqlite-autoconf-3140201" />
-					<atext linktext="sqlite-autoconf-3140202" />
-					<atext linktext="sqlite-autoconf-3140203" />
-					<atext linktext="sqlite-autoconf-3140204" />
-					<atext linktext="sqlite-autoconf-3140205" />
-					<atext linktext="sqlite-autoconf-3140206" />
-					<atext linktext="sqlite-autoconf-3140207" />
-					<atext linktext="sqlite-autoconf-3140208" />
-					<atext linktext="sqlite-autoconf-3140209" />
-					<atext linktext="sqlite-autoconf-31405" />
-					<atext linktext="sqlite-autoconf-31406" />
-					<atext linktext="sqlite-autoconf-31403" />
-					<atext linktext="sqlite-autoconf-31404" />
+					<atext linktext="sqlite-autoconf-31903001" />
+					<atext linktext="sqlite-autoconf-3190301" />
+					<atext linktext="sqlite-autoconf-3190302" />
+					<atext linktext="sqlite-autoconf-3190303" />
+					<atext linktext="sqlite-autoconf-3190304" />
+					<atext linktext="sqlite-autoconf-3190305" />
+					<atext linktext="sqlite-autoconf-3190306" />
+					<atext linktext="sqlite-autoconf-3190307" />
+					<atext linktext="sqlite-autoconf-3190308" />
+					<atext linktext="sqlite-autoconf-3190309" />
+					<atext linktext="sqlite-autoconf-31905" />
+					<atext linktext="sqlite-autoconf-31906" />
+					<atext linktext="sqlite-autoconf-31907" />
+					<atext linktext="sqlite-autoconf-31904" />
 					<atext linktext="sqlite-autoconf-315" />
 					<atext linktext="sqlite-autoconf-316" />
 					<atext linktext="sqlite-autoconf-317" />
@@ -53,13 +53,13 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3140200.tar.gz
+			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3190300.tar.gz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3140200
+			cd ${PKGNAME}-autoconf-3190300
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
@@ -75,13 +75,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3140200
+			cd ${PKGNAME}-autoconf-3190300
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-autoconf-3140200
+			rm -rf ${PKGNAME}-autoconf-3190300
 			]]>
 		</clean>
 	</package>

@@ -1,28 +1,28 @@
 <llpackages>
 	<package 
 		name="qemu-minimal"
-		version="2.7.0"
+		version="2.9.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="96737d31a2fb74553dacbd0ddaa93014858dc986">qemu-2.7.0.tar.bz2</pkg>
+				<pkg sha1="5cc63c6cababaaa7d0685e8b32bacf5022873ebc">qemu-2.9.0.tar.xz</pkg>
 				<mirror>http://wiki.qemu-project.org/download/</mirror>
 			</file>
 			<!-- <file>                           
 				<pkg sha1="58c94faa3f0a682b496538792a66220bdd1d6ac7">qemu-2.1.2-virtfs-proxy-helper.patch</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file> -->
-			<manualcheck date="20160923" interval="60" page="http://wiki.qemu-project.org/download/" />
+			<manualcheck date="20170615" interval="60" page="http://wiki.qemu-project.org/download/" />
 			<check>
 				<page html="http://wiki.qemu-project.org/download/">
-					<atext linktext="qemu-2.7.5." />
-					<atext linktext="qemu-2.7.2." />
-					<atext linktext="qemu-2.7.3." />
-					<atext linktext="qemu-2.7.4." />
-					<atext linktext="qemu-2.8." />
-					<atext linktext="qemu-2.9." />
+					<atext linktext="qemu-2.9.1." />
+					<atext linktext="qemu-2.9.2." />
+					<atext linktext="qemu-2.9.3." />
+					<atext linktext="qemu-2.9.4." />
+					<atext linktext="qemu-2.11." />
+					<atext linktext="qemu-2.12." />
 					<atext linktext="qemu-2.10." />
 					<atext linktext="qemu-3." />
 				</page>
@@ -81,7 +81,7 @@
 		<unpack>
 			<![CDATA[ 
 			
-tar xjf ${SRCDIR}/qemu-${PKGVERSION}.tar.bz2
+tar xf ${SRCDIR}/qemu-${PKGVERSION}.tar.xz
 			
 			]]>
 		</unpack>
@@ -94,12 +94,12 @@ tar xjf ${SRCDIR}/qemu-${PKGVERSION}.tar.bz2
 		<build>
 			<![CDATA[
 			cd qemu-${PKGVERSION}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
+			# export CC="/usr/local/gcc54/bin/gcc54"
+			# export CXX="/usr/local/gcc54/bin/g++54"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc /usr/local/gcc54/bin/gcc54"
-				export CXX="distcc /usr/local/gcc54/bin/g++54" 
+				export CC="distcc gcc" # /usr/local/gcc54/bin/gcc54"
+				export CXX="distcc g++" # /usr/local/gcc54/bin/g++54" 
 			fi
 			./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/qemu \
 				--docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \

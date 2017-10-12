@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="pcmanfm-qt"
-		version="0.10.0"
+		version="0.11.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="ffb276293b63935addea73ab4b2ce756856aa91a">pcmanfm-qt-0.10.0.tar.xz</pkg>
-				<mirror>http://lxqt.org/downloads/lxqt/0.10.0/</mirror>
+				<pkg sha1="58a0419f2f375d4e9cf2374d4c416c25781332d6">pcmanfm-qt-0.11.3.tar.xz</pkg>
+				<mirror>https://github.com/lxde/pcmanfm-qt/releases/download/0.11.3/</mirror>
 			</file>
-			<manualcheck date="20160922" interval="60" page="http://lxqt.org/downloads/lxqt/" />
+			<manualcheck date="20170615" interval="60" page="http://lxqt.org/downloads/lxqt/" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -46,6 +46,7 @@
                         <dep>pkg-config</dep>
                         <dep>qt5</dep>
                         <dep>xproto-base</dep>
+			<dep>libfm-qt</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

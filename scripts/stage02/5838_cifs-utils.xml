@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="cifs-utils"
-		version="6.6"
+		version="6.7"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="4a223df44dabe1601a72298c19a85eaff3f6a3b4">cifs-utils-6.6.tar.bz2</pkg>
+				<pkg sha1="9ba5091d7c2418a90773c861f04a3f4a36854c14">cifs-utils-6.7.tar.bz2</pkg>
 				<mirror>https://download.samba.org/pub/linux-cifs/cifs-utils/</mirror>
 			</file>
-			<manualcheck date="20160923" interval="180" page="https://download.samba.org/pub/linux-cifs/cifs-utils/" />
+			<manualcheck date="20170615" interval="180" page="https://download.samba.org/pub/linux-cifs/cifs-utils/" />
 			<check>
 				<page html="https://download.samba.org/pub/linux-cifs/cifs-utils/">
 					<atext linktext="cifs-utils-6.12." />
 					<atext linktext="cifs-utils-6.13." />
 					<atext linktext="cifs-utils-6.14." />
-					<atext linktext="cifs-utils-6.7." />
+					<atext linktext="cifs-utils-6.15." />
 					<atext linktext="cifs-utils-6.8." />
 					<atext linktext="cifs-utils-6.9." />
 					<atext linktext="cifs-utils-6.10." />
@@ -60,9 +60,11 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
+				autoreconf -vif
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
+				autoreconf -vif
 				./configure --sysconfdir=/etc --prefix=/usr 
 				make
 			fi

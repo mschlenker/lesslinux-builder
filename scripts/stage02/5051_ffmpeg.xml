@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="ffmpeg"
-		version="3.1.3"
+		version="3.3.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="8a698b61ee42fb159ecc8808ea226d1cd0712a0b">ffmpeg-3.1.3.tar.bz2</pkg>
+				<pkg sha1="23bce5ccc4aeae23e1893d6cea7b1bd57b2591cb">ffmpeg-3.3.3.tar.bz2</pkg>
 				<mirror>http://ffmpeg.org/releases/</mirror>
 			</file>
-			<manualcheck date="20160923" interval="60" page="http://ffmpeg.org/releases/" />
+			<manualcheck date="20170801" interval="60" page="http://ffmpeg.org/releases/" />
 			<check>
 				<page html="http://ffmpeg.org/releases/">
-					<atext linktext="ffmpeg-3.1.7." />
-					<atext linktext="ffmpeg-3.1.4." />
-					<atext linktext="ffmpeg-3.1.5." />
-					<atext linktext="ffmpeg-3.1.6." />
+					<atext linktext="ffmpeg-3.3.7." />
+					<atext linktext="ffmpeg-3.3.4." />
+					<atext linktext="ffmpeg-3.3.5." />
+					<atext linktext="ffmpeg-3.3.6." />
 					<atext linktext="ffmpeg-3.4." />
-					<atext linktext="ffmpeg-3.2." />
-					<atext linktext="ffmpeg-3.3." />
+					<atext linktext="ffmpeg-3.5." />
+					<atext linktext="ffmpeg-3.6." />
 					<atext linktext="ffmpeg-4." />
 				</page>
 			</check> 
@@ -89,8 +89,7 @@
 				--enable-libtheora   \
 				--enable-libvorbis   \
 				--enable-libvpx      \
-				--enable-libx264     \
-				--enable-x11grab
+				--enable-libx264
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount 
 			else

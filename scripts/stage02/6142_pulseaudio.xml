@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='pulseaudio' version='9.0' install='chroot'>
+    <package name='pulseaudio' version='10.0' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='d9a9d7cb667ed95ee1de4b6544d5c7444c5a0064'>
-                    pulseaudio-9.0.tar.xz
+                <pkg sha1='ab7cc41a2dc2b9da0794e3a51a4eb7e82e7da511'>
+                    pulseaudio-10.0.tar.xz
                 </pkg>
                 <mirror>
                     http://freedesktop.org/software/pulseaudio/releases/
                 </mirror>
             </file>
-            <manualcheck date='20160701' interval='60' mirror='http://freedesktop.org/software/pulseaudio/releases/'/>
+            <manualcheck date='20170615' interval='60' mirror='http://freedesktop.org/software/pulseaudio/releases/'/>
         </sources>
 	<builddeps>
                         <dep>alsa-lib</dep>

@@ -1,25 +1,26 @@
 <llpackages>
 	<package 
 		name="sed"
-		version="4.2.2"
+		version="4.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="f17ab6b1a7bcb2ad4ed125ef78948092d070de8f">sed-4.2.2.tar.bz2</pkg>
+				<pkg sha1="a196cd036efd52a8e349cfe88ab4baa555fb29d5">sed-4.4.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/sed/</mirror>
 			</file>
-			<manualcheck date="20151101" interval="120" page="http://ftp.gnu.org/gnu/sed/" />
+			<manualcheck date="20170608" interval="180" page="ftp://ftp.gnu.org/gnu/sed/" />
 			<check>
-				<page html="http://ftp.gnu.org/gnu/sed/">
-					<atext linktext="sed-4.2.4." />
-					<atext linktext="sed-4.2.3." />
-					<atext linktext="sed-4.3." />
-					<atext linktext="sed-4.4." />
+				<page html="ftp://ftp.gnu.org/gnu/sed/">
+					<atext linktext="sed-4.4.2." />
+					<atext linktext="sed-4.4.3." />
+					<atext linktext="sed-4.4.5." />
+					<atext linktext="sed-4.4.6." />
+					<atext linktext="sed-4.4.1." />
 					<atext linktext="sed-4.5." />
+					<atext linktext="sed-4.6." />
 					<atext linktext="sed-5." />
-					<atext linktext="sed-6." />
 				</page>
 			</check>
 		</sources>
@@ -38,7 +39,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />

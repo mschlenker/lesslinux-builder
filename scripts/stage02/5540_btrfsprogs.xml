@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="btrfs-progs"
-		version="4.7.3"
+		version="4.11"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>                                                          
 			<file>	<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/mason/btrfs-progs.git  -->         
-				<pkg sha1="55f60cd023f60ee8367acaa52db076f79ccc7608">btrfs-progs-v4.7.3.tar.xz</pkg>
+				<pkg sha1="ccd48429be9811193f5236d5a667b4a192cabc1f">btrfs-progs-v4.11.tar.xz</pkg>
 				<mirror>https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/</mirror>
 			</file>
-			<manualcheck date="20160927" interval="60" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20170615" interval="60" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

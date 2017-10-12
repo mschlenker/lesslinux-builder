@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="p5-gettext"
-		version="1.05"
+		version="1.07"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file> 
-				<pkg sha1="705f519ad61b4a8c522d8aaf98425e0bd21709f2">gettext-1.05.tar.gz</pkg>
+				<pkg sha1="a23d0b35269c8db49418fa8585a8dbbed6b8fefa">gettext-1.07.tar.gz</pkg>
 				<mirror>http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://ftp.gwdg.de/pub/languages/perl/CPAN/authors/id/G/GR/GRANTM/" />
+			<manualcheck date="20170614" interval="365" page="http://ftp.gwdg.de/pub/languages/perl/CPAN/authors/id/G/GR/GRANTM/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -28,7 +28,7 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd gettext-${PKGVERSION}
+			cd Locale-gettext-${PKGVERSION}
 			/usr/bin/perl Makefile.PL 
 			make
 			]]>
@@ -36,13 +36,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd gettext-${PKGVERSION}
+			cd Locale-gettext-${PKGVERSION}
 			make install DESTDIR="${TGTDIR}"
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf gettext-${PKGVERSION}
+			rm -rf Locale-gettext-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

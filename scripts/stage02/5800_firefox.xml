@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="45.6.0esr"
+		version="52.3.0esr"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="4dda3d1965aabf0963de43180e6cadfc4ce6f650">firefox-45.6.0esr.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/45.6.0esr/source/</mirror>
+				<pkg sha1="10c9b836167b3d1dc500decd6e324adfebd6f854">firefox-52.3.0esr.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/52.3.0esr/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -34,7 +34,7 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 			
-fftag=FIREFOX_45_2_0esr_RELEASE
+fftag=FIREFOX_52_2_0esr_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
@@ -42,13 +42,17 @@ hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ;
 done
 
 			-->
-			<file>                                    
+			<!-- <file>                                    
 				<pkg sha1="7464c651c01e729d9ca75a7c346b3fa61aa882d8">firefox-45.2.0esr.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<file>                                    
+				<pkg sha1="13b5c8a518b7226d05eaa9ac4ba203ee2c6adf53">dotcargo-i686-20170622.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20160922" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
+			<manualcheck date="20170830" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
-				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
+				<!-- <page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
 					<atext linktext="45.6.3" />
 					<atext linktext="45.6.4" />
 					<atext linktext="45.6.2" />
@@ -56,7 +60,7 @@ done
 					<atext linktext="45.5." />
 					<atext linktext="45.6." />
 					<atext linktext="45.7" />
-				</page>
+				</page> -->
 			</check>
 		</sources>
 		<builddeps>
@@ -153,8 +157,9 @@ done
 			<![CDATA[ 
 			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			mv firefox-${PKGVERSION} mozilla-release
-			mkdir l10n
-			tar -C l10n -xf ${SRCDIR}/firefox-45.2.0esr.source.de-es-pl-ru.tar.xz
+			# mkdir l10n
+			# tar -C l10n -xf ${SRCDIR}/firefox-45.2.0esr.source.de-es-pl-ru.tar.xz
+			tar xf ${SRCDIR}/dotcargo-i686-20170622.tar.gz 
 			]]>
 		</unpack>
 		<patch>
@@ -165,35 +170,38 @@ done
 		<build>
 			<![CDATA[
 			
-			export PATH=/usr/local/gcc54/bin:$PATH 
-			echo $SHELL
-			export SHELL=/bin/bash
-			echo $SHELL
-			export CC=/usr/local/gcc54/bin/gcc54
-			export CXX=/usr/local/gcc54/bin/g++54
-			# export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
-			# export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
-			dir=`pwd `
-			sed -i 's%PWD%'${dir}'/%g' mozilla-release/.mozconfig 
-			sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
-			sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
-			sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' mozilla-release/.mozconfig 
-			sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' mozilla-release/.mozconfig 
-			sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-libevent%g' mozilla-release/.mozconfig 
-			echo 'ac_add_options --disable-gconf' >> mozilla-release/.mozconfig 
-			cd mozilla-release
+export PATH=` pwd `/cargo/bin:$PATH
+export CARGO_HOME=` pwd `/cargo
+export RUSTUP_HOME=` pwd `/rustup
+echo $SHELL
+export SHELL=/bin/bash
+echo $SHELL
+# export CFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2" &&
+# export CXXFLAGS+=" -fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2"
+dir=`pwd `
+sed -i 's%PWD%'${dir}'/%g' mozilla-release/.mozconfig 
+# sed -i 's%# ac_add_options --with-l10n%ac_add_options --with-l10n%g' mozilla-release/.mozconfig 
+sed -i 's%# ac_add_options --with-system-png%ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --enable-system-cairo%# ac_add_options --enable-system-cairo%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-libvpx%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-libevent%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --enable-gstreamer%# ac_add_options --enable-alsa%g' mozilla-release/.mozconfig 
+# sed -i 's%ac_add_options --with-system-nss%# ac_add_options --with-system-nss%g' mozilla-release/.mozconfig 
+# sed -i 's%ac_add_options --with-system-nspr%# ac_add_options --with-system-nspr%g' mozilla-release/.mozconfig 
+# echo 'ac_add_options --disable-pulseaudio' >> mozilla-release/.mozconfig 
+echo 'ac_add_options --disable-gconf' >> mozilla-release/.mozconfig 
+cd mozilla-release
+
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				[ "$jobcount" -gt 8 ] && jobcount=8 
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc /usr/local/gcc54/bin/gcc54' CXX='distcc /usr/local/gcc54/bin/g++54'\"%g" .mozconfig 
-				make -f client.mk clean
-				make -f client.mk configure 
-				make -f client.mk build  
+				[ "$jobcount" -gt 12 ] && jobcount=12
+				export CC='distcc gcc'
+				export CXX='distcc g++'
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+					make -f client.mk 
 			else
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4 CC=/usr/local/gcc54/bin/gcc54 CXX=/usr/local/gcc54/bin/g++54\"%g" .mozconfig 
-				make -f client.mk clean
-				make -f client.mk configure	
-				make -f client.mk build
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=gcc CXX=g++\"%g" .mozconfig 
+					make -f client.mk
 			fi
 			echo '===> Trying to find libxul.so...'
 			find ff-build -type f -name libxul.so
@@ -208,10 +216,10 @@ done
 			[ -f ff-build/toolkit/library/libxul.so ] || exit 1		
 	
 			# Now try to build the language packs
-			for packlang in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
-				echo '==> Build language pack for '${packlang}
-				make -C ff-build/browser/locales langpack-${packlang}
-			done
+			#for packlang in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
+			#	echo '==> Build language pack for '${packlang}
+			#	make -C ff-build/browser/locales langpack-${packlang}
+			#done
 			
 			make -C ff-build package
 			echo '==> Searching Tarballs'
@@ -234,11 +242,11 @@ tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/firefox ${TGTDIR}/opt/firefox-${PKGVERSION}
 
 # Install language packs
-mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}-extensions
-for packlang in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
-	install -m 0644 mozilla-release/ff-build/dist/linux-` uname -m `/xpi/firefox-${shortvers}.${packlang}.langpack.xpi \
-	${TGTDIR}/opt/firefox-${PKGVERSION}-extensions/ 
-done
+#mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}-extensions
+#for packlang in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
+#	install -m 0644 mozilla-release/ff-build/dist/linux-` uname -m `/xpi/firefox-${shortvers}.${packlang}.langpack.xpi \
+#	${TGTDIR}/opt/firefox-${PKGVERSION}-extensions/ 
+#done
 
 install -m 0644 ${TGTDIR}/opt/firefox-${PKGVERSION}/icons/mozicon128.png ${TGTDIR}/usr/share/icons/firefox128.png 
 mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}/plugins
@@ -303,7 +311,7 @@ chown -R 0:0 ${TGTDIR}/opt/firefox-${PKGVERSION}
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf mozilla-release l10n
+			rm -rf mozilla-release l10n .cargo
 			]]>
 		</clean>
 	</package>

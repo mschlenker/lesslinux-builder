@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="ruby-cairo"
-		version="1.15.2"
+		version="1.15.9"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="fd0064a3feae29c2b9dd3992561e530e86fc2cb8">rcairo-1.15.2.tar.gz</pkg>
+				<pkg sha1="5e02ee67b3455005135d23fa4855e39ea8a1d7f3">rcairo-1.15.9.tar.gz</pkg>
 				<mirror>http://cairographics.org/releases/</mirror>  
 			</file>
 			<manualcheck date="20160701" interval="90" page="http://cairographics.org/releases/" />
 			<check>
 				<page html="http://cairographics.org/releases/">
-					<atext linktext="rcairo-1.15.9." />
-					<atext linktext="rcairo-1.15.3." />
-					<atext linktext="rcairo-1.15.4." />
-					<atext linktext="rcairo-1.15.5." />
-					<atext linktext="rcairo-1.15.6." />
-					<atext linktext="rcairo-1.15.7." />
-					<atext linktext="rcairo-1.15.8." />
+					<atext linktext="rcairo-1.15.16." />
+					<atext linktext="rcairo-1.15.10." />
+					<atext linktext="rcairo-1.15.11." />
+					<atext linktext="rcairo-1.15.12." />
+					<atext linktext="rcairo-1.15.13." />
+					<atext linktext="rcairo-1.15.14." />
+					<atext linktext="rcairo-1.15.15." />
 					<atext linktext="rcairo-1.16." />
 					<atext linktext="rcairo-1.18." />
 					<atext linktext="rcairo-1.20." />
@@ -39,6 +39,7 @@
                         <dep>pkg-config</dep>
                         <dep>ruby</dep>
                         <dep>rubygem-pkg-config</dep>
+			<dep>native-package-installer</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 

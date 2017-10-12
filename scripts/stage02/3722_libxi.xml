@@ -1,22 +1,22 @@
 <llpackages>
 	<package 
 		name="libXi"
-		version="1.7.6"
+		version="1.7.9"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="0bf1c2b8279915d8c94e45cd0b9ec064f7a177a9">libXi-1.7.6.tar.bz2</pkg>
+				<pkg sha1="70d1148c39c0eaa7d7c18370f20709383271f669">libXi-1.7.9.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
 			</file>
-			<manualcheck date="20160113" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20170610" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
 					<atext linktext="libXi-1.7.10" />
-					<atext linktext="libXi-1.7.7" />
-					<atext linktext="libXi-1.7.8" />
-					<atext linktext="libXi-1.7.9" />
+					<atext linktext="libXi-1.7.11" />
+					<atext linktext="libXi-1.7.12" />
+					<atext linktext="libXi-1.7.13" />
 					<atext linktext="libXi-1.8" />
 					<atext linktext="libXi-1.9" />
 					<atext linktext="libXi-2" />
@@ -36,6 +36,7 @@
                         <dep>libX11</dep>
                         <dep>libXau</dep>
                         <dep>libXext</dep>
+			<dep>libXfixes</dep>
                         <dep>libpthread-stubs</dep>
                         <dep>libxcb</dep>
                         <dep>linux_headers</dep>
@@ -45,7 +46,6 @@
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
-			<dep>libXfixes</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 

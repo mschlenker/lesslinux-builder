@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="p11-kit"
-		version="0.23.2"
+		version="0.23.7"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                           
-				<pkg sha1="4da0d7b47935b6cb0f321dd00358b063ae42df71">p11-kit-0.23.2.tar.gz</pkg>
+				<pkg sha1="2cf6ab6a46b6a5ca70fcb4510e0dd7ad51597fa5">p11-kit-0.23.7.tar.gz</pkg>
 				<mirror>http://p11-glue.freedesktop.org/releases/</mirror>
 			</file>
-			<manualcheck date="20151231" interval="180" page="http://p11-glue.freedesktop.org/releases/" />
+			<manualcheck date="20170615" interval="180" page="https://github.com/p11-glue/p11-kit" />
 			<check>
 				<page html="http://p11-glue.freedesktop.org/releases/">
 					<atext linktext="p11-kit-0.24." />
 					<atext linktext="p11-kit-0.25." />
 					<atext linktext="p11-kit-0.26." />
-					<atext linktext="p11-kit-0.23.5" />
-					<atext linktext="p11-kit-0.23.3" />
-					<atext linktext="p11-kit-0.23.4" />
+					<atext linktext="p11-kit-0.23.8" />
+					<atext linktext="p11-kit-0.23.9" />
+					<atext linktext="p11-kit-0.23.10" />
 					<atext linktext="p11-kit-1." />
 				</page>
 			</check>
@@ -42,6 +42,7 @@
                         <dep>linux_headers</dep>
                         <dep>make</dep>
                         <dep>nettle</dep>
+			 <dep>libtasn1</dep>
 			<dep>openssl</dep>
                         <dep>pkg-config</dep>
                         <dep>readline</dep>

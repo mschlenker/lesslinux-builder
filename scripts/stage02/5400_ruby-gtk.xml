@@ -1,15 +1,15 @@
 <llpackages>
 	<package 
 		name="ruby-gnome2-all"
-		version="3.0.8"
+		version="3.1.6"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                 
-				<pkg sha1="1b5e6eeba766a9a9ea2eecc2f02de75ddb2948cd">ruby-gnome2-all-3.0.8.tar.gz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/ruby-gnome2-3.0.8/</mirror>
+				<pkg sha1="3cb2ec45a9620b944fe1058e08e1fe828a024a21">ruby-gnome2-all-3.1.6.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/ruby-gnome2-3.1.6/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="90" page="http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/" />
+			<manualcheck date="20170615" interval="90" page="http://downloads.sourceforge.net/project/ruby-gnome2/ruby-gnome2/" />
 			<!-- <check>
 				<page html="http://sourceforge.net/projects/ruby-gnome2/files/ruby-gnome2/">
 					<atext linktext="ruby-gnome2-all-2.2.6" />
@@ -209,6 +209,12 @@
 			<dep>gtksourceview3</dep>
 			<dep>vte3</dep>
 			<dep>distcc</dep>
+			<dep>native-package-installer</dep>
+			<dep>rubygem-atk</dep>
+			<dep>rubygem-glib2</dep>
+			<dep>rubygem-gobject-introspection</dep>
+			<dep>rubygem-gio2</dep>
+			<dep>rubygem-gdk_pixbuf2</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -237,7 +243,7 @@
 				export CC='gcc'
 				export CXX='g++'
 			fi
-			ruby extconf.rb 
+			ruby extconf.rb pango gtk2 gtk3 gtksourceview2 vte cairo-gobject poppler gstreamer 
 			#  glib2 gio2 gdk_pixbuf2 pango atk gtk2 gstreamer gobject-introspection vte gtksourceview2 rsvg2 poppler && make
 			make -j${jobcount}
 			]]>

@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="menu-cache"
-		version="20140521"
+		version="1.0.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="aeb7e94037d8227ed58888f2a64c8d18b4973177">menu-cache-20140521.tar.xz</pkg>
+				<pkg sha1="64d58dc7810f47ebb4d64d1c53fd1d965f6a78e7">menu-cache-1.0.2.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140731" interval="60" page="https://github.com/lxde/menu-cache" />
+			<manualcheck date="20170615" interval="60" page="https://github.com/lxde/menu-cache" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
 					<atext linktext="gnome-calculator-3.10.6." />
@@ -62,7 +62,8 @@
                         <dep>libdvdnav</dep>
                         <dep>libdvdread</dep>
                         <dep>libffi</dep>
-                        <dep>libgcrypt15</dep>
+                        <dep>libfm-extra</dep>
+			<dep>libgcrypt15</dep>
                         <dep>libgpg-error</dep>
                         <dep>libogg</dep>
                         <dep>libtool</dep>
@@ -88,13 +89,13 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			bash autogen.sh
 			./configure --prefix=/usr --sysconfdir=/etc 
 			make 
@@ -103,13 +104,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}
+			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}
+			rm -rf ${PKGNAME}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

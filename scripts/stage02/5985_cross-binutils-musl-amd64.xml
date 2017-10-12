@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="cross-binutils-musl64"
-		version="2.26.1"
+		version="2.28.1"
 		class="devel"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                 
-				<pkg sha1="624cd377e3a8eef3db83a56ce289a60f556b3ec2">binutils-2.26.1.tar.bz2</pkg>
+				<pkg sha1="3f476ce73a729f56c2802c6dcd54e49b156a6e99">binutils-2.28.1.tar.bz2</pkg>
 				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
 			</file>
-			<manualcheck date="20160629" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<manualcheck date="20170801" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/binutils/">
-					<atext linktext="binutils-2.26.4." />
-					<atext linktext="binutils-2.26.2." />
-					<atext linktext="binutils-2.26.3" />
-					<atext linktext="binutils-2.27." />
-					<atext linktext="binutils-2.28." />
+					<atext linktext="binutils-2.28.4." />
+					<atext linktext="binutils-2.28.2." />
+					<atext linktext="binutils-2.28.3" />
+					<atext linktext="binutils-2.29." />
+					<atext linktext="binutils-2.30." />
 				</page>
 			</check>
 		</sources>
@@ -67,7 +67,7 @@
 		<build>
 			<![CDATA[ 
 			
-			exit 0
+			# exit 0
 			
 			cd binutils-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
@@ -78,7 +78,6 @@
 					--prefix=/usr/local/crosstools-amd64-musl --disable-nls \
 					--with-sysroot=/usr/local/crosstools-amd64-musl/x86_64-linux-musl \
 					--disable-werror --disable-multilib CC="distcc gcc" CXX="distcc g++" 
-				make configure-host
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				../binutils-${PKGVERSION}/configure --target=x86_64-linux-musl \
@@ -92,9 +91,9 @@
 		<install>
 			<![CDATA[
 			
-			mkdir -p ${TGTDIR}/etc/lesslinux
-			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
-			exit 0
+			#mkdir -p ${TGTDIR}/etc/lesslinux
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0
 			
 			cd binutils-build
 			make install DESTDIR=${TGTDIR}

@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="man-pages"
-		version="4.07"
+		version="4.12"
 		class="doc"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="4193d08f9106328c96deb964b140a3b985803ad3">man-pages-4.07.tar.xz</pkg>
+				<pkg sha1="e1e081e9f1743c409ee876c87cd244bfb5f55703">man-pages-4.12.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/docs/man-pages/Archive</mirror>
 			</file>
-			<manualcheck date="20160630" interval="180" page="http://www.kernel.org/pub/linux/docs/man-pages/Archive" />
+			<manualcheck date="20170801" interval="180" page="http://www.kernel.org/pub/linux/docs/man-pages/Archive" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/docs/man-pages/">
-					<atext linktext="man-pages-4.08." />
-					<atext linktext="man-pages-4.09." />
-					<atext linktext="man-pages-4.10." />
-					<atext linktext="man-pages-4.11" />
-					<atext linktext="man-pages-4.12." />
+					<atext linktext="man-pages-4.16." />
+					<atext linktext="man-pages-4.17." />
+					<atext linktext="man-pages-4.18." />
+					<atext linktext="man-pages-4.19" />
+					<atext linktext="man-pages-4.20." />
 					<atext linktext="man-pages-4.13." />
 					<atext linktext="man-pages-4.14." />
 					<atext linktext="man-pages-4.15." />

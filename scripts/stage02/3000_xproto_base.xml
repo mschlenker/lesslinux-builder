@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="xproto-base"
-		version="20160701"
+		version="20170615"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -89,7 +89,7 @@
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file> -->
 			<file>                                                                    
-				<pkg sha1="e2ea1d12235bfcd83dbc815fb69524ef0be5c1fb">xproto-7.0.29.tar.bz2</pkg>
+				<pkg sha1="779fa333c5522cca40ca810c25a8fa60b6ccedfb">xproto-7.0.31.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
 			<file>                                               
@@ -112,11 +112,15 @@
 				<pkg sha1="2bc4e8f00778b1f3fe58b4c4f93607ac2adafbbf">dri2proto-2.8.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
+			<file>                                                                         
+				<pkg sha1="1007eaa2f83022653a224f7d2e676ea51cba2f2b">dri3proto-1.0.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
 			<file>                                                      
 				<pkg sha1="11d54c3210887631ea71e8f8030a77692e964fc4">xf86vidmodeproto-2.3.1.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
+			<manualcheck date="20170610" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
 					<atext linktext="xf86vidmodeproto-2.3.2." />
@@ -125,12 +129,15 @@
 					<atext linktext="dri2proto-2.8.1" />
 					<atext linktext="dri2proto-2.9." />
 					<atext linktext="dri2proto-2.10." />
+					<atext linktext="dri3proto-1.0.1" />
+					<atext linktext="dri3proto-1.1." />
+					<atext linktext="dri3proto-1.2." />
 					<atext linktext="xf86driproto-2.1.2." />
 					<atext linktext="xf86driproto-2.4." />
 					<atext linktext="xf86driproto-2.5." />
 					<atext linktext="xproto-7.0.32." />
-					<atext linktext="xproto-7.0.30." />
-					<atext linktext="xproto-7.0.31." />
+					<atext linktext="xproto-7.0.33." />
+					<atext linktext="xproto-7.0.34." />
 					<atext linktext="xproto-7.1." />
 					<atext linktext="xproto-7.2." />
 					<atext linktext="xproto-8." />
@@ -254,10 +261,11 @@
 				xcb-proto-1.12 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
-				xproto-7.0.29 \
+				xproto-7.0.31 \
 				glproto-1.4.17 \
 				xf86driproto-2.1.1 \
 				dri2proto-2.8 \
+				dri3proto-1.0 \
 				xf86vidmodeproto-2.3.1
 			do
 				tar xjf ${SRCDIR}/${pkg}.tar.bz2
@@ -282,10 +290,11 @@
 				xcb-proto-1.12 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
-				xproto-7.0.29 \
+				xproto-7.0.31 \
 				glproto-1.4.17 \
 				xf86driproto-2.1.1 \
 				dri2proto-2.8 \
+				dri3proto-1.0 \
 				xf86vidmodeproto-2.3.1
 			do
 				( cd ${pkg} && ./configure --prefix=/usr )
@@ -310,10 +319,11 @@
 				xcb-proto-1.12 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
-				xproto-7.0.29 \
+				xproto-7.0.31 \
 				glproto-1.4.17 \
 				xf86driproto-2.1.1 \
 				dri2proto-2.8 \
+				dri3proto-1.0 \
 				xf86vidmodeproto-2.3.1
 			do
 				make -C ${pkg} install DESTDIR=${TGTDIR}
@@ -337,10 +347,11 @@
 				xcb-proto-1.12 \
 				xcmiscproto-1.2.2 \
 				xextproto-7.3.0 \
-				xproto-7.0.29 \
+				xproto-7.0.31 \
 				glproto-1.4.17 \
 				xf86driproto-2.1.1 \
 				dri2proto-2.8 \
+				dri3proto-1.0 \
 				xf86vidmodeproto-2.3.1
 			do
 				rm -rf ${pkg} 

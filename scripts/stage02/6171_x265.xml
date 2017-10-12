@@ -1,20 +1,20 @@
 <llpackages>
-    <package name='x265' version='2.0' install='destdir'>
+    <package name='x265' version='2.4' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='358d7208a071c811d72fc100890ac86b0fde1255'>
-                    x265_2.0.tar.gz
+                <pkg sha1='f8bfb348defa86fbfdce4dcc1d0c48c855e0e987'>
+                    x265_2.4.tar.gz
                 </pkg>
                 <mirror>
                     https://bitbucket.org/multicoreware/x265/downloads/
                 </mirror>
             </file>
 	       <file>
-                <pkg sha1='e21b0ff2acc718ca39ed1a8815194912f45b99d7'>
-                    x265_2.0-enable_static-1.patch
+                <pkg sha1='17abf75e2d655607445fa5da805c2890eab7bc25'>
+                    x265_2.4-enable_static-1.patch
                 </pkg>
                 <mirror>
                     http://www.linuxfromscratch.org/patches/blfs/svn/
@@ -48,17 +48,17 @@
                         <dep>yasm</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/x265_2.0.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/x265_2.4.tar.gz
 ]]>
         </unpack>
         <patch>
-		<![CDATA[cd x265_2.0
-		patch -Np1 -i ${SRCDIR}/x265_2.0-enable_static-1.patch
+		<![CDATA[cd x265_2.4
+		patch -Np1 -i ${SRCDIR}/x265_2.4-enable_static-1.patch
 		mkdir _build
 ]]>
 	</patch>
         <build>
-            <![CDATA[cd x265_2.0/_build
+            <![CDATA[cd x265_2.4/_build
 	jobcount=2
 	if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 		jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -72,12 +72,12 @@
 ]]>
         </build>
         <install>
-            <![CDATA[cd x265_2.0/_build 
+            <![CDATA[cd x265_2.4/_build 
 	    make install DESTDIR=${TGTDIR} 
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf x265_2.0
+            <![CDATA[rm -rf x265_2.4
 ]]>
         </clean>
     </package>

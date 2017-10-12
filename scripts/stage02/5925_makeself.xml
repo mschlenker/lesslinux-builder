@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="makeself"
-		version="2.2.0"
+		version="2.3.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="d6876ffdfa49a2a01bad4e20898132627e0a575b">makeself-2.2.0.run</pkg>
-				<mirror>http://cdn.megastep.org/makeself/</mirror>
+				<pkg sha1="9cffb7066cce4466d4304e0847f62f8bb789159f">makeself-2.3.0.run</pkg>
+				<mirror>https://github.com/megastep/makeself/releases/download/release-2.3.0/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="180" page="http://megastep.org/makeself/" />
+			<manualcheck date="20170615" interval="180" page="http://megastep.org/makeself/" />
 			<!-- <check>
 				<page html="http://www.hyperrealm.com/libconfig/">
 					<atext linktext="libconfig-1.4.10." />
@@ -47,11 +47,13 @@
 			<![CDATA[
 			mkdir -p ${TGTDIR}/usr/bin
 			install -m 0755 ${PKGNAME}-${PKGVERSION}/makeself.sh ${TGTDIR}/usr/bin/makeself
+			ln -s makeself ${TGTDIR}/usr/bin/makeself.sh
+			install -m 0755 ${PKGNAME}-${PKGVERSION}/makeself-header.sh ${TGTDIR}/usr/bin/makeself-header.sh 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.run
+			rm -rf ${PKGNAME}-${PKGVERSION} ${PKGNAME}-${PKGVERSION}.run ${PKGNAME}-header-${PKGVERSION}.sh 
 			]]>
 		</clean>
 	</package>

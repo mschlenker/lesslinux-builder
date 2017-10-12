@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="xz"
-		version="5.2.2"
+		version="5.2.3"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="3cbd8d42117b6958a1db72acbed677f9b11d69a6">xz-5.2.2.tar.bz2</pkg>
+				<pkg sha1="82c87a0d6241da0f7e07c7cc54fdae6e3c9abf26">xz-5.2.3.tar.bz2</pkg>
 				<mirror>http://tukaani.org/xz/</mirror>
 			</file>
-			<manualcheck date="20151128" interval="180" page="http://tukaani.org/xz/" />
+			<manualcheck date="20170610" interval="180" page="http://tukaani.org/xz/" />
 			<check>
 				<page html="http://tukaani.org/xz/">
 					<atext linktext="xz-5.2.6." />
@@ -44,12 +44,12 @@
 			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -e '/mf\.buffer = NULL/a next->coder->mf.size = 0;'  -i src/liblzma/lz/lz_encoder.c
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}

@@ -1,31 +1,31 @@
 <llpackages>
 	<package 
 		name="poppler"
-		version="0.47.0"
+		version="0.55.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                     
-				<pkg sha1="7889b8acba0c83a3accd60770a658ff08f4d7ec2">poppler-0.47.0.tar.xz</pkg>
+				<pkg sha1="19f8a6b2a5f292c7837ba38d3948ef01c14ca36f">poppler-0.55.0.tar.xz</pkg>
 				<mirror>http://poppler.freedesktop.org/</mirror>
 			</file>
-			<manualcheck date="20160927" interval="90" page="http://poppler.freedesktop.org/" />
+			<manualcheck date="20170615" interval="90" page="http://poppler.freedesktop.org/" />
 			<check>
 				<page html="http://poppler.freedesktop.org/releases.html">
-					<atext linktext="poppler-0.47.1." />
-					<atext linktext="poppler-0.47.2." />
-					<atext linktext="poppler-0.47.3." />
-					<atext linktext="poppler-0.52." />
-					<atext linktext="poppler-0.53." />
-					<atext linktext="poppler-0.54." />
-					<atext linktext="poppler-0.55." />
+					<atext linktext="poppler-0.55.1." />
+					<atext linktext="poppler-0.55.2." />
+					<atext linktext="poppler-0.55.3." />
 					<atext linktext="poppler-0.56." />
 					<atext linktext="poppler-0.57." />
-					<atext linktext="poppler-0.48." />
-					<atext linktext="poppler-0.49." />
-					<atext linktext="poppler-0.50." />
-					<atext linktext="poppler-0.41." />
+					<atext linktext="poppler-0.58." />
+					<atext linktext="poppler-0.59." />
+					<atext linktext="poppler-0.60." />
+					<atext linktext="poppler-0.61." />
+					<atext linktext="poppler-0.62." />
+					<atext linktext="poppler-0.63." />
+					<atext linktext="poppler-0.64." />
+					<atext linktext="poppler-0.65." />
 					<atext linktext="poppler-1." />
 				</page>
 			</check>
@@ -69,6 +69,7 @@
                         <dep>which</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
+			<dep>nss</dep>
 			<!-- soft -->
 			 <dep>imake</dep>
 			 <dep>distcc</dep>

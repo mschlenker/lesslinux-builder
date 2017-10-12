@@ -105,7 +105,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+			cmake .. -DCMAKE_INSTALL_PREFIX=/usr -Denable-sound-effects=no -Denable-alsa-mixer=no
 			make -j $jobcount
 			]]>
 		</build>

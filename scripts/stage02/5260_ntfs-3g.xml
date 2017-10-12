@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="ntfs-3g_ntfsprogs"
-		version="2016.2.22"
+		version="2017.3.23"
 		class="user"
 		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                
-				<pkg sha1="382df40c366711003cf24d2342033c23e2580b42">ntfs-3g_ntfsprogs-2016.2.22.tgz</pkg>
+				<pkg sha1="160a836274c38d92e5c3a55256f404c8dd8f3cc1">ntfs-3g_ntfsprogs-2017.3.23.tgz</pkg>
 				<mirror>http://tuxera.com/opensource/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="90" page="http://tuxera.com/" />
-			<check>
+			<manualcheck date="20170615" interval="90" page="http://tuxera.com/" />
+			<!-- <check>
 				<page html="http://www.tuxera.com/community/open-source-ntfs-3g/">
 					<atext linktext="ntfs-3g_ntfsprogs-2016.3." />
 					<atext linktext="ntfs-3g_ntfsprogs-2016.4." />
@@ -27,7 +27,7 @@
 					<atext linktext="ntfs-3g_ntfsprogs-2018." />
 					<atext linktext="ntfs-3g_ntfsprogs-2019." />
 				</page>
-			</check> 
+			</check>  -->
 		</sources>
 		<builddeps>
                         <dep>bash</dep>

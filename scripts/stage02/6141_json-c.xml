@@ -1,15 +1,15 @@
 <llpackages>
-    <package name='json-c' version='0.12' install='chroot'>
+    <package name='json-c' version='0.12.1-20160607' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='5580aad884076c219d41160cbd8bc12213d12c37'>
-                    json-c-0.12.tar.gz
+                <pkg sha1='3348f4184ddfee506989e9ea1ddb3d689391c7e2'>
+                    json-c-0.12.1-20160607.tar.gz
                 </pkg>
                 <mirror>
-                    https://s3.amazonaws.com/json-c_releases/releases/
+                    https://github.com/json-c/json-c/archive/json-c-0.12.1-20160607.tar.gz
                 </mirror>
             </file>
             <manualcheck date='20160115' interval='60' mirror='https://s3.amazonaws.com/json-c_releases/releases/'/>
@@ -38,19 +38,19 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME}-${PKGNAME}-${PKGVERSION}
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-find . -type f -name Makefile -exec sed -i 's/-Werror//g' {} \; 
+# find . -type f -name Makefile -exec sed -i 's/-Werror//g' {} \; 
 make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[cd ${PKGNAME}-${PKGNAME}-${PKGVERSION}
 make install
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+            <![CDATA[rm -rf ${PKGNAME}-${PKGNAME}-${PKGVERSION}
 ]]>
         </clean>
     </package>

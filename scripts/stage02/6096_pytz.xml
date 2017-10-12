@@ -1,18 +1,18 @@
 <llpackages>
-    <package name='pytz' version='2016.4' install='chroot'>
+    <package name='pytz' version='2017.2' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='f6a10cefda0e9ceaff0009b8728c56446215b408'>
-                    pytz-2016.4.tar.bz2
+                <pkg sha1='c2d0024d4a6bd649290813f0a57d849accf82fa9'>
+                    pytz-2017.2.zip
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/p/pytz/
                 </mirror>
             </file>
-            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/pytz'/>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/pypi/pytz'/>
         </sources>
 	<builddeps>
                         <dep>Cython</dep>
@@ -22,7 +22,6 @@
                         <dep>WebOb</dep>
                         <dep>antlr_python_runtime</dep>
                         <dep>bash</dep>
-                        
                         <dep>distcc</dep>
                         <dep>distribute</dep>
                         <dep>docutils</dep>
@@ -44,7 +43,7 @@
                         <dep>xpra</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+            <![CDATA[ unzip ${SRCDIR}/${PKGNAME}-${PKGVERSION}.zip
 ]]>
         </unpack>
         <patch/>

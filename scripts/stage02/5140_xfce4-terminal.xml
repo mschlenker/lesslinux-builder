@@ -1,25 +1,25 @@
 <llpackages>
 	<package 
 		name="xfce4-terminal"
-		version="0.6.3"
+		version="0.8.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>             
-				<pkg sha1="4dd4d2bef8101f563487b0230346070930ff689f">xfce4-terminal-0.6.3.tar.bz2</pkg>
-				<mirror>http://archive.xfce.org/src/apps/xfce4-terminal/0.6/</mirror>
+				<pkg sha1="1fa31cddf2bae52a22498856c438981874eccabd">xfce4-terminal-0.8.6.tar.bz2</pkg>
+				<mirror>http://archive.xfce.org/src/apps/xfce4-terminal/0.8/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="http://archive.xfce.org/src/apps/xfce4-terminal/" />
+			<manualcheck date="20170801" interval="180" page="http://archive.xfce.org/src/apps/xfce4-terminal/" />
 			<check>
-				<page html="http://archive.xfce.org/src/apps/xfce4-terminal/0.6/">
-					<atext linktext="0.6.6" />
-					<atext linktext="0.6.4" />
-					<atext linktext="0.6.5" />
-					<atext linktext="0.6.6" />
+				<page html="http://archive.xfce.org/src/apps/xfce4-terminal/0.8/">
+					<atext linktext="0.8.10" />
+					<atext linktext="0.8.7" />
+					<atext linktext="0.8.8" />
+					<atext linktext="0.8.9" />
 				</page>
 				<page html="http://archive.xfce.org/src/apps/xfce4-terminal/">
-					<atext linktext="0.8" />
+					<atext linktext="0.10" />
 				</page>
 			</check>
 		</sources>
@@ -66,6 +66,7 @@
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
                         <dep>vte</dep>
+			<dep>vte3</dep>
                         <dep>xproto-base</dep>
 			<!-- soft -->
 			<dep>imake</dep>

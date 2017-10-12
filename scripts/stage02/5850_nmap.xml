@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="nmap"
-		version="7.12"
+		version="7.50"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="0c25e4089f93adec2ad50e99b92dc8c5bf85c231">nmap-7.12.tar.bz2</pkg>
+				<pkg sha1="08a2f57bf8923f9f9fa80f3ec005020011a1d69a">nmap-7.50.tar.bz2</pkg>
 				<mirror>http://nmap.org/dist/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="120" page="http://nmap.org/dist/" />
-			<check>
+			<manualcheck date="20170615" interval="120" page="http://nmap.org/dist/" />
+			<!-- <check>
 				<page html="http://nmap.org/dist/">
 					<atext linktext="nmap-7.13.t" />
 					<atext linktext="nmap-7.14.t" />
@@ -28,7 +28,7 @@
 					<atext linktext="nmap-9." />
 					<atext linktext="nmap-10." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
                         <dep>Python</dep>

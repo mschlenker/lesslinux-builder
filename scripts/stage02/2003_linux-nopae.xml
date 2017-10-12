@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-nopae"
-		version="4.4.52"
+		version="4.9.54"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="495c63763aaa36769ca3d4d289469f5cb4b14fbe">linux-4.4-config-nopae</pkg> 
+				<pkg sha1="28d6ab2210bbaf9c4e48992d9fcbee052549dd10">linux-4.9-config-nopae</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,22 +15,22 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="af7d0cd188292d4d6c7bbaabde0f30ec6b521884">linux-4.4.tar.xz</pkg>
+				<pkg sha1="fa46da077c077467776cdc45a7b50d327a081ab4">linux-4.9.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="b0472f6ed80618d28be47cfaee1f1eeb0ff4f211">patch-4.4.52.xz</pkg>
+				<pkg sha1="d67562ee4bd5e0031fcafc1ae8bc72948dcffe04">patch-4.9.54.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20170309" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20171010" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
-					<atext linktext="patch-4.4.53." />
-					<atext linktext="patch-4.4.54." />
-					<atext linktext="patch-4.4.55." />
-					<atext linktext="patch-4.5." />
-					<atext linktext="patch-4.6." />
-					<atext linktext="patch-4.7." />
+					<atext linktext="patch-4.9.55." />
+					<atext linktext="patch-4.9.56." />
+					<atext linktext="patch-4.9.57." />
+					<atext linktext="patch-4.14." />
+					<atext linktext="patch-4.15." />
+					<atext linktext="patch-4.16." />
 				</page>
 			</check>
 		</sources>
@@ -114,6 +114,11 @@
 		<test />
 		<install>
 			<![CDATA[
+			
+			# mkdir -p ${TGTDIR}/etc/lesslinux/
+			# touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			# exit 0 
+			
 			localversion='ll-nopae-0'
 			
 			cd linux-${PKGVERSION}.build

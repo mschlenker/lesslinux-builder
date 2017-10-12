@@ -1,21 +1,21 @@
 <llpackages>
 	<package 
 		name="ruby"
-		version="2.3.1"
+		version="2.3.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="83499c14c674cf2d88e495031434a94c06330879">ruby-2.3.1.tar.xz</pkg>
-				<mirror>http://cache.ruby-lang.org/pub/ruby/2.2/</mirror>
+				<pkg sha1="8ee952fa7c2466d53868143e867dc08a153e20df">ruby-2.3.4.tar.xz</pkg>
+				<mirror>http://cache.ruby-lang.org/pub/ruby/2.3/</mirror>
 			</file>
-			<manualcheck date="20160701" interval="90" page="http://ftp.ruby-lang.org/" />
+			<manualcheck date="20170609" interval="90" page="http://ftp.ruby-lang.org/" />
 			<check>
-				<page html="http://ftp.ruby-lang.org/pub/ruby/2.2/">
-					<atext linktext="ruby-2.3.2" />
-					<atext linktext="ruby-2.3.3" />
-					<atext linktext="ruby-2.3.4" />
+				<page html="http://ftp.ruby-lang.org/pub/ruby/2.3/">
+					<atext linktext="ruby-2.3.9" />
+					<atext linktext="ruby-2.3.10" />
+					<atext linktext="ruby-2.3.11" />
 					<atext linktext="ruby-2.3.5" />
 					<atext linktext="ruby-2.3.6" />
 					<atext linktext="ruby-2.3.7" />
@@ -67,10 +67,10 @@
 			in
 				x86_64) 
 					export CFLAGS="-fPIC"
-					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr CFLAGS="-fPIC"
+					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr --disable-install-doc CFLAGS="-fPIC"
 				;;
 				*)
-					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr 
+					./configure --enable-static --enable-dynamic --enable-shared --prefix=/usr --disable-install-doc
 				;;
 			esac 
 			

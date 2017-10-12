@@ -16,10 +16,10 @@
 				<mirror>http://www.nasm.us/pub/nasm/releasebuilds/2.11.05/</mirror>
 			</file>
 			<file>                  
-				<pkg sha1="780c3ae1ff1ccbdae226eefec9a6a02b422bd40c">syslinux_6.03+dfsg-11ubuntu1.debian.tar.xz</pkg>
+				<pkg sha1="8962753d35920b83f2dccecc11fdada11fb1f9c2">syslinux_6.03+dfsg-14.1.debian.tar.xz</pkg>
 				<mirror>https://launchpad.net/ubuntu/+archive/primary/+files/</mirror>
 			</file>
-			<manualcheck date="20161004" interval="180" page="http://www.kernel.org/pub/linux/utils/boot/syslinux/" />
+			<manualcheck date="20170615" interval="180" page="http://www.kernel.org/pub/linux/utils/boot/syslinux/" />
 			<check>
 				<page html="http://www.kernel.org/pub/linux/utils/boot/syslinux/">
 					<atext linktext="syslinux-6.07." />
@@ -47,12 +47,13 @@
                         <dep>perl</dep>
                         <dep>sed</dep>
 			<dep>distcc</dep>
+			<!-- <dep>gcc54</dep> -->
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
 			tar xf ${SRCDIR}/nasm-2.11.05.tar.xz
-			tar xf ${SRCDIR}/syslinux_6.03+dfsg-11ubuntu1.debian.tar.xz
+			tar xf ${SRCDIR}/syslinux_6.03+dfsg-14.1.debian.tar.xz
 			]]>
 		</unpack>
 		<patch>
@@ -63,13 +64,15 @@
 		</patch>
 		<build>
 			<![CDATA[
+			#export CC=/usr/local/gcc54/bin/gcc54
+			#export CXX=/usr/local/gcc54/bin/g++54
 			cd nasm-2.11.05 
 			./configure --prefix=/usr --sysconfdir=/etc
 			make
 			NASMPATH=` pwd `/nasm
 			cd ../${PKGNAME}-${PKGVERSION}
 			make -k clean
-			make -k -j 6 NASM=${NASMPATH}  
+			make -k -j 6  NASM=${NASMPATH}  
 			make -k -j 6 bios NASM=${NASMPATH}  
 			mv bios/extlinux/extlinux ../extlinux.dynamic
 			mv bios/mtools/syslinux   ../syslinux.dynamic

@@ -1,19 +1,19 @@
 <llpackages>
 	<package 
 		name="gnutls"
-		version="2.12.23"
+		version="2.12.24"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                           
-				<pkg sha1="3c0ba2153560abfb08d88dcb016cd6b72e465db5">gnutls-2.12.23.tar.bz2</pkg>
+				<pkg sha1="dc544abc1307269df32e64d1f9ae55094e665400">gnutls-2.12.24.tar.xz</pkg>
 				<mirror>ftp://ftp.gnutls.org/gcrypt/gnutls/v2.12/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="180" page="ftp://ftp.gnutls.org/gcrypt/gnutls/v2.12/" />
+			<manualcheck date="20170609" interval="180" page="ftp://ftp.gnutls.org/gcrypt/gnutls/v2.12/" />
 			<check>
 				<page html="ftp://ftp.gnutls.org/gcrypt/gnutls/v2.12/">
-					<atext linktext="gnutls-2.12.24." />
+					<atext linktext="gnutls-2.12.32." />
 					<atext linktext="gnutls-2.12.25." />
 					<atext linktext="gnutls-2.12.26." />
 					<atext linktext="gnutls-2.12.27." />
@@ -59,7 +59,7 @@
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>
