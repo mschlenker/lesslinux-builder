@@ -36,6 +36,7 @@ surfer  ALL = NOPASSWD: /opt/eset/esets/bin/esets_gui
 		<![CDATA[#!/bin/bash
 		
 #lesslinux provides eset
+#lesslinux parallel
 #lesslinux license BSD
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
@@ -72,8 +73,10 @@ case $1 in
 	    fi
 	    
 	    # ESET not found? Exit!
-	    [ -z "$esetiso" -a -z "$esetsys" ] && exit 0
-	    
+	    if [ -z "$esetiso" -a -z "$esetsys" ] ; then
+		touch /var/log/lesslinux/bootlog/eset.done
+		exit 0
+	    fi
 	    # Copy the squashfs if blobpart available but sqs not yet there!
 	    if [ -n "$esetsys" -a '!' -d /lesslinux/blobpart/eset ] ; then
 		mkdir -p /lesslinux/blobpart/eset 
@@ -140,6 +143,7 @@ case $1 in
 	    # Now start the daemon
 	    /opt/eset/esets/sbin/esets_daemon
 	fi
+	touch /var/log/lesslinux/bootlog/eset.done
     ;;
     stop)
 	printf "$bold===> Unmounting ESET $normal\n"
