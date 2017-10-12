@@ -1,22 +1,25 @@
 <llpackages>
 	<package 
 		name="perl"
-		version="5.24.0">
+		version="5.24.2">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                             
-				<pkg sha1="298fa605138c1a00dab95643130ae0edab369b4d">perl-5.24.0.tar.bz2</pkg>
+				<pkg sha1="82172d72aca2cb4b0d7d00b9fbff3501c2ff03d6">perl-5.24.2.tar.gz</pkg>
 				<mirror>http://www.cpan.org/src/5.0/</mirror>
 			</file>
-			<manualcheck date="20160630" interval="180" page="http://www.cpan.org/" />
+			<manualcheck date="20170724" interval="180" page="http://www.cpan.org/" />
 			<check>
 				<page html="http://www.cpan.org/src/5.0/">
+					<atext linktext="perl-5.26.1." />
+					<atext linktext="perl-5.26.2." />
+					<atext linktext="perl-5.26.3." />
 					<atext linktext="perl-5.24.4." />
-					<atext linktext="perl-5.24.2." />
+					<atext linktext="perl-5.24.5." />
 					<atext linktext="perl-5.24.3." />
-					<atext linktext="perl-5.26." />
 					<atext linktext="perl-5.28." />
 					<atext linktext="perl-5.30." />
+					<atext linktext="perl-5.32." />
 					<atext linktext="perl-6." />
 				</page>
 			</check>
@@ -24,7 +27,7 @@
 		<unpack>
 			<![CDATA[ 
 			
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			
 			]]>
 		</unpack>
@@ -33,7 +36,9 @@
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-5.18.1-libc-1.patch | patch -p1
+sed -e '9751 a#ifndef PERL_IN_XSUB_RE' \
+    -e '9808 a#endif'                  \
+    -i regexec.c
 			
 			]]>
 		</patch> -->

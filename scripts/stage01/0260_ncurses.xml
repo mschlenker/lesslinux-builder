@@ -27,15 +27,15 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 		<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-gcc5_buildfixes-1.patch | patch -p1 
+			sed -i s/mawk// configure
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[ 
-			export CPPFLAGS="-P"
+			# export CPPFLAGS="-P"
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/tools --with-shared --without-debug --without-ada --enable-overwrite --enable-widec && make
 			]]>

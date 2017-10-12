@@ -1,12 +1,12 @@
 <llpackages>
 	<package 
 		name="glibc_pass1"
-		version="2.24"
+		version="2.25"
 		buildas="unpriv">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                
-				<pkg sha1="e5d9725d94d59475d9a6869a4447a70c1bf3ef78">glibc-2.24.tar.xz</pkg>
+				<pkg sha1="5fff5a94ef4470bf48fe1b79093185f19f5c827a">glibc-2.25.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
 			</file>
 			<!-- <file>                                                                                  
@@ -17,15 +17,15 @@
 				<pkg sha1="41a88bf6a20926a4a1e9792ae5eb2a9854dc44af">glibc-2.16-gcc_fix-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
 			</file> -->
-			<manualcheck date="20160629" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
+			<manualcheck date="20170607" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/glibc/">
-					<atext linktext="glibc-2.24.1." />
-					<atext linktext="glibc-2.24.2." />
-					<atext linktext="glibc-2.24.3." />
-					<atext linktext="glibc-2.24.4." />
-					<atext linktext="glibc-2.25." />
+					<atext linktext="glibc-2.25.1." />
+					<atext linktext="glibc-2.25.2." />
+					<atext linktext="glibc-2.25.3." />
+					<atext linktext="glibc-2.25.4." />
 					<atext linktext="glibc-2.26." />
+					<atext linktext="glibc-2.27." />
 				</page>
 			</check>
 		</sources>
