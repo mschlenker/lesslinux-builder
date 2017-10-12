@@ -4246,12 +4246,12 @@ mount_and_check() {
 				echo -n "$stickloop" > /var/run/lesslinux/install_source
 				echo "bootdevice=$stickloop" >> /var/run/lesslinux/startup_vars
 				echo "outerdevice=$device" >> /var/run/lesslinux/startup_vars
-			elif grep -q parttablehack /proc/cmdline ; then
-				mount -t $filesystem -o ro $device /lesslinux/cdrom
-				iso_hack_convert "$device"
-			else
+			elif grep -q noparttablehack /proc/cmdline ; then
 				mount -t $filesystem -o ro $device /lesslinux/cdrom
 				iso_gpt_convert "$device"
+			else
+				mount -t $filesystem -o ro $device /lesslinux/cdrom
+				iso_hack_convert "$device"
 			fi
 		else
 			echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
