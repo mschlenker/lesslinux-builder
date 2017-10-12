@@ -48,6 +48,10 @@ export LC_ALL
 # Start wicd as network manager
 case $1 in
     start)
+	if connmanctl technologies | grep ethernet ; then
+		printf "$bold+++> Skipping Network daemon (wicd) since connman is active $normal\n"
+		exit 0
+	fi
 	printf "$bold===> Starting Network daemon (wicd) $normal\n"
 	# /etc/rc.d/0200-dhcpcd.sh stop
 	mkdir -p /var/lib/wicd/configurations
@@ -98,7 +102,7 @@ case $1 in
 	fi
     ;;
     stop)
-	printf "$bold===> Starting Network daemon (wicd) $normal\n"
+	printf "$bold===> Stopping Network daemon (wicd) $normal\n"
 	killall -9 wicd
 	rm /var/run/wicd/wicd.pid 
     ;;
