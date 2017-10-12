@@ -15,6 +15,7 @@ surfer  ALL = NOPASSWD: /usr/bin/ruby /usr/bin/openvas-wrapper.rb
 		<![CDATA[#!/bin/bash
 		
 #lesslinux provides openvas
+#lesslinux parallel
 #lesslinux license BSD
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:
@@ -46,6 +47,7 @@ case $1 in
 	    yes '' | openvas-mkcert
 	    openvas-mkcert-client -n -i 
 	fi
+	touch /var/log/lesslinux/bootlog/openvas.done
     ;;
     stop)
 	printf "$bold===> Removing OPENVAS, freeing memory $normal\n"
