@@ -4186,8 +4186,9 @@ iso_hack_convert() {
 	umount /lesslinux/boot
 	
 	echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
-	echo -n "${device}" > /var/run/lesslinux/install_source
-	echo "bootdevice=${device}" >> /var/run/lesslinux/startup_vars
+	echo -n "${stickloop}" > /var/run/lesslinux/install_source
+	echo "bootdevice=${stickloop}" >> /var/run/lesslinux/startup_vars
+	echo "outerdevice=$device" >> /var/run/lesslinux/startup_vars
 	echo "${device}" > /var/run/lesslinux/preppartitions
 	[ "$ultraquiet" -lt 3 ] && echo "===> Done." > /dev/tty8
 	[ "$ultraquiet" -lt 3 ] && chvt 1
