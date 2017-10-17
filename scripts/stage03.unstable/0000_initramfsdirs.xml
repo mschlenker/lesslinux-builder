@@ -5344,6 +5344,7 @@ case $1 in
 			# fsck -fCVD ${blobdev}
 			# fsck -fCV ${blobdev}
 			# btrfs-convert ${blobdev}
+			dd if=/dev/zero bs=1M count=8 of=${blobdev}
 			mkfs.btrfs -f -L LessLinuxBlob ${blobdev}
 			mount -t btrfs -o relatime,compress $blobdev /lesslinux/blobpart
 		elif [ "$fstype" = ext4 ] ; then
