@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libdnet' version='1.12' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3ce046cde6e1872ccef3920923a768e6556b4cde'>
+                    libdnet-1.12.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/dugsong/libdnet/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20171019' interval='60' mirror='https://github.com/dugsong/libdnet/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

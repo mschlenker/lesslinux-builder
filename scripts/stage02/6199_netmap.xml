@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='netmap' version='11.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0daa77d5f9734e8a640186a24d33c5e79a4987a5'>
+                    v11.3.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/luigirizzo/netmap/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20171019' interval='60' mirror='https://github.com/luigirizzo/netmap/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/v11.3.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd netmap-11.3
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd netmap-11.3
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf netmap-11.3
+]]>
+        </clean>
+    </package>
+</llpackages>
