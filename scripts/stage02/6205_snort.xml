@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='snort' version='2.9.11' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='548b3cc10b6d0f6143c978aae587375d7c98c25a'>
+                    snort-2.9.11.tar.gz
+                </pkg>
+                <mirror>
+                    https://www.snort.org/downloads/snort/
+                </mirror>
+            </file>
+            <manualcheck date='20171019' interval='60' mirror='https://www.snort.org/downloads/snort/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

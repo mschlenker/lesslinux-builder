@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='daq' version='2.0.6' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='66cfc59f329a2a9924f2ff81f28d448b6bd6c5b7'>
+                    daq-2.0.6.tar.gz
+                </pkg>
+                <mirror>
+                    https://www.snort.org/downloads/snort/
+                </mirror>
+            </file>
+            <manualcheck date='20171019' interval='60' mirror='https://www.snort.org/downloads/snort/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

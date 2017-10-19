@@ -5115,7 +5115,7 @@ case $1 in
 		nextloop=` losetup -f ` 
 		losetup $nextloop -o $(( $p1start + $partend + 1 )) --sizelimit $p1size $device
 		if=/dev/zero bs=1M count=8 of=$nextloop
-		mkfs.ext2 -L LessLinuxSwap $nextloop
+		mkfs.ext2 -F -L LessLinuxSwap $nextloop
 		sync
 		losetup -d $nextloop
 	fi
@@ -5123,7 +5123,7 @@ case $1 in
 		nextloop=` losetup -f ` 
 		losetup $nextloop -o $(( $p2start + $partend + 1 )) --sizelimit $p2size $device
 		if=/dev/zero bs=1M count=8 of=$nextloop
-		mkfs.ext2 -L LessLinuxBlob $nextloop
+		mkfs.ext2 -F -L LessLinuxBlob $nextloop
 		sync
 		losetup -d $nextloop
 	fi 
@@ -5131,7 +5131,7 @@ case $1 in
 		nextloop=` losetup -f ` 
 		losetup $nextloop -o $(( $p3start + $partend + 1 )) --sizelimit $p3size $device
 		if=/dev/zero bs=1M count=8 of=$nextloop
-		mkfs.ext2 -L LessLinuxCrypt $nextloop
+		mkfs.ext2 -F -L LessLinuxCrypt $nextloop
 		sync 
 		losetup -d $nextloop
 	fi 
