@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libwww-perl' version='6.27' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='4ce86cc447beba8f8a99ec238cb6efc3e84a60e0'>
+                    libwww-perl-6.27.tar.gz
+                </pkg>
+                <mirror>
+                    http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/
+                </mirror>
+            </file>
+            <manualcheck date='20171020' interval='60' mirror='http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+perl Makefile.PL
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
