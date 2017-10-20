@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='HTTP-Cookies' version='6.04' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e1751a4892510e414053827e94f5d5b1c42377aa'>
+                    HTTP-Cookies-6.04.tar.gz
+                </pkg>
+                <mirror>
+                    http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/
+                </mirror>
+            </file>
+            <manualcheck date='20171020' interval='60' mirror='http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+perl Makefile.PL
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
