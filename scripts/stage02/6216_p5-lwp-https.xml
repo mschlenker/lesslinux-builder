@@ -14,6 +14,14 @@
             </file>
             <manualcheck date='20171020' interval='60' mirror='http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/'/>
         </sources>
+	<builddeps>
+                        <dep>Net-HTTP</dep>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>libwww-perl</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
