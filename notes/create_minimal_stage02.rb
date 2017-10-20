@@ -80,6 +80,8 @@ if dircount == 1
 		buildtype = "imake"
 	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/Makefile")
 		buildtype = "make"
+	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/Makefile.PL")
+		buildtype = "perl"	
 	elsif File.exists?("/tmp/#{uuid}/unpack/#{subdir}/CMakeLists.txt")
 		buildtype = "cmake"
 	end
@@ -136,6 +138,10 @@ elsif buildtype == "configure" || buildtype == "autogen" || buildtype == "make" 
 	buildcommand.push("bash autogen.sh") if buildtype == "autogen"
 	buildcommand.push("xmkmf") if buildtype == "imake"
 	buildcommand.push("./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var") if buildtype == "configure" || buildtype == "autogen"
+	buildcommand.push("make")
+	installcommand.push("make install")
+elsif buildtype == "perl"
+	buildcommand.push("perl Makefile.PL")
 	buildcommand.push("make")
 	installcommand.push("make install")
 elsif buildtype == "cmake"

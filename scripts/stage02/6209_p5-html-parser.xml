@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='HTML-Parser' version='3.72' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0d8491510f4e56588678ef0fd2b6ddee5d134137'>
+                    HTML-Parser-3.72.tar.gz
+                </pkg>
+                <mirror>
+                    http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/
+                </mirror>
+            </file>
+            <manualcheck date='20171020' interval='60' mirror='http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+perl Makefile.PL
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
