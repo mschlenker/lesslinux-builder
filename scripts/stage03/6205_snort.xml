@@ -1,0 +1,58 @@
+<llpackages>
+	<package name="snort" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/snort" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/snort-wrapper
+]]>
+		</scriptdata>
+		<scriptdata location="/etc/rc.d/0610-snort.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides snort
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+case $1 in 
+    start)
+	if mountpoint -q /etc/snort ; then
+	    printf "$bold===> Skipping SNORT, already mounted $normal\n"
+	else
+	    printf "$bold===> Preparing SNORT $normal\n"
+	    for d in /etc /var/log ; do
+		mkdir -p ${d}/snort
+	    done
+	    if mountpoint -q /lesslinux/blobpart ; then
+		for d in config log ; do
+			mkdir -p /lesslinux/blobpart/snort/$d 
+		done
+		mount --bind /lesslinux/blobpart/snort/config /etc/snort
+		mount --bind /lesslinux/blobpart/snort/log /var/log/snort
+	    fi
+	fi
+    ;;
+    stop)
+	printf "$bold===> Removing SNORT, freeing memory $normal\n"
+	killall snort
+	killall -9 snort
+	for d in /etc/snort /var/log/snort ; do
+		mountpoint -q $d && umount $d 
+	done
+    ;;
+esac
+
+]]>
+		</scriptdata>
+	</scripts>
+	
+</llpackages>
