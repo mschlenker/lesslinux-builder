@@ -4,6 +4,7 @@
 		<dir mode="0750">/etc/sudoers.lax.d</dir>
 		<dir mode="0750">/etc/sudoers.strict.d</dir>
 		<dir mode="0755">/etc/snort</dir>
+		<dir mode="0755">/etc/snort.dist</dir>
 	</dirs>
 	<scripts>
 		<scriptdata location="/etc/sudoers.lax.d/snort" mode="0440" group="0" owner="0">
@@ -58,7 +59,7 @@ esac
 
 ]]>
 		</scriptdata>
-		<scriptdata location="/etc/snort/snort.conf.dist" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/snort.dist/snort.conf" mode="0755" group="0" owner="0">
 		<![CDATA[#--------------------------------------------------
 #   VRT Rule Packages Snort.conf
 #
@@ -794,7 +795,7 @@ include $RULE_PATH/x11.rules
 include threshold.conf
 ]]>
 		</scriptdata>
-		<scriptdata location="/etc/snort/snort.conf.dist" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/snort.dist/pulledpork.conf" mode="0755" group="0" owner="0">
 		<![CDATA[# Config file for pulledpork
 # Be sure to read through the entire configuration file
 # If you specify any of these items on the command line, it WILL take 
