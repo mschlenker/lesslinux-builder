@@ -808,20 +808,18 @@ def run_stage_three
 		# puts sprintf("%015.4f", Time.now.to_f) + " info   > Parsing " + i
 		# $stdout.flush
 		this_stage_three_obj = ThirdStage.new(i, @srcdir, @builddir, @unpriv, "stage03", @dbh, @unstable, @sqlite, @skiplist, @legacy, Array.new, Array.new, true, @nonfree, @mirror ) 
+		stage_two_found = true
 		if this_stage_three_obj.pkg_version.nil?
 			fvers = nil
 			@stage_two_objs.each { |i| fvers = i.pkg_version if this_stage_three_obj.pkg_name.strip == i.pkg_name.strip }
+			if fvers.nil? 
+				puts "Missing stage02 for: #{this_stage_three_obj.pkg_name.strip}"
+				$stdout.flush
+				raise "StageTwoPackageMissing"
+			end
 			this_stage_three_obj.fix_version(fvers)
 		end
 		debug_pkglist.write(this_stage_three_obj.pkg_name + "\n")
-		# EXIT if package is not found in stage 02
-		stage_two_found = false
-		@stage_two_objs.each { |j| stage_two_found = true if j.pkg_name.strip ==  this_stage_three_obj.pkg_name.strip } 
-		if stage_two_found == false 
-			puts "Missing stage02 for: #{this_stage_three_obj.pkg_name.strip}"
-			$stdout.flush
-			raise "StageTwoPackageMissing"
-		end
 		if pkg_list.nil? || pkg_list.include?(this_stage_three_obj.pkg_name)   
 			stage_three_objs.push(this_stage_three_obj)
 		else
