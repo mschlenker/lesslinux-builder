@@ -814,11 +814,19 @@ def run_stage_three
 			this_stage_three_obj.fix_version(fvers)
 		end
 		debug_pkglist.write(this_stage_three_obj.pkg_name + "\n")
+		# EXIT if package is not found in stage 02
+		stage_two_found = false
+		@stage_two_objs.each { |j| stage_two_found = true if j.pkg_name.strip ==  this_stage_three_obj.pkg_name.strip } 
+		if stage_two_found == false 
+			puts "Missing stage02 for: #{this_stage_three_obj.pkg_name.strip}"
+			$stdout.flush
+			raise "StageTwoPackageMissing"
+		end
 		if pkg_list.nil? || pkg_list.include?(this_stage_three_obj.pkg_name)   
 			stage_three_objs.push(this_stage_three_obj)
 		else
 			debug_skipped.write(this_stage_three_obj.pkg_name + "\n")
-		end
+		end		
 	}
 	debug_pkglist.close
 	debug_skipped.close
