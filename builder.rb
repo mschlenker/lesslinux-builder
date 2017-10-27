@@ -812,11 +812,6 @@ def run_stage_three
 		if this_stage_three_obj.pkg_version.nil?
 			fvers = nil
 			@stage_two_objs.each { |i| fvers = i.pkg_version if this_stage_three_obj.pkg_name.strip == i.pkg_name.strip }
-			if fvers.nil? 
-				puts "Missing stage02 for: #{this_stage_three_obj.pkg_name.strip}"
-				$stdout.flush
-				raise "StageTwoPackageMissing"
-			end
 			this_stage_three_obj.fix_version(fvers)
 		end
 		debug_pkglist.write(this_stage_three_obj.pkg_name + "\n")
