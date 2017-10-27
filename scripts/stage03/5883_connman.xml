@@ -55,6 +55,11 @@ case $1 in
 		wpa_supplicant -u -B 
 	fi
     ;;
+    stop)
+	printf "$bold===> Stopping connection manager (connman) $normal\n"
+	killall -9 connmand 
+	killall -9 wpa_supplicant 
+    ;;
 esac
 		]]>
 		</scriptdata>

@@ -45,6 +45,7 @@ def start_ap
 	end
 	cffile.close
 	system("/etc/rc.d/0590-wicd.sh stop") 
+	system("/etc/rc.d/0589-connman.sh stop") 
 	system("rfkill unblock all")
 	system("dhcpcd -x")
 	# Put down all interfaces:
@@ -86,6 +87,7 @@ def stop_ap
 	}
 	system("iplink delete bridge0 type bridge")
 	[ iface, eface ].each { |d| system("ip link set dev #{d} up") }
+	system("/etc/rc.d/0589-connman.sh start") 
 	system("/etc/rc.d/0590-wicd.sh start") 
 end
 
