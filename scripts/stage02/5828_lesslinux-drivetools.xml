@@ -72,6 +72,7 @@
 					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			install -m 0755 dothedirtyjob.sh ${TGTDIR}/usr/share/lesslinux/drivetools
+			install -m 0755 dothedirtyjob-ng.sh ${TGTDIR}/usr/share/lesslinux/drivetools
 			install -m 0644 images/*.png ${TGTDIR}/usr/share/lesslinux/drivetools/images
 			install -m 0755 jl.pl ${TGTDIR}/usr/share/lesslinux/drivetools
 			install -m 0644 JumpList.pm ${TGTDIR}/usr/share/lesslinux/drivetools
