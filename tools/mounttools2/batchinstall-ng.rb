@@ -73,7 +73,7 @@ exit 1 unless answer =~ /^y/i
 		end
 		puts "===> Start installation on drive: #{@drives[n].device}\n"
 		sleep (n+2) * 5
-		@failed.push @drives[n].device unless system("bash dothedirtyjob.sh #{@drives[n].device} #{@lang}")
+		@failed.push @drives[n].device unless system("bash dothedirtyjob-ng.sh #{@drives[n].device} #{@lang}")
 		# i = LessLinuxInstaller.new(@drives[n])
 		# i.run_installation(nil, [0,0]) 
 		puts "===> Finish installation on drive: #{@drives[n].device}\n"
