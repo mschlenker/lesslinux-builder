@@ -78,7 +78,7 @@
 			cd ${PKGNAME}-build
 			mkdir -p ${TGTDIR}/usr/bin 
 			make install DESTDIR=${TGTDIR}
-			version=62
+			version=71
 			for fname in gcc g++ c++ cpp ; do
 				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
 				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
