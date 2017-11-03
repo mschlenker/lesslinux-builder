@@ -58,7 +58,7 @@
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
+make -j4
 ]]>
         </build>
         <install>
