@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='snort' version='2.9.11' install='chroot'>
+    <package name='snort' version='2.9.11' install='destdir'>
         <license>
             unknown
         </license>
@@ -10,6 +10,15 @@
                 </pkg>
                 <mirror>
                     https://www.snort.org/downloads/snort/
+                </mirror>
+            </file>
+	    
+	    <file>
+                <pkg sha1=' 65fc12e61e924da0340ef3f965127780ec7cfe2a'>
+                    lesslinux-snort-20171103-00.tar.bz2
+                </pkg>
+                <mirror>
+                    https://distfiles.lesslinux.org/
                 </mirror>
             </file>
             <manualcheck date='20171019' interval='60' mirror='https://www.snort.org/downloads/snort/'/>
@@ -40,7 +49,9 @@
                         <dep>zlib</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[
+	    tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+	tar xf ${SRCDIR}/lesslinux-snort-20171103-00.tar.bz2
 ]]>
         </unpack>
         <patch/>
@@ -52,7 +63,33 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+make install DESTDIR=${TGTDIR}
+[ -x ${TGTDIR}/usr/bin/snort ] || exit 1 
+mkdir -p ${TGTDIR}/usr/share/applications
+mkdir -p ${TGTDIR}/usr/share/icons
+mkdir -p ${TGTDIR}/usr/share/lesslinux/snort 
+cd ../snort
+install -m 0644 snort-wrapper.rb ${TGTDIR}/usr/share/lesslinux/snort 
+install -m 0755 snort-wrapper.sh ${TGTDIR}/usr/share/lesslinux/snort 
+install -m 0755 pulledpork.sh ${TGTDIR}/usr/share/lesslinux/snort 
+install -m 0644 snort.png ${TGTDIR}/usr/share/icons
+
+cat >> ${TGTDIR}/usr/share/applications/snort.desktop << SNICON
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=SNORT
+Comment=
+Categories=CB-Other;
+Exec=sudo /usr/share/lesslinux/snort/snort-wrapper.sh
+Icon=/usr/share/icons/snort.png
+Terminal=false
+StartupNotify=true
+
+SNICON
+
 ]]>
         </install>
         <clean>
