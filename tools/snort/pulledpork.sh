@@ -27,7 +27,7 @@ fi
 if [ -f /etc/snort/etc/snort.conf ] ; then
 	echo "First signature package seems to be downloaded" 
 else
-	wget -O - 'https://www.snort.org/rules/snortrules-snapshot-${snortvers}.tar.gz?oinkcode='${oinkcode}  | tar -C /etc/snort -xzf - 
+	wget -O - 'https://www.snort.org/rules/snortrules-snapshot-'${snortvers}'.tar.gz?oinkcode='${oinkcode}  | tar -C /etc/snort -xzf - 
 	if [ -f /etc/snort/etc/snort.conf ] ; then
 		install -m 0644 /etc/snort.dist/snort.conf /etc/snort/etc/snort.conf 
 	else
