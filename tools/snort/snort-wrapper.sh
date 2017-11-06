@@ -1,7 +1,7 @@
 #!/bin/bash
 # encoding: utf-8
 
-if [ -x /lesslinux/blobpart/snort/snort-wrapper.sh ] ; then
+if [ -x /lesslinux/blobpart/snort/snort-wrapper.sh ] && [ "` pwd `" '!='  /lesslinux/blobpart/snort ] ; then
 	cd /lesslinux/blobpart/snort
 	exec bash snort-wrapper.sh 
 fi
