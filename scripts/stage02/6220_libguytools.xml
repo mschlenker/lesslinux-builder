@@ -1,0 +1,47 @@
+<llpackages>
+    <package name='libguytools-code' version='2.0.5' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='96cf20f3e12c12171d95ec5e8b7523847c6cbc1b'>
+                    libguytools-code-2.0.5.tar.xz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20171106' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}/tags/tools-2.0.5/
+	    bash create_version_file.sh
+	    qmake-qt5  trunk.pro
+	    make -j4
+	    qmake-qt5 toolsstatic.pro
+	    make
+	    ls -lah lib
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}/tags/tools-2.0.5/lib
+	    mkdir -p ${TGTDIR}/usr/lib
+	    install -m 0755 libguytools.so.2.0.5 ${TGTDIR}/usr/lib
+	    install -m 0755 libguytools.a ${TGTDIR}/usr/lib
+	    for lnk in libguytools.so.2.0 libguytools.so.2 libguytools.so ; do
+		ln -s   libguytools.so.2.0.5  ${TGTDIR}/usr/lib/${lnk}
+	    done
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
