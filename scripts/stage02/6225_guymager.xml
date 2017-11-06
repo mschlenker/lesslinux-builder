@@ -1,0 +1,43 @@
+<llpackages>
+    <package name='guymager-code' version='0.8.7' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='6a31c769c55c56b46e9eec6c0c07b49e991bb1f5'>
+                    guymager-code-0.8.7.tar.xz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20171106' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}/tags/guymager-0.8.7/
+	    qmake-qt5
+	    make -j4
+	    lrelease guymager.pro
+	    ls -lah 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}/tags/guymager-0.8.7/
+	    mkdir -p ${TGTDIR}/usr/bin
+	    install -m 0755 guymager ${TGTDIR}/usr/bin
+	    mkdir -p ${TGTDIR}/etc/guymager
+	    install -m 0644 guymager.cfg ${TGTDIR}/etc/guymager
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
