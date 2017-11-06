@@ -33,6 +33,10 @@
 	    install -m 0755 guymager ${TGTDIR}/usr/bin
 	    mkdir -p ${TGTDIR}/etc/guymager
 	    install -m 0644 guymager.cfg ${TGTDIR}/etc/guymager
+	    mkdir -p ${TGTDIR}/usr/share/icons
+	    install -m 0644 guymager_128.png ${TGTDIR}/usr/share/icons
+	    mkdir -p ${TGTDIR}/usr/share/applications
+	    install -m 0644 guymager.desktop  ${TGTDIR}/usr/share/applications
 ]]>
         </install>
         <clean>
