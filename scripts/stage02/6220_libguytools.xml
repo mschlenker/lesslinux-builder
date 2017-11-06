@@ -32,11 +32,16 @@
         <install>
             <![CDATA[cd ${PKGNAME}/tags/tools-2.0.5/lib
 	    mkdir -p ${TGTDIR}/usr/lib
+	    mkdir -p ${TGTDIR}/usr/include/libguytools2
 	    install -m 0755 libguytools.so.2.0.5 ${TGTDIR}/usr/lib
 	    install -m 0755 libguytools.a ${TGTDIR}/usr/lib
 	    for lnk in libguytools.so.2.0 libguytools.so.2 libguytools.so ; do
 		ln -s   libguytools.so.2.0.5  ${TGTDIR}/usr/lib/${lnk}
 	    done
+	    for header in tooltypes.h tooltarget.h toolconstants.h toolsysinfo.h toolglobalid.h toollog.h toolsignal.h toolerror.h toolcfg.h ; do
+		install -m 0644 include/${header} ${TGTDIR}/usr/include/libguytools2/ 
+	    done
+	    
 ]]>
         </install>
         <clean>
