@@ -65,7 +65,9 @@
 	    mkdir -p ${TGTDIR}/usr/share/applications
 	    install -m 0644 guymager.desktop  ${TGTDIR}/usr/share/applications
 	    sed -i 's/System/CB-Rescue/g' ${TGTDIR}/usr/share/applications/guymager.desktop
-	    sed -i 's%gksu guymager%sudo /usr/bin/guymager%g'  ${TGTDIR}/usr/share/applications/guymager.desktop
+	    sed -i 's%gksudo guymager%sudo /usr/bin/guymager%g'  ${TGTDIR}/usr/share/applications/guymager.desktop
+	    sed -i 's%TryExec%#TryExec%g'  ${TGTDIR}/usr/share/applications/guymager.desktop
+	    sed -i '/^#/d'    ${TGTDIR}/usr/share/applications/guymager.desktop
 ]]>
         </install>
         <clean>
