@@ -27,14 +27,15 @@
 	    tar xf ${SRCDIR}/libewf_20140608-6.debian.tar.xz
 ]]>
         </unpack>
-        <patch>
+        <!-- <patch>
 	<![CDATA[
 cd libewf-${PKGVERSION}
 cat ../debian/patches/04-fix-FTBFS-GCC5.patch | patch -p1 
 ]]>
-	</patch>
+	</patch> -->
         <build>
             <![CDATA[cd libewf-${PKGVERSION}
+export CFLAGS='-std=gnu89'
 ./configure --prefix=/usr/compat.old
 make
 ]]>
