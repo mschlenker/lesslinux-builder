@@ -12,16 +12,30 @@
                     http://pkgs.fedoraproject.org/repo/pkgs/libewf//fdf615f23937fad8e02b60b9e3e5fb35/
                 </mirror>
             </file>
+	    <file>
+                <pkg sha1='9b7025ffa691882b89c095f9d01df17c871b2959'>
+                    libewf_20140608-6.debian.tar.xz
+                </pkg>
+                <mirror>
+                    http://http.debian.net/debian/pool/main/libe/libewf
+                </mirror>
+            </file>
             <manualcheck date='20171107' interval='60' mirror='http://pkgs.fedoraproject.org/repo/pkgs/libewf//fdf615f23937fad8e02b60b9e3e5fb35/'/>
         </sources>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/libewf-${PKGVERSION}.tar.gz
+	    tar xf ${SRCDIR}/libewf_20140608-6.debian.tar.xz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+	<![CDATA[
+cd libewf-${PKGVERSION}
+cat ../debian/patches/04-fix-FTBFS-GCC5.patch | patch -p1 
+]]>
+	</patch>
         <build>
             <![CDATA[cd libewf-${PKGVERSION}
-./configure --prefix=/usr/local 
+./configure --prefix=/usr/compat.old
 make
 ]]>
         </build>

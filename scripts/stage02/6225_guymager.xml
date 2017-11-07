@@ -18,7 +18,12 @@
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+	 <![CDATA[cd ${PKGNAME}/tags/guymager-0.8.7/
+	sed -i 's%/usr/local/lib/libewf\.a%/usr/compat.old/lib/libewf.a%g' guymager.pro 
+	sed -i '/INCLUDEPATH += \/usr\/include\/libguytools2/a INCLUDEPATH += \/usr\/compat.old\/include' guymager.pro 
+]]>
+	</patch>
         <build>
             <![CDATA[cd ${PKGNAME}/tags/guymager-0.8.7/
 	    qmake-qt5
