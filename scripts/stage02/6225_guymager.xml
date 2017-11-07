@@ -49,7 +49,8 @@
             <![CDATA[cd ${PKGNAME}/tags/guymager-0.8.7/
 	    qmake-qt5
 	    make -j4
-	    lrelease guymager.pro
+	    lrelease-qt5 guymager.pro
+	    echo '===> Files found:' 
 	    ls -lah 
 ]]>
         </build>
@@ -63,6 +64,8 @@
 	    install -m 0644 guymager_128.png ${TGTDIR}/usr/share/icons
 	    mkdir -p ${TGTDIR}/usr/share/applications
 	    install -m 0644 guymager.desktop  ${TGTDIR}/usr/share/applications
+	    sed -i 's/System/CB-Rescue/g' ${TGTDIR}/usr/share/applications/guymager.desktop
+	    sed -i 's%gksu guymager%sudo /usr/bin/guymager%g'  ${TGTDIR}/usr/share/applications/guymager.desktop
 ]]>
         </install>
         <clean>

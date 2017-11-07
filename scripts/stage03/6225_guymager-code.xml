@@ -1,0 +1,14 @@
+<llpackages>
+	<package name="guymager-code" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/guymager" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/bin/guymager
+]]>
+		</scriptdata>	
+	</scripts>
+</llpackages>
