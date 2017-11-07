@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libewf-old' version='20140608' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='c17384a3d2c1d63bd5b1aaa2aead6ee3c82a2368'>
+                    libewf-20140608.tar.gz
+                </pkg>
+                <mirror>
+                    http://pkgs.fedoraproject.org/repo/pkgs/libewf//fdf615f23937fad8e02b60b9e3e5fb35/
+                </mirror>
+            </file>
+            <manualcheck date='20171107' interval='60' mirror='http://pkgs.fedoraproject.org/repo/pkgs/libewf//fdf615f23937fad8e02b60b9e3e5fb35/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/libewf-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libewf-${PKGVERSION}
+./configure --prefix=/usr/local 
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libewf-${PKGVERSION}
+make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libewf-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
