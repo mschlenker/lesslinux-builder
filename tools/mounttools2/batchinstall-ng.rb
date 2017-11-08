@@ -33,6 +33,17 @@ def get_sizes
 	}
 end	
 
+def loop?(device) 
+	lp = false
+	IO.popen("losetup -a") { |l|
+		while l.gets
+			lp = true if $_ =~ Regexp.new('\(/dev/' + device + '\)')
+		end
+	}
+	return lp 
+end
+
+
 Dir.entries("/sys/block").each { |l|
 	if l =~ /[a-z]$/ 
 		begin
@@ -40,7 +51,7 @@ Dir.entries("/sys/block").each { |l|
 			if d.system_drive?
 				system("blockdev --setra 16384 /dev/#{d.device}")
 			else
-				@drives.push(d)  if ( d.usb == true && d.mounted == false )
+				@drives.push(d)  if ( d.usb == true && d.mounted == false && loop?(l) == false )
 			end
 		rescue 
 			$stderr.puts "Failed adding: #{l}"

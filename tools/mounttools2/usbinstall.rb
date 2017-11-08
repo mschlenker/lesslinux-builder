@@ -117,8 +117,10 @@ def fill_drive_combo(combobox, gobutton, tl)
 	Dir.entries("/sys/block").each { |l|
 			if l =~ /[a-z]$/ 
 				begin
-					d =  MfsDiskDrive.new(l, true)
-					drives.push(d) 
+					unless loop?(l)
+						d =  MfsDiskDrive.new(l, true) 
+						drives.push(d) 
+					end
 				rescue 
 					$stderr.puts "Failed adding: #{l}"
 				end
@@ -126,7 +128,7 @@ def fill_drive_combo(combobox, gobutton, tl)
 	}
 	drives.each { |d|
 		unless d.mounted == true
-			@drives.push d if d.usb == true && d.size > sizes[0] 
+			@drives.push d if ( d.usb == true && d.size > sizes[0] )
 			puts d.device + " " + d.usb.to_s 
 		end
 	}
@@ -333,6 +335,15 @@ def extract_cmdline
 	}
 end
 
+def loop?(device) 
+	lp = false
+	IO.popen("losetup -a") { |l|
+		while l.gets
+			lp = true if $_ =~ Regexp.new('\(/dev/' + device + '\)')
+		end
+	}
+	return lp 
+end
 
 lang = ENV['LANGUAGE'][0..1]
 lang = ENV['LANG'][0..1] if lang.nil?
