@@ -731,6 +731,7 @@ mountpoint -q /dev     || mount -t devtmpfs devtmpfs /dev
 mkdir /dev/pts
 mkdir /dev/shm
 mkdir /dev/mapper
+mkdir -p /var/log/lesslinux/bootlog 
 mountpoint -q /proc    || mount -t proc none /proc
 mountpoint -q /sys     || mount -t sysfs sysfs /sys
 mountpoint -q /dev/pts || mount -t devpts -o rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 devpts /dev/pts
@@ -852,7 +853,9 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
         patience="` cat $i | grep '#lesslinux patience' | awk '{print $2}' `"
         verbose="` cat $i  | grep '#lesslinux verbose'  | awk '{print $2}' `"
         debuglev="` cat $i | grep '#lesslinux debug'    | awk '{print $3}' `"
+	parallel="` cat $i  | grep '#lesslinux parallel'  | awk '{print $2}' `"
         [ -z "$provides" ] && provides="$i"
+	touch /var/log/lesslinux/bootlog/${provides}.start
 	if echo "$skipservices" | grep '|'$provides'|' > /dev/null 2>&1 ; then 
 	    [ "$ultraquiet" -gt 0 ] || printf "$bold---> Skipping $provides \n" 
 	elif [ -n "$debuglev" ] && [ "$debug_threshold" -gt "$debuglev" ] ; then
@@ -875,9 +878,11 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	    fi
 	    [ "$ultraquiet" = 1 ] && [ -n "$patience" ] && printf "\n${bold}${be_patient}${normal}\n"
 	    if [ "$ultraquiet" -gt 0 ] ; then
-		$i start > /dev/null 2>&1
+		[ -z "$parallel" ] && $i start > /dev/null 2>&1
+		[ -n "$parallel" ] && $i start > /dev/null 2>&1 &
 	    else
-		$i start
+		[ -z "$parallel" ] && $i start
+		[ -n "$parallel" ] && $i start & 
 	    fi
 	fi
 	scriptcount=` expr $scriptcount + 1 `
@@ -892,6 +897,7 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	    echo "Failed to switch_root, dropping to a shell"
 	    exec /static/bin/ash 
 	fi
+	[ -z "$parallel" ] && touch /var/log/lesslinux/bootlog/${provides}.done
 done
 ####
 
@@ -1332,6 +1338,7 @@ hwenv='default'				# influences the behaviour for loading modules
 searchiso=''				# search content directories only on ISOs with the given ISOID and count of bytes
 					# searchiso=isoid
 					# searchiso='' ignore
+offsetptable=0				# use an offsetted partition table after the ISO image 
 contdir="lesslinux"			# name of the content directory to search for 
 ntfsrw=0				# Access NTFS read-write with ntfs-3g? Useful for containers on NTFS.
 dropbearport=22222			# port to run dropbear
@@ -1637,6 +1644,9 @@ for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; 
      swap=*)
 	swap=` echo "$i" | awk -F '=' '{print $2}' ` 
 	[ "$swap" = "none" ] && swap='' 
+     ;;
+     offsetptable=*)
+	offsetptable=` echo "$i" | awk -F '=' '{print $2}' ` 
      ;;
      switchroot=*)
 	swtch=`echo "$i" | awk -F '=' '{print $2}'`
@@ -3982,6 +3992,210 @@ iso_gpt_convert() {
 	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/textblank.ppm	
 }
 
+iso_hack_convert() {
+	echo -e '\033[9;0]\033[14;0]' > /dev/console
+	device="$1"
+	# Text mode conversion on TTY8 when ultraquiet is not set:
+	if [ "$ultraquiet" -lt 2 ] ; then
+		chvt 8
+		echo "===> Converting ISOhybrid to GPT drive with proper FS, this may take some time" > /dev/tty8
+		echo "     but it is done only once..." > /dev/tty8
+	fi
+	# GUI conversion on TTY8 when fbsplash is running
+	if [ "$ultraquiet" -eq 3 -a -p /splash.fifo ] ; then
+		echo 0 > /splash.fifo
+		fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/01driveconf.ppm 
+	fi
+	[ "$skipcheck" -lt 2 ] && run_self_test cdrom
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "$convert_prepare" "" tty1
+	[ "$ultraquiet" -eq 3 -a -p /splash.fifo ] && echo 90 > /splash.fifo
+	
+	# FIXME! FIXME!
+	# When installed from batchinstall or USB install the ISOhybrid MBR gets nuked,
+	# it should be saved to a file than. Try to find it! 
+	
+	# Size of boot directory in kilobytes, including the EFI boot directory and image
+	bootsize=` du -sk /lesslinux/cdrom/boot | awk '{print $1}'  ` 
+	# Size of boot partition in count of 8MB blocks - roughly add 50% for updates
+	bootblocks=` expr $bootsize / 5461 + 1 ` 
+	
+	# Size of ISO image in kilobytes
+	isosize=` df -k | grep '/lesslinux/cdrom' | awk '{print $3}' `
+	# Size of ISO partition in count of 8MB blocks - roughly add 25% for updates
+	isoblocks=` expr $isosize / 6553 + 1 `
+	
+	# Size of device in kilobyte blocks
+	shortdev=` echo -n $device | sed 's%/dev/%%g' ` 
+	devicesize=` cat /proc/partitions | grep "$shortdev"'$' | awk '{print $3}' ` 
+	# Size of device in 8MB blocks - there might be little bit less than 8MB left out
+	deviceblocks=` expr $devicesize / 8192 ` 
+	
+	hcminblocks=0
+	hcmaxblocks=0 
+	if [ "$homecontmax" -gt 0 ] ; then
+		hcmaxblocks=` expr $homecontmax / 8 ` 
+		hcminblocks=` expr $homecontmin / 8 ` 
+	fi
+	# blobblocks 
+	blobblocks=0
+	if [ "$blobsize" -gt 63 ] ; then
+		blobblocks=` expr $blobsize / 8 ` 
+	else
+		blobblocks=1
+	fi
+	# Swap size
+	swapblocks=0
+	if [ "$swapsize" -gt 63 ] ; then
+		swapblocks=` expr $swapsize / 8 ` 
+	else
+		swapblocks=1
+	fi
+	# Now check for minimum free space - FIXME: 128MB are not good to be hard coded
+	neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+	if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+		# Try without swap:
+		swapblocks=1
+		neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+		if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+			# Try without encrypted /home
+			hcminblocks=0
+			hcmaxblocks=0 
+			neededblocks=` expr $isoblocks + $isoblocks + $bootblocks + $hcminblocks + $blobblocks + $swapblocks + 16 `
+			if [ "$deviceblocks" -lt "$neededblocks" ] ; then
+				[ "$ultraquiet" -lt 3 ] && echo "===> FAILED. Device too small." > /dev/tty8
+				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
+				[ "$ultraquiet" -lt 3 ] && chvt 1
+				return 1
+			fi
+		fi
+	fi
+	
+	# Delete some MB at the end of the disk to remove remaining GUID backup table
+	dd if=/dev/zero of=$device bs=8388608 seek=` expr $deviceblocks - 4 ` 2>/dev/null
+	
+	# Let the games begin...
+	umount /lesslinux/cdrom
+	
+	[ "$ultraquiet" -lt 3 ] && echo '---> Creating partition table and bootloader' > /dev/tty8
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 0 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/05driveconf.ppm
+	
+	# Recalculate the possible size of the partition for the encrypted home container
+	hcblocks=1
+	if [ "$homecontmax" -gt 0 ] ; then
+		hcmaxblocks=` expr $homecontmax / 8 ` 
+		hcminblocks=` expr $homecontmin / 8 ` 
+		hcpossible=` expr $deviceblocks - $isoblocks - $isoblocks - $bootblocks - $blobblocks - $swapblocks - 40 ` 
+		if [ "$hcpossible" -gt $hcmaxblocks ] ; then
+			hcblocks=$hcmaxblocks
+		else
+			hcblocks=$hcpossible
+		fi
+	fi
+	
+	# Create a single FAT32 partition holding legacy and EFI boot files
+	freespacestart=` expr '(' $deviceblocks - $isoblocks - $swapblocks - $hcblocks - $blobblocks - 2 ')' '*' 8388608 `
+	partstart=`      expr '(' $isoblocks + 2 ')' '*' 8388608 `
+	# Now overwrite the start of the device
+	dd if="$device" bs=512 count=1 of=/tmp/isohybrid.mbr 
+	dd if=/dev/zero bs=512 count=1 of="$device"
+	parted -s $device unit B mklabel msdos
+	sync
+	mdev -s
+	
+	# Single partition - data, legacy boot, EFI boot
+	parted -s $device unit B mkpart primary fat32 $partstart ` expr $freespacestart - 1 `  
+	parted -s $device unit B set 1 boot on
+	parted -s $device unit B set 1 esp on
+	sync
+	[ "$ultraquiet" -gt 1 ] && genericpgbar 10 32 "$convert_head" "${convert_mkfs}" "" tty1
+	[ -p /splash.fifo ] && echo 10 > /splash.fifo
+	[ -b ${device}1 ] && dd if=/dev/zero bs=1M count=8 of=${device}1
+	mkfs.vfat -n USBDATA "${device}1"
+	cat /etc/syslinux/mbr.bin > "$device"
+	mkdir -p /lesslinux/boot
+	mkdir -p /lesslinux/efiboot
+	mount -t vfat -o rw "${device}1" /lesslinux/boot
+	mkdir -p /lesslinux/boot/boot
+	cp -v /tmp/isohybrid.mbr /lesslinux/boot/boot
+	touch /lesslinux/boot/boot/dontconvert
+	stickloop=` losetup -f ` 
+	losetup -r ${stickloop} ${device} 
+	mount -t iso9660 -o ro "${stickloop}" /lesslinux/cdrom
+	newuuid=` blkid.static -o udev "${device}1" | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
+	
+	# Copy legacy boot files
+	tar -C /lesslinux/cdrom -cf - boot | tar -C /lesslinux/boot -xf -
+	touch /lesslinux/boot/cmdline
+	cp -v /tmp/legacy.mbr /lesslinux/boot
+	# Copy GRUBs file to properly detect the boot partition
+	idfile=` ls /lesslinux/boot/boot/grub/????????.cd `
+	idtarg=` echo $idfile | sed 's/\.cd/.pt/g' ` 
+	mv $idfile $idtarg
+	
+	# Copy EFI boot files
+	# Copy EFI boot image
+	if [ -f /lesslinux/cdrom/boot/efi/efi.img ] ; then
+		efiloop=` losetup -f `
+		losetup $efiloop /lesslinux/cdrom/boot/efi/efi.img
+		mount -t vfat -o ro $efiloop /lesslinux/efiboot
+		tar -C /lesslinux/efiboot -cvf - . | tar -C /lesslinux/boot -xf -
+		# Modify EFI boot files
+		find /lesslinux/boot/loader -type f -name '*.usb' | while read cfgfile ; do 
+			outfile=` echo ${cfgfile} | sed 's/\.usb$/.conf/g' `
+			cp -v ${cfgfile} ${outfile} 
+		done
+		find /lesslinux/boot/loader -type f -name '*.conf' | while read cfgfile ; do 
+			[ -f "${cfgfile}.${lang}" ] && cp "${cfgfile}.${lang}" "${cfgfile}"
+			sed -i 's/uuid=all/uuid='"${newuuid}"'/g' "${cfgfile}"
+			[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=all/crypt='"${cryptuuid}"'/g'  "${cfgfile}"
+			[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' "${cfgfile}"
+			[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    "${cfgfile}"
+		done
+		sync
+		umount /lesslinux/efiboot
+		losetup -d $efiloop
+	fi
+	
+	# Modify legacy boot files
+	find /lesslinux/boot/boot/isolinux -type f -name '*.cfg' | while read cfgfile ; do 
+		[ -f "${cfgfile}.${lang}" ] && cp "${cfgfile}.${lang}" "${cfgfile}"
+		sed -i 's/uuid=all/uuid='"${newuuid}"'/g' "${cfgfile}"
+		[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=all/crypt='"${cryptuuid}"'/g'  "${cfgfile}"
+		[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' "${cfgfile}"
+		[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    "${cfgfile}"
+		sed -i 's%^INCLUDE /boot/isolinux/boot0x80.cfg%# INCLUDE /boot/isolinux/boot0x80.cfg%g' "${cfgfile}"
+		sed -i 's%^INCLUDE /boot/isolinux/\([a-z]*\)/boot0x80.cfg%# INCLUDE /boot/isolinux/\1/boot0x80.cfg%g' "${cfgfile}"
+		sed -i 's%^MENU INCLUDE /boot/isolinux/\([a-z]*\)/boot0x80.cfg%# MENU INCLUDE /boot/isolinux/\1/boot0x80.cfg%g' "${cfgfile}"
+		sed -i 's%^# INCLUDE /boot/isolinux/usbonly%INCLUDE /boot/isolinux/usbonly%g' "${cfgfile}" 
+		sed -i 's%^# INCLUDE /boot/isolinux/\([a-z]*\)/usbonly%INCLUDE /boot/isolinux/\1/usbonly%g' "${cfgfile}" 
+		sed -i 's%^# MENU INCLUDE /boot/isolinux/\([a-z]*\)/usbonly% MENU INCLUDE /boot/isolinux/\1/usbonly%g' "${cfgfile}" 
+	done
+	cfg=/lesslinux/boot/boot/isolinux/isolinux.cfg
+	[ -f /lesslinux/boot/boot/isolinux/extlinux.conf ] && cfg=/lesslinux/boot/boot/isolinux/extlinux.conf
+	[ -f /lesslinux/boot/boot/isolinux/extlinux.conf.${lang} ] && cfg=/lesslinux/boot/boot/isolinux/extlinux.conf.${lang}
+	[ -f /lesslinux/boot/boot/isolinux/extlinux.cfg ] && cfg=/lesslinux/boot/boot/isolinux/extlinux.cfg
+	[ "$cfg" '!=' /lesslinux/boot/boot/isolinux/extlinux.conf ] && cp "$cfg" /lesslinux/boot/boot/isolinux/extlinux.conf
+	sed -i 's/uuid=all/uuid='"${newuuid}"'/g' /lesslinux/boot/boot/isolinux/extlinux.conf
+	[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=all/crypt='"${cryptuuid}"'/g'  /lesslinux/boot/boot/isolinux/extlinux.conf
+	[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' /lesslinux/boot/boot/isolinux/extlinux.conf
+	[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    /lesslinux/boot/boot/isolinux/extlinux.conf
+
+	echo -n "${newuuid}" > /lesslinux/boot/boot.uuid
+	extlinux --install /lesslinux/boot/boot/isolinux
+	umount /lesslinux/boot
+	
+	echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
+	echo -n "${stickloop}" > /var/run/lesslinux/install_source
+	echo "bootdevice=${stickloop}" >> /var/run/lesslinux/startup_vars
+	echo "outerdevice=$device" >> /var/run/lesslinux/startup_vars
+	echo "${device}" > /var/run/lesslinux/preppartitions
+	[ "$ultraquiet" -lt 3 ] && echo "===> Done." > /dev/tty8
+	[ "$ultraquiet" -lt 3 ] && chvt 1
+	[ -p /splash.fifo ] && echo 100 > /splash.fifo
+	[ -p /splash.fifo ] && fbsplash -i /etc/lesslinux/fbsplash_text.cfg -s /etc/lesslinux/branding/fbsplash/textblank.ppm	
+}
+
 mount_and_check() {
 	# $1: device
 	# $2: filesystem
@@ -4013,12 +4227,32 @@ mount_and_check() {
 		echo "bootmode=plain" >> /var/run/lesslinux/startup_vars
 		if ( echo "$device" | grep -E  'd[a-z]$' > /dev/null 2>&1 ) && \
 		   ( cat /proc/mounts | grep "$device" | grep "iso9660" > /dev/null 2>&1 ) ; then
+			doconvert=1
+			umount /lesslinux/cdrom 
+			mkdir -p /lesslinux/boot 
+			mount -o ro ${device}1 /lesslinux/boot
+			if [ -f /lesslinux/boot/boot/dontconvert ] ; then
+				doconvert=0
+			fi
+			umount /lesslinux/boot
 			if echo "$skipservices" | grep -q '|convertiso|' ; then
+				doconvert=0
+			fi
+			if [ "$doconvert" -lt 1 ]  ; then
+				umount /lesslinux/cdrom 
+				stickloop=` losetup -f ` 
+				losetup -r ${stickloop} ${device}
+				mount ${stickloop} /lesslinux/cdrom 
 				echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
-			elif echo "$skipservices" | grep -q force_mbr_conversion ; then
-				iso_convert "$device"
-			else
+				echo -n "$stickloop" > /var/run/lesslinux/install_source
+				echo "bootdevice=$stickloop" >> /var/run/lesslinux/startup_vars
+				echo "outerdevice=$device" >> /var/run/lesslinux/startup_vars
+			elif grep -q noparttablehack /proc/cmdline ; then
+				mount -t $filesystem -o ro $device /lesslinux/cdrom
 				iso_gpt_convert "$device"
+			else
+				mount -t $filesystem -o ro $device /lesslinux/cdrom
+				iso_hack_convert "$device"
 			fi
 		else
 			echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
@@ -4778,6 +5012,186 @@ esac
 			<module>loop</module>
 			<module>squashfs</module>
 		</modlist>
+		<scriptdata location="/etc/rc.d/0141-preppartitions.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+#lesslinux provides preppartitions
+#lesslinux patience
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
+. /etc/rc.lang/en/messages.sh
+[ -f "/etc/rc.lang/$lang/messages.sh" ] && . /etc/rc.lang/$lang/messages.sh
+. /etc/rc.subr/progressbar
+		
+case $1 in
+    start)
+	device=''
+	if [ -f /var/run/lesslinux/preppartitions ] ; then
+		device=`cat /var/run/lesslinux/preppartitions `
+	else
+		exit 0
+	fi
+	# Check if there is enough space behind the partition table for another ISO image
+	devsize=`     parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
+	partend=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $3}'  `
+	isosize=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $2}'  `
+	isotwostart=` expr $devsize - $isosize - 8388608 ` 
+	# Exit gracefully if size is not sufficient
+	[ "$isotwostart" -lt "$partend" ] && exit 0
+	# Determine the end of our new loop device by matching an 8M chunk towards the end of the device: 
+	loopendblock=` expr '(' $devsize - $isosize ')' / 8388608 - 1 ` 
+	# Create a loop device with correct parameters 
+	freeloop=` losetup -f ` 
+	losetup -o ` expr $partend + 1 ` --sizelimit ` expr $loopendblock '*' 8388608 - $partend - 1 ` $freeloop $device
+	dd if=/dev/zero bs=1M count=8 of=${freeloop} 
+	# Calculate numbers of blocks needed:
+	# BLOB first
+	blobblocks=0
+	if [ "$blobsize" -gt 63 ] ; then
+		blobblocks=` expr $blobsize / 8 ` 
+	else
+		blobblocks=1
+	fi
+	# Swap size
+	swapblocks=0
+	if [ "$swapsize" -gt 63 ] ; then
+		swapblocks=` expr $swapsize / 8 ` 
+	else
+		swapblocks=1
+	fi
+	# encrypted home
+	# Recalculate the possible size of the partition for the encrypted home container
+	loopblocks=` expr $loopendblock - '(' $partend / 8388608 ')' ` 
+	hcblocks=1
+	if [ "$homecontmax" -gt 0 ] ; then
+		hcmaxblocks=` expr $homecontmax / 8 ` 
+		hcminblocks=` expr $homecontmin / 8 ` 
+		hcpossible=` expr $loopblocks - $blobblocks - $swapblocks ` 
+		if [ "$hcpossible" -gt $hcmaxblocks ] ; then
+			hcblocks=$hcmaxblocks
+		else
+			hcblocks=$hcpossible
+		fi
+	fi
+	
+	# Create partition table: 
+	parted -s "$freeloop" mklabel gpt
+	
+	# First partition - Swap
+	swappartlabel="${brandshort}-SWAP"
+	[ "$swapblocks" -lt 32 ] && swappartlabel=empty
+	parted -s $freeloop unit B mkpart "${swappartlabel}" ext2 1048576 ` expr $swapblocks '*' 8388608 - 1 ` 
+
+	# Second partition - Blob
+	blobpartlabel="${brandshort}-BLOB"
+	[ "$blobblocks" -lt 32 ] && blobpartlabel=empty
+	if [ "$hcblocks" -lt 32 ] ; then
+		parted -s $freeloop unit B mkpart "${blobpartlabel}" ext2 ` expr $swapblocks '*' 8388608 ` 100% 
+	else
+		parted -s $freeloop unit B mkpart "${blobpartlabel}" ext2 ` expr $swapblocks '*' 8388608 `  ` expr '(' $swapblocks + $blobblocks ')' '*' 8388608 - 1 `
+		# Third partition - encrypted container
+		homepartlabel="${brandshort}-HOME"
+		[ "$hcblocks" -lt 32 ] && homepartlabel=empty
+		parted -s $freeloop unit B mkpart "${homepartlabel}" ext2 ` expr '(' $swapblocks + $blobblocks ')' '*' 8388608 ` 100% 
+	fi
+	sync 
+	parted -s -m $freeloop unit B print > /var/run/lesslinux/looppart.txt
+	losetup -d $freeloop 
+	p1start=` grep '^1' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
+	p1size=`  grep '^1' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
+	p2start=` grep '^2' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
+	p2size=`  grep '^2' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
+	p3start=` grep '^3' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
+	p3size=`  grep '^3' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $4}' `
+	if [ "$swapblocks" -gt 1  ] ; then
+		nextloop=` losetup -f ` 
+		losetup $nextloop -o $(( $p1start + $partend + 1 )) --sizelimit $p1size $device
+		if=/dev/zero bs=1M count=8 of=$nextloop
+		mkfs.ext2 -F -L LessLinuxSwap $nextloop
+		sync
+		losetup -d $nextloop
+	fi
+	if [ "$blobblocks" -gt 1  ] ; then
+		nextloop=` losetup -f ` 
+		losetup $nextloop -o $(( $p2start + $partend + 1 )) --sizelimit $p2size $device
+		if=/dev/zero bs=1M count=8 of=$nextloop
+		mkfs.ext2 -F -L LessLinuxBlob $nextloop
+		sync
+		losetup -d $nextloop
+	fi 
+	if [ "$hcblocks" -gt 31  ] ; then
+		nextloop=` losetup -f ` 
+		losetup $nextloop -o $(( $p3start + $partend + 1 )) --sizelimit $p3size $device
+		if=/dev/zero bs=1M count=8 of=$nextloop
+		mkfs.ext2 -F -L LessLinuxCrypt $nextloop
+		sync 
+		losetup -d $nextloop
+	fi 
+	
+	# FIXME: Write UUIDs to bootloader config! 
+	exit 0
+    ;;
+esac
+		
+# The end	]]>
+		</scriptdata>
+				<scriptdata location="/etc/rc.d/0142-findpartitions.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash
+
+#lesslinux provides findpartitions
+#lesslinux patience
+#lesslinux license BSD
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+. /etc/lesslinux/branding/branding.en.sh
+[ -f "/etc/lesslinux/branding/branding.${lang}.sh" ] && . /etc/lesslinux/branding/branding.${lang}.sh
+. /etc/rc.lang/en/messages.sh
+[ -f "/etc/rc.lang/$lang/messages.sh" ] && . /etc/rc.lang/$lang/messages.sh
+. /etc/rc.subr/progressbar
+. /var/run/lesslinux/startup_vars
+		
+case $1 in
+    start)
+	device=''
+	device=$outerdevice
+	[ -z "$device" ] && exit 0
+	# Check if there is enough space behind the partition table for another ISO image
+	devsize=`     parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
+	partend=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $3}'  `
+	isosize=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $2}'  `
+	isotwostart=` expr $devsize - $isosize - 8388608 ` 
+	# Determine the end of our new loop device by matching an 8M chunk towards the end of the device: 
+	loopendblock=` expr '(' $devsize - $isosize ')' / 8388608 - 1 ` 
+	# Create a loop device with correct parameters 
+	freeloop=` losetup -f ` 
+	losetup -o ` expr $partend + 1 ` --sizelimit ` expr $loopendblock '*' 8388608 - $partend - 1 ` $freeloop $device
+	# Backup the partition table 
+	parted -s -m $freeloop unit B print > /var/run/lesslinux/looppart.txt
+	p1start=` grep '^1' /var/run/lesslinux/looppart.txt | awk -F ':|B:' '{print $2}' `
+	
+	if [ -z "$p1start" ] ; then
+		losetup -d $freeloop
+	else
+		partx -a $freeloop 
+	fi
+    ;;
+esac
+		
+# The end	]]>
+		</scriptdata>
 		<!-- <scriptdata location="/etc/rc.d/0145-debug.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 	
@@ -4819,7 +5233,7 @@ case $1 in
 esac
 #		]]>
 		</scriptdata> -->
-		<scriptdata location="/etc/rc.d/0141-swap.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0143-swap.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides swap
@@ -4892,7 +5306,7 @@ esac
 			<module>sha512</module>
 			<module>aes</module>
 		</modlist>
-		<scriptdata location="/etc/rc.d/0142-blobpart.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0144-blobpart.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides blob
@@ -4930,6 +5344,7 @@ case $1 in
 			# fsck -fCVD ${blobdev}
 			# fsck -fCV ${blobdev}
 			# btrfs-convert ${blobdev}
+			dd if=/dev/zero bs=1M count=8 of=${blobdev}
 			mkfs.btrfs -f -L LessLinuxBlob ${blobdev}
 			mount -t btrfs -o relatime,compress $blobdev /lesslinux/blobpart
 		elif [ "$fstype" = ext4 ] ; then
@@ -4958,7 +5373,7 @@ esac
 	
 		]]>
 		</scriptdata>
-		<scriptdata location="/etc/rc.d/0143-update.sh" mode="0755" group="0" owner="0">
+		<scriptdata location="/etc/rc.d/0145-update.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides updateoverlay1
@@ -5632,7 +6047,7 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>
-	<package name="busybox" version="1.24.2" allowfail="yes">
+	<package name="busybox" version="1.27.1" allowfail="yes">
 		<sources>
 			<file>
 				<pkg sha1="1c79e0eb88281bf4f734ab934a2d9f1d1b00de60">busybox-1.7.2-smack-static-ulibc-i686.tar.gz</pkg>

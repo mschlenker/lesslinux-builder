@@ -67,6 +67,8 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:/opt/bin:/opt/sbin
 . /etc/rc.subr/colors		
 . /etc/lesslinux/branding/branding.en.sh
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 for i in /etc/xinitrc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 	provides="` cat $i | grep '#lesslinux provides' | awk '{print $3}' `"
 	if echo "$skipservices" | grep -q '|'$provides'|' ; then
@@ -145,10 +147,10 @@ done
 		]]>
 		</scriptdata>
 	</scripts> 
-	<package name="initramfs-safersurf" version="20140609-00" allowfail="yes">
+	<package name="initramfs-safersurf" version="20170810-00" allowfail="yes">
 		<sources>
 			<file>                                                                                       
-				<pkg sha1="c30e24e61b972304ae599dea19c52282a170bd78">surfer-safersurf-20140609-00.tar.gz</pkg>
+				<pkg sha1="cfc07b44d48aadfa081f124cc8d5e8e4473048d7">surfer-safersurf-20170810-00.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 		</sources>

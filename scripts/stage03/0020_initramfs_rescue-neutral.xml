@@ -66,6 +66,8 @@ unset swap
 for f in .config/cairo-dock/current_theme/launchers/05launcher.desktop Desktop/000_mmmm.desktop .config/openbox/menu.xml ; do
 	sed -i 's/mmmm\.rb/mmmmng.sh/g' /home/surfer/${f} 
 done
+sed -i 's%wicd-gtk%connman-gtk%g' .config/cairo-dock/current_theme/launchers/02launcher.desktop
+sed -i 's%wicd.desktop%connman-gtk.desktop%g' .config/cairo-dock/current_theme/launchers/02launcher.desktop
 
 # Uncomment to debug
 # /usr/bin/Terminal &
