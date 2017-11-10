@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox-latest"
-		version="55.0.3"
+		version="56.0.2"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                     
-				<pkg sha1="8d9b0861ad71845d4b0e668f1981ec99e617ff36">firefox-55.0.3.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/54.0.1/source/</mirror>
+				<pkg sha1="1b7310adea833a7c74498505f1207416690c9748">firefox-56.0.2.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/56.0.2/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -54,16 +54,16 @@ done
 				<pkg sha1="768e424e24b58533ce7f3980e5c12f1ee3399c77">firefox-48.0.1-gtk320-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file> -->
-			<manualcheck date="20170830" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
+			<manualcheck date="20171030" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
-					<atext linktext="55.0.4" />
-					<atext linktext="55.0.5" />
-					<atext linktext="55.0.6" />
-					<atext linktext="55.0.7" />
-					<atext linktext="55.1." />
-					<atext linktext="55.2." />
-					<atext linktext="56.0" />
+					<atext linktext="56.0.4" />
+					<atext linktext="56.0.5" />
+					<atext linktext="56.0.6" />
+					<atext linktext="56.0.3" />
+					<atext linktext="56.1." />
+					<atext linktext="56.2." />
+					<atext linktext="59.0" />
 					<atext linktext="57.0" />
 					<atext linktext="58.0" />
 				</page>

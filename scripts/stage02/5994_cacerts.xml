@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="cacerts"
-		version="52.2.0"
+		version="52.4.1esr"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -10,9 +10,9 @@
 				<pkg sha1="3ad9a89569fc6cf37e070efa0eaf203451958bf1">lesslinux-cacerts-20160922-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<file>                           
-				<pkg sha1="8dde2a8dd3e2b625ab55f81818da2f9451ebec7e">thunderbird-52.2.0.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/thunderbird/releases/52.2.0/source/</mirror>
+			<file>                                                                         
+				<pkg sha1="c9ab3441780518ed9a57206d5f88445e38adb4f5">firefox-52.4.1esr.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/52.4.1esr/source/</mirror>
 			</file>
 			<manualcheck date="20160922" interval="90" page="http://distfiles.lesslinux.org/" />
 		</sources>
@@ -39,7 +39,7 @@
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/lesslinux-${PKGNAME}-20160922-00.tar.bz2
-			tar xjf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
+			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
 			]]>
 		</unpack>
 		<build>
