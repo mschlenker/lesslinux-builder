@@ -11,6 +11,7 @@ surfer  ALL = NOPASSWD: /usr/bin/teamviewer.sh
 		<![CDATA[#!/bin/bash
 		
 #lesslinux provides teamviewer
+#lesslinux parallel
 #lesslinux license BSD
 
 PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
@@ -44,6 +45,7 @@ case $1 in
 		fi
 		mount -o loop /opt/teamviewer/teamviewer/tv_bin.sqs /opt/teamviewer/teamviewer/tv_bin
 	fi
+	touch /var/log/lesslinux/bootlog/teamviewer.done
     ;;
     stop)
 	printf "$bold===> Removing TeamViewer $normal\n"
