@@ -195,6 +195,30 @@ sed -i 's/uuid=all/uuid='"${newuuid}"'/g' /tmp/batchinstall/${tempdev}/boot/boot
 #[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' /tmp/batchinstall/${tempdev}/boot/isolinux/extlinux.conf
 #[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    /tmp/batchinstall/${tempdev}/boot/isolinux/extlinux.conf
 
+f [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
+	#for f in ` grep 'i.*\.gz'  /tmp/batchinstall/${tempdev}/efiboot/efi.sha | awk '{print $2}' `; do
+	#	cat /tmp/batchinstall/${tempdev}/efiboot/${f} >> /tmp/batchinstall/${tempdev}/data/kickstart.raw
+	#done
+	for f in ` cat /lesslinux/cdrom/lesslinux/boot.sha | awk '{print $2}' `; do
+		cat /lesslinux/cdrom/boot/kernel/${f} >> /tmp/batchinstall/${tempdev}/boot/kickstart.raw
+	done
+	xdelta3 -d -s /tmp/batchinstall/${tempdev}/boot/kickstart.raw /lesslinux/cdrom/boot/kickstart.xd3 \
+		/tmp/batchinstall/${tempdev}/boot/kickstart.iso
+	ls -lah /tmp/batchinstall/${tempdev}/boot/kickstart.iso 
+	rm /tmp/batchinstall/${tempdev}/boot/kickstart.raw
+fi
+
+tar -C /lesslinux/cdrom -cf - Manual autorun.usb GPL.txt license | tar -C  /tmp/batchinstall/${tempdev}/boot -xvf -
+mv /tmp/batchinstall/${tempdev}/boot/autorun.usb /tmp/batchinstall/${tempdev}/boot/autorun.inf
+if [ -f /etc/lesslinux/branding/extrafiles.txt ] ; then
+	for fname in ` cat /etc/lesslinux/branding/extrafiles.txt `] ; do
+		tar -C /lesslinux/cdrom -cf - $fname | tar -C  /tmp/batchinstall/${tempdev}/boot -xvf - 
+	done
+fi
+if [ -f /etc/lesslinux/branding/usbpostinstall.sh ] ; then
+	bash /etc/lesslinux/branding/usbpostinstall.sh /tmp/batchinstall/${tempdev}/boot
+fi
+
 echo -n "${newuuid}" > /tmp/batchinstall/${tempdev}/boot/boot/boot.uuid
 extlinux --install /tmp/batchinstall/${tempdev}/boot/boot/isolinux
 umount /tmp/batchinstall/${tempdev}/boot/
