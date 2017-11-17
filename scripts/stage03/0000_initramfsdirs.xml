@@ -4126,7 +4126,7 @@ iso_hack_convert() {
 	
 	# Copy legacy boot files
 	tar -C /lesslinux/cdrom -cf - boot | tar -C /lesslinux/boot -xf -
-	touch /lesslinux/boot/cmdline
+	touch /lesslinux/boot/boot/cmdline
 	cp -v /tmp/legacy.mbr /lesslinux/boot
 	# Copy GRUBs file to properly detect the boot partition
 	idfile=` ls /lesslinux/boot/boot/grub/????????.cd `
@@ -4181,19 +4181,12 @@ iso_hack_convert() {
 	[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' /lesslinux/boot/boot/isolinux/extlinux.conf
 	[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    /lesslinux/boot/boot/isolinux/extlinux.conf
 
-	echo -n "${newuuid}" > /lesslinux/boot/boot.uuid
+	echo -n "${newuuid}" > /lesslinux/boot/boot/boot.uuid
 	extlinux --install /lesslinux/boot/boot/isolinux
 	
-	if [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
-		for f in ` cat /lesslinux/cdrom/lesslinux/boot.sha | awk '{print $2}' `; do
-			cat /lesslinux/cdrom/boot/kernel/${f} >> /lesslinux/boot/boot/kickstart.raw
-		done
-		/static/bin/xdelta3 -d -s /lesslinux/boot/boot/kickstart.raw /lesslinux/cdrom/boot/kickstart.xd3 \
-			/lesslinux/boot/boot/kickstart.iso && rm /lesslinux/boot/boot/kickstart.raw
-	fi
-
 	tar -C /lesslinux/cdrom -cf - Manual autorun.usb GPL.txt license | tar -C  /lesslinux/boot -xvf -
 	mv /lesslinux/boot/autorun.usb /lesslinux/boot/autorun.inf
+	mv /lesslinux/boot/efi.sha /lesslinux/boot/EFI/efi.sha
 	if [ -f /etc/lesslinux/branding/extrafiles.txt ] ; then
 		for fname in ` cat /etc/lesslinux/branding/extrafiles.txt `] ; do
 			tar -C /lesslinux/cdrom -cf - $fname | tar -C  /lesslinux/boot -xvf - 
@@ -5059,6 +5052,17 @@ case $1 in
 	else
 		exit 0
 	fi
+	mkdir -p /lesslinux/boot
+	mount -t vfat -o rw,iocharset=utf8 ${device}1 /lesslinux/boot
+	if [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
+		for f in ` cat /lesslinux/cdrom/lesslinux/boot.sha | awk '{print $2}' `; do
+			cat /lesslinux/cdrom/boot/kernel/${f} >> /lesslinux/boot/boot/kickstart.raw
+		done
+		xdelta3 -d -s /lesslinux/boot/boot/kickstart.raw /lesslinux/cdrom/boot/kickstart.xd3 \
+			/lesslinux/boot/boot/kickstart.iso && rm /lesslinux/boot/boot/kickstart.raw
+	fi
+	sync
+	umount /lesslinux/boot || umount /lesslinux/boot 
 	# Check if there is enough space behind the partition table for another ISO image
 	devsize=`     parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
 	partend=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $3}'  `

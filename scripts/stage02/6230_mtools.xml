@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='mtools' version='4.0.18' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d703db71a409837a37db10a09ef63a35183f7565'>
+                    mtools-4.0.18.tar.gz
+                </pkg>
+                <mirror>
+                    ftp://ftp.gnu.org/gnu/mtools/
+                </mirror>
+            </file>
+            <manualcheck date='20171117' interval='60' mirror='ftp://ftp.gnu.org/gnu/mtools/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
