@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='ntfs-3g-system-compression' version='1.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d06e5cff8639b65a89920666bd9e6340db7eb4e0'>
+                    ntfs-3g-system-compression-1.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/ebiggers/ntfs-3g-system-compression/releases/download/v1.0/
+                </mirror>
+            </file>
+            <manualcheck date='20171117' interval='60' mirror='https://github.com/ebiggers/ntfs-3g-system-compression/releases/download/v1.0/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
