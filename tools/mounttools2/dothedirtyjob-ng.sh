@@ -195,7 +195,7 @@ sed -i 's/uuid=all/uuid='"${newuuid}"'/g' /tmp/batchinstall/${tempdev}/boot/boot
 #[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' /tmp/batchinstall/${tempdev}/boot/isolinux/extlinux.conf
 #[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    /tmp/batchinstall/${tempdev}/boot/isolinux/extlinux.conf
 
-f [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
+if [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
 	#for f in ` grep 'i.*\.gz'  /tmp/batchinstall/${tempdev}/efiboot/efi.sha | awk '{print $2}' `; do
 	#	cat /tmp/batchinstall/${tempdev}/efiboot/${f} >> /tmp/batchinstall/${tempdev}/data/kickstart.raw
 	#done

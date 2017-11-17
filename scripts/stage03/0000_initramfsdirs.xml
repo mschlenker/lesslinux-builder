@@ -4183,6 +4183,26 @@ iso_hack_convert() {
 
 	echo -n "${newuuid}" > /lesslinux/boot/boot.uuid
 	extlinux --install /lesslinux/boot/boot/isolinux
+	
+	if [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
+		for f in ` cat /lesslinux/cdrom/lesslinux/boot.sha | awk '{print $2}' `; do
+			cat /lesslinux/cdrom/boot/kernel/${f} >> /lesslinux/boot/boot/kickstart.raw
+		done
+		/static/bin/xdelta3 -d -s /lesslinux/boot/boot/kickstart.raw /lesslinux/cdrom/boot/kickstart.xd3 \
+			/lesslinux/boot/boot/kickstart.iso && rm /lesslinux/boot/boot/kickstart.raw
+	fi
+
+	tar -C /lesslinux/cdrom -cf - Manual autorun.usb GPL.txt license | tar -C  /lesslinux/boot -xvf -
+	mv /lesslinux/boot/autorun.usb /lesslinux/boot/autorun.inf
+	if [ -f /etc/lesslinux/branding/extrafiles.txt ] ; then
+		for fname in ` cat /etc/lesslinux/branding/extrafiles.txt `] ; do
+			tar -C /lesslinux/cdrom -cf - $fname | tar -C  /lesslinux/boot -xvf - 
+		done
+	fi
+	if [ -f /etc/lesslinux/branding/usbpostinstall.sh ] ; then
+		ash /etc/lesslinux/branding/usbpostinstall.sh /lesslinux/boot
+	fi
+	
 	umount /lesslinux/boot
 	
 	echo "isohybrid=false" >> /var/run/lesslinux/startup_vars
