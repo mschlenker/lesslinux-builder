@@ -14,6 +14,23 @@
             </file>
             <manualcheck date='20171117' interval='60' mirror='https://github.com/ebiggers/ntfs-3g-system-compression/releases/download/v1.0/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fuse</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ntfs-3g_ntfsprogs</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
