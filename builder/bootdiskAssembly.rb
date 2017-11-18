@@ -68,9 +68,9 @@ class BootdiskAssembly
 				# root.elements["updater/buildidentifier"].text.strip + @build_timestamp + ".raw'")
 				@build_timestamp + ".raw"
 				ksha = ` sha1sum #{@builddir}/stage03/efiimage/#{ktarget} `.strip.split
-				isha =  ` sha1sum #{@builddir}/stage03/efiimage/i#{kname}.gz `.strip.split
+				isha =  ` sha1sum #{@builddir}/stage03/efiimage/EFI/i#{kname}.gz `.strip.split
 				efi_sha.write("#{ksha[0].to_s}  #{ktarget}\n")
-				efi_sha.write("#{isha[0].to_s}  i#{kname}.gz\n")
+				efi_sha.write("#{isha[0].to_s}  EFI/i#{kname}.gz\n")
 			end
 		}
 		# Write checksums of other EFI files
