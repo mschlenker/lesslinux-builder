@@ -203,6 +203,7 @@ class MfsDiskDrive
 	end
 	
 	def mounted
+		return true if loop?
 		m = false
 		@partitions.each { |p|
 			m = true unless p.mount_point.nil?
@@ -250,7 +251,7 @@ class MfsDiskDrive
 		return @trim unless @trim.nil?
 		trim = false
 		return nil unless system("which hdparm > /dev/null")
-		IO.popen("hdparm -I /dev/#{device}") { | l| 
+		IO.popen("hdparm -I /dev/#{@device}") { | l| 
 			while l.gets
 				begin
 					line = $_.strip
@@ -267,7 +268,7 @@ class MfsDiskDrive
 	def ssd?
 		is_ssd = nil
 		# Solid State Device
-		IO.popen("smartctl -i /dev/#{device}") { |l|
+		IO.popen("smartctl -i /dev/#{@device}") { |l|
 			while l.gets
 				line = $_.strip
 				if line =~ /Rotation Rate/ 
@@ -280,6 +281,16 @@ class MfsDiskDrive
 			end
 		}
 		return is_ssd 
+	end
+
+	def loop?
+		lp = false
+		IO.popen("losetup -a") { |l|
+			while l.gets
+				lp = true if $_ =~ Regexp.new('\(/dev/' + @device + '\)')
+			end
+		}
+		return lp 
 	end
 
 end
