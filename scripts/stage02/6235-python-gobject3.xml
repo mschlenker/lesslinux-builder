@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='pygobject3' version='3.24.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='acdb1958e7f9785d92888a423afffd7164502f87'>
+                    pygobject-3.24.1.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.24/
+                </mirror>
+            </file>
+            <manualcheck date='20171123' interval='60' mirror='http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.24/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/pygobject-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd pygobject-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd pygobject-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf pygobject-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
