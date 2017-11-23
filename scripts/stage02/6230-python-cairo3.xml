@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='py3cairo' version='1.10.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='b4283aa1cc9aafd12fd72ad371303a486da1d014'>
+                    pycairo-1.10.0.tar.bz2
+                </pkg>
+                <mirror>
+                    https://www.cairographics.org/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20171123' interval='60' mirror='https://www.cairographics.org/releases/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/pycairo-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd pycairo-${PKGVERSION}
+python3 ./waf configure --prefix=/usr --sysconfdir=/etc 
+python3 ./waf build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd pycairo-${PKGVERSION}
+python3 ./waf install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf pycairo-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
