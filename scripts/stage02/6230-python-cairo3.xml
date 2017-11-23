@@ -21,16 +21,16 @@
         <patch/>
         <build>
             <![CDATA[cd pycairo-${PKGVERSION}
-export PYTHON=python3
-PYTHON=python3
-$PYTHON ./waf configure --prefix=/usr
-$PYTHON ./waf build
+export PYTHON=/usr/bin/python3.6
+PYTHON=/usr/bin/python3.6
+$PYTHON waf configure --prefix=/usr
+$PYTHON waf build
 ]]>
         </build>
         <install>
             <![CDATA[cd pycairo-${PKGVERSION}
-export PYTHON=python3
-PYTHON=python3
+export PYTHON=/usr/bin/python3.6
+PYTHON=/usr/bin/python3.6
 $PYTHON waf install 
 ]]>
         </install>
