@@ -21,13 +21,13 @@
         <patch/>
         <build>
             <![CDATA[cd pycairo-${PKGVERSION}
-python3 ./waf configure --prefix=/usr --sysconfdir=/etc 
-python3 ./waf build
+python3 waf configure --prefix=/usr
+python3 waf build
 ]]>
         </build>
         <install>
             <![CDATA[cd pycairo-${PKGVERSION}
-python3 ./waf install 
+python3 waf install 
 ]]>
         </install>
         <clean>
