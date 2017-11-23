@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='bluedevil' version='5.11.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='af15de0f6cfb0abec0e781bee103333ec2028f59'>
+                    bluedevil-5.11.3.tar.xz
+                </pkg>
+                <mirror>
+                    https://download.kde.org/stable/plasma/5.11.3/
+                </mirror>
+            </file>
+            <manualcheck date='20171123' interval='60' mirror='https://download.kde.org/stable/plasma/5.11.3/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
