@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='blueman' version='2.0.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='79ebf4957eee2609a17afd6f7c10063b0ea23d91'>
+                    blueman-2.0.5.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/blueman-project/blueman/releases/download/2.0.5/
+                </mirror>
+            </file>
+            <manualcheck date='20171123' interval='60' mirror='https://github.com/blueman-project/blueman/releases/download/2.0.5/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
