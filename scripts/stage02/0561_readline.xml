@@ -74,8 +74,8 @@
 			mkdir -p ${TGTDIR}/usr/lib
 			mv -v ${TGTDIR}/lib/lib{readline,history}.a ${TGTDIR}/usr/lib
 			rm -v ${TGTDIR}/lib/lib{readline,history}.so
-			ln -sfv ../../lib/libreadline.so.6 ${TGTDIR}/usr/lib/libreadline.so
-			ln -sfv ../../lib/libhistory.so.6 ${TGTDIR}/usr/lib/libhistory.so
+			ln -sfv ../../lib/libreadline.so.7.0 ${TGTDIR}/usr/lib/libreadline.so
+			ln -sfv ../../lib/libhistory.so.7.0 ${TGTDIR}/usr/lib/libhistory.so
 			
 			]]>
 		</install>
