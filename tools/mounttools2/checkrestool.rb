@@ -4,7 +4,7 @@
 IO.popen("xrandr") { |line|
 	while line.gets
 		l = $_ 
-		if l =~ /connected\s([0-9]+)x([0-9]+)\+/
+		if l =~ /connected.*?([0-9]+)x([0-9]+)\+/
 			mw = 0
 			mh = 0
 			w = $1.to_i
