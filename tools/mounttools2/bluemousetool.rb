@@ -9,8 +9,12 @@ require 'vte'
 @lastline = 0
 @lastcol = 0 
 @pairdevice = nil
+@running = false
+@firstrun = true 
 
-def connect_everything(term, label)
+def connect_everything(term, label, window)
+	return true if @running == true
+	@running = true 
 	term.feed_child("power on\n")
 	term.feed_child("agent on\n")
 	term.feed_child("default-agent\n")
@@ -28,7 +32,7 @@ def connect_everything(term, label)
 			numrows = r - @lastline
 			txt = term.get_text_range( r - numrows - 1, 0, r - 1, 79, false) 
 			inline = term.get_text_range( r, 0, r , 79, false) 
-			analyze_buffer(txt, inline, term, label)
+			analyze_buffer(txt, inline, term, label, window)
 			@lastline = r 
 		end	
 		if i % 120 == 0
@@ -39,7 +43,7 @@ def connect_everything(term, label)
 	end
 end
 
-def analyze_buffer(txt, inline, term, label)
+def analyze_buffer(txt, inline, term, label, window)
 	# @pairdevice 
 	puts "Text:\n" + txt
 	puts "Input line:\n" + inline
@@ -59,6 +63,7 @@ def analyze_buffer(txt, inline, term, label)
 	lines.each{ |l|
 		if l =~ /Passkey\:\s([0-9]+)/ 
 			label.set_markup("<b>Found bluetooth keyboard, please enter passkey: <big>#{$1}</big></b>")
+			window.show_all
 		end
 		if l =~ /Pairing successful/
 			term.feed_child("trust #{@pairdevice}\n")
@@ -109,10 +114,10 @@ lang = "en" if lang.nil?
 
 msg_label = Gtk::Label.new
 msg_label.wrap = true
-msg_label.width_request = 300
+msg_label.width_request = 250
 msg_label.text = "Waiting for bluetooth"
 entry = Gtk::Entry.new
-entry.width_request = 300 
+entry.width_request = 250 
 
 vte = Vte::Terminal.new
 # vte.width_request = 600
@@ -122,10 +127,18 @@ puts vte.scrollback_lines
 vte.set_scrollback_lines 65536
 vte.fork_command("bluetoothctl", [ "bluetoothctl"] ) 
 
+button = Gtk::Button.new( Gtk::Stock::OK )
+button.signal_connect("clicked") { 
+	vte.feed_child("quit\n")
+	Gtk.main_quit
+	exit 0
+}
+
 # VBox for stacking widgets
 lvb = Gtk::VBox.new
 lvb.pack_start_defaults(msg_label)
 lvb.pack_start_defaults(entry)
+lvb.pack_start_defaults(button)
 # lvb.pack_start_defaults(progressframe)
 
 window = Gtk::Window.new
@@ -133,17 +146,25 @@ window.signal_connect("delete_event") {
         puts "delete event occurred"
 	vte.feed_child("quit\n")
         false
+	Gtk.main_quit
+	exit 0
 }
 
 window.signal_connect("destroy") {
         puts "destroy event occurred"
 	vte.feed_child("quit\n")
         Gtk.main_quit
+	exit 0
 }
 
 window.set_title("LessLinuxBlueTool")
-window.signal_connect("show") {  connect_everything(vte, msg_label) }
+window.signal_connect("show") {  
+	window.hide_all if @firstrun == true
+	@firstrun = false 
+	connect_everything(vte, msg_label, window)
+}
 # window.window_position = Gtk::Window::POS_CENTER_ALWAYS
 window.add lvb
 window.show_all
+
 Gtk.main

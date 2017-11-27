@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="lesslinux-drivetools"
-		version="20171122-00"
+		version="20171127-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="de9b851c91aa2aa8aaf11637c684d9b434c86721">lesslinux-drivetools-20171122-00.tar.bz2</pkg>
+				<pkg sha1="17f061c227f5a70bcc8c90ba018384b188cfbcd8">lesslinux-drivetools-20171127-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20171122" interval="120" page="http://distfiles.lesslinux.org/" />
@@ -68,7 +68,7 @@
 				runsmbd XmlDriveList xmldrivelist_ blobinstall vdiskimage MfsSysProfile \
 				photorec-sorter history-extractor jumplist-extractor search-caches pst-importer \
 				qemustarter vshadowgui accesspoint LessLinuxInstaller batch-install assistant batchinstall-ng \
-				waitservice ; do
+				waitservice checkrestool bluemousetool ; do
 					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			install -m 0755 dothedirtyjob.sh ${TGTDIR}/usr/share/lesslinux/drivetools
