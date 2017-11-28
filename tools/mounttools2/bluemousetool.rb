@@ -4,6 +4,7 @@
 require 'glib2'
 require 'gtk2'
 require 'vte'
+require 'MfsTranslator'
 
 @busydevices = Array.new 
 @lastline = 0
@@ -11,6 +12,15 @@ require 'vte'
 @pairdevice = nil
 @running = false
 @firstrun = true 
+
+lang = ENV['LANGUAGE'][0..1]
+lang = ENV['LANG'][0..1] if lang.nil?
+lang = "en" if lang.nil?
+if File.exists? "bluemousetool.xml"
+	@tl = MfsTranslator.new(lang, "bluemousetool.xml")
+else
+	@tl = MfsTranslator.new(lang, "/usr/share/lesslinux/drivetools/bluemousetool.xml")
+end
 
 def connect_everything(term, label, window)
 	return true if @running == true
@@ -62,7 +72,7 @@ def analyze_buffer(txt, inline, term, label, window)
 	end
 	lines.each{ |l|
 		if l =~ /Passkey\:\s([0-9]+)/ 
-			label.set_markup("<b>Found bluetooth keyboard, please enter passkey: <big>#{$1}</big></b>")
+			label.set_markup("<big><big><big><big><big>#{$1}</big></big></big></big></big>")
 			window.show_all
 		end
 		if l =~ /Pairing successful/
@@ -115,7 +125,17 @@ lang = "en" if lang.nil?
 msg_label = Gtk::Label.new
 msg_label.wrap = true
 msg_label.width_request = 250
-msg_label.text = "Waiting for bluetooth"
+msg_label.text = @tl.get_translation("please_enter") 
+
+pin_label = Gtk::Label.new
+pin_label.width_request = 250
+pin_label.text = ""
+
+entry_label = Gtk::Label.new
+entry_label.wrap = true
+entry_label.width_request = 250
+entry_label.text = @tl.get_translation("test_here") 
+
 entry = Gtk::Entry.new
 entry.width_request = 250 
 
@@ -137,6 +157,8 @@ button.signal_connect("clicked") {
 # VBox for stacking widgets
 lvb = Gtk::VBox.new
 lvb.pack_start_defaults(msg_label)
+lvb.pack_start_defaults(pin_label)
+lvb.pack_start_defaults(entry_label)
 lvb.pack_start_defaults(entry)
 lvb.pack_start_defaults(button)
 # lvb.pack_start_defaults(progressframe)
@@ -157,11 +179,11 @@ window.signal_connect("destroy") {
 	exit 0
 }
 
-window.set_title("LessLinuxBlueTool")
+window.set_title( @tl.get_translation("pinhead") )
 window.signal_connect("show") {  
 	window.hide_all if @firstrun == true
 	@firstrun = false 
-	connect_everything(vte, msg_label, window)
+	connect_everything(vte, pin_label, window)
 }
 # window.window_position = Gtk::Window::POS_CENTER_ALWAYS
 window.add lvb
