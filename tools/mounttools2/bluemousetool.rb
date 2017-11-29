@@ -71,7 +71,7 @@ def analyze_buffer(txt, inline, term, label, window)
 		end
 	end
 	lines.each{ |l|
-		if l =~ /Passkey\:\s([0-9]+)/ 
+		if l =~ /Passkey\:\s([0-9]+)/ || l =~ /PIN\scode\:\s([0-9]+)$/ 
 			label.set_markup("<big><big><big><big><big>#{$1}</big></big></big></big></big>")
 			window.show_all
 		end
