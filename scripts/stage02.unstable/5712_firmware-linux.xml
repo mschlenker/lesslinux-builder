@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-firmware"
-		version="4.9.64"
+		version="4.9.65"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -54,7 +54,7 @@
 			export LANG=en_US.UTF-8
 			export LANGUAGE=en_US:en_GB:en
 			ruby lesslinux-firmwarefinder.rb lesslinux-amd64/ ${TGTDIR}/lib/firmware
-			for f in linux-firmware/iwlwifi-72* linux-firmware/iwlwifi-80*  ; do
+			for f in linux-firmware/iwlwifi-72* linux-firmware/iwlwifi-80* linux-firmware/iwlwifi-82* ; do
 				install -m 0644  $f  ${TGTDIR}/lib/firmware
 			done
 			cd ${TGTDIR}/lib/firmware
