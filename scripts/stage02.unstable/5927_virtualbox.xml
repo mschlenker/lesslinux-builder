@@ -97,11 +97,12 @@
 			echo $OWPWD
 			./open-watcom-c-linux-1.9 -i -dDstDir=${OWPWD}/ow19 -dFullInstall=1
 			ls -lah
+			export KBUILD_TARGET_ARCH=x86
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening \
 					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs --nofatal 
 			source env.sh
-			kmk
+			kmk -k
 			]]>
 		</build>
 		<test />
