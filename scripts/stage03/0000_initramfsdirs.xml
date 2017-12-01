@@ -5063,6 +5063,10 @@ case $1 in
 	fi
 	sync
 	umount /lesslinux/boot || umount /lesslinux/boot 
+	# Use mtools to hide some files from Windows
+	for d in boot EFI loader ; do
+		mattrib +r +h / X:/${d}
+	done
 	# Check if there is enough space behind the partition table for another ISO image
 	devsize=`     parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
 	partend=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $3}'  `
