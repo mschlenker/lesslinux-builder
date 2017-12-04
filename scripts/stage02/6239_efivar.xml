@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='efivar' version='31' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='ae5b4c3aeb29fe0ef5212142b0a21d6f003dd266'>
+                    efivar-31.tar.bz2
+                </pkg>
+                <mirror>
+                    https://github.com/rhboot/efivar/releases/download/31/
+                </mirror>
+            </file>
+            <manualcheck date='20171204' interval='60' mirror='https://github.com/rhboot/efivar/releases/download/31/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
