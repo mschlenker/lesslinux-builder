@@ -74,6 +74,7 @@ python setup.py build
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 python setup.py install
+touch /etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 ]]>
         </install>
         <clean>
