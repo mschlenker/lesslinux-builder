@@ -5064,6 +5064,7 @@ case $1 in
 	sync
 	umount /lesslinux/boot || umount /lesslinux/boot 
 	# Use mtools to hide some files from Windows
+	sed -i "s%/dev/disk/by-label/USBDATA%${device}1%g" /etc/mtools.conf 
 	for d in boot EFI loader ; do
 		mattrib +r +h / X:/${d}
 	done
