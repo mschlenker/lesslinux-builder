@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='efibootmgr' version='15' install='chroot'>
+    <package name='efibootmgr' version='15' install='destdir'>
         <license>
             unknown
         </license>
@@ -26,7 +26,10 @@ make EFIDIR=/boot/efi
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+mkdir -p ${TGTDIR}/usr/sbin
+find . -type f -name efibootmgr 
+f=` find . -type f -name efibootmgr ` 
+install -m 0755 $f ${TGTDIR}/usr/sbin
 ]]>
         </install>
         <clean>
