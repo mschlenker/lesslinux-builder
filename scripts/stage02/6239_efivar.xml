@@ -38,8 +38,8 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
-mv /usr/lib{64,}/pkgconfig/efiboot.pc
-mv /usr/lib{64,}/pkgconfig/efivar.pc
+cp -v /usr/lib{64,}/pkgconfig/efiboot.pc
+cp -v /usr/lib{64,}/pkgconfig/efivar.pc
 ]]>
         </install>
         <clean>
