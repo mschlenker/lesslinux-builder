@@ -14,6 +14,17 @@
             </file>
             <manualcheck date='20171204' interval='60' mirror='https://github.com/rhboot/efivar/releases/download/31/'/>
         </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>popt</dep>
+                        <dep>sed</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>
@@ -27,6 +38,8 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
+mv /usr/lib{64,}/pkgconfig/efiboot.pc
+mv /usr/lib{64,}/pkgconfig/efivar.pc
 ]]>
         </install>
         <clean>
