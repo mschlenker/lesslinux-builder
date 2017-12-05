@@ -4453,7 +4453,7 @@ case $1 in
 			fi
 		fi
 		if [ '!' -f /var/run/lesslinux/cdfound ] ; then
-			sleep 2
+			sleep 1
 			mdev -s
 		fi
 	    done
@@ -4509,7 +4509,7 @@ case $1 in
 					esac
 				fi
 			done
-			[ -f /var/run/lesslinux/cdfound ] || sleep 2
+			[ -f /var/run/lesslinux/cdfound ] || sleep 1
 		done
 	    fi
 	    [ -f /var/run/lesslinux/cdfound ] && exit 0
@@ -4885,9 +4885,10 @@ case $1 in
 		else
 			dd if=$copydevice of=/lesslinux/ramiso/lesslinux.iso bs=2048 count=$copyblocks
 		fi
-		umount /lesslinux/isoloop
-		umount /lesslinux/cdrom
+		umount /lesslinux/isoloop || umount /lesslinux/isoloop
+		umount /lesslinux/cdrom || umount /lesslinux/cdrom
 		losetup -d $copydevice
+		umount /lesslinux/cdrom || umount /lesslinux/cdrom
 		freeloop=` losetup -f ` 
 		losetup $freeloop /lesslinux/ramiso/lesslinux.iso
 		mkdir -p /lesslinux/isoloop
