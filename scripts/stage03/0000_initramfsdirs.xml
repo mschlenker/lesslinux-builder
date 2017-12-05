@@ -4221,14 +4221,14 @@ mount_and_check() {
 	thisversion=` cat /etc/lesslinux/updater/version.txt `
 	if [ "$filesystem" = "ext2" -o "$filesystem" = "ext3" -o "$filesystem" = "ext4" ] ; then
 	    mount -o ro -t ext4 $device /lesslinux/cdrom 2>/dev/null
-	elif [ "$filesystem" = "ntfs" ] ; then
-	    if [ -f /static/sbin/ntfs-3g.static -a "$ntfsrw" -gt 0 ] ; then
-		ntfs-3g.static -o rw $device /lesslinux/cdrom 2>/dev/null
-	    elif [ -f /static/sbin/ntfs-3g.static ] ; then
-		ntfs-3g.static -o ro $device /lesslinux/cdrom 2>/dev/null
-	    else
-		mount -t $filesystem -o ro $device /lesslinux/cdrom 2>/dev/null
-	    fi
+	#elif [ "$filesystem" = "ntfs" ] ; then
+	#    if [ -f /static/sbin/ntfs-3g.static -a "$ntfsrw" -gt 0 ] ; then
+	#	ntfs-3g.static -o rw $device /lesslinux/cdrom 2>/dev/null
+	#    elif [ -f /static/sbin/ntfs-3g.static ] ; then
+	#	ntfs-3g.static -o ro $device /lesslinux/cdrom 2>/dev/null
+	#    else
+	#	mount -t $filesystem -o ro $device /lesslinux/cdrom 2>/dev/null
+	#    fi
 	else
 	    mount -t $filesystem -o ro $device /lesslinux/cdrom 2>/dev/null
 	fi
@@ -4276,7 +4276,7 @@ mount_and_check() {
 			find /lesslinux/cdrom -type f -name '*.iso' -maxdepth 3 | while read isofile ; do
 				printf "$bold...> Checking ISOLOOP $isofile $normal\n"
 				free_loop=` losetup -f `
-				losetup $free_loop $isofile
+				losetup $free_loop "$isofile"
 				mount $free_loop /lesslinux/isoloop > /dev/null 2>&1
 				thatversion=` cat /lesslinux/isoloop/${contdir}/version.txt ` 2> /dev/null
 				if [ "$thisversion" = "$thatversion" ] ; then
