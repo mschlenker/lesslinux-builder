@@ -736,6 +736,9 @@ mountpoint -q /proc    || mount -t proc none /proc
 mountpoint -q /sys     || mount -t sysfs sysfs /sys
 mountpoint -q /dev/pts || mount -t devpts -o rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 devpts /dev/pts
 mountpoint -q /dev/shm || mount -t tmpfs devshm /dev/shm
+if [ -d /sys/firmware/efi/efivars ] ; then
+	mountpoint -q /sys/firmware/efi/efivars || mount -t efivarfs -o rw,nosuid,nodev,noexec,relatime efivarfs /sys/firmware/efi/efivars
+fi
 
 # set this to prevent faults if not set in /etc/rc.defaults
 ultraquiet=0
