@@ -793,7 +793,8 @@ showsplash() {
     total=$2
     serv=$3
     if [ '!' -p /splash.fifo ] ; then
-	if fbset ; then
+	colordepth=` fbset | grep geometry | awk '{print $6}' `
+	if [ 1${colordepth} -gt 115 ] ; then
 		# disable the cursor
 		# echo -n -e '\e[?17;14;224c' > /dev/tty1
 		echo -n -e '\e[?25l' > /dev/tty8
