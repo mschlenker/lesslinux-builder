@@ -359,9 +359,12 @@ def scan_parts (doc)
 					end
 					n.elements.each("logicalname") { |l| log_name.push(l.text) }
 					mount_point = log_name[1] if log_name.size > 1
-					parts.push( [ n.elements["logicalname"].text,
-					fstype.to_s,
-					state, mount_point, rw, capacity ] )
+					begin
+						parts.push( [ n.elements["logicalname"].text,
+						fstype.to_s,
+						state, mount_point, rw, capacity ] )
+					rescue
+					end
 				end
 				if is_extended == true
 					n.elements.each("node[@class='volume']") { |m|
