@@ -70,9 +70,9 @@ export PATH
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 
-cd /opt/tor-browser_de
+cd /opt/tor-browser_de/Browser 
 
-[ "\$security" '!=' "smack" ] && exec ./start-tor-browser
+[ "\$security" '!=' "smack" ] && exec ./start-tor-browser --detach
 sudo /opt/tor-browser_de/tor-browser_smack
 
 FFRUN
@@ -89,7 +89,7 @@ cat >> ${TGTDIR}/opt/bin/tor-browser_smack << FFSMACK
 
 export PATH=$PATH:/opt/bin:/opt/sbin
 cd /opt/tor-browser_de
-/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_de/start-tor-browser"
+/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_de/Browser/start-tor-browser --detach"
 
 FFSMACK
 

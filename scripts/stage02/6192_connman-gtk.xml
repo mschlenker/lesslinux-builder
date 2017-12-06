@@ -54,7 +54,26 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
+sed -i 's%Exec=connman-gtk%Exec=connman-gtk-wrapper%g' /usr/share/applications/connman-gtk.desktop 
 sed -i 's%Categories=GTK%Categories=Network;GTK%g'  /usr/share/applications/connman-gtk.desktop 
+
+echo -n '' > /usr/bin/connman-gtk-wrapper
+cat >> /usr/bin/connman-gtk-wrapper << CMRUN
+#!/bin/sh
+
+PATH=/usr/bin:/usr/sbin:\$PATH
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+[ "\$security" '!=' "smack" ] && exec /usr/bin/connman-gtk
+exec sudo /usr/bin/connman-gtk
+
+CMRUN
+
+chmod 0755 /usr/bin/connman-gtk-wrapper
+
 ]]>
         </install>
         <clean>
