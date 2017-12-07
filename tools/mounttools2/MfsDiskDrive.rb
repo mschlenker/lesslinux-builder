@@ -26,10 +26,11 @@ class MfsDiskDrive
 		@gpt = false
 		@mbr = false
 		@trim = nil
+		@efiboot = nil 
 		get_info
 		read_partitions
 	end
-	attr_reader :device, :size, :partitions, :removable, :usb, :vendor, :model, :gpt, :mbr, :smart_total_cycles 
+	attr_reader :device, :size, :partitions, :removable, :usb, :vendor, :model, :gpt, :mbr, :smart_total_cycles, :efiboot 
 	
 	def read_partitions
 		fullblocks = 0
@@ -45,6 +46,7 @@ class MfsDiskDrive
 					if $_.strip =~ /partition table/i
 						@gpt = true if ltoks[2] =~ /gpt/ 
 					end
+					@efiboot = ltoks[0].to_i if ltoks[-1] =~ /esp/i
 				end
 			}
 		end
