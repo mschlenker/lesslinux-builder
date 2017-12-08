@@ -123,9 +123,17 @@ class MfsSinglePartition
 				@winvers = "Windows 8/8.1" if $_.strip =~ /[0-9][0-9][0-9][0-9]\.win8(.*?)(rtm|gdr)\./
 			end
 		}
+		if @winvers.nil?
+			IO.popen("strings '#{ntoskrnl}' ") { |line|
+				while line.gets
+					@winvers = "Windows (unknown)" if $_.strip =~ /Windows/i 
+				end
+			}
+		end
+		
 		intersect = foundfiles & winfiles
 		# $stderr.puts "Intersection: " + intersect.size.to_s 
-		if intersect.size.to_f < winfiles.size.to_f * 0.9 && @winvers.nil?
+		if intersect.size.to_f < winfiles.size.to_f * 0.7 && @winvers.nil?
 			umount if was_mounted == false
 			@winpart = false
 			return false, nil
@@ -133,6 +141,7 @@ class MfsSinglePartition
 		umount if was_mounted == false
 		@winpart = true
 		@winvers = "Windows (unknown)" if @winvers.nil? 
+		puts "Identified: #{@winvers.to_s}" 
 		return @winpart, @winvers
 	end
 	
