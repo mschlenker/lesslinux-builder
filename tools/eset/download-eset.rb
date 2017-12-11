@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 require 'fileutils'
-
-dlurl = "https://download.eset.com/com/eset/tools/recovery/rescue_cd/latest/eset-sysrescue.1.0.9.0.enu.iso"
+dlurl = 'https://download.eset.com/com/eset/tools/recovery/rescue_cd/latest/eset_sysrescue_live_enu.iso'
+# dlurl = "https://download.eset.com/com/eset/tools/recovery/rescue_cd/latest/eset-sysrescue.1.0.9.0.enu.iso"
 
 if system("mountpoint -q /lesslinux/blobpart") 
 	FileUtils.mkdir_p("/lesslinux/blobpart/eset")
