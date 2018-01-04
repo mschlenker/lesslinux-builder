@@ -59,7 +59,7 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3190300
+			cd ${PKGNAME}-autoconf-3210000
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
@@ -75,13 +75,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-autoconf-3190300
+			cd ${PKGNAME}-autoconf-3210000
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-autoconf-3190300
+			rm -rf ${PKGNAME}-autoconf-3210000
 			]]>
 		</clean>
 	</package>
