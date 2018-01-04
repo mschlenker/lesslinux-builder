@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="52.4.1esr"
+		version="52.5.3esr"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="c9ab3441780518ed9a57206d5f88445e38adb4f5">firefox-52.4.1esr.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/52.4.1esr/source/</mirror>
+				<pkg sha1="85ed2f723370b8e43e0bc190d95979d97ed1cd2d">firefox-52.5.3esr.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/52.5.3esr/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -50,7 +50,7 @@ done
 				<pkg sha1="13b5c8a518b7226d05eaa9ac4ba203ee2c6adf53">dotcargo-i686-20170622.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20170830" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
+			<manualcheck date="20180104" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<!-- <page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
 					<atext linktext="45.6.3" />
