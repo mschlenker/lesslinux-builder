@@ -1,18 +1,18 @@
 <llpackages>
 	<package 
 		name="thunderbird"
-		version="52.4.0"
+		version="52.5.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="a51299181996abb6b861a7a5e41a770ef357ceb4">thunderbird-52.4.0.source.tar.xz</pkg>
-				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/52.4.0/source/</mirror>
+				<pkg sha1="7d723c07e1a0800a0fef30ad2bea8c2be143292a">thunderbird-52.5.2.source.tar.xz</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/52.5.2/source/</mirror>
 			</file>  
 			<!-- 
 
-tbtag=THUNDERBIRD_52_4_0_RELEASE
+tbtag=THUNDERBIRD_52_5_2_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
 echo '==> Cloning: '"$l"
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
@@ -20,7 +20,7 @@ hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
 done
 			-->
 			<file>       
-				<pkg sha1="8b4adc50b4f7a88687ea07b374bc3842bc28434c">thunderbird-52.4.0.source.de-es-pl-ru.tar.xz</pkg>
+				<pkg sha1="70b785827521ca59559781da074124b9df991ee6">thunderbird-52.5.2.source.de-es-pl-ru.tar.xz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                           
@@ -39,14 +39,14 @@ done
 				<pkg sha1="51a7eb7d86ce24d8199f741a0079f0d56ecd6368">enigmail-1.6.tar.gz</pkg>
 				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
 			</file> -->
-			<manualcheck date="20170830" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
+			<manualcheck date="20180104" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
-					<atext linktext="52.4.1" />
-					<atext linktext="52.4.2" />
-					<atext linktext="52.4.3" />
-					<atext linktext="52.5." />
+					<atext linktext="52.5.3" />
+					<atext linktext="52.5.4" />
+					<atext linktext="52.5.5" />
 					<atext linktext="52.6." />
+					<atext linktext="52.7." />
 					<atext linktext="59.0." />
 				</page>
 			</check>
