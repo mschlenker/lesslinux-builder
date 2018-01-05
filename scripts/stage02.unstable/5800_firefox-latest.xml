@@ -34,18 +34,18 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 
-# fftag=FIREFOX_50_0_RELEASE
+fftag=FIREFOX_57_0_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
-# ( cd $l ; hg checkout $fftag ) ; 
+( cd $l ; hg checkout $fftag ) ; 
 done
 			
 			-->
-			<file>                                    
+			<!-- <file>                                    
 				<pkg sha1="ec23fd1e1c5db029bdcd160a5d38b334ed90fd50">dotcargo-i686-20180104.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
+			</file>  -->
 			<!-- <file>                                    
 				<pkg sha1="d7e196bb01c95faa6b9a97b6d6825afe7bacb46f">firefox-48.0.1-gcc6-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
@@ -129,6 +129,7 @@ done
                         <dep>pkg-config</dep>
                         <dep>popt</dep>
                         <dep>pygobject</dep>
+			<dep>rustc</dep>
                         <dep>sed</dep>
                         <dep>tar</dep>
                         <dep>unzip</dep>
@@ -160,11 +161,9 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			exit 0
-			
 			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			mv firefox-${PKGVERSION} mozilla-release
-			tar xf ${SRCDIR}/dotcargo-i686-20180104.tar.gz 
+			# tar xf ${SRCDIR}/dotcargo-i686-20180104.tar.gz 
 			]]>
 		</unpack>
 		<patch>
@@ -176,11 +175,9 @@ done
 		<build>
 			<![CDATA[
 
-exit 0
-
-export PATH=` pwd `/cargo/bin:$PATH
-export CARGO_HOME=` pwd `/cargo
-export RUSTUP_HOME=` pwd `/rustup
+# export PATH=` pwd `/cargo/bin:$PATH
+# export CARGO_HOME=` pwd `/cargo
+# export RUSTUP_HOME=` pwd `/rustup
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL
@@ -243,9 +240,9 @@ cd mozilla-release
 		<install>
 			<![CDATA[
 
-mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
-touch ${TGTDIR}/opt/firefox-${PKGVERSION}/investigate_failed_build_later 
-exit 0
+#mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
+#touch ${TGTDIR}/opt/firefox-${PKGVERSION}/investigate_failed_build_later 
+#exit 0
 		
 shortvers=` echo ${PKGVERSION} | sed 's/esr//g' ` 
 TARFILE=mozilla-release/ff-build/dist/firefox-${shortvers}.en-US.linux-` uname -m `.tar.bz2
