@@ -1,0 +1,50 @@
+<llpackages>
+    <package name='rustc' version='1.19.0' install='chroot'>
+        <license>unknown</license>
+        <sources>
+            <file>
+                <pkg sha1='846b7a8ce1f33c3fc5e0d3b0b4258540515d67a9'>rustc-1.19.0-src.tar.gz</pkg>
+                <mirror>https://static.rust-lang.org/dist</mirror>
+            </file>
+            <manualcheck date='20180103' interval='60' mirror='http://www.linuxfromscratch.org/blfs/view/cvs/general/rust.html'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}-src
+
+cat <<EOF > config.toml
+# see src/bootstrap/config.toml.example for more possible options
+[llvm]
+targets = "X86"
+
+[build]
+# install cargo as well as rust
+extended = true
+
+[install]
+prefix = "/usr"
+docdir = "share/doc/rustc-1.19.0"
+channel = "stable"
+EOF
+
+python2.7 x.py build
+
+]]>
+        </build>
+        <install>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}-src    
+python2.7 x.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}-src
+]]>
+        </clean>
+    </package>
+</llpackages>
