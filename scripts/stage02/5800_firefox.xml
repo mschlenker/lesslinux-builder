@@ -152,6 +152,7 @@ done
 			<dep>nss</dep>
 			<dep>icu</dep>
 			<dep>gcc54</dep>
+			<dep>rustc</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -170,9 +171,9 @@ done
 		<build>
 			<![CDATA[
 			
-export PATH=` pwd `/cargo/bin:$PATH
-export CARGO_HOME=` pwd `/cargo
-export RUSTUP_HOME=` pwd `/rustup
+#export PATH=` pwd `/cargo/bin:$PATH
+#export CARGO_HOME=` pwd `/cargo
+#export RUSTUP_HOME=` pwd `/rustup
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL
