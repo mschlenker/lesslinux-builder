@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-firmware"
-		version="4.9.77"
+		version="4.9.78"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -56,6 +56,10 @@
 			ruby lesslinux-firmwarefinder.rb lesslinux-amd64/ ${TGTDIR}/lib/firmware
 			for f in linux-firmware/iwlwifi-72* linux-firmware/iwlwifi-80* linux-firmware/iwlwifi-82* ; do
 				install -m 0644  $f  ${TGTDIR}/lib/firmware
+			done
+			mkdir -p ${TGTDIR}/lib/firmware/rtlwifi
+			for f in linux-firmware/rtlwifi/rtl*.bin ; do
+				install -m 0644 $f ${TGTDIR}/lib/firmware/rtlwifi
 			done
 			cd ${TGTDIR}/lib/firmware
 			ln -sf iwlwifi-7265-10.ucode iwlwifi-7265D-10.ucode 

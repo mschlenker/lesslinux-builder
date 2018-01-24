@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="4.9.77"
+		version="4.9.78"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,13 +19,13 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="a03397c00c4884bb40bb03abc635e299572c7c8e">patch-4.9.77.xz</pkg>
+				<pkg sha1="99f7891ff6ff5528ef0f4399b830d6bf02faccf1">patch-4.9.78.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<manualcheck date="20180122" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
-					<atext linktext="patch-4.9.78." />
+					<atext linktext="patch-4.9.81." />
 					<atext linktext="patch-4.9.79." />
 					<atext linktext="patch-4.9.80." />
 					<atext linktext="patch-4.14." />
