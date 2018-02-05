@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-nopae"
-		version="4.9.78"
+		version="4.9.80"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,15 +19,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="99f7891ff6ff5528ef0f4399b830d6bf02faccf1">patch-4.9.78.xz</pkg>
+				<pkg sha1="de1b8271c2948c4b000bb8fcf692ca3ffed3a22b">patch-4.9.80.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20180122" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20180204" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
 					<atext linktext="patch-4.9.81." />
-					<atext linktext="patch-4.9.79." />
-					<atext linktext="patch-4.9.80." />
+					<atext linktext="patch-4.9.82." />
+					<atext linktext="patch-4.9.83." />
 					<atext linktext="patch-4.14." />
 					<atext linktext="patch-4.15." />
 					<atext linktext="patch-4.16." />
@@ -61,7 +61,7 @@
 			<dep>bc</dep>
 			<dep>distcc</dep>
 			<dep>kmod</dep>
-			<dep>VirtualBox</dep>
+			<!-- <dep>VirtualBox</dep> -->
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -102,10 +102,10 @@
 				make -j $jobcount 
 				make -j $jobcount bzImage
 			fi
-			rsync -avHP /usr/local/VirtualBox/src/ ../VirtualBox/ 
-			for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
-				make -C . M=../VirtualBox/${mod} modules
-			done
+			#rsync -avHP /usr/local/VirtualBox/src/ ../VirtualBox/ 
+			#for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
+			#	make -C . M=../VirtualBox/${mod} modules
+			#done
 			cd ../linux-${PKGVERSION}
 			make -j $jobcount modules_prepare 
 			tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
