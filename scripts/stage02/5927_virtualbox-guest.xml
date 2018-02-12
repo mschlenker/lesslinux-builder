@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="VirtualBox-guest"
+		version="5.2.6"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="7eadcc2ead4caa3fe960cc9663d67b96d43caa61">VirtualBox-5.2.6.tar.bz2</pkg>
+				<mirror>http://download.virtualbox.org/virtualbox/5.2.6/</mirror>
+			</file>
+			<manualcheck date="20180212" interval="120" page="http://www.virtualbox.org/" />
+			<!-- <check>
+				<page html="http://dlc-cdn.sun.com/virtualbox/">
+					<atext linktext="4.3.43" />
+					<atext linktext="4.3.37" />
+					<atext linktext="4.3.38" />
+					<atext linktext="4.3.39" />
+					<atext linktext="4.3.40" />
+					<atext linktext="4.3.41" />
+					<atext linktext="4.3.42" />
+					<atext linktext="4.4." />
+					<atext linktext="4.5." />
+					<atext linktext="5.0.0/" />
+					<atext linktext="5.0." />
+					<atext linktext="5.1." />
+				</page>
+			</check> -->
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/VirtualBox-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- WARNING: Using distcc will break the build! -->
+		<build>
+			<![CDATA[
+			export USER=root
+			cd VirtualBox-${PKGVERSION}
+			./configure --only-additions
+			source env.sh
+			kmk
+			cd out/linux.x86/release/bin/additions/src/
+			export KERNDIR=/usr/src/linux-4.9.80-ll-pae-0
+			make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/local/${PKGNAME}-${PKGVERSION}
+			ln -s ${PKGNAME}-${PKGVERSION} ${TGTDIR}/usr/local/${PKGNAME} 
+			tar -C VirtualBox-${PKGVERSION}/out/linux.x86/release/bin -cf - . | tar -C ${TGTDIR}/usr/local/${PKGNAME}-${PKGVERSION} -xf - 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf VirtualBox-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
