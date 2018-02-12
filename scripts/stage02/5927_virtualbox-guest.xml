@@ -28,6 +28,46 @@
 				</page>
 			</check> -->
 		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>fusepy</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>libICE</dep>
+                        <dep>libIDL</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>makeself</dep>
+                        <dep>nasm</dep>
+                        <dep>pkg-config</dep>
+                        <dep>plaso</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>sed</dep>
+                        <dep>setuptools</dep>
+                        <dep>subversion</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/VirtualBox-${PKGVERSION}.tar.bz2
