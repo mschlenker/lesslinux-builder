@@ -83,13 +83,13 @@
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
-			mkdir linux-${PKGVERSION}.build
-			tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
+			#mkdir linux-${PKGVERSION}.build
+			#tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
-			cd linux-${PKGVERSION}.build
+			cd linux-${PKGVERSION} # .build
 			yes '' | make oldconfig
 			cp -v .config ../linux-${PKGVERSION}
 			make clean
@@ -106,9 +106,9 @@
 			# for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
 			#	make -C . M=../VirtualBox/${mod} modules
 			# done
-			cd ../linux-${PKGVERSION}
-			make -j $jobcount modules_prepare 
-			tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
+			# cd ../linux-${PKGVERSION}
+			# make -j $jobcount modules_prepare 
+			# tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
 			]]>
 		</build>
 		<test />
@@ -121,7 +121,7 @@
 			
 			localversion='ll-pae-0'
 			
-			cd linux-${PKGVERSION}.build
+			cd linux-${PKGVERSION} # .build
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux
@@ -137,7 +137,7 @@
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
-			cd ../linux-${PKGVERSION}
+			# cd ../linux-${PKGVERSION}
 			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
 			]]>
 		</install>
@@ -145,7 +145,7 @@
 			  <![CDATA[
 			  
 			  rm -rf linux-${PKGVERSION}
-			  rm -rf linux-${PKGVERSION}.build
+			  # rm -rf linux-${PKGVERSION}.build
 			  rm -rf VirtualBox
 			  
 			  ]]>
