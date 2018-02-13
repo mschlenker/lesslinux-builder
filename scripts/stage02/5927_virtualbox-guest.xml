@@ -82,11 +82,12 @@
 			./configure --only-additions
 			source env.sh
 			kmk
-			# cd out/linux.x86/release/bin/additions/src/
-			# export KERN_DIR=/usr/src/linux-4.9.80-ll-pae-0
-			# make
+			cd out/linux.x86/release/bin/additions/src/
+			export KERN_DIR=/usr/src/linux-4.9.80-ll-pae-0
+			make
 			cd /usr/src/linux-4.9.80-ll-pae-0
 			for mod in vboxsf vboxguest vboxvideo ; do
+				make -C . M=${builddir}/out/linux.x86/release/bin/additions/src/${mod} clean 
 				make -C . M=${builddir}/out/linux.x86/release/bin/additions/src/${mod} modules
 			done
 			]]>
