@@ -80,7 +80,7 @@
 			export KERN_DIR=/usr/src/linux-4.9.80-ll-pae-0
 			cd VirtualBox-${PKGVERSION}
 			DISDIR=`pwd ` 
-			./configure --only-additions
+			./configure --only-additions --with-linux=${KERN_DIR}
 			source env.sh
 			kmk
 			cd out/linux.x86/release/bin/additions/src/
