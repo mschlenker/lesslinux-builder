@@ -1,0 +1,68 @@
+<llpackages>
+	<package name="VirtualBox-guest" />
+	<scripts>
+		<scriptdata location="/etc/rc.d/0660-vboxguest.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides vboxguest
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+vboxfound=0
+if dmidecode | grep -i VirtualBox ; then
+	vboxfound=1
+fi
+[ "$vboxfound" -lt 1 ] && exit 0
+
+case $1 in 
+    start)
+	if [ -n "$usbip" ] ; then
+		printf "$bold===> Starting VirtualBox guest services$normal\n"
+		/usr/local/VirtualBox-guest/additions/VBoxService --pidfile /var/run/VBoxService.pid 
+	fi
+    ;;
+esac
+
+]]>	
+		</scriptdata>
+		<scriptdata location="/etc/xinitrc.d/0660-vboxguest.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides vboxguest
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin:
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+vboxfound=0
+if dmidecode | grep -i VirtualBox ; then
+	vboxfound=1
+fi
+[ "$vboxfound" -lt 1 ] && exit 0
+
+case $1 in 
+    start)
+	if [ -n "$usbip" ] ; then
+		printf "$bold===> Starting VirtualBox guest services$normal\n"
+		/usr/local/VirtualBox-guest/additions/VBoxClient --clipboard
+		/usr/local/VirtualBox-guest/additions/VBoxClient --display
+		/usr/local/VirtualBox-guest/additions/VBoxClient --seamless
+		/usr/local/VirtualBox-guest/additions/VBoxClient --draganddrop
+	fi
+    ;;
+esac
+
+]]>	
+		</scriptdata>
+	</scripts>
+</llpackages>
