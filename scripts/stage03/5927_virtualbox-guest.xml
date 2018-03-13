@@ -1,6 +1,20 @@
 <llpackages>
 	<package name="VirtualBox-guest" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
 	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/vboxguest" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/local/VirtualBox-guest/additions/VBoxClient
+		]]>
+		</scriptdata>
+		<scriptdata location="/etc/sudoers.strict.d/vboxguest" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/local/VirtualBox-guest/additions/VBoxClient
+		]]>
+		</scriptdata>
 		<scriptdata location="/etc/rc.d/0660-vboxguest.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash
 		
@@ -44,20 +58,16 @@ export PATH
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
 
-vboxfound=0
-if dmidecode | grep -i VirtualBox ; then
-	vboxfound=1
-fi
-[ "$vboxfound" -lt 1 ] && exit 0
+[ -f /var/run/VBoxService.pid  ] || exit 0
 
 case $1 in 
     start)
 	if [ -n "$usbip" ] ; then
 		printf "$bold===> Starting VirtualBox guest services$normal\n"
-		/usr/local/VirtualBox-guest/additions/VBoxClient --clipboard
-		/usr/local/VirtualBox-guest/additions/VBoxClient --display
-		/usr/local/VirtualBox-guest/additions/VBoxClient --seamless
-		/usr/local/VirtualBox-guest/additions/VBoxClient --draganddrop
+		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --clipboard
+		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --display
+		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --seamless
+		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --draganddrop
 	fi
     ;;
 esac
