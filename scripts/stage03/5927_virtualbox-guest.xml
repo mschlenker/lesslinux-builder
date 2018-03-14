@@ -36,10 +36,8 @@ fi
 
 case $1 in 
     start)
-	if [ -n "$usbip" ] ; then
-		printf "$bold===> Starting VirtualBox guest services$normal\n"
-		/usr/local/VirtualBox-guest/additions/VBoxService --pidfile /var/run/VBoxService.pid 
-	fi
+	printf "$bold===> Starting VirtualBox guest services$normal\n"
+	/usr/local/VirtualBox-guest/additions/VBoxService --pidfile /var/run/VBoxService.pid 
     ;;
 esac
 
