@@ -60,13 +60,11 @@ export PATH
 
 case $1 in 
     start)
-	if [ -n "$usbip" ] ; then
-		printf "$bold===> Starting VirtualBox guest services$normal\n"
-		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --clipboard
-		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --display
-		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --seamless
-		sudo /usr/local/VirtualBox-guest/additions/VBoxClient --draganddrop
-	fi
+	printf "$bold===> Starting VirtualBox guest services$normal\n"
+	sudo /usr/local/VirtualBox-guest/additions/VBoxClient --clipboard
+	sudo /usr/local/VirtualBox-guest/additions/VBoxClient --display
+	sudo /usr/local/VirtualBox-guest/additions/VBoxClient --seamless
+	sudo /usr/local/VirtualBox-guest/additions/VBoxClient --draganddrop
     ;;
 esac
 
