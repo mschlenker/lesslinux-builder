@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='keepassxc-2.3.1-src.tar.xz' version='20180316' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='35bd4991357bace56347d3c7d5340eb7106ba5db'>
+                    keepassxc-2.3.1-src.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/keepassxreboot/keepassxc/releases/download/2.3.1/
+                </mirror>
+            </file>
+            <manualcheck date='20180316' interval='60' mirror='https://github.com/keepassxreboot/keepassxc/releases/download/2.3.1/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/keepassxc-2.3.1-src.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd keepassxc-2.3.1
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd keepassxc-2.3.1
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf keepassxc-2.3.1
+]]>
+        </clean>
+    </package>
+</llpackages>
