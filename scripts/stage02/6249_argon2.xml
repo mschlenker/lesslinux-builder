@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='phc-winner-argon2' version='20171227' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='c398df55c8fffe70c9a952dd3f696115437234d8'>
+                    20171227.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/P-H-C/phc-winner-argon2/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20180316' interval='60' mirror='https://github.com/P-H-C/phc-winner-argon2/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/20171227.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd phc-winner-argon2-20171227
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd phc-winner-argon2-20171227
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf phc-winner-argon2-20171227
+]]>
+        </clean>
+    </package>
+</llpackages>
