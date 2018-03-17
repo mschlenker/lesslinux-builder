@@ -44,7 +44,7 @@ case $1 in
 		mkdir -p /usr/var/lib/openvas/${d}
 		mount -t tmpfs -o mode=0755,size=32M tmpfs /usr/var/lib/openvas/${d}
 	    done
-	    yes '' | openvas-mkcert
+	    yes '' | openvas-mkcert -f 
 	    openvas-mkcert-client -n -i 
 	fi
 	touch /var/log/lesslinux/bootlog/openvas.done
