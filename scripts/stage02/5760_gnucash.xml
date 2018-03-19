@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='gnucash' version='2.7.7' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='4d95e0e21406db19c7930a977c708b06e7d5e72f'>
+                    gnucash-2.7.7.tar.bz2
+                </pkg>
+                <mirror>
+                    https://netix.dl.sourceforge.net/project/gnucash/gnucash%20%28unstable%29/2.7.7/
+                </mirror>
+            </file>
+            <manualcheck date='20180319' interval='60' mirror='https://netix.dl.sourceforge.net/project/gnucash/gnucash%20%28unstable%29/2.7.7/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -D WITH_AQBANKING=OFF ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
