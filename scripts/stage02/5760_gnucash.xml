@@ -15,15 +15,23 @@
             <manualcheck date='20180319' interval='60' mirror='https://netix.dl.sourceforge.net/project/gnucash/gnucash%20%28unstable%29/2.7.7/'/>
         </sources>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+            <![CDATA[
+	    
+tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+tar xf ${SRCDIR}/googletest-20180319.tar.bz2
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+            <![CDATA[
+WORKINGDIR=` pwd ` 
+cd googletest
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release .
+make -j2
+cd ../${PKGNAME}-${PKGVERSION}
 mkdir _build
 cd _build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -D WITH_AQBANKING=OFF ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -D WITH_AQBANKING=OFF -DGMOCK_ROOT=${WORKINGDIR}/googletest/googlemock ..
 make -j 2
 ]]>
         </build>
