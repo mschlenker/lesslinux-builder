@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox-latest"
-		version="57.0.3"
+		version="59.0.1"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                     
-				<pkg sha1="09b3dac606ae6185079bc4d47bf543545f7cff94">firefox-57.0.3.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/57.0.3/source/</mirror>
+				<pkg sha1="cdaf28a784fa14cf4bc3e7e111406a9fcf273cc5">3db9e3d52b17563efca181ccbb50deb8660c59ae.tar.bz2</pkg>
+				<mirror>https://hg.mozilla.org/releases/mozilla-release/archive/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -161,8 +161,8 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
-			mv firefox-${PKGVERSION} mozilla-release
+			tar xf 3db9e3d52b17563efca181ccbb50deb8660c59ae.tar.bz2
+			mv mozilla-release-3db9e3d52b17563efca181ccbb50deb8660c59ae mozilla-release
 			# tar xf ${SRCDIR}/dotcargo-i686-20180104.tar.gz 
 			]]>
 		</unpack>
