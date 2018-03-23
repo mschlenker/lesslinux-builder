@@ -207,10 +207,12 @@ cd mozilla-release
 				export CC='distcc gcc'
 				export CXX='distcc g++'
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
-					make -f client.mk 
+				# make -f client.mk
+				./mach build
 			else
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=gcc CXX=g++\"%g" .mozconfig 
-					make -f client.mk
+				#	make -f client.mk
+				./mach build
 			fi
 			echo '===> Trying to find libxul.so...'
 			find ff-build -type f -name libxul.so
