@@ -70,12 +70,12 @@ tar xf ${SRCDIR}/googletest-20180319.tar.bz2
             <![CDATA[
 WORKINGDIR=` pwd ` 
 cd googletest
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release .
+cmake -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release .
 make -j2
 cd ../${PKGNAME}-${PKGVERSION}
 mkdir _build
 cd _build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -D WITH_AQBANKING=OFF -DGMOCK_ROOT=${WORKINGDIR}/googletest/googlemock ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DGMOCK_ROOT=${WORKINGDIR}/googletest/googlemock ..
 make -j 2
 ]]>
         </build>
@@ -83,6 +83,73 @@ make -j 2
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 cd _build
 make install
+ln -s /opt/share/applications/gnucash.desktop /usr/share/applications/gnucash.desktop
+sed -i 's%Exec=gnucash%Exec=/opt/bin/gnucash_wrapper%g' /opt/share/applications/gnucash.desktop
+sed -i 's%Icon=gnucash-icon%Icon=/opt/share/icons/hicolor/48x48/apps/gnucash-icon.png%g' /opt/share/applications/gnucash.desktop
+rm /opt/bin/gnucash_wrapper
+
+cat >> /opt/bin/gnucash_wrapper << WRAPPER
+#!/static/bin/ash
+
+PATH=/static/bin:/static/sbin:\$PATH
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+if [ "\$security" = smack ] ; then
+        sudo /opt/bin/gnucash_smack
+else
+        exec "/opt/bin/gnucash"
+fi
+
+WRAPPER
+
+rm /opt/bin/gnucash_smack
+cat >> /opt/bin/gnucash_smack << SMACK
+#!/static/bin/ash
+
+PATH=/static/bin:/static/sbin:\$PATH
+export PATH
+LD_LIBRARY_PATH=/opt/lib
+export LD_LIBRARY_PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+case \$lang in 
+    de)
+        LANGUAGE=de_DE 
+    ;;
+    pl)
+        LANGUAGE=pl_PL
+    ;;
+    es)
+        LANGUAGE=es_ES
+    ;;
+    ru)
+        LANGUAGE=ru_RU
+    ;;
+    *)
+        LANGUAGE=en_US
+    ;;
+esac
+
+export LANGUAGE
+
+# Find the SMACK context we can run run gnucash in
+if grep hbci /etc/smack/user ; then
+        exec /static/sbin/newsmack hbci /static/bin/su surfer -c "/opt/bin/gnucash"
+else
+        exec /static/sbin/newsmack internet /static/bin/su surfer -c "/opt/bin/gnucash"
+fi
+SMACK
+
+chmod 0755 /opt/bin/gnucash_wrapper
+chmod 0755 /opt/bin/gnucash_smack
+
+
+
 ]]>
         </install>
         <clean>
