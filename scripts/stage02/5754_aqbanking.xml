@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="aqbanking"
-		version="5.0.25"
+		version="5.7.8"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="80314a6f6114a0a3f0062161bb38effc0f1f4b62">aqbanking-5.0.25.tar.gz</pkg>
+				<pkg sha1="5326ac114a6feacb69c5fb8852e85327dc11845b">aqbanking-5.7.8.tar.gz</pkg>
 				<mirror>http://www.aquamaniac.de/</mirror>
 			</file>
-			<manualcheck date="20140724" interval="180" page="https://pcsclite.alioth.debian.org/" />
+			<manualcheck date="20180215" interval="180" page="https://pcsclite.alioth.debian.org/" />
 			<!-- <check>
 				<page html="http://download.enlightenment.org/releases/">
 					<atext linktext="eina-1.0.1." />
@@ -61,7 +61,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-				pump make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --sysconfdir=/etc --prefix=/usr 
 				make
