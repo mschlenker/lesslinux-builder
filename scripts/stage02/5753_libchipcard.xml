@@ -55,6 +55,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			autoreconf -fi
 			./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
