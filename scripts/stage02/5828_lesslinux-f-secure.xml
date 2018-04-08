@@ -1,0 +1,48 @@
+<llpackages>
+	<package 
+		name="lesslinux-f-secure"
+		version="20180408-00"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="512c28e6c5afea1fe21b56f30b275cfa283fc04d">lesslinux-f-secure-20180408-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20170831" interval="120" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do here!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd eset
+			mkdir -p ${TGTDIR}/opt/f-secure/fssp/bin
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/etc/opt/f-secure
+			mkdir -p ${TGTDIR}/var/opt/f-secure
+			touch ${TGTDIR}/etc/opt/f-secure/.keep_me
+			touch ${TGTDIR}/var/opt/f-secure/.keep_me
+			install -m 0755 dbupdate ${TGTDIR}/opt/f-secure/fssp/bin/dbupdate
+			install -m 0755 dbupdate ${TGTDIR}/opt/f-secure/fssp/bin/fsav
+			ln -s ../../opt/f-secure/fssp/bin/dbupdate ${TGTDIR}/usr/bin/dbupdate
+			ln -s ../../opt/f-secure/fssp/bin/fsav ${TGTDIR}/usr/bin/fsav
+			install -m 0755 dbupdate ${TGTDIR}/etc/init.d/fsaua
+			]]>
+		</install>
+	</package>
+</llpackages>
