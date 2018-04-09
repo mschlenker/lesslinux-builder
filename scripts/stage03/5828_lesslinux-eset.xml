@@ -56,10 +56,13 @@ case $1 in
 	    esetsys=""
 	    mkdir -m 0755 -p /lesslinux/eset/iso
 	    if mountpoint -q /lesslinux/blobpart ; then
+		[ -f /lesslinux/blobpart/eset_sysrescue_live_enu.iso ] && esetiso="/lesslinux/blobpart/eset_sysrescue_live_enu.iso"
+		[ -f /lesslinux/blobpart/eset/eset_sysrescue_live_enu.iso ] && esetiso="/lesslinux/blobpart/eset/eset_sysrescue_live_enu.iso"
 		[ -f /lesslinux/blobpart/eset/eset.iso ] && esetiso="/lesslinux/blobpart/eset/eset.iso"
 		[ -f /lesslinux/blobpart/eset/eset.sqs ] && esetsys="/lesslinux/blobpart/eset/eset.sqs"
 	    fi
 	    if [ -z "$esetiso" -a -z "$esetsys" ] ; then
+		[ -f /lesslinux/blob/eset/eset_sysrescue_live_enu.iso ] && esetiso="/lesslinux/blob/eset/eset_sysrescue_live_enu.iso"
 		[ -f /lesslinux/blob/eset/eset.iso ] && esetiso="/lesslinux/blob/eset/eset.iso"
 		[ -f /lesslinux/blob/eset/eset.sqs ] && esetsys="/lesslinux/blob/eset/eset.sqs"
 	    fi
@@ -97,12 +100,11 @@ case $1 in
 		    mkdir -p /lesslinux/blobpart/eset
 		    cp /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blobpart/eset/eset.sqs && \
 		    umount /lesslinux/eset/iso && \
-		    rm /lesslinux/blobpart/eset/eset.iso
+		    rm "$esetiso"
 		    esetsys="/lesslinux/blobpart/eset/eset.sqs"
 		else
 		    cp -v /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blob/eset/eset.sqs && \
-		    umount /lesslinux/eset/iso && \
-		    rm /lesslinux/blobpart/eset/eset.iso
+		    umount /lesslinux/eset/iso 
 		    esetsys="/lesslinux/blob/eset/eset.sqs"
 		fi
 	    fi
