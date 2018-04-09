@@ -1,7 +1,8 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-dlurl = "http://download.teamviewer.com/download/teamviewer_i386.tar.xz"
+#dlurl = "http://download.teamviewer.com/download/teamviewer_i386.tar.xz"
+dlurl = "https://download.teamviewer.com/download/version_12x/teamviewer_i386.tar.xz"
 
 if system("mountpoint -q /lesslinux/blobpart") 
 	if system("wget -O /lesslinux/blobpart/teamviewer_i386.tar.xz #{dlurl}")
