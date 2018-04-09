@@ -36,10 +36,12 @@
 			mkdir -p ${TGTDIR}/etc/init.d
 			mkdir -p ${TGTDIR}/etc/opt/f-secure
 			mkdir -p ${TGTDIR}/var/opt/f-secure
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/lesslinux-f-secure
 			touch ${TGTDIR}/etc/opt/f-secure/.keep_me
 			touch ${TGTDIR}/var/opt/f-secure/.keep_me
 			install -m 0755 dbupdate ${TGTDIR}/opt/f-secure/fssp/bin/dbupdate
 			install -m 0755 dbupdate ${TGTDIR}/opt/f-secure/fssp/bin/fsav
+			install -m 0755 update_f-secure.sh ${TGTDIR}/usr/share/lesslinux/lesslinux-f-secure
 			ln -s ../../opt/f-secure/fssp/bin/dbupdate ${TGTDIR}/usr/bin/dbupdate
 			ln -s ../../opt/f-secure/fssp/bin/fsav ${TGTDIR}/usr/bin/fsav
 			install -m 0755 dbupdate ${TGTDIR}/etc/init.d/fsaua
