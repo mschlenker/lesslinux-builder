@@ -23,12 +23,12 @@ require 'net/http'
 # http://download.avgfree.com/filedir/inst/avg2013flx-r3118-a6926.i386.tar.gz
 # tarball = 'http://download.avgfree.com/filedir/inst/avg2013flx-r3115-a6155.i386.tar.gz'
 
-tarball='http://download.avgfree.com/filedir/inst/avg2013flx-r3118-a6926.i386.tar.gz'
+tarball='https://download.avgfree.com/filedir/inst/avg2013flx-r3115-a6155.i386.tar.gz'
 
 exit 1 if tarball.nil? 
 
 if system("mountpoint -q /lesslinux/blobpart") 
-	if system("wget -O /lesslinux/blobpart/avg-free.tgz \"#{tarball}\"")
+	if system("wget --no-check-certificate -O /lesslinux/blobpart/avg-free.tgz \"#{tarball}\"")
 		system("ln -sf /lesslinux/blobpart/avg-free.tgz /lesslinux/blob/")
 	else
 		system("rm /lesslinux/blobpart/avg-free.tgz")
