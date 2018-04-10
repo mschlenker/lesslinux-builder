@@ -34,6 +34,7 @@
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/avgfree
+			mkdir -p ${TGTDIR}/usr/share/applications
 			
 			install -m 0755 ${PKGNAME}/download-avg.rb ${TGTDIR}/usr/share/lesslinux/blob/
 			install -m 0644 ${PKGNAME}/avg-free.xml ${TGTDIR}/usr/share/lesslinux/blob/
