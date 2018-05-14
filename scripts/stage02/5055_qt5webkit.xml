@@ -35,7 +35,7 @@
 			cd qtwebkit-opensource-src-${PKGVERSION}
 			mkdir -p build
 			cd       build 
-			qmake ../WebKit.pro && make
+			qmake-qt5 ../WebKit.pro && make
 			]]>
 		</build>
 		<test />
