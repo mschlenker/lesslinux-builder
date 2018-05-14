@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='nvme-cli' version='1.5' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='16864b2df623e822ba2a69b0d5caa8b3f190acf0'>
+                    nvme-cli-1.5.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/linux-nvme/nvme-cli/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20180514' interval='60' mirror='https://github.com/linux-nvme/nvme-cli/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd nvme-cli-1.5
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd nvme-cli-1.5
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf nvme-cli-1.5
+]]>
+        </clean>
+    </package>
+</llpackages>
