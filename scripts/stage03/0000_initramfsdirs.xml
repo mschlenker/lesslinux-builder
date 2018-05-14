@@ -5271,6 +5271,7 @@ esac
 		<![CDATA[#!/static/bin/ash
 		
 #lesslinux provides swap
+#lesslinux parallel
 #lesslinux license BSD
 #lesslinux description
 # Prepare development and build environment of LessLinux
@@ -5321,6 +5322,7 @@ case $1 in
 		swapuuid=` blkid -o udev $swappart | grep 'ID_FS_UUID=' | awk -F '=' '{print $2}' ` 
 		format_and_mount_swap $swapuuid $swappart
 	fi
+	touch /var/log/lesslinux/bootlog/swap.done
     ;;
     stop)
 	swaps=` cat /proc/swaps | grep '^/' | awk '{print $1}' ` 
@@ -5835,7 +5837,15 @@ export PATH
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
-		
+
+# Allow Xorg modules to be skipped in case of defective drivers:
+for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; do
+   case "$i" in
+     skipxmods=*)
+	skipxmods=`echo "$i" | awk -F '=' '{print $2}' | sed 's/|/ /g' ` 
+     ;;
+done
+
 case $1 in
     start)
 	printf "$bold===> Preparing start of X-Server $normal "
@@ -5855,6 +5865,17 @@ case $1 in
 	else
 	    cp -f /etc/X11/xorg.conf.xorg /etc/X11/xorg.conf
 	fi
+	for m in $skipxmods ; do
+		if [ -f /usr/lib/xorg/modules/drivers/${m}.so ; do
+			mount --bind /dev/null /usr/lib/xorg/modules/drivers/${m}.so
+		done
+		if [ -f /usr/lib/xorg/modules/extensions/${m}.so ; do
+			mount --bind /dev/null /usr/lib/xorg/modules/extensions/${m}.so
+		done
+		if [ -f /usr/lib/xorg/modules/${m}.so ; do
+			mount --bind /dev/null /usr/lib/xorg/modules/${m}.so
+		done
+	done
 	## FIXME: Make it possible to skip this Logitech fix
 	## for mod in hid_logitech usbhid hid ; do
 	##   /sbin/modprobe -r $mod
