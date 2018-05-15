@@ -19,6 +19,10 @@
 			</file> -->
 			<manualcheck date="20180514" interval="180" page="http://www.linuxfromscratch.org/blfs/view/svn/x/qtwebkit5.html" />
 		</sources>
+		 <builddeps>
+                        <dep>qt5</dep>
+			<dep>webkit26</dep>
+		</builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar  xf ${SRCDIR}/qtwebkit-opensource-src-${PKGVERSION}.tar.xz
