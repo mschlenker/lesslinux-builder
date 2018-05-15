@@ -39,13 +39,13 @@
 			cd qtwebkit-opensource-src-${PKGVERSION}
 			mkdir -p build
 			cd       build 
-			qmake-qt5 ../WebKit.pro && make
+			qmake-qt5 ../WebKit.pro && make -j6
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd qtwebkit-opensource-src-${PKGVERSION}
+			cd qtwebkit-opensource-src-${PKGVERSION}/build
 			make install
 			]]>
 		</install>
