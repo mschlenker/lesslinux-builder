@@ -14,6 +14,9 @@
             </file>
             <manualcheck date='20180522' interval='60' mirror='https://github.com/open-iscsi/configshell-fb/archive/'/>
         </sources>
+	<builddeps>
+                        <dep>rtslib-fb</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/v1.1.fb24.tar.gz
 ]]>
