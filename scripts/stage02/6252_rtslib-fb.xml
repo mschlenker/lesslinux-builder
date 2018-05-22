@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='rtslib-fb' version='v2.1.fb67' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='4c0c0dec3fd33b3fec27e120b6e58573e5270880'>
+                    v2.1.fb67.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/open-iscsi/rtslib-fb/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20180522' interval='60' mirror='https://github.com/open-iscsi/rtslib-fb/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/v2.1.fb67.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd rtslib-fb-2.1.fb67
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd rtslib-fb-2.1.fb67
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf rtslib-fb-2.1.fb67
+]]>
+        </clean>
+    </package>
+</llpackages>

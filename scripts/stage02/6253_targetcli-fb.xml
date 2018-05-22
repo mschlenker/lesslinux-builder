@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='targetcli-fb' version='v2.1.fb48' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='be3448c17ab7357a5e2e6af95b059e5c1b750362'>
+                    v2.1.fb48.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/open-iscsi/targetcli-fb/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20180522' interval='60' mirror='https://github.com/open-iscsi/targetcli-fb/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/v2.1.fb48.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd targetcli-fb-2.1.fb48
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd targetcli-fb-2.1.fb48
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf targetcli-fb-2.1.fb48
+]]>
+        </clean>
+    </package>
+</llpackages>
