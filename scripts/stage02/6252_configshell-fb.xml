@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='configshell-fb' version='v1.1.fb24' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='ac09ce15327a4507937bab0ee067206ba80cc95b'>
+                    v1.1.fb24.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/open-iscsi/configshell-fb/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20180522' interval='60' mirror='https://github.com/open-iscsi/configshell-fb/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/v1.1.fb24.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd configshell-fb-1.1.fb24
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd configshell-fb-1.1.fb24
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf configshell-fb-1.1.fb24
+]]>
+        </clean>
+    </package>
+</llpackages>
