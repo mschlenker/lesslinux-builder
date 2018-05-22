@@ -14,6 +14,44 @@
             </file>
             <manualcheck date='20180522' interval='60' mirror='https://github.com/open-iscsi/rtslib-fb/archive/'/>
         </sources>
+	<builddeps>
+                        <dep>Cython</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>PyYAML</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>antlr_python_runtime</dep>
+                        <dep>bash</dep>
+                        <dep>bencode</dep>
+                        <dep>binplist</dep>
+                        <dep>construct</dep>
+                        <dep>dfvfs</dep>
+                        <dep>distribute</dep>
+                        <dep>docutils</dep>
+                        <dep>dpkt</dep>
+                        <dep>ez_setup</dep>
+                        <dep>fusepy</dep>
+                        <dep>hachoir-core</dep>
+                        <dep>hachoir-metadata</dep>
+                        <dep>hachoir-parser</dep>
+                        <dep>httplib2</dep>
+                        <dep>ipaddr</dep>
+                        <dep>ipython</dep>
+                        <dep>protobuf</dep>
+                        <dep>psutil</dep>
+                        <dep>py-dateutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>pyparsing</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>python-gflags</dep>
+                        <dep>python-onedrive</dep>
+                        <dep>pytsk3</dep>
+                        <dep>pytz</dep>
+                        <dep>requests</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                        <dep>typing</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/v2.1.fb67.tar.gz
 ]]>
