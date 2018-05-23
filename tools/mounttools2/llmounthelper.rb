@@ -17,7 +17,7 @@ if ARGV.size < 2
 end
 
 Dir.entries("/sys/block").each { |l|
-	if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ || l =~ /sr[0-9]$/ 
+	if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ || l =~ /sr[0-9]$/  || l =~ /nvme[0-9]n[0-9]$/ 
 		unless  ARGV[1][l].nil?
 			begin
 				d =  MfsDiskDrive.new(l, true)

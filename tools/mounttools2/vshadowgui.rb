@@ -63,7 +63,7 @@ gobutton.signal_connect('clicked') {
 		end
 	}
 	Dir.entries("/sys/block").each { |l|
-		if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
+		if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/  || l =~ /nvme[0-9]n[0-9]$/ )
 			begin 
 				d =  MfsDiskDrive.new(l, true)
 				@drives.push(d) 

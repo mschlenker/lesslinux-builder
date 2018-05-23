@@ -286,7 +286,7 @@ def fill_combo(combo, gobutton, default=nil)
 			end
 	}
 	Dir.entries("/sys/block").each { |l|
-			if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ )
+			if ( l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/  || l =~ /nvme[0-9]n[0-9]$/ )
 				begin 
 					d =  MfsDiskDrive.new(l, true)
 					@drives.push(d) 
@@ -298,7 +298,7 @@ def fill_combo(combo, gobutton, default=nil)
 	itemcount = 0
 	@drives.each{ |d|
 		type = "(S)ATA/SCSI" 
-		type = "MMC (int/ext)" if d.device =~ /mmcblk/ 
+		type = "eMMC/NVME (int/ext)" if d.device =~ /mmcblk/ || d.device =~ /nvme/  
 		type = "USB" if d.usb == true
 		nicename = @tl.get_translation("disk") + " - #{type} - /dev/#{d.device} - #{d.vendor} #{d.model} (#{d.human_size})"
 		combo.append_text(nicename) 
