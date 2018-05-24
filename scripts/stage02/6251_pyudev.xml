@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='pyudev' version='0.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='54586fdcd5ef544c5ac8769aa72bfc4f6303fa45'>
+                    pyudev-0.3.tar.gz
+                </pkg>
+                <mirror>
+                    https://files.pythonhosted.org/packages/ca/60/1b81267e28fceb88100028e78c219127894415e1b0a1f2e6a2e06729ea3d/
+                </mirror>
+            </file>
+            <manualcheck date='20180524' interval='60' mirror='https://files.pythonhosted.org/packages/ca/60/1b81267e28fceb88100028e78c219127894415e1b0a1f2e6a2e06729ea3d/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
