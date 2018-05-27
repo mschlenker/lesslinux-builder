@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+[ "$console" = tty2 ] && chvt 2 
+
+case $1 in
+	-P)
+		touch /var/run/lesslinux/shutdown_requested_poweroff
+		exec /static/bin/busybox poweroff
+	;;
+	-r)
+		touch /var/run/lesslinux/shutdown_requested_reboot
+		exec /static/bin/busybox reboot
+	;;
+	-h)
+		if [ "$halt" = "poweroff" ] ; then 
+			touch /var/run/lesslinux/shutdown_requested_poweroff
+			exec /static/bin/busybox poweroff
+		else
+			touch /var/run/lesslinux/shutdown_requested_halt
+			exec /static/bin/busybox halt
+		fi
+	;;
+esac
