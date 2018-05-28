@@ -4336,6 +4336,11 @@ mount_and_check() {
 
 case $1 in
     start)
+	if grep earlyeject /proc/cmdline ; then
+	    for n in `seq 0 9 ` ; do
+	        eject /dev/sr${n}
+	    done
+	fi
         if [ -f /var/run/lesslinux/cdfound ] ; then
 	    printf "$bold===> Skip search for LESSLINUX System $normal\n"
 	else
