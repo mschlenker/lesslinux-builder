@@ -5874,6 +5874,7 @@ for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; 
      skipxmods=*)
 	skipxmods=`echo "$i" | awk -F '=' '{print $2}' | sed 's/|/ /g' ` 
      ;;
+   esac
 done
 
 case $1 in
@@ -5896,15 +5897,15 @@ case $1 in
 	    cp -f /etc/X11/xorg.conf.xorg /etc/X11/xorg.conf
 	fi
 	for m in $skipxmods ; do
-		if [ -f /usr/lib/xorg/modules/drivers/${m}.so ; do
+		if [ -f /usr/lib/xorg/modules/drivers/${m}.so ] ; then
 			mount --bind /dev/null /usr/lib/xorg/modules/drivers/${m}.so
-		done
-		if [ -f /usr/lib/xorg/modules/extensions/${m}.so ; do
+		fi
+		if [ -f /usr/lib/xorg/modules/extensions/${m}.so ] ; then
 			mount --bind /dev/null /usr/lib/xorg/modules/extensions/${m}.so
-		done
-		if [ -f /usr/lib/xorg/modules/${m}.so ; do
+		fi
+		if [ -f /usr/lib/xorg/modules/${m}.so ] ; then
 			mount --bind /dev/null /usr/lib/xorg/modules/${m}.so
-		done
+		fi
 	done
 	## FIXME: Make it possible to skip this Logitech fix
 	## for mod in hid_logitech usbhid hid ; do

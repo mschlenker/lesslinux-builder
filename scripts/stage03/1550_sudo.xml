@@ -71,6 +71,10 @@ ALL 	ALL = NOPASSWD: /sbin/shutdown,\
 	/sbin/halt,\
 	/sbin/poweroff,\
 	/sbin/reboot,\
+	/static/sbin/shutdown,\
+	/static/sbin/halt,\
+	/static/sbin/poweroff,\
+	/static/sbin/reboot,\
 	/usr/libexec/xfsm-shutdown-helper
 # All users might unmount all filesystems without password
 ALL	ALL = NOPASSWD: /bin/umount
@@ -99,6 +103,8 @@ surfer  ALL = NOPASSWD: /etc/lesslinux/updater/updater.sh
 # not necessary, do it with directory ownership
 # surfer  ALL = NOPASSWD: /usr/bin/ll_ff_allow_install,\
 #	/usr/bin/ll_ff_prevent_install
+## Allow to select EFI boot entries:
+surfer  ALL = NOPASSWD: /usr/sbin/efibootmgr
 ##### THIS IS DANGEROUS
 surfer  ALL = NOPASSWD: /usr/bin/passwd
 surfer  ALL = NOPASSWD: /usr/bin/Terminal

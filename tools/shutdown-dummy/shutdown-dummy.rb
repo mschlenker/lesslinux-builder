@@ -21,7 +21,7 @@ tl = MfsTranslator.new(lang, tlfile)
 if system("mountpoint -q /sys/firmware/efi/efivars") 
 	@efi = true
 	ct = 0 
-	IO.popen("efibootmgr") { |line|
+	IO.popen("sudo /usr/sbin/efibootmgr") { |line|
 		while line.gets
 			ltoks = $_.strip.split("* ") 
 			if ltoks[0] =~ /Boot([0-9][0-9][0-9][0-9])$/ 
@@ -79,7 +79,7 @@ window.signal_connect("destroy") {
 }
 
 sbutton.signal_connect("clicked") { 
-	system("poweroff")
+	system("sudo /sbin/poweroff")
 	Gtk.main_quit
 	exit 0
 }
@@ -91,9 +91,9 @@ cbutton.signal_connect("clicked") {
 
 rbutton.signal_connect("clicked") { 
 	if @entrynum.size > 0
-		system("efibootmgr --bootnext #{@entrynum[dropdown.active]}")
+		system("sudo /usr/sbin/efibootmgr --bootnext #{@entrynum[dropdown.active]}")
 	end
-	system("shutdown -r now")
+	system("sudo /sbin/poweroff")
 	Gtk.main_quit
 	exit 0 
 }
