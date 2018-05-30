@@ -24,7 +24,7 @@ if system("mountpoint -q /sys/firmware/efi/efivars")
 	IO.popen("sudo /usr/sbin/efibootmgr") { |line|
 		while line.gets
 			ltoks = $_.strip.split("* ") 
-			if ltoks[0] =~ /Boot([0-9][0-9][0-9][0-9])$/ 
+			if ltoks[0] =~ /Boot([0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])$/ 
 				@entrynum[ct] = $1
 				@entryname[ct] = ltoks[1..-1].join(" ")
 				@winentry = ct if ltoks[1..-1].join(" ") =~ /windows/i
@@ -93,7 +93,7 @@ rbutton.signal_connect("clicked") {
 	if @entrynum.size > 0
 		system("sudo /usr/sbin/efibootmgr --bootnext #{@entrynum[dropdown.active]}")
 	end
-	system("sudo /sbin/poweroff")
+	system("sudo /sbin/reboot")
 	Gtk.main_quit
 	exit 0 
 }
