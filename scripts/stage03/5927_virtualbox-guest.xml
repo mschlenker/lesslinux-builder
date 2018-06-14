@@ -43,6 +43,36 @@ esac
 
 ]]>	
 		</scriptdata>
+		<scriptdata location="/etc/rc.d/0661-vboxsf.sh" mode="0755" group="0" owner="0">
+		<![CDATA[#!/bin/bash
+		
+#lesslinux provides vboxsf
+#lesslinux license BSD
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+vboxfound=0
+if dmidecode | grep -i VirtualBox ; then
+	vboxfound=1
+fi
+[ "$vboxfound" -lt 1 ] && exit 0
+
+case $1 in 
+    start)
+	printf "$bold===> Starting VirtualBox shared folders$normal\n"
+	modprobe -v vboxsf
+	mkdir -p /media/vbox
+	/usr/local/VirtualBox-guest/additions/mount.vboxsf -o uid=1000,gid=1000 shared /media/vbox
+    ;;
+esac
+
+]]>	
+		</scriptdata>
 		<scriptdata location="/etc/xinitrc.d/0660-vboxguest.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash
 		
