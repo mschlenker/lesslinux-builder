@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="lesslinux-drivetools"
-		version="20180523-00"
+		version="20180628-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="c55593fb684963f072dfecb93776beb52c3373c2">lesslinux-drivetools-20180523-00.tar.bz2</pkg>
+				<pkg sha1="6c54758342511585f6cbf0ad48b941177069438c">lesslinux-drivetools-20180628-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20171122" interval="120" page="http://distfiles.lesslinux.org/" />
@@ -60,7 +60,7 @@
 				resetshell usbinstall mountall mountnet runx11vnc runsmbd blobinstall \
 				vdiskimage ddrescueimage photorec-sorter history-extractor jumplist-extractor \
 				search-caches pst-importer qemustarter vshadowgui accesspoint LessLinuxInstaller \
-				bluemousetool ; do
+				bluemousetool runiscsitgt  ; do
 					install -m 0644 ${f}.xml  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			for f in llpm_drives MfsDiskDrive MfsSinglePartition MfsTranslator MfsSamDatabase \
@@ -69,7 +69,7 @@
 				runsmbd XmlDriveList xmldrivelist_ blobinstall vdiskimage MfsSysProfile \
 				photorec-sorter history-extractor jumplist-extractor search-caches pst-importer \
 				qemustarter vshadowgui accesspoint LessLinuxInstaller batch-install assistant batchinstall-ng \
-				waitservice checkrestool bluemousetool ; do
+				waitservice checkrestool bluemousetool runiscsitgt ; do
 					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			install -m 0755 dothedirtyjob.sh ${TGTDIR}/usr/share/lesslinux/drivetools
