@@ -53,7 +53,7 @@
 				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh \
 				mmmmng.sh llmountandopen.sh blobinstall.sh vdiskimage.sh ddrescueimage.sh \
 				photorec-sorter.sh history-extractor.sh jumplist-extractor.sh search-caches.sh batch-install.sh \
-				pst-importer.sh qemustarter.sh vshadowgui.sh accesspoint.sh bluemousetool.sh ; do
+				pst-importer.sh qemustarter.sh vshadowgui.sh accesspoint.sh bluemousetool.sh runiscsitgt.sh ; do
 					install -m 0755 ${f}  ${TGTDIR}/usr/bin
 			done
 			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui \
