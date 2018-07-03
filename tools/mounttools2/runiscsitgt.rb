@@ -153,7 +153,9 @@ def start_istgt(ipaddr)
 	}
 	# Copy base configuration:
 	configout = File.new("/etc/istgt/istgt.conf.cbrescue", "w")
-	File.open("config/istgt.conf").each { |line|
+	conffile = "/usr/share/lesslinux/notfallcd4/config/istgt.conf"
+	conffile = "config/istgt.conf" if File.exists? "config/istgt.conf"
+	File.open(conffile).each { |line|
 		configout.write(line.gsub("IPADDRESS", ipaddr))
 	}
 	lun = 0
