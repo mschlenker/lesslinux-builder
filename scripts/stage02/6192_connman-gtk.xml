@@ -54,8 +54,8 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
-sed -i 's%Exec=connman-gtk%Exec=connman-gtk-wrapper%g' /usr/share/applications/connman-gtk.desktop 
-sed -i 's%Categories=GTK%Categories=Network;GTK%g'  /usr/share/applications/connman-gtk.desktop 
+#sed -i 's%Exec=connman-gtk%Exec=connman-gtk-wrapper%g' /usr/share/applications/connman-gtk.desktop 
+#sed -i 's%Categories=GTK%Categories=Network;GTK%g'  /usr/share/applications/connman-gtk.desktop 
 
 echo -n '' > /usr/bin/connman-gtk-wrapper
 cat >> /usr/bin/connman-gtk-wrapper << CMRUN
@@ -71,6 +71,22 @@ export PATH
 exec sudo /usr/bin/connman-gtk
 
 CMRUN
+
+cat > /usr/share/applications/connman-gtk.desktop << CMDESK
+[Desktop Entry]
+Type=Application
+Exec=connman-gtk-wrapper
+Name=Connman Settings
+Name[fi_FI]=Connman-Asetukset
+Name[de_DE]=Netzwerk einrichten
+Categories=Network;GTK;GNOME;Settings;X-GNOME-Settings-Panel;X-Unity-Settings-Panel;HardwareSettings
+X-GNOME-Settings-Panel=connman-gtk
+X-Unity-Settings-Panel=connman-gtk
+Icon=preferences-system-network
+
+CMDESK
+
+
 
 chmod 0755 /usr/bin/connman-gtk-wrapper
 

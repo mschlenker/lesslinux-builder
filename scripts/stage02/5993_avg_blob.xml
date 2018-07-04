@@ -2,15 +2,15 @@
 <llpackages>
 	<package 
 		name="avgfree"
-		version="20161008-00"
+		version="20180410-00"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="650192f75e03f5107c477e7b943b5affe808e819">avgfree-20161008-00.tar.bz2</pkg>
+				<pkg sha1="2b8072775746065322d2e62887ed43f818b8e425">avgfree-20180410-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20161008-00" interval="60" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20180410" interval="60" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -34,6 +34,7 @@
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
 			mkdir -p ${TGTDIR}/usr/share/lesslinux/avgfree
+			mkdir -p ${TGTDIR}/usr/share/applications
 			
 			install -m 0755 ${PKGNAME}/download-avg.rb ${TGTDIR}/usr/share/lesslinux/blob/
 			install -m 0644 ${PKGNAME}/avg-free.xml ${TGTDIR}/usr/share/lesslinux/blob/
@@ -53,6 +54,24 @@ EOF
 				avgscan avgsetup avgupdate avgvvctl ; do
 				ln -sf /opt/avg/av/bin/avgwrapper.sh ${TGTDIR}/usr/bin/${f} 
 			done
+			
+cat << DESKFILE >  ${TGTDIR}/usr/share/applications/avgfree.desktop
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=AVG Antivirus Free
+Comment=Virus scan with AVG
+Comment[de]=Virenscan mit AVG
+Comment[pl]=Virus scan with AVG
+Categories=CB-Rescue;
+Exec=sudo /usr/share/lesslinux/avgfree/avg-wrapper.sh
+Icon=emblem-system
+Terminal=false
+StartupNotify=true
+			
+DESKFILE
+
 			]]>
 		</install>
 		<clean>

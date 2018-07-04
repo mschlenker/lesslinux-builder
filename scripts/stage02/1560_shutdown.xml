@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="shutdown-dummy"
-		version="20121208-00"
+		version="20180530-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                     
-				<pkg sha1="8d3484473fb08ca8aa309afcf364cbc67b6cc3bc">shutdown-dummy-20121208-00.tar.gz</pkg>
+				<pkg sha1="e32f4f0259a78037844b908ecdaf76eced6ae78b">shutdown-dummy-20180530-00.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
-			<manualcheck date="20140802" interval="365" page="http://distfiles.lesslinux.org/" />
+			<manualcheck date="20180527" interval="365" page="http://distfiles.lesslinux.org/" />
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
@@ -48,13 +48,16 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}
 			mkdir -p ${TGTDIR}/sbin
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/applications
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/shutdown-dummy
 			install -m 0755 shutdown ${TGTDIR}/sbin
 			install -m 0755 shutdown-wrapper.sh ${TGTDIR}/usr/bin
 			install -m 0755 shutdown.desktop    ${TGTDIR}/usr/share/applications
+			install -m 0755 shutdown-dummy.rb ${TGTDIR}/usr/share/lesslinux/shutdown-dummy
+			install -m 0644 shutdown-dummy.xml ${TGTDIR}/usr/share/lesslinux/shutdown-dummy
 			]]>
 		</install>
 	</package>

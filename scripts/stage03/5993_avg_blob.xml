@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <llpackages>
 	<package name="avgfree" />
+	<dirs>
+		<dir mode="0750">/etc/sudoers.lax.d</dir>
+		<dir mode="0750">/etc/sudoers.strict.d</dir>
+	</dirs>
 	<scripts>
+		<scriptdata location="/etc/sudoers.lax.d/avgfree" mode="0440" group="0" owner="0">
+		<![CDATA[
+surfer  ALL = NOPASSWD: /usr/share/lesslinux/avgfree/avg-wrapper.sh
+]]>
+		</scriptdata>	
 		<scriptdata location="/etc/rc.d/0600-avg-antivirus.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash
 		

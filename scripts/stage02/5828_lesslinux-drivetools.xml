@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="lesslinux-drivetools"
-		version="20171208-00"
+		version="20180703-02"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
-				<pkg sha1="cee2524ba8d7c75cd1299e7f354765b4e3785be3">lesslinux-drivetools-20171208-00.tar.bz2</pkg>
+				<pkg sha1="3b269100bba47eeff5446026c8e29174af57c46a">lesslinux-drivetools-20180703-02.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20171122" interval="120" page="http://distfiles.lesslinux.org/" />
@@ -53,14 +53,14 @@
 				mountnet.sh runx11vnc.sh runsmbd.sh xmldrivelist.sh llmounthelper.sh \
 				mmmmng.sh llmountandopen.sh blobinstall.sh vdiskimage.sh ddrescueimage.sh \
 				photorec-sorter.sh history-extractor.sh jumplist-extractor.sh search-caches.sh batch-install.sh \
-				pst-importer.sh qemustarter.sh vshadowgui.sh accesspoint.sh bluemousetool.sh ; do
+				pst-importer.sh qemustarter.sh vshadowgui.sh accesspoint.sh bluemousetool.sh runiscsitgt.sh ; do
 					install -m 0755 ${f}  ${TGTDIR}/usr/bin
 			done
 			for f in llpm_drives initial_system_check deletedisk clonedisk chntpwgui \
 				resetshell usbinstall mountall mountnet runx11vnc runsmbd blobinstall \
 				vdiskimage ddrescueimage photorec-sorter history-extractor jumplist-extractor \
 				search-caches pst-importer qemustarter vshadowgui accesspoint LessLinuxInstaller \
-				bluemousetool ; do
+				bluemousetool runiscsitgt  ; do
 					install -m 0644 ${f}.xml  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			for f in llpm_drives MfsDiskDrive MfsSinglePartition MfsTranslator MfsSamDatabase \
@@ -69,7 +69,7 @@
 				runsmbd XmlDriveList xmldrivelist_ blobinstall vdiskimage MfsSysProfile \
 				photorec-sorter history-extractor jumplist-extractor search-caches pst-importer \
 				qemustarter vshadowgui accesspoint LessLinuxInstaller batch-install assistant batchinstall-ng \
-				waitservice checkrestool bluemousetool ; do
+				waitservice checkrestool bluemousetool runiscsitgt ; do
 					install -m 0755 ${f}.rb  ${TGTDIR}/usr/share/lesslinux/drivetools
 			done
 			install -m 0755 dothedirtyjob.sh ${TGTDIR}/usr/share/lesslinux/drivetools

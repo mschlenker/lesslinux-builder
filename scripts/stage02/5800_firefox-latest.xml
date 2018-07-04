@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox-latest"
-		version="56.0.2"
+		version="59.0.1"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                     
-				<pkg sha1="1b7310adea833a7c74498505f1207416690c9748">firefox-56.0.2.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/56.0.2/source/</mirror>
+				<pkg sha1="cdaf28a784fa14cf4bc3e7e111406a9fcf273cc5">3db9e3d52b17563efca181ccbb50deb8660c59ae.tar.bz2</pkg>
+				<mirror>https://hg.mozilla.org/releases/mozilla-release/archive/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -34,18 +34,18 @@ app.partner.computerbild="computerbild"
 			</file>
 			<!-- 
 
-# fftag=FIREFOX_50_0_RELEASE
+fftag=FIREFOX_57_0_RELEASE
 for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do 
 echo '==> Cloning: '"$l" ; 
 hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/ ; 
-# ( cd $l ; hg checkout $fftag ) ; 
+( cd $l ; hg checkout $fftag ) ; 
 done
 			
 			-->
-			<file>                                    
-				<pkg sha1="13b5c8a518b7226d05eaa9ac4ba203ee2c6adf53">dotcargo-i686-20170622.tar.gz</pkg>
+			<!-- <file>                                    
+				<pkg sha1="ec23fd1e1c5db029bdcd160a5d38b334ed90fd50">dotcargo-i686-20180104.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
-			</file>
+			</file>  -->
 			<!-- <file>                                    
 				<pkg sha1="d7e196bb01c95faa6b9a97b6d6825afe7bacb46f">firefox-48.0.1-gcc6-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
@@ -54,17 +54,17 @@ done
 				<pkg sha1="768e424e24b58533ce7f3980e5c12f1ee3399c77">firefox-48.0.1-gtk320-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file> -->
-			<manualcheck date="20171030" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
+			<manualcheck date="20180104" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
 			<check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
-					<atext linktext="56.0.4" />
-					<atext linktext="56.0.5" />
-					<atext linktext="56.0.6" />
-					<atext linktext="56.0.3" />
-					<atext linktext="56.1." />
-					<atext linktext="56.2." />
+					<atext linktext="57.0.4" />
+					<atext linktext="57.0.5" />
+					<atext linktext="57.0.6" />
+					<atext linktext="57.0.7" />
+					<atext linktext="57.1." />
+					<atext linktext="57.2." />
 					<atext linktext="59.0" />
-					<atext linktext="57.0" />
+					<atext linktext="60.0" />
 					<atext linktext="58.0" />
 				</page>
 			</check>
@@ -129,6 +129,7 @@ done
                         <dep>pkg-config</dep>
                         <dep>popt</dep>
                         <dep>pygobject</dep>
+			<dep>rustc</dep>
                         <dep>sed</dep>
                         <dep>tar</dep>
                         <dep>unzip</dep>
@@ -160,11 +161,9 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			# exit 0
-			
-			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
-			mv firefox-${PKGVERSION} mozilla-release
-			tar xf ${SRCDIR}/dotcargo-i686-20170622.tar.gz 
+			tar xf ${SRCDIR}/3db9e3d52b17563efca181ccbb50deb8660c59ae.tar.bz2
+			mv mozilla-release-3db9e3d52b17563efca181ccbb50deb8660c59ae mozilla-release
+			# tar xf ${SRCDIR}/dotcargo-i686-20180104.tar.gz 
 			]]>
 		</unpack>
 		<patch>
@@ -176,11 +175,9 @@ done
 		<build>
 			<![CDATA[
 
-# exit 0
-
-export PATH=` pwd `/cargo/bin:$PATH
-export CARGO_HOME=` pwd `/cargo
-export RUSTUP_HOME=` pwd `/rustup
+# export PATH=` pwd `/cargo/bin:$PATH
+# export CARGO_HOME=` pwd `/cargo
+# export RUSTUP_HOME=` pwd `/rustup
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL
@@ -195,6 +192,10 @@ sed -i 's%ac_add_options --with-system-libvpx%# ac_add_options --with-system-lib
 sed -i 's%ac_add_options --with-system-libevent%# ac_add_options --with-system-libevent%g' mozilla-release/.mozconfig 
 sed -i 's%ac_add_options --enable-gstreamer%# ac_add_options --enable-alsa%g' mozilla-release/.mozconfig 
 sed -i 's%ac_add_options --enable-gio%# ac_add_options --enable-gio%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --enable-safe-browsing%# ac_add_options --enable-safe-browsing%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --enable-url-classifier%# ac_add_options --enable-url-classifier%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-icu%# ac_add_options --with-system-icu%g' mozilla-release/.mozconfig 
+sed -i 's%ac_add_options --with-system-png%# ac_add_options --with-system-png%g' mozilla-release/.mozconfig 
 # sed -i 's%ac_add_options --with-system-nss%# ac_add_options --with-system-nss%g' mozilla-release/.mozconfig 
 # sed -i 's%ac_add_options --with-system-nspr%# ac_add_options --with-system-nspr%g' mozilla-release/.mozconfig 
 # echo 'ac_add_options --disable-pulseaudio' >> mozilla-release/.mozconfig 
@@ -207,10 +208,12 @@ cd mozilla-release
 				export CC='distcc gcc'
 				export CXX='distcc g++'
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
-					make -f client.mk 
+				# make -f client.mk
+				./mach build
 			else
 				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j4  CC=gcc CXX=g++\"%g" .mozconfig 
-					make -f client.mk
+				#	make -f client.mk
+				./mach build
 			fi
 			echo '===> Trying to find libxul.so...'
 			find ff-build -type f -name libxul.so
@@ -241,9 +244,9 @@ cd mozilla-release
 		<install>
 			<![CDATA[
 
-# mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
-# touch ${TGTDIR}/opt/firefox-${PKGVERSION}/investigate_failed_build_later 
-# exit 0
+#mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
+#touch ${TGTDIR}/opt/firefox-${PKGVERSION}/investigate_failed_build_later 
+#exit 0
 		
 shortvers=` echo ${PKGVERSION} | sed 's/esr//g' ` 
 TARFILE=mozilla-release/ff-build/dist/firefox-${shortvers}.en-US.linux-` uname -m `.tar.bz2

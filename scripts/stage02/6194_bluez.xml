@@ -1,12 +1,12 @@
 <llpackages>
-    <package name='bluez' version='5.46' install='destdir'>
+    <package name='bluez' version='5.47' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='e6a811cd125fee387044f371b15ac4c72dbc0187'>
-                    bluez-5.46.tar.xz
+                <pkg sha1='36f18c438ac6152d0f138d00bd4288394c6ecc49'>
+                    bluez-5.47.tar.xz
                 </pkg>
                 <mirror>
                     http://www.kernel.org/pub/linux/bluetooth/
@@ -14,7 +14,7 @@
             </file>
 	     <file>
                 <pkg sha1='299cd9ca06f3f7eb11ac56aa38abfc9bcda456af'>
-                    bluez-5.46-obexd_without_systemd-1.patch
+                    bluez-5.47-obexd_without_systemd-1.patch
                 </pkg>
                 <mirror>
                     http://www.linuxfromscratch.org/patches/blfs/svn/
@@ -61,7 +61,7 @@
 		export CC="distcc gcc"
 		export CXX="distcc g++" 
 	    fi
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-library --disable-systemd --disable-client
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-library --disable-systemd 
 make
 ]]>
         </build>

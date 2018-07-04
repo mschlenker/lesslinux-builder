@@ -28,17 +28,17 @@
                         <dep>sed</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/leveldb-1.19.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/leveldb-1.20.tar.gz
 ]]>
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd leveldb-1.19
+            <![CDATA[cd leveldb-1.20
 make -j ` grep -c processor /proc/cpuinfo ` 
 ]]>
         </build>
         <install>
-            <![CDATA[cd leveldb-1.19
+            <![CDATA[cd leveldb-1.20
 	    mkdir -p ${TGTDIR}/usr/lib
 	    mkdir -p ${TGTDIR}/usr/include
 	    cp --preserve=links out-shared/libleveldb.* ${TGTDIR}/usr/lib
@@ -48,7 +48,7 @@ make -j ` grep -c processor /proc/cpuinfo `
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf leveldb-1.19
+            <![CDATA[rm -rf leveldb-1.20
 ]]>
         </clean>
     </package>

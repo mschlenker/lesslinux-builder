@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="linux-firmware"
-		version="4.9.59"
+		version="4.9.95"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>
 				<!-- git clone git://git.kernel.org/pub/scm/linux/kernel/git/dwmw2/linux-firmware.git -->                                                              
-				<pkg sha1="dda159a120f167d6e26dbe4e9c7693a866308785">linux-firmware-20170623.tar.bz2</pkg>
+				<pkg sha1="1d5a336b6525bee1099f24eba9d969bba7bc3ec1">linux-firmware-20180409.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -35,7 +35,7 @@
 		<unpack>
 			<![CDATA[ 
 			
-			tar xjf ${SRCDIR}/linux-firmware-20170623.tar.bz2
+			tar xjf ${SRCDIR}/linux-firmware-20180409.tar.bz2
 			cp ${SRCDIR}/lesslinux-firmwarefinder-20130723.rb lesslinux-firmwarefinder.rb
 			
 			]]>
@@ -54,7 +54,15 @@
 			export LANG=en_US.UTF-8
 			export LANGUAGE=en_US:en_GB:en
 			ruby lesslinux-firmwarefinder.rb lesslinux-amd64/ ${TGTDIR}/lib/firmware
+			for f in linux-firmware/iwlwifi-72* linux-firmware/iwlwifi-80* linux-firmware/iwlwifi-82* ; do
+				install -m 0644  $f  ${TGTDIR}/lib/firmware
+			done
+			mkdir -p ${TGTDIR}/lib/firmware/rtlwifi
+			for f in linux-firmware/rtlwifi/rtl*.bin ; do
+				install -m 0644 $f ${TGTDIR}/lib/firmware/rtlwifi
+			done
 			cd ${TGTDIR}/lib/firmware
+			ln -sf iwlwifi-7265-10.ucode iwlwifi-7265D-10.ucode 
 			ln -sf iwlwifi-6000g2a-{5,4}.ucode
 			ln -sf iwlwifi-6000g2b-{5,4}.ucode
 			ln -sf iwlwifi-7260-{7,6}.ucode

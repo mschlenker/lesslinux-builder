@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="4.9.59"
+		version="4.9.95"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,15 +19,15 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="a4dec71acc3858f8d117ffd23ef7d0ed802488ad">patch-4.9.59.xz</pkg>
+				<pkg sha1="02a133c1d44081394eb6c7f756dde60caf0d57ac">patch-4.9.95.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
-			<manualcheck date="20171030" interval="60" page="http://www.kernel.org/" />
+			<manualcheck date="20180409" interval="60" page="http://www.kernel.org/" />
 			<check>
 				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
-					<atext linktext="patch-4.9.60." />
-					<atext linktext="patch-4.9.61." />
-					<atext linktext="patch-4.9.62." />
+					<atext linktext="patch-4.9.96." />
+					<atext linktext="patch-4.9.97." />
+					<atext linktext="patch-4.9.98." />
 					<atext linktext="patch-4.14." />
 					<atext linktext="patch-4.15." />
 					<atext linktext="patch-4.16." />
@@ -61,7 +61,7 @@
 			<dep>bc</dep>
 			<dep>distcc</dep>
 			<dep>kmod</dep>
-			<dep>VirtualBox</dep>
+			<!-- <dep>VirtualBox</dep> -->
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -83,13 +83,13 @@
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
-			mkdir linux-${PKGVERSION}.build
-			tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
+			#mkdir linux-${PKGVERSION}.build
+			#tar -C linux-${PKGVERSION} -cf - . | tar -C linux-${PKGVERSION}.build -xf - 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
-			cd linux-${PKGVERSION}.build
+			cd linux-${PKGVERSION} # .build
 			yes '' | make oldconfig
 			cp -v .config ../linux-${PKGVERSION}
 			make clean
@@ -102,13 +102,13 @@
 				make -j $jobcount 
 				make -j $jobcount bzImage
 			fi
-			# rsync -avHP /usr/local/VirtualBox/src/ ../VirtualBox/ 
-			# for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
-			#	make -C . M=../VirtualBox/${mod} modules
-			# done
-			cd ../linux-${PKGVERSION}
-			make -j $jobcount modules_prepare 
-			tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
+			rsync -avHP /usr/local/VirtualBox-guest/additions/src/  ../VirtualBox-guest/ 
+			for mod in vboxsf vboxguest vboxvideo ; do
+				make -C . M=../VirtualBox-guest/${mod} modules
+			done
+			# cd ../linux-${PKGVERSION}
+			# make -j $jobcount modules_prepare 
+			# tar -C ../linux-${PKGVERSION}.build -cvf - certs/signing_key.pem certs/x509.genkey | tar -xf - 
 			]]>
 		</build>
 		<test />
@@ -121,14 +121,14 @@
 			
 			localversion='ll-pae-0'
 			
-			cd linux-${PKGVERSION}.build
+			cd linux-${PKGVERSION} # .build
 			mkdir -p ${TGTDIR}/boot
 			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
 			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux
 			INSTALL_MOD_PATH=${TGTDIR} make modules_install
-			# for mod in vboxdrv vboxnetadp vboxnetflt vboxpci ; do
-			#	INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox/${mod} modules_install
-			# done
+			for mod in vboxsf vboxguest vboxvideo ; do
+				INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox-guest/${mod} modules_install
+			done
 			rm -rf ${TGTDIR}/lib/firmware 
 			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
 			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
@@ -137,7 +137,7 @@
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
-			cd ../linux-${PKGVERSION}
+			# cd ../linux-${PKGVERSION}
 			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
 			]]>
 		</install>
@@ -145,7 +145,7 @@
 			  <![CDATA[
 			  
 			  rm -rf linux-${PKGVERSION}
-			  rm -rf linux-${PKGVERSION}.build
+			  # rm -rf linux-${PKGVERSION}.build
 			  rm -rf VirtualBox
 			  
 			  ]]>

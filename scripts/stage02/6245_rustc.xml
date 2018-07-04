@@ -1,9 +1,9 @@
 <llpackages>
-    <package name='rustc' version='1.19.0' install='chroot'>
+    <package name='rustc' version='1.22.1' install='chroot'>
         <license>unknown</license>
         <sources>
             <file>
-                <pkg sha1='846b7a8ce1f33c3fc5e0d3b0b4258540515d67a9'>rustc-1.19.0-src.tar.gz</pkg>
+                <pkg sha1='05e5d569ba3737e4b596bef4f4d0cb69f888e69d'>rustc-1.22.1-src.tar.gz</pkg>
                 <mirror>https://static.rust-lang.org/dist</mirror>
             </file>
             <manualcheck date='20180103' interval='60' mirror='http://www.linuxfromscratch.org/blfs/view/cvs/general/rust.html'/>
@@ -50,7 +50,7 @@
 cd ${PKGNAME}-${PKGVERSION}-src
 
 cat <<EOF > config.toml
-# see src/bootstrap/config.toml.example for more possible options
+# see config.toml.example for more possible options
 [llvm]
 targets = "X86"
 
@@ -60,9 +60,14 @@ extended = true
 
 [install]
 prefix = "/usr"
-docdir = "share/doc/rustc-1.19.0"
+docdir = "share/doc/rustc-1.22.1"
+
+[rust]
 channel = "stable"
+rpath = false
+
 EOF
+
 
 python2.7 x.py build
 

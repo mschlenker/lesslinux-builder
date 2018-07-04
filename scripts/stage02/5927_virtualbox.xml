@@ -1,20 +1,20 @@
 <llpackages>
 	<package 
 		name="VirtualBox"
-		version="5.1.26"
+		version="5.1.32"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="a99c032f72a3d106029a5c90032da55b25093f72">VirtualBox-5.1.26.tar.bz2</pkg>
-				<mirror>http://download.virtualbox.org/virtualbox/5.1.26/</mirror>
+				<pkg sha1="f6363053cb6050db1a16ffffcd99b00d761c3007">VirtualBox-5.1.32.tar.bz2</pkg>
+				<mirror>http://download.virtualbox.org/virtualbox/5.1.32/</mirror>
 			</file>
 			<file>                                                                        
 				<pkg sha1="98ee451bdda51736d279c5655101145f9ff364ac">open-watcom-c-linux-1.9</pkg>
 				<mirror>http://ftp.heanet.ie/pub/openwatcom/</mirror>
 			</file>
-			<manualcheck date="20170727" interval="120" page="http://www.virtualbox.org/" />
+			<manualcheck date="20171129" interval="120" page="http://www.virtualbox.org/" />
 			<!-- <check>
 				<page html="http://dlc-cdn.sun.com/virtualbox/">
 					<atext linktext="4.3.43" />
@@ -97,11 +97,12 @@
 			echo $OWPWD
 			./open-watcom-c-linux-1.9 -i -dDstDir=${OWPWD}/ow19 -dFullInstall=1
 			ls -lah
+			export KBUILD_TARGET_ARCH=x86
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --with-ow-dir=${OWPWD}/ow19 --disable-hardening \
-					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs 
+					--disable-java --disable-python --disable-pulse --disable-kmods --disable-docs --nofatal 
 			source env.sh
-			kmk
+			kmk -k
 			]]>
 		</build>
 		<test />
