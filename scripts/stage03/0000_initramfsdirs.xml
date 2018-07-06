@@ -906,17 +906,19 @@ done
 ####
 
  # Softlink /dev/hvc0 so that there is no constant respawning on Console 0
-hv=` cat /sys/hypervisor/type `
-if [ "$hv" '!=' "xen" ] ; then
-	ln -s /dev/tty8 /dev/xenconsole
-else
+hv=""
+[ -f /sys/hypervisor/type ] && hv=` cat /sys/hypervisor/type `
+if [ "$hv" '=' "xen" ] ; then
 	ln -s /dev/hvc0 /dev/xenconsole
-fi
-
-if [ -c /dev/ttyS0 ] ; then
-	ln -s /dev/ttyS0 /dev/serialconsole
-else
 	ln -s /dev/tty9 /dev/serialconsole
+
+else
+	ln -s /dev/tty8 /dev/xenconsole
+	if [ -c /dev/ttyS0 ] ; then
+		ln -s /dev/ttyS0 /dev/serialconsole
+	else
+		ln -s /dev/tty9 /dev/serialconsole
+	fi
 fi
 
 # Running local startup script -- containers and encrypted home should be available right now:
