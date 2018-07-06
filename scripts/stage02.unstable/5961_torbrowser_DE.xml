@@ -1,0 +1,130 @@
+<llpackages>
+	<package 
+		name="tor-browser-de"
+		version="7.5.6"
+		class="user" providedeps="no"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                          
+				<pkg sha1="beb9fa836bd3c566bc88653445bd97e7af785c27">tor-browser-linux32-7.5.6_de.tar.xz</pkg>
+				<mirror>https://www.torproject.org/dist/torbrowser/7.5.6/</mirror>
+			</file>  
+			<manualcheck date="20171122" interval="60" page="https://www.torproject.org/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fuse</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/tor-browser-linux32-${PKGVERSION}_de.tar.xz > tor-browser_de.tar
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd tor-browser_de 
+			cat ${SRCDIR}/tor-browser-linux32-${PKGVERSION}_de.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			echo 'nothing to build...'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/opt/bin
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/applications
+			# tar -cf - tor-browser_de | tar -C ${TGTDIR}/opt -xf - 
+			# unxz -c 
+			install -m 0644 tor-browser_de.tar ${TGTDIR}/opt/
+			mkdir -p ${TGTDIR}/opt/tor-browser_de/.config 
+			touch ${TGTDIR}/opt/tor-browser_de/.config/empty_by_intention 
+
+######### Create starter for TOR browser
+
+echo -n '' > ${TGTDIR}/usr/bin/tor-browser
+cat >> ${TGTDIR}/usr/bin/tor-browser << FFRUN
+#!/bin/sh
+
+PATH=/static/bin:/static/sbin:\$PATH
+export PATH
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+cd /opt/tor-browser_de/Browser 
+
+[ "\$security" '!=' "smack" ] && exec ./start-tor-browser --detach
+sudo /opt/tor-browser_de/tor-browser_smack
+
+FFRUN
+
+######### Set some permissions
+
+chmod a+rx ${TGTDIR}/usr/bin/tor-browser 
+
+######### Create starter for TOR browser using smack
+
+echo -n '' > ${TGTDIR}/opt/bin/tor-browser_smack
+cat >> ${TGTDIR}/opt/bin/tor-browser_smack << FFSMACK
+#!/static/bin/ash
+
+export PATH=$PATH:/opt/bin:/opt/sbin
+cd /opt/tor-browser_de
+/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_de/Browser/start-tor-browser --detach"
+
+FFSMACK
+
+########## Create desktop file
+
+echo -n '' > ${TGTDIR}/usr/share/applications/torbrowser.desktop
+cat >> ${TGTDIR}/usr/share/applications/torbrowser.desktop << DESKFILE
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=Tor Bowser
+Name[de]=Tor Browser
+Categories=Network;
+Exec=/usr/bin/tor-browser
+Icon=/opt/tor-browser_de/Browser/browser/chrome/icons/default/default48.png
+Terminal=false
+StartupNotify=true
+Path=
+
+DESKFILE
+
+########## Set some permissions
+
+chmod a+rx ${TGTDIR}/opt/bin/tor-browser_smack
+chmod a+rx ${TGTDIR}/opt/tor-browser_de/start-tor-browser
+chown -R 1000:1000 ${TGTDIR}/opt/tor-browser_de
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf tor-browser_de
+			]]>
+		</clean>
+	</package>
+</llpackages>
