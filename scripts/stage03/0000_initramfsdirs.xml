@@ -1018,7 +1018,9 @@ showsplash() {
 		fbwidth=` fbset | grep '^mode' | awk -F '["x-]' '{print $2}' `
 		fbheight=` fbset | grep '^mode' | awk -F '["x-]' '{print $3}' `
 		/etc/rc.subr/write_fbsplash_config $fbwidth $fbheight 
-		fbsplash -i /etc/lesslinux/fbsplash.cfg -s /etc/lesslinux/branding/fbsplash/splash.ppm -f /splash.fifo &
+		bgfile=/etc/lesslinux/branding/fbsplash/splash.ppm
+		[ -f /etc/lesslinux/branding/fbsplash/shutdown.ppm ] && bgfile=/etc/lesslinux/branding/fbsplash/shutdown.ppm
+		fbsplash -i /etc/lesslinux/fbsplash.cfg -s $bgfile -f /splash.fifo &
 	fi
     fi
      if [ -p /splash.fifo ] ; then
