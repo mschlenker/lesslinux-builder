@@ -911,7 +911,6 @@ hv=""
 if [ "$hv" '=' "xen" ] ; then
 	ln -s /dev/hvc0 /dev/xenconsole
 	ln -s /dev/tty9 /dev/serialconsole
-
 else
 	ln -s /dev/tty8 /dev/xenconsole
 	if [ -c /dev/ttyS0 ] ; then
