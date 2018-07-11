@@ -1063,11 +1063,8 @@ if laxsudo == false || !crypt_container.nil?
 	# assi.set_page_type(monitor_layout_table, Gtk::Assistant::PAGE_CONFIRM)
 	# assi.set_page_complete(monitor_layout_table, true)
 	if File.exists?("/var/run/lesslinux/xconfgui_skip_monitor")
-		unless crypt_container.nil?
-			assi.set_page_type(encvbox, Gtk::Assistant::PAGE_CONFIRM)
-		else
-			assi.set_page_type(contvbox, Gtk::Assistant::PAGE_CONFIRM)
-		end
+		assi.set_page_type(encvbox, Gtk::Assistant::PAGE_CONFIRM)
+		assi.set_page_type(contvbox, Gtk::Assistant::PAGE_CONFIRM)
 	else
 		endid = assi.append_page(monitor_layout_table)
 		assi.set_page_title(monitor_layout_table, extract_lang_string("x_title"))
