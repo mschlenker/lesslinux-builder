@@ -186,6 +186,14 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
  
 case $1 in start)
 	if [ "$UID" -lt 1 ] ; then
+		# Try to query VirtualBox for host language 
+		if [ -x /usr/local/VirtualBox-guest/additions/VBoxControl -a -z "$xlocale" ] ; then
+			xlocale=` /usr/local/VirtualBox-guest/additions/VBoxControl guestpropery get /VirtualBox/HostInfo/GUI/LanguageID | grep -i value | awk '{print $2} `.UTF-8 
+			if [ -n "$xlocale" ] ; then
+				nolangsel=1
+				echo $xlocale >> /etc/lesslinux/cmdline
+			fi
+		fi 
 		if [ "$nolangsel" -gt 0 -o -n "$xlocale" ] ; then
 			echo "Skipping language selection"
 		else
