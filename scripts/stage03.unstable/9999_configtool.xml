@@ -188,12 +188,12 @@ case $1 in start)
 	if [ "$UID" -lt 1 ] ; then
 		# Try to query VirtualBox for host language 
 		if [ -x /usr/local/VirtualBox-guest/additions/VBoxControl -a -z "$xlocale" ] ; then
-			vboxlocale=` /usr/local/VirtualBox-guest/additions/VBoxControl guestpropery get /VirtualBox/HostInfo/GUI/LanguageID | grep -i value | awk '{print $2} `.UTF-8 
+			vboxlocale=` /usr/local/VirtualBox-guest/additions/VBoxControl guestpropery get /VirtualBox/HostInfo/GUI/LanguageID | grep -i value | awk '{print $2}' `.UTF-8 
 			case "$vboxlocale" in
 				*_*)
 					nolangsel=1
 					xlocale=$vboxlocale
-					echo $xlocale >> /etc/lesslinux/cmdline
+					echo "xlocale=${vboxlocale} nolangsel=1" >> /etc/lesslinux/cmdline
 				;;
 			esac
 		fi 
