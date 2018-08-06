@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='inotify-tools' version='3.14' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0446706d54ca4ae42e076505f5904995ca970c1c'>
+                    inotify-tools-3.14.tar.gz
+                </pkg>
+                <mirror>
+                    http://github.com/downloads/rvoicilas/inotify-tools/
+                </mirror>
+            </file>
+            <manualcheck date='20180806' interval='60' mirror='http://github.com/downloads/rvoicilas/inotify-tools/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
