@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='ffi' version='1.9.25' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='86fa011857f977254ccf39f507587310f9ade768'>
+                    ffi-1.9.25.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20180808' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/${PKGNAME}-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f ${PKGNAME}-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>
