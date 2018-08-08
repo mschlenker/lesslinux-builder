@@ -31,7 +31,7 @@ $stderr.puts "Trying to download #{archive} to /tmp/#{uuid}"
 archname = archive.split("/")[-1] 
 
 # Try to determine pkg_name and pkg_version
-if archname =~ /(.*)\-([[0-9]\.]*)\.tar/ || archname =~ /(.*)\-([[0-9]\.]*)\.zip/
+if archname =~ /(.*)\-([[0-9]\.]*)\.tar/ || archname =~ /(.*)\-([[0-9]\.]*)\.zip/ || archname =~ /(.*)\-([[0-9]\.]*)\.gem/ 
 	pkgname = $1
 	pkgversion = $2
 	$stderr.puts "package name:    #{pkgname}"
@@ -52,6 +52,9 @@ sha1sum = `sha1sum /tmp/#{uuid}/#{archname}`.strip.split[0]
 # FIXME: Unzip zip as well 
 if archname =~ /\.tar.bz2$/ || archname =~ /\.tar.gz$/ || archname =~  /\.tar.xz$/ || archname =~  /\.tgz$/ 
 	system(" tar -C /tmp/#{uuid}/unpack -xf /tmp/#{uuid}/#{archname}")
+elsif archname =~ /\.gem$/ 
+	$stderr.puts "Leaving gem packed!"
+	buildtype = "rubygem"
 else
 	$stderr.puts "This type of archive is not (yet) supported!"
 	exit 1
@@ -119,9 +122,15 @@ install = package.add_element("install")
 clean = package.add_element("clean")
 chdir = nil
 unless pkgname.nil? 
-	unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
-	clean.add(REXML::CData.new("rm -rf " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
-	chdir = "cd " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}")
+	if buildtype == "rubygem"
+		unpack.add(REXML::CData.new("cp -v ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + " . \n"))
+		clean.add(REXML::CData.new("rm -f " + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
+		chdir = ""
+	else
+		unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
+		clean.add(REXML::CData.new("rm -rf " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
+		chdir = "cd " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}")
+	end
 else
 	unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname + "\n"))
 	clean.add(REXML::CData.new("rm -rf " + subdir + "\n"))
@@ -151,6 +160,9 @@ elsif buildtype == "cmake"
 	buildcommand.push("make -j 2")
 	installcommand.push("cd _build")
 	installcommand.push("make install")
+elsif buildtype == "rubygem"
+	buildcommand.push("/bin/true")
+	installcommand.push("gem install ${PKGNAME} --version ${PKGVERSION} --local")
 end
 [ buildcommand, installcommand ].each { |c| c.push("") }
 build.add(REXML::CData.new(buildcommand.join("\n")))
