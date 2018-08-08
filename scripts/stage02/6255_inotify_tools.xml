@@ -14,6 +14,31 @@
             </file>
             <manualcheck date='20180806' interval='60' mirror='http://github.com/downloads/rvoicilas/inotify-tools/'/>
         </sources>
+	<builddeps>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>exifr</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>id3tag</dep>
+                        <dep>libffi</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>mini_portile2</dep>
+                        <dep>mini_portile</dep>
+                        <dep>native-package-installer</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-atk</dep>
+                        <dep>rubygem-gdk_pixbuf2</dep>
+                        <dep>rubygem-gio2</dep>
+                        <dep>rubygem-glib2</dep>
+                        <dep>rubygem-gobject-introspection</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
