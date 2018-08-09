@@ -108,10 +108,6 @@ window.signal_connect("show") {
         exit 0
 }
 
-
-
-
-
 # window.width_request = 400 
 # window.height_request = 100
 

@@ -37,8 +37,9 @@ surfer  ALL = NOPASSWD: /usr/bin/chvt
 		<scriptdata location="/etc/rc.d/0611-scancl-blob.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash
 		
-#lesslinux provides scancl-blob
+#lesslinux provides avira
 #lesslinux license BSD
+#lesslinux parallel
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
 export PATH
@@ -219,6 +220,9 @@ case $1 in
 	    install -m 0755 /usr/share/lesslinux/scancl-blob/avupdate /AntiVirUpdate
 	    mkdir /tmp/quarantine
 	fi
+	[ "$security" = smack ] && echo internet > /proc/self/attr/current
+	/AntiVirUpdate/avupdate
+	touch /var/log/lesslinux/bootlog/avira.done
     ;;
     stop)
 	printf "$bold===> Unmounting Avira $normal\n"
