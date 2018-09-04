@@ -10,6 +10,10 @@
 				<pkg sha1="beb9fa836bd3c566bc88653445bd97e7af785c27">tor-browser-linux32-7.5.6_de.tar.xz</pkg>
 				<mirror>https://www.torproject.org/dist/torbrowser/7.5.6/</mirror>
 			</file>  
+			<file>                          
+				<pkg sha1="91ca42a74388ba675f89eff8e632d62ba429ee0a">tor-browser-linux32-7.5.6_en-US.tar.xz</pkg>
+				<mirror>https://www.torproject.org/dist/torbrowser/7.5.6/</mirror>
+			</file>  
 			<manualcheck date="20171122" interval="60" page="https://www.torproject.org/" />
 		</sources>
 		<builddeps>
@@ -33,6 +37,7 @@
 		<unpack>
 			<![CDATA[ 
 			unxz -c ${SRCDIR}/tor-browser-linux32-${PKGVERSION}_de.tar.xz > tor-browser_de.tar
+			unxz -c ${SRCDIR}/tor-browser-linux32-${PKGVERSION}_en-US.tar.xz > tor-browser_en.tar
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -52,11 +57,12 @@
 			mkdir -p ${TGTDIR}/opt/bin
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/applications
-			# tar -cf - tor-browser_de | tar -C ${TGTDIR}/opt -xf - 
-			# unxz -c 
 			install -m 0644 tor-browser_de.tar ${TGTDIR}/opt/
+			install -m 0644 tor-browser_en.tar ${TGTDIR}/opt/
 			mkdir -p ${TGTDIR}/opt/tor-browser_de/.config 
-			touch ${TGTDIR}/opt/tor-browser_de/.config/empty_by_intention 
+			mkdir -p ${TGTDIR}/opt/tor-browser_en/.config 
+			touch ${TGTDIR}/opt/tor-browser_de/.config/empty_by_intention
+			touch ${TGTDIR}/opt/tor-browser_en/.config/empty_by_intention
 
 ######### Create starter for TOR browser
 
@@ -70,10 +76,15 @@ export PATH
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 
-cd /opt/tor-browser_de/Browser 
+cd /opt/tor-browser_${lang}/Browser || cd /opt/tor-browser_en/Browser
 
 [ "\$security" '!=' "smack" ] && exec ./start-tor-browser --detach
-sudo /opt/tor-browser_de/tor-browser_smack
+
+if [ -d /opt/tor-browser_${lang} ] ; then
+	sudo /opt/tor-browser_${lang}/tor-browser_smack
+else
+	sudo /opt/tor-browser_en/tor-browser_smack
+fi
 
 FFRUN
 
@@ -87,9 +98,18 @@ echo -n '' > ${TGTDIR}/opt/bin/tor-browser_smack
 cat >> ${TGTDIR}/opt/bin/tor-browser_smack << FFSMACK
 #!/static/bin/ash
 
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
 export PATH=$PATH:/opt/bin:/opt/sbin
-cd /opt/tor-browser_de
-/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_de/Browser/start-tor-browser --detach"
+
+if [ -d /opt/tor-browser_${lang} ] ; then
+	cd /opt/tor-browser_${lang}
+	/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_${lang}/Browser/start-tor-browser --detach"
+else
+	cd /opt/tor-browser_en
+	/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_en/Browser/start-tor-browser --detach"
+fi
 
 FFSMACK
 
@@ -117,6 +137,8 @@ DESKFILE
 
 chmod a+rx ${TGTDIR}/opt/bin/tor-browser_smack
 chmod a+rx ${TGTDIR}/opt/tor-browser_de/start-tor-browser
+chmod a+rx ${TGTDIR}/opt/tor-browser_en/start-tor-browser
+chown -R 1000:1000 ${TGTDIR}/opt/tor-browser_en
 chown -R 1000:1000 ${TGTDIR}/opt/tor-browser_de
 
 			]]>
