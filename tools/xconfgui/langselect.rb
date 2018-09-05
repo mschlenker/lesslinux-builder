@@ -131,7 +131,7 @@ okbutton.signal_connect("clicked") {
 	f.close
 	if system("mountpoint /lesslinux/boot")
 		f = File.new("/lesslinux/boot/cmdline", "a+")
-		f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 nolangsel=1  lang=#{lshort} ") 
+		f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 nolangsel=1 lang=#{lshort} ") 
 		f.close
 	end
 	Gtk.main_quit
