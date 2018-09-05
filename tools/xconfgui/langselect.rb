@@ -126,11 +126,12 @@ langcombo.signal_connect("changed") { |x|
 
 okbutton.signal_connect("clicked") {
 	f = File.new("/etc/lesslinux/cmdline", "a+")
-	f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 ") 
+	lshort = @langorder[langcombo.active].split("_")[0]
+	f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 lang=#{lshort} ") 
 	f.close
 	if system("mountpoint /lesslinux/boot")
 		f = File.new("/lesslinux/boot/cmdline", "a+")
-		f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 nolangsel=1 ") 
+		f.write(" xlocale=#{@langorder[langcombo.active]}.UTF-8 nolangsel=1  lang=#{lshort} ") 
 		f.close
 	end
 	Gtk.main_quit
