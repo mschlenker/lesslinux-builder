@@ -3651,7 +3651,7 @@ iso_gpt_convert() {
 	[ "$ultraquiet" -eq 3 -a -p /splash.fifo ] && echo 90 > /splash.fifo
 	
 	# When installed from batchinstall or USB install the ISOhybrid MBR gets nuked,
-	# it should be saved to a file than. Try to find it! On a drirect install
+	# it should be saved to a file than. Try to find it! On a direct install
 	# from Win32DiskImager or dd we should not need it.
 	
 	# Copy the saved MBR first
@@ -3727,6 +3727,9 @@ iso_gpt_convert() {
 	
 	# Delete some MB at the end of the disk to remove remaining GUID backup table
 	dd if=/dev/zero of=$device bs=8388608 seek=` expr $deviceblocks - 4 ` 2>/dev/null
+	
+	# Copy license information that might be hidden
+	dd if=$device of=/tmp/license.bin bs=1024 skip=2 count=1 
 	
 	# Let the games begin...
 	umount /lesslinux/cdrom
@@ -4105,6 +4108,9 @@ iso_hack_convert() {
 	# Delete some MB at the end of the disk to remove remaining GUID backup table
 	dd if=/dev/zero of=$device bs=8388608 seek=` expr $deviceblocks - 4 ` 2>/dev/null
 	
+	# Copy license information that might be hidden
+	dd if=$device of=/tmp/license.bin bs=1024 skip=2 count=1 
+	
 	# Let the games begin...
 	umount /lesslinux/cdrom
 	
@@ -4140,6 +4146,11 @@ iso_hack_convert() {
 	parted -s $device unit B set 1 boot on
 	parted -s $device unit B set 1 esp on
 	sync
+	
+	# Restore the license information
+	dd if=/tmp/license.bin of=$device bs=1024 seek=2 count=1
+	sync
+	
 	[ "$ultraquiet" -gt 1 ] && genericpgbar 10 32 "$convert_head" "${convert_mkfs}" "" tty1
 	[ -p /splash.fifo ] && echo 10 > /splash.fifo
 	[ -b ${device}1 ] && dd if=/dev/zero bs=1M count=8 of=${device}1
