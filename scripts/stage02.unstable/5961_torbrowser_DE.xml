@@ -61,14 +61,16 @@
 			install -m 0644 tor-browser_en.tar ${TGTDIR}/opt/
 			mkdir -p ${TGTDIR}/opt/tor-browser_de/.config 
 			mkdir -p ${TGTDIR}/opt/tor-browser_en/.config 
+			mkdir -p ${TGTDIR}/opt/tor-browser
 			touch ${TGTDIR}/opt/tor-browser_de/.config/empty_by_intention
 			touch ${TGTDIR}/opt/tor-browser_en/.config/empty_by_intention
+			touch ${TGTDIR}/opt/tor-browser/empty_by_intention
 
 ######### Create starter for TOR browser
 
 echo -n '' > ${TGTDIR}/usr/bin/tor-browser
 cat >> ${TGTDIR}/usr/bin/tor-browser << FFRUN
-#!/bin/sh
+#!/bin/bash
 
 PATH=/static/bin:/static/sbin:\$PATH
 export PATH
@@ -76,12 +78,12 @@ export PATH
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 
-cd /opt/tor-browser_${lang}/Browser || cd /opt/tor-browser_en/Browser
+cd /opt/tor-browser_\${lang}/Browser || cd /opt/tor-browser_en/Browser
 
 [ "\$security" '!=' "smack" ] && exec ./start-tor-browser --detach
 
-if [ -d /opt/tor-browser_${lang} ] ; then
-	sudo /opt/tor-browser_${lang}/tor-browser_smack
+if [ -d /opt/tor-browser_\${lang} ] ; then
+	sudo /opt/tor-browser_\${lang}/tor-browser_smack
 else
 	sudo /opt/tor-browser_en/tor-browser_smack
 fi
@@ -101,11 +103,11 @@ cat >> ${TGTDIR}/opt/bin/tor-browser_smack << FFSMACK
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
 
-export PATH=$PATH:/opt/bin:/opt/sbin
+export PATH=\$PATH:/opt/bin:/opt/sbin
 
-if [ -d /opt/tor-browser_${lang} ] ; then
-	cd /opt/tor-browser_${lang}
-	/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_${lang}/Browser/start-tor-browser --detach"
+if [ -d /opt/tor-browser_\${lang} ] ; then
+	cd /opt/tor-browser_\${lang}
+	/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_\${lang}/Browser/start-tor-browser --detach"
 else
 	cd /opt/tor-browser_en
 	/static/sbin/newsmack torbrowser /static/bin/su surfer -c "/opt/tor-browser_en/Browser/start-tor-browser --detach"
@@ -126,7 +128,7 @@ Name=Tor Bowser
 Name[de]=Tor Browser
 Categories=Network;
 Exec=/usr/bin/tor-browser
-Icon=/opt/tor-browser_de/Browser/browser/chrome/icons/default/default48.png
+Icon=/opt/tor-browser/Browser/browser/chrome/icons/default/default48.png
 Terminal=false
 StartupNotify=true
 Path=

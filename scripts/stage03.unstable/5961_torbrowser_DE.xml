@@ -75,6 +75,7 @@ case $1 in
 			rsync -avHP /opt/tor-browser_${lang}/Data/ /home/surfer/.torbrowser/
 			mount --bind /home/surfer/.torbrowser /opt/tor-browser_${lang}/Data
 		fi
+		mount --bind /opt/tor-browser_${lang} /opt/tor-browser
 	fi
     ;;
     stop)
@@ -86,6 +87,7 @@ case $1 in
 	fi
 	umount -f /opt/tor-browser_${lang}
 	umount -f /opt/tor-browser_${lang}/Data
+	umount -f /opt/tor-browser
     ;;
 esac
 
