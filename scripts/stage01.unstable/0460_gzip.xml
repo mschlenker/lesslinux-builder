@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="gzip"
+		version="1.9">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="0249ad4c4ca1f144714e8e21b6d0db24651fc122">gzip-1.9.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gzip/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="365" page="http://ftp.gnu.org/gnu/gzip/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gzip/">
+					<atext linktext="gzip-1.8.1.t" />
+					<atext linktext="gzip-1.8.2.t" />
+					<atext linktext="gzip-1.8.3.t" />
+					<atext linktext="gzip-1.9." />
+					<atext linktext="gzip-1.10." />
+					<atext linktext="gzip-2." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+  			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' lib/*.c
+			echo "#define _IO_IN_BACKUP 0x100" >> lib/stdio-impl.h
+			]]>
+		</patch> 
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

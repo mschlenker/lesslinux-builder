@@ -1,0 +1,47 @@
+<llpackages>
+	<package 
+		name="diffutils"
+		version="3.6">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                  
+				<pkg sha1="1287a553868b808ebfff3790a5cdc6fdf7cb2886">diffutils-3.6.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/diffutils/</mirror>
+			</file>
+			<manualcheck date="20170607" interval="365" page="http://ftp.gnu.org/gnu/diffutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/diffutils/">
+					<atext linktext="diffutils-3.10." />
+					<atext linktext="diffutils-3.7." />
+					<atext linktext="diffutils-3.8." />
+					<atext linktext="diffutils-3.9." />
+					<atext linktext="diffutils-4." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			sed -i '233,237 s/max)/max) \\/' lib/intprops.h
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

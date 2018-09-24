@@ -1,0 +1,34 @@
+<llpackages>
+	<package 
+		name="bash"
+		version="4.4.18">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                          
+				<pkg sha1="6cf9b3c23930ba8a721fee177d1558e5b7cb6104">bash-4.4.18.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
+			</file>
+			<manualcheck date="20160922" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools --without-bash-malloc && make -j ` grep -c  processor /proc/cpuinfo ` 
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			ln -vsf bash /tools/bin/sh
+			ln -vsf /tools/bin/bash ${CHROOTDIR}/bin/sh
+			ln -vsf /tools/bin/bash ${CHROOTDIR}/bin/bash
+			]]>
+		</install>
+	</package>
+</llpackages>

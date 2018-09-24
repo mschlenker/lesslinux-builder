@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="linux_headers"
+		version="4.18.9">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="a5898f3a6383946b1de8d9dd449c2ca361b14c3d">linux-4.18.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="79de479878a351c2358f5a890ec7c2a3e627e32a">patch-4.18.9.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+			</file>
+			<manualcheck date="20170816" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
+					<atext linktext="patch-4.9.44." />
+					<atext linktext="patch-4.9.45." />
+					<atext linktext="patch-4.9.46." />
+					<atext linktext="patch-4.12." />
+					<atext linktext="patch-4.13." />
+					<atext linktext="patch-4.14." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
+			if [ -f ${SRCDIR}/patch-${PKGVERSION}.xz  ] ; then 
+				unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			fi
+			cd ..
+			mv -v linux-${major}.${minor} linux-${PKGVERSION}
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd linux-${PKGVERSION}
+			make headers_check
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			mkdir -p /tools/include
+			cd linux-${PKGVERSION}
+			make INSTALL_HDR_PATH=dest headers_install
+			cp -rv dest/include/* /tools/include
+			
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,44 @@
+<llpackages>
+	<package 
+		name="xz"
+		version="5.2.4">
+		<license>GPLv2</license>
+		<sources>
+                        <file>                                                                          
+                                <pkg sha1="50ad451279404fb5206e23c7b1ba9c4aa858c994">xz-5.2.4.tar.bz2</pkg>
+                                <mirror>http://tukaani.org/xz/</mirror>
+                        </file>
+                        <manualcheck date="20170608" interval="180" page="http://tukaani.org/xz/" />
+                        <check>
+                                <page html="http://tukaani.org/xz/">
+                                        <atext linktext="xz-5.2.6." />
+                                         <atext linktext="xz-5.2.7." />
+                                         <atext linktext="xz-5.2.4." />
+                                         <atext linktext="xz-5.2.5." />
+                                         <atext linktext="xz-5.3." />
+                                         <atext linktext="xz-5.4." />
+                                         <atext linktext="xz-5.5." />
+                                         <atext linktext="xz-6." />
+                                </page>
+                        </check>
+                </sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools && make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

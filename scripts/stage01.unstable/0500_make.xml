@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="make"
+		version="4.2.1">
+		<license>GPLv2</license>
+		<sources>
+			<file>                              
+				<pkg sha1="7d9d11eb36cfb752da1fb11bb3e521d2a3cc8830">make-4.2.1.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/make/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="180" page="ftp://ftp.gnu.org/gnu/make/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/make/">
+					<atext linktext="make-4.2.4." />
+					<atext linktext="make-4.2.2." />
+					<atext linktext="make-4.2.3." />
+					<atext linktext="make-4.3." />
+					<atext linktext="make-4.4." />
+					<atext linktext="make-5." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i '211,217 d; 219,229 d; 232 d' glob/glob.c
+		
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools --without-guile 
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

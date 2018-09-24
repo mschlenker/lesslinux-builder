@@ -1,0 +1,54 @@
+<llpackages>
+	<package 
+		name="file"
+		version="5.34">
+		<license>GPLv2</license>
+		<sources>
+			<file>                   
+				<pkg sha1="509e30ad0e0d74fa4040a28ce4667486cfe2170c">file-5.34.tar.gz</pkg>
+				<mirror>ftp://ftp.astron.com/pub/file/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="ftp://ftp.astron.com/pub/file/" />
+			<check>
+				<page html="ftp://ftp.astron.com/pub/file/">
+					<atext linktext="file-5.32." />
+					<atext linktext="file-5.33." />
+					<atext linktext="file-5.34." />
+					<atext linktext="file-5.35." />
+					<atext linktext="file-5.36." />
+					<atext linktext="file-5.37." />
+					<atext linktext="file-5.38." />
+					<atext linktext="file-5.39." />
+					<atext linktext="file-5.40." />
+					<atext linktext="file-5.41." />
+					<atext linktext="file-5.42." />
+					<atext linktext="file-5.43." />
+					<atext linktext="file-5.44." />
+					<atext linktext="file-5.45." />
+					<atext linktext="file-6." />
+					<atext linktext="file-7." />
+				</page>
+			</check>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools
+			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
+			make -j${JOBCOUNT}
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
