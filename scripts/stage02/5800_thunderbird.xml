@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="thunderbird"
-		version="52.7.0"
+		version="52.9.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="9030278d1fb4cd28a3a5e8830cfb98a8f0d45523">thunderbird-52.7.0.source.tar.xz</pkg>
-				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/52.7.0/source/</mirror>
+				<pkg sha1="9970d78084fe979f568ea00bf06b8e81a738e630">thunderbird-52.9.1.source.tar.xz</pkg>
+				<mirror>ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/52.9.1/source/</mirror>
 			</file>  
 			<!-- 
 
@@ -147,7 +147,7 @@ done
 			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 comm-esr/.mozconfig
 			mkdir l10n
 			tar -C l10n -xf ${SRCDIR}/thunderbird-52.5.2.source.de-es-pl-ru.tar.xz
-			tar xf ${SRCDIR}/dotcargo-i686-20170622.tar.gz 
+			# tar xf ${SRCDIR}/dotcargo-i686-20170622.tar.gz 
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -168,9 +168,6 @@ sed -e '/#include/a\
 		</patch> -->
 		<build>
 			<![CDATA[
-export PATH=` pwd `/cargo/bin:$PATH
-export CARGO_HOME=` pwd `/cargo
-export RUSTUP_HOME=` pwd `/rustup 
 echo $SHELL
 export SHELL=/bin/bash
 echo $SHELL

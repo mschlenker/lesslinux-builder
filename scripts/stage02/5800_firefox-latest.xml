@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox-latest"
-		version="59.0.1"
+		version="61.0.1"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                     
-				<pkg sha1="cdaf28a784fa14cf4bc3e7e111406a9fcf273cc5">3db9e3d52b17563efca181ccbb50deb8660c59ae.tar.bz2</pkg>
-				<mirror>https://hg.mozilla.org/releases/mozilla-release/archive/</mirror>
+				<pkg sha1="42fb90e2df5cd14a6c3b393683b73b9b60c377c7">firefox-61.0.1.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/firefox/releases/61.0.1/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -55,7 +55,7 @@ done
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file> -->
 			<manualcheck date="20180104" interval="45" page="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/" />
-			<check>
+			<!-- <check>
 				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">
 					<atext linktext="57.0.4" />
 					<atext linktext="57.0.5" />
@@ -67,7 +67,7 @@ done
 					<atext linktext="60.0" />
 					<atext linktext="58.0" />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
                         <dep>GConf</dep>
@@ -161,8 +161,8 @@ done
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/3db9e3d52b17563efca181ccbb50deb8660c59ae.tar.bz2
-			mv mozilla-release-3db9e3d52b17563efca181ccbb50deb8660c59ae mozilla-release
+			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
+			mv firefox-${PKGVERSION} mozilla-release
 			# tar xf ${SRCDIR}/dotcargo-i686-20180104.tar.gz 
 			]]>
 		</unpack>

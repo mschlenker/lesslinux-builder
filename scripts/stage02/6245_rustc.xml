@@ -1,12 +1,12 @@
 <llpackages>
-    <package name='rustc' version='1.22.1' install='chroot'>
+    <package name='rustc' version='1.25.0' install='chroot'>
         <license>unknown</license>
         <sources>
             <file>
-                <pkg sha1='05e5d569ba3737e4b596bef4f4d0cb69f888e69d'>rustc-1.22.1-src.tar.gz</pkg>
+                <pkg sha1='8a8d11a5b9f836025d0790f3d03606ad1e7acd3c'>rustc-1.25.0-src.tar.gz</pkg>
                 <mirror>https://static.rust-lang.org/dist</mirror>
             </file>
-            <manualcheck date='20180103' interval='60' mirror='http://www.linuxfromscratch.org/blfs/view/cvs/general/rust.html'/>
+            <manualcheck date='20180704' interval='60' mirror='http://www.linuxfromscratch.org/blfs/view/cvs/general/rust.html'/>
         </sources>
 	<builddeps>
                         <dep>Python</dep>
@@ -60,7 +60,7 @@ extended = true
 
 [install]
 prefix = "/usr"
-docdir = "share/doc/rustc-1.22.1"
+docdir = "share/doc/rustc-1.25.0"
 
 [rust]
 channel = "stable"
