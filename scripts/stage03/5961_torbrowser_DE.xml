@@ -30,11 +30,13 @@ lockPref("xpinstall.enabled", false);
 		<scriptdata location="/etc/sudoers.lax.d/torbrowser" mode="0640" group="0" owner="0">
 		<![CDATA[
 surfer  ALL = NOPASSWD: /opt/tor-browser_de/tor-browser_smack
+surfer  ALL = NOPASSWD: /opt/tor-browser_en/tor-browser_smack
 		]]>
 		</scriptdata>
 		<scriptdata location="/etc/sudoers.strict.d/torbrowser" mode="0640" group="0" owner="0">
 		<![CDATA[
 surfer  ALL = NOPASSWD: /opt/tor-browser_de/tor-browser_smack
+surfer  ALL = NOPASSWD: /opt/tor-browser_en/tor-browser_smack
 		]]>
 		</scriptdata>
 		<scriptdata location="/etc/rc.d/0610-torbrowser.sh" mode="0755" group="0" owner="0">
@@ -54,26 +56,38 @@ skipflash=0
 case $1 in 
     start)
 	printf "$bold===> Preparing TOR browser $normal\n"
-	if mountpoint -q /opt/tor-browser_de ; then
+	if [ -d /opt/tor-browser_${lang} ] ; then
+		printf "---> Found localized TOR browser\n"
+	else
+		lang=en
+	fi
+	if mountpoint -q /opt/tor-browser_${lang} ; then
 		echo 'Skipping, already mounted!'
 	else
-		mount -t tmpfs -o mode=0700,uid=1000,gid=1000 tmpfs /opt/tor-browser_de
-		tar -C /opt -xvf /opt/tor-browser_de.tar
-		install -m 0755 /opt/bin/tor-browser_smack /opt/tor-browser_de
-		chown -R surfer:surfer /opt/tor-browser_de
+		mount -t tmpfs -o mode=0700,uid=1000,gid=1000 tmpfs /opt/tor-browser_${lang}
+		tar -C /opt/tor-browser_${lang} --strip-components=1 -xvf /opt/tor-browser_${lang}.tar
+		install -m 0755 /opt/bin/tor-browser_smack /opt/tor-browser_${lang}
+		chown -R surfer:surfer /opt/tor-browser_${lang}
 		if [ -d /home/surfer/.torbrowser ] ; then
-			mount --bind /home/surfer/.torbrowser /opt/tor-browser_de/Data
+			mount --bind /home/surfer/.torbrowser /opt/tor-browser_${lang}/Data
 		else
 			mkdir -p /home/surfer/.torbrowser
-			rsync -avHP /opt/tor-browser_de/Data/ /home/surfer/.torbrowser/
-			mount --bind /home/surfer/.torbrowser /opt/tor-browser_de/Data
+			rsync -avHP /opt/tor-browser_${lang}/Data/ /home/surfer/.torbrowser/
+			mount --bind /home/surfer/.torbrowser /opt/tor-browser_${lang}/Data
 		fi
+		mount --bind /opt/tor-browser_${lang} /opt/tor-browser
 	fi
     ;;
     stop)
 	printf "$bold===> Unmounting TOR browser overlay $normal\n"
-	umount -f /opt/tor-browser_de
-	umount -f /opt/tor-browser_de/Data
+	if [ -d /opt/tor-browser_${lang} ] ; then
+		printf "---> Found localized TOR browser\n"
+	else
+		lang=en
+	fi
+	umount -f /opt/tor-browser_${lang}
+	umount -f /opt/tor-browser_${lang}/Data
+	umount -f /opt/tor-browser
     ;;
 esac
 

@@ -176,7 +176,7 @@ esac
 		</scriptdata>
 	<scriptdata location="/etc/xinitrc.d/0300-langsel.sh" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/bash
-#lesslinux provides obmenu
+#lesslinux provides langsel
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
 		
@@ -186,6 +186,17 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
  
 case $1 in start)
 	if [ "$UID" -lt 1 ] ; then
+		# Try to query VirtualBox for host language 
+		if [ -x /usr/local/VirtualBox-guest/additions/VBoxControl -a -z "$xlocale" ] ; then
+			vboxlocale=` /usr/local/VirtualBox-guest/additions/VBoxControl guestproperty get /VirtualBox/HostInfo/GUI/LanguageID | grep -i value | awk '{print $2}' `  
+			case "$vboxlocale" in
+				*_*)
+					nolangsel=1
+					xlocale=${vboxlocale}.UTF-8
+					echo "xlocale=${xlocale} nolangsel=1" >> /etc/lesslinux/cmdline
+				;;
+			esac
+		fi 
 		if [ "$nolangsel" -gt 0 -o -n "$xlocale" ] ; then
 			echo "Skipping language selection"
 		else
@@ -204,10 +215,10 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>  
-	<package name="xconfgui" version="20161021-00" allowfail="yes">
+	<package name="xconfgui" version="20180711-00" allowfail="yes">
 		<sources>
 			<file>                                                                                          
-				<pkg sha1="82455030308e5ba315bbfcd23e6ae6e365ac6a44">xconfgui-20180905-00.tar.bz2</pkg>
+				<pkg sha1="6d39621862728ff6a2cdcb26358924909cc39da4">xconfgui-20180711-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 		</sources>
