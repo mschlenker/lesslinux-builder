@@ -1,0 +1,94 @@
+<llpackages>
+	<package 
+		name="findutils"
+		version="4.6.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>               
+				<pkg sha1="f18e8aaee3f3d4173a1f598001003be8706d28b0">findutils-4.6.0.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/findutils/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="180" page="http://ftp.gnu.org/gnu/findutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/findutils/">
+					<atext linktext="findutils-4.6.3." />
+					<atext linktext="findutils-4.6.4." />
+					<atext linktext="findutils-4.6.1." />
+					<atext linktext="findutils-4.6.2." />
+					<atext linktext="findutils-4.7." />
+					<atext linktext="findutils-4.8." />
+					<atext linktext="findutils-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<!-- <dep>e2fsprogs</dep> -->
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/test-lock..EXEEXT.//' tests/Makefile.in
+			sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' gl/lib/*.c
+			sed -i '/unistd/a #include <sys/sysmacros.h>' gl/lib/mountlist.c
+			echo "#define _IO_IN_BACKUP 0x100" >> gl/lib/stdio-impl.h
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr  --localstatedir=/var/lib/locate && make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/bin
+			make install DESTDIR=${TGTDIR}
+			mv -v ${TGTDIR}/usr/bin/find ${TGTDIR}/bin
+			sed -i 's/find:=${BINDIR}/find:=\/bin/' /usr/bin/updatedb
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

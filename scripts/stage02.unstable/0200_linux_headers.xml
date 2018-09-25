@@ -1,0 +1,75 @@
+<llpackages>
+	<package 
+		name="linux_headers"
+		version="4.18.9"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="a5898f3a6383946b1de8d9dd449c2ca361b14c3d">linux-4.18.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="79de479878a351c2358f5a890ec7c2a3e627e32a">patch-4.18.9.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+			</file>
+			<manualcheck date="20171010" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
+					<atext linktext="patch-4.9.55." />
+					<atext linktext="patch-4.9.56." />
+					<atext linktext="patch-4.9.57." />
+					<atext linktext="patch-4.14." />
+					<atext linktext="patch-4.15." />
+					<atext linktext="patch-4.16." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
+			[ -f ${SRCDIR}/patch-${PKGVERSION}.xz ] && unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cd ..
+			mv -v linux-${major}.${minor} linux-${PKGVERSION}
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			
+			cd linux-${PKGVERSION}
+			make mrproper
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			cd linux-${PKGVERSION}
+			make INSTALL_HDR_PATH=dest headers_install
+			find dest/include \( -name .install -o -name ..install.cmd \) -delete
+			mkdir -p ${TGTDIR}/usr/include
+			cp -rv dest/include/* ${TGTDIR}/usr/include
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf linux-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

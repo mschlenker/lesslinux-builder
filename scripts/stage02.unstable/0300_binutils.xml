@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="binutils"
+		version="2.31.1"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license> 
+		<sources>
+			<file>                                                  
+				<pkg sha1="1c5b0801b4857031d5626d917808cbd5c6401a4b">binutils-2.31.1.tar.bz2</pkg>
+				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
+			</file>
+			<manualcheck date="20170801" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/binutils/">
+					<atext linktext="binutils-2.28.4." />
+					<atext linktext="binutils-2.28.2." />
+					<atext linktext="binutils-2.28.3" />
+					<atext linktext="binutils-2.29." />
+					<atext linktext="binutils-2.30." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>file</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			mkdir binutils-build
+			]]>
+		</unpack>
+		<!-- <patch>			
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			# cat ${SRCDIR}/binutils-2.26-upstream_fixes-3.patch | patch -p1
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-build
+			jobcount=`grep -c processor /proc/cpuinfo`
+			../${PKGNAME}-${PKGVERSION}/configure --prefix=/usr       \
+			--enable-gold       \
+			--enable-ld=default \
+			--enable-plugins    \
+			--enable-shared     \
+			--disable-werror    \
+			--enable-64-bit-bfd \
+			--with-system-zlib
+			make -j $jobcount tooldir=/usr
+			]]>
+		</build>
+		<test>
+			<![CDATA[ 
+			cd ${PKGNAME}-build
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make tooldir=/usr install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/include
+			# cp -v ../${PKGNAME}-${PKGVERSION}/include/libiberty.h ${TGTDIR}/usr/include
+			]]>
+		</install>
+		<clean>
+			<![CDATA[ 
+			rm -rf ${PKGNAME}-build
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

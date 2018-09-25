@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="psmisc"
+		version="23.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                   
+				<pkg sha1="d19031a5ba18a530aa0bb768cb74593f9af74b08">psmisc-23.1.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/psmisc/psmisc/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://sourceforge.net/projects/psmisc/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/psmisc/files/">
+					<atext linktext="psmisc-22.23." />
+					<atext linktext="psmisc-22.24." />
+					<atext linktext="psmisc-22.22." />
+					<atext linktext="psmisc-23." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
+			<dep>acl</dep>
+			<dep>libcap</dep>
+                        <dep>sed</dep>
+			<dep>shadow</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p  ${TGTDIR}/bin
+			mv -v ${TGTDIR}/usr/bin/fuser  ${TGTDIR}/bin
+			mv -v ${TGTDIR}/usr/bin/killall ${TGTDIR}/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

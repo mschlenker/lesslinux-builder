@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="gperf"
+		version="3.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="e3c0618c2d2e5586eda9498c867d5e4858a3b0e2">gperf-3.1.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/pub/gnu/gperf/</mirror>
+			</file>
+			<manualcheck date="20160923" interval="365" page="http://ftp.gnu.org/pub/gnu/gperf/" />
+			<check>
+				<page html="http://ftp.gnu.org/pub/gnu/gperf/">
+					<atext linktext="gperf-3.0.5." />
+					<atext linktext="gperf-3.0.6." />
+					<atext linktext="gperf-3.0.7." />
+					<atext linktext="gperf-3.1." />
+					<atext linktext="gperf-3.2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>

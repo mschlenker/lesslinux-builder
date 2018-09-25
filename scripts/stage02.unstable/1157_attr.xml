@@ -1,0 +1,44 @@
+<llpackages>
+	<package 
+		name="attr"
+		version="2.4.48"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                          
+				<pkg sha1="d7c88cb5db51c5e255a511b0a15e832fcdda5b4f">attr-2.4.48.tar.gz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/attr/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://archive.ubuntu.com/ubuntu/pool/main/a/attr/" />
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --libexecdir=/usr/lib --sysconfdir=/etc  && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install install-dev install-lib
+			chmod -v 755 /usr/lib/libattr.so
+			]]>
+		</install>
+	</package>
+</llpackages>

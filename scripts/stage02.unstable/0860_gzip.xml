@@ -1,0 +1,97 @@
+<llpackages>
+	<package 
+		name="gzip"
+		version="1.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="224bc2af5202eccf47f22357023d222011f9de78">gzip-1.8.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gzip/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="365" page="http://ftp.gnu.org/gnu/gzip/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gzip/">
+					<atext linktext="gzip-1.8.1.t" />
+					<atext linktext="gzip-1.8.2.t" />
+					<atext linktext="gzip-1.8.3.t" />
+					<atext linktext="gzip-1.9." />
+					<atext linktext="gzip-1.10." />
+					<atext linktext="gzip-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<!-- <dep>e2fsprogs</dep> -->
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>findutils</dep>
+                        <dep>groff</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' lib/*.c
+			echo "#define _IO_IN_BACKUP 0x100" >> lib/stdio-impl.h
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --bindir=/bin && make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			make install DESTDIR=${TGTDIR}
+			mv -v ${TGTDIR}/bin/{gzexe,uncompress,zcmp,zdiff,zegrep} ${TGTDIR}/usr/bin
+			mv -v ${TGTDIR}/bin/{zfgrep,zforce,zgrep,zless,zmore,znew} ${TGTDIR}/usr/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
