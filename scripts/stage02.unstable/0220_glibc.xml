@@ -48,6 +48,7 @@ patch -Np1 -i ${SRCDIR}/glibc-2.28-fhs-1.patch
 		</patch>
 		<build>
 			<![CDATA[ 
+			rm -f /usr/include/limits.h
 			case $(uname -m) in
 			i?86)    
 				GCC_INCDIR=/usr/lib/gcc/$(uname -m)-pc-linux-gnu/8.2.0/include
@@ -65,6 +66,7 @@ patch -Np1 -i ${SRCDIR}/glibc-2.28-fhs-1.patch
 				echo "CFLAGS += -march=i686 -mtune=generic -O2 -pipe" > configparms
 			;;
 			esac
+			export M4=/tools/bin/m4
 			CC="gcc -isystem $GCC_INCDIR -isystem /usr/include" \
 				../glibc-${PKGVERSION}/configure --prefix=/usr                          \
 					--disable-werror                       \
