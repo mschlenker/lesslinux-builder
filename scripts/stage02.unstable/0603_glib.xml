@@ -66,7 +66,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz  
 			]]>
 		</unpack>
 		<!-- This patch replaces the UTF-8 copyright symbol by (C) to prevent ruby-gnome from failing-->
@@ -93,6 +93,7 @@
 			else
 				jobcount=3
 			fi
+			bash autogen.sh
 			./configure --prefix=/usr --with-pcre=system  && make -j $jobcount 
 			]]>
 		</build>
