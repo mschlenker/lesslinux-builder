@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
-				<pkg sha1="93fafd57a724974b951957c522cdc4478a6bdc2e">ruby-2.5.1.tar.xz</pkg>
+				<pkg sha1="93fafd57a724974b951957c522cdc4478a6bdc2e">ruby-2.5.1.tar.gz</pkg>
 				<mirror>http://cache.ruby-lang.org/pub/ruby/2.5/</mirror>
 			</file>
 			<manualcheck date="20170609" interval="90" page="http://ftp.ruby-lang.org/" />
@@ -50,7 +50,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<patch />
