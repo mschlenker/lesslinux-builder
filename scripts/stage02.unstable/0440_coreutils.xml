@@ -60,6 +60,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			export FORCE_UNSAFE_CONFIGURE=1
+			autoreconf -f -i
 			./configure --prefix=/usr --enable-no-install-program=kill,uptime  && make
 			]]>
 		</build>
