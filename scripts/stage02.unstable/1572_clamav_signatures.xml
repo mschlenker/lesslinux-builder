@@ -1,0 +1,56 @@
+<llpackages>
+	<package 
+		name="clamav_signatures"
+		version="20180926"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                        
+				<pkg sha1="8ac08ce19d035f640f7598bec4c71ec6854e71b4">daily-20180926.cvd</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                     
+				<pkg sha1="d275ad7d79af6ecf602d8813173a0bb0a0a00a88">main-20180926.cvd</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20170908" interval="45" page="http://www.clamav.net/lang/en/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>clamav</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			echo 'Nothing to unpack'
+			
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			
+			echo 'Nothing to build'
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/opt/share/clamav
+			chown -R 60002:60002 ${TGTDIR}/opt/share/clamav
+			install -m 0644 -o clamav -g clamav ${SRCDIR}/main-${PKGVERSION}.cvd ${TGTDIR}/opt/share/clamav/main.cvd
+			install -m 0644 -o clamav -g clamav ${SRCDIR}/daily-${PKGVERSION}.cvd ${TGTDIR}/opt/share/clamav/daily.cvd
+			touch ${TGTDIR}/opt/share/clamav/.keep_this_directory
+			chown 60002:60002 ${TGTDIR}/opt/share/clamav/.keep_this_directory
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			echo 'Nothing to clean'
+			]]>
+		</clean>
+	</package>
+</llpackages>
