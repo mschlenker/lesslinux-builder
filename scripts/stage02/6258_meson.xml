@@ -14,6 +14,14 @@
             </file>
             <manualcheck date='20180927' interval='60' mirror='https://github.com/mesonbuild/meson/releases/download/0.48.0/'/>
         </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>glibc</dep>
+                        <dep>openssl</dep>
+                        <dep>setuptools3</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
