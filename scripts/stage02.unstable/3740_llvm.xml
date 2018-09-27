@@ -1,0 +1,126 @@
+<llpackages>
+	<package 
+		name="llvm"
+		version="6.0.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                     
+				<pkg sha1="09a6316c5225cab255ba12391e7abe5ff4d28935">llvm-6.0.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/6.0.1/</mirror>
+			</file>
+			<file>                                                                                     
+				<pkg sha1="d93d8f3e3d7eb549ac58507383f7fcbdd78804d7">cfe-6.0.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/6.0.1/</mirror>
+			</file>
+			<file>                                                                                     
+				<pkg sha1="4a61bd09f31d3079e921205bb93fb7d05a95946b">compiler-rt-6.0.1.src.tar.xz</pkg>
+				<mirror>http://llvm.org/releases/6.0.1/</mirror>
+			</file>
+			<manualcheck date="20170610" interval="120" page="http://www.llvm.org/" />
+			<check>
+				<page html="http://llvm.org/releases/">
+					<atext href="4.0.1" />
+					<atext href="4.0.2" />
+					<atext href="4.0.3" />
+					<atext href="4.1." />
+					<atext href="4.2." />
+					<atext href="4.3." />
+					<atext href="4.4." />
+					<atext href="5.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>file</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>cmake</dep>
+                        <!-- <dep>xproto-base</dep> 
+			<dep>talloc</dep>
+			<dep>makedepend</dep> -->
+			<dep>libffi</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.xz
+			mkdir ${PKGNAME}-build
+			cd ${PKGNAME}-${PKGVERSION}.src
+			tar -xf ${SRCDIR}/cfe-${PKGVERSION}.src.tar.xz -C tools 
+			tar -xf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.xz -C projects
+			mv tools/cfe-${PKGVERSION}.src tools/clang
+			mv projects/compiler-rt-${PKGVERSION}.src projects/compiler-rt
+			cd ..
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}.src
+			# sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
+			cd ../${PKGNAME}-build
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				CC='distcc gcc' \
+				CXX='distcc g++' \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+					-DLLVM_ENABLE_FFI=ON                  \
+					-DCMAKE_BUILD_TYPE=Release            \
+					-DLLVM_BUILD_LLVM_DYLIB=ON            \
+					-DLLVM_LINK_LLVM_DYLIB=ON             \
+					-DLLVM_BUILD_TESTS=ON                 \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
+					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
+				make
+			else
+				CC='gcc' \
+				CXX='g++'  \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+					-DLLVM_ENABLE_FFI=ON                  \
+					-DCMAKE_BUILD_TYPE=Release            \
+					-DLLVM_BUILD_LLVM_DYLIB=ON            \
+					-DLLVM_LINK_LLVM_DYLIB=ON             \
+					-DLLVM_BUILD_TESTS=ON                 \
+					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
+					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build # ${PKGVERSION}.src
+			ninja install DESTDIR=${TGTDIR}
+			#for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
+			#	test -f $file && chmod -v 644 $file
+			#done
+			#install -v -dm755 ${TGTDIR}/usr/lib/clang-analyzer
+			#for prog in scan-build scan-view ; do
+			#	cp -rfv tools/clang/tools/$prog ${TGTDIR}/usr/lib/clang-analyzer/
+			#	ln -sfv ../lib/clang-analyzer/$prog/$prog ${TGTDIR}/usr/bin/
+			#done
+			#ln -sfv /usr/bin/clang ${TGTDIR}/usr/lib/clang-analyzer/scan-build/
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}.src
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
