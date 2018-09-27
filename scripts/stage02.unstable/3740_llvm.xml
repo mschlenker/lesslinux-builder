@@ -84,7 +84,7 @@
 					-DLLVM_BUILD_TESTS=ON                 \
 					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
 					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
-				make
+				make -j $jobcount
 			else
 				CC='gcc' \
 				CXX='g++'  \
@@ -96,7 +96,7 @@
 					-DLLVM_BUILD_TESTS=ON                 \
 					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
 					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
-				make
+				make -j 4
 			fi
 			]]>
 		</build>
