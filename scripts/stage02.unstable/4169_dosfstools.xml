@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="dosfstools"
+		version="4.1"
+		class="bin"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                
+				<pkg sha1="814e2d5842c62e328dfc8947178a0a4e45a1c028">dosfstools-4.1.tar.xz</pkg>
+				<mirror>https://github.com/dosfstools/dosfstools/releases/download/v4.1/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="https://github.com/dosfstools/dosfstools/releases" />
+			<!-- <check>
+				<page html="http://www.daniel-baumann.ch/software/dosfstools/">
+					<atext linktext="dosfstools-3.0.26." />
+					<atext linktext="dosfstools-3.0.27." />
+					<atext linktext="dosfstools-3.0.28." />
+					<atext linktext="dosfstools-3.0.29." />
+					<atext linktext="dosfstools-3.0.30." />
+					<atext linktext="dosfstools-3.0.31." />
+					<atext linktext="dosfstools-3.0.22." />
+					<atext linktext="dosfstools-3.0.33." />
+					<atext linktext="dosfstools-3.1." />
+					<atext linktext="dosfstools-3.2." />
+					<atext linktext="dosfstools-4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				make -j $jobcount PREFIX=/usr SBINDIR=/sbin CC="distcc gcc" CXX="distcc g++" 
+			else
+				make PREFIX=/usr SBINDIR=/sbin
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install PREFIX=/usr SBINDIR=/sbin DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
