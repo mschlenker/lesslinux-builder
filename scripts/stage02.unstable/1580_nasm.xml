@@ -60,10 +60,10 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --sysconfdir=/etc --prefix=/usr CC="distcc gcc" CXX="distcc g++" 
-				make -j $jobcount -C libiptc CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --sysconfdir=/etc --prefix=/usr
-				make -C libiptc 
+				make
 			fi
 			]]>
 		</build>
