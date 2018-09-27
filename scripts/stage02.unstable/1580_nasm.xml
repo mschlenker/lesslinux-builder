@@ -44,7 +44,14 @@
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -e '/seg_init/d'                      \
+				-e 's/pure_func seg_alloc/seg_alloc/' \
+				-i include/nasmlib.h
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
