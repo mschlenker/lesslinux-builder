@@ -1,0 +1,120 @@
+<llpackages>
+	<package 
+		name="libXcursor"
+		version="1.1.15"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                       
+				<pkg sha1="3e19f991f244b7fa31566adce7ead078424296cf">libXcursor-1.1.15.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="364" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
+					<atext linktext="libXcursor-1.1.16." />
+					<atext linktext="libXcursor-1.1.17." />
+					<atext linktext="libXcursor-1.1.15." />
+					<atext linktext="libXcursor-1.2." />
+					<atext linktext="libXcursor-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep><dep>glu</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>cryptsetup</dep>
+                        <dep>device-mapper</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>file</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdbm</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>gnutls</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXaw</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXfont</dep>
+                        <dep>libXft</dep>
+                        <dep>libXi</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXv</dep>
+                        <dep>libXvMC</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libdrm</dep>
+                        <dep>libfontenc</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libnl</dep><dep>libnl3</dep>
+                        <dep>libpciaccess</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libtool</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>mpc</dep>
+                        <dep>mpfr</dep>
+                        <dep>ncurses-8bit</dep>
+                        <dep>ncurses</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>popt</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xz</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

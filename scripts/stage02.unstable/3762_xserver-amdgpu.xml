@@ -1,0 +1,62 @@
+<llpackages>
+    <package name='xf86-video-amdgpu' version='1.4.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d9971cc6177095219a6687328aef25a72df3dd9d'>
+                    xf86-video-amdgpu-1.4.0.tar.bz2
+                </pkg>
+                <mirror>
+                    https://www.x.org/releases/individual/driver/
+                </mirror>
+            </file>
+            <manualcheck date='20170614' interval='60' mirror='https://www.x.org/releases/individual/driver/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>dri3proto</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libdrm</dep>
+                        <dep>libpciaccess</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>presentproto</dep>
+                        <dep>sed</dep>
+                        <dep>udev</dep>
+                        <dep>xineramaproto</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
