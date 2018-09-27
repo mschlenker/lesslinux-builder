@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='meson' version='0.48.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a3a61a5782e4753e0b3e7a25ee40f2fbac4c2d48'>
+                    meson-0.48.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/mesonbuild/meson/releases/download/0.48.0/
+                </mirror>
+            </file>
+            <manualcheck date='20180927' interval='60' mirror='https://github.com/mesonbuild/meson/releases/download/0.48.0/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python3 setup.py config
+python3 setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python3 setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
