@@ -67,7 +67,7 @@
 				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
 			</file>
 			<file>      
-				<pkg sha1="e93da374ecef9359370edc0160bcb8b2a2f7d9f6">xcb-proto-1.12.tar.bz2</pkg>
+				<pkg sha1="f7fa35ab59af18cecadbe83fe705281dcfd82ffd">xcb-proto-1.13.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/x11</mirror>
 				<mirror>http://xcb.freedesktop.org/dist/</mirror>
 			</file>
@@ -251,12 +251,16 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/xorgproto-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/xcb-proto-1.13.tar.bz2
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
 			cd xorgproto-${PKGVERSION}
+			./configure --prefix=/usr
+			make
+			cd ../xcb-proto-1.13
 			./configure --prefix=/usr
 			make
 			]]>
@@ -266,11 +270,13 @@
 			<![CDATA[
 			cd xorgproto-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
+			cd ../xcb-proto-1.13
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf xorgproto-${PKGVERSION} 
+			rm -rf xorgproto-${PKGVERSION} xcb-proto-1.13
 			]]>
 		</clean>
 	</package>
