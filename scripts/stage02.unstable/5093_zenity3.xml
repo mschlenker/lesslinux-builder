@@ -1,0 +1,106 @@
+<llpackages>
+	<package 
+		name="zenity3"
+		version="3.28.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="b47f6248ed896d5798fe459d5b752eb828737f76">zenity-3.28.1.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/zenity/3.28/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/3.24/">
+					<atext linktext="zenity-3.24.1." />
+					<atext linktext="zenity-3.24.2." />
+					<atext linktext="zenity-3.24.3." />
+					<atext linktext="zenity-3.24.4." />
+					<atext linktext="zenity-3.24.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/zenity/">
+					<atext linktext="3.28" />
+					<atext linktext="3.30" />
+					<atext linktext="3.26" />
+					<atext linktext="4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>evince3</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gconf3</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gnome-icon-theme</dep>
+                        <dep>gobject-introspection1</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libwnck3</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/zenity-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd zenity-${PKGVERSION}
+			# export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd zenity-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			# paxctl -m /opt/bin/zenity
+			# paxctl -m /usr/bin/zenity
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf zenity-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
