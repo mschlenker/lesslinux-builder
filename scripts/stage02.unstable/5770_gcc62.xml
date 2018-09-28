@@ -1,0 +1,107 @@
+<llpackages>
+	<package 
+		name="gcc62"
+		version="6.2.0"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="583e29c7fe69d9a1031a89752c2551ab5aeacb91">gcc-6.2.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.2.0/</mirror>
+			</file>
+			<file>                                                                                  
+				<pkg sha1="3d3d09ecca83ffe14096fe2db7613e85a1f989e7">gcc-6.3.0-ubsan.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-6.2.1" />
+					<atext linktext="gcc-6.2.2" />
+					<atext linktext="gcc-6.2.3" />
+					<atext linktext="gcc-6.3."/>
+					<atext linktext="gcc-6.4." />
+					<atext linktext="gcc-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<!-- <dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep> -->
+			<dep>gcc</dep>
+			<dep>perl</dep>
+			<dep>zip</dep> 
+			<dep>unzip</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			bunzip2 -c ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2 | tar xf -
+			mkdir ${PKGNAME}-build
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd gcc-${PKGVERSION}
+			cat ${SRCDIR}/gcc-6.3.0-ubsan.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			SED=sed
+			export SED
+			export EXTRA_CFLAGS=-Wno-error
+			export EXTRA_CXXFLAGS=-Wno-error
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
+				--enable-shared \
+				--enable-threads=posix --enable-__cxa_atexit  \
+				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++ \
+				--disable-multilib --with-system-zlib --program-suffix=62 --disable-bootstrap 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make -j 4
+			fi
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make -k check
+			../gcc-${PKGVERSION}/contrib/test_summary
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			mkdir -p ${TGTDIR}/usr/bin 
+			make install DESTDIR=${TGTDIR}
+			version=62
+			for fname in gcc g++ c++ cpp ; do
+				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
+				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
+			done
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf gcc-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
