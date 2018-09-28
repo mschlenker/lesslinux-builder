@@ -3,7 +3,7 @@
 		name="atk"
 		version="2.30.0"
 		class="lib"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>             
@@ -46,6 +46,8 @@
                         <dep>util-linux-ng</dep>
 			<dep>gobject-introspection</dep>
 			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -56,23 +58,26 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
-				./configure --sysconfdir=/etc --prefix=/usr 
-				make
-			fi
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+			#	export CC="distcc gcc"
+			#	export CXX="distcc g++" 
+			#	./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+			#	make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			#else
+			#	./configure --sysconfdir=/etc --prefix=/usr 
+			#	make
+			#fi
+			meson --prefix=/usr
+			ninja
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			#make install DESTDIR=${TGTDIR} 
+			ninja install
 			]]>
 		</install>
 		<clean>
