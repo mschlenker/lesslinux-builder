@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="pycairo"
+		version="1.17.1"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>   
+				<pkg sha1="474bc2e6316f5ce8b0371fff07c6121f5e17f79f">pycairo-1.17.1.tar.gz</pkg>
+				<mirror>https://github.com/pygobject/pycairo/releases/download/v1.17.1/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://cairographics.org/releases/" />
+			<check>
+				<page html="http://cairographics.org/releases/">
+					<atext linktext="py2cairo-1.10.1." />
+					<atext linktext="py2cairo-1.10.2." />
+					<atext linktext="py2cairo-1.10.4" />
+					<atext linktext="py2cairo-1.10.6" />
+					<atext linktext="py2cairo-1.12" />
+					<atext linktext="py2cairo-2." />
+					<atext linktext="py2cairo-3" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng12</dep><dep>libpng14</dep><dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/pycairo-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd pycairo-${PKGVERSION}
+			python2 setup.py build
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd pycairo-${PKGVERSION}
+			python2 setup.py install --optimize=1   &&
+			python2 setup.py install_pycairo_header &&
+			python2 setup.py install_pkgconfig
+			]]>
+		</install>
+	</package>
+</llpackages>
