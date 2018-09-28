@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="8b56123714b4e061f0f71005c5be598b12f82483">curl-7.61.1.tar.bz2</pkg>
+				<pkg sha1="8b56123714b4e061f0f71005c5be598b12f82483">curl-7.61.1.tar.xz</pkg>
 				<mirror>http://curl.haxx.se/download/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="90" page="http://curl.haxx.se/download/" />
@@ -44,7 +44,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/curl-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/curl-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
