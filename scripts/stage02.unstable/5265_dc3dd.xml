@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="dc3dd"
+		version="7.2.646"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                               
+				<pkg sha1="3d3d9ba5f3b18fbf4798e1f3554f2d34d0ce5e2c">dc3dd-7.2.646.zip</pkg>
+				<mirror>https://netcologne.dl.sourceforge.net/project/dc3dd/dc3dd/7.2.646/dc3dd%207.2.646/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://sourceforge.net/projects/dc3dd/files/" />
+		</sources>
+		<builddeps>
+			<dep>autoconf</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			 <dep>p5-gettext</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unzip ${SRCDIR}/${PKGNAME}-${PKGVERSION}.zip
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			chmod 0755 configure
+			./configure --sysconfdir=/etc --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

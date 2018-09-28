@@ -1,0 +1,95 @@
+<llpackages>
+	<package 
+		name="libsoup"
+		version="2.64.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                           
+				<pkg sha1="96370a7b5ec92523393ad0254d5cc0723b60b662">libsoup-2.64.1.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/2.64/</mirror>
+			</file>
+			<manualcheck date="20170830" interval="90" page="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/2.58/">
+					<atext linktext="libsoup-2.58.4." />
+					<atext linktext="libsoup-2.58.5." />
+					<atext linktext="libsoup-2.58.3." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libsoup/">
+					<atext linktext="2.60" />
+					<atext linktext="2.62" />
+					<atext linktext="3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libffi</dep>
+                        <dep>libgcrypt</dep>
+                        <dep>libgnome-keyring</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libproxy</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>pygobject</dep>
+                        <dep>sed</dep>
+                        <dep>sqlite</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>glib-networking</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --sysconfdir=/etc --prefix=/usr && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
