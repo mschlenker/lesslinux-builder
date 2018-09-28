@@ -41,6 +41,7 @@
 			<dep>zip</dep> 
 			<dep>unzip</dep>
 			<dep>distcc</dep>
+			<dep>gcc64</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -61,10 +62,13 @@
 			export SED
 			export EXTRA_CFLAGS=-Wno-error
 			export EXTRA_CXXFLAGS=-Wno-error
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
+				export CC="distcc /usr/local/gcc64/bin/gcc64"
+				export CXX="distcc /usr/local/gcc64/bin/g++64"
+			else
+				export CC='/usr/local/gcc64/bin/gcc64'
+				export CXX='/usr/local/gcc64/bin/g++64'
 			fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
 				--enable-shared \
