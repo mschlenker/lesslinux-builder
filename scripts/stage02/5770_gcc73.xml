@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
-		name="gcc64"
-		version="6.4.0"
+		name="gcc73"
+		version="7.3.0"
 		install="destdir"
 		providedeps="no">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                                  
-				<pkg sha1="f237974b2d3af0f60936ce6a2f35b912a91e0239">gcc-6.4.0.tar.xz</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-6.4.0/</mirror>
+			<file>                                                     
+				<pkg sha1="9689b9cae7b2886fdaa08449a26701f095c04e48">gcc-7.3.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-7.3.0/</mirror>
 			</file>
-			<manualcheck date="20170615" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<manualcheck date="20171031" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/gcc/">
-					<atext linktext="gcc-6.4.1" />
-					<atext linktext="gcc-6.4.2" />
-					<atext linktext="gcc-6.4.3" />
-					<atext linktext="gcc-6.5."/>
-					<atext linktext="gcc-6.6." />
-					<atext linktext="gcc-7." />
+					<atext linktext="gcc-7.2.1" />
+					<atext linktext="gcc-7.2.2" />
+					<atext linktext="gcc-7.2.3" />
+					<atext linktext="gcc-7.4."/>
+					<atext linktext="gcc-7.3." />
+					<atext linktext="gcc-8." />
 				</page>
 			</check>
 		</sources>
@@ -37,7 +37,6 @@
 			<dep>zip</dep> 
 			<dep>unzip</dep>
 			<dep>distcc</dep>
-			<dep>gcc73</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -50,19 +49,16 @@
 			cd ${PKGNAME}-build
 			SED=sed
 			export SED
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc73/bin/gcc73"
-				export CXX="distcc /usr/local/gcc73/bin/g++73"
-			else
-				export CC='/usr/local/gcc73/bin/gcc73'
-				export CXX='/usr/local/gcc73/bin/g++73'
+				export CC="distcc gcc"
+				export CXX="distcc g++"
 			fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
 				--enable-shared \
 				--enable-threads=posix --enable-__cxa_atexit  \
-				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++ \
-				--disable-multilib --with-system-zlib --program-suffix=64 --disable-bootstrap 
+				--enable-clocale=gnu --enable-languages=c,c++,fortran,lto,objc,obj-c++,go \
+				--disable-multilib --with-system-zlib --program-suffix=73 --disable-bootstrap 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
@@ -82,7 +78,7 @@
 			cd ${PKGNAME}-build
 			mkdir -p ${TGTDIR}/usr/bin 
 			make install DESTDIR=${TGTDIR}
-			version=64
+			version=73
 			for fname in gcc g++ c++ cpp ; do
 				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
 				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
