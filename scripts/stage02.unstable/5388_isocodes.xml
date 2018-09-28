@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="iso-codes"
+		version="4.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                                                                  
+				<pkg sha1="7562a89e6c894eb39932ad5868bac06bb7aca5c3">iso-codes_4.1.orig.tar.xz</pkg>
+				<mirror>http://ftp.de.debian.org/debian/pool/main/i/iso-codes/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://packages.debian.org/source/unstable/iso-codes" />
+			<check>
+				<page html="http://ftp.de.debian.org/debian/pool/main/i/iso-codes/">
+					<atext linktext="iso-codes_3.76" />
+					<atext linktext="iso-codes_3.77" />
+					<atext linktext="iso-codes_3.78" />
+					<atext linktext="iso-codes_3.79" />
+					<atext linktext="iso-codes_3.80" />
+					<atext linktext="iso-codes_4." />
+				</page>
+			</check>
+		</sources>
+		 <builddeps>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep><dep>Python3</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i '/^LN_S/s/s/sfvn/' */Makefile
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
