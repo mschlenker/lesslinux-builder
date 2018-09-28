@@ -104,7 +104,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-build # ${PKGVERSION}.src
-			ninja install DESTDIR=${TGTDIR}
+			make install DESTDIR=${TGTDIR}
 			#for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
 			#	test -f $file && chmod -v 644 $file
 			#done
