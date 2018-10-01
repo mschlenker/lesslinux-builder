@@ -1,0 +1,84 @@
+<llpackages>
+	<package 
+		name="wget"
+		version="1.19.5"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                         
+				<pkg sha1="43b3d09e786df9e8d7aa454095d4ea2d420ae41c">wget-1.19.5.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/wget/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://ftp.gnu.org/gnu/wget/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/wget/">
+					<atext linktext="wget-1.19.5." />
+					<atext linktext="wget-1.19.2." />
+					<atext linktext="wget-1.19.3." />
+					<atext linktext="wget-1.19.4." />
+					<atext linktext="wget-1.22." />
+					<atext linktext="wget-1.23." />
+					<atext linktext="wget-1.24." />
+					<atext linktext="wget-1.20." />
+					<atext linktext="wget-1.21." />
+					<atext linktext="wget-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libidn</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+			<dep>gnutls</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --with-openssl=yes --with-ssl=openssl && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			echo 'ca-directory = /etc/ssl/certs' >> ${TGTDIR}/etc/wgetrc 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
