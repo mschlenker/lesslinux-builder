@@ -109,8 +109,8 @@
 			# echo 'CROSS_COMPILE="x86_64-linux-gnu-"' > ../linux-${PKGVERSION}/crosscompile.inc
 			echo 'CROSS_COMPILE="x86_64-linux-musl-"' > ../linux-${PKGVERSION}/crosscompile.inc
 			
-			# yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
-			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" oldconfig 
+			# yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" silentoldconfig 
+			make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" silentoldconfig 
 			
 			jobcount=4 
 			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
