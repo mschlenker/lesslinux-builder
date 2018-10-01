@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="pigz"
+		version="2.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file> 
+				<pkg sha1="92d4a8f3917865acca2c7c368cf0ed10d20d0612">pigz-2.4.tar.gz</pkg>
+				<mirror>http://zlib.net/pigz/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="120" page="http://zlib.net/pigz/" />
+			<check>
+				<page html="http://zlib.net/pigz/">
+					<atext href="pigz-2.3.7." />
+					<atext href="pigz-2.3.8." />
+					<atext href="pigz-2.3.9." />
+					<atext href="pigz-2.3.5." />
+					<atext href="pigz-2.3.6." />
+					<atext href="pigz-2.4." />
+					<atext href="pigz-2.5." />
+					<atext href="pigz-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's%-lpthread%-lpthread -lm%g' Makefile
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			install -m 0755 pigz ${TGTDIR}/usr/bin
+			ln -sf pigz ${TGTDIR}/usr/bin/unpigz
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
