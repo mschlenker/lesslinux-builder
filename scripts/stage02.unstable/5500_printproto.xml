@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="printproto"
+		version="1.0.5"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                
+				<pkg sha1="4ddb7781ebc2418d681a6f5e16d777aed56ea35e">printproto-1.0.5.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/proto/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://xorg.freedesktop.org/archive/individual/proto/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/proto/">
+					<atext linktext="printproto-1.0.6." />
+					<atext linktext="printproto-1.0.7." />
+					<atext linktext="printproto-1.0.8." />
+					<atext linktext="printproto-1.0.9." />
+					<atext linktext="printproto-1.1." />
+					<atext linktext="printproto-1.2." />
+					<atext linktext="printproto-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			<![CDATA[
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			]]>
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
