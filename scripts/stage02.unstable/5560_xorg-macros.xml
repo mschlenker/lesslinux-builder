@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                         
-				<pkg sha1="e8b3a6f2bfde22440fca0974da53da18821a4ee6">util-macros-1.19.2.tar.gz</pkg>
+				<pkg sha1="e8b3a6f2bfde22440fca0974da53da18821a4ee6">util-macros-1.19.2.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/util/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="180" page="http://xorg.freedesktop.org/archive/individual/util/" />
@@ -36,7 +36,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
 		<build>
