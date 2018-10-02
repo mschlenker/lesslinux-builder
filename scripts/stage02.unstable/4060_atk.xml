@@ -68,6 +68,8 @@
 			#	./configure --sysconfdir=/etc --prefix=/usr 
 			#	make
 			#fi
+			mkdir build 
+			cd build 
 			meson --prefix=/usr
 			ninja
 			]]>
