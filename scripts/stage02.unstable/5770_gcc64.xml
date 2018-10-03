@@ -38,11 +38,11 @@
 			export SED
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc73/bin/gcc73"
-				export CXX="distcc /usr/local/gcc73/bin/g++73"
+				export CC="distcc clang"
+				export CXX="distcc clang++"
 			else
-				export CC='/usr/local/gcc73/bin/gcc73'
-				export CXX='/usr/local/gcc73/bin/g++73'
+				export CC='clang'
+				export CXX='clang++'
 			fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
 				--enable-shared \
