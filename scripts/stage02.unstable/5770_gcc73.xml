@@ -37,14 +37,14 @@
 			cd ${PKGNAME}-build
 			SED=sed
 			export SED
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc clang"
-				export CXX="distcc clang++"
-			else
-				export CC='clang'
-				export CXX='clang++'
-			fi
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	export CC="distcc clang"
+			#	export CXX="distcc clang++"
+			#else
+			#	export CC='clang'
+			#	export CXX='clang++'
+			#fi
 			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
 				--enable-shared \
 				--enable-threads=posix --enable-__cxa_atexit  \
