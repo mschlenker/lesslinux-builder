@@ -48,7 +48,14 @@
 				--enable-shared \
 				--enable-threads=posix --enable-__cxa_atexit  \
 				--enable-clocale=gnu --enable-languages=c,c++  \
-				--disable-multilib --with-system-zlib --program-suffix=64
+				--disable-multilib --disable-libatomic                              \
+    --disable-libgomp                                \
+    --disable-libitm                                 \
+    --disable-libmudflap                             \
+    --disable-libquadmath                            \
+    --disable-libsanitizer                           \
+    --disable-libssp                                 \
+    --with-system-zlib --program-suffix=64
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
