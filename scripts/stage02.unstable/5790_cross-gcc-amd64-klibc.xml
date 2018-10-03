@@ -128,17 +128,18 @@
 				--prefix=/usr/local/crosstools-amd64-klibc \
 				--with-newlib                                    \
 				--without-headers                                \
-				--disable-nls                                    \
-				--disable-shared                                 \
-				--disable-multilib                               \
-				--disable-decimal-float                          \
-				--disable-threads                                \
-				--disable-libatomic                              \
-				--disable-libgomp                                \
-				--disable-libquadmath                            \
-				--disable-libssp                                 \
-				--disable-libvtv                                 \
-				--disable-libstdcxx                           \
+				--disable-nls                                  \
+    --disable-shared                               \
+    --disable-multilib                             \
+    --disable-decimal-float                        \
+    --disable-threads                              \
+    --disable-libatomic                            \
+    --disable-libgomp                              \
+    --disable-libmpx                               \
+    --disable-libquadmath                          \
+    --disable-libssp                               \
+    --disable-libvtv                               \
+    --disable-libstdcxx                            \
 				--enable-languages=c,c++ \
 				--with-mpfr-include=$(pwd)/../gcc-${PKGVERSION}/mpfr/src \
 				--with-mpfr-lib=$(pwd)/mpfr/src/.libs 
