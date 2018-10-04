@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                               
-				<pkg sha1="eac3de16f67869032183e7b03c3a6980a313d96a">nmap-7.70.tar.bz2</pkg>
+				<pkg sha1="eac3de16f67869032183e7b03c3a6980a313d96a">nmap-7.70.tgz</pkg>
 				<mirror>http://nmap.org/dist/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="120" page="http://nmap.org/dist/" />
@@ -57,7 +57,7 @@
 		<unpack>
 			<![CDATA[ 
 			
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tgz
 			
 			]]>
 		</unpack>
