@@ -27,55 +27,33 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			bunzip2 -c ${SRCDIR}/gcc-${PKGVERSION}.tar.bz2 | tar xf -
-			mkdir ${PKGNAME}-build
+			echo 'Nothing to unpack!'
 			]]>
 		</unpack>
+		<patch>
+			<![CDATA[
+			echo 'Nothing to patch!'
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-build
-			SED=sed
-			export SED
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc64/bin/gcc64"
-				export CXX="distcc /usr/local/gcc64/bin/g++64"
-			else
-				export CC='/usr/local/gcc64/bin/gcc64'
-				export CXX='/usr/local/gcc64/bin/g++64'
-			fi
-			jobcount=4
-			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
-				--enable-shared --disable-libsanitizer \
-				--enable-threads=posix --enable-__cxa_atexit    \
-				--enable-clocale=gnu --enable-languages=c,c++,fortran,java,lto,objc,obj-c++ \
-				--disable-multilib --with-system-zlib --program-suffix=54 --disable-bootstrap 
-			make -j $jobcount
+			echo 'Nothing to build!'
 			]]>
 		</build>
 		<test>
 			<![CDATA[
-			cd ${PKGNAME}-build
-			make -k check
-			../gcc-${PKGVERSION}/contrib/test_summary
+			echo 'Nothing to test!'
 			]]>
 		</test>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-build
-			mkdir -p ${TGTDIR}/usr/bin 
-			make install DESTDIR=${TGTDIR}
-			version=54
-			for fname in gcc g++ c++ cpp ; do
-				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
-				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
-			done
+			mkdir -p ${TGTDIR}/etc/lesslinux/
+			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf gcc-${PKGVERSION}
-			rm -rf ${PKGNAME}-build
+			echo 'Nothing to clean!'
 			]]>
 		</clean>
 	</package>
