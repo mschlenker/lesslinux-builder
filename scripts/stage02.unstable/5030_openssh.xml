@@ -10,6 +10,11 @@
 				<pkg sha1="27e267e370315561de96577fccae563bc2c37a60">openssh-7.8p1.tar.gz</pkg>
 				<mirror>ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/</mirror>
 			</file>
+			
+			<file>                                                                                       
+				<pkg sha1="8e5d01118da518c3f328a43ae8fb9d7f3d5d8321">openssh-7.8p1-openssl-1.1.0-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
 			<manualcheck date="20170615" interval="120" page="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/" />
 			<check>
 				<page html="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/">
@@ -56,7 +61,12 @@
 			fi
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-openssl-1.1.0-1.patch | patch -p1 
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
