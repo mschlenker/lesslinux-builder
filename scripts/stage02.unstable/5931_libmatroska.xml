@@ -30,21 +30,20 @@
                         <dep>glibc</dep>
                         <dep>libebml</dep>
                         <dep>make</dep>
+			<dep>cmake</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
-			fi
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc
+			mkdir build
+			cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+			# ./configure --prefix=/usr --sysconfdir=/etc
 			make 
 			# make -C make/linux prefix=/usr
 			]]>
@@ -52,7 +51,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}/build
 			make install
 			# make -C make/linux prefix=/usr install
 			]]>
