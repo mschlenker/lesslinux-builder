@@ -40,8 +40,8 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			mkdir build
+			mkdir ${PKGNAME}-${PKGVERSION}/build
+			cd ${PKGNAME}-${PKGVERSION}/build
 			cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
 			# ./configure --prefix=/usr --sysconfdir=/etc
 			make 
