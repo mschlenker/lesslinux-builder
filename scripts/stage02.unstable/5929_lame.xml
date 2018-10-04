@@ -62,6 +62,9 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			case $(uname -m) in
+				i?86) sed -i -e 's/<xmmintrin.h/&.nouse/' configure ;;
+			esac
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
