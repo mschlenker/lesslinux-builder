@@ -11,7 +11,7 @@
 				<mirror>http://wiresharkdownloads.riverbed.com/wireshark/src/</mirror>
 			</file> -->
 			<file>                                                           
-				<pkg sha1="d239fd091d59968ac8a1b42b28e61aeef09c20b7">wireshark-2.6.3.tar.bz2</pkg>
+				<pkg sha1="d239fd091d59968ac8a1b42b28e61aeef09c20b7">wireshark-2.6.3.tar.xz</pkg>
 				<mirror>https://1.na.dl.wireshark.org/src/all-versions/</mirror>
 			</file>
 			<file>                                                           
@@ -78,7 +78,7 @@
 		<unpack>
 			<![CDATA[ 
 			
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			
 			]]>
 		</unpack>
