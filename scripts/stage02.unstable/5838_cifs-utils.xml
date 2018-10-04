@@ -1,0 +1,90 @@
+<llpackages>
+	<package 
+		name="cifs-utils"
+		version="6.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="3440625e73a2e8ea58c63c61b46a61f5b7f95bac">cifs-utils-6.8.tar.bz2</pkg>
+				<mirror>https://download.samba.org/pub/linux-cifs/cifs-utils/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="https://download.samba.org/pub/linux-cifs/cifs-utils/" />
+			<check>
+				<page html="https://download.samba.org/pub/linux-cifs/cifs-utils/">
+					<atext linktext="cifs-utils-6.12." />
+					<atext linktext="cifs-utils-6.13." />
+					<atext linktext="cifs-utils-6.14." />
+					<atext linktext="cifs-utils-6.15." />
+					<atext linktext="cifs-utils-6.8." />
+					<atext linktext="cifs-utils-6.9." />
+					<atext linktext="cifs-utils-6.10." />
+					<atext linktext="cifs-utils-6.11." />
+					<atext linktext="cifs-utils-7." />
+					<atext linktext="cifs-utils-8." />
+					<atext linktext="cifs-utils-9." />
+					<atext linktext="cifs-utils-10." />					
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libcap</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>talloc</dep>
+			<!-- dep>distcc</dep -->
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch></patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				autoreconf -vif
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				autoreconf -vif
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			for d in /usr/bin /usr/sbin /usr/share/man/man1 /usr/share/man/man8 ; do
+				mkdir -pv ${TGTDIR}/${d}
+			done
+			make install DESTDIR=${TGTDIR} 
+			mv ${TGTDIR}/sbin/mount.cifs ${TGTDIR}/usr/sbin/
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

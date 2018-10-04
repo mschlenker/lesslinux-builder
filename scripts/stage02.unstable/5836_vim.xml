@@ -1,0 +1,121 @@
+<llpackages>
+	<package 
+		name="vim"
+		version="8.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                  
+				<pkg sha1="cbca219d11990d866976da309d7ce5b76be48b96">vim-8.1.tar.bz2</pkg>
+				<mirror>ftp://ftp.vim.org/pub/vim/unix/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="ftp://ftp.vim.org/pub/vim/unix/" />
+			<check>
+				<page html="ftp://ftp.vim.org/pub/vim/unix/">
+					<atext linktext="vim-8.0.1" />
+					<atext linktext="vim-8.0.2" />
+					<atext linktext="vim-8.1." />
+					<atext linktext="vim-8.2." />
+					<atext linktext="vim-8.3." />
+					<atext linktext="vim-8.4." />
+					<atext linktext="vim-8.5." />
+					<atext linktext="vim-11." />
+					<atext linktext="vim-9." />
+					<atext linktext="vim-10." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>acl</dep>
+                        <dep>atk</dep>
+                        <dep>attr</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>desktop-file-utils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXt</dep>
+                        <dep>libxml2</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd vim80
+			echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd vim80
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --enable-multibyte  --enable-gui=gtk3  CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --enable-multibyte --enable-gui=gtk3 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd vim80
+			mkdir -p ${TGTDIR}/etc
+			make install DESTDIR=${TGTDIR}
+			
+			[ -f  ${TGTDIR}/usr/bin/vim ] || exit 1 
+			
+cat > ${TGTDIR}/etc/vimrc << "EOF"
+" Begin /etc/vimrc
+
+set nocompatible
+set backspace=2
+syntax on
+if (&term == "iterm") || (&term == "putty")
+  set background=dark
+endif
+
+" End /etc/vimrc
+EOF
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf vim80
+			]]>
+		</clean>
+	</package>
+</llpackages>
