@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="iw"
+		version="4.14"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="335898be067d0083c5aaadde7db8ba2371050fcd">iw-4.14.tar.xz</pkg>
+				<mirror>http://kernel.org/pub/software/network/iw/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="http://www.kernel.org/pub/software/network/iw" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/software/network/iw/">
+					<atext linktext="iw-4.9.1." />
+					<atext linktext="iw-4.9.2." />
+					<atext linktext="iw-4.9.3." />
+					<atext linktext="iw-4.13." />
+					<atext linktext="iw-4.14." />
+					<atext linktext="iw-4.10." />
+					<atext linktext="iw-4.11." />
+					<atext linktext="iw-4.12." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+			<dep>crda</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>libnl</dep><dep>libnl3</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+			<!-- dep>distcc</dep -->
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
