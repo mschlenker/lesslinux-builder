@@ -1,0 +1,66 @@
+<llpackages>
+	<package 
+		name="libmatroska"
+		version="1.4.9"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="244f23488ebef5b5bfac8399afeb0d929968457b">libmatroska-1.4.9.tar.xz</pkg>
+				<mirror>http://dl.matroska.org/downloads/libmatroska/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://dl.matroska.org/downloads/libmatroska/" />
+			<check>
+				<page html="http://dl.matroska.org/downloads/libmatroska/">
+					<atext linktext="libmatroska-1.4.8." />
+					<atext linktext="libmatroska-1.4.9." />
+					<atext linktext="libmatroska-1.4.10." />
+					<atext linktext="libmatroska-1.4.11." />
+					<atext linktext="libmatroska-1.4.12." />
+					<atext linktext="libmatroska-1.5." />
+					<atext linktext="libmatroska-1.6." />
+					<atext linktext="libmatroska-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libebml</dep>
+                        <dep>make</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make 
+			# make -C make/linux prefix=/usr
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			# make -C make/linux prefix=/usr install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
