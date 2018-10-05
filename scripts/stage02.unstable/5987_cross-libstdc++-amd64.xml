@@ -1,0 +1,65 @@
+<llpackages>
+	<package 
+		name="libstdc++-musl-amd64"
+		version="8.2.0"
+		install="chroot"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="19926bdb6c4b58891015929853d41aeff019d400">gcc-8.2.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-8.2.0/</mirror>
+			</file>
+			<manualcheck date="20170601" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+		</sources>
+		<builddeps>
+                     <dep>cross-gcc-musl1-amd64</dep>
+		     <dep>distcc</dep>
+		     <dep>musl-amd64</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+		
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
+			mkdir gcc-build 
+		
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+
+cd gcc-build
+
+export PATH=/usr/local/crosstools-amd64-musl/bin:$PATH
+export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export CLFS_TARGET=x86_64-linux-musl
+export CLFS_CPU=k8
+			
+../gcc-${PKGVERSION}/libstdc++-v3/configure           \
+    --host=$CLFS_TARGET                \
+    --prefix=/tools                 \
+    --disable-multilib              \
+    --disable-nls                   \
+    --disable-libstdcxx-threads     \
+    --disable-libstdcxx-pch         \
+    --with-gxx-include-dir=/usr/local/crosstools-amd64-musl/${CLFS_TARGET}/include/c++/${PKGVERSION}
+make -j4
+
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+cd gcc-build
+make install 
+			
+			
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf gcc-${PKGVERSION} gcc-build 
+			]]>
+		</clean>
+	</package>
+</llpackages>
