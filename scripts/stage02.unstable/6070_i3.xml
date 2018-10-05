@@ -1,0 +1,88 @@
+<llpackages>
+    <package name='i3' version='4.15' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='906126f61e62c53903a5ad53cb9288c6fc517a4b'>
+                    i3-4.15.tar.bz2
+                </pkg>
+                <mirror>
+                    http://i3wm.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='http://i3wm.org/downloads/'/>
+	        <check>
+				<page html="http://i3wm.org/downloads/">
+					<atext linktext=" i3-4.13.1." />
+					<atext linktext=" i3-4.13.2." />
+					<atext linktext=" i3-4.13.3." />
+					<atext linktext=" i3-4.13.4.." />
+					<atext linktext=" i3-4.15." />
+					<atext linktext=" i3-4.16." />
+					<atext linktext=" i3-4.17." />
+					<atext linktext=" i3-4.14." />
+					<atext linktext=" i3-5." />
+					<atext linktext=" i3-6." />
+				</page>
+			</check>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>libX11</dep>
+                        <dep>libev</dep>
+                        <dep>libxcb</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>startup-notification</dep>
+                        <dep>util-keysyms</dep>
+                        <dep>which</dep>
+                        <dep>xcb-util-cursor</dep>
+                        <dep>xcb-util-wm</dep>
+                        <dep>xcb-util</dep>
+                        <dep>xproto-base</dep>
+                        <dep>yajl</dep>
+			<dep>libxkbcommon</dep>
+			<dep>distcc</dep>
+			 <dep>xcb-util-xrm</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+	    if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+			jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			export CC="distcc gcc"
+			export CXX="distcc g++" 
+	    fi
+	    ./configure --prefix=/usr --sysconfdir=/etc 
+	    cd i686-pc-linux-gnu/
+	    make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/i686-pc-linux-gnu
+	    make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
