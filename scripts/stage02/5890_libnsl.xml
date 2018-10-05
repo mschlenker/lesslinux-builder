@@ -1,42 +1,25 @@
 <llpackages>
 	<package 
-		name="ntirpc"
-		version="1.7.0"
+		name="libnsl"
+		version="1.2.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                           
-				<pkg sha1="1c26322b36cae79227f3479b6fb6e687872c469c">ntirpc_1.7.0.orig.tar.gz</pkg>
-				<mirror>http://http.debian.net/debian/pool/main/n/ntirpc/</mirror>
+				<pkg sha1="f141c7cf0ff96d96e369dda36af8ed19af0fc3ca">libnsl-1.2.0.tar.gz</pkg>
+				<mirror>https://github.com/thkukuk/libnsl/archive/</mirror>
 			</file>
 			<!-- <file>                                                                           
 				<pkg sha1="a19a12eca923bf434ec672edc66c1ea80ae1d061">libtirpc-0.2.3-remove_nis-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file> -->
 			<manualcheck date="20160701" interval="180" page="http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html" />
-			<check>
-				<page html="http://sourceforge.net/projects/libtirpc/files/libtirpc/">
-					<atext linktext="libtirpc-1.0.2." />
-					<atext linktext="libtirpc-1.0.3." />
-					<atext linktext="libtirpc-1.0.4." />
-					<atext linktext="libtirpc-1.0.5." />
-					<atext href="1.1.3" />
-					<atext href="1.1.4" />
-					<atext href="1.1.5" />
-					<atext href="1.1.6" />
-					<atext href="1.1.7" />
-					<atext href="1.2.0" />
-					<atext href="1.3.0" />
-					<atext href="1.4.0" />
-				</page>
-			</check>
 		</sources>
 		<builddeps>
                         <dep>gcc</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
-			<dep>libnsl</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -53,8 +36,6 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			mkdir build
-			cd build
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -63,14 +44,15 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+			bash autogen.sh
+			./configure --prefix=/usr 
 			make -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/build
+			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
