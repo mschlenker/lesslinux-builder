@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="lynx"
+		version="2.8.9rel.1"
+		class="devel"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                         
+				<pkg sha1="3e00ac30d008e0aa879bfd037abcfd9c0dd2faec">lynx2.8.9rel.1.tar.bz2</pkg>
+				<mirror>https://invisible-mirror.net/archives/lynx/tarballs/</mirror>
+			</file>
+			<!-- <file>                         
+				<pkg sha1="99ba88a953970aab83890fb98f2ea761dd71407b">openssl-1.0.1h-fix_parallel_build-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<!-- <file>                         
+				<pkg sha1="e77dcfc75393108579d6f7d164faafd84dc17820">openssl-1.0.1h-fix_pod_syntax-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20170609" interval="90" page="http://www.openssl.org/source/" />
+			<check>
+				<page html="http://artfiles.org/openssl.org/source/">
+					<atext linktext="openssl-1.0.2m" />
+					<atext linktext="openssl-1.0.2n" />
+					<atext linktext="openssl-1.0.2o" />
+					<atext linktext="openssl-1.0.4." />
+					<atext linktext="openssl-1.0.3." />
+					<atext linktext="openssl-1.1." />
+					<atext linktext="openssl-1.2." />
+					<atext linktext="openssl-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>openssl</dep>
+			<dep>bzip2</dep>
+			<dep>zlib</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fix_parallel_build-1.patch | patch -p1
+			# cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-fix_pod_syntax-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			./configure --prefix=/usr          \
+            --sysconfdir=/etc/lynx \
+            --datadir=/usr/share/doc/lynx-2.8.9rel.1 \
+            --with-zlib            \
+            --with-bzlib           \
+            --with-ssl             \
+            --with-screen=ncursesw \
+            --enable-locale-charset
+	    make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			make install-full
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

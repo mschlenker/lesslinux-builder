@@ -1,0 +1,117 @@
+<llpackages>
+	<package 
+		name="menu-cache"
+		version="1.1.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="01e6035aa1fe76d7047bdec235254aa5ce17394a">menu-cache_1.1.0.orig.tar.xz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/m/menu-cache/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="60" page="https://github.com/lxde/menu-cache" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
+					<atext linktext="gnome-calculator-3.10.6." />
+					<atext linktext="gnome-calculator-3.10.3." />
+					<atext linktext="gnome-calculator-3.10.4." />
+					<atext linktext="gnome-calculator-3.10.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
+					<atext linktext="3.12" />
+					<atext linktext="3.14" />
+					<atext linktext="4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>ORBit2</dep>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>diffutils</dep>
+                        <dep>font-util</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk-doc</dep>
+                        <dep>gtk3</dep>
+                        <dep>gtk</dep>
+                        <dep>gtkglext</dep>
+                        <dep>guile</dep>
+                        <dep>gwenhywfar</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <!-- <dep>libchipcard</dep> -->
+                        <dep>libdvdnav</dep>
+                        <dep>libdvdread</dep>
+                        <dep>libffi</dep>
+                        <dep>libfm-extra</dep>
+			<dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libogg</dep>
+                        <dep>libtool</dep>
+                        <dep>libvorbis</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>nspr</dep>
+                        <dep>opus</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>speex</dep>
+                        <dep>tar</dep>
+                        <dep>util-macros</dep>
+                        <dep>vala</dep>
+                        <dep>wayland</dep>
+                        <dep>wxWidgets</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xtrans</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc 
+			make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

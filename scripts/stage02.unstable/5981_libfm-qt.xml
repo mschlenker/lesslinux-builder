@@ -1,0 +1,47 @@
+<llpackages>
+    <package name='libfm-qt' version='0.13.1' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='1bca9d549f8eb2c372ba38ab02e5e5aa85d7e627'>
+                    libfm-qt-0.13.1.tar.xz
+                </pkg>
+                <mirror>
+                    http://downloads.lxqt.org/libfm-qt/0.13.1/
+                </mirror>
+            </file>
+            <manualcheck date='20170624' interval='60' mirror='http://downloads.lxqt.org/libfm-qt/0.13.1/'/>
+        </sources>
+	<builddeps>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
+			<dep>libfm</dep>
+			<dep>lxqt-build-tools</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
