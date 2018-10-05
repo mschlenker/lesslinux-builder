@@ -45,7 +45,10 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr 
+			mkdir build
+			cd build
+			cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+			# ./configure --prefix=/usr 
 			make
 			# make -C make/linux prefix=/usr
 			]]>
@@ -53,7 +56,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}/build 
 			make install
 			# make -C make/linux prefix=/usr install
 			]]>
