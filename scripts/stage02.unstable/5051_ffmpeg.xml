@@ -58,11 +58,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
