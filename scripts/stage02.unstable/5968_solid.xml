@@ -1,0 +1,69 @@
+<llpackages>
+    <package name='solid' version='5.50.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8be1f6f48d2baf510a58edae6dba6beaf5052d8d'>
+                    solid-5.50.0.tar.xz
+                </pkg>
+                <mirror>
+                    http://download.kde.org/stable/frameworks/5.50/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='http://download.kde.org/stable/frameworks/'/>
+        </sources>
+	<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>extra-cmake-modules</dep>
+                        <dep>flex</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
+                        <dep>udev</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+jobcount=2
+if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+	DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+	export DISTCC_HOSTS
+	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+	export CC="distcc gcc"
+	export CXX="distcc g++" 
+fi
+cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DBUILD_TESTING=OFF  -Wno-dev ..
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
