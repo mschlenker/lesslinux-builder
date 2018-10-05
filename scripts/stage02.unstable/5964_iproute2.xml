@@ -47,7 +47,7 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			sed -i 's/m_ipt.o//' tc/Makefile
+			sed -i 's/.m_ipt.o//' tc/Makefile
 			]]>
 		</patch>
 		<build>
