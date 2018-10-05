@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="7d404902de032c14ba65d2daef030cb94d65980c">qemu-2.10.1.tar.xz</pkg>
+				<pkg sha1="10c2730bb48b1ab4f4d568c3ea2c12a8c35f5106">qemu-2.12.1.tar.xz</pkg>
 				<mirror>http://wiki.qemu-project.org/download/</mirror>
 			</file>
 			<!-- <file>                           
@@ -116,8 +116,10 @@ tar xf ${SRCDIR}/qemu-${PKGVERSION}.tar.xz
 		<test />
 		<install>
 			<![CDATA[
-			mkdir -p ${TGTDIR}/etc/lesslinux/
-			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			cd qemu-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			# mkdir -p ${TGTDIR}/etc/lesslinux/
+			# touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
 		<clean>
