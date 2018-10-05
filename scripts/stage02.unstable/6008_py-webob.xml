@@ -1,0 +1,56 @@
+<llpackages>
+    <package name='WebOb' version='1.8.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='6f23a2eec1510ceee66efd51d3a2b7025c4cdc2b'>
+                    WebOb-1.8.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/5d/c7/7c1565b188d8d32bf3657a24b9d71621e35ba20ec4179a0a7f9803511099/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/pypi/WebOb/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>docutils</dep>
+                        <dep>fusepy</dep>
+                        <dep>glibc</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>openssl</dep>
+                        <dep>py-dateutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                        <dep>subversion</dep>
+                        <dep>xpra</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

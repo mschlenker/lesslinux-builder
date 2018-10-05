@@ -1,0 +1,56 @@
+<llpackages>
+    <package name='six' version='1.11.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3647372a0e104e7b53bd477762392024e1083ac0'>
+                    six-1.11.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/b3/b2/238e2590826bfdd113244a40d9d3eb26918bd798fc187e2360a8367068db/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/six/'/>
+	    <check>
+				<page html="https://pypi.python.org/pypi/six/">
+					<atext href="six-1.10.1." />
+					<atext href="six-1.10.2." />
+					<atext href="six-1.10.3." />
+					<atext href="six-1.10.4." />
+					<atext href="six-1.11." />
+					<atext href="six-1.12." />
+					<atext href="six-1.13." />
+					<atext href="six-2." />
+				</page>
+			</check>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+			<dep>distcc</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
