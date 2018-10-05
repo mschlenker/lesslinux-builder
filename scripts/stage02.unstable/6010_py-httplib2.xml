@@ -1,0 +1,54 @@
+<llpackages>
+    <package name='httplib2' version='0.11.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='45abaec7c9d7e1a37933f4f6bf7b5dabf92efd5e'>
+                    httplib2-0.11.3.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/h/httplib2/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/pypi/httplib2'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>docutils</dep>
+                        <dep>fusepy</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>openssl</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                        <dep>WebOb</dep>
+                        <dep>xpra</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

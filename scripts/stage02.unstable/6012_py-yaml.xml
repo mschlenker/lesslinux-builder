@@ -1,0 +1,50 @@
+<llpackages>
+    <package name='PyYAML' version='3.13' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='22f95fe2f5ef29ab17110f92c7186e2cfde6b419'>
+                    PyYAML-3.13.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/P/PyYAML/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/packages/source/P/PyYAML/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>Cython</dep>
+                        <dep>fusepy</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>httplib2</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>setuptools</dep>
+                        <dep>WebOb</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
