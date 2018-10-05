@@ -73,7 +73,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc --with-libpcap=included --without-nmap-update
+			./configure --prefix=/usr --sysconfdir=/etc --with-libpcap=included --without-nmap-update --with-liblua=included
 			
 			make -j $jobcount -k
 			make -j $jobcount
