@@ -1,0 +1,47 @@
+<llpackages>
+    <package name='ipaddr' version='2.1.11' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='f9a16ddb3cf774b8dcf8894c2f4295c4e17d0ed3'>
+                    ipaddr-2.1.11.tar.gz
+                </pkg>
+                <mirror>
+                    https://pypi.python.org/packages/source/i/ipaddr/
+                </mirror>
+            </file>
+            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/i/ipaddr/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>fusepy</dep>
+                        <dep>google-api-python-client</dep>
+                        <dep>pygobject</dep>
+                        <dep>Python</dep>
+                        <dep>setuptools</dep>
+                        <dep>WebOb</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
