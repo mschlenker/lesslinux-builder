@@ -1,27 +1,42 @@
 <llpackages>
-    <package name='ipaddr' version='2.2.0' install='chroot'>
+    <package name='gdrivefs' version='0.14.9' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='d2acca0d7eee9c21d103d11ddc1bd7a8cc9a5a27'>
-                    ipaddr-2.2.0.tar.gz
+                <pkg sha1='b38fbb05cb82d212a47509078bc055bdf9f22920'>
+                  gdrivefs-0.14.9.tar.gz
                 </pkg>
                 <mirror>
-                    https://pypi.python.org/packages/source/i/ipaddr/
+                    https://pypi.python.org/packages/95/f3/de7cc989f71e8787027d72a69645bce0e32ad63b9ffde7ba0db26dcb5cac/
                 </mirror>
             </file>
-            <manualcheck date='20141008' interval='60' mirror='https://pypi.python.org/packages/source/i/ipaddr/'/>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/gdrivefs/'/>
         </sources>
 	<builddeps>
+                        <dep>antlr_python_runtime</dep>
                         <dep>bash</dep>
+                        <dep>Cython</dep>
+                        <dep>distcc</dep>
+                        <dep>distribute</dep>
+                        <dep>docutils</dep>
+                        <dep>ez_setup</dep>
                         <dep>fusepy</dep>
                         <dep>google-api-python-client</dep>
+			  <dep>google-appengine</dep>
+                        <dep>httplib2</dep>
+                        <dep>ipaddr</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>nmap</dep>
+                        <dep>py-dateutil</dep>
                         <dep>pygobject</dep>
                         <dep>Python</dep>
+                        <dep>PyYAML</dep>
                         <dep>setuptools</dep>
+                        <dep>six</dep>
                         <dep>WebOb</dep>
+                        <dep>xpra</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
