@@ -9,6 +9,10 @@
 				<pkg sha1="ce0b98ce1580188f2f10819fad5d9b5845266077">vala-0.42.2.tar.xz</pkg>
 				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/vala/0.42/</mirror>
 			</file>
+			<file>                                                                                          
+				<pkg sha1="ce0b98ce1580188f2f10819fad5d9b5845266077">vala-0.42.0-avoid_graphviz-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
 			<manualcheck date="20170801" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/vala/" />
 			<check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/vala/0.36/">
@@ -54,10 +58,16 @@
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-0.42.0-avoid_graphviz-1.patch | patch -p1
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			ACLOCAL= autoreconf -fiv
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
