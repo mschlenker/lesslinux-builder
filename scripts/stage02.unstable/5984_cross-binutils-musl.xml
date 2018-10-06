@@ -66,24 +66,22 @@
 		</patch> -->
 		<build>
 			<![CDATA[ 
-			
-			exit 0
-			
+		
 			cd binutils-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				../binutils-${PKGVERSION}/configure --target=i386-linux-musl \
-					--prefix=/usr/local/crosstools-ia32-musl --disable-nls \
-					--with-sysroot=/usr/local/crosstools-ia32-musl/i386-linux-musl \
+					--prefix=/usr/local/crosstools-i386-musl --disable-nls \
+					--with-sysroot=/usr/local/crosstools-i386-musl/i386-linux-musl \
 					--disable-werror --disable-multilib CC="distcc gcc" CXX="distcc g++" 
 				make configure-host
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				../binutils-${PKGVERSION}/configure --target=i386-linux-musl \
-					--prefix=/usr/local/crosstools-ia32-musl --disable-nls \
-					--with-sysroot=/usr/local/crosstools-ia32-musl/i386-linux-musl \
+					--prefix=/usr/local/crosstools-i386-musl --disable-nls \
+					--with-sysroot=/usr/local/crosstools-i386-musl/i386-linux-musl \
 					--disable-werror --disable-multilib
 				make -j 4
 			fi
@@ -92,9 +90,9 @@
 		<install>
 			<![CDATA[
 			
-			mkdir -p ${TGTDIR}/etc/lesslinux
-			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
-			exit 0
+			#mkdir -p ${TGTDIR}/etc/lesslinux
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0
 			
 			cd binutils-build
 			make install DESTDIR=${TGTDIR}
