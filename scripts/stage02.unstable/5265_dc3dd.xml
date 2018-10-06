@@ -7,8 +7,12 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                               
-				<pkg sha1="3d3d9ba5f3b18fbf4798e1f3554f2d34d0ce5e2c">dc3dd-7.2.646.zip</pkg>
-				<mirror>https://netcologne.dl.sourceforge.net/project/dc3dd/dc3dd/7.2.646/dc3dd%207.2.646/</mirror>
+				<pkg sha1="2eb32d063cfb24ad6037151972a9add0843c24c0">dc3dd_7.2.646.orig.tar.gz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/d/dc3dd/</mirror>
+			</file>
+			<file>                                                                                               
+				<pkg sha1="fab0ccb78180aba5cd73e50de5b3bdc1cef0446a">dc3dd_7.2.646-1.debian.tar.xz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/d/dc3dd/</mirror>
 			</file>
 			<manualcheck date="20150823" interval="180" page="http://sourceforge.net/projects/dc3dd/files/" />
 		</sources>
@@ -36,10 +40,19 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			unzip ${SRCDIR}/${PKGNAME}-${PKGVERSION}.zip
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-1.debian.tar.xz
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ../debian/patches/series | while read fname ; do 
+                                cat ../debian/patches/${fname} | patch -p1
+                        done
+			
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
@@ -56,7 +69,7 @@
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-${PKGVERSION} debian
 			]]>
 		</clean>
 	</package>
