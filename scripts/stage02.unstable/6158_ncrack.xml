@@ -1,0 +1,63 @@
+<llpackages>
+    <package name='ncrack' version='0.6' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='b5c35e672332158b4756711ba6ca60cec3dc7183'>
+                    ncrack-0.6.tar.gz
+                </pkg>
+                <mirror>
+                    https://nmap.org/ncrack/dist/
+                </mirror>
+            </file>
+            <manualcheck date='20160513' interval='60' mirror='https://nmap.org/ncrack/dist/'/>
+        </sources>
+	<builddeps>
+                        <dep>Linux-PAM</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>inetutils</dep>
+                        <dep>libcap</dep>
+                        <dep>libpcap</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>perl</dep>
+                        <dep>procps</dep>
+                        <dep>sed</dep>
+                        <dep>shadow</dep>
+                        <dep>zlib</dep>
+			<dep>samba</dep>
+			<dep>openssh</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,126 @@
+<llpackages>
+    <package name='graphviz' version='2.40.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='643843f5f48973827906f51bf6a6921701b457d2'>
+                    graphviz-2.40.1.tar.gz
+                </pkg>
+                <mirror>
+                    http://pkgs.fedoraproject.org/repo/pkgs/graphviz//5b6a829b2ac94efcd5fa3c223ed6d3ae/
+                </mirror>
+            </file>
+            <manualcheck date='20160512' interval='60' mirror='http://pkgs.fedoraproject.org/repo/pkgs/graphviz//5b6a829b2ac94efcd5fa3c223ed6d3ae/'/>
+        </sources>
+	<builddeps>
+                        <dep>M2Crypto</dep>
+                        <dep>Mesa</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>bdw-gc</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>fusepy</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+<dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>gtk</dep>
+                        <dep>guile</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>lcms</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXaw</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libcroco</dep>
+                        <dep>libdrm</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng16</dep>
+                        <dep>librsvg</dep>
+                        <dep>libtool</dep>
+                        <dep>libunistring</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxshmfence</dep>
+                        <dep>linux_headers</dep>
+                        <dep>lua</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>ocaml</dep>
+                        <dep>openjpeg</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>plaso</dep>
+                        <dep>poppler</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>qt-everywhere-opensource-src</dep>
+                        <dep>ruby</dep>
+                        <dep>sed</dep>
+                        <dep>setuptools</dep>
+                        <dep>swig</dep>
+                        <dep>tiff</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xz</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+sed -i 's/ruby-1.9/ruby-2.2/g' configure
+# sed -i 's/ e_/ gs_error_/'     plugin/gs/gvloadimage_gs.c
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-tcl=no
+make -j6
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
