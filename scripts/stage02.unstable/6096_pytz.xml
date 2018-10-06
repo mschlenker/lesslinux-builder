@@ -6,7 +6,7 @@
         <sources>
             <file>
                 <pkg sha1='014d842f110c031bc34f651c872f391756836758'>
-                    pytz-2018.5.zip
+                    pytz-2018.5.tar.gz
                 </pkg>
                 <mirror>
                     https://pypi.python.org/packages/source/p/pytz/
@@ -43,7 +43,7 @@
                         <dep>xpra</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[ unzip ${SRCDIR}/${PKGNAME}-${PKGVERSION}.zip
+            <![CDATA[ tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
