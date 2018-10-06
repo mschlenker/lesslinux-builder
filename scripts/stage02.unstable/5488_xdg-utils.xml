@@ -35,6 +35,8 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -i 's%html-nochunks%--skip-validation html-nochunks%g' scripts/Makefile.in
+			sed -i 's%XMLTO) man%XMLTO) --skip-validation man%g' scripts/Makefile.in
+			sed -i 's%XMLTO) txt%XMLTO) --skip-validation txt%g' scripts/Makefile.in
 			]]>
 		</patch>
 		<build>
