@@ -1,0 +1,58 @@
+<llpackages>
+    <package name='tinycompress' version='1.1.6' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='70f7bef385a3cc8afaf27164966b42e433585cb2'>
+                    tinycompress-1.1.6.tar.bz2
+                </pkg>
+                <mirror>
+                    ftp://ftp.alsa-project.org/pub/tinycompress/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='ftp://ftp.alsa-project.org/pub/tinycompress/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	jobcount=2
+	if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
+		jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+		export CC="distcc gcc"
+		export CXX="distcc g++"
+	fi
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+	make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
