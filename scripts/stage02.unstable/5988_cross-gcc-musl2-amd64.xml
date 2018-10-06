@@ -66,7 +66,7 @@
 			mv -v gmp-6.1.2 gcc-${PKGVERSION}/gmp
 			mv -v mpfr-4.0.1 gcc-${PKGVERSION}/mpfr
 
-			mkdir ${PKGNAME}-build
+			mkdir gcc-build
 			
 			cd gcc-${PKGVERSION}
 			sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64
@@ -85,10 +85,6 @@
 		</patch> -->
 		<build>
 			<![CDATA[
-			
-			# exit 0
-			
-			cd ${PKGNAME}-build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
@@ -98,7 +94,7 @@
 			export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
 			export CLFS_TARGET=x86_64-linux-musl
 			export CLFS_CPU=k8
-			cd ../gcc-build
+			cd gcc-build
 			../gcc-${PKGVERSION}/configure \
 				--prefix=/usr/local/crosstools-amd64-musl \
 				--build=${CLFS_HOST} \
@@ -128,14 +124,14 @@
 			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			#exit 0
 			
-			cd ${PKGNAME}-build
+			cd gcc-build
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			 <![CDATA[
 			rm -rf gcc-${PKGVERSION}
-			rm -rf ${PKGNAME}-build
+			rm -rf gcc-build
 			]]>
 		</clean>
 	</package>
