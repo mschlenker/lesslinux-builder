@@ -53,11 +53,16 @@
 			<![CDATA[
 			cd ${PKGNAME}_${PKGVERSION}
 			mkdir -p ${TGTDIR}/usr/lib
+			install -m 0755 shared/libwrap.so.0.7.6 ${TGTDIR}/usr/lib
+			install -m 0644 libwrap.a ${TGTDIR}/usr/lib
+			ln -s libwrap.so.0.7.6 ${TGTDIR}/usr/lib/libwrap.so.0
+			ln -s libwrap.so.0.7.6 ${TGTDIR}/usr/lib/libwrap.so
 			mkdir -p ${TGTDIR}/usr/sbin
-			mkdir -p ${TGTDIR}/usr/share/man/man8
-			mkdir -p ${TGTDIR}/usr/share/man/man5
-			mkdir -p ${TGTDIR}/usr/share/man/man3
+			for p in tcpdmatch safe_finger tcpd tcpdchk try-from ; do
+				install -m 0755 $p ${TGTDIR}/usr/sbin
+			done
 			mkdir -p ${TGTDIR}/usr/include
+			install -m 0644 tcpd.h ${TGTDIR}/usr/include
 			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
