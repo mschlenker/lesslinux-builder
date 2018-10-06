@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="tcp_wrappers"
+		version="7.6"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                      
+				<pkg sha1="61689ec85b80f4ca0560aef3473eccd9e9e80481">tcp_wrappers_7.6.tar.gz</pkg>
+				<mirror>ftp://ftp.porcupine.org/pub/security/</mirror>
+			</file>
+			<file>                                                                                      
+				<pkg sha1="054dade14e520ca8f30f19178518fca88f50ca62">tcp-wrappers_7.6.q-27.debian.tar.xz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/t/tcp-wrappers/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="ftp://ftp.porcupine.org/pub/security/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.q-27.debian.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			cat ../debian/patches/series | while read fname ; do 
+                                cat ../debian/patches/${fname} | patch -p1
+                        done
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			make REAL_DAEMON_DIR=/usr/sbin STYLE=-DPROCESS_OPTIONS linux
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/lib
+			mkdir -p ${TGTDIR}/usr/sbin
+			mkdir -p ${TGTDIR}/usr/share/man/man8
+			mkdir -p ${TGTDIR}/usr/share/man/man5
+			mkdir -p ${TGTDIR}/usr/share/man/man3
+			mkdir -p ${TGTDIR}/usr/include
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}_${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
