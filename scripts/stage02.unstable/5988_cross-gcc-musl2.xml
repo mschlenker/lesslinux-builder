@@ -93,7 +93,8 @@
                         <dep>texinfo</dep>
                         <dep>util-linux-ng</dep>
 			<dep>distcc</dep>
-			<dep>musl</dep>
+			<dep>musl-cross</dep>
+			<dep>libstdc++-musl</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -133,7 +134,7 @@
 			# crosstools-ia32-musl/i386-linux-musl
 			export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
 			export CLFS_TARGET=i386-linux-musl
-			export CLFS_CPU=k8
+			export CLFS_CPU=i686
 			cd ../gcc-build
 			../gcc-${PKGVERSION}/configure \
 				--prefix=/usr/local/crosstools-i386-musl \

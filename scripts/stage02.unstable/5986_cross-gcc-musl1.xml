@@ -128,7 +128,7 @@
 			# crosstools-ia32-musl/i386-linux-musl
 			export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
 			export CLFS_TARGET=i386-linux-musl
-			export CLFS_CPU=k8
+			export CLFS_CPU=i686
 			$CLFS_TARGET-gcc -print-libgcc-file-name
 			cd ../gcc-build
 			../gcc-${PKGVERSION}/configure \
