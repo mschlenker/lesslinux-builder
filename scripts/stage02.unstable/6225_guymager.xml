@@ -6,7 +6,7 @@
         <sources>
             <file>
                 <pkg sha1='f6ed361cdb0511a7c91ba4e9b6d67110cb9f0f08'>
-                    guymager-0.8.8.tar.xz
+                    guymager-0.8.8.tar.gz
                 </pkg>
                 <mirror>
                     http://distfiles.lesslinux.org/
@@ -36,7 +36,7 @@
                         <dep>zlib</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME%-code}-${PKGVERSION}.tar.xz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME%-code}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch>
