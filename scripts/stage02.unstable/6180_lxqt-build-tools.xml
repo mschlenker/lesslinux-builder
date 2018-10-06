@@ -1,0 +1,52 @@
+<llpackages>
+    <package name='lxqt-build-tools' version='0.5.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3d51a9ad1427c8fe142bf7f0fb9034e07d54fa31'>
+                    lxqt-build-tools-0.5.0.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/lxde/lxqt-build-tools/releases/download/0.5.0/
+                </mirror>
+            </file>
+            <manualcheck date='20170622' interval='60' mirror='https://github.com/lxde/lxqt-build-tools/releases/download/0.5.0/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
