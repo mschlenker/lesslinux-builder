@@ -1,0 +1,54 @@
+<llpackages>
+    <package name='cmst' version='2018.01.06' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='aa8cfb3a492b684974afdc585de925491e53e23c'>
+                    cmst-2018.0.06.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/andrew-bibb/cmst/releases/download/cmst-2018.01.06/
+                </mirror>
+            </file>
+            <manualcheck date='20170629' interval='60' mirror='https://github.com/andrew-bibb/cmst/releases/download/cmst-2017.03.18/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>kguiaddons</dep>
+                        <dep>kidletime</dep>
+                        <dep>kwayland</dep>
+                        <dep>kwindowsystem</dep>
+                        <dep>libkscreen</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
+                        <dep>solid</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}
+	    qmake-qt5
+	    make -j4
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}
+	    make install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
