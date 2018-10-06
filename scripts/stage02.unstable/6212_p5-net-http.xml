@@ -1,0 +1,45 @@
+<llpackages>
+    <package name='Net-HTTP' version='6.18' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='ca1281d8d69f036cc812ba7865df5a02b3e2f826'>
+                    Net-HTTP-6.18.tar.gz
+                </pkg>
+                <mirror>
+                    http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/
+                </mirror>
+            </file>
+            <manualcheck date='20171020' interval='60' mirror='http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>make</dep>
+                        <dep>p5-uri</dep>
+                        <dep>perl</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+perl Makefile.PL
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
