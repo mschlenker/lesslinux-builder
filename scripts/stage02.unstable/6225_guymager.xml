@@ -1,0 +1,78 @@
+<llpackages>
+    <package name='guymager-code' version='0.8.8' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='f6ed361cdb0511a7c91ba4e9b6d67110cb9f0f08'>
+                    guymager-0.8.8.tar.xz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20171106' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+	<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>kguiaddons</dep>
+                        <dep>kidletime</dep>
+                        <dep>kwayland</dep>
+                        <dep>kwindowsystem</dep>
+                        <dep>libewf-old</dep>
+                        <dep>libguytools-code</dep>
+                        <dep>libkscreen</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>parted</dep>
+                        <dep>qt5</dep>
+                        <dep>solid</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME%-code}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch>
+	 <![CDATA[cd guymager-${PKGVERSION}/
+	sed -i 's%/usr/local/lib/libewf\.a%/usr/compat.old/lib/libewf.a%g' guymager.pro 
+	sed -i '/INCLUDEPATH += \/usr\/include\/libguytools2/a INCLUDEPATH += \/usr\/compat.old\/include' guymager.pro 
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd guymager-${PKGVERSION}/
+	    qmake-qt5
+	    make -j4
+	    lrelease-qt5 guymager.pro
+	    echo '===> Files found:' 
+	    ls -lah 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd guymager-${PKGVERSION}/
+	    mkdir -p ${TGTDIR}/usr/bin
+	    install -m 0755 guymager ${TGTDIR}/usr/bin
+	    mkdir -p ${TGTDIR}/etc/guymager
+	    install -m 0644 guymager.cfg ${TGTDIR}/etc/guymager
+	    mkdir -p ${TGTDIR}/usr/share/icons
+	    install -m 0644 guymager_128.png ${TGTDIR}/usr/share/icons
+	    mkdir -p ${TGTDIR}/usr/share/applications
+	    install -m 0644 guymager.desktop  ${TGTDIR}/usr/share/applications
+	    sed -i 's/System/CB-Rescue/g' ${TGTDIR}/usr/share/applications/guymager.desktop
+	    sed -i 's%gksudo guymager%sudo /usr/bin/guymager%g'  ${TGTDIR}/usr/share/applications/guymager.desktop
+	    sed -i 's%TryExec%#TryExec%g'  ${TGTDIR}/usr/share/applications/guymager.desktop
+	    sed -i '/^#/d'    ${TGTDIR}/usr/share/applications/guymager.desktop
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
