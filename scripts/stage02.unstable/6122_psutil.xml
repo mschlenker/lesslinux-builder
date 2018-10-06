@@ -1,0 +1,81 @@
+<llpackages>
+    <package name='psutil' version='5.4.7' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='4c7c8cb5a4915eb7148a1080030f9097be87d3e4'>
+                    psutil-5.4.7.tar.gz
+                </pkg>
+                <mirror>
+		https://pypi.python.org/packages/22/a8/6ab3f0b3b74a36104785808ec874d24203c6a511ffd2732dd215cf32d689/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://pypi.python.org/pypi/psutil'/>
+        </sources><builddeps>
+                        <dep>Cython</dep>
+                        <dep>M2Crypto</dep>
+                        <dep>PyYAML</dep>
+                        <dep>Python</dep>
+                        <dep>WebOb</dep>
+                        <dep>antlr_python_runtime</dep>
+                        <dep>bash</dep>
+                        <dep>bencode</dep>
+                        <dep>binplist</dep>
+                        <dep>binutils</dep>
+                        <dep>construct</dep>
+                        <dep>dfvfs</dep>
+                        <dep>distcc</dep>
+                        <dep>distribute</dep>
+                        <dep>docutils</dep>
+                        <dep>dpkt</dep>
+                        <dep>ez_setup</dep>
+                        <dep>fusepy</dep>
+                        <dep>gcc</dep>
+                        <dep>gdrivefs</dep>
+                        <dep>glibc</dep>
+                        <dep>google-api-python-client</dep>
+                        <dep>google-appengine</dep>
+                        <dep>google-apputils</dep>
+                        <dep>hachoir-core</dep>
+                        <dep>hachoir-metadata</dep>
+                        <dep>hachoir-parser</dep>
+                        <dep>httplib2</dep>
+                        <dep>ipaddr</dep>
+                        <dep>ipython</dep>
+                        <dep>linux_headers</dep>
+                        <dep>nmap</dep>
+                        <dep>protobuf</dep>
+                        <dep>py-dateutil</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>python-gflags</dep>
+                        <dep>pytsk3</dep>
+                        <dep>pytz</dep>
+                        <dep>requests</dep>
+                        <dep>setuptools</dep>
+                        <dep>six</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py config
+python setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
