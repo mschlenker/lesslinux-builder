@@ -1,0 +1,55 @@
+<llpackages>
+    <package name='haveged' version='1.9.4' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='ad36be808132c831b0d93582c35b48c5825b62da'>
+                    haveged-1.9.4.tar.gz
+                </pkg>
+                <mirror>
+                    http://www.issihosts.com/haveged/
+                </mirror>
+            </file>
+            <manualcheck date='20180518' interval='60' mirror='http://www.issihosts.com/haveged/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>cross-linux-headers</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>musl</dep>
+                        <dep>sed</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var CC=/usr/local/musl/bin/musl-gcc
+make CC=/usr/local/musl/bin/musl-gcc LDFLAGS=-all-static
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir -p ${TGTDIR}/static/bin
+make install DESTDIR=${TGTDIR}
+install -m 0755 src/haveged ${TGTDIR}/static/bin
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

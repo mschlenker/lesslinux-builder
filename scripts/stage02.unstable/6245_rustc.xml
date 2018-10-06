@@ -1,0 +1,96 @@
+<llpackages>
+    <package name='rustc' version='1.29.1' install='destdir'>
+        <license>unknown</license>
+        <sources>
+            <file>
+                <pkg sha1='5b1cc48bda7d77137062908def9b3f428dc3996d'>rustc-1.29.1-src.tar.gz</pkg>
+                <mirror>https://static.rust-lang.org/dist</mirror>
+            </file>
+            <manualcheck date='20180704' interval='60' mirror='http://www.linuxfromscratch.org/blfs/view/cvs/general/rust.html'/>
+        </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+                        <dep>WebOb</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>diffutils</dep>
+                        <dep>findlib</dep>
+                        <dep>fusepy</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>ocaml</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>plaso</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep>
+                        <dep>sed</dep>
+                        <dep>setuptools</dep>
+                        <dep>zlib</dep>
+			<dep>llvm</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}-src
+
+cat << EOF > config.toml
+# see config.toml.example for more possible options
+[llvm]
+targets = "X86"
+
+# When using system llvm prefer shared libraries
+link-shared = true
+
+[build]
+# install cargo as well as rust
+extended = true
+
+[install]
+prefix = "/usr"
+docdir = "share/doc/rustc-1.29.1"
+
+[rust]
+channel = "stable"
+rpath = false
+
+# BLFS does not install the FileCheck executable from llvm,
+# so disable codegen tests
+codegen-tests = false
+
+EOF
+
+export RUSTFLAGS="$RUSTFLAGS -C link-args=-lffi" 
+python3 ./x.py build
+
+]]>
+        </build>
+        <install>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}-src    
+export LIBSSH2_SYS_USE_PKG_CONFIG=1 
+DESTDIR=${TGTDIR} python3 ./x.py install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}-src
+]]>
+        </clean>
+    </package>
+</llpackages>

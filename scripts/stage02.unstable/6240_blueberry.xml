@@ -1,0 +1,39 @@
+<llpackages>
+    <package name='blueberry' version='1.2.3' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='6743fec056bf56ac8c5f33c76d45579ce233303f'>
+                    blueberry-1.2.3.tar.gz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20171123' interval='60' mirror='https://github.com/linuxmint/blueberry/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+chown -R root:root usr
+mkdir ${TGTDIR}/usr
+tar -C usr -cvf - . | tar -C ${TGTDIR}/usr -xf - 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

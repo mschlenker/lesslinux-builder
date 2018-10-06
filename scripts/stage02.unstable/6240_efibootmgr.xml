@@ -1,0 +1,40 @@
+<llpackages>
+    <package name='efibootmgr' version='16' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3b023978c27af2514606de2a6be11801d881b5a3'>
+                    efibootmgr-16.tar.bz2
+                </pkg>
+                <mirror>
+                    https://github.com/rhboot/efibootmgr/releases/download/16/
+                </mirror>
+            </file>
+            <manualcheck date='20171204' interval='60' mirror='https://github.com/rhboot/efibootmgr/releases/download/16/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make EFIDIR=/boot/efi
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir -p ${TGTDIR}/usr/sbin
+find . -type f -name efibootmgr 
+f=` find . -type f -name efibootmgr ` 
+install -m 0755 $f ${TGTDIR}/usr/sbin
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
