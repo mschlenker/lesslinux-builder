@@ -1,0 +1,45 @@
+<llpackages>
+	<package 
+		name="distcc"
+		version="3.3.2">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="4f2200e74e22b2cdf316c1126eb180e568756d39">distcc-3.3.2.tar.gz</pkg>
+				<mirror>https://github.com/distcc/distcc/releases/download/v3.3.2/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="120" page="https://lists.samba.org/mailman/listinfo/distcc" />
+			<!-- <check>
+				<page html="http://www.hyperrealm.com/libconfig/">
+					<atext linktext="libconfig-1.4.10." />
+					<atext linktext="libconfig-1.4.11." />
+					<atext linktext="libconfig-1.4.12." />
+					<atext linktext="libconfig-1.4.13." />
+					<atext linktext="libconfig-1.4.14." />
+					<atext linktext="libconfig-1.5." />
+					<atext linktext="libconfig-1.6." />
+					<atext linktext="libconfig-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}
+			bash autogen.sh
+			./configure --prefix=/tools --disable-Werror --without-avahi --without-libiberty
+			make distcc 
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			install -m 0755 distcc /tools/bin/
+			]]>
+		</install>
+	</package>
+</llpackages>
