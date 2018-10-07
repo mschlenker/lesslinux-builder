@@ -37,7 +37,7 @@ export CLFS_CPU=k8
 			
 ../gcc-${PKGVERSION}/libstdc++-v3/configure           \
     --host=$CLFS_TARGET                \
-    --prefix=/tools                 \
+    --prefix=/usr/local/crosstools-amd64-musl                 \
     --disable-multilib              \
     --disable-nls                   \
     --disable-libstdcxx-threads     \

@@ -37,7 +37,7 @@ export CLFS_CPU=i686
 			
 ../gcc-${PKGVERSION}/libstdc++-v3/configure           \
     --host=$CLFS_TARGET                \
-    --prefix=/tools                 \
+    --prefix=/usr/local/crosstools-i386-musl                 \
     --disable-multilib              \
     --disable-nls                   \
     --disable-libstdcxx-threads     \
