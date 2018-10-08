@@ -726,13 +726,13 @@ def run_stage_two
 	
 	@stage_two_objs.each { |i|
 		unless built_packages.include?(i.pkg_name) || @buildonly.size > 0
-			puts sprintf("%015.4f", Time.now.to_f) + " list   > Building " + i.pkg_name + " from list of packages without recorded dependencies "
-			build_stage02_package(i)
-			install_stage02_package(i)
 			if File.exist?(@builddir + "/tmp/LessLinux_Emergency_Exit")
 				5.times { SecondStage.umount(@builddir) }
 				raise "EmergencyExit"
 			end
+			puts sprintf("%015.4f", Time.now.to_f) + " list   > Building " + i.pkg_name + " from list of packages without recorded dependencies "
+			build_stage02_package(i)
+			install_stage02_package(i)
 		end
 	}
 	@stage_two_objs.each { |i|
