@@ -104,7 +104,7 @@
 					-Wno-dev $NINJAOPTS ../${PKGNAME}-${PKGVERSION}.src
 			fi
 			if [ -f .use_ninja ] ; then
-				ninja
+				ninja -j $jobcount
 			else
 				make -j $jobcount 
 			fi
