@@ -73,6 +73,7 @@
 			<!-- soft -->
 			 <dep>imake</dep>
 			 <dep>distcc</dep>
+			 <dep>cmake</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -87,14 +88,16 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			mkdir _build
+			cd _build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
+				cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
 				make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc
+				cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
 				make
 			fi
 			]]>
@@ -102,7 +105,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}/_build
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
