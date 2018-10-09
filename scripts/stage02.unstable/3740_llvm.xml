@@ -73,6 +73,12 @@
 			cd ${PKGNAME}-${PKGVERSION}.src
 			# sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
 			cd ../${PKGNAME}-build
+			NINJAOPTS=""
+			jobcount=4
+			if which ninja ; then
+				touch .use_ninja
+				NINJAOPTS="-G Ninja"
+			fi
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
 				CC='distcc gcc' \
@@ -84,8 +90,7 @@
 					-DLLVM_LINK_LLVM_DYLIB=ON             \
 					-DLLVM_BUILD_TESTS=ON                 \
 					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
-					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
-				make -j $jobcount
+					-Wno-dev $NINJAOPTS ../${PKGNAME}-${PKGVERSION}.src
 			else
 				CC='gcc' \
 				CXX='g++'  \
@@ -96,8 +101,12 @@
 					-DLLVM_LINK_LLVM_DYLIB=ON             \
 					-DLLVM_BUILD_TESTS=ON                 \
 					-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;ARM;AArch64;X86" \
-					-Wno-dev ../${PKGNAME}-${PKGVERSION}.src
-				make -j 4
+					-Wno-dev $NINJAOPTS ../${PKGNAME}-${PKGVERSION}.src
+			fi
+			if [ -f .use_ninja ] ; then
+				ninja
+			else
+				make -j $jobcount 
 			fi
 			]]>
 		</build>
@@ -105,16 +114,11 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-build # ${PKGVERSION}.src
-			make install DESTDIR=${TGTDIR}
-			#for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
-			#	test -f $file && chmod -v 644 $file
-			#done
-			#install -v -dm755 ${TGTDIR}/usr/lib/clang-analyzer
-			#for prog in scan-build scan-view ; do
-			#	cp -rfv tools/clang/tools/$prog ${TGTDIR}/usr/lib/clang-analyzer/
-			#	ln -sfv ../lib/clang-analyzer/$prog/$prog ${TGTDIR}/usr/bin/
-			#done
-			#ln -sfv /usr/bin/clang ${TGTDIR}/usr/lib/clang-analyzer/scan-build/
+			if [ -f .use_ninja ] ; then
+				DESTDIR=${TGTDIR} ninja install 
+			else
+				make install DESTDIR=${TGTDIR}
+			fi
 			]]>
 		</install>
 		<clean>
