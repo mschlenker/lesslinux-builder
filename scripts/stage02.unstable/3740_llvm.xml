@@ -104,7 +104,11 @@
 					-Wno-dev $NINJAOPTS ../${PKGNAME}-${PKGVERSION}.src
 			fi
 			if [ -f .use_ninja ] ; then
-				ninja -j $jobcount
+				if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+					ninja -j $jobcount
+				else
+					ninja
+				fi
 			else
 				make -j $jobcount 
 			fi
