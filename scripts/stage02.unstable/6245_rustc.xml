@@ -1,9 +1,9 @@
 <llpackages>
-    <package name='rustc' version='1.25.0' install='chroot'>
+    <package name='rustc' version='1.29.1' install='destdir'>
         <license>unknown</license>
         <sources>
             <file>
-                <pkg sha1='8a8d11a5b9f836025d0790f3d03606ad1e7acd3c'>rustc-1.25.0-src.tar.gz</pkg>
+                <pkg sha1='5b1cc48bda7d77137062908def9b3f428dc3996d'>rustc-1.29.1-src.tar.gz</pkg>
                 <mirror>https://static.rust-lang.org/dist</mirror>
             </file>
             <manualcheck date='20180704' interval='60' mirror='http://www.linuxfromscratch.org/blfs/view/cvs/general/rust.html'/>
@@ -14,7 +14,6 @@
 			<dep>libssh2</dep>
 			<dep>llvm</dep>
 			<dep>Python3</dep>
-			<dep>curl</dep>
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src.tar.gz
@@ -25,10 +24,13 @@
             <![CDATA[
 cd ${PKGNAME}-${PKGVERSION}-src
 
-cat <<EOF > config.toml
+cat << EOF > config.toml
 # see config.toml.example for more possible options
 [llvm]
 targets = "X86"
+
+# When using system llvm prefer shared libraries
+link-shared = true
 
 [build]
 # install cargo as well as rust
@@ -36,23 +38,28 @@ extended = true
 
 [install]
 prefix = "/usr"
-docdir = "share/doc/rustc-1.25.0"
+docdir = "share/doc/rustc-1.29.1"
 
 [rust]
 channel = "stable"
 rpath = false
 
+# BLFS does not install the FileCheck executable from llvm,
+# so disable codegen tests
+codegen-tests = false
+
 EOF
 
-
-python2.7 x.py build
+export RUSTFLAGS="$RUSTFLAGS -C link-args=-lffi" 
+python3 ./x.py build
 
 ]]>
         </build>
         <install>
             <![CDATA[
 cd ${PKGNAME}-${PKGVERSION}-src    
-python2.7 x.py install
+export LIBSSH2_SYS_USE_PKG_CONFIG=1 
+DESTDIR=${TGTDIR} python3 ./x.py install 
 ]]>
         </install>
         <clean>
