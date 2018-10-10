@@ -51,7 +51,7 @@
 			<![CDATA[
 			cd ${PKGNAME%d}
 			bash autogen.sh
-			./configure --prefix=/tools --disable-Werror --without-avahi
+			./configure --prefix=/tools --disable-Werror --without-avahi --without-libiberty --without-iberty
 			make -j 4
 			]]>
 		</build>
