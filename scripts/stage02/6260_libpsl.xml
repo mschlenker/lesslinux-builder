@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='libpsl' version='0.20.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='890376d6038652911cfa853ccfb5b993ae0743ee'>
+                    libpsl-0.20.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/rockdaboot/libpsl/releases/download/libpsl-0.20.2/
+                </mirror>
+            </file>
+            <manualcheck date='20181010' interval='60' mirror='https://github.com/rockdaboot/libpsl/releases/download/libpsl-0.20.2/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

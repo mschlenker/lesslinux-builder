@@ -92,7 +92,7 @@ tar xf ${SRCDIR}/qemu-${PKGVERSION}.tar.xz
 		</patch> -->
 		<build>
 			<![CDATA[
-			exit 0
+			# exit 0
 			cd qemu-${PKGVERSION}
 			# export CC="/usr/local/gcc54/bin/gcc54"
 			# export CXX="/usr/local/gcc54/bin/g++54"
