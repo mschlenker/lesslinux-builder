@@ -51,7 +51,7 @@ codegen-tests = false
 EOF
 
 export RUSTFLAGS="$RUSTFLAGS -C link-args=-lffi" 
-python3 ./x.py build
+python3 ./x.py build || python3 ./x.py build || python3 ./x.py build
 
 ]]>
         </build>
