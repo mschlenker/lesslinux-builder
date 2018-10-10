@@ -7,7 +7,7 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                  
-				<pkg sha1="da39a3ee5e6b4b0d3255bfef95601890afd80709">ristretto_0.8.3.orig.tar.bz2</pkg>
+				<pkg sha1="9ae877e1f7e91e5c6647df4cf3dbbbc937b50114">ristretto-0.8.3.orig.tar.gz</pkg>
 				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/r/ristretto/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="180" page="http://archive.xfce.org/src/apps/ristretto/" />
@@ -69,7 +69,7 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<patch />

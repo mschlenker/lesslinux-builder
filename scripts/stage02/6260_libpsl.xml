@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='libpsl' version='0.20.2' install='chroot'>
+    <package name='libpsl' version='0.20.2' install='destdir'>
         <license>
             unknown
         </license>
@@ -30,7 +30,7 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+make install DESTDIR=${TGTDIR}
 ]]>
         </install>
         <clean>
