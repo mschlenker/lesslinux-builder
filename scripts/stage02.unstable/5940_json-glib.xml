@@ -53,6 +53,8 @@
                         <dep>sed</dep>
                         <dep>tar</dep>
 			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -67,24 +69,26 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			mkdir _build
+			cd _build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc 
+			meson --prefix=/usr --sysconfdir=/etc  ..
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				make -j $jobcount
+				ninja -j $jobcount
 			else
-				make
+				ninja
 			fi
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			cd ${PKGNAME}-${PKGVERSION}/_build
+			DESTDIR=${TGTDIR} ninja install 
 			]]>
 		</install>
 		<clean>
