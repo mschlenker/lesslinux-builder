@@ -6,7 +6,7 @@
 		<sources>
 			<file>                                                                        
 				<pkg sha1="4f2200e74e22b2cdf316c1126eb180e568756d39">distcc-3.3.2.tar.gz</pkg>
-				<mirror>http://distcc.googlecode.com/files/</mirror>
+				<mirror>https://github.com/distcc/distcc/releases/download/v3.3.2/</mirror>
 			</file>
 			<manualcheck date="20140802" interval="120" page="https://lists.samba.org/mailman/listinfo/distcc" />
 			<!-- <check>
@@ -31,14 +31,14 @@
 			<![CDATA[ 
 			cd ${PKGNAME}
 			bash autogen.sh
-			./configure --prefix=/tools --disable-Werror --without-avahi 
-			make
+			./configure --prefix=/tools --disable-Werror --without-avahi --without-libiberty
+			make distcc 
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}
-			make install
+			install -m 0755 distcc /tools/bin/
 			]]>
 		</install>
 	</package>
