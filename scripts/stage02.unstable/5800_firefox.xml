@@ -200,7 +200,7 @@ cd mozilla-release
 				[ "$jobcount" -gt 12 ] && jobcount=12
 				export CC='distcc gcc'
 				export CXX='distcc g++'
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount}\"%g" .mozconfig 
 				# make -f client.mk
 				./mach build
 			else
