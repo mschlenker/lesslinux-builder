@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='enchant' version='2.2.3' install='chroot'>
+    <package name='enchant' version='2.2.3' install='destdir'>
         <license>
             unknown
         </license>
@@ -95,7 +95,7 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+make install DESTDIR=${TGTDIR}
 ]]>
         </install>
         <clean>
