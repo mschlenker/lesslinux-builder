@@ -1,20 +1,20 @@
 <llpackages>
-    <package name='gspell' version='1.8.1' install='chroot'>
+    <package name='enchant' version='2.2.3' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='3d44c47bd578a3464cb14e37fb8a05a5e30dfd66'>
-                    gspell-1.8.1.tar.xz
+                <pkg sha1='181d5563d282af0f30c7ab68c5d432271b6fd11e'>
+                    enchant-2.2.3.tar.gz
                 </pkg>
                 <mirror>
-                    https://download.gnome.org/sources/gspell/1.8/
+                    https://github.com/AbiWord/enchant/releases/download/v2.2.3/
                 </mirror>
             </file>
-            <manualcheck date='20181012' interval='60' mirror='https://download.gnome.org/sources/gspell/1.8/'/>
+            <manualcheck date='20181012' interval='60' mirror='https://github.com/AbiWord/enchant/releases/download/v2.2.3/'/>
         </sources>
-			<builddeps>
+	<builddeps>
                         <dep>Python</dep>
 			<dep>adwaita-icon-theme</dep>
                         <dep>atk</dep>
@@ -81,10 +81,9 @@
 			<dep>itstool</dep>
 			<dep>libsecret</dep>
 			<dep>distcc</dep>
-			<dep>enchant</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
         </unpack>
         <patch/>
@@ -96,7 +95,7 @@ make
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install DESTDIR=${TGTDIR}
+make install
 ]]>
         </install>
         <clean>
