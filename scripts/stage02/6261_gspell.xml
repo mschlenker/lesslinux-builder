@@ -1,32 +1,20 @@
 <llpackages>
-	<package 
-		name="evince3"
-		version="3.30.0"
-		class="user"
-		install="destdir">
-		<license>GPLv2</license>
-		<sources>  
-			<file>   
-				<pkg sha1="a1a197767a7e1a7a99b8c1044f3a014bde627973">evince-3.30.0.tar.xz</pkg>
-				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/evince/3.30/</mirror>
-			</file>
-			<manualcheck date="20170801" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/evince/" />
-			<check>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/evince/3.24/">
-					<atext linktext="evince-3.24.2." />
-					<atext linktext="evince-3.24.3." />
-					<atext linktext="evince-3.24.4." />
-					<atext linktext="evince-3.24.5." />
-				</page>
-				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/evince/">
-					<atext linktext="3.30" />
-					<atext linktext="3.26" />
-					<atext linktext="3.28" />
-					<atext linktext="4." />
-				</page>
-			</check> 
-		</sources>
-		<builddeps>
+    <package name='gspell' version='1.8.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3d44c47bd578a3464cb14e37fb8a05a5e30dfd66'>
+                    gspell-1.8.1.tar.xz
+                </pkg>
+                <mirror>
+                    https://download.gnome.org/sources/gspell/1.8/
+                </mirror>
+            </file>
+            <manualcheck date='20181012' interval='60' mirror='https://download.gnome.org/sources/gspell/1.8/'/>
+        </sources>
+			<builddeps>
                         <dep>Python</dep>
 			<dep>adwaita-icon-theme</dep>
                         <dep>atk</dep>
@@ -93,44 +81,26 @@
 			<dep>itstool</dep>
 			<dep>libsecret</dep>
 			<dep>distcc</dep>
-			<dep>gspell</dep>
                 </builddeps>
-		<unpack>
-			<![CDATA[ 
-			unxz -c ${SRCDIR}/evince-${PKGVERSION}.tar.xz | tar xf - 
-			]]>
-		</unpack>
-		<patch />
-		<build>
-			<![CDATA[
-			cd evince-${PKGVERSION}
-			# export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc gcc"
-				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc --disable-nautilus
-				make -j $jobcount
-			else
-				./configure --prefix=/usr --sysconfdir=/etc --disable-nautilus
-				make
-			fi
-			]]>
-		</build>
-		<test />
-		<install>
-			<![CDATA[
-			cd evince-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
-			# /sbin/paxctl -m /usr/bin/evince
-			# /sbin/paxctl -m /usr/bin/evince-previewer
-			# /sbin/paxctl -m /usr/bin/evince-thumbnailer
-			]]>
-		</install>
-		<clean>
-			<![CDATA[
-			rm -rf evince-${PKGVERSION}
-			]]>
-		</clean>
-	</package>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
 </llpackages>
