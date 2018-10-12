@@ -50,13 +50,14 @@
 		</patch>
 		<build>
 			<![CDATA[ 
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --sysconfdir=/etc && make
+			./configure --prefix=/usr --sysconfdir=/etc && make -j $jobcount
 			
 			]]>
 		</build>
