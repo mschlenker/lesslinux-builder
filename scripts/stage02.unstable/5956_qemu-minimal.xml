@@ -105,7 +105,7 @@ tar xf ${SRCDIR}/qemu-${PKGVERSION}.tar.xz
 				--docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \
 				--disable-bsd-user --disable-linux-user \
 				--target-list=x86_64-softmmu,i386-softmmu \
-				--disable-sdl --disable-vnc --audio-drv-list=alsa --disable-gtk
+				--disable-sdl --disable-vnc --audio-drv-list=alsa --disable-gtk --disable-docs
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount
 			else
