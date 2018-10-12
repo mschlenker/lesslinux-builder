@@ -1,0 +1,78 @@
+<llpackages>
+	<package 
+		name="jfsutils"
+		version="1.1.15"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="291e8bd9d615cf3d27e4000117c81a3602484a50">jfsutils-1.1.15.tar.gz</pkg>
+				<mirror>http://jfs.sourceforge.net/project/pub/</mirror>
+			</file>
+			<file>                                                               
+				<pkg sha1="de82747f7bdb27c69c471c56e81078783c3a3d65">jfsutils_1.1.15-3ubuntu1.debian.tar.xz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/j/jfsutils/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://jfs.sourceforge.net/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-3ubuntu1.debian.tar.xz
+			
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ../debian/patches/series | while read fname ; do
+				cat ../debian/patches/${fname} | patch -p1
+			done
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf debian 
+			]]>
+		</clean>
+	</package>
+</llpackages>
