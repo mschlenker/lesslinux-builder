@@ -215,7 +215,7 @@ cd mozilla-release
 			while [ '!' -f ff-build/toolkit/library/libxul.so -a $ccount -lt 2 ] ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
-				make -f client.mk build
+				./mach build
 				ccount=` expr $ccount + 1 ` 
 			done
 			[ -f ff-build/toolkit/library/libxul.so ] || exit 1		
