@@ -102,12 +102,14 @@
                 </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+	    mv -v graphviz-stable_release_${PKGVERSION} ${PKGNAME}-${PKGVERSION}
 ]]>
         </unpack>
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-sed -i 's/ruby-1.9/ruby-2.2/g' configure
+bash autogen.sh
+# sed -i 's/ruby-1.9/ruby-2.2/g' configure
 # sed -i 's/ e_/ gs_error_/'     plugin/gs/gvloadimage_gs.c
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-tcl=no
 make -j6
