@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="qt5"
-		version="5.11.1"
+		version="5.11.2"
 		class="user">
 		<license>GPLv2</license>
 		<sources>                                                                                                
 			<file>
-				<pkg sha1="0ac866442a960d4038a51ba3096b2cc5d796b5ee">qt-everywhere-src-5.11.1.tar.xz </pkg>
-				<mirror>https://download.qt.io/archive/qt/5.11/5.11.1/single/</mirror>
+				<pkg sha1="21c75160643025dd86f1671d1b5a7728d1a409a0">qt-everywhere-src-5.11.2.tar.xz </pkg>
+				<mirror>https://download.qt.io/archive/qt/5.11/5.11.2/single/</mirror>
 			</file>
 			<file>
-				<pkg sha1="fcda213f6f24b746f5d4354e5918c000a481de72">qt-5.11.1-glibc228-1.patch</pkg>
-				<mirror>http://www.linuxfromscratch.org/patches/blfs/8.3/</mirror>
+				<pkg sha1="7cad1718c6981dac2fecc9086245d15375d80633">qt-5.11.2-glibc228-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
 			<!-- <file>
 				<pkg sha1="5b85c6127b22d0c1c25a21dcb147ad3c023f8196">qt-everywhere-opensource-src-4.8.1-gcc_fix-1.patch</pkg>
@@ -137,7 +137,7 @@
 					-system-harfbuzz                            \
 					-system-sqlite                              \
 					-nomake examples                            \
-					-no-rpath                                 
+					-no-rpath              -skip qtwebengine                   
 				make -j $jobcount 
 			else
 				./configure -prefix /usr \
@@ -157,7 +157,7 @@
 					-system-harfbuzz                            \
 					-system-sqlite                              \
 					-nomake examples                            \
-					-no-rpath                                 
+					-no-rpath              -skip qtwebengine                   
 				make -j 4
 			fi
 			]]>
