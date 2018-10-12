@@ -76,16 +76,14 @@
 		<build>
 			<![CDATA[
 			cd vim81
+			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --prefix=/usr --enable-multibyte  --enable-gui=gtk3  CC="distcc gcc" CXX="distcc g++" 
-				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
-				./configure --prefix=/usr --enable-multibyte --enable-gui=gtk3 
-				make
-			fi
+			fi	
+			./configure --prefix=/usr --enable-multibyte  --enable-gui=gtk3   
+			make -j $jobcount  
 			]]>
 		</build>
 		<test />
