@@ -104,23 +104,23 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				[ "$jobcount" -gt 8 ] && jobcount=8 
-				export CC='distcc gcc'
-				export CXX='distcc g++'
-				./configure -prefix /usr/compat.old/qt4 \
-					-sysconfdir       /etc/xdg \
-					-gtkstyle -opensource -release -system-sqlite \
-					-silent -no-nis -confirm-license -nomake examples -nomake demos -no-webkit -no-icu 
-				make -j $jobcount 
-			else
+			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+			#	jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+			#	[ "$jobcount" -gt 8 ] && jobcount=8 
+			#	export CC='distcc gcc'
+			#	export CXX='distcc g++'
+			#	./configure -prefix /usr/compat.old/qt4 \
+			#		-sysconfdir       /etc/xdg \
+			#		-gtkstyle -opensource -release -system-sqlite \
+			#		-silent -no-nis -confirm-license -nomake examples -nomake demos -no-webkit -no-icu 
+			#	make -j $jobcount 
+			#else
 				./configure -prefix /usr/compat.old/qt4 \
 					-sysconfdir       /etc/xdg \
 					-gtkstyle -opensource -release -system-sqlite \
 					-silent -no-nis -confirm-license -nomake examples -nomake demos  -no-webkit  -no-icu 
 				make -j 6
-			fi
+			#fi
 			]]>
 		</build>
 		<test />
