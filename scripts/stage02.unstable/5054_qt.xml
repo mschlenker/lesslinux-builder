@@ -104,25 +104,21 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			export CC="/usr/local/gcc54/bin/gcc54"
-			export CXX="/usr/local/gcc54/bin/g++54"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				[ "$jobcount" -gt 8 ] && jobcount=8 
-				export CC='distcc /usr/local/gcc54/bin/gcc54'
-				export CXX='distcc /usr/local/gcc54/bin/g++54'
+				export CC='distcc gcc'
+				export CXX='distcc g++'
 				./configure -prefix /usr/compat.old/qt4 \
 					-sysconfdir       /etc/xdg \
 					-gtkstyle -opensource -release -system-sqlite \
 					-silent -no-nis -confirm-license -nomake examples -nomake demos -no-webkit -no-icu 
-					# CC='distcc /usr/local/gcc54/bin/gcc54' CXX='distcc /usr/local/gcc54/bin/g++54'
 				make -j $jobcount 
 			else
 				./configure -prefix /usr/compat.old/qt4 \
 					-sysconfdir       /etc/xdg \
 					-gtkstyle -opensource -release -system-sqlite \
 					-silent -no-nis -confirm-license -nomake examples -nomake demos  -no-webkit  -no-icu 
-					# CC='/usr/local/gcc54/bin/gcc54' CXX='/usr/local/gcc54/bin/g++54'
 				make -j 6
 			fi
 			]]>
