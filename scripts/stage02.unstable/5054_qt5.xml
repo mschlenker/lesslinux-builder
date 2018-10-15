@@ -165,7 +165,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd qt-everywhere-opensource-src-${PKGVERSION}
+			cd qt-everywhere-src-${PKGVERSION}
 			make install 
 			for file in moc uic rcc qmake lconvert lrelease lupdate; do
 				ln -sfrvn /usr/bin/qt5/$file /usr/bin/$file-qt5
@@ -185,7 +185,7 @@ EOF
 		</install>
 		<clean>
 			 <![CDATA[
-			rm -rf qt-everywhere-opensource-src-${PKGVERSION}
+			rm -rf qt-everywhere-src-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
