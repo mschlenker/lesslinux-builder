@@ -73,8 +73,8 @@
 			make INSTALL_HDR_PATH=dest headers_install
 			find dest/include \( -name .install -o -name ..install.cmd \) -delete
 			
-			for tgt in musl crosstools/i486-linux-uclibc crosstools-amd64/amd64-linux-uclibc \
-				crosstools-ia32-musl/i386-linux-musl crosstools-amd64-musl/x86_64-linux-musl ; do
+			for tgt in musl \
+				crosstools-i386-musl/i386-linux-musl crosstools-amd64-musl/x86_64-linux-musl ; do
 				mkdir -p ${TGTDIR}/usr/local/${tgt}/include
 				cp -rv dest/include/* ${TGTDIR}/usr/local/${tgt}/include
 				ln -s . ${TGTDIR}/usr/local/${tgt}/usr
