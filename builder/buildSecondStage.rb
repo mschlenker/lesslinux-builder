@@ -3,6 +3,9 @@
 class SecondStage < AnyStage
 	
 	def SecondStage.mount(builddir, srcdir)
+		system("mkdir -p " + builddir + "/stage01/chroot/usr/lib64")
+		system("mkdir -p " + builddir + "/stage01/chroot/usr/local/lib64")
+		system("mkdir -p " + builddir + "/stage01/chroot/opt/lib64")
 		system("mount -o bind /tmp " + builddir + "/stage01/chroot/tmp")
 		system("mount -o bind /dev " + builddir + "/stage01/chroot/dev")
 		system("mount -o bind " + builddir + "/stage02/build " + builddir + "/stage01/chroot/llbuild/build")
