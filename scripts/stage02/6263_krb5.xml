@@ -14,6 +14,9 @@
             </file>
             <manualcheck date='20181017' interval='60' mirror='https://kerberos.org/dist/krb5/1.16/'/>
         </sources>
+		<builddeps>
+			<dep>openssl</dep>
+		</builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 ]]>
