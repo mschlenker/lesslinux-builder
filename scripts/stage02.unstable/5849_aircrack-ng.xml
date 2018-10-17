@@ -40,12 +40,13 @@
 		<unpack>
 			<![CDATA[ 
 			
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
