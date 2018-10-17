@@ -14,6 +14,10 @@
 				<pkg sha1="fab0ccb78180aba5cd73e50de5b3bdc1cef0446a">dc3dd_7.2.646-1.debian.tar.xz</pkg>
 				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/d/dc3dd/</mirror>
 			</file>
+			<file>                                                                                               
+				<pkg sha1="3149d28a73b104f1e20b767c880f5c93864736dc">dc3dd-7.2.646_glibc-2.28-1.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
 			<manualcheck date="20150823" interval="180" page="http://sourceforge.net/projects/dc3dd/files/" />
 		</sources>
 		<builddeps>
@@ -47,9 +51,10 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			cat ../debian/patches/series | while read fname ; do 
-                                cat ../debian/patches/${fname} | patch -p1
-                        done
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}_glibc-2.28-1.patch | patch -p1 
+			#cat ../debian/patches/series | while read fname ; do 
+			#       cat ../debian/patches/${fname} | patch -p1
+                        #done
 			
 			]]>
 		</patch>
