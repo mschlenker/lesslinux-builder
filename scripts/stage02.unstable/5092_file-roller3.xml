@@ -77,6 +77,8 @@
                         <dep>tar</dep>
                         <dep>xproto-base</dep>
                         <dep>xz</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -87,6 +89,8 @@
 		<build>
 			<![CDATA[
 			cd file-roller-${PKGVERSION}
+			mkdir _build
+			cd _build
 			# export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
@@ -96,16 +100,16 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc --disable-nautilus-actions 
-			make -j $jobcount
+			meson --prefix=/usr --sysconfdir=/etc  ..
+			ninja -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd file-roller-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
-			# paxctl -m ${TGTDIR}/usr/bin/file-roller
+			cd file-roller-${PKGVERSION}/_build
+			DESTDIR=${TGTDIR} ninja install
+			
 			]]>
 		</install>
 		<clean>
