@@ -55,10 +55,9 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			cd ${PKGNAME}-${PKGVERSION}
-			sed -i 's/-Werror//g' common.mak
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var 
 			make -j $jobcount
-
 			]]>
 		</build>
 		<install>
