@@ -1,0 +1,42 @@
+<llpackages>
+    <package name='rpcsvc-proto' version='1.4' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='01267dbc7d999c4ffdda1f69532e1f8331489b5f'>
+                    rpcsvc-proto-1.4.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/thkukuk/rpcsvc-proto/releases/download/v1.4/
+                </mirror>
+            </file>
+            <manualcheck date='20181019' interval='60' mirror='https://github.com/thkukuk/rpcsvc-proto/releases/download/v1.4/'/>
+        </sources>
+	<builddeps>
+		<dep>openssl</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+autoreconf -fi   
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
