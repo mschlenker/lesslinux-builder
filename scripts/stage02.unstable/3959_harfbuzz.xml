@@ -77,7 +77,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc && make -j $jobcount
+			./configure --prefix=/usr --sysconfdir=/etc --with-icu=yes && make -j $jobcount
 			]]>
 		</build>
 		<test />
