@@ -47,6 +47,8 @@
                         <dep>util-linux-ng</dep>
 			<dep>distcc</dep>
 			<dep>libaio</dep>
+			<!-- make sure when building parted static that no devmapper headers are present -->
+			<dep>parted-static</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
