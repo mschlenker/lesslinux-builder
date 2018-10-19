@@ -95,14 +95,11 @@
 		</patch> -->
 		<build>
 			<![CDATA[
-			exit 0
 			cd ${PKGNAME}-${PKGVERSION}
-			# export CC="/usr/local/gcc54/bin/gcc54"
-			# export CXX="/usr/local/gcc54/bin/g++54"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc gcc" #  "distcc /usr/local/gcc54/bin/gcc54"
-				export CXX="distcc g++" # /usr/local/gcc54/bin/g++54" 
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
 			fi
 			./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/qemu \
 				--docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} \
@@ -119,8 +116,6 @@
 			<![CDATA[
 			cd qemu-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			# mkdir -p ${TGTDIR}/etc/lesslinux/
-			# touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
 			]]>
 		</install>
 		<clean>
