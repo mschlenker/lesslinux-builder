@@ -1,0 +1,105 @@
+<llpackages>
+	<package 
+		name="xfsprogs"
+		version="4.17.0"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="0e08277dd0d1aece401be4f39b9d7863b06efeb3">xfsprogs-4.17.0.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs</mirror>
+			</file>
+			<manualcheck date="20160823" interval="120" page="https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs" />
+			<check>
+				<page html="ftp://oss.sgi.com/projects/xfs/cmd_tars/">
+					<atext linktext="xfsprogs-4.7.1." />
+					<atext linktext="xfsprogs-4.7.2." />
+					<atext linktext="xfsprogs-4.7.2." />
+					<atext linktext="xfsprogs-4.7.3." />
+					<atext linktext="xfsprogs-4.8." />
+					<atext linktext="xfsprogs-4.9." />
+					<atext linktext="xfsprogs-4.10." />
+					<atext linktext="xfsprogs-5." />
+				</page>
+			</check> 
+		</sources>
+		<builddeps>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>font-util</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>guile</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libtool</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+			<!-- dep>distcc</dep -->
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make DEBUG=-DNDEBUG     \
+				INSTALL_USER=root  \
+				INSTALL_GROUP=root \
+				LOCAL_CONFIGURE_OPTIONS="--enable-readline" \
+				-j $jobcount
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			make PKG_DOC_DIR=/usr/share/doc/xfsprogs-4.17.0 install
+			make PKG_DOC_DIR=/usr/share/doc/xfsprogs-4.17.0 install-dev 
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
