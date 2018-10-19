@@ -62,7 +62,7 @@
 		<build>
 			<![CDATA[
 			cd parted-${PKGVERSION}                    
-			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no 
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --disable-nls --with-readline=no --disable-device-mapper 
 			make LDFLAGS="-all-static"
 			]]>
 		</build>
