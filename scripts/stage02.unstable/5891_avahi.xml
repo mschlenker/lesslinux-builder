@@ -77,7 +77,6 @@
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
                         <dep>pygobject</dep>
-                        <dep>qt-everywhere-opensource-src</dep>
                         <dep>sed</dep>
                         <dep>tar</dep>
 			<!-- dep>distcc</dep -->
@@ -105,7 +104,7 @@
 			fi
 			PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig:/usr/compat.old/qt4/lib/pkgconfig ./configure \
 				--prefix=/usr --sysconfdir=/etc --localstatedir=/var \
-				--disable-mono --disable-monodoc --disable-qt3 \
+				--disable-mono --disable-monodoc --disable-qt3 --disable-qt4   \
 				--with-distro=none --disable-python 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
