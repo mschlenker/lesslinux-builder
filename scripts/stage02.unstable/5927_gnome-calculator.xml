@@ -56,6 +56,8 @@
                         <dep>pygobject</dep>
                         <dep>sed</dep>
 			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -70,6 +72,8 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			mkdir _build
+			cd _build
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -78,15 +82,15 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			# ./configure --sysconfdir=/etc/compat.old --prefix=/usr/compat.old && make
-			./configure --sysconfdir=/etc --prefix=/usr && make -j $jobcount
+			meson --prefix=/usr --sysconfdir=/etc  ..
+			ninja -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			cd ${PKGNAME}-${PKGVERSION}/_build
+			DESTDIR=${TGTDIR} ninja install 
 			
 			]]>
 		</install>
