@@ -119,6 +119,7 @@
 				-DUSE_LIBHYPHEN=OFF         \
 				-DENABLE_MINIBROWSER=ON     \
 				-DENABLE_GEOLOCATION=OFF \
+				-DUSE_WOFF2=OFF \
 				-DLIB_INSTALL_DIR=/usr/lib \
 				-Wno-dev ../webkitgtk-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
