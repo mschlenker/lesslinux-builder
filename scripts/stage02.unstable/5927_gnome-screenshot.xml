@@ -88,7 +88,7 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/build 
+			cd ${PKGNAME}-${PKGVERSION}/_build 
 			DESTDIR=${TGTDIR} ninja install 
 			sed -i 's/DBusActivatable=true//g' ${TGTDIR}/usr/share/applications/org.gnome.Screenshot.desktop
 			]]>
