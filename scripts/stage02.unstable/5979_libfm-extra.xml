@@ -1,0 +1,144 @@
+<llpackages>
+	<package 
+		name="libfm-extra"
+		version="1.3.0.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="aa7f73987866e557b74b8a28d0fea339d53899b6">libfm-1.3.0.2.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="60" page="http://lxqt.org/downloads/lxqt/" />
+			<!-- <check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/3.10/">
+					<atext linktext="gnome-calculator-3.10.6." />
+					<atext linktext="gnome-calculator-3.10.3." />
+					<atext linktext="gnome-calculator-3.10.4." />
+					<atext linktext="gnome-calculator-3.10.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gnome-calculator/">
+					<atext linktext="3.12" />
+					<atext linktext="3.14" />
+					<atext linktext="4." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>ORBit2</dep>
+                        <dep>SDL</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cairo</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>font-util</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnome-doc-utils</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>gstreamer</dep>
+                        <dep>gtk-doc</dep>
+                        <dep>gtk3</dep>
+                        <dep>gtk</dep>
+                        <dep>gtkglext</dep>
+                        <dep>guile</dep>
+                        <dep>gwenhywfar</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <!-- <dep>libchipcard</dep> -->
+                        <dep>libdvdnav</dep>
+                        <dep>libdvdread</dep>
+                        <dep>libexif</dep>
+                        <dep>libffi</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libogg</dep>
+                        <dep>libpng15</dep><dep>libpng16</dep>
+                        <dep>libtool</dep>
+                        <dep>libvorbis</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <!-- <dep>menu-cache</dep> -->
+                        <dep>nspr</dep>
+                        <dep>opus</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>speex</dep>
+                        <dep>tar</dep>
+                        <dep>util-macros</dep>
+                        <dep>vala</dep>
+                        <dep>wayland</dep>
+                        <dep>which</dep>
+                        <dep>wxWidgets</dep>
+                        <dep>xorg-server</dep>
+                        <dep>xtrans</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/libfm-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd libfm-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc --with-extra-only --with-gtk=no    
+			make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd libfm-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf libfm-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
