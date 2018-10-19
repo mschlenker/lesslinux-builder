@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="usbip"
-		version="4.14.72"
+		version="4.18.9"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="c64d80ad01a6a77bf46bce1bdc5c7f28bfb6bfd5">linux-4.14.tar.xz</pkg>
+				<pkg sha1="a5898f3a6383946b1de8d9dd449c2ca361b14c3d">linux-4.18.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="3d19eb95f0a76884c9f7fadafefdbfe3f5fbfde7">patch-4.14.72.xz</pkg>
+				<pkg sha1="79de479878a351c2358f5a890ec7c2a3e627e32a">patch-4.18.9.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<manualcheck date="20171030" interval="60" page="http://www.kernel.org/" />
@@ -88,6 +88,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
+			export CFLAGS="-Wno-error"
 			bash autogen.sh
 			## sed -i 's%USBIP_VERSION 0x00000111%USBIP_VERSION 0x00000106%g' config.h 
 			./configure --prefix=/usr --sysconfdir=/etc
