@@ -81,6 +81,7 @@
                         <dep>zlib</dep>
 			<dep>distcc</dep>
 			<dep>libisoburn</dep>
+			<dep>gcc73</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -92,6 +93,8 @@
 		<build>
 			<![CDATA[
 			export USER=root
+			export CC="/usr/local/gcc73/bin/gcc73"
+			export CXX="/usr/local/gcc73/bin/g++73"
 			OWPWD=` pwd ` 
 			ls -lah
 			echo $OWPWD
