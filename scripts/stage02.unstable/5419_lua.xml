@@ -97,6 +97,7 @@ EOF
 			cd ${PKGNAME}-${PKGVERSION}
 			[ -x src/lua ] || exit 1
 			make INSTALL_TOP=/usr TO_LIB="liblua.so liblua.so.5.3 liblua.so.5.3.5" INSTALL_DATA="cp -d" INSTALL_MAN=/usr/share/man/man1 install
+			install -m 0644 src/liblua.a /usr/lib/
 			mkdir -pv /usr/share/doc/lua-${PKGVERSION}
 			cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-${PKGVERSION}
 
