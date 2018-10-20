@@ -82,7 +82,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi	
-			# bash autogen.sh
+			bash autogen.sh
 			./configure --sysconfdir=/etc --prefix=/usr && make -j $jobcount 
 			]]>
 		</build>
