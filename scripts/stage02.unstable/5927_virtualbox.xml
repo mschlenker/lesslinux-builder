@@ -96,6 +96,10 @@
 			export CC="/usr/local/gcc73/bin/gcc73"
 			export CXX="/usr/local/gcc73/bin/g++73"
 			OWPWD=` pwd ` 
+			mkdir bin
+			ln -s $CC bin/gcc
+			ln -s $CXX bin/g++
+			export PATH=${OWPWD}/bin:$PATH
 			ls -lah
 			echo $OWPWD
 			./open-watcom-c-linux-1.9 -i -dDstDir=${OWPWD}/ow19 -dFullInstall=1
