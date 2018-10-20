@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="VirtualBox-guest"
-		version="5.2.18"
+		version="5.2.20"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                        
-				<pkg sha1="57790c5bcc033e04ac13744ec35557293854df46">VirtualBox-5.2.18.tar.bz2</pkg>
-				<mirror>http://download.virtualbox.org/virtualbox/5.2.18/</mirror>
+				<pkg sha1="74a4626bc9f16a606f861341bdecc073756384d2">VirtualBox-5.2.20.tar.bz2</pkg>
+				<mirror>http://download.virtualbox.org/virtualbox/5.2.20/</mirror>
 			</file>
 			<manualcheck date="20180212" interval="120" page="http://www.virtualbox.org/" />
 			<!-- <check>
@@ -67,6 +67,7 @@
                         <dep>which</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
+			<dep>gcc73</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -77,7 +78,14 @@
 		<build>
 			<![CDATA[
 			export USER=root
-			export KERN_DIR=/usr/src/linux-4.9.95-ll-pae-0
+			export KERN_DIR=/usr/src/linux-lesslinux
+			export CC="/usr/local/gcc73/bin/gcc73"
+			export CXX="/usr/local/gcc73/bin/g++73"
+			OWPWD=` pwd ` 
+			mkdir bin
+			ln -s $CC bin/gcc
+			ln -s $CXX bin/g++
+			export PATH=${OWPWD}/bin:$PATH
 			cd VirtualBox-${PKGVERSION}
 			DISDIR=`pwd ` 
 			./configure --only-additions --with-linux=${KERN_DIR}
