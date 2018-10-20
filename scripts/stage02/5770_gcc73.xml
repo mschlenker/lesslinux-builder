@@ -1,0 +1,87 @@
+<llpackages>
+	<package 
+		name="gcc73"
+		version="7.3.0"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="9689b9cae7b2886fdaa08449a26701f095c04e48">gcc-7.3.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-7.3.0/</mirror>
+			</file>
+			<manualcheck date="20181005" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+		</sources>
+		<builddeps>
+			<!-- <dep>linux_headers</dep>
+			<dep>glibc</dep>
+			<dep>man-pages</dep>
+			<dep>readjust</dep>
+			<dep>zlib</dep>
+			<dep>binutils</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep> -->
+			<dep>gcc</dep>
+			<dep>perl</dep>
+			<dep>zip</dep> 
+			<dep>unzip</dep>
+			<dep>Python</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
+			mkdir ${PKGNAME}-build
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			SED=sed
+			export SED
+			gccversion=73
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			../gcc-${PKGVERSION}/configure --prefix=/usr/local/${PKGNAME} \
+				--enable-shared \
+				--enable-threads=posix --enable-__cxa_atexit  \
+				--enable-clocale=gnu --enable-languages=c,c++,fortran,lto,objc,obj-c++,go \
+				--disable-multilib --with-system-zlib --program-suffix=${gccversion} --disable-bootstrap 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make -j 4
+			fi
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			make -k check
+			../gcc-${PKGVERSION}/contrib/test_summary
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			mkdir -p ${TGTDIR}/usr/bin 
+			make install DESTDIR=${TGTDIR}
+			version=73
+			for fname in gcc g++ c++ cpp ; do
+				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/local/gcc${version}/bin/${fname}
+				ln -s /usr/local/gcc${version}/bin/${fname}${version} ${TGTDIR}/usr/bin/${fname}${version}
+			done
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf gcc-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
