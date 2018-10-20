@@ -51,7 +51,7 @@
 				--enable-threads=posix --enable-__cxa_atexit  \
 				--enable-clocale=gnu --enable-languages=c,c++ \
 				--disable-multilib --with-system-zlib --program-suffix=${gccversion} \
-				--disable-bootstrap --dsiable-libsanitizer  
+				--disable-bootstrap --disable-libsanitizer  
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
