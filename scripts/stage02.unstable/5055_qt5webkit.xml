@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="qt5webkit"
+		version="5.11.2"
+		class="user" install="chroot">
+		<license>GPLv2</license>
+		<sources>                                                                                                
+			<file>
+				<pkg sha1="a95ecab22d65c265f3550854d50376ff51ccc3da">qtwebengine-everywhere-src-5.11.2.tar.xz</pkg>
+				<mirror>https://download.qt.io/archive/qt/5.11/5.11.2/submodules/</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="95595cf120bcbdd664989abdfc624ed5b02d8157">qtwebkit-5.9.0-icu_59-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<!-- <file>
+				<pkg sha1="c2b2b4f20bc76f298171e35af10866094f60d574">qt-everywhere-opensource-src-4.8.2-glib_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20180514" interval="180" page="http://www.linuxfromscratch.org/blfs/view/svn/x/qtwebkit5.html" />
+		</sources>
+		 <builddeps>
+                        <dep>qt5</dep>
+			<dep>webkit26</dep>
+			<dep>ninja</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar  xf ${SRCDIR}/qtwebengine-everywhere-src-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd qtwebkit-opensource-src-${PKGVERSION}
+			cat ${SRCDIR}/qtwebkit-${PKGVERSION}-icu_59-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd qtwebengine-everywhere-src-${PKGVERSION}
+			mkdir -p build
+			cd       build 
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			qmake-qt5 .. && make 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd qtwebengine-everywhere-src-${PKGVERSION}/build
+			make install
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf qtwebengine-everywhere-src-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
