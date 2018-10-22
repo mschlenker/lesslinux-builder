@@ -48,6 +48,8 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
+			mkdir _build
+			cd _build
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
@@ -55,14 +57,14 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  ..
 			make -j $jobcount
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}/_build
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
