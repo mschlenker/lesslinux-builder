@@ -49,13 +49,13 @@
 		</patch> -->
 		<build>
 			<![CDATA[
-			cp ${SRCDIR}/glib2-${PKGVERSION}.gem ./
+			cp -v ${SRCDIR}/glib2-${PKGVERSION}.gem ./
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			gem install glib2 --version ${PKGVERSION} --local
+			gem install glib2 --version ${PKGVERSION} --local 2>&1
 			]]>
 		</install>
 		<clean>
