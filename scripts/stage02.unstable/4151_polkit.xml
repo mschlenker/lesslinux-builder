@@ -1,0 +1,94 @@
+<llpackages>
+	<package 
+		name="polkit"
+		version="0.115"
+		class="lib"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<!-- polkit higher than 0.96 seems to require glib 2.25+ -->
+				<pkg sha1="208b7e44fcf0f515d067d37307af9ea1419eb305">polkit-0.115.tar.gz</pkg>
+				<mirror>http://hal.freedesktop.org/releases/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://hal.freedesktop.org/releases/" />
+			<check>
+				<page html="http://hal.freedesktop.org/releases/">
+					<atext linktext="polkit-0.105." />
+					<atext linktext="polkit-0.106." />
+					<atext linktext="polkit-0.107." />
+					<atext linktext="polkit-1." />
+					<atext linktext="polkit-0.2" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Linux-PAM</dep>
+                        <dep>Python</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libffi</dep>
+                        <dep>libxslt</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --enable-man-pages=no && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+if grep -E '^polkituser:' /etc/passwd ; then
+	echo 'User polkituser found in /etc/passwd'
+else
+	echo 'polkituser:x:60009:60009:PolicyKit:/dev/null:/bin/false' >> /etc/passwd
+fi
+if grep -E '^polkituser:' /etc/shadow ; then
+	echo 'User polkituser found in /etc/shadow'
+else
+	echo 'polkituser:!:13792:0:99999:7:::' >> /etc/shadow
+fi
+if grep -E '^polkituser:' /etc/group ; then
+	echo 'Group polkituser found in /etc/group'
+else
+	echo 'polkituser:x:60009:' >> /etc/group
+fi			
+			
+cd ${PKGNAME}-${PKGVERSION}
+make install
+
+			]]>
+		</install>
+	</package>
+</llpackages>
