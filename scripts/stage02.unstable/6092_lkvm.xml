@@ -1,0 +1,63 @@
+<llpackages>
+    <package name='kvm' version='20150609' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0dcb945c3e437c201f53d0f386f3e358c030daa4'>
+                    kvm-20150609.tar.xz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20150609' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>libaio</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+                        <!-- <dep>x11vnc</dep> -->
+                        <dep>xmlto</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd linux-${PKGNAME}
+make clean
+make defconfig 
+cd tools/kvm
+make clean 
+make -j $( grep -c processor /proc/cpuinfo ) WERROR=0  SOURCE_GTK3=no SOURCE_VNCSERVER=no 
+]]>
+        </build>
+        <install>
+            <![CDATA[
+mkdir -p ${TGTDIR}/usr/bin 
+mkdir -p ${TGTDIR}/etc/lesslinux 
+install -m 0755 linux-${PKGNAME}/tools/kvm/lkvm ${TGTDIR}/usr/bin 
+touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf linux-${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>
