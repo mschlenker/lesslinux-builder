@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='polkit-qt-1' version='0.112.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a19d5c129b52029157c762f186f3cab6c74e449f'>
+                    polkit-qt-1-0.112.0.tar.gz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20181023' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
