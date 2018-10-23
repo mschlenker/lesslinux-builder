@@ -135,6 +135,8 @@ cfg = REXML::Document.new xcfg
 @dbuser = @cfgroot.elements["database/user"].text
 @dbname = @cfgroot.elements["database/dbname"].text
 @dbpass = @cfgroot.elements["database/pass"].text
+@mailconfig = nil 
+@mailconfig = Dir.pwd + "/mail.cfg" if File.exists?(Dir.pwd + "/mail.cfg") 
 @singlecontainer = false
 begin
 	@singlecontainer = true if @cfgroot.elements["singlecontainer"].text.downcase.strip == "true"  
