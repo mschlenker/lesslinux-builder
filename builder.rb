@@ -12,6 +12,7 @@ require "builder/initramfsAssembly.rb"
 require "builder/bootdiskAssembly.rb"
 require "builder/packageBuilder.rb"
 require "builder/packageVersion.rb"
+require "builder/mailNotifier.rb"
 require "rexml/document"
 require "digest/sha1"
 # require "mysql"
@@ -20,6 +21,7 @@ require 'sqlite3'
 require 'thread'
 # require 'mahoro'
 require 'net/ftp'
+require 'net/smtp'
 require 'fileutils'
 
 include ObjectSpace
