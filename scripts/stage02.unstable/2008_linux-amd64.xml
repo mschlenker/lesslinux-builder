@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="4.14.72"
+		version="4.14.78"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
@@ -19,7 +19,7 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="3d19eb95f0a76884c9f7fadafefdbfe3f5fbfde7">patch-4.14.72.xz</pkg>
+				<pkg sha1="d614049709af3d0e580a46f66b852b8c810cfcf5">patch-4.14.78.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<manualcheck date="20180409" interval="60" page="http://www.kernel.org/" />
@@ -110,7 +110,7 @@
 			echo 'CROSS_COMPILE="x86_64-linux-musl-"' > ../linux-${PKGVERSION}/crosscompile.inc
 			
 			# yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
-			make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" silentoldconfig 
+			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" silentoldconfig 
 			
 			jobcount=4 
 			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
