@@ -1,0 +1,56 @@
+<llpackages>
+    <package name='mozjs-gnome' version='52.2.1-1' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='1ec6399a90c7060908bfc3b96d1f1068ab2bfc78'>
+                    mozjs-52.2.1gnome1.tar.gz
+                </pkg>
+                <mirror>
+                    http://ftp.gnome.org/pub/gnome/teams/releng/tarballs-needing-help/mozjs/
+                </mirror>
+            </file>
+            <manualcheck date='20181023' interval='60' mirror='http://ftp.gnome.org/pub/gnome/teams/releng/tarballs-needing-help/mozjs/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/mozjs-52.2.1gnome1.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+			cd mozjs-52.2.1gnome1/js/src
+			jobcount=2
+			export LANG=en_US.UTF-8
+			export LC_ALL=en_US.UTF-8
+			export SHELL=/bin/bash
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr       \
+				--with-intl-api     \
+				--with-system-zlib  \
+				--with-system-nspr  \
+				--with-system-icu   \
+				--enable-threadsafe \
+				--enable-readline
+			make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd mozjs-52.2.1gnome1/js/src
+	    make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf mozjs-52.2.1gnome1
+]]>
+        </clean>
+    </package>
+</llpackages>
