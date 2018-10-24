@@ -85,7 +85,8 @@
 				--enable-libtheora   \
 				--enable-libvorbis   \
 				--enable-libvpx      \
-				--enable-libx264
+				--enable-libx264 \
+				--disable-doc
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				make -j $jobcount 
 			else
