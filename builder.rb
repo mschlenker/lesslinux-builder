@@ -135,8 +135,10 @@ cfg = REXML::Document.new xcfg
 @dbuser = @cfgroot.elements["database/user"].text
 @dbname = @cfgroot.elements["database/dbname"].text
 @dbpass = @cfgroot.elements["database/pass"].text
-@mailconfig = nil 
-@mailconfig = Dir.pwd + "/mail.cfg" if File.exists?(Dir.pwd + "/mail.cfg") 
+@mail_notifier = nil
+if File.exists?(Dir.pwd + "config/mail.cfg")
+	@mail_notifier = MailNotifier.new(Dir.pwd + "config/mail.cfg")
+end
 @singlecontainer = false
 begin
 	@singlecontainer = true if @cfgroot.elements["singlecontainer"].text.downcase.strip == "true"  
@@ -392,7 +394,7 @@ def install_stage02_package(p, queue_name=nil)
 	### Dir.chdir(@workdir)
 	p.install(@log_each, @force_stracalyze)
 	### Dir.chdir(@workdir)
-	p.filecheck(queue_name)
+	p.filecheck(queue_name, @mail_notifier)
 	pb = PackageBuilder.new(@builddir, p.pkg_name, p.pkg_version, @dbh, @sqlite, @unstable)
 	pb.create_pkgdesc unless File.exists?(@builddir + "/stage02/build/" + p.pkg_name + "-" + p.pkg_version + ".xml")
 	### Dir.chdir(@workdir)

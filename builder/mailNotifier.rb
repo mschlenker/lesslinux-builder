@@ -16,7 +16,7 @@ class MailNotifier
 		marker = "Let5sep4rateS0meStuff"
 		@mailtemplate =<<EOF
 From: #{@sendernice} <#{@sender}>
-To:
+To: #{@receiver}
 Subject: #{subject}
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary=#{marker}
@@ -27,14 +27,14 @@ Content-Transfer-Encoding:8bit
 
 #{body}
 
---#{@marker}--
+--#{marker}--
 EOF
 
-		mailer = Net::SMTP.start( @mailhost, @mailport,  'i.dont.want.to.tell.my.name', @mailuser, @mailpass)
 		begin
-			mailer.sendmail(body, @sender, [ @receiver ])
+			Net::SMTP.start( @mailhost, @mailport,  'i.dont.want.to.tell.my.name', @mailuser, @mailpass) { |smtp|
+				smtp.send_message(@mailtemplate, @sender, @receiver)
+			}
 		rescue
 		end
-
 	end
 end

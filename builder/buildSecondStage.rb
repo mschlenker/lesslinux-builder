@@ -375,7 +375,7 @@ class SecondStage < AnyStage
 		end
 	end
 	
-	def filecheck(queue_name=nil)
+	def filecheck(queue_name=nil, mail_notifier=nil)
 		# Read all files
 		ignore_dirs = [ "/dev", "/tools", "/proc", "/tmp" ]
 		check_dirs = [ "bin", "boot", "etc", "lib", "opt", "sbin", "share", "tools", "usr", "var", "static" ] 
@@ -511,16 +511,20 @@ class SecondStage < AnyStage
 					f.write(@pkg_version.to_s) 
 				}
 			else
-				puts '==> ERROR: No modified files found! Please check the build descriptions!'
-				puts '  > Error occured when installing ' + @pkg_name + "-" + @pkg_version
+				output = '==> ERROR: No modified files found! Please check the build descriptions!\n'
+				output += '  > Error occured when installing ' + @pkg_name + "-" + @pkg_version
 				if (queue_name.to_s == "top")
-					puts '  > Failed package is from top queue, so I am continuing!'
+					output += '\n  > Failed package is from top queue, so I am continuing!'
 				elsif ( @failpackages.include?(@pkg_name) || @failpackages.include?('ALL') )
-					puts '  > Package was explicitely allowed to fail by CLI switch!'
+					output += '\n  > Package was explicitely allowed to fail by CLI switch!'
 				else
-					puts '  > Remove the file ' + @builddir + '/tmp/LessLinux_Emergency_Exit afterwards!'
+					output += '\n  > Remove the file ' + @builddir + '/tmp/LessLinux_Emergency_Exit afterwards!'
 					system("touch " + @builddir +  "/tmp/LessLinux_Emergency_Exit")
 				end
+				unless mail_notifier.nil?
+					mail_notifier.send_mail("Build failed: " + @pkg_name + "-" + @pkg_version, output)
+				end
+				puts output
 				# raise "NoModifiedFilesFound"
 			end
 			return modified_files 
