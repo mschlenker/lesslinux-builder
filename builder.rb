@@ -136,8 +136,8 @@ cfg = REXML::Document.new xcfg
 @dbname = @cfgroot.elements["database/dbname"].text
 @dbpass = @cfgroot.elements["database/pass"].text
 @mail_notifier = nil
-if File.exists?(Dir.pwd + "config/mail.cfg")
-	@mail_notifier = MailNotifier.new(Dir.pwd + "config/mail.cfg")
+if File.exists?(Dir.pwd + "/config/mail.cfg")
+	@mail_notifier = MailNotifier.new(Dir.pwd + "/config/mail.cfg")
 end
 @singlecontainer = false
 begin
