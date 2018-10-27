@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="60.2.1esr"
+		version="60.2.2esr"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,8 +25,8 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="a1b9d039630a1029c7c5423a6fa1dbef34acb0fe">firefox-60.2.1esr.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/60.2.1esr/source/</mirror>
+				<pkg sha1="efe1e11501ff3d30b96ece94f6a73e21f31f28c9">firefox-60.2.2esr.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/60.2.2esr/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
@@ -200,7 +200,7 @@ cd mozilla-release
 				[ "$jobcount" -gt 12 ] && jobcount=12
 				export CC='distcc gcc'
 				export CXX='distcc g++'
-				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount} CC='distcc gcc' CXX='distcc g++'\"%g" .mozconfig 
+				sed -i "s%MOZ_MAKE_FLAGS=\"-j4\"%MOZ_MAKE_FLAGS=\"-j${jobcount}\"%g" .mozconfig 
 				# make -f client.mk
 				./mach build
 			else
@@ -215,7 +215,7 @@ cd mozilla-release
 			while [ '!' -f ff-build/toolkit/library/libxul.so -a $ccount -lt 2 ] ; do
 				echo '===> Linking libxul.so failed, trying again in 5 minutes...'
 				sleep 300
-				make -f client.mk build
+				./mach build
 				ccount=` expr $ccount + 1 ` 
 			done
 			[ -f ff-build/toolkit/library/libxul.so ] || exit 1		
