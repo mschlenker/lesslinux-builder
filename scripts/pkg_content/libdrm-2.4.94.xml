@@ -1,0 +1,114 @@
+<pkgdesc name='libdrm' version='2.4.94'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libdrm_amdgpu.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm_intel.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm_nouveau.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm.so.2' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm_radeon.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libkms.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libkms.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm_nouveau.so.2' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm_radeon.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm_intel.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libdrm_amdgpu.so' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man7' owner='0' group='0'/>
+        <directory path='/usr/share/man/man3' owner='0' group='0'/>
+        <directory path='/usr/share/libdrm' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/libdrm' owner='0' group='0'/>
+        <directory path='/usr/include/libdrm/nouveau' owner='0' group='0'/>
+        <directory path='/usr/include/libdrm/nouveau/nvif' owner='0' group='0'/>
+        <directory path='/usr/include/libkms' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libdrm_radeon.so.1.0.1' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm_nouveau.so.2.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libkms.so.1.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm_intel.so.1.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm.so.2.4.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm_amdgpu.so.1.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man7/drm-gem.7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man7/drm.7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man7/drm-mm.7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man7/drm-ttm.7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man7/drm-memory.7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man7/drm-kms.7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/drmModeGetResources.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/drmAvailable.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/drmHandleEvent.3' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libkms.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm_amdgpu.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm_radeon.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libdrm_nouveau.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/libkms.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libdrm_intel.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libdrm_radeon.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libdrm_amdgpu.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libdrm.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libdrm_nouveau.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libdrm_intel.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/include/xf86drmMode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libsync.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/sis_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_surface.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/vmwgfx_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/mga_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/drm_fourcc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_bo_gem.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/vc4_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/tegra_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/amdgpu_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/via_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_bo.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/r600_pci_ids.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/mach64_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_bo_int.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/drm_sarea.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/i915_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/intel_aub.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/drm_mode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/intel_bufmgr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_cs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_cs_int.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/r128_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/intel_debug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/savage_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/virtgpu_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/qxl_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/msm_drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/amdgpu.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/radeon_cs_gem.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nvif/cl9097.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nvif/ioctl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nvif/if0002.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nvif/if0003.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nvif/cl0080.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nvif/unpack.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nvif/class.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libdrm/nouveau/nouveau.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xf86drm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libkms/libkms.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/share/libdrm/amdgpu.ids' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,25 @@
+<pkgdesc name='iceauth' version='1.0.8'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib64/libSM.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libSM.so.6' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/lib64/libSM.so.6.0.1' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/iceauth' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/iceauth.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib64/libSM.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib64/libSM.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/pkgconfig/sm.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

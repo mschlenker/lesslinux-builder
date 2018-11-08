@@ -1,39 +1,44 @@
 <pkgdesc name='libgcrypt' version='1.4.6'>
     <subpackage name='skel'>
-        <softlink owner='0' path='/usr/compat.old/lib/libgcrypt.so' group='0'/>
-        <softlink owner='0' path='/usr/compat.old/lib/libgcrypt.so.11' group='0'/>
-        <directory owner='0' path='/usr' group='0'/>
-        <directory owner='0' path='/usr/compat.old' group='0'/>
-        <directory owner='0' path='/usr/compat.old/lib' group='0'/>
-        <directory owner='0' path='/usr/compat.old/bin' group='0'/>
-        <directory owner='0' path='/usr/compat.old/sbin' group='0'/>
-        <directory owner='0' path='/usr/compat.old/include' group='0'/>
-        <directory owner='0' path='/usr/compat.old/share' group='0'/>
-        <directory owner='0' path='/usr/compat.old/share/info' group='0'/>
-        <directory owner='0' path='/usr/compat.old/share/aclocal' group='0'/>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/etc/lesslinux' owner='0' group='0'/>
     </subpackage>
-    <subpackage name='minimal'>
-        <file fileout='ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV)' owner='0' path='/usr/compat.old/lib/libgcrypt.so.11.6.0' mode='100755' group='0'/>
-    </subpackage>
-    <subpackage name='bin'>
-        <file fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV)' owner='0' path='/usr/compat.old/bin/hmac256' mode='100755' group='0'/>
-        <file fileout='ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV)' owner='0' path='/usr/compat.old/bin/dumpsexp' mode='100755' group='0'/>
-    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'/>
     <subpackage name='doc'/>
-    <subpackage name='config'/>
-    <subpackage name='devel'>
-        <file fileout='current ar archive' owner='0' path='/usr/compat.old/lib/libgcrypt.a' mode='100644' group='0'/>
-        <file fileout='libtool library file, ' owner='0' path='/usr/compat.old/lib/libgcrypt.la' mode='100755' group='0'/>
-        <file fileout='ASCII C program text' owner='0' path='/usr/compat.old/include/gcrypt-module.h' mode='100644' group='0'/>
-        <file fileout='ASCII C program text' owner='0' path='/usr/compat.old/include/gcrypt.h' mode='100644' group='0'/>
-        <file fileout='ASCII M4 macro language pre-processor text' owner='0' path='/usr/compat.old/share/aclocal/libgcrypt.m4' mode='100644' group='0'/>
+    <subpackage name='config'>
+        <file path='/etc/lesslinux/libgcrypt-1.4.6-dummy' owner='0' group='0' mode='100644'/>
     </subpackage>
+    <subpackage name='devel'/>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'>
-        <file fileout='POSIX shell script, ASCII text executable' owner='0' path='/usr/compat.old/bin/libgcrypt-config' mode='100755' group='0'/>
-        <file fileout='gzip compressed data' owner='0' path='/usr/compat.old/share/info/dir' mode='100644' group='0'/>
-        <file fileout='gzip compressed data' owner='0' path='/usr/compat.old/share/info/gcrypt.info' mode='100644' group='0'/>
-    </subpackage>
+    <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'>
+            <file path='/usr/compat.old/lib/libgcrypt.so.11.6.0'/>
+        </subpackage>
+        <subpackage name='bin'>
+            <file path='/usr/compat.old/bin/hmac256'/>
+            <file path='/usr/compat.old/bin/dumpsexp'/>
+        </subpackage>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'>
+            <file path='/usr/compat.old/lib/libgcrypt.a'/>
+            <file path='/usr/compat.old/lib/libgcrypt.la'/>
+            <file path='/usr/compat.old/include/gcrypt-module.h'/>
+            <file path='/usr/compat.old/include/gcrypt.h'/>
+            <file path='/usr/compat.old/share/aclocal/libgcrypt.m4'/>
+        </subpackage>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'>
+            <file path='/usr/compat.old/bin/libgcrypt-config'/>
+            <file path='/usr/compat.old/share/info/dir'/>
+            <file path='/usr/compat.old/share/info/gcrypt.info'/>
+        </subpackage>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>

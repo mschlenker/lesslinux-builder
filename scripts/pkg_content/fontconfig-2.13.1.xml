@@ -1,0 +1,576 @@
+<pkgdesc name='fontconfig' version='2.13.1'>
+    <subpackage name='skel'>
+        <softlink path='/etc/fonts/conf.d/40-nonlatin.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/49-sansserif.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/30-metric-aliases.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/10-hinting-slight.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/80-delicious.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/60-generic.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/45-latin.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/20-unhint-small-vera.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/45-generic.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/69-unifont.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/65-fonts-persian.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/60-latin.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/50-user.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/65-nonlatin.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/90-synthetic.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/51-local.conf' owner='0' group='0'/>
+        <softlink path='/etc/fonts/conf.d/10-scale-bitmap-fonts.conf' owner='0' group='0'/>
+        <softlink path='/usr/lib/libfontconfig.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libfontconfig.so.1' owner='0' group='0'/>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/etc/fonts' owner='0' group='0'/>
+        <directory path='/etc/fonts/conf.d' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/locale' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man3' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man5' owner='0' group='0'/>
+        <directory path='/usr/share/gettext' owner='0' group='0'/>
+        <directory path='/usr/share/gettext/its' owner='0' group='0'/>
+        <directory path='/usr/share/doc' owner='0' group='0'/>
+        <directory path='/usr/share/doc/fontconfig' owner='0' group='0'/>
+        <directory path='/usr/share/doc/fontconfig/fontconfig-devel' owner='0' group='0'/>
+        <directory path='/usr/share/xml' owner='0' group='0'/>
+        <directory path='/usr/share/xml/fontconfig' owner='0' group='0'/>
+        <directory path='/usr/share/fontconfig' owner='0' group='0'/>
+        <directory path='/usr/share/fontconfig/conf.avail' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/fontconfig' owner='0' group='0'/>
+        <directory path='/var' owner='0' group='0'/>
+        <directory path='/var/cache' owner='0' group='0'/>
+        <directory path='/var/cache/fontconfig' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+    <file path='/usr/lib/libfontconfig.so.1.12.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/fc-list' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fc-conflist' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fc-cache' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fc-match' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fc-cat' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fc-pattern' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fc-validate' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man3/FcWeightFromOpenType.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSort.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetHasChar.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrListDone.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicReplaceOrig.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcBlanksDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameUnparse.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcMatrixShear.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFileScan.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternGet-Type.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetConfigFiles.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetRescanInterval.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigAppFontClear.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternBuild.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheDeleteUUID.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrSetEqual.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrDirname.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcWeightToOpenType.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcBlanksIsMember.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrCmp.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetGetLangs.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCacheCopySet.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigBuildFonts.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetIsSubset.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameUnregisterConstants.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternGetWithBinding.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicLock.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigSubstitute.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicNewFile.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetSortDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternFindIter.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcUtf8ToUcs4.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFileIsDir.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigFileInfoIterNext.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcRangeCreateInteger.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcMatrixCopy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrCopyFilename.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcValuePrint.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFini.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternReference.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFreeTypeQuery.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternFilter.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcUtf8Len.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigParseAndLoadFromMemory.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigEnableHome.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigFileInfoIterGet.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigAppFontAddFile.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternIterValueCount.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCacheNumSubdir.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirSave.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrSetDel.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigHome.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrFree.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcObjectSetCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetAdd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternIterEqual.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrStr.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangGetCharSet.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFreeTypeQueryFace.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcWeightFromOpenTypeDouble.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetEqual.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFreeTypeCharSet.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetFontDirs.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcObjectSetAdd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrListNext.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetDelChar.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFreeTypeCharIndex.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetCache.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheUnlink.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetHasLang.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicOrigFile.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicDeleteNew.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFreeTypeQueryAll.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameParse.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetSort.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcBlanksCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternDuplicate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcValueDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternGet.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcUtf16ToUcs4.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternRemove.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrSetMember.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameRegisterConstants.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcMatrixInit.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetNew.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetCopy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrStrIgnoreCase.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcRangeCopy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrListFirst.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternFormat.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetDel.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetCompare.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetIntersect.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcValueSave.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcGetVersion.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrSetAddFilename.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheClean.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcMatrixScale.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrCopy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetSubtractCount.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigUptoDate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternAdd-Type.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameGetConstant.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetCoverage.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrListCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcObjectSetDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigAppFontAddDir.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetMerge.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetList.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontRenderPrepare.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameUnregisterObjectTypes.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternAdd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFreeTypeCharSetAndSpacing.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigReference.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcObjectSetBuild.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirScan.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetFirstPage.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangNormalize.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcGetDefaultLangs.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetUnion.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcIsUpper.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcUcs4ToUtf8.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcIsLower.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCacheDir.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternIterNext.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternDel.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetNextPage.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheLoad.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternIterGetValue.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheUnload.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcRangeGetDouble.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetPrint.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternPrint.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternIterIsValid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcRangeDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetConfigDirs.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCacheCreateTagFile.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheLoadFile.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetAddChar.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcUtf16Len.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameRegisterObjectTypes.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcValueEqual.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcRangeCreateDouble.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetSubtract.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCacheSubdir.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetContains.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcGetLangs.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetCopy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrCmpIgnoreCase.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrSetAdd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigSetCurrent.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheRescan.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetCurrent.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetAdd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternEqual.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontSetMatch.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcInitReinitialize.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternAddWeak.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcBlanksAdd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcInit.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetHash.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcInitLoadConfigAndFonts.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigFileInfoIterInit.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrBasename.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetSubtract.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheCreateUUID.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameConstant.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternIterStart.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcToLower.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDefaultSubstitute.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcWeightToOpenTypeDouble.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcInitLoadConfig.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheValid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontList.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetSysRoot.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcMatrixMultiply.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcInitBringUptoDate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternIterGetObject.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcAtomicUnlock.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcFontMatch.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrPlus.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrSetDestroy.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigParseAndLoad.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetEqual.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCacheNumFont.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcMatrixRotate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigSetRescanInterval.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetIntersectCount.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcLangSetUnion.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigSubstituteWithPat.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternObjectCount.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcNameGetObjectType.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetFonts.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetCacheDirs.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigGetBlanks.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternEqualSubset.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigSetSysRoot.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcPatternHash.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcDirCacheRead.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcMatrixEqual.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrDowncase.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcConfigFilename.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcCharSetCount.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/FcStrSetCreate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-pattern.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-cache.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-list.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-scan.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-validate.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-query.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-conflist.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-match.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/fc-cat.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/fonts-conf.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel.pdf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel.txt' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-user.pdf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrcmpignorecase.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrcopyfilename.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnamegetobjecttype.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetsysroot.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetsubtract.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternaddweak.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternreference.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetcreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcrangegetdouble.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetlist.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetequal.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterniterisvalid.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrdirname.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternitergetobject.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcinitreinitialize.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetsubtractcount.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigreference.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnameconstant.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternitergetvalue.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetadd.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcmatrixinit.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircachedeleteuuid.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetgetlangs.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternremove.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomicorigfile.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfreetypecharset.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnameunparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetunion.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcrangecreateinteger.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontmatch.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrstr.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternitervaluecount.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontlist.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrlistfirst.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsethash.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcmatrixcopy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetfonts.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcobjectsetbuild.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrsetadd.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfileisdir.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/ln12.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterniternext.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/x103.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetfirstpage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternobjectcount.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterngetwithbinding.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcweightfromopentypedouble.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetcoverage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfreetypecharindex.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigparseandloadfrommemory.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomicdeletenew.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcucs4toutf8.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdirsave.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfreetypequeryall.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigfileinfoiterget.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrsetdel.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrplus.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcutf16len.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigappfontclear.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcmatrixscale.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcinitbringuptodate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircachecreateuuid.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetintersectcount.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcobjectsetadd.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetsortdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcweighttoopentype.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/x19.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcblanksadd.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrbasename.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fctolower.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetnextpage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigsubstitute.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcmatrixrotate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircacheunload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternformat.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsethaschar.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcvaluedestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcweighttoopentypedouble.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterndel.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetfontdirs.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccachecreatetagfile.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigsetrescaninterval.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcobjectsetcreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetdelchar.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircacheunlink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcrangedestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternhash.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomicunlock.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomicreplaceorig.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfreetypequery.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigsetcurrent.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircachevalid.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfreetypecharsetandspacing.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnameregisterconstants.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterndestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrfree.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigcreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrdowncase.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetcopy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigparseandload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcgetdefaultlangs.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetnew.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcrangecopy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomiccreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsethaslang.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigfileinfoiterinit.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetconfigfiles.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrcopy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomiclock.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetaddchar.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrsetmember.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircacheclean.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcobjectsetdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternget-type.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcblanksismember.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterniterequal.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclanggetcharset.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetcount.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircacheload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternfilter.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigbuildfonts.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangnormalize.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfreetypequeryface.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternfinditer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetconfigdirs.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigfileinfoiternext.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccachenumfont.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigappfontaddfile.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternbuild.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetadd.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetintersect.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcmatrixequal.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetmerge.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/x31.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetcreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrlistnext.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetsort.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetmatch.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircacheread.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcgetlangs.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcmatrixmultiply.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigfilename.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcrangecreatedouble.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetcompare.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternprint.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnameparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetcontains.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetprint.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccachedir.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrlistdone.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternequalsubset.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfighome.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsort.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrsetcreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnameunregisterobjecttypes.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetissubset.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcisupper.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccachecopyset.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetrescaninterval.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternadd.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetcopy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomicdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetblanks.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrsetequal.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiguptodate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfilescan.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnamegetconstant.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigsetsysroot.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontrenderprepare.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcinitloadconfigandfonts.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterniterstart.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfontsetcreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetunion.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigsubstitutewithpat.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcmatrixshear.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigappfontadddir.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccachenumsubdir.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternduplicate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnameregisterobjecttypes.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcinit.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfigenablehome.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcatomicnewfile.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrlistcreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircacheloadfile.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdefaultsubstitute.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetdel.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccharsetequal.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternget.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcnameunregisterconstants.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcinitloadconfig.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetcache.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatterncreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fccachesubdir.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrcmp.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcvalueprint.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fclangsetsubtract.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetcurrent.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcvaluesave.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcfini.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcutf8len.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcconfiggetcachedirs.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternadd-type.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcgetversion.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcislower.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcutf16toucs4.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrsetdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcpatternequal.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcblankscreate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcweightfromopentype.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrsetaddfilename.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcvalueequal.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcutf8toucs4.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/t1.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcblanksdestroy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcstrstrignorecase.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdircacherescan.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-devel/fcdirscan.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-user.txt' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/fontconfig/fontconfig-user.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/xml/fontconfig/fonts.dtd' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/fonts/fonts.conf' owner='0' group='0' mode='100644'/>
+        <file path='/etc/fonts/conf.d/README' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/fontconfig.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libfontconfig.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/include/fontconfig/fontconfig.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fontconfig/fcprivate.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fontconfig/fcfreetype.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/fontconfig.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/fontconfig-conf.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/share/gettext/its/fontconfig.loc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gettext/its/fontconfig.its' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/40-nonlatin.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/11-lcdfilter-legacy.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/70-no-bitmaps.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-sub-pixel-vbgr.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/49-sansserif.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/30-metric-aliases.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-sub-pixel-bgr.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/65-khmer.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-hinting-slight.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/80-delicious.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/60-generic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-hinting-medium.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/45-latin.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/20-unhint-small-vera.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/45-generic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/11-lcdfilter-light.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/69-unifont.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-hinting-full.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/65-fonts-persian.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-sub-pixel-vrgb.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/60-latin.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/50-user.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/65-nonlatin.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/90-synthetic.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/25-unhint-nonlatin.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-autohint.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/51-local.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-scale-bitmap-fonts.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-unhinted.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-no-sub-pixel.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/fontconfig/conf.avail/10-hinting-none.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/bin/fc-query' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fc-scan' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
