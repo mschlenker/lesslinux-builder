@@ -3231,7 +3231,7 @@ case $1 in
 					chvt 8
 					echo "===> Uninstalling LessLinux, converting drive to single partition FAT32" > /dev/tty8
 					echo "     Please be patient." > /dev/tty8
-					fulldev=` echo "$devname" | sed 's/[0-9]$//g `
+					fulldev=` echo "$devname" | sed 's/[0-9]$//g' `
 					devicesize=` parted -sm $fulldev unit B print | head -n2 | tail -n1 | awk -F ':' '{print $2}' | sed 's/B//' `
 					partstart=` expr 63 '*' 512 ` 
 					partend=` expr $devicesize - 1048577 `
