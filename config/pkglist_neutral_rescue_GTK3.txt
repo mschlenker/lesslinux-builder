@@ -40,6 +40,7 @@ cryptsetup
 openssl
 libxslt
 Python
+Python3
 iptables
 sudo
 shutdown-dummy
@@ -208,8 +209,8 @@ xconfgui
 
 # ntfsprogs
 gparted
-cdrkit
-dvd+rw-tools
+# cdrkit
+# dvd+rw-tools
 brasero3
 xfburn
 samba
@@ -234,7 +235,7 @@ newt
 partimage
 p7zip
 fuse
-truecrypt
+VeraCrypt
 ristretto
 mdadm
 lesslinux-desktop-entries
@@ -379,7 +380,7 @@ psmisc
 # thunar-volman
 iscsi-target-utils
 nfs-utils
-instantbird
+# instantbird
 garcon
 
 # New wireless stuff
@@ -436,7 +437,7 @@ gnome-themes-standard
 gtk3
 glib-networking
 midori
-webkit
+webkit26
 gcr
 ruby-cairo
 lame
@@ -487,13 +488,13 @@ libqtxdg
 libbde
 
 # Blobs
-chrome
+# chrome
 # needed for chrome
 nss
 nspr
 gconf3
 libgcrypt
-cups
+# cups
 libXScrnSaver
 
 # New September 2014
@@ -604,12 +605,87 @@ nbd-client-static
 redis
 
 aff4
-rekall
+# rekall
 john
 ophcrack
 ncrack
 skype_xtractor
 samdump2
-mini_portile
-mini_portile2
-rubygem-pkg-config
+
+exfat-utils
+fuse-exfat
+qt5ct
+adwaita-qt
+qtstyleplugins
+# xf86-video-modesetting
+xf86-video-amdgpu
+lesslinux-eset
+# etherape
+
+# Dependencies for Ruby-Gnome2
+rubygem-glib2
+rubygem-atk
+rubygem-gio2
+rubygem-gdk_pixbuf2
+rubygem-gobject-introspection
+native-package-installer
+# Also needed for Ruby-Gnome, should be mangled down to a minimal dependency
+gobject-introspection
+gobject-introspection1
+
+# Additional Tools for network handling
+cmst
+wpa_supplicant_gui
+connman-gtk
+openconnect
+bluez
+
+openjpeg2
+libkscreen
+
+daq
+snort
+HTML-Parser
+Encode-Locale
+File-Listing
+HTTP-Message
+LWP-MediaTypes
+Net-HTTP
+Try-Tiny
+WWW-RobotRules
+libwww-perl
+p5-uri
+Crypt-SSLeay
+LWP-Protocol-https
+HTTP-Cookies
+Path-Class
+HTTP-Date
+
+guymager-code
+mtools
+ntfs-3g-system-compression
+
+blueberry
+gnome-bluetooth
+
+efivar
+efibootmgr
+
+VirtualBox-guest
+libreoffice
+keepassxc
+gpgme
+libgpg-error
+libassuan
+nvme-cli
+qt5webkit
+haveged
+#rtslib-fb
+#targetcli-fb
+#configshell-fb
+istgt
+
+# lesslinux-f-secure
+inotify-tools
+ffi
+rb-inotify
