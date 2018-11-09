@@ -1,0 +1,82 @@
+<pkgdesc name='bluez' version='5.50'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libbluetooth.so.3' owner='0' group='0'/>
+        <softlink path='/usr/lib/libbluetooth.so' owner='0' group='0'/>
+        <softlink path='/usr/sbin/bluetoothd' owner='0' group='0'/>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/etc/dbus-1' owner='0' group='0'/>
+        <directory path='/etc/dbus-1/system.d' owner='0' group='0'/>
+        <directory path='/etc/bluetooth' owner='0' group='0'/>
+        <directory path='/lib' owner='0' group='0'/>
+        <directory path='/lib/udev' owner='0' group='0'/>
+        <directory path='/lib/udev/rules.d' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/cups' owner='0' group='0'/>
+        <directory path='/usr/lib/cups/backend' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/bluetooth' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+        <directory path='/usr/libexec' owner='0' group='0'/>
+        <directory path='/usr/libexec/bluetooth' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libbluetooth.so.3.18.16' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/lib/udev/hid2hci' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/btattach' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/l2test' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/btmon' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/rctest' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/l2ping' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/bluetoothctl' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/mpris-proxy' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/hex2hcd' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/bluemoon' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/bccmd' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/cups/backend/bluetooth' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/bluetooth/obexd' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/bluetooth/bluetoothd' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/rctest.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/hid2hci.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/bccmd.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/btattach.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/l2ping.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/bluetoothd.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/dbus-1/system.d/bluetooth.conf' owner='0' group='0' mode='100644'/>
+        <file path='/etc/bluetooth/rfcomm.conf' owner='0' group='0' mode='100644'/>
+        <file path='/etc/bluetooth/uart.conf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/bluez.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/hci_lib.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/l2cap.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/hci.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/hidp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/rfcomm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/sco.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/cmtp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/sdp_lib.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/sdp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/bnep.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/bluetooth/bluetooth.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/lib/udev/rules.d/97-hid2hci.rules' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libbluetooth.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

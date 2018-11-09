@@ -1,0 +1,42 @@
+<pkgdesc name='enchant' version='2.2.3'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libenchant-2.so.2' owner='0' group='0'/>
+        <softlink path='/usr/lib/libenchant-2.so' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/enchant' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/enchant-2' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/share/enchant/enchant.ordering' owner='0' group='0' mode='100644'/>
+	 <file path='/usr/lib/libenchant-2.so.2.2.3' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/enchant-2' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/enchant-lsmod-2' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/enchant-lsmod-2.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/enchant-2.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libenchant-2.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/enchant-2.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/enchant-2/enchant.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/enchant-2/enchant++.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/enchant-2/enchant-provider.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libenchant-2.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

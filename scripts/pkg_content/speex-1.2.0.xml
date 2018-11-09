@@ -1,0 +1,39 @@
+<pkgdesc name='speex' version='1.2.0'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libspeex.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libspeex.so' owner='0' group='0'/>
+        <directory path='/usr/share/doc/speex' owner='0' group='0'/>
+        <directory path='/usr/include/speex' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/libspeex.so.1.5.1' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/speexenc' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/speexdec' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/speexenc.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/speexdec.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/speex/manual.pdf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/share/aclocal/speex.m4' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libspeex.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libspeex.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/speex.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/speex/speex_callbacks.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/speex/speex.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/speex/speex_types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/speex/speex_header.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/speex/speex_config_types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/speex/speex_bits.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/speex/speex_stereo.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

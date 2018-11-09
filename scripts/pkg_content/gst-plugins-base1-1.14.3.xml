@@ -1,0 +1,846 @@
+<pkgdesc name='gst-plugins-base1' version='1.14.3'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libgstgl-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstrtp-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstapp-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstallocators-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstaudio-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstriff-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstvideo-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstaudio-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstapp-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstpbutils-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstsdp-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstallocators-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstvideo-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstriff-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgsttag-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstsdp-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstrtsp-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgsttag-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstpbutils-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstfft-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstrtp-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstgl-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstfft-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgstrtsp-1.0.so.0' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/locale' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sq' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sq/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de' owner='0' group='0'/>
+        <directory path='/usr/share/locale/de/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lt' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lt/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it' owner='0' group='0'/>
+        <directory path='/usr/share/locale/it/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/bg' owner='0' group='0'/>
+        <directory path='/usr/share/locale/bg/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/af' owner='0' group='0'/>
+        <directory path='/usr/share/locale/af/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/vi' owner='0' group='0'/>
+        <directory path='/usr/share/locale/vi/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/az' owner='0' group='0'/>
+        <directory path='/usr/share/locale/az/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt_BR' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pt_BR/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/or' owner='0' group='0'/>
+        <directory path='/usr/share/locale/or/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nb' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nb/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ca/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ro' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ro/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/el' owner='0' group='0'/>
+        <directory path='/usr/share/locale/el/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/da' owner='0' group='0'/>
+        <directory path='/usr/share/locale/da/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sv/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hu' owner='0' group='0'/>
+        <directory path='/usr/share/locale/hu/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk' owner='0' group='0'/>
+        <directory path='/usr/share/locale/uk/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/gl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/gl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eu' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eu/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr' owner='0' group='0'/>
+        <directory path='/usr/share/locale/tr/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eo' owner='0' group='0'/>
+        <directory path='/usr/share/locale/eo/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sk' owner='0' group='0'/>
+        <directory path='/usr/share/locale/sk/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en_GB' owner='0' group='0'/>
+        <directory path='/usr/share/locale/en_GB/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ru/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es' owner='0' group='0'/>
+        <directory path='/usr/share/locale/es/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja' owner='0' group='0'/>
+        <directory path='/usr/share/locale/ja/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lv' owner='0' group='0'/>
+        <directory path='/usr/share/locale/lv/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN' owner='0' group='0'/>
+        <directory path='/usr/share/locale/zh_CN/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/pl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fi' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fi/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl' owner='0' group='0'/>
+        <directory path='/usr/share/locale/nl/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fur' owner='0' group='0'/>
+        <directory path='/usr/share/locale/fur/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/cs' owner='0' group='0'/>
+        <directory path='/usr/share/locale/cs/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id' owner='0' group='0'/>
+        <directory path='/usr/share/locale/id/LC_MESSAGES' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0' owner='0' group='0'/>
+        <directory path='/usr/share/gir-1.0' owner='0' group='0'/>
+        <directory path='/usr/share/gst-plugins-base' owner='0' group='0'/>
+        <directory path='/usr/share/gst-plugins-base/1.0' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/girepository-1.0' owner='0' group='0'/>
+        <directory path='/usr/lib/gstreamer-1.0' owner='0' group='0'/>
+        <directory path='/usr/lib/gstreamer-1.0/include' owner='0' group='0'/>
+        <directory path='/usr/lib/gstreamer-1.0/include/gst' owner='0' group='0'/>
+        <directory path='/usr/lib/gstreamer-1.0/include/gst/gl' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/pbutils' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/rtsp' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/allocators' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/audio' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/tag' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/riff' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/rtp' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/gl' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/gl/glprototypes' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/gl/egl' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/gl/wayland' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/gl/x11' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/video' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/sdp' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/app' owner='0' group='0'/>
+        <directory path='/usr/include/gstreamer-1.0/gst/fft' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/bin/gst-device-monitor-1.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/gst-discoverer-1.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/gst-play-1.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstgio.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideorate.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttypefindfunctions.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstplayback.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstogg.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstencoding.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudioresample.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstopus.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideotestsrc.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvorbis.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudioconvert.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideoconvert.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstxvimagesink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstpango.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiotestsrc.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvolume.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstrawparse.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstapp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttheora.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideoscale.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstpbtypes.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstsubparse.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttcp.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstximagesink.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstalsa.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstadder.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiorate.so' owner='0' group='0' mode='100755'/>
+	 <file path='/usr/lib/libgstsdp-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstaudio-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstriff-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstfft-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstpbutils-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstvideo-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstrtsp-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstallocators-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgsttag-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstrtp-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiomixer.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstopengl.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstapp-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstgl-1.0.so.0.1403.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/gst-device-monitor-1.0.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/gst-discoverer-1.0.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/gst-play-1.0.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-clockoverlay.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-lumaxpro.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-audioresample.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-fisheye.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-audioconvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glimagesinkelement.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-cdparanoia.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-heat.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/left-insensitive.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-unalignedaudioparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-parsebin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-socketsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-xpro.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-tcp.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glviewconvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-videotestsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-audioconvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-audiotestsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-subparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-encodebin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-audiorate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-multifdsink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-ogg.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-ogmtextparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-videoconvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-identity.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-tcpserversink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/right-insensitive.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-glow.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-audiotestsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-tunnel.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-theoradec.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gldeinterlace.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-alsa.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-playback.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-alsasink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-videoscale.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/ch02.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-xray.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-vorbisdec.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-square.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glfilterapp.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-cdparanoiasrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glimagesink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-oggparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-ximagesink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-sin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-playbin3.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-playsink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-streamsynchronizer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-giosrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-uridecodebin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glsrcbin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-gio.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-rawaudioparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-ssaparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-ogmaudioparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-app.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-textoverlay.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-volume.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-vorbis.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/ch01.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glupload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gldifferencematte.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-xvimagesink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gltestsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-alsasrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-opengl.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-tcpserversrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-subtitleoverlay.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-vorbisenc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/style.css' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-giostreamsink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-oggdemux.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-libvisual.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-decodebin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-appsink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-squeeze.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-rawparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-adder.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-timeoverlay.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-stretch.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-typefindfunctions.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-playbin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-theoraenc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-theora.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-encoding.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-vorbisparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glshader.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-oggmux.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/left.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glsinkbin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glcolorbalance.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-multisocketsink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-opusenc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-audiointerleave.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/right.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-1.0.devhelp2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/up-insensitive.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-appsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-sepia.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glcolorconvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-giosink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-pango.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-twirl.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-urisourcebin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-opusdec.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-videotestsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gltransformation.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glfiltercube.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-volume.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-giostreamsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-subparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-videorate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-unalignedvideoparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glfilterbin.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-alsamidisrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-rawvideoparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-opus.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-videoconvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-textrender.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-ximagesink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/index.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-tcpclientsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-decodebin3.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-tcpclientsink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-blur.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-audiomixer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-ogmvideoparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-sobel.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-mirror.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-vorbistag.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gldownload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/up.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-oggaviparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-audiomixer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-laplacian.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gloverlay.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-theoraparse.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-xvimagesink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glstereosplit.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-ivorbisdec.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glcolorscale.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-videoscale.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-gleffects-bulge.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-videorate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-adder.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-glfilterglass.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-audiorate.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/home.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-plugins-1.0/gst-plugins-base-plugins-plugin-audioresample.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPExtension.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoScaler.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLAPI.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideometa.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/api-index-deprecated.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/left-insensitive.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-rtsp.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLContext.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-fdmemory.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudioQuantize.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTCPBuffer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTF32.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPTimeRange.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-audio.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLFramebuffer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstStreamVolume.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFT.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioAggregator.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLBufferPool.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix14.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioSink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-tag.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/right-insensitive.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPMessage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-mikey.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioEncoder.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLColorConvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTPBuffer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTF64.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioCdSrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-plugins-base.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix10.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLDisplay.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoDither.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Riff-utilities.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-rtp.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstEncodingProfile.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstEGLImage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRtphdrext.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstglmemoryegl.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-sdp.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Licenses.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstColorBalance.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPRange.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Codec-utilities.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstTagXmpWriter.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLQuery.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoEncoder.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-appsrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix08.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPUrl.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideoaffinetransformationmeta.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-dmabuf.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/api-index-full.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoFilter.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/compiling.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLMemory.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoDirection.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLOverlayCompositor.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstTagDemux.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLViewConvert.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstRTPBaseAudioPayload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudio.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioRingBuffer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoAlignment.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/style.css' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioFilter.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Version.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLBaseFilter.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoOrientation.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-1.0.devhelp2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstColorBalanceChannel.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix11.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstRTPBaseDepayload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTPPayloadInfo.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix12.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLSL.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Tags.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-riff.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstMIKEYMessage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/left.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioBaseSink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudioDownmixMeta.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRTSPConnection.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Missing-plugins.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix13.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioDecoder.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoOverlayRectangle.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVorbisTag.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Audio-channels.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLFilter.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/right.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTS16.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/up-insensitive.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLSLStage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstExiftag.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstRTPBasePayload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix05.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLBaseMemory.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gl.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLUpload.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoSink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix07.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstPhysMemoryAllocator.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLBuffer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstSDPMessage.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstDiscoverer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-OpenGL-Miscellaneous-Utilities.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix09.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoResampler.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-app.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Install-plugins.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-OpenGL-Formats.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudioConverter.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/index.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-allocators.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLSyncMeta.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix06.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstXmptag.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-ffft.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioBaseSrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstRtspdefs.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoPool.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-ID3-tag-utils.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstNavigation.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstVideoOverlay.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstAudio-IEC61937.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-libs-hierarchy.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/up.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLRenderbuffer.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLShader.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstTagMux.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-ISO-639-lang-mappings.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-gstvideoutils.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Descriptions.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-OpenGL-debugging.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoChroma.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix04.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/ix03.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstFFTS32.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioClock.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstGLWindow.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLMemoryPBO.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLDisplayWayland.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-appsink.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-base-utils.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-Pbutils.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/annotation-glossary.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gstreamer-video.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/home.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstVideoDecoder.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/GstAudioSrc.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/gst-plugins-base-libs-1.0/gst-plugins-base-libs-GstGLDisplayX11.html' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libgstrtsp-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstriff-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgsttag-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstallocators-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstvideo-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstvideo-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstpbutils-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstpbutils-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstriff-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstgl-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstsdp-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstfft-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgsttag-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstrtp-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstrtp-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstallocators-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstrtsp-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstfft-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideorate.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstpbtypes.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideoconvert.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideoscale.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudioconvert.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstogg.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstopengl.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideoconvert.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstapp.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstencoding.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvorbis.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstrawparse.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstsubparse.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstadder.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstximagesink.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideotestsrc.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttheora.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstxvimagesink.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiomixer.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvorbis.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiotestsrc.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstalsa.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudioresample.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstsubparse.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstopus.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstadder.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiorate.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideoscale.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudioresample.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstapp.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudioconvert.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttcp.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstplayback.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiorate.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstalsa.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstximagesink.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideorate.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstogg.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstpango.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstxvimagesink.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstpango.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstplayback.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvideotestsrc.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttcp.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvolume.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttypefindfunctions.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttypefindfunctions.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstvolume.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstgio.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstgio.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiotestsrc.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgsttheora.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstaudio-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstapp-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-audio-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-pbutils-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-rtsp-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-riff-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-video-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-sdp-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-plugins-base-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-allocators-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-rtp-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-gl-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-tag-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-app-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/gstreamer-fft-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libgstaudio-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstapp-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstsdp-1.0.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/pbutils.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/encoding-target.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/encoding-profile.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/pbutils-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/gstaudiovisualizer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/codec-utils.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/gstpluginsbaseversion.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/missing-plugins.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/pbutils-enumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/gstdiscoverer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/install-plugins.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/pbutils/descriptions.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtspmessage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtspextension.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtspconnection.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/rtsp-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtspdefs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/rtsp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtsprange.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtsp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtspurl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtsptransport.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtsp/gstrtsp-enumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/allocators/gstfdmemory.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/allocators/allocators.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/allocators/allocators-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/allocators/gstphysmemory.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/allocators/gstdmabuf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-quantize.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-converter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudioclock.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-info.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudioaggregator.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-format.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiofilter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiostreamalign.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/streamvolume.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiobasesrc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudioencoder.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiocdsrc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudioiec61937.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-resampler.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-channels.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-channel-mixer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiobasesink.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiometa.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiosink.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiosrc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudiodecoder.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/gstaudioringbuffer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/audio/audio-enumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/tag/gsttagmux.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/tag/tag-enumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/tag/tag-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/tag/gsttagdemux.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/tag/xmpwriter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/tag/tag.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/riff/riff.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/riff/riff-media.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/riff/riff-read.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/riff/riff-ids.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/riff/riff-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtpbasedepayload.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtcpbuffer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtppayloads.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/rtp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtphdrext.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtpbasepayload.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtpdefs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtpbuffer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtpbaseaudiopayload.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/rtp-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/rtp/gstrtp-enumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstgldebug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglmemory.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/debug.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/sync.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/fixedfunction.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/buffers.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/all_functions.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/blending.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/query.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/shaders.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/eglimage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/opengl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/base.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/vao.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/gles.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/gstgl_gles2compat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/fbo.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/glprototypes/gstgl_compat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglbufferpool.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglrenderbuffer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/egl/gstgldisplay_egl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/egl/gstegl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/egl/gsteglimage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/egl/gstglmemoryegl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstgloverlaycompositor.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglcontext.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglbuffer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglshader.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglbasememory.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstgl_fwd.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/wayland/gstgldisplay_wayland.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglquery.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglframebuffer.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglbasefilter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstgldisplay.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglshaderstrings.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglutils.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglcolorconvert.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglsl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglwindow.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglviewconvert.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglsyncmeta.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglfuncs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglfeature.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gl-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglslstage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglupload.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglfilter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglmemorypbo.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglformat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstgl_enums.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/x11/gstgldisplay_x11.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/gl/gstglapi.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-overlay-composition.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-chroma.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-info.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-blend.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/colorbalance.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideosink.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-color.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-resampler.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-event.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideoutils.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/videoorientation.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/colorbalancechannel.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-dither.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-frame.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-scaler.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/videodirection.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-converter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideotimecode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideofilter.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/navigation.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-multiview.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-enumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideopool.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideodecoder.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideometa.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideoaffinetransformationmeta.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/gstvideoencoder.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-format.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/video-tile.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/video/videooverlay.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/sdp/gstsdpmessage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/sdp/sdp-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/sdp/gstmikey.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/sdp/sdp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/sdp/gstsdp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/app/app-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/app/gstappsink.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/app/app.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/app/app-enumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/app/gstappsrc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/fft/fft.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/fft/gstffts32.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/fft/gstffts16.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/fft/gstfft.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/fft/gstfftf64.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/fft/fft-prelude.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gstreamer-1.0/gst/fft/gstfftf32.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/sl/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sq/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/lt/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/bg/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sr/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/af/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/vi/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/az/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt_BR/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/or/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nb/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ca/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ro/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hr/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/el/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/da/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hu/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/uk/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/gl/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/eu/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/tr/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/eo/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sk/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en_GB/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ru/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ja/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/lv/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fi/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nl/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fur/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/cs/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/id/LC_MESSAGES/gst-plugins-base-1.0.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/share/gir-1.0/GstGL-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstTag-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstAllocators-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstRtsp-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstAudio-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstVideo-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstApp-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstPbutils-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstRtp-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/GstSdp-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gst-plugins-base/1.0/license-translations.dict' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstPbutils-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstRtsp-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstSdp-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstRtp-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstVideo-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstGL-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstAllocators-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstTag-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstApp-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/GstAudio-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstaudiomixer.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstrawparse.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstencoding.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstopus.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstopengl.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/gstreamer-1.0/include/gst/gl/gstglconfig.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/gstreamer-1.0/libgstpbtypes.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgstgl-1.0.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

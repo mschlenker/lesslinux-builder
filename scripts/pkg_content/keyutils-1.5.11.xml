@@ -1,0 +1,165 @@
+<pkgdesc name='keyutils' version='1.5.11'>
+    <subpackage name='skel'>
+        <softlink path='/lib/libkeyutils.so' owner='0' group='0'/>
+        <softlink path='/lib/libkeyutils.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libxml2.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgthread-2.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgmodule-2.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libglib-2.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libglib-2.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libxml2.so.2' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgio-2.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgobject-2.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgobject-2.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgio-2.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgthread-2.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib64/libgmodule-2.0.so' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_read_alloc.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_reject.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_dh_compute_alloc.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_assume_authority.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_get_security_alloc.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_dh_compute_kdf.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_describe_alloc.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_negate.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/recursive_session_key_scan.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_unlink.3' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man3/keyctl_instantiate_iov.3' owner='0' group='0'/>
+        <directory path='/etc/request-key.d' owner='0' group='0'/>
+        <directory path='/usr/lib64/cmake' owner='0' group='0'/>
+        <directory path='/usr/lib64/cmake/libxml2' owner='0' group='0'/>
+        <directory path='/usr/lib64/gio' owner='0' group='0'/>
+        <directory path='/usr/lib64/gio/modules' owner='0' group='0'/>
+        <directory path='/usr/lib64/glib-2.0' owner='0' group='0'/>
+        <directory path='/usr/lib64/glib-2.0/include' owner='0' group='0'/>
+        <directory path='/usr/lib64/python2.7/site-packages/include_server' owner='0' group='0'/>
+        <directory path='/usr/share/keyutils' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/bin/keyctl' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/request-key' owner='0' group='0' mode='100755'/>
+        <file path='/sbin/key.dns_resolver' owner='0' group='0' mode='100755'/>
+	<file path='/lib/libkeyutils.so.1.7' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man7/keyutils.7' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_chown.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_search.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_session_to_parent.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_set_timeout.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_update.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_dh_compute.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/recursive_key_scan.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/find_key_by_type_and_name.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_revoke.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_describe.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_link.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_get_keyring_ID.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_invalidate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_clear.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_set_reqkey_keyring.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_setperm.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_get_persistent.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_restrict_keyring.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_instantiate.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_read.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_join_session_keyring.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/keyctl_get_security.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/keyctl.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/request-key.conf.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/key.dns_resolver.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/request-key.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/request-key.conf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/lib/libkeyutils.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/cmake/libxml2/libxml2-config.cmake' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/libcrmf.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/keyutils.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib64/libgobject-2.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/libnssdbm3.chk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/xml2Conf.sh' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/libfreebl3.chk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/glib-2.0/include/glibconfig.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/libxml2.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/libxml2mod.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/c_extensions_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_server_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/mirror_path.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_command_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/setup.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/macro_eval_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_file_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/run.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_file.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/compiler_defaults.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/mirror_path_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/compress_files.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/compress_files.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/__init__.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/c_extensions_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_command_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/mirror_path_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/macro_eval_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/statistics.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_file.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/compiler_defaults.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer_memoizing_node.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_server.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_command.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/basics_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/macro_eval.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer_memoizing_node_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_command.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/basics.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/cache_basics.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/basics_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_server.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/__init__.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/basics.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/macro_eval.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_server_test.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer_memoizing_node_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/parse_file_test.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/cache_basics.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/mirror_path.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/statistics.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/include_analyzer_memoizing_node.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/run.pyc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server/setup.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/drv_libxml2.py' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/python2.7/site-packages/include_server-3.2rc1-py2.7.egg-info' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/libgthread-2.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/libsoftokn3.chk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/libgio-2.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/libxml2.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/libgmodule-2.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/libglib-2.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib64/pkgconfig/gthread-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/libxml-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/gio-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/glib-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/gmodule-export-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/gmodule-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/gio-unix-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/gobject-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/gmodule-no-export-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/pkgconfig/nss.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib64/libfreeblpriv3.chk' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/keyutils/request-key-debug.sh' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

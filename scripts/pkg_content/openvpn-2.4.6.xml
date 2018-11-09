@@ -1,0 +1,45 @@
+<pkgdesc name='openvpn' version='2.4.6'>
+    <subpackage name='skel'>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+        <directory path='/usr/share/doc' owner='0' group='0'/>
+        <directory path='/usr/share/doc/openvpn' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/openvpn' owner='0' group='0'/>
+        <directory path='/usr/lib/openvpn/plugins' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/lib/openvpn/plugins/openvpn-plugin-auth-pam.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/openvpn/plugins/openvpn-plugin-down-root.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/openvpn' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man8/openvpn.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/README' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/Changes.rst' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/COPYING' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/README.IPv6' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/README.auth-pam' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/README.down-root' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/COPYRIGHT.GPL' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/management-notes.txt' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/openvpn/README.mbedtls' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/openvpn-msg.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/openvpn-plugin.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/openvpn/plugins/openvpn-plugin-auth-pam.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/openvpn/plugins/openvpn-plugin-down-root.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
