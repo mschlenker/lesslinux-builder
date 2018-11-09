@@ -160,7 +160,8 @@ class ThirdStage < AnyStage
 		end
 		installed_files = 0
 		initramfsdirs = ["etc", "static",  "var" ]
-		ignoredirs = [ "boot",  "dev", "home", "llbuild", "media", "mnt", "proc", "root", "sys", "tmp", "tools" ]
+		ignoredirs = [ "boot",  "dev", "home", "llbuild", "media", "mnt", "proc", "root", "sys", "tmp", "tools", 
+			"opt/lib64", "usr/lib64", "usr/local/lib64"  ]
 		squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr" ]
 		files_to_strip = Array.new
 		tarfiles_squash = Array.new
