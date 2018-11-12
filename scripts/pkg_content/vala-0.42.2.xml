@@ -1,14 +1,5 @@
 <pkgdesc name='vala' version='0.42.2'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libvala-0.42.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libx264.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libsndfile.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libsndfile.so.1' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libvpx.so.5.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/pkgconfig/vapigen.pc' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libvpx.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libvala-0.42.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libvpx.so.5' owner='0' group='0'/>
         <softlink path='/usr/share/man/man1/valadoc.1' owner='0' group='0'/>
         <softlink path='/usr/share/man/man1/valac.1' owner='0' group='0'/>
         <softlink path='/usr/share/man/man1/vala-gen-introspect.1' owner='0' group='0'/>
@@ -21,7 +12,6 @@
         <softlink path='/usr/lib/libvala-0.42.so' owner='0' group='0'/>
         <softlink path='/usr/lib/pkgconfig/vapigen.pc' owner='0' group='0'/>
         <softlink path='/usr/lib/libvala-0.42.so.0' owner='0' group='0'/>
-        <directory path='/usr/lib64/vala-0.42' owner='0' group='0'/>
         <directory path='/usr/share/vala-0.42' owner='0' group='0'/>
         <directory path='/usr/share/vala-0.42/vapi' owner='0' group='0'/>
         <directory path='/usr/share/devhelp/books/vala-0.42' owner='0' group='0'/>
@@ -34,6 +24,7 @@
 	<file path='/usr/lib/vala-0.42/libvalaccodegen.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libvala-0.42.so.0.0.0' owner='0' group='0' mode='100755'/>
 	<file path='/usr/lib/vala-0.42/gen-introspect-0.42' owner='0' group='0' mode='100755'/>
+     </subpackage>
     <subpackage name='bin'>
         <file path='/usr/bin/vapigen-0.42' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/valac-0.42' owner='0' group='0' mode='100755'/>
@@ -46,9 +37,6 @@
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/libx264.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libvpx.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libsndfile.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/aclocal/vala.m4' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/vapigen-0.42.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/libvala-0.42.pc' owner='0' group='0' mode='100644'/>
@@ -58,14 +46,6 @@
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/vala-0.42/libvalaccodegen.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libsndfile.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libvala-0.42.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pkgconfig/vpx.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/vapigen-0.42.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/sndfile.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/x264.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/libvala-0.42.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/vala-0.42/vapi/libglade-2.0.vapi' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/vala-0.42/vapi/libpeas-gtk-1.0.deps' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/vala-0.42/vapi/clutter-gtk-1.0.vapi' owner='0' group='0' mode='100644'/>
