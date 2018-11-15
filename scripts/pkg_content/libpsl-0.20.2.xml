@@ -1,0 +1,36 @@
+<pkgdesc name='libpsl' version='0.20.2'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libpsl.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpsl.so.5' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/bin/psl' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libpsl.so.5.3.1' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/psl-make-dafsa.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/psl.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/libpsl.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libpsl.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libpsl.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libpsl.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>
