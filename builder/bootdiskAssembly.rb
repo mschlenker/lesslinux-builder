@@ -301,7 +301,8 @@ class BootdiskAssembly
 		Dir.chdir( @builddir  + "/stage03" )
 		if File.exist?("#{@builddir}/stage03/cdmaster/boot/efi/efi.img")
 			isomoddate = @build_timestamp.gsub("-", "") 
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			# xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			xcomm = "xorriso " + 
 				" -as mkisofs -iso-level 3 " +
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
@@ -328,7 +329,8 @@ class BootdiskAssembly
 				@build_timestamp + "-bootonly.iso cdmaster/boot/kickstart.xd3"
 			puts xcomm
 			system xcomm
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			# xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			xcomm = "xorriso " + 
 				" -as mkisofs -iso-level 3 " +
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
@@ -347,7 +349,8 @@ class BootdiskAssembly
 			system xcomm
 		else
 			isomoddate = @build_timestamp.gsub("-", "") 
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			# xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			xcomm = "xorriso " +
 				" -as mkisofs -iso-level 3 " +
 				" -c boot/isolinux/boot.cat " + 
 				" -b boot/isolinux/isolinux.bin " + 
@@ -361,7 +364,8 @@ class BootdiskAssembly
 				" -r cdmaster --sort-weight 0 / --sort-weight 1 /boot --sort-weight 3 /boot/kernel --sort-weight 4 /boot/grub --sort-weight 5 /boot/isolinux --sort-weight 6 /boot/isolinux/isolinux.bin " 
 			puts xcomm
 			system xcomm
-			xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			# xcomm = "#{@builddir}/stage01/chroot/usr/compat.static/bin/xorriso " + 
+			xcomm = "xorriso " +
 				" -as mkisofs -iso-level 3 " +
 				" -joliet -graft-points " + 
 				" -c boot/isolinux/boot.cat " + 
