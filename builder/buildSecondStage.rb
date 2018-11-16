@@ -290,6 +290,8 @@ class SecondStage < AnyStage
 			tscript.write(". common_vars\n")
 			tscript.write("SRCDIR=/llbuild/src; export SRCDIR\n")
 			tscript.write("TGTDIR=/llbuild/build/${PKGNAME}-${PKGVERSION}.destdir ; export TGTDIR\n")
+			tscript.write("mkdir -p ${TGTDIR}/usr/lib\n")
+			tscript.write("ln -s lib ${TGTDIR}/usr/lib64\n")
 			tscript.write("LC_ALL=POSIX; export LC_ALL\n\n")
 			tscript.write(@xfile.elements["llpackages/package/install"].cdatas[0])
 			tscript.write("\n\n")
