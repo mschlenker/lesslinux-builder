@@ -1,11 +1,8 @@
 <pkgdesc name='atk' version='2.30.0'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libatk-1.0.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libatk-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libatk-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libatk-1.0.so' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
-        <directory path='/usr/lib64' owner='0' group='0'/>
-        <directory path='/usr/lib64/girepository-1.0' owner='0' group='0'/>
-        <directory path='/usr/lib64/pkgconfig' owner='0' group='0'/>
         <directory path='/usr/share' owner='0' group='0'/>
         <directory path='/usr/share/locale' owner='0' group='0'/>
         <directory path='/usr/share/locale/en@shaw' owner='0' group='0'/>
@@ -207,17 +204,21 @@
         <directory path='/usr/share/locale/id' owner='0' group='0'/>
         <directory path='/usr/share/locale/id/LC_MESSAGES' owner='0' group='0'/>
         <directory path='/usr/share/gir-1.0' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/girepository-1.0' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
         <directory path='/usr/include' owner='0' group='0'/>
         <directory path='/usr/include/atk-1.0' owner='0' group='0'/>
         <directory path='/usr/include/atk-1.0/atk' owner='0' group='0'/>
     </subpackage>
     <subpackage name='bin'/>
     <subpackage name='minimal'>
-        <file path='/usr/lib64/libatk-1.0.so.0.23009.1' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libatk-1.0.so.0.23009.1' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/atk.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/atk-1.0/atk/atkhypertext.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/atk-1.0/atk/atktext.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/atk-1.0/atk/atktablecell.h' owner='0' group='0' mode='100644'/>
@@ -356,9 +357,8 @@
     </subpackage>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/girepository-1.0/Atk-1.0.typelib' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/atk.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/gir-1.0/Atk-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/Atk-1.0.typelib' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
 </pkgdesc>
