@@ -80,6 +80,8 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			#make install DESTDIR=${TGTDIR} 
 			cd build 
+			mkdir -p ${TGTDIR}/usr/lib
+			ln -s lib ${TGTDIR}/usr/lib64
 			DESTDIR=${TGTDIR} ninja install
 			]]>
 		</install>
