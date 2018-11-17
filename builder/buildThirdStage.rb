@@ -518,6 +518,7 @@ class ThirdStage < AnyStage
 		sysdirs.each { |d|
 			system("mv " + builddir + "/stage03/squash/" + d + " " + builddir + "/stage03/squash/fullsys/")
 		}
+		system("ln -s lib " + builddir + "/stage03/squash/fullsys/usr/lib64")
 		squashdirs.each { |d|
 			if system("test -d " + builddir + "/stage03/squash/" + d)
 				system(mksquashfs + " " + builddir + "/stage03/squash/" + d + " " + builddir + "/stage03/squash/" + d + ".sqs -noappend" ) 
