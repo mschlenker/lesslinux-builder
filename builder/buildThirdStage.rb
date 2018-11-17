@@ -481,6 +481,7 @@ class ThirdStage < AnyStage
 		}
 		# FIXME! FIXME! FIXME!
 		system("mv " + builddir + "/stage03/squash/usr/bin " + builddir + "/stage03/squash/usrbin")
+		system("ln -s lib " + builddir + "/stage03/squash/usr/lib64")
 		system("mv " + builddir + "/stage03/squash/lib/firmware " + builddir + "/stage03/squash/")
 		system("mkdir " + builddir + "/stage03/squash/lib/firmware" )
 		system("mkdir -m 0755 " + builddir + "/stage03/squash/usr/bin")
