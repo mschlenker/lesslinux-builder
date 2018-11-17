@@ -1,14 +1,5 @@
 <pkgdesc name='cups' version='2.2.8'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libcupsimage.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libcups.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libcupscgi.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/cups/backend/http' owner='0' group='0'/>
-        <softlink path='/usr/lib64/cups/backend/ipps' owner='0' group='0'/>
-        <softlink path='/usr/lib64/cups/backend/https' owner='0' group='0'/>
-        <softlink path='/usr/lib64/cups/filter/rastertodymo' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libcupsmime.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libcupsppdc.so' owner='0' group='0'/>
         <softlink path='/usr/share/man/man8/reject.8' owner='0' group='0'/>
         <softlink path='/usr/share/man/man8/cupsdisable.8' owner='0' group='0'/>
         <softlink path='/usr/share/man/man8/cupsreject.8' owner='0' group='0'/>
@@ -33,12 +24,6 @@
         <directory path='/etc/cups' owner='0' group='9'/>
         <directory path='/etc/cups/ssl' owner='0' group='9'/>
         <directory path='/etc/cups/ppd' owner='0' group='9'/>
-        <directory path='/usr/lib64/cups/driver' owner='0' group='0'/>
-        <directory path='/usr/lib64/cups/notifier' owner='0' group='0'/>
-        <directory path='/usr/lib64/cups/monitor' owner='0' group='0'/>
-        <directory path='/usr/lib64/cups/daemon' owner='0' group='0'/>
-        <directory path='/usr/lib64/cups/filter' owner='0' group='0'/>
-        <directory path='/usr/lib64/cups/cgi-bin' owner='0' group='0'/>
         <directory path='/usr/share/cups' owner='0' group='0'/>
         <directory path='/usr/share/cups/data' owner='0' group='0'/>
         <directory path='/usr/share/cups/profiles' owner='0' group='0'/>
@@ -302,7 +287,6 @@
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/gstreamer-1.0/libgstlibav.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/share/locale/fr/cups_fr.po' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/locale/de/cups_de.po' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/locale/it/cups_it.po' owner='0' group='0' mode='100644'/>

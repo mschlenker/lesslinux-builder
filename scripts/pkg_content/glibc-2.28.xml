@@ -19,25 +19,6 @@
         <softlink path='/lib/libnss_files.so.2' owner='0' group='0'/>
         <softlink path='/lib/libdl.so.2' owner='0' group='0'/>
         <softlink path='/lib/libnss_hesiod.so.2' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libthread_db.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libm.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libgcc_s.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libpthread.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libutil.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libdl.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnss_dns.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnss_hesiod.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libanl.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libresolv.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libstdc++.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libstdc++.so.6' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnss_db.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnss_compat.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libcrypt.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnss_files.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/librt.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libBrokenLocale.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libgcc_s.so.1' owner='0' group='0'/>
         <softlink path='/usr/lib/libthread_db.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libm.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libpthread.so' owner='0' group='0'/>
@@ -56,11 +37,6 @@
         <directory path='/etc/distcc' owner='0' group='0'/>
         <directory path='/etc/lesslinux' owner='0' group='0'/>
         <directory path='/etc/lesslinux/pkglist.d' owner='0' group='0'/>
-        <directory path='/opt/lib64' owner='0' group='0'/>
-        <directory path='/usr/lib64' owner='0' group='0'/>
-        <directory path='/usr/lib64/locale' owner='0' group='0'/>
-        <directory path='/usr/lib64/audit' owner='0' group='0'/>
-        <directory path='/usr/lib64/gconv' owner='0' group='0'/>
         <directory path='/usr/share/locale/sl' owner='0' group='0'/>
         <directory path='/usr/share/locale/sl/LC_MESSAGES' owner='0' group='0'/>
         <directory path='/usr/share/locale/fr' owner='0' group='0'/>
@@ -159,15 +135,31 @@
         <directory path='/usr/include/netatalk' owner='0' group='0'/>
         <directory path='/usr/libexec' owner='0' group='0'/>
         <directory path='/usr/libexec/getconf' owner='0' group='0'/>
-        <directory path='/usr/local/lib64' owner='0' group='0'/>
         <directory path='/var/cache/nscd' owner='0' group='0'/>
         <directory path='/var/cache/ldconfig' owner='0' group='0'/>
         <directory path='/var/lib/nss_db' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
+        <file path='/lib/libBrokenLocale-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libnss_files-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libresolv-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libdl-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/ld-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libnss_dns-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libnss_db-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libpthread-2.28.so' owner='0' group='0' mode='100755'/>
         <file path='/lib/libpcprofile.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libnss_hesiod-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libc-2.28.so' owner='0' group='0' mode='100755'/>
         <file path='/lib/libthread_db-1.0.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libutil-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libnss_compat-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libcrypt-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libnsl-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libm-2.28.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/libanl-2.28.so' owner='0' group='0' mode='100755'/>
         <file path='/lib/libmemusage.so' owner='0' group='0' mode='100755'/>
+        <file path='/lib/librt-2.28.so' owner='0' group='0' mode='100755'/>
         <file path='/lib/libSegFault.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/Mcrt1.o' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/gcrt1.o' owner='0' group='0' mode='100644'/>
@@ -176,288 +168,10 @@
         <file path='/usr/lib/Scrt1.o' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/crtn.o' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libc.so' owner='0' group='0' mode='100644'/>
-	<file path='/lib/libBrokenLocale-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libnss_files-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libresolv-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libdl-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/ld-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libnss_dns-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libnss_db-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libpthread-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libnss_hesiod-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libc-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libutil-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libnss_compat-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libcrypt-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libnsl-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libm-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/libanl-2.28.so' owner='0' group='0' mode='100755'/>
-        <file path='/lib/librt-2.28.so' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/sbin/ldconfig' owner='0' group='0' mode='100755'/>
         <file path='/sbin/sln' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/audit/sotruss-lib.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/Mcrt1.o' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/gconv/IBM1155.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-2.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1142.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM037.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IEC_P27-1.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-DK-NO.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-AT-DE.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM424.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/KOI8-U.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM9066.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-1.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM9448.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/SJIS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GB18030.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM4971.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CSN_369103.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM880.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1257.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP932.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1250.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM273.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-DK-NO-A.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-5.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO-2022-CN.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM858.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM930.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-IS-FRISS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GEORGIAN-PS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1157.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/UTF-16.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/libISOIR165.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1145.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EUC-JISX0213.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1154.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM875.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1161.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GEORGIAN-ACADEMY.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-11.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM285.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/BRF.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1144.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-14.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GBGBK.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1124.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO646.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1149.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-15.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-ES.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM905.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM284.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM935.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM290.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP10007.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/BIG5.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO-2022-CN-EXT.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1141.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/LATIN-GREEK.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM871.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1112.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1047.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1132.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-CA-FR.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM275.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM868.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1164.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1133.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/HP-GREEK8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO-2022-KR.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/NATS-SEFI.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/MAC-SAMI.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1256.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_5427.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM852.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/HP-TURKISH8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1146.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ECMA-CYRILLIC.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_6937-2.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/libGB.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM038.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM851.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM937.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ARMSCII-8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-9.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/BIG5HKSCS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO-2022-JP.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/JOHAB.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/libJIS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/TCVN5712-1.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-UK.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM256.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1158.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM12712.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM274.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1160.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/HP-ROMAN8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/MIK.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-9E.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1251.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM874.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/libJISX0213.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM856.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-FR.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM862.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/SHIFT_JISX0213.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/KOI8-RU.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1148.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM850.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM939.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-ES-S.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/UTF-7.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EUC-TW.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1147.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/INIS-CYRILLIC.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-ES-A.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/INIS-8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM922.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1097.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM918.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1125.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1025.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM866NAV.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/RK1048.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-IT.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM4909.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-3.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/LATIN-GREEK-1.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM932.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM420.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1008_420.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ASMO_449.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-10.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1129.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_5427-EXT.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1388.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/MACINTOSH.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-US.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/SAMI-WS2.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM901.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-7.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1254.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1255.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1252.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/KOI-8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-13.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/libKSC.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/UNICODE.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1163.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM943.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_11548-1.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1143.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM921.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1137.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP773.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/PT154.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP770.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GREEK7-OLD.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ANSI_X3.110.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM864.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM870.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM803.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM857.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/T.61.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EUC-JP-MS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_5428.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EUC-JP.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM866.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM280.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GBK.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM902.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM437.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM860.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-FI-SE-A.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GREEK7.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_10367-BOX.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/KOI8-R.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1162.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM16804.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP771.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1123.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GBBIG5.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/UTF-32.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP774.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-16.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/MAC-CENTRALEUROPE.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/TSCII.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CWI.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/TIS-620.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GREEK-CCITT.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/MAC-UK.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM891.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM903.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-PT.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1046.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM277.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1166.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1399.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/NATS-DANO.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM278.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1156.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM933.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM297.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/MAC-IS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-AT-DE-A.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-6.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO-IR-197.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM5347.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM869.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM500.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1004.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP775.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1140.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EUC-CN.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO-IR-209.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/HP-THAI8.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP737.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_2033.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM9030.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EUC-KR.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM423.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1130.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM855.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/libCNS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/VISCII.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1153.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/EBCDIC-FI-SE.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM4899.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM904.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM4517.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM863.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/KOI8-T.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/GOST_19768-74.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1253.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1008.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/HP-ROMAN9.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1364.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1371.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM861.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/DEC-MCS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/UHC.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1390.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1026.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP1258.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/CP772.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO8859-4.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM865.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO_6937.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1122.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISIRI-3342.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/ISO-2022-JP-3.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM1167.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/IBM281.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gconv/INIS.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gcrt1.o' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/crt1.o' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/crti.o' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/Scrt1.o' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/crtn.o' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libmcheck.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/bin/sprof' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/mtrace' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/locale' owner='0' group='0' mode='100755'/>
@@ -769,18 +483,6 @@
         <file path='/etc/nscd.conf' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='devel'>
-        <file path='/usr/lib64/libdl.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libcrypt.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libg.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libresolv.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libc_nonshared.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libanl.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/librt.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libc.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libpthread.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libutil.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libBrokenLocale.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libm.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libdl.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libcrypt.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libg.a' owner='0' group='0' mode='100644'/>
@@ -1756,9 +1458,6 @@
     </subpackage>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/locale/locale-archive' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/gconv/gconv-modules' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libc.so' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/i18n/charmaps/CP770.gz' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/i18n/charmaps/CP772.gz' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/i18n/charmaps/CP771.gz' owner='0' group='0' mode='100644'/>

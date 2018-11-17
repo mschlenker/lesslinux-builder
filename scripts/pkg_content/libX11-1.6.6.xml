@@ -1,9 +1,5 @@
 <pkgdesc name='libX11' version='1.6.6'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libX11-xcb.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libX11.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libX11.so.6' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libX11-xcb.so.1' owner='0' group='0'/>
         <softlink path='/usr/lib/libX11-xcb.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libX11.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libX11.so.6' owner='0' group='0'/>
@@ -269,11 +265,8 @@
         <file path='/usr/share/X11/XErrorDB' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libX11-xcb.so.1.0.0' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libX11.so.6.3.0' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib64/libX11-xcb.so.1.0.0' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libX11.so.6.3.0' owner='0' group='0' mode='100755'/>
     </subpackage>
-    <subpackage name='bin'>
-    </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'>
         <file path='/usr/share/man/man3/XkbActionCtrls.3' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/man/man3/XkbAddDeviceLedInfo.3' owner='0' group='0' mode='100644'/>
@@ -1243,8 +1236,6 @@
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/libX11.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libX11-xcb.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libX11.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libX11-xcb.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libX11.la' owner='0' group='0' mode='100755'/>
@@ -1274,10 +1265,6 @@
     </subpackage>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/libX11-xcb.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libX11.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pkgconfig/x11-xcb.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/x11.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/X11/Xcms.txt' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>

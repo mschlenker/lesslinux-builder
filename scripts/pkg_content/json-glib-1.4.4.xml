@@ -1,11 +1,8 @@
 <pkgdesc name='json-glib' version='1.4.4'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libjson-glib-1.0.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libjson-glib-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libjson-glib-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libjson-glib-1.0.so' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
-        <directory path='/usr/lib64' owner='0' group='0'/>
-        <directory path='/usr/lib64/girepository-1.0' owner='0' group='0'/>
-        <directory path='/usr/lib64/pkgconfig' owner='0' group='0'/>
         <directory path='/usr/share' owner='0' group='0'/>
         <directory path='/usr/share/installed-tests' owner='0' group='0'/>
         <directory path='/usr/share/installed-tests/json-glib-1.0' owner='0' group='0'/>
@@ -122,6 +119,9 @@
         <directory path='/usr/share/locale/id/LC_MESSAGES' owner='0' group='0'/>
         <directory path='/usr/share/gir-1.0' owner='0' group='0'/>
         <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/girepository-1.0' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
         <directory path='/usr/include' owner='0' group='0'/>
         <directory path='/usr/include/json-glib-1.0' owner='0' group='0'/>
         <directory path='/usr/include/json-glib-1.0/json-glib' owner='0' group='0'/>
@@ -132,7 +132,7 @@
     <subpackage name='minimal'>
         <file path='/usr/bin/json-glib-format' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/json-glib-validate' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib/libjson-glib-1.0.so.0.400.4' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libjson-glib-1.0.so.0.400.4' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/usr/libexec/installed-tests/json-glib-1.0/serialize-full' owner='0' group='0' mode='100755'/>
@@ -153,6 +153,7 @@
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/json-glib-1.0.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/json-glib-1.0/json-glib/json-utils.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/json-glib-1.0/json-glib/json-version.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/json-glib-1.0/json-glib/json-types.h' owner='0' group='0' mode='100644'/>
@@ -226,8 +227,6 @@
     </subpackage>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/girepository-1.0/Json-1.0.typelib' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/json-glib-1.0.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/installed-tests/json-glib-1.0/invalid.test' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/installed-tests/json-glib-1.0/builder.test' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/installed-tests/json-glib-1.0/array.test' owner='0' group='0' mode='100644'/>
@@ -243,6 +242,7 @@
         <file path='/usr/share/installed-tests/json-glib-1.0/serialize-full.test' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/installed-tests/json-glib-1.0/serialize-complex.test' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/gir-1.0/Json-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/Json-1.0.typelib' owner='0' group='0' mode='100644'/>
         <file path='/usr/libexec/installed-tests/json-glib-1.0/stream-load.json' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>

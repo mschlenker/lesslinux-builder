@@ -1,15 +1,8 @@
 <pkgdesc name='librsvg' version='2.44.6'>
-    <subpackage name='skel'>
-        <softlink path='/usr/lib/librsvg-2.so' owner='0' group='0'/>
-        <softlink path='/usr/lib/librsvg-2.so.2' owner='0' group='0'/>
-        <directory path='/usr/share/gtk-doc/html/rsvg-2.0' owner='0' group='0'/>
-        <directory path='/usr/share/doc/librsvg' owner='0' group='0'/>
-        <directory path='/usr/include/librsvg-2.0' owner='0' group='0'/>
-        <directory path='/usr/include/librsvg-2.0/librsvg' owner='0' group='0'/>
-    </subpackage>
+    <subpackage name='skel'/>
     <subpackage name='minimal'>
         <file path='/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib/librsvg-2.so.2.44.6' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/librsvg-2.so.2.44.6' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/usr/bin/rsvg-view-3' owner='0' group='0' mode='100755'/>
@@ -45,8 +38,6 @@
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/librsvg-2.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/librsvg-2.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/librsvg-2.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.la' owner='0' group='0' mode='100755'/>
@@ -60,11 +51,6 @@
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/librsvg-2.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/gdk-pixbuf-2.0/2.10.0/loaders.cache' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/girepository-1.0/Rsvg-2.0.typelib' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/librsvg-2.0.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/gir-1.0/Rsvg-2.0.gir' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/vala/vapi/librsvg-2.0.vapi' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/thumbnailers/librsvg.thumbnailer' owner='0' group='0' mode='100644'/>

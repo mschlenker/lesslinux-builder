@@ -1,12 +1,7 @@
 <pkgdesc name='solid' version='5.50.0'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libKF5Solid.so.5' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libsysstat-qt5.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libKF5Solid.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libsysstat-qt5.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libKF5Solid.so.5' owner='0' group='0'/>
         <softlink path='/usr/lib/libKF5Solid.so' owner='0' group='0'/>
-        <directory path='/usr/lib64/cmake/KF5Solid' owner='0' group='0'/>
         <directory path='/usr/lib/cmake/KF5Solid' owner='0' group='0'/>
         <directory path='/usr/qml/org' owner='0' group='0'/>
         <directory path='/usr/qml/org/kde' owner='0' group='0'/>
@@ -17,18 +12,13 @@
     </subpackage>
     <subpackage name='minimal'>
         <file path='/usr/bin/solid-hardware5' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libKF5Solid.so.5.50.0' owner='0' group='0' mode='100755'/>
         <file path='/usr/qml/org/kde/solid/libsolidextensionplugin.so' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib/libKF5Solid.so.5.50.0' owner='0' group='0' mode='100755'/>
     </subpackage>
-    <subpackage name='bin'>
-    </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/cmake/KF5Solid/KF5SolidTargets-release.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/KF5Solid/KF5SolidTargets.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/KF5Solid/KF5SolidConfig.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/KF5Solid/KF5SolidConfigVersion.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/KF5Solid/KF5SolidTargets-release.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/KF5Solid/KF5SolidTargets.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/KF5Solid/KF5SolidConfig.cmake' owner='0' group='0' mode='100644'/>
@@ -73,7 +63,6 @@
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/pkgconfig/sysstat-qt5.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/locale/km/LC_MESSAGES/solid5_qt.qm' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/locale/sl/LC_MESSAGES/solid5_qt.qm' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/locale/th/LC_MESSAGES/solid5_qt.qm' owner='0' group='0' mode='100644'/>

@@ -1,19 +1,15 @@
 <pkgdesc name='libaio' version='0.3.111'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libaio.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libaio.so.1' owner='0' group='0'/>
         <softlink path='/usr/lib/libaio.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libaio.so.1' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
         <file path='/usr/lib/libaio.so.1.0.1' owner='0' group='0' mode='100755'/>
     </subpackage>
-    <subpackage name='bin'>
-    </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/libaio.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libaio.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/libaio.h' owner='0' group='0' mode='100644'/>
     </subpackage>

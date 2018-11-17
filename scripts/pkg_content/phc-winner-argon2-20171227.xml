@@ -1,11 +1,9 @@
 <pkgdesc name='phc-winner-argon2' version='20171227'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libargon2.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libargon2.so' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-	<file path='/usr/lib64/libargon2.so.1' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib/libargon2.so.1' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libargon2.so.1' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/usr/bin/argon2' owner='0' group='0' mode='100755'/>
@@ -13,7 +11,6 @@
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/libargon2.a' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libargon2.a' owner='0' group='0' mode='100755'/>
         <file path='/usr/include/argon2.h' owner='0' group='0' mode='100644'/>
     </subpackage>
@@ -21,5 +18,4 @@
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
-    <vanished/>
 </pkgdesc>

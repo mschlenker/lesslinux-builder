@@ -1,38 +1,26 @@
 <pkgdesc name='kwayland' version='5.50.0'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libKF5WaylandServer.so.5' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libfm-qt.so.5' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libfm-qt.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libKF5WaylandClient.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libKF5WaylandServer.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libKF5WaylandClient.so.5' owner='0' group='0'/>
         <softlink path='/usr/lib/libKF5WaylandServer.so.5' owner='0' group='0'/>
         <softlink path='/usr/lib/libKF5WaylandClient.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libKF5WaylandServer.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libKF5WaylandClient.so.5' owner='0' group='0'/>
-        <directory path='/usr/lib64/cmake/KF5Wayland' owner='0' group='0'/>
-        <directory path='/usr/lib64/libexec' owner='0' group='0'/>
         <directory path='/usr/lib/cmake/KF5Wayland' owner='0' group='0'/>
         <directory path='/usr/lib/libexec' owner='0' group='0'/>
         <directory path='/usr/include/KF5/KWayland' owner='0' group='0'/>
         <directory path='/usr/include/KF5/KWayland/Client' owner='0' group='0'/>
         <directory path='/usr/include/KF5/KWayland/Server' owner='0' group='0'/>
     </subpackage>
-    <subpackage name='bin'/>
     <subpackage name='minimal'>
         <file path='/usr/lib/libKF5WaylandServer.so.5.50.0' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libKF5WaylandClient.so.5.50.0' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libexec/org-kde-kf5-kwayland-testserver' owner='0' group='0' mode='100755'/>
     </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'/>
     <subpackage name='config'>
         <file path='/etc/xdg/org_kde_kwayland.categories' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='devel'>
-        <file path='/usr/lib64/cmake/KF5Wayland/KF5WaylandTargets-release.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/KF5Wayland/KF5WaylandConfig.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/KF5Wayland/KF5WaylandConfigVersion.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/KF5Wayland/KF5WaylandTargets.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/KF5Wayland/KF5WaylandTargets-release.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/KF5Wayland/KF5WaylandConfig.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/KF5Wayland/KF5WaylandConfigVersion.cmake' owner='0' group='0' mode='100644'/>
@@ -136,29 +124,6 @@
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/pkgconfig/libfm-qt.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_id.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_uk.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_hu.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ar.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_tr.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_de.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_es.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_zh_CN.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_da.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_pl.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_pt.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_fr.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_cs.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_lt.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ja.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_nl.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_it.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ca.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_zh_TW.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ru.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_gl.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_el.qm' owner='0' group='0' mode='100644'/>
         <file path='/usr/mkspecs/modules/qt_KWaylandServer.pri' owner='0' group='0' mode='100644'/>
         <file path='/usr/mkspecs/modules/qt_KWaylandClient.pri' owner='0' group='0' mode='100644'/>
     </subpackage>

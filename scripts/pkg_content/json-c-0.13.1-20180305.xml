@@ -1,28 +1,16 @@
 <pkgdesc name='json-c' version='0.13.1-20180305'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libjson-c.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libdaemon.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnfsidmap.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnfsidmap.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libjson-c.so.4' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libdaemon.so.0' owner='0' group='0'/>
         <softlink path='/usr/lib/libjson-c.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libjson-c.so.4' owner='0' group='0'/>
-        <directory path='/usr/lib64/libnfsidmap' owner='0' group='0'/>
         <directory path='/usr/include/json-c' owner='0' group='0'/>
     </subpackage>
-    <subpackage name='bin'/>
     <subpackage name='minimal'>
         <file path='/usr/lib/libjson-c.so.4.0.0' owner='0' group='0' mode='100755'/>
     </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/libnfsidmap.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libconfuse.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libnfsidmap/nsswitch.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libnfsidmap/static.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libjson-c.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libjson-c.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libjson-c.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/json-c.pc' owner='0' group='0' mode='100644'/>
@@ -44,17 +32,6 @@
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'>
-        <file path='/usr/lib64/libnfsidmap.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libnfsidmap/nsswitch.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libnfsidmap/static.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libjson-c.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libdaemon.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pkgconfig/libnfsidmap.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/libconfuse.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/json-c.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/libdaemon.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libconfuse.la' owner='0' group='0' mode='100755'/>
-    </subpackage>
+    <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
 </pkgdesc>

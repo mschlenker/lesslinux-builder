@@ -1,7 +1,5 @@
 <pkgdesc name='attr' version='2.4.48'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libattr.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libattr.so.1' owner='0' group='0'/>
         <softlink path='/usr/share/man/man3/attr_setf.3' owner='0' group='0'/>
         <softlink path='/usr/share/man/man3/attr_removef.3' owner='0' group='0'/>
         <softlink path='/usr/share/man/man3/attr_listf.3' owner='0' group='0'/>
@@ -17,10 +15,9 @@
         <directory path='/usr/include/attr' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-	<file path='/usr/lib/libattr.so.1.1.2448' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libattr.so.1.1.2448' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
-        <file path='/usr/lib64/libattr.so.1.1.2448' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/getfattr' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/attr' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/setfattr' owner='0' group='0' mode='100755'/>
@@ -43,7 +40,6 @@
         <file path='/etc/xattr.conf' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='devel'>
-        <file path='/usr/lib64/libattr.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libattr.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libattr.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/libattr.pc' owner='0' group='0' mode='100644'/>
@@ -64,9 +60,6 @@
         <file path='/usr/share/locale/cs/LC_MESSAGES/attr.mo' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'>
-        <file path='/usr/lib64/libattr.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pkgconfig/libattr.pc' owner='0' group='0' mode='100644'/>
-    </subpackage>
+    <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
 </pkgdesc>

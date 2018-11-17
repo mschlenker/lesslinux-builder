@@ -1,15 +1,13 @@
 <pkgdesc name='libnftnl' version='1.1.1'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libnftnl.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libnftnl.so.7' owner='0' group='0'/>
         <softlink path='/usr/lib/libnftnl.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libnftnl.so.7' owner='0' group='0'/>
         <directory path='/usr/include/libnftnl' owner='0' group='0'/>
     </subpackage>
-    <subpackage name='bin'/>
     <subpackage name='minimal'>
         <file path='/usr/lib/libnftnl.so.7.3.0' owner='0' group='0' mode='100755'/>
     </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
@@ -31,8 +29,6 @@
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib64/libnftnl.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pkgconfig/libnftnl.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libnftnl.la' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='ignore'/>

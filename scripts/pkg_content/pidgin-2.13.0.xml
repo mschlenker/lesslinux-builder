@@ -1,15 +1,5 @@
 <pkgdesc name='pidgin' version='2.13.0'>
     <subpackage name='skel'>
-        <softlink path='/opt/lib64/libpurple-client.so' owner='0' group='0'/>
-        <softlink path='/opt/lib64/libpurple.so.0' owner='0' group='0'/>
-        <softlink path='/opt/lib64/libgnt.so' owner='0' group='0'/>
-        <softlink path='/opt/lib64/purple-2/libjabber.so' owner='0' group='0'/>
-        <softlink path='/opt/lib64/purple-2/liboscar.so' owner='0' group='0'/>
-        <softlink path='/opt/lib64/purple-2/liboscar.so.0' owner='0' group='0'/>
-        <softlink path='/opt/lib64/purple-2/libjabber.so.0' owner='0' group='0'/>
-        <softlink path='/opt/lib64/libgnt.so.0' owner='0' group='0'/>
-        <softlink path='/opt/lib64/libpurple-client.so.0' owner='0' group='0'/>
-        <softlink path='/opt/lib64/libpurple.so' owner='0' group='0'/>
         <softlink path='/opt/lib/libpurple-client.so' owner='0' group='0'/>
         <softlink path='/opt/lib/libpurple.so.0' owner='0' group='0'/>
         <softlink path='/opt/lib/libgnt.so' owner='0' group='0'/>
@@ -20,18 +10,6 @@
         <softlink path='/opt/lib/libgnt.so.0' owner='0' group='0'/>
         <softlink path='/opt/lib/libpurple-client.so.0' owner='0' group='0'/>
         <softlink path='/opt/lib/libpurple.so' owner='0' group='0'/>
-        <directory path='/opt/lib64/pidgin' owner='0' group='0'/>
-        <directory path='/opt/lib64/pidgin/perl' owner='0' group='0'/>
-        <directory path='/opt/lib64/pidgin/perl/auto' owner='0' group='0'/>
-        <directory path='/opt/lib64/pidgin/perl/auto/Pidgin' owner='0' group='0'/>
-        <directory path='/opt/lib64/gnt' owner='0' group='0'/>
-        <directory path='/opt/lib64/perl5' owner='0' group='0'/>
-        <directory path='/opt/lib64/perl5/i686-linux-thread-multi' owner='0' group='0'/>
-        <directory path='/opt/lib64/purple-2' owner='0' group='0'/>
-        <directory path='/opt/lib64/purple-2/perl' owner='0' group='0'/>
-        <directory path='/opt/lib64/purple-2/perl/auto' owner='0' group='0'/>
-        <directory path='/opt/lib64/purple-2/perl/auto/Purple' owner='0' group='0'/>
-        <directory path='/opt/lib64/finch' owner='0' group='0'/>
         <directory path='/opt/share/purple' owner='0' group='0'/>
         <directory path='/opt/share/purple/ca-certs' owner='0' group='0'/>
         <directory path='/opt/share/locale/km' owner='0' group='0'/>
@@ -243,9 +221,9 @@
         <directory path='/opt/include/libpurple/media' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-        <file path='/opt/lib/libgnt.so.0.8.10' owner='0' group='0' mode='100755'/>
-	<file path='/opt/lib/libpurple.so.0.13.0' owner='0' group='0' mode='100755'/>
+        <file path='/opt/lib/libpurple.so.0.13.0' owner='0' group='0' mode='100755'/>
         <file path='/opt/lib/libpurple-client.so.0.13.0' owner='0' group='0' mode='100755'/>
+        <file path='/opt/lib/libgnt.so.0.8.10' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/opt/bin/pidgin' owner='0' group='0' mode='100755'/>
@@ -311,82 +289,7 @@
         <file path='/opt/lib/finch/gnttinyurl.so' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'/>
-    <subpackage name='config'>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ru.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-it.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-br.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-nl.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-af.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-tr.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-bn_IN.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-he.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-cs.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-eu.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-sr.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-be@latin.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-es_AR.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ro.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-en_GB.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-fa.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-mhr.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-eo.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-sk.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-nn.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ja.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ml.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-pa.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-zh_TW.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-bn.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ga.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-mai.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-nb.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-et.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-hi.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-pt.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-sv.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-hu.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-kn.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-de.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-en_AU.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-el.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-mr.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-sq.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-da.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-fi.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-uk.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-oc.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-lt.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-gl.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-zh_CN.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-km.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ast.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ta.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-fr.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-zh_HK.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ur.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-as.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-pl.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ko.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-my_MM.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-es.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-brx.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-vi.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-dz.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-lv.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-id.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-sl.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-or.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ca@valencia.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-te.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-pt_BR.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-gu.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ca.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-mk.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-sr@latin.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/gconf.xml.defaults/%gconf-tree-ar.xml' owner='0' group='0' mode='100644'/>
-        <file path='/etc/gconf/schemas/purple.schemas' owner='0' group='0' mode='100644'/>
-    </subpackage>
+    <subpackage name='config'/>
     <subpackage name='devel'>
         <file path='/opt/lib/pidgin/gestures.la' owner='0' group='0' mode='100755'/>
         <file path='/opt/lib/pidgin/notify.la' owner='0' group='0' mode='100755'/>
@@ -714,73 +617,6 @@
     </subpackage>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/opt/lib64/pidgin/gestures.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/notify.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/history.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/relnot.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/extplacement.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/sendbutton.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/ticker.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/timestamp_format.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/pidginrc.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/gtkbuddynote.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/transparency.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/markerline.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/xmppdisco.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/musicmessaging.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/perl/Pidgin.pm' owner='0' group='0' mode='100444'/>
-        <file path='/opt/lib64/pidgin/perl/auto/Pidgin/.packlist' owner='0' group='0' mode='100644'/>
-        <file path='/opt/lib64/pidgin/iconaway.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/spellchk.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/xmppconsole.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/timestamp.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/themeedit.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pidgin/convcolors.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/gnt/s.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/gnt/irssi.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/libpurple.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/perl5/i686-linux-thread-multi/perllocal.pod' owner='0' group='0' mode='100644'/>
-        <file path='/opt/lib64/libpurple-client.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/libgnt.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/ssl.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/liboscar.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/autoaccept.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/nss-prefs.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libgg.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/buddynote.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/offlinemsg.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/ssl-gnutls.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/statenotify.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/perl.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/log_reader.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libbonjour.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/ssl-nss.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libaim.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libsimple.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/perl/Purple.pm' owner='0' group='0' mode='100444'/>
-        <file path='/opt/lib64/purple-2/perl/auto/Purple/.packlist' owner='0' group='0' mode='100644'/>
-        <file path='/opt/lib64/purple-2/perl/auto/Purple/autosplit.ix' owner='0' group='0' mode='100444'/>
-        <file path='/opt/lib64/purple-2/idle.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/dbus-example.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libzephyr.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libjabber.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/newline.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/psychic.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libicq.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libirc.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libxmpp.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/libnovell.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/purple-2/joinpart.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/pkgconfig/pidgin.pc' owner='0' group='0' mode='100644'/>
-        <file path='/opt/lib64/pkgconfig/purple.pc' owner='0' group='0' mode='100644'/>
-        <file path='/opt/lib64/pkgconfig/finch.pc' owner='0' group='0' mode='100644'/>
-        <file path='/opt/lib64/pkgconfig/gnt.pc' owner='0' group='0' mode='100644'/>
-        <file path='/opt/lib64/finch/gntlastlog.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/finch/gntgf.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/finch/gnthistory.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/finch/grouping.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/finch/gntclipboard.la' owner='0' group='0' mode='100755'/>
-        <file path='/opt/lib64/finch/gnttinyurl.la' owner='0' group='0' mode='100755'/>
         <file path='/opt/share/purple/ca-certs/mozilla.pem' owner='0' group='0' mode='100644'/>
         <file path='/opt/share/purple/ca-certs/CAcert_Root.pem' owner='0' group='0' mode='100644'/>
         <file path='/opt/share/purple/ca-certs/CAcert_Class3.pem' owner='0' group='0' mode='100644'/>

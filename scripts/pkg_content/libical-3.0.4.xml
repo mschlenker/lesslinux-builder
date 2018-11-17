@@ -1,17 +1,5 @@
 <pkgdesc name='libical' version='3.0.4'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib64/libical_cxx.so.3' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libicalss_cxx.so.3' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libicalss.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libical-glib.so.3' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libicalvcal.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libical.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libical_cxx.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libical-glib.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libicalss.so.3' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libicalvcal.so.3' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libicalss_cxx.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libical.so.3' owner='0' group='0'/>
         <softlink path='/usr/lib/libical_cxx.so.3' owner='0' group='0'/>
         <softlink path='/usr/lib/libicalss_cxx.so.3' owner='0' group='0'/>
         <softlink path='/usr/lib/libicalss.so' owner='0' group='0'/>
@@ -24,34 +12,22 @@
         <softlink path='/usr/lib/libicalvcal.so.3' owner='0' group='0'/>
         <softlink path='/usr/lib/libicalss_cxx.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libical.so.3' owner='0' group='0'/>
-        <directory path='/usr/lib64/cmake/LibIcal' owner='0' group='0'/>
         <directory path='/usr/lib/cmake/LibIcal' owner='0' group='0'/>
         <directory path='/usr/include/libical-glib' owner='0' group='0'/>
         <directory path='/usr/include/libical' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-	<file path='/usr/lib/libical.so.3.0.4' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libical.so.3.0.4' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libical_cxx.so.3.0.4' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libicalss_cxx.so.3.0.4' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libicalss.so.3.0.4' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libical-glib.so.3.0.4' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libicalvcal.so.3.0.4' owner='0' group='0' mode='100755'/>
     </subpackage>
-    <subpackage name='bin'>
-    </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib64/cmake/LibIcal/LibIcalTargets-release.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/LibIcal/LibIcalTargets.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/LibIcal/LibIcalConfigVersion.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/LibIcal/LibIcalConfig.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libicalss.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libicalvcal.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libicalss_cxx.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libical-glib.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libical.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libical_cxx.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/LibIcal/LibIcalTargets-release.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/LibIcal/LibIcalTargets.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/cmake/LibIcal/LibIcalConfigVersion.cmake' owner='0' group='0' mode='100644'/>
@@ -157,31 +133,6 @@
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'>
-        <file path='/usr/lib64/pkgconfig/libical.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/libical-glib.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_id.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_uk.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_hu.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ar.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_tr.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_de.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_es.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_zh_CN.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_da.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_pl.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_pt.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_fr.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_cs.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_lt.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ja.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_nl.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_it.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ca.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_zh_TW.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_ru.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_gl.qm' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/libfm-qt/translations/libfm-qt_el.qm' owner='0' group='0' mode='100644'/>
-    </subpackage>
+    <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
 </pkgdesc>

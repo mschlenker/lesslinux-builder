@@ -1,56 +1,11 @@
 <pkgdesc name='pulseaudio' version='12.2'>
-    <subpackage name='skel'>
-        <softlink path='/usr/lib64/libpulse-mainloop-glib.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libpulse.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libpulse-simple.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libpulse-mainloop-glib.so' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libpulse.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib64/libpulse-simple.so.0' owner='0' group='0'/>
-        <softlink path='/usr/share/man/man1/parec.1' owner='0' group='0'/>
-        <softlink path='/usr/share/man/man1/parecord.1' owner='0' group='0'/>
-        <softlink path='/usr/share/man/man1/paplay.1' owner='0' group='0'/>
-        <softlink path='/usr/share/man/man1/pamon.1' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/parec' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/padsp' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/pacat' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/pasuspender' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/pactl' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/parecord' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/paplay' owner='0' group='0'/>
-        <softlink path='/usr/share/bash-completion/completions/pacmd' owner='0' group='0'/>
-        <softlink path='/usr/bin/parec' owner='0' group='0'/>
-        <softlink path='/usr/bin/pamon' owner='0' group='0'/>
-        <softlink path='/usr/bin/parecord' owner='0' group='0'/>
-        <softlink path='/usr/bin/paplay' owner='0' group='0'/>
-        <softlink path='/usr/lib/libpulse-mainloop-glib.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib/libpulse.so' owner='0' group='0'/>
-        <softlink path='/usr/lib/libpulse-simple.so' owner='0' group='0'/>
-        <softlink path='/usr/lib/libpulse-mainloop-glib.so' owner='0' group='0'/>
-        <softlink path='/usr/lib/libpulse.so.0' owner='0' group='0'/>
-        <softlink path='/usr/lib/libpulse-simple.so.0' owner='0' group='0'/>
-        <directory path='/etc/pulse' owner='0' group='0'/>
-        <directory path='/usr/lib64/cmake/PulseAudio' owner='0' group='0'/>
-        <directory path='/usr/lib64/pulse-12.2' owner='0' group='0'/>
-        <directory path='/usr/lib64/pulse-12.2/modules' owner='0' group='0'/>
-        <directory path='/usr/lib64/pulseaudio' owner='0' group='0'/>
-        <directory path='/usr/share/pulseaudio' owner='0' group='0'/>
-        <directory path='/usr/share/pulseaudio/alsa-mixer' owner='0' group='0'/>
-        <directory path='/usr/share/pulseaudio/alsa-mixer/profile-sets' owner='0' group='0'/>
-        <directory path='/usr/share/pulseaudio/alsa-mixer/paths' owner='0' group='0'/>
-        <directory path='/usr/lib/cmake/PulseAudio' owner='0' group='0'/>
-        <directory path='/usr/lib/pulse-12.2' owner='0' group='0'/>
-        <directory path='/usr/lib/pulse-12.2/modules' owner='0' group='0'/>
-        <directory path='/usr/lib/pulseaudio' owner='0' group='0'/>
-        <directory path='/usr/include/pulse' owner='0' group='0'/>
-        <directory path='/usr/libexec/pulse' owner='0' group='0'/>
-    </subpackage>
+    <subpackage name='skel'/>
     <subpackage name='minimal'>
-        <file path='/usr/lib/pulseaudio/libpulsedsp.so' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/libpulse-mainloop-glib.so.0.0.5' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib/libpulse-simple.so.0.1.1' owner='0' group='0' mode='100755'/>
-	<file path='/usr/lib/pulseaudio/libpulsecore-12.2.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulseaudio/libpulsecore-12.2.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/pulseaudio/libpulsecommon-12.2.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pulseaudio/libpulsedsp.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libpulse.so.0.20.3' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libpulse-mainloop-glib.so.0.0.5' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
         <file path='/usr/bin/pacat' owner='0' group='0' mode='100755'/>
@@ -149,7 +104,6 @@
         <file path='/usr/lib/pulse-12.2/modules/module-ladspa-sink.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/pulse-12.2/modules/module-native-protocol-fd.so' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/pulse-12.2/modules/libprotocol-esound.so' owner='0' group='0' mode='100755'/>
-        
         <file path='/usr/libexec/pulse/gsettings-helper' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'>
@@ -176,8 +130,6 @@
         <file path='/etc/pulse/daemon.conf' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='devel'>
-        <file path='/usr/lib64/cmake/PulseAudio/PulseAudioConfigVersion.cmake' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/cmake/PulseAudio/PulseAudioConfig.cmake' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/libpulse-mainloop-glib.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/libpulse-simple.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/libpulse.pc' owner='0' group='0' mode='100644'/>
@@ -263,15 +215,6 @@
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
         <file path='/lib/udev/rules.d/90-pulseaudio.rules' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/libpulse-mainloop-glib.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libpulse.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pulseaudio/libpulsedsp.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pulseaudio/libpulsecommon-12.2.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pulseaudio/libpulsecore-12.2.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/libpulse-simple.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib64/pkgconfig/libpulse-mainloop-glib.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/libpulse-simple.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib64/pkgconfig/libpulse.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/glib-2.0/schemas/gschemas.compiled' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/glib-2.0/schemas/org.freedesktop.pulseaudio.gschema.xml' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/zsh/site-functions/_pulseaudio' owner='0' group='0' mode='100644'/>
