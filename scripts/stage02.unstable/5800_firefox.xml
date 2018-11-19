@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="firefox"
-		version="60.2.2esr"
+		version="60.3.0esr"
 		class="user"
 		install="destdir">
 		<!-- FIXME: correctly generate distribution.ini -->
@@ -25,12 +25,16 @@ app.partner.computerbild="computerbild"
 		<!-- official branding -->
 		<sources>
 			<file>                                                                         
-				<pkg sha1="efe1e11501ff3d30b96ece94f6a73e21f31f28c9">firefox-60.2.2esr.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/60.2.2esr/source/</mirror>
+				<pkg sha1="bac0745b6abdd5887ec0a46041a8252c344cdc64">firefox-60.3.0esr.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/60.3.0esr/source/</mirror>
 			</file>
 			<file> 
 				<pkg sha1="74eee04d144302699b5f8e51f984d096fa7fc0e1">mozconfig-firefox-33.0-20141115</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                         
+				<pkg sha1="bac0745b6abdd5887ec0a46041a8252c344cdc64">firefox-60.3.0esr.tar.bz2</pkg>
+				<mirror>http://ftp.mozilla.org/pub/firefox/releases/60.3.0esr/linux-i686/en-US/</mirror>
 			</file>
 			<!-- 
 			
@@ -157,6 +161,7 @@ done
 			<![CDATA[ 
 			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			mv firefox-${PKGVERSION%esr} mozilla-release
+			tar xf ${SRCDIR}/firefox-${PKGVERSION}.tar.bz2
 			# tar xf ${SRCDIR}/dotcargo-i686-20180104.tar.gz 
 			]]>
 		</unpack>
@@ -167,6 +172,12 @@ done
 		</patch>
 		<build>
 			<![CDATA[
+
+case `uname -m ` in
+	i?86)
+		exit 0
+	;;
+esac
 
 # export PATH=` pwd `/cargo/bin:$PATH
 # export CARGO_HOME=` pwd `/cargo
@@ -237,6 +248,18 @@ cd mozilla-release
 		<install>
 			<![CDATA[
 
+
+case `uname -m ` in
+	i?86)
+		mkdir -p ${TGTDIR}/opt
+		mkdir -p ${TGTDIR}/usr/share/mozilla-addons
+		mkdir -p ${TGTDIR}/usr/share/icons
+		mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
+		rsync -avHP firefox/ ${TGTDIR}/opt/firefox-${PKGVERSION}/ 
+		
+	;;
+	*)
+
 #mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}
 #touch ${TGTDIR}/opt/firefox-${PKGVERSION}/investigate_failed_build_later 
 #exit 0
@@ -250,6 +273,9 @@ mkdir -p ${TGTDIR}/usr/share/mozilla-addons
 mkdir -p ${TGTDIR}/usr/share/icons
 tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
 mv ${TGTDIR}/opt/firefox ${TGTDIR}/opt/firefox-${PKGVERSION}
+
+       ;;
+esac 
 
 # Install language packs
 #mkdir -p ${TGTDIR}/opt/firefox-${PKGVERSION}-extensions
@@ -316,6 +342,7 @@ chmod a+rx ${TGTDIR}/opt/firefox-${PKGVERSION}/firefox_smack
 /sbin/paxctl -m -r ${TGTDIR}/opt/firefox-${PKGVERSION}/firefox-bin
 			
 chown -R 0:0 ${TGTDIR}/opt/firefox-${PKGVERSION}
+
 
 			
 			]]>
