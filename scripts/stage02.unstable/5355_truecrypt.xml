@@ -82,8 +82,14 @@
 			cd ${PKGNAME}-${PKGNAME}_${PKGVERSION}/src
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share 
-			tar -C ${TGTDIR}/ -xf Setup/Linux/veracrypt_1.23_i386.tar.gz
+			case `uname -m ` in 
+				i?86)
+					tar -C ${TGTDIR}/ -xf Setup/Linux/veracrypt_${PKGVERSION}_i386.tar.gz
+				;;
+			esac
 			ln -sf veracrypt ${TGTDIR}/usr/bin/truecrypt 
+			sed -i 's%Categories=Encryption;Encryption Tools;Utility;%Categories=Utility;Encryption;Encryption Tools;%g'  ${TGTDIR}/usr/share/applications/veracrypt.desktop
+			convert ${TGTDIR}/usr/share/pixmaps/veracrypt.xpm -resize '48x48!'  ${TGTDIR}/usr/share/pixmaps/veracrypt.png
 			rm ${TGTDIR}/usr/bin/veracrypt-uninstall.sh
 			]]>
 		</install>
