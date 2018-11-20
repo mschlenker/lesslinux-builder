@@ -67,8 +67,9 @@
 				export CXX="distcc g++" 
 			fi
 			export PATH=/usr/compat.new/bin:$PATH 
-			export LD_LIBRARY_PATH=/usr/compat.new/bin:$LD_LIBRARY_PATH 
+			export LD_LIBRARY_PATH=/usr/compat.new/lib:$LD_LIBRARY_PATH 
 			make -j $jobcount || exit 0 
+			make package 
 			convert ./Setup/Linux/usr/share/pixmaps/veracrypt.xpm -resize '48x48!'  ./Setup/Linux/usr/share/pixmaps/veracrypt.png
 			sed -i 's%Categories=Encryption;Encryption Tools;Utility;%Categories=Utility;Encryption;Encryption Tools;%g'  ./Setup/Linux/usr/share/applications/veracrypt.desktop
 			echo '===> searching files'
@@ -81,9 +82,9 @@
 			cd ${PKGNAME}-${PKGNAME}_${PKGVERSION}/src
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share 
-			tar -C ./Setup/Linux/ -cvf - . | tar -C ${TGTDIR}/ -xf - 
+			tar -C ${TGTDIR}/ -xf Setup/Linux/veracrypt_1.23_i386.tar.gz
 			ln -sf veracrypt ${TGTDIR}/usr/bin/truecrypt 
-			rm veracrypt ${TGTDIR}/usr/bin/veracrypt-uninstall.sh
+			rm ${TGTDIR}/usr/bin/veracrypt-uninstall.sh
 			]]>
 		</install>
 		<clean>

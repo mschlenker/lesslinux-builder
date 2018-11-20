@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='gtkmm3' version='3.24.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='51c1b2d38718145ee009295d304739d9ac8e3b1a'>
+                    gtkmm-3.24.0.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/
+                </mirror>
+            </file>
+            <manualcheck date='20181120' interval='60' mirror='http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME%3}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME%3}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME%3}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME%3}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
