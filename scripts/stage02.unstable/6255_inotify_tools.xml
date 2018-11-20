@@ -1,5 +1,5 @@
 <llpackages>
-    <package name='inotify-tools' version='3.20.1' install='chroot'>
+    <package name='inotify-tools' version='3.20.1' install='destdir'>
         <license>
             unknown
         </license>
@@ -46,13 +46,14 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+bash autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make
 ]]>
         </build>
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
-make install
+make install DESTDIR=${TGTDIR} 
 ]]>
         </install>
         <clean>
