@@ -77,15 +77,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			# bash ./autogen.sh
+			bash ./autogen.sh --disable-silent-rules 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr  --disable-silent-rules   CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --sysconfdir=/etc --prefix=/usr 
+				./configure --sysconfdir=/etc --prefix=/usr  --disable-silent-rules 
 				make
 			fi
 			]]>
