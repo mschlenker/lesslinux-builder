@@ -1,13 +1,13 @@
 <llpackages>
    <package 
 		name="libreoffice"
-		version="5.4.4.2"
+		version="6.1.2.1"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                           
-				<pkg sha1="05b8d7c3d8bbf5c347b4631d6854335ba60718fd">libreoffice-5.4.4.2.tar.xz</pkg>
-				<mirror>http://download.documentfoundation.org/libreoffice/src/5.4.4/libreoffice-5.4.4.2.tar.xz</mirror>
+				<pkg sha1="58d22a84a5ac4ee1e103331e3e3cc51ba51d85a0">libreoffice-6.1.2.1.tar.xz</pkg>
+				<mirror>http://download.documentfoundation.org/libreoffice/src/6.1.2/libreoffice-6.1.2.1.tar.xz</mirror>
 			</file>
 			<manualcheck date="20180207" interval="180" page="http://sourceforge.net/projects/clamav/files/" />
 			<!-- <check>
@@ -147,10 +147,10 @@
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 sed -e "/gzip -f/d"       -e "s|.1.gz|.1|g"     -i bin/distro-install-desktop-integration 
 sed -e "/distro-install-file-lists/d" -i Makefile.in
-./autogen.sh --prefix=/usr          --sysconfdir=/etc                        --with-vendor=BLFS                             --with-alloc=system                      --without-junit                          --without-system-dicts                   --disable-dconf                          --disable-odk   --with-lang='fr en-GB en-US de pl' --enable-release-build=yes               --enable-python=system                   --with-system-apr                        --with-system-boost                      --with-system-cairo    --with-system-curl  --with-system-expat        --with-system-icu --with-system-jpeg --with-system-libatomic_ops  --with-system-libpng --with-system-libxml --with-system-neon  --with-system-nss --with-system-openssl --with-system-zlib --without-java --without-krb5 --without-gssapi
+./autogen.sh --prefix=/usr          --sysconfdir=/etc                        --with-vendor=BLFS                             --with-alloc=system                      --without-junit                          --without-system-dicts                   --disable-dconf                          --disable-odk   --with-lang='fr en-GB en-US de pl' --enable-release-build=yes               --enable-python=system                   --with-system-apr                        --with-system-boost                      --with-system-cairo    --with-system-curl  --with-system-expat        --with-system-icu --with-system-jpeg --with-system-libatomic_ops  --with-system-libpng --with-system-libxml --with-system-neon  --with-system-nss --with-system-zlib --without-java --without-krb5 --without-gssapi
 cd ..
 chown -R builder:builder ${PKGNAME}-${PKGVERSION}
-su builder -c "make build-nocheck -j4 -C ${PKGNAME}-${PKGVERSION}"
+su builder -c "CPPFLAGS='-DU_USING_ICU_NAMESPACE=1' make build-nocheck -j4 -C ${PKGNAME}-${PKGVERSION}"
 ]]>
         </build>
         <install>
