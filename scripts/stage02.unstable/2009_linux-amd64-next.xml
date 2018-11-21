@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64-next"
-		version="4.18.10"
+		version="4.19.3"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="21e0a16c60125bd601a7d9c77e6bb1a20195ea79">linux-4.18-config-amd64</pkg> 
+				<pkg sha1="b1103a52c528dfa69871d71c161a5c451ff8ed02">linux-4.19-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,11 +15,11 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="a5898f3a6383946b1de8d9dd449c2ca361b14c3d">linux-4.18.tar.xz</pkg>
+				<pkg sha1="40f3e72192d59c0b7a4638cebd0ea55d35a782bb">linux-4.19.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="9c096f56b1b13a754f1e86c71c071b4bd0440cb6">patch-4.18.10.xz</pkg>
+				<pkg sha1="a7ae41143e4ceef9206c58e347d5d0c1c624d2da">patch-4.19.3.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<manualcheck date="20180409" interval="60" page="http://www.kernel.org/" />
