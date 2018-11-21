@@ -36,7 +36,7 @@
         </unpack>
         <patch/>
         <build>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 	    qmake-qt5
 	    make -j4
 ]]>
