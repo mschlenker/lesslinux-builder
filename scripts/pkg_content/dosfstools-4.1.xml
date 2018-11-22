@@ -1,11 +1,13 @@
 <pkgdesc name='dosfstools' version='4.1'>
     <subpackage name='skel'>
+        <softlink path='/usr/sbin/mkfs.msdos' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
         <directory path='/usr/share' owner='0' group='0'/>
         <directory path='/usr/share/man' owner='0' group='0'/>
         <directory path='/usr/share/man/man8' owner='0' group='0'/>
         <directory path='/usr/share/doc' owner='0' group='0'/>
         <directory path='/usr/share/doc/dosfstools' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
         <directory path='/usr/sbin' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'/>
@@ -33,4 +35,16 @@
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>
