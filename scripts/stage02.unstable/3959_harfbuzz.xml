@@ -59,6 +59,7 @@
                         <dep>xproto-base</dep>
 			<dep>gobject-introspection</dep>
 			 <dep>imake</dep>
+			  <dep>graphite2</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -77,7 +78,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc --with-icu=yes && make -j $jobcount
+			./configure --prefix=/usr --sysconfdir=/etc --with-icu=yes --with-graphite2=yes && make -j $jobcount
 			]]>
 		</build>
 		<test />
