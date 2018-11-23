@@ -14,6 +14,31 @@
             </file>
             <manualcheck date='20181123' interval='60' mirror='https://archive.xfce.org/src/panel-plugins/xfce4-whiskermenu-plugin/2.3/'/>
         </sources>
+	<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>exo</dep>
+                        <dep>garcon</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gtk3</dep>
+                        <dep>libX11</dep>
+                        <dep>libxfce4ui</dep>
+                        <dep>libxfce4util</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>xfce4-panel</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
         <unpack>
             <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>
