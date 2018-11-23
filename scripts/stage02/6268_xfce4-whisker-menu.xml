@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='xfce4-whiskermenu-plugin' version='2.3.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='03bfbfa5b11e43b90459ee30a753888e84ead84b'>
+                    xfce4-whiskermenu-plugin-2.3.0.tar.bz2
+                </pkg>
+                <mirror>
+                    https://archive.xfce.org/src/panel-plugins/xfce4-whiskermenu-plugin/2.3/
+                </mirror>
+            </file>
+            <manualcheck date='20181123' interval='60' mirror='https://archive.xfce.org/src/panel-plugins/xfce4-whiskermenu-plugin/2.3/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
