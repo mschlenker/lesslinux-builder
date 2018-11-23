@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='graphite2-1.3.12.tgz' version='20181123' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='9efb65423924f0c204f7b208af8567ce1284cd8d'>
+                    graphite2-1.3.12.tgz
+                </pkg>
+                <mirror>
+                    https://github.com/silnrsi/graphite/releases/download/1.3.12/
+                </mirror>
+            </file>
+            <manualcheck date='20181123' interval='60' mirror='https://github.com/silnrsi/graphite/releases/download/1.3.12/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/graphite2-1.3.12.tgz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd graphite2-1.3.12
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd graphite2-1.3.12
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf graphite2-1.3.12
+]]>
+        </clean>
+    </package>
+</llpackages>
