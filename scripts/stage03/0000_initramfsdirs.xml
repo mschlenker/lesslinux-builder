@@ -116,7 +116,7 @@ PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
 this_version=` cat /etc/lesslinux/updater/version.txt `
 base_url=` cat /etc/lesslinux/updater/baseurl.txt ` 
 WGET='/static/bin/wget'
-[ -f /usr/bin/wget ] && WGET='/usr/bin/wget'
+[ -x /usr/bin/wget ] && WGET='/usr/bin/wget'
 
 if [ "$1" = "--quiet" ] ; then
 	echo "Skipping question, start searching..."
@@ -134,7 +134,7 @@ mkdir -m 0755 /tmp/lesslinux.update
 for fname in updater.tbz updater.tbz.asc ; do
     echo netmgr > /proc/self/attr/current
     # Since we validate afterwards, do not check certificates
-    $WGET --no-check-certificate -U LessLinuxUpdater -O /tmp/lesslinux.update/${fname} "${base_url}/${this_version}/${fname}"
+    $WGET -T 3 --no-check-certificate -U LessLinuxUpdater -O /tmp/lesslinux.update/${fname} "${base_url}/${this_version}/${fname}"
     retval=$?
     echo _ > /proc/self/attr/current
     if [ "$retval" -gt 0 ] ; then
@@ -498,7 +498,7 @@ elif echo "$chooser" | grep -q '^tftp://' ; then
 	tftppath=` echo $hostpath | awk '{print $2}' `
 	tftp -g -l /home/surfer/.chooser.xml -r "$tftppath" "$tftphost" 
 elif echo "$chooser" | grep -q -E '^http://|^https://|^ftp://' ; then
-	wget --no-check-certificate -O /home/surfer/.chooser.xml "$chooser"
+	wget -T 5 --no-check-certificate -O /home/surfer/.chooser.xml "$chooser"
 fi
 
 openbox &
