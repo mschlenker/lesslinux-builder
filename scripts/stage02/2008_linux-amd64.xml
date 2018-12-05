@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-amd64"
-		version="4.9.95"
+		version="4.14.85"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="407aad58aac86330ff45753519df02946908921d">linux-4.9-config-amd64</pkg> 
+				<pkg sha1="a61aba8f79d324cdeaba39d110d4e432e10fa875">linux-4.14-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,11 +15,11 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                                 
-				<pkg sha1="fa46da077c077467776cdc45a7b50d327a081ab4">linux-4.9.tar.xz</pkg>
+				<pkg sha1="c64d80ad01a6a77bf46bce1bdc5c7f28bfb6bfd5">linux-4.14.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="02a133c1d44081394eb6c7f756dde60caf0d57ac">patch-4.9.95.xz</pkg>
+				<pkg sha1="62a357ff13ff60cd87f36349102855f74364a1a6">patch-4.14.85.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<manualcheck date="20180409" interval="60" page="http://www.kernel.org/" />
@@ -110,7 +110,7 @@
 			echo 'CROSS_COMPILE="x86_64-linux-musl-"' > ../linux-${PKGVERSION}/crosscompile.inc
 			
 			# yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-gnu-" oldconfig 
-			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" oldconfig 
+			yes '' | make ARCH=x86_64 CROSS_COMPILE="x86_64-linux-musl-" silentoldconfig 
 			
 			jobcount=4 
 			#if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
