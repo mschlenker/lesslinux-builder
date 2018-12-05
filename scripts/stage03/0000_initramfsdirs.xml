@@ -1347,6 +1347,7 @@ searchiso=''				# search content directories only on ISOs with the given ISOID a
 					# searchiso='' ignore
 offsetptable=0				# use an offsetted partition table after the ISO image 
 contdir="lesslinux"			# name of the content directory to search for 
+skipntfs=0				# Skip ISOs on NTFS completely
 ntfsrw=0				# Access NTFS read-write with ntfs-3g? Useful for containers on NTFS.
 dropbearport=22222			# port to run dropbear
 xmode=""				# WTF?
@@ -1478,6 +1479,9 @@ for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; 
      ;;	
      searchiso=*)
         searchiso=`echo "$i" | awk -F '=' '{print $2}'`
+     ;;
+     skipntfs=*)
+	skipntfs=`echo "$i" | awk -F '=' '{print $2}'
      ;;
      contdir=*)
 	contdir=`echo "$i" | awk -F '=' '{print $2}'`
@@ -4401,7 +4405,11 @@ case $1 in
 						mount_and_check $devname vfat $skipisos
 					;;
 					ntfs*)
-						mount_and_check $devname ntfs $skipisos
+						if [ "$skipntfs" -gt 0 ] ; then
+							printf "$bold...> Skipping NTFS as of user request $normal\n"
+						else
+							mount_and_check $devname ntfs $skipisos
+						fi
 					;;
 					*)
 						mount_and_check $devname linux $skipisos
