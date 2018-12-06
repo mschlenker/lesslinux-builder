@@ -515,13 +515,18 @@ class MfsSinglePartition
 		return false 
 	end
 	
-	def unlock_bitlocker?
+	def unlock_bitlocker?(password)
 		return nil unless system("ntfs-3g.probe --help")
-		if File.exists?("/dev/bitlocker/#{@device}") && system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}"
+		if File.directory?("/dev/bitlocker/#{@device}") && system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}/dislocker-file")
 			return true
-		elsif File.exists?("/dev/bitlocker/#{@device}")
-			
 		end
+		return nil unless system("dislocker-fuse -h")
+		FileUtils.mkdir_p("/dev/bitlocker/#{@device}")
+		system("dislocker-fuse -v -V /dev/#{@device} --user-password=\"#{password}\" -- /dev/bitlocker/#{@device}")
+		return true if system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}/dislocker-file") 
+		system("dislocker-fuse -v -V /dev/#{@device} --user-password=\"#{password}\" -- /dev/bitlocker/#{@device}")
+		return true if system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}/dislocker-file") 
+		return false 
 	end
 	
 	def zero_free(pgbar=nil)

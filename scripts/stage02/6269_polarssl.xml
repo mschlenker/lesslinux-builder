@@ -1,0 +1,37 @@
+<llpackages>
+    <package name='mbedtls' version='2.7.8' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a9db53b3f0274e08c633ba9bcfe564c6add5fb10'>
+                    mbedtls-2.7.8-gpl.tgz
+                </pkg>
+                <mirror>
+                    https://tls.mbed.org/download/
+                </mirror>
+            </file>
+            <manualcheck date='20181206' interval='60' mirror='https://tls.mbed.org/download/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/mbedtls-2.7.8-gpl.tgz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd mbedtls-2.7.8
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd mbedtls-2.7.8
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf mbedtls-2.7.8
+]]>
+        </clean>
+    </package>
+</llpackages>

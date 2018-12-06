@@ -38,6 +38,7 @@ if archname =~ /(.*)\-([[0-9]\.]*)\.tar/ || archname =~ /(.*)\-([[0-9]\.]*)\.zip
 	$stderr.puts "package version: #{pkgversion}"
 end
 pkgversion = now if pkgversion.nil?
+pkgname = "pleasespecify" if pkgname.nil?
 
 system("wget -O /tmp/#{uuid}/#{archname} #{archive}")
 unless File.exists? "/tmp/#{uuid}/#{archname}"
@@ -128,8 +129,8 @@ unless pkgname.nil?
 		chdir = ""
 	else
 		unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
-		clean.add(REXML::CData.new("rm -rf " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
-		chdir = "cd " + subdir.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}")
+		clean.add(REXML::CData.new("rm -rf " + subdir.to_s.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
+		chdir = "cd " + subdir.to_s.gsub(pkgname.to_s, "${PKGNAME}").gsub(pkgversion.to_s, "${PKGVERSION}")
 	end
 else
 	unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname + "\n"))
