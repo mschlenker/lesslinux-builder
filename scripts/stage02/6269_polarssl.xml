@@ -18,7 +18,12 @@
             <![CDATA[tar xf ${SRCDIR}/mbedtls-2.7.8-gpl.tgz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+		<![CDATA[
+cd mbedtls-2.7.8
+sed -i 's%/usr/local%/usr%g' Makefile 
+]]>
+	</patch>
         <build>
             <![CDATA[cd mbedtls-2.7.8
 make
