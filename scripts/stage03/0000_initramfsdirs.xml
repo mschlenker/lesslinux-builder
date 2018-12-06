@@ -1481,7 +1481,7 @@ for i in ` cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline ` ; 
         searchiso=`echo "$i" | awk -F '=' '{print $2}'`
      ;;
      skipntfs=*)
-	skipntfs=`echo "$i" | awk -F '=' '{print $2}'
+	skipntfs=`echo "$i" | awk -F '=' '{print $2}' `
      ;;
      contdir=*)
 	contdir=`echo "$i" | awk -F '=' '{print $2}'`
