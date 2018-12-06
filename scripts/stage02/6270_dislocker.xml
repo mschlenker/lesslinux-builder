@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='dislocker' version='0.7.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0c5c62f63ba587663eb0474f1bd6ca7e345fe977'>
+                    v0.7.1.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/Aorimn/dislocker/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20181206' interval='60' mirror='https://github.com/Aorimn/dislocker/archive/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/v0.7.1.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd dislocker-0.7.1
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd dislocker-0.7.1
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf dislocker-0.7.1
+]]>
+        </clean>
+    </package>
+</llpackages>

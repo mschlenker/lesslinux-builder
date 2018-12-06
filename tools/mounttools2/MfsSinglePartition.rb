@@ -508,6 +508,22 @@ class MfsSinglePartition
 		return true
 	end
 	
+	def bitlocker? 
+		return false unless @fs =~ /ntfs/i 
+		dump = ` dd if=/dev/#{@device} bs=128 count=1 ` 
+		return true if dump =~ /FVE-FS/ 
+		return false 
+	end
+	
+	def unlock_bitlocker?
+		return nil unless system("ntfs-3g.probe --help")
+		if File.exists?("/dev/bitlocker/#{@device}") && system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}"
+			return true
+		elsif File.exists?("/dev/bitlocker/#{@device}")
+			
+		end
+	end
+	
 	def zero_free(pgbar=nil)
 		return false if mounted
 		rndstr = Random.rand(100_000_000).to_s
