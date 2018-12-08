@@ -510,7 +510,7 @@ class MfsSinglePartition
 	
 	def bitlocker? 
 		return false unless @fs =~ /ntfs/i 
-		dump = ` dd if=/dev/#{@device} bs=128 count=1 ` 
+		dump = ` dd if=/dev/#{@device} bs=128 count=1 | hexdump -C ` 
 		return true if dump =~ /FVE-FS/ 
 		return false 
 	end
