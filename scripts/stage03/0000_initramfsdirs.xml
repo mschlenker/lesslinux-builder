@@ -4334,6 +4334,10 @@ mount_and_check() {
 				        echo "bootmode=loop" >> /var/run/lesslinux/startup_vars
 				        echo "loopfile=$isofile" >> /var/run/lesslinux/startup_vars
 				        echo "loopdev=$free_loop" >> /var/run/lesslinux/startup_vars
+					if [ -x /static/sbin/blkid.static ] ; then
+						/static/sbin/blkid.static -o udev $device > /var/run/lesslinux/bootdevice.udev
+						chmod 0755 /var/run/lesslinux/bootdevice.udev
+					fi
 					if ( echo "$device" | grep -E  '/dev/sd[a-z]$' > /dev/null 2>&1 ) && \
 					   ( cat /proc/mounts | grep "$device" | grep "iso9660" > /dev/null 2>&1 ) ; then
 			                    echo "isohybrid=true" >> /var/run/lesslinux/startup_vars

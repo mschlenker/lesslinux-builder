@@ -46,6 +46,8 @@ export PATH
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
 
+[ -x /var/run/lesslinux/bootdevice.udev ] && . /var/run/lesslinux/bootdevice.udev
+
 case $1 in 
     start)
 	if mountpoint -q /lesslinux/eset/sys ; then
@@ -131,6 +133,15 @@ case $1 in
 		mount -t tmpfs -o mode=0755,size=512M tmpfs /mnt/eset-live-rw/lib/
 		rsync -avHP /lesslinux/eset/sys/mnt/eset-live-rw/lib/ /mnt/eset-live-rw/lib/
 		rsync -avHP /lesslinux/eset/sys/etc/opt/eset/ /etc/opt/eset/
+		# Search on partition containing the loop device, unpack as needed
+		if [ "$ID_FS_TYPE" = ntfs ] ; then
+			mkdir /tmp/eset
+			mount -o ro -t ntfs-3g /dev/disk/by-uuid/${ID_FS_UUID} /tmp/eset
+			tar -C /etc/opt/eset -xf /tmp/eset/cobirescue/esetetc.tgz
+			tar -C /mnt/eset-live-rw -xf /tmp/eset/cobirescue/esetlib.tgz
+			umount /tmp/eset
+			rmdir /tmp/eset 
+		fi
 	    fi
 	    # Write username if available
 	    esetrand=""
@@ -154,6 +165,20 @@ case $1 in
 	    killall esets_daemon
 	    sleep 3
 	    killall -9 esets_daemon
+	    if [ "$ID_FS_TYPE" = ntfs ] ; then
+		# When loop still mounted, the device is probably mounted ro, so a simple unmount should suffice
+		mkdir /tmp/eset
+		umount -f /dev/disk/by-uuid/${ID_FS_UUID}
+		ntfs-3g.probe --readwrite /dev/disk/by-uuid/${ID_FS_UUID} && mount -o rw -t ntfs-3g /dev/disk/by-uuid/${ID_FS_UUID} /tmp/eset
+		if mountpoint -q /tmp/eset
+			mkdir -p /tmp/eset/cobirescue
+			tar -C /etc/opt/eset -czf /tmp/eset/cobirescue/esetetc.tgz .
+			tar -C /mnt/eset-live-rw -czf /tmp/eset/cobirescue/esetlib.tgz .
+			sync 
+			umount /tmp/eset || umount -f /tmp/eset 
+			rmdir /tmp/eset
+		fi
+	    fi
 	    mountpoint -q /mnt/eset-live-rw/lib/ && umount /mnt/eset-live-rw/lib/
 	    mountpoint -q /etc/opt/eset && umount /etc/opt/eset
 	    mountpoint -q /var/log/esets && umount /var/log/esets
