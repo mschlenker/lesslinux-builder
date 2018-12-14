@@ -170,7 +170,7 @@ case $1 in
 		mkdir /tmp/eset
 		umount -f /dev/disk/by-uuid/${ID_FS_UUID}
 		ntfs-3g.probe --readwrite /dev/disk/by-uuid/${ID_FS_UUID} && mount -o rw -t ntfs-3g /dev/disk/by-uuid/${ID_FS_UUID} /tmp/eset
-		if mountpoint -q /tmp/eset
+		if mountpoint -q /tmp/eset ; then
 			mkdir -p /tmp/eset/cobirescue
 			tar -C /etc/opt/eset -czf /tmp/eset/cobirescue/esetetc.tgz .
 			tar -C /mnt/eset-live-rw -czf /tmp/eset/cobirescue/esetlib.tgz .
