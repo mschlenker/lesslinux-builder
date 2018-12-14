@@ -5,6 +5,7 @@
 PATH=$PATH:/opt/bin/
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/lib:/usr/compat.old/qt4/lib
 export PATH
+export LD_LIBRARY_PATH 
 
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
