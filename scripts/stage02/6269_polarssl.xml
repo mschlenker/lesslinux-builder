@@ -41,6 +41,8 @@ make
         <install>
             <![CDATA[cd mbedtls-2.7.8
 make install
+echo '/usr/compat.old/qt4/lib' >> /etc/ld.so.conf
+ldconfig 
 ]]>
         </install>
         <clean>
