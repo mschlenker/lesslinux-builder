@@ -26,6 +26,6 @@ if [ '!' -x "/opt/eset/esets/sbin/esets_daemon" ] ; then
 fi
 
 ( cd /usr/share/lesslinux/avfrontend ; sudo /usr/share/lesslinux/avfrontend/avpremount.sh ) 
-
+killall -9 esets_gui
 sleep 2
 sudo /opt/eset/esets/bin/esets_gui
