@@ -168,8 +168,8 @@
 				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
 			done
 			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec x86_64-linux-musl-strip --strip-unneeded {} \; 
-			cd ../linux-${PKGVERSION}
-			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
+			# cd ../linux-${PKGVERSION}
+			# tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
 
 			]]>
 		</install>
