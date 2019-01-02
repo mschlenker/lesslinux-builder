@@ -100,7 +100,10 @@ def count_mount
 	IO.popen("cat /proc/mounts") { |line|
 		while line.gets
 			ltoks = $_.strip.split
-			mounted += 1 if ltoks[1] =~ /^\/media\/disk/ 
+			# Ignore LessLinux USB drive
+			unless File.directory?(ltoks[1].strip + "/boot/isolinux/common")
+				mounted += 1 if ltoks[1] =~ /^\/media\/disk/ 
+			end
 		end
 	}
 	return mounted
