@@ -43,6 +43,14 @@ class MfsSinglePartition
 				@enc = true if @fs == "crypto_LUKS"
 			end
 		}
+		# File system still nil? Test for bitlocker
+		if @fs.nil?
+			dump = ` dd if=/dev/#{@device} bs=128 count=1 | hexdump -C ` 
+			if dump =~ /FVE-FS/
+				@fs = "bitlocker"
+				@enc = true
+			end
+		end
 		if @uuid.nil? && @size == 1024
 			@extended = true 
 		end
@@ -271,6 +279,18 @@ class MfsSinglePartition
 			# for ext2/ext3 since those are better mounted using the ext4 driver
 			return true if system("mount /dev/mapper/" + @device + " -o #{mode} '" +  mountpoint + "'" )
 			return false
+		if @fs =~ /bitlocker/
+			return false if lukspw.nil?
+			return false unless system("which bdemount")
+			system("mkdir -p /dev/bitlocker-#{@device}")
+			system("bdemount -p '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}") || system("bdemount -r '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}")
+			# Try to mount NTFS first
+			mountcmd = "mount -o loop -t ntfs-3g -o iocharset=utf-8,uid=1000,gid=1000,ro /dev/bitlocker-" + @device + "/bde1 '" + mountpoint + "'"
+			$stderr.puts mountcmd 
+			return true if system(mountcmd)
+			mountcmd = "mount -o loop -t vfat -o uid=1000,gid=1000,ro /dev/bitlocker-" + @device + "/bde1 '" + mountpoint + "'"
+			$stderr.puts mountcmd 
+			return true if system(mountcmd)
 		elsif @fs =~ /fat/
 			type = "-t vfat"
 			opts.push "iocharset=utf8"
@@ -509,7 +529,7 @@ class MfsSinglePartition
 	end
 	
 	def bitlocker? 
-		return false unless @fs =~ /ntfs/i 
+		#return false unless @fs =~ /ntfs/i 
 		dump = ` dd if=/dev/#{@device} bs=128 count=1 | hexdump -C ` 
 		return true if dump =~ /FVE-FS/ 
 		return false 
