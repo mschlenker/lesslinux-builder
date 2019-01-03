@@ -323,6 +323,11 @@ class MfsSinglePartition
 			system("umount /dev/mapper/" + @device) 
 			return true if system("cryptsetup luksClose /dev/mapper/" + @device) 
 			return false 
+		elsif @fs =~ /bitlocker/
+			system("sync")
+			system("umount /dev/bitlocker-" + @device + "/bde1") 
+			return true if system("umount /dev/bitlocker-" + @device)
+			return false 
 		end
 		return true if system("umount /dev/" + @device)
 		return false
