@@ -112,7 +112,7 @@ end
 def mount_all(rw=false)
 	drives = Array.new
 	Dir.entries("/sys/block").each { |l|
-			if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/
+			if l =~ /[a-z]$/ || l =~ /mmcblk[0-9]$/ ||  l =~ /mmcblk[0-9][0-9]$/ || l =~ /nvme[0-9]n[0-9]$/
 				begin
 					d =  MfsDiskDrive.new(l, true)
 					drives.push(d) 
@@ -125,7 +125,7 @@ def mount_all(rw=false)
 	rwmode = "rw" if rw == true
 	drives.each { |d|
 		d.partitions.each { |p|
-			if ( p.fs =~ /^fat/i || p.fs =~ /ntfs/i ) && p.mount_point.nil? 
+			if ( p.fs =~ /fat/i || p.fs =~ /ntfs/i ) && p.mount_point.nil? 
 				system("mkdir -p /media/disk/#{p.device}")
 				system("chown 1000:1000 /media/disk/#{p.device}")
 				p.mount(rwmode, "/media/disk/#{p.device}", 1000, 1000)
