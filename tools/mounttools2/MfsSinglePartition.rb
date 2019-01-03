@@ -43,8 +43,8 @@ class MfsSinglePartition
 				@enc = true if @fs == "crypto_LUKS"
 			end
 		}
-		# File system still nil? Test for bitlocker
-		if @fs.nil?
+		# File system nil or fat? Test for bitlocker
+		if @fs.nil? || @fs =~ /fat/ 
 			dump = ` dd if=/dev/#{@device} bs=128 count=1 | hexdump -C ` 
 			if dump =~ /FVE-FS/
 				@fs = "bitlocker"
@@ -279,7 +279,7 @@ class MfsSinglePartition
 			# for ext2/ext3 since those are better mounted using the ext4 driver
 			return true if system("mount /dev/mapper/" + @device + " -o #{mode} '" +  mountpoint + "'" )
 			return false
-		if @fs =~ /bitlocker/
+		elsif @fs =~ /bitlocker/
 			return false if lukspw.nil?
 			return false unless system("which bdemount")
 			system("mkdir -p /dev/bitlocker-#{@device}")
@@ -532,20 +532,6 @@ class MfsSinglePartition
 		#return false unless @fs =~ /ntfs/i 
 		dump = ` dd if=/dev/#{@device} bs=128 count=1 | hexdump -C ` 
 		return true if dump =~ /FVE-FS/ 
-		return false 
-	end
-	
-	def unlock_bitlocker?(password)
-		return nil unless system("ntfs-3g.probe --help")
-		if File.directory?("/dev/bitlocker/#{@device}") && system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}/dislocker-file")
-			return true
-		end
-		return nil unless system("dislocker-fuse -h")
-		FileUtils.mkdir_p("/dev/bitlocker/#{@device}")
-		system("dislocker-fuse -v -V /dev/#{@device} --user-password=\"#{password}\" -- /dev/bitlocker/#{@device}")
-		return true if system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}/dislocker-file") 
-		system("dislocker-fuse -v -V /dev/#{@device} --user-password=\"#{password}\" -- /dev/bitlocker/#{@device}")
-		return true if system("ntfs-3g.probe --readonly /dev/bitlocker/#{@device}/dislocker-file") 
 		return false 
 	end
 	
