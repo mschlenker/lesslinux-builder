@@ -297,9 +297,9 @@ class MfsSinglePartition
 			return true if system("mount /dev/mapper/" + @device + " -o #{mode} '" +  mountpoint + "'" )
 			return false
 		elsif @fs =~ /bitlocker/
-			lukspw = lukspw.strip 
 			return false if lukspw.nil?
 			return false unless system("which bdemount")
+			lukspw = lukspw.strip 
 			system("mkdir -p /dev/bitlocker-#{@device}")
 			#puts("bdemount -p '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}")
 			system("bdemount -p '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}") unless File.exists? ("/dev/bitlocker-#{@device}/bde1")
