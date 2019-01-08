@@ -37,6 +37,7 @@ drives.each { |d|
 		if p.device == ARGV[1] && subcommand == "mount"
 			password = nil
 			password = ` llaskpass-mount.rb ` if p.fs =~ /crypto_LUKS/ 
+			password = ` llaskpass-mount.rb ` if p.fs =~ /bitlocker/ 
 			if ARGV[2].to_s == "rw" 
 				p.mount("rw", "/media/disk/" + p.device, 1000, 1000, nil, password)
 			else

@@ -51,6 +51,23 @@ class MfsSinglePartition
 				@enc = true
 			end
 		end
+		# Test for mounted bitlocker and bitlocker to go
+		if File.exists?("/dev/bitlocker-#{@device}/bde1")
+			@fs = "bitlocker"
+			@enc = true
+		elsif @fs =~ /fat/ 
+			system("mkdir -p /var/run/lesslinux/bitlockertest")
+			system("mount -o ro /dev/#{@device} /var/run/lesslinux/bitlockertest")
+			bl = true
+			[ "BitLockerToGo.exe", 'COV 0000. BL', 'COV 0000. ER', 'PAD 0000. NG', 'PAD 0000. PD' ].each { |f|
+				bl = false unless File.exists?("/var/run/lesslinux/bitlockertest/#{f}") 
+			}
+			system("umount /var/run/lesslinux/bitlockertest")
+			if bl == true
+				@fs = "bitlocker"
+				@enc = true
+			end
+		end
 		if @uuid.nil? && @size == 1024
 			@extended = true 
 		end
@@ -280,10 +297,14 @@ class MfsSinglePartition
 			return true if system("mount /dev/mapper/" + @device + " -o #{mode} '" +  mountpoint + "'" )
 			return false
 		elsif @fs =~ /bitlocker/
+			lukspw = lukspw.strip 
 			return false if lukspw.nil?
 			return false unless system("which bdemount")
 			system("mkdir -p /dev/bitlocker-#{@device}")
-			system("bdemount -p '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}") || system("bdemount -r '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}")
+			#puts("bdemount -p '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}")
+			system("bdemount -p '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}") unless File.exists? ("/dev/bitlocker-#{@device}/bde1")
+			#puts("bdemount -r '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}")
+			system("bdemount -r '#{lukspw}' /dev/#{device} /dev/bitlocker-#{@device}") unless File.exists? ("/dev/bitlocker-#{@device}/bde1")
 			# Try to mount NTFS first
 			mountcmd = "mount -o loop -t ntfs-3g -o iocharset=utf-8,uid=1000,gid=1000,ro /dev/bitlocker-" + @device + "/bde1 '" + mountpoint + "'"
 			$stderr.puts mountcmd 
@@ -376,6 +397,15 @@ class MfsSinglePartition
 	end
 	
 	def mount_point
+		bdmap = Hash.new
+		IO.popen("losetup -a") { |line|
+			while line.gets
+				ltoks = $_.strip.split 
+				if ltoks[2] =~ /dev\/bitlocker-/
+					bdmap[ltoks[0].gsub(":", "")] = ltoks[2].gsub("(", "").gsub(")", "")
+				end
+			end
+		}
 		IO.popen("cat /proc/mounts") { |line|
 			while line.gets
 				ltoks = $_.strip.split 
@@ -389,8 +419,11 @@ class MfsSinglePartition
 						device = File.realpath(abspath)
 					end
 				end
-				if device == "/dev/" + @device || device == @device || device == "/dev/mapper/" + @device
+				if device == "/dev/" + @device || device == @device || device == "/dev/mapper/" + @device  
 					# $stderr.puts @device + " is mounted on " + ltoks[1].gsub('\040', '').gsub('\134', '\\')
+					return [ ltoks[1].gsub('\040', ' ').gsub('\134', '\\'), ltoks[3].split(',') ]
+				end
+				if device =~ /\/dev\/loop[0-9]/ && bdmap.has_key?(device) 
 					return [ ltoks[1].gsub('\040', ' ').gsub('\134', '\\'), ltoks[3].split(',') ]
 				end
 			end
