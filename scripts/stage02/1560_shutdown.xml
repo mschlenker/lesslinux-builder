@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="shutdown-dummy"
-		version="20180530-00"
+		version="20190116-00"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                     
-				<pkg sha1="e32f4f0259a78037844b908ecdaf76eced6ae78b">shutdown-dummy-20180530-00.tar.gz</pkg>
+				<pkg sha1="1a6ad83cefd7bd9f0ecda7801e7416743caadd1b">shutdown-dummy-20190116-00.tar.gz</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20180527" interval="365" page="http://distfiles.lesslinux.org/" />
@@ -35,7 +35,7 @@
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			fi
 			]]>
 		</unpack>
