@@ -84,6 +84,7 @@
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
+			sed -i 's/CONFIG_RETPOLINE=y/# CONFIG_RETPOLINE is not set/g'  .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
 			mkdir linux-${PKGVERSION}.build
