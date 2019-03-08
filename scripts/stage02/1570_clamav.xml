@@ -1,12 +1,12 @@
 <llpackages>
 	<package 
 		name="clamav"
-		version="0.99.2"
+		version="0.101.1"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                           
-				<pkg sha1="c1a47411834d8527f7b40727aebee63f01d488af">clamav-0.99.2.tar.gz</pkg>
+				<pkg sha1="7a62cce441383096b73c5e23b10d18bd6553b1e1">clamav-0.101.1.tar.gz</pkg>
 				<mirror>http://www.clamav.net/downloads/production/</mirror>
 			</file>
 			<manualcheck date="20160701" interval="180" page="http://sourceforge.net/projects/clamav/files/" />
@@ -66,14 +66,14 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
-				export CC="distcc /usr/local/gcc54/bin/gcc54"
-				export CXX="distcc /usr/local/gcc54/bin/g++54" 
-				./configure --prefix=/opt --sysconfdir=/etc  --disable-zlib-vcheck # CC="distcc gcc" CXX="distcc g++" 
+				#export CC="distcc /usr/local/gcc54/bin/gcc54"
+				#export CXX="distcc /usr/local/gcc54/bin/g++54" 
+				./configure --prefix=/opt --sysconfdir=/etc  # --disable-zlib-vcheck # CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount 
 			else
-				export CC="/usr/local/gcc54/bin/gcc54"
-				export CXX="/usr/local/gcc54/bin/g++54" 
-				./configure --prefix=/opt --sysconfdir=/etc --disable-zlib-vcheck
+				#export CC="/usr/local/gcc54/bin/gcc54"
+				#export CXX="/usr/local/gcc54/bin/g++54" 
+				./configure --prefix=/opt --sysconfdir=/etc # --disable-zlib-vcheck
 				make
 			fi
 			]]>
