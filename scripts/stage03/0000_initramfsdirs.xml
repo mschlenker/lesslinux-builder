@@ -4368,7 +4368,7 @@ mount_and_check() {
 			losetup -d $nextloop
 			if [ "$pxend" -gt 0 ] ; then
 				anotherloop=` losetup -f `
-				loopoffset=` $pend + $pxend + 1 `
+				loopoffset=` expr $pend + $pxend + 1 `
 				losetup $anotherloop -r  -o $loopoffset $device
 				mount -t $filesystem -o ro $anotherloop /lesslinux/cdrom 2>/dev/null
 				thatversion=` cat /lesslinux/cdrom/${contdir}/version.txt ` 2>/dev/null
