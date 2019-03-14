@@ -4355,6 +4355,40 @@ mount_and_check() {
 		fi
 	fi
 	[ -f /var/run/lesslinux/cdfound ] || umount /lesslinux/cdrom 2>/dev/null
+	if [ -f /var/run/lesslinux/cdfound ] ; then
+		printf "$bold...> Found system $normal\n"
+	elif [ "$filesystem" = iso9660 ] ; then
+		# Check the partitioning for free space beyond the partition
+		pend=` parted -s -m "$device" unit b print | tail -n1 | awk -F ':' '{print $3}' | sed 's/B//g' ` 
+		if [ "$pend" -gt 0 ] ; then
+			nextloop=` losetup -f `
+			losetup $nextloop -r -o ` $pend + 1 ` $device
+			# Now check whether this is partitioned again
+			pxend=` parted -s -m "$nextloop" unit b print | tail -n1 | awk -F ':' '{print $3}' | sed 's/B//g' ` 
+			losetup -d $nextloop
+			if [ "$pxend" -gt 0 ] ; then
+				anotherloop=` losetup -f `
+				loopoffset=` $pend + $pxend + 1 `
+				losetup $anotherloop -r  -o $loopoffset $device
+				mount -t $filesystem -o ro $anotherloop /lesslinux/cdrom 2>/dev/null
+				thatversion=` cat /lesslinux/cdrom/${contdir}/version.txt ` 2>/dev/null
+				umount /lesslinux/cdrom 
+				losetup -d $anotherloop
+				if [ "$thisversion" = "$thatversion" ] ; then
+					touch /var/run/lesslinux/cdfound
+					echo "bootmode=plain" >> /var/run/lesslinux/startup_vars
+					stickloop=` losetup -f ` 
+					losetup ${stickloop} -r  -o $loopoffset ${device}
+					mount -o ro ${stickloop} /lesslinux/cdrom 
+					echo "isohybrid=true" >> /var/run/lesslinux/startup_vars
+					echo -n "$stickloop" > /var/run/lesslinux/install_source
+					echo "bootdevice=$stickloop" >> /var/run/lesslinux/startup_vars
+					echo "outerdevice=$device" >> /var/run/lesslinux/startup_vars
+					echo "loopoffset=$loopoffset" >> /var/run/lesslinux/startup_vars
+				fi
+			fi
+		fi
+	fi
 }
 
 case $1 in
