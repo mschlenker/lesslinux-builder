@@ -1,0 +1,38 @@
+<llpackages>
+    <package name='libksba' version='1.3.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a98385734a0c3f5b713198e8d6e6e4aeb0b76fde'>
+                    libksba-1.3.5.tar.bz2
+                </pkg>
+                <mirror>
+                    https://www.gnupg.org/ftp/gcrypt/libksba/
+                </mirror>
+            </file>
+            <manualcheck date='20190315' interval='60' mirror='https://www.gnupg.org/ftp/gcrypt/libksba/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
