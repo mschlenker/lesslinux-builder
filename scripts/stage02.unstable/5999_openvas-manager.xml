@@ -6,8 +6,8 @@
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="bb8b1652e2c6539a80fe861584a844f1ae38c4ff">v7.0.3.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/2359/</mirror>
+				<pkg sha1="bb8b1652e2c6539a80fe861584a844f1ae38c4ff">openvas-manager-7.0.3.tar.gz</pkg>
+				<mirror>https://github.com/greenbone/gvmd/releases/download/v7.0.3/</mirror>
 			</file>
 			<manualcheck date="20160923" interval="90" page="http://www.openvas.org/install-source.html" />
 			<check>
@@ -45,13 +45,13 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/v${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd gvmd-${PKGVERSION}
+			cd gvm-${PKGVERSION}
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -68,13 +68,13 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd gvmd-${PKGVERSION}
+			cd gvm-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf gvmd-${PKGVERSION}
+			rm -rf gvm-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
