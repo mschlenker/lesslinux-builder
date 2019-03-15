@@ -63,53 +63,6 @@
 			tar xf ${SRCDIR}/lesslinux-openvas-20170831-00.tar.bz2
 			]]>
 		</unpack>
-		<!-- <patch>
-			<![CDATA[ 
-
-cd ${PKGNAME}-${PKGVERSION} 
-cat << EOPATCH | patch -p1
-
-diff -ru openvas-libraries-8.0.8/nasl/iconv.c openvas-libraries-8.0.8.patched/nasl/iconv.c
---- openvas-libraries-8.0.8/nasl/iconv.c        2015-08-03 10:14:30.000000000 +0000
-+++ openvas-libraries-8.0.8.patched/nasl/iconv.c        2016-09-21 11:59:33.849240986 +0000
-@@ -33,11 +33,11 @@
- 
- static size_t iconv_copy_ntlmssp(void *,const char **, size_t *, char **, size_t *);
- 
--static const struct charset_functions_ntlmssp builtin_functions_ntlmssp[] = {
--        /* windows is closest to UTF-16 */
--        {"UCS-2LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
--        {"UTF-16LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
--};
-+// static const struct charset_functions_ntlmssp builtin_functions_ntlmssp[] = {
-+//        /* windows is closest to UTF-16 */
-+//        {"UCS-2LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
-+//        {"UTF-16LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
-+// };
- 
- static struct charset_functions_ntlmssp *charsets = NULL;
- 
-
-diff -ru openvas-libraries-8.0.8/nasl/nasl_builtin_synscan.c openvas-libraries-8.0.8.patched/nasl/nasl_builtin_synscan.c
---- openvas-libraries-8.0.8/nasl/nasl_builtin_synscan.c 2015-08-03 10:14:31.000000000 +0000
-+++ openvas-libraries-8.0.8.patched/nasl/nasl_builtin_synscan.c 2016-09-21 12:00:19.761243175 +0000
-@@ -800,8 +800,9 @@
-   inaddr.s_addr = dst6->s6_addr32[3];
-   dst = &inaddr;
- 
--  if (islocalhost (dst))
-+  if (islocalhost (dst)) {
-     return NULL;
-+  }
- 
-     rtt = htonl (1 << 28);
- 
-
-EOPATCH
-
-
-			]]>
-		</patch> -->
 		<build>
 			<![CDATA[
 			cd gvm-libs-${PKGVERSION}
