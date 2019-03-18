@@ -1,6 +1,9 @@
 #!/bin/bash
+ruby /usr/share/lesslinux/drivetools/waitservice.rb openvas 
 
-openvas-nvt-sync || openvas-nvt-sync
+greenbone-nvt-sync || greenbone-nvt-sync
+greenbone-scapdata-sync || greenbone-scapdata-sync
+greenbone-certdata-sync || greenbone-certdata-sync
 
 # Write config
 mkdir -p /etc/openvas
@@ -11,23 +14,18 @@ unixsocket /tmp/redis.sock
 unixsocketperm 700
 EOF
 
+redis-server /etc/openvas/redis.conf
+
+
 # Start the scan daemon
-openvassd -p 9391 -a 127.0.0.1
+openvassd 
 
 # Rebuild the database
 # test -f /usr/var/lib/openvas/mgr/tasks.db || openvasmd --rebuild
 echo 'Rebuilding the database - this might take some time!'
-openvasmd --rebuild
-
-# test -f /usr/var/lib/openvas/scap-data/scap.db || openvas-scapdata-sync 
-openvas-scapdata-sync || openvas-scapdata-sync
-
-# test -f /usr/var/lib/openvas/cert-data/cert.db || openvas-certdata-sync
-openvas-certdata-sync || openvas-certdata-sync
-
-openvasmd -p 9390 -a 127.0.0.1
+openvasmd --rebuild --progress
 openvasmd --create-user=lesslinux --role=Admin
 openvasmd --user=lesslinux --new-password=lesslinux
-gsad --http-only --listen=127.0.0.1 -p 9392 
+openvasmd 
 
-# nohup su surfer -c 'firefox http://127.0.0.1:9392/' &
+gsad --http-only --listen=127.0.0.1 -p 9392 start

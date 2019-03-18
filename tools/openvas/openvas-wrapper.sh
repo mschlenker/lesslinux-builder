@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# (c) 2014 Mattias Schlenker for LessLinux
+# (c) 2014-2019 Mattias Schlenker for LessLinux
 
 ask_for_quit() {
 	task="$1"
@@ -39,9 +39,17 @@ fi
 
 ruby /usr/share/lesslinux/drivetools/waitservice.rb openvas 
 
-openvas-nvt-sync || openvas-nvt-sync
+greenbone-nvt-sync || greenbone-nvt-sync
 retval=$?
 [ "$retval" -gt 0 ] && ask_for_quit "Syncing NVT"
+
+greenbone-scapdata-sync || greenbone-scapdata-sync
+retval=$?
+[ "$retval" -gt 0 ] && ask_for_quit "Syncing Scapdata"
+
+greenbone-certdata-sync || greenbone-certdata-sync
+retval=$?
+[ "$retval" -gt 0 ] && ask_for_quit "Syncing Certdata"
 
 # Write config
 mkdir -p /etc/openvas
@@ -56,27 +64,18 @@ redis-server /etc/openvas/redis.conf
 
 
 # Start the scan daemon
-openvassd -p 9391 -a 127.0.0.1
+openvassd 
 
 # Rebuild the database
 # test -f /usr/var/lib/openvas/mgr/tasks.db || openvasmd --rebuild
 echo 'Rebuilding the database - this might take some time!'
-openvasmd --rebuild
+openvasmd --rebuild --progress
 
-# test -f /usr/var/lib/openvas/scap-data/scap.db || openvas-scapdata-sync 
-openvas-scapdata-sync || openvas-scapdata-sync
-retval=$?
-[ "$retval" -gt 0 ] && ask_for_quit "Syncing Scapdata"
-
-# test -f /usr/var/lib/openvas/cert-data/cert.db || openvas-certdata-sync
-openvas-certdata-sync || openvas-certdata-sync
-retval=$?
-[ "$retval" -gt 0 ] && ask_for_quit "Syncing CERT data"
-
-openvasmd -p 9390 -a 127.0.0.1
 openvasmd --create-user=lesslinux --role=Admin
 openvasmd --user=lesslinux --new-password=lesslinux
-gsad --http-only --listen=127.0.0.1 -p 9392 
+openvasmd 
+
+gsad --http-only --listen=127.0.0.1  -p 9392 start
 
 echo 'Starting Firefox - login with username "lesslinux" and password "lesslinux"!'
 zenity --info --text 'Starting Firefox - login with username "lesslinux" and password "lesslinux"!'
