@@ -1,0 +1,129 @@
+<llpackages>
+	<package 
+		name="FileZilla"
+		version="3.41.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="76d57320e8d9ddfb11fe635123b2b92380686b56">FileZilla_3.41.2_src.tar.bz2</pkg>
+				<mirror>http://heanet.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.41.2/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="http://filezilla-project.org/" />
+		</sources>
+		<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>libidn</dep>
+                        <dep>linux_headers</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>sqlite</dep>
+                        <dep>wxWidgets3</dep>
+                        <dep>xdg-utils</dep>
+			<dep>libfilezilla</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}_src.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			export PATH=/usr/compat.new/bin:$PATH 
+			cd filezilla-${PKGVERSION}
+				if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
+					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin \
+					CC="distcc gcc" CXX="distcc g++"
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
+					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin 
+				make -j3 
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd filezilla-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/opt/bin
+			paxctl -m ${TGTDIR}/opt/bin/filezilla
+			
+echo -n '' > ${TGTDIR}/usr/bin/filezilla
+cat >> ${TGTDIR}/usr/bin/filezilla << FZRUN
+#!/bin/sh
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+[ "\$security" '!=' "smack" ] && exec /opt/bin/filezilla \$@
+exec sudo /opt/bin/filezilla_smack \$@
+
+FZRUN
+			
+echo -n '' > ${TGTDIR}/opt/bin/filezilla_smack
+cat >> ${TGTDIR}/opt/bin/filezilla_smack << FZSMACK
+#!/static/bin/ash
+
+/static/sbin/newsmack internet /static/bin/su surfer -c "/opt/bin/filezilla \$@"
+
+FZSMACK
+
+chmod 0755 ${TGTDIR}/usr/bin/filezilla
+chmod 0755 ${TGTDIR}/opt/bin/filezilla_smack
+
+# Icon erstellen
+#			
+#cat >> /usr/share/applications/filezilla.desktop << FZICON
+#
+#[Desktop Entry]
+#Version=1.0
+#Encoding=UTF-8
+#Type=Application
+#Name=FileZilla
+#Comment=
+#Categories=CB-Other;
+#Exec=/opt/bin/filezilla
+#Icon=gnome-fs-network
+#Terminal=false
+#StartupNotify=true
+#
+#
+#FZICON
+
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf filezilla-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
