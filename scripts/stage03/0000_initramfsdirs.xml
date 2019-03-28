@@ -4364,7 +4364,8 @@ mount_and_check() {
 			nextloop=` losetup -f `
 			losetup $nextloop -r -o ` expr $pend + 1 ` $device
 			# Now check whether this is partitioned again
-			pxend=` parted -s -m "$nextloop" unit b print | tail -n1 | awk -F ':' '{print $3}' | sed 's/B//g' ` 
+			# pxend=` parted -s -m "$nextloop" unit b print | tail -n1 | awk -F ':' '{print $3}' | sed 's/B//g' ` 
+			pxend=` parted -s -m "$nextloop" unit b print | grep '^/dev' | tail -n1 | awk -F ':' '{print $2}' | sed 's/B//g' ` 
 			losetup -d $nextloop
 			if [ "$pxend" -gt 0 ] ; then
 				anotherloop=` losetup -f `
