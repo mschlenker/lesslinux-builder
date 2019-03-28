@@ -4361,15 +4361,23 @@ mount_and_check() {
 		# Check the partitioning for free space beyond the partition
 		pend=` parted -s -m "$device" unit b print | tail -n1 | awk -F ':' '{print $3}' | sed 's/B//g' ` 
 		if [ "$pend" -gt 0 ] ; then
-			nextloop=` losetup -f `
-			losetup $nextloop -r -o ` expr $pend + 1 ` $device
+			# Check if there is enough space behind the partition table for another ISO image
+			devsize=`     parted -m -s ${device} unit b print | grep msdos | awk -F ':|B:' '{print $2}' ` 
+			partend=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $3}'  `
+			isosize=`     parted -m -s ${device} unit b print | grep '^1'  | awk -F ':|B:' '{print $2}'  `
+			isotwostart=` expr $devsize - $isosize - 8388608 ` 
+			# Determine the end of our new loop device by matching an 8M chunk towards the end of the device: 
+			loopendblock=` expr '(' $devsize - $isosize ')' / 8388608 - 1 ` 
+			# Create a loop device with correct parameters 
+			nextloop=` losetup -f ` 
+			losetup -o ` expr $partend + 1 ` --sizelimit ` expr $loopendblock '*' 8388608 - $partend - 1 ` $nextloop $device
 			# Now check whether this is partitioned again
 			# pxend=` parted -s -m "$nextloop" unit b print | tail -n1 | awk -F ':' '{print $3}' | sed 's/B//g' ` 
 			pxend=` parted -s -m "$nextloop" unit b print | grep '^/dev' | tail -n1 | awk -F ':' '{print $2}' | sed 's/B//g' ` 
 			losetup -d $nextloop
 			if [ "$pxend" -gt 0 ] ; then
 				anotherloop=` losetup -f `
-				loopoffset=` expr $pend + $pxend + 1 `
+				loopoffset=` expr $pend + 1 + $pxend `
 				losetup $anotherloop -r  -o $loopoffset $device
 				mount -t $filesystem -o ro $anotherloop /lesslinux/cdrom 2>/dev/null
 				thatversion=` cat /lesslinux/cdrom/${contdir}/version.txt ` 2>/dev/null
