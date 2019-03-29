@@ -1,17 +1,17 @@
 <llpackages>
 	<package 
 		name="wxWidgets3"
-		version="3.0.3"
+		version="3.0.4"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                         
-				<pkg sha1="3525306c926e208d9b0272aaa9c091b8c7264e5b">wxWidgets-3.0.3.tar.bz2</pkg>
-				<mirror>http://downloads.sourceforge.net/project/wxwindows/3.0.3/</mirror>
+				<pkg sha1="246561a73ec5b9a5a7aaaaed46b64515dc9039ab">wxWidgets-3.0.4.tar.bz2</pkg>
+				<mirror>https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4</mirror>
 			</file>
 			<file>                                                                               
-				<pkg sha1="f21505524a16a4bcd2b4f24032add5e5b441f260">scintilla375.tgz</pkg>
-				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/3.7.5/</mirror>
+				<pkg sha1="0ca5766d41247934ada62ec6e84f78dba7e39220">scintilla411.tgz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/scintilla/scintilla/4.1.1/</mirror>
 			</file>
 		</sources>
 		<builddeps>
@@ -56,16 +56,16 @@
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/scintilla375.tgz
+			tar xzf ${SRCDIR}/scintilla411.tgz
 			tar xjf ${SRCDIR}/wxWidgets-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[ 
 			cd wxWidgets-${PKGVERSION}
 			sed -i 's%#include <stdlib.h>%#include <math.h>%g' src/stc/scintilla/src/Editor.cxx
 			]]>
-		</patch>
+		</patch> -->
 		<build>
 			<![CDATA[
 			jobcount=2
