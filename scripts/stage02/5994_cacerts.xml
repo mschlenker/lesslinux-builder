@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="cacerts"
-		version="52.4.1esr"
+		version="60.6.1esr"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -11,8 +11,8 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                         
-				<pkg sha1="c9ab3441780518ed9a57206d5f88445e38adb4f5">firefox-52.4.1esr.source.tar.xz</pkg>
-				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/52.4.1esr/source/</mirror>
+				<pkg sha1="e8195241b33efb4fbd3dcc01b744ec815f04e2c8">firefox-60.6.1esr.source.tar.xz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/60.6.1esr/source/</mirror>
 			</file>
 			<manualcheck date="20160922" interval="90" page="http://distfiles.lesslinux.org/" />
 		</sources>
@@ -39,12 +39,12 @@
 		<unpack>
 			<![CDATA[ 
 			tar xjf ${SRCDIR}/lesslinux-${PKGNAME}-20160922-00.tar.bz2
-			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
+			tar xf ${SRCDIR}/firefox-${PKGVERSION}.source.tar.xz
 			]]>
 		</unpack>
 		<build>
 			<![CDATA[
-			cp -v thunderbird-${PKGVERSION}/mozilla/security/nss/lib/ckfw/builtins/certdata.txt ${PKGNAME}/ 
+			cp -v firefox-${PKGVERSION%esr}/mozilla/security/nss/lib/ckfw/builtins/certdata.txt ${PKGNAME}/ 
 			cd ${PKGNAME}
 			bash make-ca.sh
 			bash remove-expired-certs.sh certs
@@ -65,7 +65,7 @@
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}
-			rm -rf thunderbird-${PKGVERSION}
+			rm -rf firefox-${PKGVERSION%esr}
 			]]>
 		</clean>
 	</package>
