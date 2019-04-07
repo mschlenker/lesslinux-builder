@@ -130,10 +130,11 @@ fi
 # Create update folder
 mkdir -m 0755 /tmp/lesslinux.update
 
-# Download des Update-Scriptes, erfordert setzen de
+# Download des Update-Scriptes, erfordert setzen des SMACK flags
+echo internet > /proc/self/attr/current
+
 for fname in updater.tbz updater.tbz.asc ; do
-    echo netmgr > /proc/self/attr/current
-    # Since we validate afterwards, do not check certificates
+    # Since we validate afterwards, do not check certificates for now
     $WGET -T 3 --no-check-certificate -U LessLinuxUpdater -O /tmp/lesslinux.update/${fname} "${base_url}/${this_version}/${fname}"
     retval=$?
     echo _ > /proc/self/attr/current
