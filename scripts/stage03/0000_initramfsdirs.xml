@@ -130,7 +130,7 @@ fi
 # Create update folder
 mkdir -m 0755 /tmp/lesslinux.update
 
-# Download des Update-Scriptes, erfordert setzen des SMACK flags
+# Download the update script - needs setting the SMACK context
 echo internet > /proc/self/attr/current
 
 for fname in updater.tbz updater.tbz.asc ; do
