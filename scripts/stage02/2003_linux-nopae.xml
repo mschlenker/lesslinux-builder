@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux-nopae"
-		version="4.9.174"
+		version="4.9.180"
 		class="kernel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="28d6ab2210bbaf9c4e48992d9fcbee052549dd10">linux-4.9-config-nopae</pkg> 
+				<pkg sha1="f338e376ec996bf940bdeec5a582d0ac03004127">linux-4.9-config-32pae</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -19,7 +19,7 @@
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="06d11f1d898a6389d9e902cf4bbc46bb317013d9">patch-4.9.174.xz</pkg>
+				<pkg sha1="4026f0103d3a399461c767c95715d78eafdcde2c">patch-4.9.180.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
 			</file>
 			<manualcheck date="20180409" interval="60" page="http://www.kernel.org/" />
