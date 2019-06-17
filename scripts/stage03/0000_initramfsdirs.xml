@@ -4236,7 +4236,7 @@ iso_hack_convert() {
 	mv /lesslinux/boot/autorun.usb /lesslinux/boot/autorun.inf
 	mv /lesslinux/boot/efi.sha /lesslinux/boot/EFI/efi.sha
 	if [ -f /etc/lesslinux/branding/extrafiles.txt ] ; then
-		for fname in ` cat /etc/lesslinux/branding/extrafiles.txt `] ; do
+		for fname in ` cat /etc/lesslinux/branding/extrafiles.txt `   ; do
 			tar -C /lesslinux/cdrom -cf - $fname | tar -C  /lesslinux/boot -xvf - 
 		done
 	fi
