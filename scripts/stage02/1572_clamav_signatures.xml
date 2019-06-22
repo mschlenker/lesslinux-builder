@@ -1,13 +1,17 @@
 <llpackages>
 	<package 
 		name="clamav_signatures"
-		version="20190308"
+		version="20190622"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                        
-				<pkg sha1="564fdd687f9c1911cf614661c0755f002128faff">daily-20190308.cvd</pkg>
+				<pkg sha1="8cae94de3892a14c0c54e05b036aaa0ab0712918">daily-20190622.cvd</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                                                                        
+				<pkg sha1="e357e372442fd3f69dd459472b053e442409d6d0">bytecode-20190622.cvd</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                     
@@ -41,8 +45,9 @@
 			
 			mkdir -p ${TGTDIR}/opt/share/clamav
 			chown -R 60002:60002 ${TGTDIR}/opt/share/clamav
-			install -m 0644 -o clamav -g clamav ${SRCDIR}/main-${PKGVERSION}.cvd ${TGTDIR}/opt/share/clamav/main.cvd
+			install -m 0644 -o clamav -g clamav ${SRCDIR}/main-20190308.cvd ${TGTDIR}/opt/share/clamav/main.cvd
 			install -m 0644 -o clamav -g clamav ${SRCDIR}/daily-${PKGVERSION}.cvd ${TGTDIR}/opt/share/clamav/daily.cvd
+			install -m 0644 -o clamav -g clamav ${SRCDIR}/bytecode-${PKGVERSION}.cvd ${TGTDIR}/opt/share/clamav/bytecode.cvd
 			touch ${TGTDIR}/opt/share/clamav/.keep_this_directory
 			chown 60002:60002 ${TGTDIR}/opt/share/clamav/.keep_this_directory
 			]]>
