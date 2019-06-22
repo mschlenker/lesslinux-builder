@@ -573,6 +573,25 @@ class MfsSinglePartition
 		return false 
 	end
 	
+	def bitlocker_storage
+		return nil, nil, nil if bitlocker? == false
+		ident = nil
+		prot = "pass"
+		desc = nil
+		IO.popen("bdeinfo /dev/#{@device}") { |f|
+			while f.gets
+				line = $_.strip 
+				prot = "recovery" if line =~ /^Type\s+\:\sTPM$/i
+				if line =~ /^Volume identifier\s+\:\s(.*?)$/i
+					ident = $1
+				elsif line =~  /^Description\s+\:\s(.*?)$/i
+					desc = $1
+				end
+			end
+		}
+		return ident, prot, desc 
+	end
+	
 	def zero_free(pgbar=nil)
 		return false if mounted
 		rndstr = Random.rand(100_000_000).to_s
