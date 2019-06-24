@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="VeraCrypt"
-		version="1.19"
+		version="1.23"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="8c2bcaa39fa601c70cd80c355f08403e9954c377">VeraCrypt_1.19.tar.gz</pkg>
+				<pkg sha1="483e5f6312eff9bf9ef69115f9ac7069f25243e5">VeraCrypt_1.23.tar.gz</pkg>
 				<mirror>https://github.com/veracrypt/VeraCrypt/archive/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="90" page="https://github.com/veracrypt/VeraCrypt/releases" />
@@ -67,8 +67,9 @@
 				export CXX="distcc g++" 
 			fi
 			export PATH=/usr/compat.new/bin:$PATH 
-			export LD_LIBRARY_PATH=/usr/compat.new/bin:$LD_LIBRARY_PATH 
+			export LD_LIBRARY_PATH=/usr/compat.new/lib:$LD_LIBRARY_PATH 
 			make -j $jobcount || exit 0 
+			make package 
 			convert ./Setup/Linux/usr/share/pixmaps/veracrypt.xpm -resize '48x48!'  ./Setup/Linux/usr/share/pixmaps/veracrypt.png
 			sed -i 's%Categories=Encryption;Encryption Tools;Utility;%Categories=Utility;Encryption;Encryption Tools;%g'  ./Setup/Linux/usr/share/applications/veracrypt.desktop
 			echo '===> searching files'
@@ -81,9 +82,15 @@
 			cd ${PKGNAME}-${PKGNAME}_${PKGVERSION}/src
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share 
-			tar -C ./Setup/Linux/ -cvf - . | tar -C ${TGTDIR}/ -xf - 
+			case `uname -m ` in 
+				i?86)
+					tar -C ${TGTDIR}/ -xf Setup/Linux/veracrypt_${PKGVERSION}_i386.tar.gz
+				;;
+			esac
 			ln -sf veracrypt ${TGTDIR}/usr/bin/truecrypt 
-			rm veracrypt ${TGTDIR}/usr/bin/veracrypt-uninstall.sh
+			sed -i 's%Categories=Encryption;Encryption Tools;Utility;%Categories=Utility;Encryption;Encryption Tools;%g'  ${TGTDIR}/usr/share/applications/veracrypt.desktop
+			convert ${TGTDIR}/usr/share/pixmaps/veracrypt.xpm -resize '48x48!'  ${TGTDIR}/usr/share/pixmaps/veracrypt.png
+			rm ${TGTDIR}/usr/bin/veracrypt-uninstall.sh
 			]]>
 		</install>
 		<clean>
