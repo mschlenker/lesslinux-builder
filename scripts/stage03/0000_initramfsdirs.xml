@@ -4200,6 +4200,17 @@ iso_hack_convert() {
 			[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' "${cfgfile}"
 			[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    "${cfgfile}"
 		done
+		if [ -f /lesslinux/boot/boot/grub/grub.cfg ] ; then
+			if [ -f /lesslinux/boot/boot/grub/uninstall.cfg ] ; then
+				cat /lesslinux/boot/boot/grub/uninstall.cfg >> /lesslinux/boot/boot/grub/grub.cfg
+			fi
+			find /lesslinux/boot/boot/grub -type f -name '*.cfg' | while read cfgfile ; do
+				sed -i 's/uuid=all/uuid='"${newuuid}"'/g' "${cfgfile}"
+				[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=all/crypt='"${cryptuuid}"'/g'  "${cfgfile}"
+				[ "$hcblocks"   -gt 1 ] && sed -i 's/crypt=none/crypt='"${cryptuuid}"'/g' "${cfgfile}"
+				[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    "${cfgfile}"
+			done
+		fi
 		sync
 		umount /lesslinux/efiboot
 		losetup -d $efiloop
