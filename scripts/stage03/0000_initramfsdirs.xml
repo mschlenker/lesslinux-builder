@@ -306,6 +306,49 @@ sleep $guisleep
 		
 # The end	]]>
 		</scriptdata>
+				<scriptdata location="/static/bin/Xwrapper" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+		
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+
+## xorgscreen="default_screen"
+## xorgconf="/etc/X11/xorg.conf.xorg"
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+
+if [ -f /var/run/lesslinux/xorg_vars ] ; then
+    . /var/run/lesslinux/xorg_vars
+fi
+
+if [ -n "$xorgconf" ] && [ -f "$xorgconf" ] ; then
+    cp -f  "$xorgconf" /etc/X11/xorg.conf
+fi
+
+if [ -n "$xvfb" ] ; then
+    # xvfb=WIDTHxHEIGHTxDEPTH
+    exec /usr/bin/Xvfb :0 -retro -nolisten tcp -dpi "$dpi" -screen :0 "$xvfb"
+else
+    # Determine if we have to use a screen section or not - do not use a screen section when KMS is detected
+    if [ -c /dev/fb0 ] && cat /proc/cmdline /etc/lesslinux/cmdline /lesslinux/boot/cmdline | grep -qv ' vga=' ; then
+        exec /usr/bin/Xorg -nolisten tcp -br -dpi "$dpi"
+    elif [ -n "$xorgscreen" -a -f /etc/X11/xorg.conf ] ; then
+	exec /usr/bin/Xorg -nolisten tcp -screen "$xorgscreen" -br -dpi "$dpi"
+    else
+        exec /usr/bin/Xorg -nolisten tcp -br -dpi "$dpi"
+    fi
+    if [ '!' -f /home/surfer/.lesslinux/xsetroot_successful -a -f /etc/xinitrc.d/0000-xsetroot.sh ] ; then
+	if [ -c /dev/fb0 ] ; then
+	    exec /usr/bin/Xorg -config xorg.conf.fbdev -nolisten tcp -br -dpi "$dpi"
+	else
+	    exec /usr/bin/Xorg -config xorg.conf.vesa -nolisten tcp -br -dpi "$dpi"
+	fi
+    fi
+fi
+		
+# The end	]]>
+		</scriptdata>
 		<scriptdata location="/static/bin/show_placeholder" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash
 		
