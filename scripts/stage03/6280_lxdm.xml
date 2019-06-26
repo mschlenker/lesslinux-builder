@@ -1,11 +1,35 @@
 <llpackages>
 	<package name="lxdm" />
-	<scriptdata location="/etc/lxdm/lxdm.conf" mode="0755" group="0" owner="0">
+	<dirs>
+		<dir mode="0755">/etc/lxdm</dir>
+	</dirs>
+	<scripts>
+		<scriptdata location="/etc/lxdm/lxdm.conf" mode="0755" group="0" owner="0">
 		<![CDATA[
-		
+[base]
+autologin=surfer
+greeter=/usr/libexec/lxdm-greeter-gtk
+session=/static/bin/lesslinux-session
 
-	
+[server]
+arg=/static/bin/Xwrapper
+reset=1
+
+[display]
+gtk_theme=Clearlooks
+bottom_pane=1
+lang=1
+keyboard=0
+theme=Industrial
+
+[input]
+
+[userlist]
+disable=0
+white=
+black=
+
 		]]>
 		</scriptdata>
-
+	</scripts>
 </llpackages>
