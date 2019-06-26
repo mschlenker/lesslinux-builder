@@ -306,7 +306,7 @@ sleep $guisleep
 		
 # The end	]]>
 		</scriptdata>
-				<scriptdata location="/static/bin/Xwrapper" mode="0755" group="0" owner="0">
+		<scriptdata location="/static/bin/Xwrapper" mode="0755" group="0" owner="0">
 		<![CDATA[#!/static/bin/ash	
 		
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
@@ -346,6 +346,55 @@ else
 	fi
     fi
 fi
+		
+# The end	]]>
+		</scriptdata>
+		<scriptdata location="/static/bin/lesslinux-session" mode="0755" group="0" owner="0">
+		<![CDATA[#!/static/bin/ash	
+		
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
+
+## xorgscreen="default_screen"
+## xorgconf="/etc/X11/xorg.conf.xorg"
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+. /etc/rc.subr/colors
+		
+DBUS_LAUNCH=/usr/bin/dbus-launch
+## VESA_MODE=0x0117
+## driver="xvesa"
+## vesapref=""
+## dpi=75
+
+if [ -f /var/run/lesslinux/xorg_vars ] ; then
+    . /var/run/lesslinux/xorg_vars
+fi
+
+# Remove an old indicator
+rm /home/surfer/.lesslinux/xsetroot_successful
+ 
+# Find our xinitrc
+if [ -x /home/surfer/.xinitrc ] ; then
+    XINITRC="/home/surfer/.xinitrc"
+else
+    if [ -f "$xinitrc" ] && [ -n "$xinitrc" ] ; then
+        XINITRC="$xinitrc"
+    else
+	XINITRC="/etc/lesslinux/xinitrc"
+    fi
+fi
+
+# Determine if we have to use dbus-launch
+if which "$DBUS_LAUNCH" ; then
+    if ps waux | grep 'dbus-daemon --config' ; then
+        true
+    else
+        XINITRC="$DBUS_LAUNCH $XINITRC"
+    fi
+fi
+
+exec $XINITRC 
 		
 # The end	]]>
 		</scriptdata>

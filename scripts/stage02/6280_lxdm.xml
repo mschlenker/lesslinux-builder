@@ -59,6 +59,7 @@ make
         <install>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}
 make install
+mv -v /etc/lxdm/lxdm.conf /etc/lxdm/lxdm.conf.distrib 
 ]]>
         </install>
         <clean>
