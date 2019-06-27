@@ -16,7 +16,8 @@ surfer  ALL = NOPASSWD: /usr/bin/teamviewer.sh
 
 PATH=/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
 export PATH
-TVVERSION="v12.0.137452"
+# TVVERSION="v12.0.137452"
+TVVERSION="14.3.4730"
 
 . /etc/rc.defaults
 . /etc/rc.subr/extractbootparams
@@ -37,9 +38,9 @@ case $1 in
 	if [ -d /lesslinux/blob/teamviewer ] ; then
 		mount --bind  /lesslinux/blob/teamviewer /opt/teamviewer/teamviewer
 		mount -o loop /opt/teamviewer/teamviewer/tv_bin.sqs /opt/teamviewer/teamviewer/tv_bin
-	elif [ -f /lesslinux/blob/teamviewer_i386.tar.xz ] ; then
+	elif [ -f /lesslinux/blob/teamviewer_${TVVERSION}_i386.tar.xz ] ; then
 		mount -t tmpfs -o mode=0755,size=256M tmpfs /opt/teamviewer
-		tar -C /opt/teamviewer -xvf /lesslinux/blob/teamviewer_i386.tar.xz
+		tar -C /opt/teamviewer -xvf /lesslinux/blob/teamviewer_${TVVERSION}_i386.tar.xz
 		chown -R root:root /opt/teamviewer
 		( cd /opt/teamviewer/teamviewer ; mksquashfs tv_bin tv_bin.sqs )
 		rm -rf /opt/teamviewer/teamviewer/tv_bin
@@ -55,13 +56,17 @@ case $1 in
 		touch /lesslinux/blob/teamviewer/.${TVVERSION}
 	fi
 	touch /var/log/lesslinux/bootlog/teamviewer.done
+	if [ -x /opt/teamviewer/teamviewer/tv_bin/teamviewerd ] ; then
+		/opt/teamviewer/teamviewer/tv_bin/teamviewerd -d 
+	fi
     ;;
     stop)
 	printf "$bold===> Removing TeamViewer $normal\n"
 	if [ -f /opt/teamviewer/teamviewer/teamviewer ] ; then
-		killall TeamViewer.exe
-		killall teamviewerd
-		killall -9 TeamViewer.exe
+		# killall TeamViewer.exe
+		killall -15 teamviewerd
+		sleep 5
+		# killall -9 TeamViewer.exe
 		killall -9 teamviewerd 
 	fi
 	umount /opt/teamviewer/teamviewer/logfiles
