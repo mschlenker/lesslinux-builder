@@ -6,6 +6,16 @@
 
 PATH=:/usr/bin:/usr/sbin:/bin:/sbin:/static/bin:/static/sbin
 export PATH
+
+if [ -x /opt/teamviewer/teamviewer/tv_bin/TeamViewer ] ; then
+	exec /opt/teamviewer/teamviewer/tv_bin/TeamViewer
+else
+	zenity --warning --text 'TeamViewer not found, please install first!'
+	exit 1
+fi
+
+# FIXME!
+
 TVHOME=/opt/teamviewer/teamviewer
 
 . /etc/rc.defaults
