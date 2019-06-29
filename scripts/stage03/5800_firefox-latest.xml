@@ -61,23 +61,22 @@ case $1 in
 		chmod 0440 ${f} 
 	done
 	[ "$security" '!=' "smack" ] || install -m 0755 /usr/bin/dbus-launch /static/bin/
-	mount -t tmpfs -o mode=0755,size=24m,nodev,nosuid tmpfs /opt/firefox-${ffversion}/plugins
+	if mountpoint -q /lesslinux/blobpart ] ; then
+		if [ -d /lesslinux/blobpart/firefox ] ; then
+			printf "===> Found firefox on blob part...\n"
+		else
+			rsync -avHP /opt/firefox-${ffversion}/ /lesslinux/blobpart/firefox/
+			chown -R surfer:surfer /lesslinux/blobpart/firefox/
+		fi
+		mount --bind /lesslinux/blobpart/firefox/ /opt/firefox-${ffversion}/
+	end
 	mount --bind /usr/bin/firefox-${ffversion} /usr/bin/firefox
-	if [ "$skipflash" -gt 0 ] ; then
-	    printf "$bold---> Skipping Flash Player $normal\n"
-	elif [ -f /lesslinux/blob/libflashplayer.so ] ; then
-	    ln -sf /lesslinux/blob/libflashplayer.so /opt/firefox-${ffversion}/plugins/
-	elif [ ` ls /lesslinux/blob/install_flash_player_*.tar.gz 2> /dev/null | wc -l ` -gt 0 ] ; then
-	    tar -C  /opt/firefox-${ffversion}/plugins -xvf \
-		` ls /lesslinux/blob/install_flash_player_*.tar.gz | tail -n1 ` 
-	elif [ -f /usr/lib/browserplugins/libgnashplugin.so ] ; then
-	   ln -sf /usr/lib/browserplugins/libgnashplugin.so /opt/firefox-${ffversion}/plugins/
-	fi
     ;;
     stop)
 	printf "$bold===> Unmounting Firefox overlay $normal\n"
 	umount /opt/firefox-${ffversion}/lesslinux > /dev/null 2>&1
 	umount /opt/firefox-${ffversion}/plugins > /dev/null 2>&1
+	umount /opt/firefox-${ffversion}/
 	umount /etc/lesslinux/firefox > /dev/null 2>&1
 	umount /usr/bin/firefox > /dev/null 2>&1
     ;;
