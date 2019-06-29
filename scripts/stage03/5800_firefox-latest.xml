@@ -61,7 +61,7 @@ case $1 in
 		chmod 0440 ${f} 
 	done
 	[ "$security" '!=' "smack" ] || install -m 0755 /usr/bin/dbus-launch /static/bin/
-	if mountpoint -q /lesslinux/blobpart ] ; then
+	if mountpoint -q /lesslinux/blobpart ; then
 		if [ -d /lesslinux/blobpart/firefox ] ; then
 			printf "===> Found firefox on blob part...\n"
 		else
@@ -69,7 +69,7 @@ case $1 in
 			chown -R surfer:surfer /lesslinux/blobpart/firefox/
 		fi
 		mount --bind /lesslinux/blobpart/firefox/ /opt/firefox-${ffversion}/
-	end
+	fi
 	mount --bind /usr/bin/firefox-${ffversion} /usr/bin/firefox
     ;;
     stop)
