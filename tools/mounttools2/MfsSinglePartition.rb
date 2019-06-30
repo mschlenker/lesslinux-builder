@@ -582,7 +582,7 @@ class MfsSinglePartition
 			while f.gets
 				line = $_.strip 
 				prot = "recovery" if line =~ /^Type\s+\:\sTPM$/i
-				if line =~ /^Volume identifier\s+\:\s(.*?)$/i
+				if line =~ /^Identifier\s+\:\s(.*?)$/i
 					ident = $1
 				elsif line =~  /^Description\s+\:\s(.*?)$/i
 					desc = $1
