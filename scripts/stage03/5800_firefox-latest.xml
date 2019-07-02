@@ -60,15 +60,18 @@ case $1 in
 		sed -i 's/FIREFOXVERSION/'"$ffversion"'/g' ${f} 
 		chmod 0440 ${f} 
 	done
-	[ "$security" '!=' "smack" ] || install -m 0755 /usr/bin/dbus-launch /static/bin/
-	if mountpoint -q /lesslinux/blobpart ; then
-		if [ -d /lesslinux/blobpart/firefox ] ; then
-			printf "===> Found firefox on blob part...\n"
-		else
-			rsync -avHP /opt/firefox-${ffversion}/ /lesslinux/blobpart/firefox/
-			chown -R surfer:surfer /lesslinux/blobpart/firefox/
+	if [ "$security" '=' "smack" ] ; then
+		install -m 0755 /usr/bin/dbus-launch /static/bin/
+	else
+		if mountpoint -q /lesslinux/blobpart ; then
+			if [ -d /lesslinux/blobpart/firefox ] ; then
+				printf "===> Found firefox on blob part...\n"
+			else
+				rsync -avHP /opt/firefox-${ffversion}/ /lesslinux/blobpart/firefox/
+				chown -R surfer:surfer /lesslinux/blobpart/firefox/
+			fi
+			mount --bind /lesslinux/blobpart/firefox/ /opt/firefox-${ffversion}/
 		fi
-		mount --bind /lesslinux/blobpart/firefox/ /opt/firefox-${ffversion}/
 	fi
 	mount --bind /usr/bin/firefox-${ffversion} /usr/bin/firefox
     ;;
