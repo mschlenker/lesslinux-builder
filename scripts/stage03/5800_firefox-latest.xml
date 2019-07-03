@@ -112,10 +112,10 @@ case $1 in
 		profdir=` cat ${HOME}/.mozilla/firefox/profiles.ini | grep '^Path' | head -n1 | awk -F '=' '{print $2}' ` 
 		mkdir -p ${HOME}/.mozilla/firefox/${profdir}/extensions/ 
 		ffversion=` cat /etc/lesslinux/pkglist.txt | grep '\sfirefox\s' | awk '{print $3}' ` 
-		for packlang in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el  ; do
-			ln -sf /opt/firefox-${ffversion}-extensions/firefox-${shortversion}.${packlang}.langpack.xpi \
-			${HOME}/.mozilla/firefox/${profdir}/extensions/langpack-${packlang}'@firefox.mozilla.org'.xpi
-		done
+		#for packlang in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el  ; do
+		#	ln -sf /opt/firefox-${ffversion}-extensions/firefox-${shortversion}.${packlang}.langpack.xpi \
+		#	${HOME}/.mozilla/firefox/${profdir}/extensions/langpack-${packlang}'@firefox.mozilla.org'.xpi
+		#done
 	fi
 	# DEFAULT_HOMEPAGE should be set in /etc/default/browser
 	# homepage can be set via cheatcode homepage=http://blog.lesslinux.org/ at boot time
