@@ -137,12 +137,12 @@ for fname in updater.tbz updater.tbz.asc ; do
     # Since we validate afterwards, do not check certificates for now
     $WGET -T 3 --no-check-certificate -U LessLinuxUpdater -O /tmp/lesslinux.update/${fname} "${base_url}/${this_version}/${fname}"
     retval=$?
-    echo _ > /proc/self/attr/current
     if [ "$retval" -gt 0 ] ; then
 	[ "$1" = "--quiet" ] || /usr/bin/zenity --error --text "$updater_download_failed"
 	exit 1
     fi
 done
+echo _ > /proc/self/attr/current
 
 # Prüfung der Signatur
 if /usr/bin/gpg --verify /tmp/lesslinux.update/updater.tbz.asc ; then
