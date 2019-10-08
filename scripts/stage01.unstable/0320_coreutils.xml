@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="coreutils"
-		version="8.30">
+		version="8.31">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                           
-				<pkg sha1="bd5d495c162730873a2774acd1c5091fbf0c55a4">coreutils-8.30.tar.xz</pkg>
+				<pkg sha1="c62b5034a5b65daca33c50a60df87ebc44159faf">coreutils-8.31.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
 			</file>
 			<manualcheck date="20170608" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
@@ -20,7 +20,7 @@
 		</sources>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xvf - 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<!-- <patch>

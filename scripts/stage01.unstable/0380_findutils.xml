@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="findutils"
-		version="4.6.0">
+		version="4.7.0">
 		<license>GPLv2</license>
 		<sources>
 			<file>               
-				<pkg sha1="f18e8aaee3f3d4173a1f598001003be8706d28b0">findutils-4.6.0.tar.gz</pkg>
+				<pkg sha1="bd2fae4add80334173e03272aeed5635d4a0fa03">findutils-4.7.0.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/findutils/</mirror>
 			</file>
 			<manualcheck date="20160630" interval="180" page="http://ftp.gnu.org/gnu/findutils" />
@@ -26,14 +26,6 @@
 			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[ 
-			cd ${PKGNAME}-${PKGVERSION}
-			sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' gl/lib/*.c
-			sed -i '/unistd/a #include <sys/sysmacros.h>' gl/lib/mountlist.c
-			echo "#define _IO_IN_BACKUP 0x100" >> gl/lib/stdio-impl.h
-			]]>
-		</patch>
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}

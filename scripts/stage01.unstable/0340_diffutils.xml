@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="diffutils"
-		version="3.6">
+		version="3.7">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                  
-				<pkg sha1="1287a553868b808ebfff3790a5cdc6fdf7cb2886">diffutils-3.6.tar.xz</pkg>
+				<pkg sha1="ad4e0a05ee2e7f5529db6cb84474f45e086e609b">diffutils-3.7.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/diffutils/</mirror>
 			</file>
 			<manualcheck date="20170607" interval="365" page="http://ftp.gnu.org/gnu/diffutils/" />
@@ -21,7 +21,7 @@
 		</sources>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<!-- <patch>
