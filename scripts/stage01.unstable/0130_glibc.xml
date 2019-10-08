@@ -1,12 +1,12 @@
 <llpackages>
 	<package 
 		name="glibc_pass1"
-		version="2.28"
+		version="2.30"
 		buildas="unpriv">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                
-				<pkg sha1="ccb5dc9e51a9884df8488f86982439d47b283b2a">glibc-2.28.tar.xz</pkg>
+				<pkg sha1="4df7e4dbb92b5ced729d972b32e3b8683db4a689">glibc-2.30.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
 			</file>
 			<!-- <file>                                                                                  
@@ -31,7 +31,7 @@
 		</sources>
 		<unpack>
 			<![CDATA[ 
-			unxz -c ${SRCDIR}/glibc-${PKGVERSION}.tar.xz | tar xvf -
+			tar xf ${SRCDIR}/glibc-${PKGVERSION}.tar.xz
 			mkdir glibc-build
 			]]>
 		</unpack>
@@ -73,8 +73,13 @@
 			--host=${LFS_TGT} \
 			--build=$(../glibc-${PKGVERSION}/scripts/config.guess) \
 			--enable-kernel=3.2 --with-headers=/tools/include \
-			libc_cv_forced_unwind=yes\
-			libc_cv_c_cleanup=yes && make -j $JOBS
+			
+			
+			
+			# libc_cv_forced_unwind=yes\
+			# libc_cv_c_cleanup=yes && make -j $JOBS
+			
+			make -j $JOBS
 			
 			]]>
 		</build>

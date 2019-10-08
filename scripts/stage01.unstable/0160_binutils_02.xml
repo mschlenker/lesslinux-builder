@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="binutils_pass2"
-		version="2.31.1">
+		version="2.32">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                  
-				<pkg sha1="1c5b0801b4857031d5626d917808cbd5c6401a4b">binutils-2.31.1.tar.bz2</pkg>
+				<pkg sha1="1c5b0801b4857031d5626d917808cbd5c6401a4b">binutils-2.32.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
 			</file>
 			<manualcheck date="20170606" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
@@ -21,7 +21,7 @@
 		</sources>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/binutils-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/binutils-${PKGVERSION}.tar.xz
 			mkdir binutils-build
 			]]>
 		</unpack>

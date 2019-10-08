@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
 		name="gcc_pass2"
-		version="8.2.0"
+		version="9.2.0"
 		buildas="unpriv">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="19926bdb6c4b58891015929853d41aeff019d400">gcc-8.2.0.tar.xz</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-8.2.0/</mirror>
+				<pkg sha1="306d27c3465fa36862c206738d06d65fff5c3645">gcc-9.2.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-9.2.0/</mirror>
 			</file>
 			<file>                                                                       
-				<pkg sha1="fcbbafb37c683898e585b926608d540ed037609e">mpfr-4.0.1.tar.bz2</pkg>
+				<pkg sha1="52c1f2a4c9a202f46cf3275a8d46b562aa584208">mpfr-4.0.2.tar.xz</pkg>
 				<mirror>http://www.mpfr.org/mpfr-current/</mirror>
 			</file>
 			<file>                                   
@@ -64,13 +64,13 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
-			tar xf ${SRCDIR}/mpfr-4.0.1.tar.bz2
+			tar xf ${SRCDIR}/mpfr-4.0.2.tar.xz
 			tar xf ${SRCDIR}/gmp-6.1.2.tar.lz
 			tar xf ${SRCDIR}/mpc-1.1.0.tar.gz
 
 			mv -v mpc-1.1.0 gcc-${PKGVERSION}/mpc
 			mv -v gmp-6.1.2 gcc-${PKGVERSION}/gmp
-			mv -v mpfr-4.0.1 gcc-${PKGVERSION}/mpfr
+			mv -v mpfr-4.0.2 gcc-${PKGVERSION}/mpfr
 			mkdir -v gcc-build
 			]]>
 		</unpack>
@@ -114,24 +114,24 @@ esac
 			
 			cd gcc-build
 			
-			ARMFLOAT=''
-			ARMFPU=''
+			#ARMFLOAT=''
+			#ARMFPU=''
 			JOBS=4
 
 			# Settings for Raspberry Pi
-			case ${LFS_TGT} in
-				*armv6l*)
-					ARMFLOAT="--with-float=hard"
-					ARMFPU="--with-fpu=vfp"
-					JOBS=1
-				;;
-			esac		
+			#case ${LFS_TGT} in
+			#	*armv6l*)
+			#		ARMFLOAT="--with-float=hard"
+			#		ARMFPU="--with-fpu=vfp"
+			#		JOBS=1
+			#	;;
+			#esac		
 			
 CC=$LFS_TGT-gcc                                      \
 CXX=$LFS_TGT-g++                                     \
 AR=$LFS_TGT-ar                                       \
 RANLIB=$LFS_TGT-ranlib                               \
-../gcc-${PKGVERSION}/configure ${ARMFLOAT} ${ARMFPU} \
+../gcc-${PKGVERSION}/configure \
     --prefix=/tools                                  \
     --with-local-prefix=/tools                       \
     --with-native-system-header-dir=/tools/include   \
@@ -142,11 +142,11 @@ RANLIB=$LFS_TGT-ranlib                               \
     --disable-libgomp
     
 # Fix build on RaspberryPi
-case 	$LFS_TGT in 
-	armv6l*)
-		sed -i 's/none-/armv6l-/' Makefile
-	;;
-esac			
+#case 	$LFS_TGT in 
+#	armv6l*)
+#		sed -i 's/none-/armv6l-/' Makefile
+#	;;
+#esac			
 make -j $JOBS
 			
 			]]>
@@ -157,8 +157,8 @@ make -j $JOBS
 			cd gcc-build
 			make install
 			ln -vs gcc /tools/bin/cc
-			ln -sv /tools/lib/libgcc_s.so{,.1} ${CHROOTDIR}/usr/lib
-			ln -sv /tools/lib/libstdc++.so{,.6} ${CHROOTDIR}/usr/lib
+			# ln -sv /tools/lib/libgcc_s.so{,.1} ${CHROOTDIR}/usr/lib
+			# ln -sv /tools/lib/libstdc++.so{,.6} ${CHROOTDIR}/usr/lib
 			echo 'main(){}' > dummy.c
 			cc dummy.c
 			readelf -l a.out | grep ': /tools'
