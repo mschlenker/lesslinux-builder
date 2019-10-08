@@ -45,6 +45,7 @@
 			# export CPPFLAGS="-P"1
 			cd ${PKGNAME}-${PKGVERSION}
 			make install
+			ln -s libncursesw.so /tools/lib/libncurses.so
 			]]>
 		</install>
 	</package>

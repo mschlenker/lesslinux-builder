@@ -1,0 +1,154 @@
+<llpackages>
+	<package 
+		name="glibc"
+		version="2.30"
+		class="lib">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                
+				<pkg sha1="4df7e4dbb92b5ced729d972b32e3b8683db4a689">glibc-2.30.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
+			</file>
+			<file>                                                                                  
+				<pkg sha1="d61e9ba795b64f1b1aa81023f3e45157cb426c93">glibc-2.30-fhs-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<!-- <file>                                                                                            
+				<pkg sha1="41a88bf6a20926a4a1e9792ae5eb2a9854dc44af">glibc-2.16-gcc_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20170607" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/glibc/">
+					<atext linktext="glibc-2.25.1." />
+					<atext linktext="glibc-2.25.2." />
+					<atext linktext="glibc-2.25.3." />
+					<atext linktext="glibc-2.25.4." />
+					<atext linktext="glibc-2.26." />
+					<atext linktext="glibc-2.27." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>linux_headers</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			mkdir glibc-build
+			unxz -c ${SRCDIR}/glibc-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+
+cd glibc-${PKGVERSION}
+patch -Np1 -i ${SRCDIR}/glibc-${PKGVERSION}-fhs-1.patch
+# Fix a problem introduced with the linux-5.2 kernel:
+# sed -i '/asm.socket.h/a# include <linux/sockios.h>' \
+#	sysdeps/unix/sysv/linux/bits/socket.h
+
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd glibc-build
+			case `uname -m` in
+			i?86) 
+				echo "CFLAGS += -march=i686 -mtune=generic -O2 -pipe" > configparms
+			;;
+			esac
+			#case $(uname -m) in
+			#	i?86)    
+			#		GCC_INCDIR=/usr/lib/gcc/$(uname -m)-pc-linux-gnu/7.1.0/include
+			#	;;
+			#	x86_64) 
+			#		GCC_INCDIR=/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include
+			#	;;
+			# esac
+			
+CC="gcc -ffile-prefix-map=/tools=/usr" \
+../configure --prefix=/usr                          \
+             --disable-werror                       \
+             --enable-kernel=3.2                    \
+             --enable-stack-protector=strong        \
+             --with-headers=/usr/include            \
+             libc_cv_slibdir=/lib
+	     
+			case `uname -m` in
+				i?86) 
+					make -j 4
+				;;
+				*)
+					make
+				;;
+			esac
+			make 
+
+			# echo '=== Build finished, testing...'
+			# make -k check 2>&1 | tee glibc-check-log
+			# echo '=== Testing finished, grepping...'
+			# grep Error glibc-check-log
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd glibc-build
+			make -k check 2>&1 | tee glibc-check-log
+			grep Error glibc-check-log
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd glibc-build
+			touch /etc/ld.so.conf
+			sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
+			make install
+			cp -v ../glibc-${PKGVERSION}/nscd/nscd.conf /etc/nscd.conf
+			mkdir -pv /var/cache/nscd
+			mkdir -pv /usr/include/rpc
+			mkdir -pv /usr/include/rpcsvc
+			# cp -v ../glibc-${PKGVERSION}/sunrpc/rpc/*.h /usr/include/rpc
+			# cp -v ../glibc-${PKGVERSION}/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
+			# cp -v ../glibc-${PKGVERSION}/nis/rpcsvc/*.h /usr/include/rpcsvc
+			mkdir -pv /usr/lib/locale
+			make localedata/install-locales
+			cat > /etc/nsswitch.conf << "EOF"
+# Begin /etc/nsswitch.conf
+
+passwd: files
+group: files
+shadow: files
+
+hosts: files dns
+networks: files
+
+protocols: files
+services: files
+ethers: files
+rpc: files
+
+# End /etc/nsswitch.conf
+EOF
+
+			cat > /etc/ld.so.conf << "EOF"
+# Begin /etc/ld.so.conf
+
+/usr/local/lib
+/opt/lib
+/usr/compat.new/lib
+/usr/compat.old/lib
+/usr/compat.old/qt4/lib
+
+# End /etc/ld.so.conf
+EOF
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>
