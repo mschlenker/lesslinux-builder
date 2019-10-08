@@ -1,0 +1,56 @@
+<llpackages>
+	<package 
+		name="acl"
+		version="2.2.53"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                            
+				<pkg sha1="6c9e46602adece1c2dae91ed065899d7f810bf01">acl-2.2.53.tar.gz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/acl/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://download.savannah.gnu.org/releases/acl/" />
+			<!-- <check>
+				<page html="http://ftp.gnu.org/pub/gnu/gperf/">
+					<atext linktext="gperf-3.0.5." />
+					<atext linktext="gperf-3.0.6." />
+					<atext linktext="gperf-3.0.7." />
+					<atext linktext="gperf-3.1." />
+					<atext linktext="gperf-3.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc --enable-static --enable-shared --libexecdir=/usr/lib && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			make install-lib
+			make install-dev 
+			]]>
+		</install>
+	</package>
+</llpackages>
