@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="openvas-libraries"
-		version="8.0.8"
+		version="9.0.3"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="d26267c5974f031237a20ccbd3fe64b6fbadf543">openvas-libraries-8.0.8.tar.gz</pkg>
-				<mirror>http://wald.intevation.org/frs/download.php/2351/</mirror>
+				<pkg sha1="81b90a27e2d3dc79486e3bb7c8f84fa88c27693f">openvas-libraries-9.0.3.tar.gz</pkg>
+				<mirror>https://github.com/greenbone/gvm-libs/releases/download/v9.0.3/</mirror>
 			</file>
 			<file>            
 				<pkg sha1="917913955040e5a312178f838c71ef74645dac6b">openvas-check-setup-20140930.sh</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>            
-				<pkg sha1="badfb4e4962155f6996065e87d02b222d9ccfecd">lesslinux-openvas-20170831-00.tar.bz2</pkg>
+				<pkg sha1="87c51689dad0debba0bf3741c745a16d09b5dd20">lesslinux-openvas-20190320-00.tar.bz2</pkg>
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<manualcheck date="20160412" interval="90" page="http://www.openvas.org/install-source.html" />
-			<check>
+			<!-- <check>
 				<page html="http://www.openvas.org/install-source.html">
 					<atext href="openvas-libraries-8.0.10." />
 					<atext href="openvas-libraries-8.0.11." />
@@ -27,7 +27,7 @@
 					<atext href="openvas-libraries-9.0." />
 					<atext href="openvas-libraries-9.1." />
 				</page>
-			</check>
+			</check> -->
 		</sources>
 		<builddeps>
                         <dep>bash</dep>
@@ -56,63 +56,17 @@
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
 			<dep>distcc</dep>
+			<dep>libksba</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			tar xf ${SRCDIR}/lesslinux-openvas-20170831-00.tar.bz2
+			tar xf ${SRCDIR}/lesslinux-openvas-20190320-00.tar.bz2
 			]]>
 		</unpack>
-		<patch>
-			<![CDATA[ 
-
-cd ${PKGNAME}-${PKGVERSION} 
-cat << EOPATCH | patch -p1
-
-diff -ru openvas-libraries-8.0.8/nasl/iconv.c openvas-libraries-8.0.8.patched/nasl/iconv.c
---- openvas-libraries-8.0.8/nasl/iconv.c        2015-08-03 10:14:30.000000000 +0000
-+++ openvas-libraries-8.0.8.patched/nasl/iconv.c        2016-09-21 11:59:33.849240986 +0000
-@@ -33,11 +33,11 @@
- 
- static size_t iconv_copy_ntlmssp(void *,const char **, size_t *, char **, size_t *);
- 
--static const struct charset_functions_ntlmssp builtin_functions_ntlmssp[] = {
--        /* windows is closest to UTF-16 */
--        {"UCS-2LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
--        {"UTF-16LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
--};
-+// static const struct charset_functions_ntlmssp builtin_functions_ntlmssp[] = {
-+//        /* windows is closest to UTF-16 */
-+//        {"UCS-2LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
-+//        {"UTF-16LE",  iconv_copy_ntlmssp, iconv_copy_ntlmssp},
-+// };
- 
- static struct charset_functions_ntlmssp *charsets = NULL;
- 
-
-diff -ru openvas-libraries-8.0.8/nasl/nasl_builtin_synscan.c openvas-libraries-8.0.8.patched/nasl/nasl_builtin_synscan.c
---- openvas-libraries-8.0.8/nasl/nasl_builtin_synscan.c 2015-08-03 10:14:31.000000000 +0000
-+++ openvas-libraries-8.0.8.patched/nasl/nasl_builtin_synscan.c 2016-09-21 12:00:19.761243175 +0000
-@@ -800,8 +800,9 @@
-   inaddr.s_addr = dst6->s6_addr32[3];
-   dst = &inaddr;
- 
--  if (islocalhost (dst))
-+  if (islocalhost (dst)) {
-     return NULL;
-+  }
- 
-     rtt = htonl (1 << 28);
- 
-
-EOPATCH
-
-
-			]]>
-		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd gvm-libs-${PKGVERSION}
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -128,7 +82,7 @@ EOPATCH
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd gvm-libs-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			mkdir -p ${TGTDIR}/usr/bin
 			mkdir -p ${TGTDIR}/usr/share/applications
@@ -145,7 +99,7 @@ EOPATCH
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf gvm-libs-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

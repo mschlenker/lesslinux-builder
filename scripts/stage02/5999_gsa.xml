@@ -1,12 +1,12 @@
 <llpackages>
 	<package 
 		name="greenbone-security-assistant"
-		version="6.0.11"
+		version="7.0.3"
 		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="2da768d158ce32abe04eb9f6a84db5cfe50775a1">greenbone-security-assistant-6.0.11.tar.gz</pkg>
+				<pkg sha1="4c767bfd5a106492123bb233957ab12b81ae955a">greenbone-security-assistant-7.0.3.tar.gz</pkg>
 				<mirror>http://wald.intevation.org/frs/download.php/2363/</mirror>
 			</file>
 			<manualcheck date="20160412" interval="90" page="http://www.openvas.org/install-source.html" />
@@ -53,7 +53,7 @@
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd gsa-${PKGVERSION}
 			jobcount=2
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
@@ -62,20 +62,22 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			CFLAGS='-w' cmake -DCMAKE_INSTALL_PREFIX=/usr  .
-			CFLAGS='-w'  make -j $jobcount 
+			# CFLAGS='-w' 
+			cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+			# CFLAGS='-w'  
+			make -j $jobcount 
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd gsa-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf gsa-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
