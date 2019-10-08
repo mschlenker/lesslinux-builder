@@ -73,6 +73,7 @@ case $1 in
 	        for isoname in ` find /lesslinux/cdrom -maxdepth 3 -name '*.iso' ` ; do
 		    mount -t iso9660 -o loop "$isoname" /lesslinux/eset/iso
 		    [ -f /lesslinux/eset/iso/casper/04_eset.squashfs ] && esetiso="$isoname"
+		    [ -f /lesslinux/eset/iso/eset-favicon.ico ] && esetiso="$isoname"
 		    umount /lesslinux/eset/iso
 		done
 	    fi
@@ -100,13 +101,22 @@ case $1 in
 		mount -o loop "$esetiso" /lesslinux/eset/iso
 		if mountpoint -q /lesslinux/blobpart ; then
 		    mkdir -p /lesslinux/blobpart/eset
-		    cp /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blobpart/eset/eset.sqs && \
-		    umount /lesslinux/eset/iso && \
-		    rm "$esetiso"
+		    if [ -f /lesslinux/eset/iso/casper/04_eset.squashfs ] ; then
+			cp /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blobpart/eset/eset.sqs && \
+			umount /lesslinux/eset/iso && rm "$esetiso"
+		    else 
+			cp /lesslinux/eset/iso/casper/filesystem.squashfs /lesslinux/blobpart/eset/eset.sqs && \
+			umount /lesslinux/eset/iso && rm "$esetiso"
+		    fi
 		    esetsys="/lesslinux/blobpart/eset/eset.sqs"
 		else
-		    cp -v /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blob/eset/eset.sqs && \
-		    umount /lesslinux/eset/iso 
+		    if [ -f /lesslinux/eset/iso/casper/04_eset.squashfs ] ; then
+			cp /lesslinux/eset/iso/casper/04_eset.squashfs /lesslinux/blob/eset/eset.sqs && \
+			umount /lesslinux/eset/iso && rm "$esetiso"
+		    else 
+			cp /lesslinux/eset/iso/casper/filesystem.squashfs /lesslinux/blob/eset/eset.sqs && \
+			umount /lesslinux/eset/iso && rm "$esetiso"
+		    fi
 		    esetsys="/lesslinux/blob/eset/eset.sqs"
 		fi
 	    fi

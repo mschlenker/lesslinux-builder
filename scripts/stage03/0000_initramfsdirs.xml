@@ -804,7 +804,6 @@ tty3::respawn:/static/sbin/getty -l /static/bin/login 38400 tty3
 tty4::askfirst:/static/bin/ash
 tty5::askfirst:/bin/bash
 tty6::respawn:/static/bin/x_user_start
-xenconsole::askfirst:/static/bin/ash
 serialconsole::askfirst:/static/bin/ash
 ::ctrlaltdel:/static/sbin/reboot
 ::shutdown:/etc/rc.shutdown]]>
@@ -998,18 +997,17 @@ for i in /etc/rc.d/[0-9][0-9][0-9][0-9]-*.?? ; do
 done
 ####
 
- # Softlink /dev/hvc0 so that there is no constant respawning on Console 0
+# Softlink /dev/hvc0 so that there is no constant respawning on Console 0
+rm /dev/serialconsole
 hv=""
 [ -f /sys/hypervisor/type ] && hv=` cat /sys/hypervisor/type `
 if [ "$hv" '=' "xen" ] ; then
-	ln -s /dev/hvc0 /dev/xenconsole
-	ln -s /dev/tty9 /dev/serialconsole
+	ln -s /dev/hvc0 /dev/serialconsole
 else
-	ln -s /dev/tty8 /dev/xenconsole
 	if [ -c /dev/ttyS0 ] ; then
 		ln -s /dev/ttyS0 /dev/serialconsole
 	else
-		ln -s /dev/tty9 /dev/serialconsole
+		ln -s /dev/tty8 /dev/serialconsole
 	fi
 fi
 
