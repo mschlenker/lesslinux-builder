@@ -1,23 +1,23 @@
 <llpackages>
 	<package 
 		name="binutils"
-		version="2.28.1"
+		version="2.32"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                 
-				<pkg sha1="3f476ce73a729f56c2802c6dcd54e49b156a6e99">binutils-2.28.1.tar.bz2</pkg>
+			<file>                                                  
+				<pkg sha1="cd45a512af1c8a508976c1beb4f5825b3bb89f4d">binutils-2.32.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
 			</file>
-			<manualcheck date="20170801" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<manualcheck date="20191008" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
 			<check>
 				<page html="http://ftp.gnu.org/gnu/binutils/">
-					<atext linktext="binutils-2.28.4." />
-					<atext linktext="binutils-2.28.2." />
-					<atext linktext="binutils-2.28.3" />
-					<atext linktext="binutils-2.29." />
-					<atext linktext="binutils-2.30." />
+					<atext linktext="binutils-2.32.4." />
+					<atext linktext="binutils-2.32.2." />
+					<atext linktext="binutils-2.32.1" />
+					<atext linktext="binutils-2.33." />
+					<atext linktext="binutils-2.34." />
 				</page>
 			</check>
 		</sources>
@@ -31,7 +31,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			mkdir binutils-build
 			]]>
 		</unpack>
@@ -52,6 +52,7 @@
 			--enable-plugins    \
 			--enable-shared     \
 			--disable-werror    \
+			--enable-64-bit-bfd \
 			--with-system-zlib
 			make -j $jobcount tooldir=/usr
 			]]>

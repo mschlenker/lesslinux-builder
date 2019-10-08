@@ -1,0 +1,88 @@
+<llpackages>
+	<package 
+		name="shadow"
+		version="4.7"
+		class="skel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                            
+				<pkg sha1="6e56c04b1c3f5726b94d8323352a36b73359a385">shadow-4.7.tar.xz</pkg>
+				<mirror>https://github.com/shadow-maint/shadow/releases/download/4.7/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://pkg-shadow.alioth.debian.org/releases/" />
+			<!-- <check>
+				<page html="http://pkg-shadow.alioth.debian.org/">
+					<atext linktext="shadow-4.1.5.2.NEWS" />
+					<atext linktext="shadow-4.1.6.NEWS" />
+					<atext linktext="shadow-4.1.7.NEWS" />
+					<atext linktext="shadow-4.1.8" />
+					<atext linktext="shadow-4.2." />
+					<atext linktext="shadow-4.3" />
+					<atext linktext="shadow-5" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>linux_headers</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
+			<dep>acl</dep>
+			<dep>libcap</dep>
+                        <dep>sed</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			
+			sed -i 's/groups$(EXEEXT) //' src/Makefile.in
+			find man -name Makefile.in -exec sed -i 's/groups\.1 / /' {} \;
+			find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
+			find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
+			sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD SHA512@' -e 's@/var/spool/mail@/var/mail@' etc/login.defs
+	
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --sysconfdir=/etc --with-group-name-max-length=32 && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/bin
+			make install DESTDIR=${TGTDIR}
+			mv -v ${TGTDIR}/usr/bin/passwd ${TGTDIR}/bin
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf ${PKGNAME}-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>
