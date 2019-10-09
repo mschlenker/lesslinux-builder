@@ -37,7 +37,9 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			mkdir /tools/etc
+			touch /tools/etc/skip_distcc
+			exit 0
 			]]>
 		</install>
 	</package>
