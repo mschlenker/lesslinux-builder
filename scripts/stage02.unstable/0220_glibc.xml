@@ -35,7 +35,7 @@
 		<unpack>
 			<![CDATA[ 
 			mkdir glibc-build
-			unxz -c ${SRCDIR}/glibc-${PKGVERSION}.tar.xz | tar xf -
+			tar xf ${SRCDIR}/glibc-${PKGVERSION}.tar.xz 
 			]]>
 		</unpack>
 		<patch>
@@ -67,7 +67,7 @@ patch -Np1 -i ${SRCDIR}/glibc-${PKGVERSION}-fhs-1.patch
 			# esac
 			
 CC="gcc -ffile-prefix-map=/tools=/usr" \
-../configure --prefix=/usr                          \
+../glibc-${PKGVERSION}/configure --prefix=/usr                          \
              --disable-werror                       \
              --enable-kernel=3.2                    \
              --enable-stack-protector=strong        \
