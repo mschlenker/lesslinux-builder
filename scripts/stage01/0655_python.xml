@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="Python"
+		version="3.7.4">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="7cd46fe0926a3a859a516274e6ae59fa8ba0262d">Python-3.7.4.tar.xz</pkg>
+				<mirror>https://www.python.org/ftp/python/3.7.4/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="120" page="https://lists.samba.org/mailman/listinfo/distcc" />
+			<!-- <check>
+				<page html="http://www.hyperrealm.com/libconfig/">
+					<atext linktext="libconfig-1.4.10." />
+					<atext linktext="libconfig-1.4.11." />
+					<atext linktext="libconfig-1.4.12." />
+					<atext linktext="libconfig-1.4.13." />
+					<atext linktext="libconfig-1.4.14." />
+					<atext linktext="libconfig-1.5." />
+					<atext linktext="libconfig-1.6." />
+					<atext linktext="libconfig-1.2." />
+				</page>
+			</check> -->
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i '/def add_multiarch_paths/a \        return' setup.py
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools --without-ensurepip
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
