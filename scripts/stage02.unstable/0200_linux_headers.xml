@@ -1,18 +1,18 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="4.19.78"
+		version="5.3.5"
 		class="devel"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="40f3e72192d59c0b7a4638cebd0ea55d35a782bb">linux-4.19.tar.xz</pkg>
-				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+				<pkg sha1="988855d1fee4eb12495a5b3602e2f3471623ec3e">linux-5.3.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v5.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="f7e1b1f14ef0ecc1530ec04a1f1c75bbf20005ad">patch-4.19.78.xz</pkg>
-				<mirror>http://www.kernel.org/pub/linux/kernel/v4.x/</mirror>
+				<pkg sha1="af0706c9f914dbac427f3b3e2caf4829e71ef4ea">patch-5.3.5.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v5.x/</mirror>
 			</file>
 			<manualcheck date="20170816" interval="60" page="http://www.kernel.org/" />
 			<check>
