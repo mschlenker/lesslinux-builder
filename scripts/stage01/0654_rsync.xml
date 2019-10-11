@@ -1,0 +1,37 @@
+<llpackages>
+	<package 
+		name="rsync"
+		version="3.1.3">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                             
+				<pkg sha1="82e7829c0b3cefbd33c233005341e2073c425629">rsync-3.1.3.tar.gz</pkg>
+				<mirror>http://samba.anu.edu.au/ftp/rsync/src/</mirror>
+			</file>
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glibc_2.18_build_fix-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/tools 
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>
