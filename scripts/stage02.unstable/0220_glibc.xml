@@ -44,8 +44,8 @@
 cd glibc-${PKGVERSION}
 patch -Np1 -i ${SRCDIR}/glibc-${PKGVERSION}-fhs-1.patch
 # Fix a problem introduced with the linux-5.2 kernel:
-# sed -i '/asm.socket.h/a# include <linux/sockios.h>' \
-#	sysdeps/unix/sysv/linux/bits/socket.h
+sed -i '/asm.socket.h/a# include <linux/sockios.h>' \
+	sysdeps/unix/sysv/linux/bits/socket.h
 
 			]]>
 		</patch>
