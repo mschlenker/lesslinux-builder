@@ -1,0 +1,93 @@
+<llpackages>
+	<package 
+		name="gawk"
+		version="5.0.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                        
+				<pkg sha1="ccdad761aa1fc682d688c7095b47208bef726582">gawk-5.0.1.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gawk/</mirror>
+			</file>
+			<manualcheck date="20160922" interval="180" page="http://ftp.gnu.org/gnu/gawk/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gawk/">
+					<atext linktext="gawk-4.1.5." />
+					<atext linktext="gawk-4.1.6." />
+					<atext linktext="gawk-4.1.7." />
+					<atext linktext="gawk-4.1.8." />
+					<atext linktext="gawk-4.2." />
+					<atext linktext="gawk-4.3." />
+					<atext linktext="gawk-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<!-- <dep>e2fsprogs</dep> -->
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/extras//' Makefile.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --libexecdir=/usr/lib && make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -vp ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			cp -v doc/{awkforai.txt,*.{eps,pdf,jpg}} ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

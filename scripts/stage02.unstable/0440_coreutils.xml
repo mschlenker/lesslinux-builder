@@ -1,0 +1,87 @@
+<llpackages>
+	<package 
+		name="coreutils"
+		version="8.31"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                           
+				<pkg sha1="c62b5034a5b65daca33c50a60df87ebc44159faf">coreutils-8.31.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
+			</file>
+			<file>                                                           
+				<pkg sha1="f0191e92372b6a017dc8f933b2f6c1310f6f065e">coreutils-8.31-i18n-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/coreutils/">
+					<atext linktext="coreutils-8.27.1" />
+					<atext linktext="coreutils-8.28." />
+					<atext linktext="coreutils-8.29." />
+					<atext linktext="coreutils-9." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<!-- <dep>e2fsprogs</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			patch -Np1 -i ${SRCDIR}/coreutils-8.27-i18n-1.patch
+			sed -i '/test.lock/s/^/#/' gnulib-tests/gnulib.mk
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			autoreconf -fiv
+			export FORCE_UNSAFE_CONFIGURE=1
+			./configure --prefix=/usr --enable-no-install-program=kill,uptime  && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/bin
+			mkdir -p ${TGTDIR}/usr/sbin
+			make install DESTDIR=${TGTDIR}
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{cat,chgrp,chmod,chown,cp,date,dd,df,echo} ${TGTDIR}/bin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{false,ln,ls,mkdir,mknod,mv,pwd,rm} ${TGTDIR}/bin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{rmdir,stty,sync,true,uname} ${TGTDIR}/bin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/chroot ${TGTDIR}/usr/sbin
+			/tools/bin/mv -v ${TGTDIR}/usr/bin/{head,sleep,nice} ${TGTDIR}/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

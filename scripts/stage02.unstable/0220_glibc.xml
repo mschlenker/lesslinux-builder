@@ -76,14 +76,14 @@ CC="gcc -ffile-prefix-map=/tools=/usr" \
              --with-headers=/usr/include            \
              libc_cv_slibdir=/lib
 	     
-			#case `uname -m` in
-			#	i?86) 
-			#		make -j 4
-			#	;;
-			#	*)
-			#		make
-			#	;;
-			#esac
+			case `uname -m` in
+				i?86) 
+					make -j 4
+				;;
+				*)
+					make
+				;;
+			esac
 			make 
 
 			# echo '=== Build finished, testing...'

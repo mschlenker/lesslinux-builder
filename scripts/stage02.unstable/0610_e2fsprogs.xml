@@ -1,0 +1,106 @@
+<llpackages>
+	<package 
+		name="e2fsprogs"
+		version="1.45.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="41f018af4858ddde281d74817f3dc9551af5bb6a">e2fsprogs-1.45.3.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.45.3/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/" />
+			<check>
+				<page html="http://sourceforge.net/projects/e2fsprogs/files/e2fsprogs/">
+					<atext linktext="1.43.5." />
+					<atext linktext="1.43.6." />
+					<atext linktext="1.43.7." />
+					<atext linktext="1.44." />
+					<atext linktext="1.45." />
+					<atext linktext="1.46." />
+					<atext linktext="2.0." />
+					<atext linktext="2.00." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+                        <dep>automake</dep>
+			<dep>xz</dep>
+                        <dep>kmod</dep>
+			<dep>gettext</dep>
+			<dep>procps</dep>
+			<dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			mkdir ${PKGNAME}-${PKGVERSION}/build
+			]]>
+		</unpack>
+		<patch>
+		<![CDATA[ 
+
+# First, fix a script that adjusts testing output:
+sed -i -e 's:\[\.-\]::' tests/filter.sed
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}/build
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			../configure --prefix=/usr \
+				--with-root-prefix="" \
+				--enable-elf-shlibs \
+				--disable-libblkid \
+				--disable-libuuid \
+				--disable-uuidd \
+				--disable-fsck
+			make -j $jobcount 
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			make install DESTDIR=${TGTDIR}
+			make install-libs DESTDIR=${TGTDIR}
+			
+			chmod -v u+w ${TGTDIR}/usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
+			gunzip -v ${TGTDIR}/usr/share/info/libext2fs.info.gz
+			install-info --dir-file=${TGTDIR}/usr/share/info/dir ${TGTDIR}/usr/share/info/libext2fs.info
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

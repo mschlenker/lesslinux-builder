@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="gdbm"
+		version="1.18.1"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                      
+				<pkg sha1="4a923ebfac06bb05c1c7699b206719e06a938f0d">gdbm-1.18.1.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gdbm/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="http://ftp.gnu.org/gnu/gdbm/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gdbm/">
+					<atext linktext="gdbm-1.13.1." />
+					<atext linktext="gdbm-1.13.2." />
+					<atext linktext="gdbm-1.13.3." />
+					<atext linktext="gdbm-1.14." />
+					<atext linktext="gdbm-1.15." />
+					<atext linktext="gdbm-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --enable-libgdbm-compat 
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="inetutils"
+		version="1.9.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="defae98a27c0e9516c4ef2321a374a3645adb3b9">inetutils-1.9.4.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/inetutils/</mirror>
+			</file>
+			<manualcheck date="20150710" interval="180" page="http://ftp.gnu.org/gnu/inetutils" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/inetutils/">
+					<atext linktext="inetutils-1.9.6." />
+					<atext linktext="inetutils-1.9.7." />
+					<atext linktext="inetutils-1.9.5." />
+					<atext linktext="inetutils-1.10." />
+					<atext linktext="inetutils-1.11." />
+					<atext linktext="inetutils-1.12." />
+					<atext linktext="inetutils-1.13." />
+					<atext linktext="inetutils-1.14." />
+					<atext linktext="inetutils-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e '/gets is a/d' lib/stdio.in.h
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --libexecdir=/usr/sbin --localstatedir=/var \
+				--disable-logger --disable-syslogd --disable-whois --disable-servers --disable-rcp        \
+				--disable-rexec --disable-rlogin --disable-rsh        && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
