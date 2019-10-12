@@ -46,12 +46,14 @@ patch -Np1 -i ${SRCDIR}/glibc-${PKGVERSION}-fhs-1.patch
 # Fix a problem introduced with the linux-5.2 kernel:
 sed -i '/asm.socket.h/a# include <linux/sockios.h>' \
 	sysdeps/unix/sysv/linux/bits/socket.h
+mkdir build
 
 			]]>
 		</patch>
 		<build>
 			<![CDATA[ 
-			cd glibc-build
+			
+			cd glibc-${PKGVERSION}/build
 			case `uname -m` in
 			i?86) 
 				echo "CFLAGS += -march=i686 -mtune=generic -O2 -pipe" > configparms
@@ -67,7 +69,7 @@ sed -i '/asm.socket.h/a# include <linux/sockios.h>' \
 			# esac
 			
 CC="gcc -ffile-prefix-map=/tools=/usr" \
-../glibc-${PKGVERSION}/configure --prefix=/usr                          \
+../configure --prefix=/usr                          \
              --disable-werror                       \
              --enable-kernel=3.2                    \
              --enable-stack-protector=strong        \
@@ -92,14 +94,14 @@ CC="gcc -ffile-prefix-map=/tools=/usr" \
 		</build>
 		<test>
 			<![CDATA[
-			cd glibc-build
+			cd glibc-${PKGVERSION}/build
 			make -k check 2>&1 | tee glibc-check-log
 			grep Error glibc-check-log
 			]]>
 		</test>
 		<install>
 			<![CDATA[
-			cd glibc-build
+			cd glibc-${PKGVERSION}/build
 			touch /etc/ld.so.conf
 			sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
 			make install
@@ -147,7 +149,6 @@ EOF
 		<clean>
 			<![CDATA[
 			rm -rf ${PKGNAME}-${PKGVERSION}
-			rm -rf ${PKGNAME}-build
 			]]>
 		</clean>
 	</package>
