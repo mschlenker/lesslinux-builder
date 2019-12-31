@@ -42,7 +42,8 @@
         <patch/>
         <build>
             <![CDATA[cd ${PKGNAME}-${PKGVERSION}/src
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-native-tests CFLAGS='-O2 -mno-sse2 -mno-mmx -U__SSE__'
+
 make
 ]]>
         </build>
