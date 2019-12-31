@@ -55,6 +55,8 @@
 				export CXX="distcc g++" 
 			fi
 			cd ${PKGNAME}-${PKGVERSION}
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc 
 			sed -i 's/-Werror//g' common.mak
 			make -j $jobcount
 
