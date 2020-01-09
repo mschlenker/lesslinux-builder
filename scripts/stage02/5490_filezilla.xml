@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="FileZilla"
-		version="3.46.3"
+		version="3.41.2"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -60,8 +60,8 @@
 					CC="distcc gcc" CXX="distcc g++"
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				export CC=gcc82 
-				export CXX=g++82
+				#export CC=gcc82 
+				#export CXX=g++82
 				./configure --enable-shared --disable-static --prefix=/opt --sysconfdir=/etc \
 					--with-tinyxml=builtin --with-wx-config=/usr/compat.new/bin/wx-config --with-pugixml=builtin 
 				make -j3 

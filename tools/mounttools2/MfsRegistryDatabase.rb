@@ -87,4 +87,66 @@ class MfsRegistryDatabase
 		return true
 	end
 
+	#~ def get_productid 
+		#~ was_mounted = true
+		#~ if @partition.mount_point.nil?
+			#~ was_mounted = false
+			#~ @partition.mount
+		#~ end
+		#~ mnt = @partition.mount_point 
+		#~ h = Hivex::open(mnt[0] + "/" + @regfile, {})
+		#~ root = h.root()
+		#~ node = h.node_get_child(root, "Microsoft")
+		#~ if node.nil?
+			#~ $stderr.puts "no HKLM\\SOFTWARE\\Microsoft node: Probably not the correct hive"
+			#~ return nil
+		#~ end
+		#~ node = h.node_get_child(node, "Windows NT")
+		#~ node = h.node_get_child(node, "CurrentVersion")
+		#~ val = h.node_get_value(node, "DigitalProductId")
+		#~ hash =  h.value_type(val)
+		#~ cont = h.value_value(val)
+		#~ outp = Array.new
+		#~ cont.each_entry { |k,v|
+			#~ # puts "Got: #{k.class}, #{v.class}"
+			#~ if v.class.to_s == "String"
+				#~ $stderr.puts "Val: #{k.to_s}, #{v.to_s}"
+				#~ v.each_byte { |b|
+					#~ x = b.to_s(16)
+					#~ x = "0" + x if x.size < 2
+					#~ outp.push x
+				#~ }
+			#~ end
+		#~ }
+		#~ return outp # .join(",") # res
+	#~ end
+	
+	#~ def get_officeids 
+		#~ officeids = Hash.new
+		#~ was_mounted = true
+		#~ if @partition.mount_point.nil?
+			#~ was_mounted = false
+			#~ @partition.mount
+		#~ end
+		#~ mnt = @partition.mount_point 
+		#~ h = Hivex::open(mnt[0] + "/" + @regfile, {})
+		#~ root = h.root()
+		#~ node = h.node_get_child(root, "Wow6432Node")
+		#~ if node.nil?
+			#~ $stderr.puts "no HKLM\\SOFTWARE\\Wow6432Node node: 32 Bit windows"
+			#~ node = h.node_get_child(root, "Microsoft")
+		#~ else
+			#~ node = h.node_get_child(node, "Microsoft")
+		#~ end
+		#~ node = h.node_get_child(node, "Office")
+		#~ return officeids if node.nil?
+		#~ h.node_children(node).each { |c|
+			#~ puts c.class 
+			#~ puts c
+		#~ }
+		
+		
+	#~ end
+	
+
 end
