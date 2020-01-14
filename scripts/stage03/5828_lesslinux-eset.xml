@@ -65,6 +65,8 @@ case $1 in
 	    fi
 	    if [ -z "$esetiso" -a -z "$esetsys" ] ; then
 		[ -f /lesslinux/blob/eset/eset_sysrescue_live_enu.iso ] && esetiso="/lesslinux/blob/eset/eset_sysrescue_live_enu.iso"
+		[ -f /lesslinux/blob/eset.iso ] && esetiso="/lesslinux/blob/eset.iso"
+		[ -f /lesslinux/blob/eset.sqs ] && esetsys="/lesslinux/blob/eset.sqs"
 		[ -f /lesslinux/blob/eset/eset.iso ] && esetiso="/lesslinux/blob/eset/eset.iso"
 		[ -f /lesslinux/blob/eset/eset.sqs ] && esetsys="/lesslinux/blob/eset/eset.sqs"
 	    fi
