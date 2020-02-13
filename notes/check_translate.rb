@@ -10,14 +10,16 @@ tfile = ARGV[1]
 lnum = 1
 File.open(fname).each { |line|
 	ltoks = line.strip.split
-	ltoks.each { |w|
-		if w =~ /get_translation\(\"(.*?)\"\)/ || w =~ /get_translation\s+\"(.*?)\"/
-			str = $1
-			# puts "#{lnum}: #{str}"
-			@occurencies[str] = Array.new unless @occurencies.has_key? str
-			@occurencies[str].push lnum 
-		end
-	}
+	unless ltoks[0] =~ /^#/
+		ltoks.each { |w|
+			if w =~ /get_translation\(\"(.*?)\"\)/ || w =~ /get_translation\s+\"(.*?)\"/
+				str = $1
+				# puts "#{lnum}: #{str}"
+				@occurencies[str] = Array.new unless @occurencies.has_key? str
+				@occurencies[str].push lnum 
+			end
+		}
+	end
 	lnum +=1
 }
 @translations = Hash.new
