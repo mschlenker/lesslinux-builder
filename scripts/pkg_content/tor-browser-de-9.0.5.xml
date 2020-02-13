@@ -1,0 +1,46 @@
+<pkgdesc name='tor-browser-de' version='9.0.5'>
+    <subpackage name='skel'>
+        <directory path='/opt' owner='0' group='0'/>
+        <directory path='/opt/tor-browser' owner='0' group='0'/>
+        <directory path='/opt/tor-browser_en' owner='1000' group='1000'/>
+        <directory path='/opt/tor-browser_en/.config' owner='1000' group='1000'/>
+        <directory path='/opt/bin' owner='0' group='0'/>
+        <directory path='/opt/tor-browser_de' owner='1000' group='1000'/>
+        <directory path='/opt/tor-browser_de/.config' owner='1000' group='1000'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/applications' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/opt/tor-browser/empty_by_intention' owner='0' group='0' mode='100644'/>
+        <file path='/opt/tor-browser_en/.config/empty_by_intention' owner='1000' group='1000' mode='100644'/>
+        <file path='/opt/bin/tor-browser_smack' owner='0' group='0' mode='100755'/>
+        <file path='/opt/tor-browser_en.tar' owner='0' group='0' mode='100644'/>
+        <file path='/opt/tor-browser_de.tar' owner='0' group='0' mode='100644'/>
+        <file path='/opt/tor-browser_de/.config/empty_by_intention' owner='1000' group='1000' mode='100644'/>
+        <file path='/usr/share/applications/torbrowser.desktop' owner='0' group='0' mode='100644'/>
+        <file path='/usr/bin/tor-browser' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'/>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
+</pkgdesc>
