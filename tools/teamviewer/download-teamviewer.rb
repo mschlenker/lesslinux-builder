@@ -2,18 +2,20 @@
 # encoding: utf-8
 
 #dlurl = "http://download.teamviewer.com/download/teamviewer_i386.tar.xz"
-dlurl = "https://download.teamviewer.com/download/version_12x/teamviewer_i386.tar.xz"
+tvversion = "15"
+dlurl = "https://download.teamviewer.com/download/version_15x/teamviewer_i386.tar.xz"
+
 
 if system("mountpoint -q /lesslinux/blobpart") 
-	if system("wget -O /lesslinux/blobpart/teamviewer_i386.tar.xz #{dlurl}")
-		system("ln -sf /lesslinux/blobpart/teamviewer_i386.tar.xz /lesslinux/blob/")
+	if system("wget -O /lesslinux/blobpart/teamviewer_#{tvversion}_i386.tar.xz #{dlurl}")
+		system("ln -sf /lesslinux/blobpart/teamviewer_#{tvversion}_i386.tar.xz /lesslinux/blob/")
 	else
-		system("rm /lesslinux/blobpart/teamviewer_i386.tar.xz")
+		system("rm /lesslinux/blobpart/teamviewer_#{tvversion}_i386.tar.xz")
 		exit 1
 	end
 else
-	unless system("wget -O /lesslinux/blob/teamviewer_i386.tar.xz #{dlurl}")
-		system("rm /lesslinux/blob/teamviewer_i386.tar.xz")
+	unless system("wget -O /lesslinux/blob/teamviewer_#{tvversion}_i386.tar.xz #{dlurl}")
+		system("rm /lesslinux/blob/teamviewer_#{tvversion}_i386.tar.xz")
 		exit 1
 	end
 end
