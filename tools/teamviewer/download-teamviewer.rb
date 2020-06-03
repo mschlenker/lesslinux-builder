@@ -3,7 +3,7 @@
 
 #dlurl = "http://download.teamviewer.com/download/teamviewer_i386.tar.xz"
 tvversion = "15"
-dlurl = "https://download.teamviewer.com/download/version_15x/teamviewer_i386.tar.xz"
+dlurl = "https://download.teamviewer.com/download/linux/version_#{tvversion}x/teamviewer_i386.tar.xz"
 
 
 if system("mountpoint -q /lesslinux/blobpart") 

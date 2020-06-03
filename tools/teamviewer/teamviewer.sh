@@ -22,6 +22,14 @@ TVHOME=/opt/teamviewer/teamviewer
 rest="If no TeamViewer ID is shown, the user interface has to be restarted. Restart now?"
 [ $lang = de ] && rest="Falls keine TeamViewer ID angezeigt wird, muss die grafische Öberfläche neu gestartet werden. Jetzt neu starten?"
 
+tvnotfound="Could not find TeamViewer - make sure you have an internet connection to start the installation now."
+[ $lang = de ] && tvnotfound="Konnte TeamViewer nicht finden - Stellen Sie bitte sicher, dass Sie über eine Internetverbindung verfügen, um die Installation jetzt zu starten."
+
+if [ '!' -f "${TVHOME}/teamviewer" ] ; then
+	zenity --error --text "$tvnotfound" 
+	sudo /usr/bin/blobinstall.sh --check teamviewer 
+fi
+
 # Start Teamviewer:
 
 su surfer -c /opt/teamviewer/teamviewer/tv_bin/TeamViewer &
