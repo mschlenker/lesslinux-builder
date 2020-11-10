@@ -80,7 +80,7 @@
 			<![CDATA[
 			cd curl-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			# ln -sf libcurl.so ${TGTDIR}/usr/lib/libcurl.so.3
+			ln -sf libcurl.so ${TGTDIR}/usr/compat.old/lib/libcurl.so.3
 			]]>
 		</install>
 		<clean>
