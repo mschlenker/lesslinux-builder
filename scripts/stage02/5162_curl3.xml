@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
-		name="curl"
-		version="7.54.1"
+		name="curl3"
+		version="7.47.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                            
-				<pkg sha1="f5193316e4b5ff23505cb09bc946763d35d02cd6">curl-7.54.1.tar.bz2</pkg>
+				<pkg sha1="f5193316e4b5ff23505cb09bc946763d35d02cd6">curl-7.47.1.tar.bz2</pkg>
 				<mirror>http://curl.haxx.se/download/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="90" page="http://curl.haxx.se/download/" />
@@ -49,27 +49,27 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			if [ -f ${SRCDIR}/curl-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/curl-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xzf ${SRCDIR}/curl-${PKGVERSION}.tar.gz
 			fi
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd curl-${PKGVERSION}
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --sysconfdir=/etc --prefix=/usr --with-ca-path=/etc/ssl/certs \
+				./configure --sysconfdir=/etc --prefix=/usr/compat.old --with-ca-path=/etc/ssl/certs \
 					--disable-smb --without-nss --without-gnutls --without-libssh2 \
 					CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --sysconfdir=/etc --prefix=/usr --with-ca-path=/etc/ssl/certs \
+				./configure --sysconfdir=/etc --prefix=/usr/compat.old --with-ca-path=/etc/ssl/certs \
 					--disable-smb --without-nss --without-gnutls --without-libssh2
 				make -j2 
 			fi
@@ -78,14 +78,14 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd curl-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
 			# ln -sf libcurl.so ${TGTDIR}/usr/lib/libcurl.so.3
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf curl-${PKGVERSION}
 			]]>
 		</clean>
 	</package>
