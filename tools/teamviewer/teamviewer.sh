@@ -41,7 +41,7 @@ if zenity --question --text "$rest" ; then
 	touch /home/surfer/.start_teamviewer
 	chown surfer:surfer /home/surfer/.start_teamviewer
 	# killall -15 lxdm-binary
-	/usr/bin/restart_xdm
+	/static/bin/restart_xdm
 fi
 
 exit 0 

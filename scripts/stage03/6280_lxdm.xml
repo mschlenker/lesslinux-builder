@@ -5,7 +5,7 @@
 		<dir mode="0750">/etc/sudoers.lax.d</dir>
 	</dirs>
 	<scripts>
-		<scriptdata location="/usr/bin/restart_xdm" mode="0755" group="0" owner="0">
+		<scriptdata location="/static/bin/restart_xdm" mode="0755" group="0" owner="0">
 		<![CDATA[#!/bin/sh
 		
 killall -15 lxdm-binary
@@ -14,7 +14,7 @@ killall -15 lxdm-binary
 		</scriptdata>
 		<scriptdata location="/etc/sudoers.lax.d/restart_lxdm" mode="0440" group="0" owner="0">
 		<![CDATA[
-surfer  ALL = NOPASSWD: /usr/bin/restart_xdm
+surfer  ALL = NOPASSWD: /static/bin/restart_xdm
 		]]>
 		</scriptdata>
 		<scriptdata location="/etc/lxdm/lxdm.conf" mode="0644" group="0" owner="0">
