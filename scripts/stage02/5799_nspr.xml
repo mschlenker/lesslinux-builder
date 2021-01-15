@@ -1,14 +1,14 @@
 <llpackages>
 	<package 
 		name="nspr"
-		version="4.19"
+		version="4.29"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                               
-				<pkg sha1="907221d51a1f8cca0c3a9e1af93c53e02f5e203b">nspr-4.19.tar.gz</pkg>
-				<mirror>https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v4.19/src/</mirror>
+				<pkg sha1="6d9cc6c1201ccbdcd61a1298aa2221170e1dc081">nspr-4.29.tar.gz</pkg>
+				<mirror>https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v4.29/src/</mirror>
 			</file>
 			<manualcheck date="20170830" interval="60" page="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/" />
 			<!-- <check>
@@ -46,6 +46,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}/nspr/
 			sed -ri 's#^(RELEASE_BINS =).*#\1#' pr/src/misc/Makefile.in
+			sed -i 's#$(LIBRARY) ##'            config/rules.mk         
 			]]>
 		</patch>
 		<build>

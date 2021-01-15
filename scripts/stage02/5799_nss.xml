@@ -1,7 +1,7 @@
 <llpackages>
 	<package 
 		name="nss"
-		version="3.37.3"
+		version="3.60.1"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
@@ -12,6 +12,14 @@
 			</file>
 			<file>                                                                               
 				<pkg sha1="a4d4112d6783bee1123acd0e99d9b1e918041b5c">nss-3.37.3-standalone-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<file>                                                                               
+				<pkg sha1="8653168acc4cb57f4785f862596408527c919ac0">nss-3.60.1.tar.gz</pkg>
+				<mirror>http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_60_1_RTM/src/</mirror>
+			</file>
+			<file>                                                                               
+				<pkg sha1="5fb76ea9118d5ea5c537eb901b4424ccced54973">nss-3.60.1-standalone-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
 			</file>
 			<manualcheck date="20170830" interval="60" page="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/" />
