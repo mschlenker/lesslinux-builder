@@ -121,7 +121,9 @@ case $1 in
 	# homepage can be set via cheatcode homepage=http://blog.lesslinux.org/ at boot time
 	if [ -n "$DEFAULT_HOMEPAGE" ] ; then
 		find $HOME/.mozilla/firefox -maxdepth 2 -name prefs.js | while read fname ; do
-			echo 'user_pref("browser.startup.homepage", "'"$DEFAULT_HOMEPAGE"'");'  >> $fname
+			if grep default "$fname" ; then
+				echo 'user_pref("browser.startup.homepage", "'"$DEFAULT_HOMEPAGE"'");'  >> $fname
+			fi
 		done
 	fi
 	find $HOME/.mozilla/firefox -maxdepth 2 -name prefs.js | while read fname ; do
