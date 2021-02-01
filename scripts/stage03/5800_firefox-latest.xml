@@ -122,16 +122,16 @@ case $1 in
 	if [ -n "$DEFAULT_HOMEPAGE" ] ; then
 		find $HOME/.mozilla/firefox -maxdepth 2 -name prefs.js | while read fname ; do
 			if grep default "$fname" ; then
-				echo "Not setting homepage"
-				# echo 'user_pref("browser.startup.homepage", "'"$DEFAULT_HOMEPAGE"'");'  >> $fname
+				# echo "Not setting homepage"
+				echo 'user_pref("browser.startup.homepage", "'"$DEFAULT_HOMEPAGE"'");'  >> $fname
 			fi
 		done
 	fi
 	find $HOME/.mozilla/firefox -maxdepth 2 -name prefs.js | while read fname ; do
 		if [ -n "$homepage" ] ; then
 			if grep default "$fname" ; then
-				echo "Not setting homepage"
-				# echo 'user_pref("browser.startup.homepage", "'"$homepage"'");' >> $fname
+				# echo "Not setting homepage"
+				echo 'user_pref("browser.startup.homepage", "'"$homepage"'");' >> $fname
 			fi
 		fi
 		# echo 'user_pref("browser.startup.homepage_override.mstone", "rv:'$ffversion'");' >> $fname
