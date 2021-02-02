@@ -4333,7 +4333,7 @@ iso_hack_convert() {
 	echo -n "${newuuid}" > /lesslinux/boot/boot/boot.uuid
 	extlinux --install /lesslinux/boot/boot/isolinux
 	
-	tar -C /lesslinux/cdrom -cf - Manual autorun.usb GPL.txt license | tar -C  /lesslinux/boot -xvf -
+	tar -C /lesslinux/cdrom -cf - Manual Anleitungen autorun.usb GPL.txt license lesslinux.ico secuperts.ico sad.ico cobi.ico | tar -C  /lesslinux/boot -xvf -
 	mv /lesslinux/boot/autorun.usb /lesslinux/boot/autorun.inf
 	mv /lesslinux/boot/efi.sha /lesslinux/boot/EFI/efi.sha
 	if [ -f /etc/lesslinux/branding/extrafiles.txt ] ; then
