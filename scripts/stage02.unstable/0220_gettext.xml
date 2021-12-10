@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="gettext"
+		version="0.21"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="e6c0a0cba5b00a604c9118403a8199c77a538526">gettext-0.21.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gettext/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="90" page="http://ftp.gnu.org/gnu/gettext/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gettext/">
+					<atext linktext="gettext-0.19.9." />
+					<atext linktext="gettext-0.19.10." />
+					<atext linktext="gettext-0.19.11." />
+					<atext linktext="gettext-0.20." />
+					<atext linktext="gettext-0.21." />
+					<atext linktext="gettext-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>libstdcplusplus</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}/
+			sed -i -e '/gets is a/d' gettext-*/*/stdio.in.h
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --disable-shared
+			make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/bin
+			cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} ${TGTDIR}/usr/bin
+			# chmod -v 0755 ${TGTDIR}/usr/lib/preloadable_libintl.so
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

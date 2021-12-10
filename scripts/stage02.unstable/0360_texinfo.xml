@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="texinfo"
+		version="6.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="ce3776715e655400485381b8ae94e34c5632e729">texinfo-6.8.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/texinfo/</mirror>
+			</file>
+			<manualcheck date="20170727" interval="120" page="http://ftp.gnu.org/gnu/texinfo/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/texinfo/">
+					<atext linktext="texinfo-6.5" />
+					<atext linktext="texinfo-6.6" />
+					<atext linktext="texinfo-6.7" />
+					<atext linktext="texinfo-6.8" />
+					<atext linktext="texinfo-7" />
+					<atext linktext="texinfo-8" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python3</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -e 's/__attribute_nonnull__/__nonnull/' \
+				-i gnulib/lib/malloc/dynarray-skeleton.c
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			./configure --prefix=/usr && make -j $jobcount
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

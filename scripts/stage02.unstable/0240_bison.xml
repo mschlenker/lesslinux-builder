@@ -1,0 +1,55 @@
+<llpackages>
+	<package 
+		name="bison"
+		version="3.7.6"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                 
+				<pkg sha1="bbd6362383a7276cd85ed3f19cb5416aeb98e5db">bison-3.7.6.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/bison/</mirror>
+			</file>
+			<manualcheck date="20150309" interval="180" page="http://ftp.gnu.org/gnu/bison/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/bison/">
+					<atext linktext="bison-3.0.5." />
+					<atext linktext="bison-3.0.6." />
+					<atext linktext="bison-3.0.7." />
+					<atext linktext="bison-3.0.8." />
+					<atext linktext="bison-3.1." />
+					<atext linktext="bison-3.2." />
+					<atext linktext="bison-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>gettext</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			./configure --prefix=/usr --docdir=/usr/share/doc/bison-${PKGVERSION}
+			make -j $jobcount
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -30,6 +30,7 @@ class FileChecker
 	end
 	
 	def save(fileout=nil)
+		arch = ` uname -m ` 
 		# Search for files with exact matches in name, size, modtime and type
 		if @modtime_old.nil? || @modtime_old != @modtime || @size.to_i != @size_old.to_i
 			return 0 if @file_to_check =~ /\/etc\/lesslinux\/pkglist.d\// 
@@ -37,7 +38,9 @@ class FileChecker
 			return 0 if @file_to_check =~ /\/etc\/ld\.so\.cache$/ 
 			return 0 if @file_to_check =~ /\/etc\/distcc\/hosts$/ 
 			return 0 if @file_to_check =~ /\/etc\/resolv\.conf$/ 
-			return 0 if @file_to_check =~ /lib64/ 
+			unless arch == "x86_64"
+				return 0 if @file_to_check =~ /\/lib64\// 
+			end
 			begin 
 				if (@ftype == "f")
 					@size = File.stat(@fullpath).size

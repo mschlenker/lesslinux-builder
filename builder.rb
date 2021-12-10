@@ -99,7 +99,7 @@ opts.parse!
 
 puts sprintf("%015.4f", Time.now.to_f) + " check > Check prerequisites"  
 
-[ "m4", "makeinfo", "gawk", "autoconf", "mkfs.msdos", "mksquashfs", "sha1sum", "cpio", "unxz", "lunzip", "perl" ].each { |p|
+[ "m4", "makeinfo", "gawk", "autoconf", "mkfs.msdos", "mksquashfs", "sha1sum", "cpio", "unxz", "lunzip", "perl", "bison" ].each { |p|
 	unless system("which #{p}") 
 		puts "Command #{p} needed for building is missing"
 		raise "MissingPrerequisite"

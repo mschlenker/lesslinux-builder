@@ -1,0 +1,73 @@
+<llpackages>
+	<package 
+		name="perl"
+		version="5.34.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                             
+				<pkg sha1="870b4e1ffe33f94a4996a4acbbcebb8422c5e73a">perl-5.34.0.tar.gz</pkg>
+				<mirror>http://www.cpan.org/src/5.0/</mirror>
+			</file>
+			<manualcheck date="20170724" interval="180" page="http://www.cpan.org/" />
+			<check>
+				<page html="http://www.cpan.org/src/5.0/">
+					<atext linktext="perl-5.26.1." />
+					<atext linktext="perl-5.26.2." />
+					<atext linktext="perl-5.26.3." />
+					<atext linktext="perl-5.24.4." />
+					<atext linktext="perl-5.24.5." />
+					<atext linktext="perl-5.24.3." />
+					<atext linktext="perl-5.28." />
+					<atext linktext="perl-5.30." />
+					<atext linktext="perl-5.32." />
+					<atext linktext="perl-6." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bison</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-infinite_recurse_fix-1.patch | patch -p1 
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sh Configure -des                                        \
+				-Dprefix=/usr                               \
+				-Dvendorprefix=/usr                         \
+				-Dprivlib=/usr/lib/perl5/${PKGVERSION}/core_perl     \
+				-Darchlib=/usr/lib/perl5/${PKGVERSION}/core_perl     \
+				-Dsitelib=/usr/lib/perl5/${PKGVERSION}/site_perl     \
+				-Dsitearch=/usr/lib/perl5/${PKGVERSION}/site_perl    \
+				-Dvendorlib=/usr/lib/perl5/${PKGVERSION}/vendor_perl \
+				-Dvendorarch=/usr/lib/perl5/${PKGVERSION}/vendor_perl
+			make -j4
+			make
+				
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			# ln -sf /usr/bin/perl /bin/perl
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

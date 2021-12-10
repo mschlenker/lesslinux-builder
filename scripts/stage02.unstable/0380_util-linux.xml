@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="util-linux-ng"
+		version="2.37.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                                                    
+				<pkg sha1="4e85e2f533ef0fe79a4505695453a91f25e87605">util-linux-2.37.2.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/util-linux/v2.37/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="120" page="https://www.kernel.org/pub/linux/utils/util-linux/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/">
+					<atext linktext="v2.31" />
+					<atext linktext="v2.32" />
+					<atext linktext="v2.33" />
+					<atext linktext="v3." />
+				</page>
+				<page html="rsync://www.kernel.org/pub/linux/utils/util-linux/v2.30/">
+					<atext linktext="util-linux-2.30.6." />
+					<atext linktext="util-linux-2.30.2." />
+					<atext linktext="util-linux-2.30.3." />
+					<atext linktext="util-linux-2.30.4." />
+					<atext linktext="util-linux-2.30.5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>texinfo</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/util-linux-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd util-linux-${PKGVERSION}
+			sed -e 's@etc/adjtime@var/lib/hwclock/adjtime@g'  -i $(grep -rl '/etc/adjtime' .)
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd util-linux-${PKGVERSION}
+			# export PATH=/usr/local/automake113/bin:$PATH
+			# export AL_OPTS="-I/usr/local/automake113/share/aclocal-1.13"
+			jobcount=`grep -c processor /proc/cpuinfo`
+			./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
+            --libdir=/usr/lib    \
+            --docdir=/usr/share/doc/util-linux-${PKGVERSION} \
+            --disable-chfn-chsh  \
+            --disable-login      \
+            --disable-nologin    \
+            --disable-su         \
+            --disable-setpriv    \
+            --disable-runuser    \
+            --disable-pylibmount \
+            --disable-static     \
+            --without-python     \
+            runstatedir=/run && make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			# export PATH=/usr/local/autoconf213/bin:$PATH
+			# export PATH=/usr/local/automake113/bin:/usr/local/autoconf213/bin:$PATH
+			cd util-linux-${PKGVERSION}
+			# mkdir -pv ${TGTDIR}/var/lib/hwclock
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf util-linux-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
