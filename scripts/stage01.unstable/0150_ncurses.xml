@@ -1,12 +1,12 @@
 <llpackages>
 	<package 
 		name="ncurses"
-		version="6.1"
+		version="6.2"
 		>
 		<license>GPLv2</license>
 		<sources>
 			<file>                                      
-				<pkg sha1="57acf6bc24cacd651d82541929f726f4def780cc">ncurses-6.1.tar.gz</pkg>
+				<pkg sha1="56e410fb77f2b5501a0b2f6a995376f3cefe1097">ncurses-6.2.tar.gz</pkg>
 				<mirror>ftp://ftp.gnu.org/gnu/ncurses/</mirror>
 			</file>
 			<!-- <file>                                      
@@ -35,17 +35,34 @@
 		</patch>
 		<build>
 			<![CDATA[ 
-			# export CPPFLAGS="-P"
-			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools --with-shared --without-debug --without-ada --enable-overwrite --enable-widec && make
+
+cd ${PKGNAME}-${PKGVERSION}
+mkdir build
+pushd build
+  ../configure
+  make -C include
+  make -C progs tic
+popd
+			
+	./configure --prefix=/usr                \
+            --host=$LFS_TGT              \
+            --build=$(./config.guess)    \
+            --mandir=/usr/share/man      \
+            --with-manpage-format=normal \
+            --with-shared                \
+            --without-debug              \
+            --without-ada                \
+            --without-normal             \
+            --enable-widec		
+
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			# export CPPFLAGS="-P"1
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			ln -s libncursesw.so /tools/lib/libncurses.so
+make DESTDIR=$CHROOTDIR TIC_PATH=$(pwd)/build/progs/tic install
+echo "INPUT(-lncursesw)" > $CHROOTDIR/usr/lib/libncurses.so
 			]]>
 		</install>
 	</package>

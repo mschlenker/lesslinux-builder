@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="libstdcplusplus"
-		version="9.2.0"
+		version="11.2.0"
 		buildas="unpriv">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="306d27c3465fa36862c206738d06d65fff5c3645">gcc-9.2.0.tar.xz</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-9.2.0/</mirror>
+				<pkg sha1="f902ccacecf8949978d6261e9f1d034cff73ffdb">gcc-11.2.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-11.2.0/</mirror>
 			</file>
 			<manualcheck date="20170607" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
 			<check>
@@ -48,14 +48,15 @@
 			<![CDATA[ 
 		
 cd gcc-build
-../gcc-${PKGVERSION}/libstdc++-v3/configure \
-    --host=$LFS_TGT                      \
-    --prefix=/tools                      \
-    --disable-multilib                   \
-    --disable-nls                        \
-    --disable-libstdcxx-threads          \
-    --disable-libstdcxx-pch              \
+../gcc-${PKGVERSION}/libstdc++-v3/configure           \
+    --host=$LFS_TGT                 \
+    --build=$(../config.guess)      \
+    --prefix=/usr                   \
+    --disable-multilib              \
+    --disable-nls                   \
+    --disable-libstdcxx-pch         \
     --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/${PKGVERSION}
+
 make -j 4
 
 			]]>
@@ -64,7 +65,7 @@ make -j 4
 			<![CDATA[
 			
 			cd gcc-build
-			make install
+			make DESTDIR=${CHROOTDIR} install
 			
 			]]>
 		</install>

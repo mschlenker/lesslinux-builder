@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="grep"
-		version="3.3">
+		version="3.7">
 		<license>GPLv2</license>
 		<sources>  
 			<file>                                                                         
-				<pkg sha1="e0befe21e7d9caa8e5e98385c96355d890f83123">grep-3.3.tar.xz</pkg> 
+				<pkg sha1="4d56da85e468e4012c81533a22052014a4c98b17">grep-3.7.tar.xz</pkg> 
 				<mirror>http://ftp.gnu.org/gnu/grep/</mirror>
 			</file>
 			<manualcheck date="20170727" interval="180" page="http://ftp.gnu.org/gnu/grep/" />
@@ -33,7 +33,7 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools 
+			./configure --prefix=/usr --host=$LFS_TGT
 			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
 			make -j${JOBCOUNT}
 			]]>
@@ -41,7 +41,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

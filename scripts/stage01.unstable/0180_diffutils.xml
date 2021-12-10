@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="diffutils"
-		version="3.7">
+		version="3.8">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                  
-				<pkg sha1="ad4e0a05ee2e7f5529db6cb84474f45e086e609b">diffutils-3.7.tar.xz</pkg>
+				<pkg sha1="3a726894b2cf71a790913f236ec790d830c6aef8">diffutils-3.8.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/diffutils/</mirror>
 			</file>
 			<manualcheck date="20170607" interval="365" page="http://ftp.gnu.org/gnu/diffutils/" />
@@ -32,7 +32,7 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools
+			./configure --prefix=/usr --host=$LFS_TGT
 			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
 			make -j${JOBCOUNT}
 			]]>
@@ -40,7 +40,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

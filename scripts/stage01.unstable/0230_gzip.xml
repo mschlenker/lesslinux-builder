@@ -28,7 +28,7 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools
+			./configure --prefix=/usr --host=$LFS_TGT
 			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
 			make -j${JOBCOUNT}
 			]]>
@@ -36,7 +36,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

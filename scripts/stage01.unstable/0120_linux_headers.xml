@@ -1,15 +1,15 @@
 <llpackages>
 	<package 
 		name="linux_headers"
-		version="5.3.5">
+		version="5.10.84">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                 
-				<pkg sha1="988855d1fee4eb12495a5b3602e2f3471623ec3e">linux-5.3.tar.xz</pkg>
+				<pkg sha1="be0b909f1fbb760cc2d5cf146e1da3b2af0cf899">linux-5.10.tar.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v5.x/</mirror>
 			</file>
 			<file>
-				<pkg sha1="af0706c9f914dbac427f3b3e2caf4829e71ef4ea">patch-5.3.5.xz</pkg>
+				<pkg sha1="285dffec131cb5500ea45bbbfe2b1964465d3e42">patch-5.10.84.xz</pkg>
 				<mirror>http://www.kernel.org/pub/linux/kernel/v5.x/</mirror>
 			</file>
 			<manualcheck date="20170816" interval="60" page="http://www.kernel.org/" />
@@ -48,17 +48,16 @@
 			<![CDATA[ 
 			cd linux-${PKGVERSION}
 			make mrproper
-			make headers_check
+			make headers
+			find usr/include -name '.*' -delete
+			rm usr/include/Makefile
 			]]>
 		</build>
 		<install>
 			<![CDATA[
-			
-			mkdir -p /tools/include
 			cd linux-${PKGVERSION}
-			make INSTALL_HDR_PATH=dest headers_install
-			cp -rv dest/include/* /tools/include
-			
+			mkdir -p ${CHROOTDIR}/usr
+			cp -rv usr/include ${CHROOTDIR}/usr
 			]]>
 		</install>
 	</package>

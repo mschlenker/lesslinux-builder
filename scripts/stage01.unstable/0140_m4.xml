@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="m4"
-		version="1.4.18">
+		version="1.4.19">
 		<license>GPLv2</license>
 		<sources>
 			<file>                           
-				<pkg sha1="63224a10becb5f527542b2e7baf2a1572666dbed">m4-1.4.18.tar.bz2</pkg>
+				<pkg sha1="7dd5aab713b50108bfbce47aea4968d630bf9511">m4-1.4.19.tar.bz2</pkg>
 				<mirror>http://ftp.gnu.org/gnu/m4/</mirror>
 			</file>
 			<manualcheck date="20170608" interval="365" page="http://ftp.gnu.org/gnu/m4/" />
@@ -23,7 +23,7 @@
 			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			]]>
 		</unpack>
-		<patch>
+		<!-- <patch>
 			<![CDATA[ 
 			
 			cd ${PKGNAME}-${PKGVERSION}/
@@ -31,17 +31,19 @@
 			echo "#define _IO_IN_BACKUP 0x100" >> lib/stdio-impl.h
 			
 			]]>
-		</patch> 
+		</patch> -->
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools && make
+			./configure --prefix=/usr   \
+            --host=$LFS_TGT \
+            --build=$(build-aux/config.guess)
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

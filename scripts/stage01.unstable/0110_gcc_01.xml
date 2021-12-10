@@ -1,24 +1,24 @@
 <llpackages>
 	<package 
 		name="gcc_pass1"
-		version="9.2.0"
+		version="11.2.0"
 		buildas="unpriv">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
-				<pkg sha1="306d27c3465fa36862c206738d06d65fff5c3645">gcc-9.2.0.tar.xz</pkg>
-				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-9.2.0/</mirror>
+				<pkg sha1="f902ccacecf8949978d6261e9f1d034cff73ffdb">gcc-11.2.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-11.2.0/</mirror>
 			</file>
 			<file>                                                                       
-				<pkg sha1="52c1f2a4c9a202f46cf3275a8d46b562aa584208">mpfr-4.0.2.tar.xz</pkg>
+				<pkg sha1="159c3a58705662bfde4dc93f2617f3660855ead6">mpfr-4.1.0.tar.xz</pkg>
 				<mirror>http://www.mpfr.org/mpfr-current/</mirror>
 			</file>
 			<file>                                   
-				<pkg sha1="27b6d2c560b3552ea3e2f1dfa1394c2d36f09ba2">gmp-6.1.2.tar.lz</pkg>
+				<pkg sha1="a035e45cb4fdb192074a46c6dd4dbe16ce3cf2a9">gmp-6.2.1.tar.lz</pkg>
 				<mirror>https://gmplib.org/download/gmp/</mirror>
 			</file>
 			<file>                                
-				<pkg sha1="b019d9e1d27ec5fb99497159d43a3164995de2d0">mpc-1.1.0.tar.gz</pkg>
+				<pkg sha1="2a4919abf445c6eda4e120cd669b8733ce337227">mpc-1.2.1.tar.gz</pkg>
 				<mirror>https://ftp.gnu.org/gnu/mpc/</mirror>
 			</file>
 			<manualcheck date="20170607" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
@@ -64,36 +64,20 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
-			tar xf ${SRCDIR}/mpfr-4.0.2.tar.xz
-			tar xf ${SRCDIR}/gmp-6.1.2.tar.lz
-			tar zxf ${SRCDIR}/mpc-1.1.0.tar.gz
+			tar xf ${SRCDIR}/mpfr-4.1.0.tar.xz
+			tar xf ${SRCDIR}/gmp-6.2.1.tar.lz
+			tar zxf ${SRCDIR}/mpc-1.2.1.tar.gz
 
-			mv -v mpc-1.1.0 gcc-${PKGVERSION}/mpc
-			mv -v gmp-6.1.2 gcc-${PKGVERSION}/gmp
-			mv -v mpfr-4.0.2 gcc-${PKGVERSION}/mpfr
+			mv -v mpc-1.2.1 gcc-${PKGVERSION}/mpc
+			mv -v gmp-6.2.1 gcc-${PKGVERSION}/gmp
+			mv -v mpfr-4.1.0 gcc-${PKGVERSION}/mpfr
 			mkdir -v gcc-build
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[ 
 			cd gcc-${PKGVERSION}
-			# for file in $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h -o -name linux-eabi.h )
-			for file in gcc/config/{linux,i386/linux{,64}}.h
-			do
-				cp -uv $file{,.orig}
-				sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&@g' \
-				-e 's@/usr@/tools@g' $file.orig > $file
-				echo '
-#undef STANDARD_STARTFILE_PREFIX_1
-#undef STANDARD_STARTFILE_PREFIX_2
-#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
-#define STANDARD_STARTFILE_PREFIX_2 ""' >> $file
-				touch $file.orig
-			done
-			
-#			sed -i '/k prot/agcc_cv_libc_provides_ssp=yes' gcc/configure
 
-case $(uname -m) in
   x86_64)
     sed -e '/m64=/s/lib64/lib/' \
         -i.orig gcc/config/i386/t-linux64
@@ -116,24 +100,14 @@ esac
 			#ARMFPU=''
 			JOBS=4
 
-			# Settings for Raspberry Pi
-			#case ${LFS_TGT} in
-			#	*armv6l*)
-			#		ARMFLOAT="--with-float=hard"
-			#		ARMFPU="--with-fpu=vfp"
-			#		JOBS=1
-			#	;;
-			#esac
-			
-			../gcc-${PKGVERSION}/configure                           \
-				--target=$LFS_TGT          \
-				 --prefix=/tools                                \
+			../gcc-${PKGVERSION}/configure                                       \
+    --target=$LFS_TGT                              \
+    --prefix=${CHROOTDIR}/tools                            \
     --with-glibc-version=2.11                      \
-    --with-sysroot=$LFS                            \
+    --with-sysroot=$CHROOTDIR                            \
     --with-newlib                                  \
     --without-headers                              \
-    --with-local-prefix=/tools                     \
-    --with-native-system-header-dir=/tools/include \
+    --enable-initfini-array                        \
     --disable-nls                                  \
     --disable-shared                               \
     --disable-multilib                             \
@@ -161,8 +135,18 @@ esac
 			<![CDATA[
 			cd gcc-build
 			make install
-			# ln -vs libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | sed 's/libgcc/&_eh/'`
-			# ln -vs libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | sed 's/libgcc/&_s/'`
+			cd ../gcc-${PKGVERSION}
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
+  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
+  
+mkdir -p $CHROOTDIR/lib64
+case $(uname -m) in
+    i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
+    ;;
+    x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $CHROOTDIR/lib64
+            ln -sfv ../lib/ld-linux-x86-64.so.2 $CHROOTDIR/lib64/ld-lsb-x86-64.so.3
+    ;;
+esac
 			]]>
 		</install>
 	</package>

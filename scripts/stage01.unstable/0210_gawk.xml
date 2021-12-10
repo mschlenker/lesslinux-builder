@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="gawk"
-		version="5.0.1">
+		version="5.1.0">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                        
-				<pkg sha1="ccdad761aa1fc682d688c7095b47208bef726582">gawk-5.0.1.tar.xz</pkg>
+				<pkg sha1="02408f1be58747a0d8c16ef1d191398b4260c638">gawk-5.1.0.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/gawk/</mirror>
 			</file>
 			<manualcheck date="20160922" interval="180" page="http://ftp.gnu.org/gnu/gawk/" />
@@ -26,17 +26,23 @@
 			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xvf - 
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/extras//' Makefile.in
+			]]>
+		</patch>
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools && make -j ` grep -c processor /proc/cpuinfo `
+			./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
+			make -j ` grep -c processor /proc/cpuinfo `
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

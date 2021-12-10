@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="sed"
-		version="4.7">
+		version="4.8">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
-				<pkg sha1="dbc842f6fdf538f366d97e7c4b4f241eaefd14a5">sed-4.7.tar.xz</pkg>
+				<pkg sha1="61bd770062d49cdab3f0f45df473e2bf950ba266">sed-4.8.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/sed/</mirror>
 			</file>
 			<manualcheck date="20170608" interval="180" page="ftp://ftp.gnu.org/gnu/sed/" />
@@ -31,13 +31,15 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools && make
+			./configure --prefix=/usr   \
+            --host=$LFS_TGT
+	    make
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

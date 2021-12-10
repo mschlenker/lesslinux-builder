@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="binutils_pass2"
-		version="2.32">
+		version="2.37">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                  
-				<pkg sha1="cd45a512af1c8a508976c1beb4f5825b3bb89f4d">binutils-2.32.tar.xz</pkg>
+				<pkg sha1="e9cf391b000010d6c752771974b394c9c743c928">binutils-2.37.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
 			</file>
 			<manualcheck date="20170606" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
@@ -22,7 +22,7 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/binutils-${PKGVERSION}.tar.xz
-			mkdir binutils-build
+			mkdir binutils-${PKGVERSION}/binutils-build
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -34,27 +34,24 @@
 		<build>
 			<![CDATA[ 
 			
-			cd binutils-build
-			CC=$LFS_TGT-gcc            \
-			AR=$LFS_TGT-ar             \
-			RANLIB=$LFS_TGT-ranlib     \
-			../binutils-${PKGVERSION}/configure \
-				--prefix=/tools        \
-				--disable-nls \
-				--with-lib-path=/tools/lib \
-				--with-sysroot \
-				--disable-werror
+			cd binutils-${PKGVERSION}/binutils-build
+			../configure                   \
+    --prefix=/usr              \
+    --build=$(../config.guess) \
+    --host=$LFS_TGT            \
+    --disable-nls              \
+    --enable-shared            \
+    --disable-werror           \
+    --enable-64-bit-bfd
 			make -j 4
 			
 			]]>
 		</build>
 		<install>
 			<![CDATA[
-			cd binutils-build
-			make install
-			make -C ld clean
-			make -C ld LIB_PATH=/usr/lib:/lib
-			cp -vf ld/ld-new /tools/bin
+			cd binutils-${PKGVERSION}/binutils-build
+			make DESTDIR=$CHROOTDIR install -j1
+			install -vm755 libctf/.libs/libctf.so.0.0.0 $CHROOTDIR/usr/lib
 			]]>
 		</install>
 	</package>

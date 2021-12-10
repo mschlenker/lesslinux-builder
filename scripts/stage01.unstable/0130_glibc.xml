@@ -1,18 +1,18 @@
 <llpackages>
 	<package 
 		name="glibc_pass1"
-		version="2.30"
+		version="2.34"
 		buildas="unpriv">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                
-				<pkg sha1="4df7e4dbb92b5ced729d972b32e3b8683db4a689">glibc-2.30.tar.xz</pkg>
+				<pkg sha1="7c3b8890a6346793b6334cc5f2fea5d437d307b8">glibc-2.34.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
 			</file>
-			<!-- <file>                                                                                  
-				<pkg sha1="5b6930429a90accf4e3612da75e13b029bfcf266">glibc-2.23-upstream_fixes-1.patch</pkg>
+			<file>                                                                                  
+				<pkg sha1="d61e9ba795b64f1b1aa81023f3e45157cb426c93">glibc-2.34-fhs-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
-			</file> -->
+			</file>
 			<!-- <file>                                                                                            
 				<pkg sha1="41a88bf6a20926a4a1e9792ae5eb2a9854dc44af">glibc-2.16-gcc_fix-1.patch</pkg>
 				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
@@ -32,47 +32,52 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/glibc-${PKGVERSION}.tar.xz
-			mkdir glibc-build
+			mkdir glibc-${PKGVERSION}/glibc-build
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[ 
 
-			cd glibc-${PKGVERSION}
-			cat ${SRCDIR}/glibc-${PKGVERSION}-upstream_fixes-1.patch | patch -p1 
-		
+cd glibc-${PKGVERSION}			
+cat ${SRCDIR}/glibc-${PKGVERSION}-fhs-1.patch | patch -p1 
+cd  glibc-build
+echo "rootsbindir=/usr/sbin" > configparms
+
 			]]>
-		</patch>  -->
+		</patch>
 		<chown>
 			<![CDATA[ 
-			chown -R ${UNPRIV} glibc-build
+			chown -R ${UNPRIV} glibc-${PKGVERSION}/glibc-build
 			]]>
 		</chown>
 		<build>
 			<![CDATA[ 
 			
-			if [ '!' -r /usr/include/rpc/types.h ]; then
-				echo 'RPC headers missing in host system!' 
-				exit 1
-			fi
+			#if [ '!' -r /usr/include/rpc/types.h ]; then
+			#	echo 'RPC headers missing in host system!' 
+			#	exit 1
+			#fi
 			
-			cd glibc-build
+			cd glibc-${PKGVERSION}/glibc-build
 			
-			case `uname -m` in
-				i?86) 
-					echo "CFLAGS += -O2 -march=i686 -mtune=generic" > configparms 
-				;;
-				#x86_64) 
-				#	echo "CFLAGS += -march=x86-64 -mtune=generic" > configparms 
-				#;;
-			esac
+			#case `uname -m` in
+			#	i?86) 
+			#		echo "CFLAGS += -O2 -march=i686 -mtune=generic" > configparms 
+			#	;;
+			#	#x86_64) 
+			#	#	echo "CFLAGS += -march=x86-64 -mtune=generic" > configparms 
+			#	#;;
+			#esac
 			
 			JOBS=` grep -c processor /proc/cpuinfo `
 			
-			../glibc-${PKGVERSION}/configure --prefix=/tools \
-			--host=${LFS_TGT} \
-			--build=$(../glibc-${PKGVERSION}/scripts/config.guess) \
-			--enable-kernel=3.2 --with-headers=/tools/include \
+			../configure                             \
+      --prefix=/usr                      \
+      --host=$LFS_TGT                    \
+      --build=$(../scripts/config.guess) \
+      --enable-kernel=3.2                \
+      --with-headers=${CHROOTDIR}/usr/include    \
+      libc_cv_slibdir=/usr/lib
 			
 			
 			
@@ -85,17 +90,19 @@
 		</build>
 		<install>
 			<![CDATA[
-			
+		
 			if [ '!' -r /usr/include/rpc/types.h ]; then
 				echo 'RPC headers missing in host system!' 
 				exit 1
 			fi
 			
-			cd glibc-build
-			make install
+			cd glibc-${PKGVERSION}/glibc-build
+			make DESTDIR=$CHROOTDIR install
+			sed '/RTLDLIST=/s@/usr@@g' -i $CHROOTDIR/usr/bin/ldd
 			echo 'main(){}' > dummy.c
 			$LFS_TGT-gcc dummy.c
-			readelf -l a.out | grep ': /tools'
+			readelf -l a.out | grep ': /ld-linux'
+			$CHROOTDIR/tools/libexec/gcc/$LFS_TGT/11.2.0/install-tools/mkheaders
 			]]>
 		</install>
 	</package>

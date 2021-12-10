@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="xz"
-		version="5.2.4">
+		version="5.2.5">
 		<license>GPLv2</license>
 		<sources>
                         <file>                                                                          
-                                <pkg sha1="50ad451279404fb5206e23c7b1ba9c4aa858c994">xz-5.2.4.tar.bz2</pkg>
+                                <pkg sha1="19f83fb33dc51df87169864decd4b3de75dee1df">xz-5.2.5.tar.bz2</pkg>
                                 <mirror>http://tukaani.org/xz/</mirror>
                         </file>
                         <manualcheck date="20170608" interval="180" page="http://tukaani.org/xz/" />
@@ -31,13 +31,18 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools && make
+			./configure --prefix=/usr                     \
+            --host=$LFS_TGT                   \
+            --build=$(build-aux/config.guess) \
+            --disable-static                  \
+            --docdir=/usr/share/doc/xz-5.2.5
+	    make
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="coreutils"
-		version="8.31">
+		version="8.32">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                           
-				<pkg sha1="c62b5034a5b65daca33c50a60df87ebc44159faf">coreutils-8.31.tar.xz</pkg>
+				<pkg sha1="b2b12195e276c64c8e850cf40ea2cff9b3aa53f6">coreutils-8.32.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
 			</file>
 			<manualcheck date="20170608" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
@@ -34,20 +34,23 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			export FORCE_UNSAFE_CONFIGURE=1
-			./configure --prefix=/tools --enable-install-program=hostname 
-			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
-			make -j${JOBCOUNT}
+			./configure --prefix=/usr                     \
+            --host=$LFS_TGT                   \
+            --build=$(build-aux/config.guess) \
+            --enable-install-program=hostname \
+            --enable-no-install-program=kill,uptime
 			]]>
 		</build>
 		<install>
 			<![CDATA[
+			LFS=$CHROOTDIR
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			cp -v src/su /tools/bin/su-tools
-			for i in cat echo pwd stty ; do
-				ln -sfv /tools/bin/$i ${CHROOTDIR}/bin/$i
-			done
+			make DESTDIR=$CHROOTDIR install
+			mv -v $LFS/usr/bin/chroot                                     $LFS/usr/sbin
+mkdir -pv $LFS/usr/share/man/man8
+mv -v $LFS/usr/share/man/man1/chroot.1                        $LFS/usr/share/man/man8/chroot.8
+sed -i 's/"1"/"8"/'                                           $LFS/usr/share/man/man8/chroot.8
+
 			]]>
 		</install>
 	</package>

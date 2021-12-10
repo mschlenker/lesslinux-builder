@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="file"
-		version="5.37">
+		version="5.40">
 		<license>GPLv2</license>
 		<sources>
 			<file>                   
-				<pkg sha1="891176efa3006eff222bd364cd96135aad171941">file-5.37.tar.gz</pkg>
+				<pkg sha1="8a5d51c59cf090f09b00c2d75e50a194ee43250e">file-5.40.tar.gz</pkg>
 				<mirror>ftp://ftp.astron.com/pub/file/</mirror>
 			</file>
 			<manualcheck date="20170608" interval="180" page="ftp://ftp.astron.com/pub/file/" />
@@ -39,15 +39,22 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools
-			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
-			make -j${JOBCOUNT}
+mkdir build
+pushd build
+  ../configure --disable-bzlib      \
+               --disable-libseccomp \
+               --disable-xzlib      \
+               --disable-zlib
+  make
+popd
+./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
+make FILE_COMPILE=$(pwd)/build/src/file
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>

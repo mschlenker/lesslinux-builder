@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="bash"
-		version="5.0">
+		version="5.1.8">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                          
-				<pkg sha1="d116b469b9e6ea5264a74661d3a4c797da7f997b">bash-5.0.tar.gz</pkg>
+				<pkg sha1="6399bd1f9ef4dd0d901c7b76737bc409de73c77a">bash-5.1.8.tar.gz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/bash/</mirror>
 			</file>
 			<manualcheck date="20160922" interval="180" page="http://ftp.gnu.org/gnu/bash/" />
@@ -18,16 +18,20 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools --without-bash-malloc && make -j ` grep -c  processor /proc/cpuinfo ` 
+		./configure --prefix=/usr                   \
+            --build=$(support/config.guess) \
+            --host=$LFS_TGT                 \
+            --without-bash-malloc
+			make
 			]]>
 		</build>
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
-			ln -vsf bash /tools/bin/sh
-			ln -vsf /tools/bin/bash ${CHROOTDIR}/bin/sh
-			ln -vsf /tools/bin/bash ${CHROOTDIR}/bin/bash
+			make DESTDIR=$CHROOTDIR install
+			mkdir -p $CHROOTDIR/bin
+			ln -vsf bash ${CHROOTDIR}/bin/sh
+			true
 			]]>
 		</install>
 	</package>

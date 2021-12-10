@@ -1,0 +1,120 @@
+<llpackages>
+	<package 
+		name="gcc_pass2"
+		version="11.2.0"
+		buildas="unpriv">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="f902ccacecf8949978d6261e9f1d034cff73ffdb">gcc-11.2.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-11.2.0/</mirror>
+			</file>
+			<file>                                                                       
+				<pkg sha1="159c3a58705662bfde4dc93f2617f3660855ead6">mpfr-4.1.0.tar.xz</pkg>
+				<mirror>http://www.mpfr.org/mpfr-current/</mirror>
+			</file>
+			<file>                                   
+				<pkg sha1="a035e45cb4fdb192074a46c6dd4dbe16ce3cf2a9">gmp-6.2.1.tar.lz</pkg>
+				<mirror>https://gmplib.org/download/gmp/</mirror>
+			</file>
+			<file>                                
+				<pkg sha1="2a4919abf445c6eda4e120cd669b8733ce337227">mpc-1.2.1.tar.gz</pkg>
+				<mirror>https://ftp.gnu.org/gnu/mpc/</mirror>
+			</file>
+			<manualcheck date="20170607" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+		</sources>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
+			tar xf ${SRCDIR}/mpfr-4.1.0.tar.xz
+			tar xf ${SRCDIR}/gmp-6.2.1.tar.lz
+			tar zxf ${SRCDIR}/mpc-1.2.1.tar.gz
+
+			mv -v mpc-1.2.1 gcc-${PKGVERSION}/mpc
+			mv -v gmp-6.2.1 gcc-${PKGVERSION}/gmp
+			mv -v mpfr-4.1.0 gcc-${PKGVERSION}/mpfr
+			mkdir -v gcc-${PKGVERSION}/gcc-build
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd gcc-${PKGVERSION}
+
+case $(uname -m) in
+  x86_64)
+    sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64
+  ;;
+esac
+cd gcc-build
+mkdir -pv $LFS_TGT/libgcc
+ln -s ../../../libgcc/gthr-posix.h $LFS_TGT/libgcc/gthr-default.h
+
+			]]>
+		</patch>
+		<chown>
+			<![CDATA[ 
+			chown -R ${UNPRIV} gcc-${PKGVERSION}/
+			]]>
+		</chown>
+		<build>
+			<![CDATA[ 
+			
+			cd gcc-${PKGVERSION}/gcc-build
+			
+			#ARMFLOAT=''
+			#ARMFPU=''
+			JOBS=4
+
+			# Settings for Raspberry Pi
+			#case ${LFS_TGT} in
+			#	*armv6l*)
+			#		ARMFLOAT="--with-float=hard"
+			#		ARMFPU="--with-fpu=vfp"
+			#		JOBS=1
+			#	;;
+			#esac		
+			
+../configure                                       \
+    --build=$(../config.guess)                     \
+    --host=$LFS_TGT                                \
+    --prefix=/usr                                  \
+    CC_FOR_TARGET=$LFS_TGT-gcc                     \
+    --with-build-sysroot=$CHROOTDIR                 \
+    --enable-initfini-array                        \
+    --disable-nls                                  \
+    --disable-multilib                             \
+    --disable-decimal-float                        \
+    --disable-libatomic                            \
+    --disable-libgomp                              \
+    --disable-libquadmath                          \
+    --disable-libssp                               \
+    --disable-libvtv                               \
+    --disable-libstdcxx                            \
+    --enable-languages=c,c++
+    
+# Fix build on RaspberryPi
+#case 	$LFS_TGT in 
+#	armv6l*)
+#		sed -i 's/none-/armv6l-/' Makefile
+#	;;
+#esac			
+make -j $JOBS
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			cd gcc-${PKGVERSION}/gcc-build
+			make DESTDIR=$CHROOTDIR install
+			ln -sv gcc $CHROOTDIR/usr/bin/cc
+			# ln -sv /tools/lib/libgcc_s.so{,.1} ${CHROOTDIR}/usr/lib
+			# ln -sv /tools/lib/libstdc++.so{,.6} ${CHROOTDIR}/usr/lib
+			# echo 'main(){}' > dummy.c
+			# cc dummy.c
+			# readelf -l a.out | grep ': /tools'
+			# true
+			]]>
+		</install>
+	</package>
+</llpackages>

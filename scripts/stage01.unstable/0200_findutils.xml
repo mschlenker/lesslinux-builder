@@ -1,11 +1,11 @@
 <llpackages>
 	<package 
 		name="findutils"
-		version="4.7.0">
+		version="4.8.0">
 		<license>GPLv2</license>
 		<sources>
 			<file>               
-				<pkg sha1="bd2fae4add80334173e03272aeed5635d4a0fa03">findutils-4.7.0.tar.xz</pkg>
+				<pkg sha1="b702a37d3a33038102659777ba1fe99835bb19fe">findutils-4.8.0.tar.xz</pkg>
 				<mirror>http://ftp.gnu.org/gnu/findutils/</mirror>
 			</file>
 			<manualcheck date="20160630" interval="180" page="http://ftp.gnu.org/gnu/findutils" />
@@ -29,7 +29,10 @@
 		<build>
 			<![CDATA[ 
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/tools
+			./configure --prefix=/usr                   \
+            --localstatedir=/var/lib/locate \
+            --host=$LFS_TGT                 \
+            --build=$(build-aux/config.guess)
 			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
 			make -j${JOBCOUNT}
 			]]>
@@ -37,7 +40,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install
+			make DESTDIR=$CHROOTDIR install
 			]]>
 		</install>
 	</package>
