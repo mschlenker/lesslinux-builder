@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="util-macros"
+		version="1.19.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                         
+				<pkg sha1="4097f75e327b9579d1bd657fa8b01b55238ad8f5">util-macros-1.19.3.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/util/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://xorg.freedesktop.org/archive/individual/util/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/util/">
+					<atext linktext="util-macros-1.19.4." />
+					<atext linktext="util-macros-1.19.2." />
+					<atext linktext="util-macros-1.19.3." />
+					<atext linktext="util-macros-1.20." />
+					<atext linktext="util-macros-1.21." />
+					<atext linktext="util-macros-1.22." />
+					<atext linktext="util-macros-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

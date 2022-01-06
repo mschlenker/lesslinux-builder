@@ -1,0 +1,42 @@
+<llpackages>
+    <package name='Mako' version='1.1.6' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='61acbccc1131a1a439ef091b49f201df8f002bed'>
+                    Mako-1.1.6.tar.gz
+                </pkg>
+                <mirror>
+                    https://files.pythonhosted.org/packages/af/b6/42cd322ae555aa770d49e31b8c5c28a243ba1bbb57ad927e1a5f5b064811/
+                </mirror>
+            </file>
+            <manualcheck date='20220106' interval='60' mirror='https://files.pythonhosted.org/packages/af/b6/42cd322ae555aa770d49e31b8c5c28a243ba1bbb57ad927e1a5f5b064811/'/>
+        </sources>
+	<builddeps>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python3 setup.py config
+python3 setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python3 setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

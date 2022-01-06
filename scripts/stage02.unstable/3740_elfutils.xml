@@ -74,7 +74,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --program-prefix="eu-"
+			./configure --prefix=/usr --program-prefix="eu-" --disable-debuginfod
 			make -j $jobcount
 			]]>
 		</build>

@@ -1,0 +1,73 @@
+<llpackages>
+	<package 
+		name="libepoxy"
+		version="1.5.9"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                        
+				<pkg sha1="531d98d849ead728a0fc7722df5487a3d9108829">libepoxy-1.5.9.tar.xz</pkg>
+				<mirror>https://github.com/anholt/libepoxy/releases/download/1.5.9/</mirror>
+			</file>
+			<!-- <file>                                                                                                        
+				<pkg sha1="dd016593ea04b07847b9ba6218ad65ed824b20da">xorg-server-1.16.0-glibc-2.20.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<manualcheck date="20170610" interval="90" page="http://www.linuxfromscratch.org/blfs/view/svn/x/libepoxy.html" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/xserver/">
+					<atext linktext="xorg-server-1.15.1." />
+					<atext linktext="xorg-server-1.15.2." />
+					<atext linktext="xorg-server-1.15.3." />
+					<atext linktext="xorg-server-1.16." />
+					<atext linktext="xorg-server-1.17." />
+					<atext linktext="xorg-server-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep>
+			<dep>glu</dep>
+                        <dep>Python3</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glibc-2.20.patch | patch -p1 
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build
+			cd    build
+			meson --prefix=/usr --buildtype=release .. 
+			ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			ninja install
+			# make install DESTDIR=${TGTDIR}
+			# /sbin/paxctl -m -r ${TGTDIR}/usr/bin/Xorg
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

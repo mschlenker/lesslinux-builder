@@ -1,0 +1,43 @@
+<llpackages>
+    <package name='wayland-protocols' version='1.24' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='c695d37f75414b10e7e1ef8d67120332d4955586'>
+                    wayland-protocols-1.24.tar.xz
+                </pkg>
+                <mirror>
+                    https://wayland.freedesktop.org/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20220106' interval='60' mirror='https://wayland.freedesktop.org/releases/'/>
+        </sources>
+	<builddeps>
+			<dep>wayland</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    mkdir build && cd    build
+meson --prefix=/usr --buildtype=release && ninja
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/build
+	ninja install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

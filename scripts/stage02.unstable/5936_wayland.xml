@@ -1,0 +1,90 @@
+<llpackages>
+	<package 
+		name="wayland"
+		version="1.20.0"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>              
+				<pkg sha1="6e3352cb44f9f405926e39f88cd890e51b0304b8">wayland-1.20.0.tar.xz</pkg>
+				<mirror>http://wayland.freedesktop.org/releases/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="http://wayland.freedesktop.org/releases/" />
+			<check>
+				<page html="http://wayland.freedesktop.org/releases/">
+					<atext linktext="wayland-1.13.1." />
+					<atext linktext="wayland-1.13.2." />
+					<atext linktext="wayland-1.13.3." />
+					<atext linktext="wayland-1.13.4." />
+					<atext linktext="wayland-1.16." />
+					<atext linktext="wayland-1.14." />
+					<atext linktext="wayland-1.15." />
+					<atext linktext="wayland-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <!-- <dep>Mesa</dep> -->
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libdrm</dep>
+			 <dep>libffi</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>udev</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build && cd    build
+meson --prefix=/usr       \
+      --buildtype=release \
+      -Ddocumentation=false &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			ninja install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

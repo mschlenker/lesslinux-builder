@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
 		name="Mesa"
-		version="21.1.1"
+		version="21.2.1"
 		class="user"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                     
@@ -34,6 +34,10 @@
 			<dep>libXvMC</dep>
 			<dep>meson</dep>
 			<dep>ninja</dep>
+			<dep>Mako</dep>
+			<dep>libdrm</dep>
+			<dep>wayland</dep>
+			<dep>wayland-protocols</dep>
 			<!-- <dep>Python</dep>
 			<dep>automake</dep>
 			<dep>automake113</dep>
@@ -76,7 +80,7 @@
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/mesa-${PKGVERSION}.tar.xz 
+			tar xf ${SRCDIR}/mesa-${PKGVERSION}.tar.xz 
 			]]>
 		</unpack>
 		<patch>
@@ -126,7 +130,7 @@
 				-Dglx=dri                      \
 				-Dvalgrind=disabled            \
 				-Dlibunwind=disabled           \
-				..
+				 ..
 			
 			unset GALLIUM_DRV DRI_DRIVERS
 			ninja

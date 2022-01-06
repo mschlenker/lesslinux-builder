@@ -3,7 +3,7 @@
 		name="libdrm"
 		version="2.4.109"
 		class="lib"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                      
@@ -43,6 +43,8 @@
                         <dep>udev</dep>
                         <dep>util-linux-ng</dep>
 			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -57,39 +59,25 @@
 		<build>
 			<![CDATA[
 			
-			case $(uname -m) 
-			in
-				i?86) 
-					# FIXME, this is i386 only!
-					export CFLAGS="-march=i686 -O2"
-				;;
-			esac 
+			
 			
 			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build && cd    build
+meson --prefix=/usr \
+      --buildtype=release   \
+      -Dudev=true           \
+      -Dvalgrind=false      &&
+ninja
 			
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-			fi
-		
-			# sed -e "/pthread-stubs/d" -i configure.ac
-			# autoreconf -fiv
-			./configure --prefix=/usr --enable-udev 
-			
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
-				make -j ` grep -c processor /proc/cpuinfo ` 
-			fi
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME}-${PKGVERSION}/build
 			# cd drm
-			make install DESTDIR=${TGTDIR}
+			#make install DESTDIR=${TGTDIR}
+			ninja install
 			]]>
 		</install>
 		<clean>
