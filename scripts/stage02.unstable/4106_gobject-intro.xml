@@ -1,0 +1,87 @@
+<llpackages>
+	<package 
+		name="gobject-introspection"
+		version="1.70.0"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                             
+				<pkg sha1="ed436f1c5c4519f7f86e9217b964183b32ac73b1">gobject-introspection-1.70.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/1.70/</mirror>
+			</file>
+			<manualcheck date="20170614" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/1.52/">
+					<atext linktext="gobject-introspection-1.52.5." />
+					<atext linktext="gobject-introspection-1.52.2." />
+					<atext linktext="gobject-introspection-1.52.3." />
+					<atext linktext="gobject-introspection-1.52.4" />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/gobject-introspection/">
+					<atext linktext="1.54." />
+					<atext linktext="1.56" />
+					<atext linktext="2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <!-- <dep>GConf</dep> -->
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libffi</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>procps</dep>
+                       <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>unzip</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/gobject-introspection-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gobject-introspection-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gobject-introspection-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gobject-introspection-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

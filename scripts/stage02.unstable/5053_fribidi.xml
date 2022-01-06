@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="fribidi"
+		version="1.0.11"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="326d3f89431b9553f1942ca6814433e4b34611a3">fribidi-1.0.11.tar.xz</pkg>
+				<mirror>https://github.com/fribidi/fribidi/releases/download/v1.0.11/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://fribidi.org/" />
+			<check>
+				<page html="http://fribidi.org/download/">
+					<atext linktext="fribidi-0.19.8" />
+					<atext linktext="fribidi-0.19.9" />
+					<atext linktext="fribidi-0.19.10" />
+					<atext linktext="fribidi-0.20." />
+					<atext linktext="fribidi-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install
+			]]>
+		</install>
+	</package>
+</llpackages>

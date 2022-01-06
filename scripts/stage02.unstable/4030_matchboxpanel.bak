@@ -1,0 +1,84 @@
+<llpackages>
+	<package 
+		name="matchbox-panel"
+		version="0.9.3"
+		class="user"
+		install='destdir'>
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="c54a0c1f35fcdc883e529ecdec123977c6325160">matchbox-panel-0.9.3.tar.bz2</pkg>
+				<mirror>http://matchbox-project.org/sources/matchbox-panel/0.9/</mirror>
+			</file>
+			<manualcheck date="20120624" interval="3650" page="http://distfiles.lesslinux.org/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXft</dep>
+                        <dep>libXrender</dep>
+                        <dep>libmatchbox</dep>
+                        <dep>libpng16</dep> 
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxsettings-client</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep><dep>pangox-compat</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>wireless_tools</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig \
+				PNG_LIBS='-L/usr/compat.old/lib -lpng12' PNG_CFLAGS='-I/usr/compat.old/include/libpng12' \
+				LDFLAGS='-L/usr/compat.old/lib -lX11 -lm' ./configure --prefix=/usr --enable-nls CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				PKG_CONFIG_PATH=/usr/compat.old/lib/pkgconfig \
+				PNG_LIBS='-L/usr/compat.old/lib -lpng12' PNG_CFLAGS='-I/usr/compat.old/include/libpng12' \
+				LDFLAGS='-L/usr/compat.old/lib -lX11 -lm' ./configure --prefix=/usr --enable-nls
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			paxctl -m ${TGTDIR}/usr/bin/matchbox-panel
+			# FIXME: Matchbox applets should be also turned MPROTECT off
+			]]>
+		</install>
+	</package>
+</llpackages>

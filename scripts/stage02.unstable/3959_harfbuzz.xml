@@ -1,0 +1,65 @@
+<llpackages>
+	<package 
+		name="harfbuzz"
+		version="3.2.0"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                           
+				<pkg sha1="c5a9257354a3960af545c4d7aba9c21eb10b14dc">harfbuzz-3.2.0.tar.xz</pkg>
+				<mirror>https://github.com/harfbuzz/harfbuzz/releases/download/3.2.0/</mirror>
+			</file>
+			<manualcheck date="20170614" interval="180" page="http://www.freedesktop.org/software/harfbuzz/release/" />
+			<check>
+				<page html="http://www.freedesktop.org/software/harfbuzz/release/">
+					<atext linktext="harfbuzz-1.4.7." />
+					<atext linktext="harfbuzz-1.4.8." />
+					<atext linktext="harfbuzz-1.4.9." />
+					<atext linktext="harfbuzz-1.4.10." />
+					<atext linktext="harfbuzz-1.4.11." />
+					<atext linktext="harfbuzz-1.4.12." />
+					<atext linktext="harfbuzz-1.5." />
+					<atext linktext="harfbuzz-1.6." />
+					<atext linktext="harfbuzz-2." />
+				</page>
+			</check>
+		</sources> 
+		<builddeps>
+                        <dep>cairo</dep>
+                        <dep>glib</dep>
+                        <dep>libpng16</dep>
+			 <dep>imake</dep>
+			 <dep>graphite2</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build && cd    build 
+
+meson --prefix=/usr        \
+      --buildtype=release  \
+      -Dgraphite2=enabled  &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install  
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
