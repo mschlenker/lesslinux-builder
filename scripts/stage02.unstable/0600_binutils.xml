@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="binutils"
+		version="2.37"
+		class="devel">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                 
+				<pkg sha1="e9cf391b000010d6c752771974b394c9c743c928">binutils-2.37.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
+			</file>
+			<file>                                                                 
+				<pkg sha1="e25c30012771b1ed84896fd932ba773f5fe6bca2">binutils-2.37-upstream_fix-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/lfs/11.0/</mirror>
+			</file>
+			<manualcheck date="20170801" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/binutils/">
+					<atext linktext="binutils-2.28.4." />
+					<atext linktext="binutils-2.28.2." />
+					<atext linktext="binutils-2.28.3" />
+					<atext linktext="binutils-2.29." />
+					<atext linktext="binutils-2.30." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>dejagnu</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			mkdir ${PKGNAME}-${PKGVERSION}/binutils-build
+			]]>
+		</unpack>
+		<patch>			
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/binutils-2.37-upstream_fix-1.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+
+cd ${PKGNAME}-${PKGVERSION}/binutils-build
+jobcount=`grep -c processor /proc/cpuinfo`
+../configure --prefix=/usr       \
+             --enable-gold       \
+             --enable-ld=default \
+             --enable-plugins    \
+             --enable-shared     \
+             --disable-werror    \
+             --enable-64-bit-bfd \
+             --with-system-zlib --enable-install-libiberty
+make -j $jobcount tooldir=/usr
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/binutils-build
+			make tooldir=/usr   install 
+			# cp -v ../${PKGNAME}-${PKGVERSION}/include/libiberty.h ${TGTDIR}/usr/include
+			]]>
+		</install>
+		<clean>
+			<![CDATA[ 
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

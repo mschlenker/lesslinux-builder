@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="bc"
+		version="5.0.0"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="e9a34ebe398238de9916037875b49fc99c0df414">bc-5.0.0.tar.xz</pkg>
+				<mirror>https://github.com/gavinhoward/bc/releases/download/5.0.0/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="180" page="http://ftp.de.debian.org/debian/pool/main/b/bc/" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/xchat/files/">
+					<atext linktext="xchat-2.8.9." />
+					<atext linktext="xchat-2.8.10." />
+					<atext linktext="xchat-2.8.11." />
+					<atext linktext="xchat-2.8.12." />
+					<atext linktext="xchat-2.9." />
+					<atext linktext="xchat-2.10." />
+					<atext linktext="xchat-3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>m4</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			CC=gcc ./configure --prefix=/usr -G -O3
+			make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

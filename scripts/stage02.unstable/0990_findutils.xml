@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="findutils"
+		version="4.8.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>               
+				<pkg sha1="b702a37d3a33038102659777ba1fe99835bb19fe">findutils-4.8.0.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/findutils/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="180" page="http://ftp.gnu.org/gnu/findutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/findutils/">
+					<atext linktext="findutils-4.6.3." />
+					<atext linktext="findutils-4.6.4." />
+					<atext linktext="findutils-4.6.1." />
+					<atext linktext="findutils-4.6.2." />
+					<atext linktext="findutils-4.7." />
+					<atext linktext="findutils-4.8." />
+					<atext linktext="findutils-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --localstatedir=/var/lib/locate && make -j $jobcount
+			]]>
+		</build>
+		<!-- <test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>  -->
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

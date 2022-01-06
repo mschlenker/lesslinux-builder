@@ -97,12 +97,16 @@ echo "rootsbindir=/usr/sbin" > configparms
 			fi
 			
 			cd glibc-${PKGVERSION}/glibc-build
-			make DESTDIR=$CHROOTDIR install
-			sed '/RTLDLIST=/s@/usr@@g' -i $CHROOTDIR/usr/bin/ldd
+			echo '>>> Install'
+			make DESTDIR=${CHROOTDIR} install
+			echo '>>> Changing path'
+			sed '/RTLDLIST=/s@/usr@@g' -i ${CHROOTDIR}/usr/bin/ldd
+			echo '>>> Building test program'
 			echo 'main(){}' > dummy.c
-			$LFS_TGT-gcc dummy.c
-			readelf -l a.out | grep ': /ld-linux'
-			$CHROOTDIR/tools/libexec/gcc/$LFS_TGT/11.2.0/install-tools/mkheaders
+			${LFS_TGT}-gcc dummy.c
+			readelf -l a.out | grep '/ld-linux'
+			echo '>>> Running mkheaders'
+			${CHROOTDIR}/tools/libexec/gcc/${LFS_TGT}/11.2.0/install-tools/mkheaders -v
 			]]>
 		</install>
 	</package>

@@ -1,0 +1,78 @@
+<llpackages>
+	<package 
+		name="coreutils"
+		version="8.32"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                           
+				<pkg sha1="b2b12195e276c64c8e850cf40ea2cff9b3aa53f6">coreutils-8.32.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/coreutils/</mirror>
+			</file>
+			<file>                                                           
+				<pkg sha1="e0f70c8629a6c70f3e4966523b4545de54a165a9">coreutils-8.32-i18n-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/11.0/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="http://ftp.gnu.org/gnu/coreutils" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/coreutils/">
+					<atext linktext="coreutils-8.27.1" />
+					<atext linktext="coreutils-8.28." />
+					<atext linktext="coreutils-8.29." />
+					<atext linktext="coreutils-9." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>openssl</dep>
+			<dep>automake</dep>
+			<dep>autoconf</dep>
+			<!-- <dep>e2fsprogs</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			patch -Np1 -i ${SRCDIR}/coreutils-8.32-i18n-1.patch
+			# sed -i '/test.lock/s/^/#/' gnulib-tests/gnulib.mk
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			autoreconf -fiv
+			FORCE_UNSAFE_CONFIGURE=1 \
+			./configure \
+				--prefix=/usr            \
+				--enable-no-install-program=kill,uptime  && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/lib ${TGTDIR}/usr/bin
+			for d in lib bin ; do
+				ln -sf ./usr/${d} ${TGTDIR}/${d}
+			done
+			make install DESTDIR=${TGTDIR}
+			for d in lib bin ; do
+				rm ${TGTDIR}/${d}
+			done
+			mv -v ${TGTDIR}/usr/bin/chroot ${TGTDIR}/usr/sbin
+			mv -v ${TGTDIR}/usr/share/man/man1/chroot.1 ${TGTDIR}/usr/share/man/man8/chroot.8
+			sed -i 's/"1"/"8"/' ${TGTDIR}/usr/share/man/man8/chroot.8
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

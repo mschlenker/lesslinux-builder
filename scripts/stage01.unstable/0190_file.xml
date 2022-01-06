@@ -48,7 +48,8 @@ pushd build
   make
 popd
 ./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
-make FILE_COMPILE=$(pwd)/build/src/file
+make FILE_COMPILE=$(pwd)/build/src/file -j4
+make FILE_COMPILE=$(pwd)/build/src/file 
 			]]>
 		</build>
 		<install>

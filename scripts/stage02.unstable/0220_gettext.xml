@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
-		name="gettext"
+		name="gettext-prepare"
 		version="0.21"
 		class="lib"
-		install="destdir">
+		install="destdir" providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>    
@@ -23,11 +23,11 @@
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>libstdcplusplus</dep>
+                        <dep>libstdcplusplus-prepare</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xzf ${SRCDIR}/${PKGNAME%-prepare}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -40,29 +40,35 @@
 		</patch> -->
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
 			./configure --disable-shared
 			make
 			]]>
 		</build>
 		<test>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
 			make check
 			]]>
 		</test>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
-			mkdir -p ${TGTDIR}/usr/bin
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
+			for d in lib bin sbin ; do
+				mkdir -p ${TGTDIR}/usr/${d}
+				ln -sf ./usr/${d} ${TGTDIR}/${d}
+			done
+			make DESTDIR=${TGTDIR} prefix=/usr install
+			for d in lib bin sbin ; do
+				rm ${TGTDIR}/${d}
+			done
 			cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} ${TGTDIR}/usr/bin
 			# chmod -v 0755 ${TGTDIR}/usr/lib/preloadable_libintl.so
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME%-prepare}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

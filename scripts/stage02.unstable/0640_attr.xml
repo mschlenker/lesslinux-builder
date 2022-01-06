@@ -1,0 +1,39 @@
+<llpackages>
+	<package 
+		name="attr"
+		version="2.5.1"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                          
+				<pkg sha1="72fea2dee5f481bfe7c9da84a2a1ace063a6c82d">attr-2.5.1.tar.gz</pkg>
+				<mirror>https://download.savannah.gnu.org/releases/attr/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://archive.ubuntu.com/ubuntu/pool/main/a/attr/" />
+		</sources>
+		<builddeps>
+			<dep>mpc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr     \
+            --disable-static  \
+            --sysconfdir=/etc \
+            --docdir=/usr/share/doc/attr-${PKGVERSION} && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,43 @@
+<llpackages>
+    <package name='ninja' version='1.10.2' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8d2e8c1c070c27fb9dc46b4a6345bbb1de7ccbaf'>
+                    ninja-1.10.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/ninja-build/ninja/archive/v1.10.2/
+                </mirror>
+            </file>
+            <manualcheck date='20180927' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+	  
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    export NINJAJOBS=4
+	      python3 configure.py --bootstrap 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    mkdir -p ${TGTDIR}/usr/bin
+	    install -m 0755 ninja ${TGTDIR}/usr/bin
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,66 @@
+<llpackages>
+	<package 
+		name="sed"
+		version="4.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="61bd770062d49cdab3f0f45df473e2bf950ba266">sed-4.8.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/sed/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="ftp://ftp.gnu.org/gnu/sed/" />
+			<check>
+				<page html="ftp://ftp.gnu.org/gnu/sed/">
+					<atext linktext="sed-4.4.2." />
+					<atext linktext="sed-4.4.3." />
+					<atext linktext="sed-4.4.5." />
+					<atext linktext="sed-4.4.6." />
+					<atext linktext="sed-4.4.1." />
+					<atext linktext="sed-4.5." />
+					<atext linktext="sed-4.6." />
+					<atext linktext="sed-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+			<dep>ncurses</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr 
+			make
+			make html
+			]]>
+		</build>
+		<!-- <test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test> -->
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/share/doc/sed-${PKGVERSION}
+			install -d -m755          ${TGTDIR} /usr/share/doc/sed-${PKGVERSION}
+			install -m644 doc/sed.html ${TGTDIR}/usr/share/doc/sed-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

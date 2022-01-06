@@ -1,0 +1,130 @@
+<llpackages>
+	<package 
+		name="glibc"
+		version="2.34"
+		class="lib">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                
+				<pkg sha1="7c3b8890a6346793b6334cc5f2fea5d437d307b8">glibc-2.34.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/glibc/</mirror>
+			</file>
+			<file>                                                                                  
+				<pkg sha1="d61e9ba795b64f1b1aa81023f3e45157cb426c93">glibc-2.34-fhs-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<!-- <file>                                                                                            
+				<pkg sha1="41a88bf6a20926a4a1e9792ae5eb2a9854dc44af">glibc-2.16-gcc_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20170607" interval="90" page="http://ftp.gnu.org/gnu/glibc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/glibc/">
+					<atext linktext="glibc-2.25.1." />
+					<atext linktext="glibc-2.25.2." />
+					<atext linktext="glibc-2.25.3." />
+					<atext linktext="glibc-2.25.4." />
+					<atext linktext="glibc-2.26." />
+					<atext linktext="glibc-2.27." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>iana-etc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			unxz -c ${SRCDIR}/glibc-${PKGVERSION}.tar.xz | tar xf -
+			mkdir glibc-${PKGVERSION}/glibc-build
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+
+cd glibc-${PKGVERSION}
+sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
+    -i sysdeps/unix/sysv/linux/mq_notify.c
+cat ${SRCDIR}/glibc-${PKGVERSION}-fhs-1.patch | patch -p1 
+cd glibc-build
+echo "rootsbindir=/usr/sbin" > configparms
+
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+cd glibc-${PKGVERSION}/glibc-build
+../configure --prefix=/usr                            \
+             --disable-werror                         \
+             --enable-kernel=3.2                      \
+             --enable-stack-protector=strong          \
+             --with-headers=/usr/include              \
+             libc_cv_slibdir=/usr/lib
+make -j4
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd glibc-${PKGVERSION}/glibc-build
+			make -k check 2>&1 | tee glibc-check-log
+			grep Error glibc-check-log
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd glibc-${PKGVERSION}/glibc-build
+			#mkdir -p ${TGTDIR}/usr/lib ${TGTDIR}/usr/bin
+			#for d in lib bin ; do
+			#	ln -sf ./usr/${d} ${TGTDIR}/${d}
+			#done
+			touch /etc/ld.so.conf
+			sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
+			
+			make install
+			
+
+			sed '/RTLDLIST=/s@/usr@@g' -i /usr/bin/ldd
+			cp -v ../nscd/nscd.conf /etc/nscd.conf
+			mkdir -pv /var/cache/nscd
+			mkdir -pv /usr/lib/locale
+			make localedata/install-locales
+			cat > /etc/nsswitch.conf << "EOF"
+# Begin /etc/nsswitch.conf
+
+passwd: files
+group: files
+shadow: files
+
+hosts: files dns
+networks: files
+
+protocols: files
+services: files
+ethers: files
+rpc: files
+
+# End /etc/nsswitch.conf
+EOF
+
+			cat > /etc/ld.so.conf << "EOF"
+# Begin /etc/ld.so.conf
+
+/usr/local/lib
+/opt/lib
+/usr/compat.new/lib
+/usr/compat.old/lib
+/usr/compat.old/qt4/lib
+
+# End /etc/ld.so.conf
+EOF
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>

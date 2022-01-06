@@ -1,0 +1,55 @@
+<llpackages>
+	<package 
+		name="expat"
+		version="2.4.1"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="b677b9a1cf3a1424fda183223fae2c58f50151af">expat-2.4.1.tar.bz2</pkg>
+				<mirror>http://downloads.sourceforge.net/project/expat/expat/2.4.1/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="365" page="http://sourceforge.net/projects/expat/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/expat/files/">
+					<atext linktext="expat-2.2.1." />
+					<atext linktext="expat-2.2.2." />
+					<atext linktext="expat-2.2.3." />
+					<atext linktext="expat-2.3." />
+					<atext linktext="expat-2.4." />
+					<atext linktext="expat-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --sysconfdir=/etc --prefix=/usr  --docdir=/usr/share/doc/expat-${PKGVERSION}
+			make -j4 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			mkdir -p ${TGTDIR}/usr/share/doc/expat-${PKGVERSION}
+			install -v -m644 doc/*.{html,png,css} ${TGTDIR}/usr/share/doc/expat-${PKGVERSION}
+			]]>
+		</install>
+	</package>
+</llpackages>

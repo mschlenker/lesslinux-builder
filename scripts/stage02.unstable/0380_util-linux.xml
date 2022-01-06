@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
-		name="util-linux-ng"
+		name="util-linux-prepare"
 		version="2.37.2"
 		class="user"
-		install="destdir">
+		install="destdir" providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                                    
@@ -28,7 +28,7 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>texinfo</dep>
+			<dep>texinfo-prepare</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -69,7 +69,14 @@
 			# export PATH=/usr/local/automake113/bin:/usr/local/autoconf213/bin:$PATH
 			cd util-linux-${PKGVERSION}
 			# mkdir -pv ${TGTDIR}/var/lib/hwclock
-			make install DESTDIR=${TGTDIR}
+			for d in lib bin sbin ; do
+				mkdir -p ${TGTDIR}/usr/${d}
+				ln -sf ./usr/${d} ${TGTDIR}/${d}
+			done
+			make DESTDIR=${TGTDIR} prefix=/usr install
+			for d in lib bin sbin ; do
+				rm ${TGTDIR}/${d}
+			done
 			]]>
 		</install>
 		<clean>

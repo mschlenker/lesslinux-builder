@@ -1,0 +1,107 @@
+<llpackages>
+	<package 
+		name="perl"
+		version="5.34.0"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                             
+				<pkg sha1="870b4e1ffe33f94a4996a4acbbcebb8422c5e73a">perl-5.34.0.tar.gz</pkg>
+				<mirror>http://www.cpan.org/src/5.0/</mirror>
+			</file>
+			<file>                                                             
+				<pkg sha1="073bc2e590f153959d4caaf03982ca588124356a">perl-5.34.0-upstream_fixes-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/lfs/11.0/</mirror>
+			</file>
+			<manualcheck date="20170724" interval="180" page="http://www.cpan.org/" />
+			<check>
+				<page html="http://www.cpan.org/src/5.0/">
+					<atext linktext="perl-5.26.1." />
+					<atext linktext="perl-5.26.2." />
+					<atext linktext="perl-5.26.3." />
+					<atext linktext="perl-5.24.4." />
+					<atext linktext="perl-5.24.5." />
+					<atext linktext="perl-5.24.3." />
+					<atext linktext="perl-5.28." />
+					<atext linktext="perl-5.30." />
+					<atext linktext="perl-5.32." />
+					<atext linktext="perl-6." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-upstream_fixes-1.patch | patch -p1 
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export BUILD_ZLIB=False
+			# export BUILD_BZIP2=0
+			jobcount=4
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			sh Configure -des                                         \
+             -Dprefix=/usr                                \
+             -Dvendorprefix=/usr                          \
+             -Dprivlib=/usr/lib/perl5/${PKGVERSION}/core_perl      \
+             -Darchlib=/usr/lib/perl5/${PKGVERSION}/core_perl      \
+             -Dsitelib=/usr/lib/perl5/${PKGVERSION}/site_perl      \
+             -Dsitearch=/usr/lib/perl5/${PKGVERSION}/site_perl     \
+             -Dvendorlib=/usr/lib/perl5/${PKGVERSION}/vendor_perl  \
+             -Dvendorarch=/usr/lib/perl5/${PKGVERSION}/vendor_perl \
+             -Dman1dir=/usr/share/man/man1                \
+             -Dman3dir=/usr/share/man/man3                \
+             -Dpager="/usr/bin/less -isR"                 \
+             -Duseshrplib                                 \
+             -Dusethreads
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ]   ; then 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++"  
+			fi
+			make -j $jobcoumt
+			make
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make test
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install # DESTDIR=${TGTDIR}
+			# ln -sf /usr/bin/perl /bin/perl
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

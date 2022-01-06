@@ -37,7 +37,8 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/usr   \
             --host=$LFS_TGT \
-            --build=$(build-aux/config.guess) && make
+            --build=$(build-aux/config.guess) && make -j4
+	    make
 			]]>
 		</build>
 		<install>

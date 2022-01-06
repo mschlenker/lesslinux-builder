@@ -1,0 +1,73 @@
+<llpackages>
+	<package 
+		name="glu"
+		version="9.0.2"
+		class="user"
+		install="chroot"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                     
+				<pkg sha1="d56833045bf49218fbaf6047371c14ff852cecfe">glu-9.0.2.tar.xz</pkg>
+				<mirror>ftp://ftp.freedesktop.org/pub/mesa/glu/</mirror>
+			</file>
+			<!-- <file>                                                                                     
+				<pkg sha1="1b6ebc77f3f4aa6b5054e5a6d1d747675cff9276">MesaLib-8.0.4-llvm.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<manualcheck date="20150619" interval="180" page="ftp://ftp.freedesktop.org/pub/mesa/glu/" />
+			<check>
+				<page html="ftp://ftp.freedesktop.org/pub/mesa/glu/">
+					<atext linktext="glu-9.0.1." />
+					<atext linktext="glu-9.0.2." />
+					<atext linktext="glu-9.0.3." />
+					<atext linktext="glu-9.0.4." />
+					<atext linktext="glu-9.0.5." />
+					<atext linktext="glu-9.1." />
+					<atext linktext="glu-9.2." />
+					<atext linktext="glu-10." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Mesa</dep> 
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}-llvm.patch | patch -p0
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build
+			cd    build
+			meson --prefix=/usr -Dgl_provider=gl --buildtype=release .. &&
+			ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			ninja install
+			#make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

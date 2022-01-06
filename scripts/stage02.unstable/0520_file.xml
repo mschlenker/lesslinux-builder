@@ -1,0 +1,85 @@
+<llpackages>
+	<package 
+		name="file"
+		version="5.41"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                   
+				<pkg sha1="8d80d2d50f4000e087aa60ffae4f099c63376762">file-5.41.tar.gz</pkg>
+				<mirror>ftp://ftp.astron.com/pub/file/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="180" page="ftp://ftp.astron.com/pub/file/" />
+			<check>
+				<page html="ftp://ftp.astron.com/pub/file/">
+					<atext linktext="file-5.32." />
+					<atext linktext="file-5.33." />
+					<atext linktext="file-5.34." />
+					<atext linktext="file-5.35." />
+					<atext linktext="file-5.36." />
+					<atext linktext="file-5.37." />
+					<atext linktext="file-5.38." />
+					<atext linktext="file-5.39." />
+					<atext linktext="file-5.40." />
+					<atext linktext="file-5.41." />
+					<atext linktext="file-5.42." />
+					<atext linktext="file-5.43." />
+					<atext linktext="file-5.44." />
+					<atext linktext="file-5.45." />
+					<atext linktext="file-6." />
+					<atext linktext="file-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>zstd</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			# cd ${PKGNAME}-${PKGVERSION}
+			# sed -i -e '197,+1d' \
+			#	-e '189,+1d' \
+			#	-e 's/token$/tokens/' doc/file.man
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			export CFLAGS="-fPIC"
+			./configure --prefix=/usr --disable-bzlib   --enable-static=no CFLAGS="-fPIC" && make  CFLAGS="-fPIC"
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			# mkdir -p /etc/lesslinux
+			# touch /etc/lesslinux/${PKGNAME}-${PKGVERSION}_failed
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,66 @@
+<llpackages>
+    <package name='setuptools3' version='60.2.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3f9f2c673ce97c6f479acf65cf7cbb1ab9055895'>
+                    setuptools-60.2.0.tar.gz
+                </pkg>
+                <mirror>
+https://files.pythonhosted.org/packages/9b/be/13f54335c7dba713b0e97e11e7a41db3df4a85073d6c5a6e7f6468b22ee2/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='60' mirror='https://pypi.python.org/pypi/setuptools/'/>
+	    <check>
+				<page html="https://pypi.python.org/pypi/setuptools/">
+					<atext href="setuptools-24.0.3" />
+					<atext href="setuptools-24.0.4" />
+					<atext href="setuptools-24.1." />
+					<atext href="setuptools-24.2." />
+					<atext href="setuptools-24.3." />
+					<atext href="setuptools-24.4." />
+					<atext href="setuptools-25." />
+					<atext href="setuptools-26." />
+					<atext href="setuptools-27." />
+					<atext href="setuptools-28." />
+					<atext href="setuptools-29." />
+				</page>
+			</check>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                       <!-- <dep>Cython</dep> -->
+                        <dep>distcc</dep>
+                        <!-- <dep>docutils</dep> -->
+                        <!-- <dep>M2Crypto</dep> -->
+                       <!-- <dep>nmap</dep> -->
+                        <dep>openssl</dep>
+                       <!--  <dep>pygobject</dep> -->
+                        <dep>Python3</dep>
+                       <!-- <dep>six</dep> 
+                        <dep>xpra</dep> -->
+                </builddeps>
+        <unpack>
+            <![CDATA[ tar xf ${SRCDIR}/${PKGNAME%3}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME%3}-${PKGVERSION}
+python3 setup.py config
+python3 setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME%3}-${PKGVERSION}
+python3 setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME%3}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

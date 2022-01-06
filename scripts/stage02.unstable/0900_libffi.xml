@@ -1,0 +1,74 @@
+<llpackages>
+	<package 
+		name="libffi"
+		version="3.4.2"
+		class="lib">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                         
+				<pkg sha1="460882cfdb52a2bd13fc08edc540b242ae421033">libffi-3.4.2.tar.gz</pkg>
+				<mirror>https://github.com/libffi/libffi/releases/download/v3.4.2/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://mirrors.kernel.org/sources.redhat.com/libffi/" />
+			<check>
+				<page html="http://mirrors.kernel.org/sources.redhat.com/libffi/">
+					<atext linktext="libffi-3.2.4." />
+					<atext linktext="libffi-3.2.2." />
+					<atext linktext="libffi-3.2.3." />
+					<atext linktext="libffi-3.3." />
+					<atext linktext="libffi-3.4." />
+					<atext linktext="libffi-4." />
+					<atext linktext="libffi-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>libelf</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/'  -i include/Makefile.in &&
+sed -e '/^includedir/ s/=.*$/=@includedir@/'  -e 's/^Cflags: -I${includedir}/Cflags:/'  -i libffi.pc.in  
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr          \
+            --disable-static       \
+            --with-gcc-arch=native \
+            --disable-exec-static-tramp && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

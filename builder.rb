@@ -59,6 +59,7 @@ include ObjectSpace
 @grub = true
 @mirror = nil
 @overwrite_builddir = nil 
+@forcesplitusr = false
 
 opts = OptionParser.new 
 opts.on('-n', '--no-test')    { @run_tests = false }
@@ -90,6 +91,7 @@ opts.on('--shortest-path-to', :REQUIRED) { |i| @buildonly =  i.strip.split(',') 
 opts.on('--ignore-arch') { @ignore_arch = true }
 opts.on('--nonfree', :REQUIRED) { |i| @nonfree =  i.strip }
 opts.on("--no-grub") { @grub = false } 
+opts.on("--force-split-usr") { @forcesplitusr = true } 
 # Specify a mirror to try download first - this might be a mirror in the local network with a cache of most distfiles
 # See FileDownloader.rb
 opts.on('--mirror', :REQUIRED) { |i| @mirror =  i.strip }
@@ -392,9 +394,9 @@ end
 
 def install_stage02_package(p, queue_name=nil)
 	### Dir.chdir(@workdir)
-	p.install(@log_each, @force_stracalyze)
+	p.install(@log_each, @force_stracalyze, @forcesplitusr)
 	### Dir.chdir(@workdir)
-	p.filecheck(queue_name, @mail_notifier)
+	p.filecheck(queue_name, @mail_notifier, @forcesplitusr)
 	pb = PackageBuilder.new(@builddir, p.pkg_name, p.pkg_version, @dbh, @sqlite, @unstable)
 	pb.create_pkgdesc unless File.exists?(@builddir + "/stage02/build/" + p.pkg_name + "-" + p.pkg_version + ".xml")
 	### Dir.chdir(@workdir)

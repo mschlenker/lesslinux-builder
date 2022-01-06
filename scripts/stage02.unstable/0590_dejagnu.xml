@@ -1,0 +1,53 @@
+<llpackages>
+	<package 
+		name="dejagnu"
+		version="1.6.3"
+		class="devel">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="390b586609bb23c807218eda493f428c4a913bc1">dejagnu-1.6.3.tar.gz</pkg>
+				<mirror>https://ftp.gnu.org/gnu/dejagnu/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="https://github.com/westes/flex/releases/" />
+		</sources>
+		<builddeps>
+			<dep>expect</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			# sed -i -e '/test-bison/d' tests/Makefile.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+mkdir -v build
+cd       build
+../configure --prefix=/usr
+makeinfo --html --no-split -o doc/dejagnu.html ../doc/dejagnu.texi
+makeinfo --plaintext       -o doc/dejagnu.txt  ../doc/dejagnu.texi
+			
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+cd ${PKGNAME}-${PKGVERSION}/build
+make install
+install -v -dm755  /usr/share/doc/dejagnu-${PKGVERSION}
+install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

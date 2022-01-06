@@ -1,0 +1,66 @@
+<llpackages>
+	<package 
+		name="diffutils"
+		version="3.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                  
+				<pkg sha1="1287a553868b808ebfff3790a5cdc6fdf7cb2886">diffutils-3.6.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/diffutils/</mirror>
+			</file>
+			<manualcheck date="20170607" interval="365" page="http://ftp.gnu.org/gnu/diffutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/diffutils/">
+					<atext linktext="diffutils-3.10." />
+					<atext linktext="diffutils-3.7." />
+					<atext linktext="diffutils-3.8." />
+					<atext linktext="diffutils-3.9." />
+					<atext linktext="diffutils-4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>check</dep>
+                        <dep>coreutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			sed -i 's:= @mkdir_p@:= /bin/mkdir -p:' po/Makefile.in.in
+			# sed -i -e '/gets is a/d' ${PKGNAME}-${PKGVERSION}/lib/stdio.in.h
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

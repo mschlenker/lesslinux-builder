@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
-		name="Python3"
+		name="Python3-prepare"
 		version="3.9.6"
 		class="user"
-		install="destdir">
+		install="destdir" providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                      
@@ -26,7 +26,7 @@
 			</check>
 		</sources> 
 		<builddeps>
-			<dep>perl</dep>
+			<dep>perl-prepare</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -56,7 +56,14 @@
 		<install>
 			<![CDATA[
 			cd Python-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			for d in lib bin sbin ; do
+				mkdir -p ${TGTDIR}/usr/${d}
+				ln -sf ./usr/${d} ${TGTDIR}/${d}
+			done
+			make DESTDIR=${TGTDIR} prefix=/usr install
+			for d in lib bin sbin ; do
+				rm ${TGTDIR}/${d}
+			done
 			]]>
 		</install>
 		<clean>

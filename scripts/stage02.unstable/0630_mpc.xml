@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="mpc"
+		version="1.2.1"
+		class="devel"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                
+				<pkg sha1="2a4919abf445c6eda4e120cd669b8733ce337227">mpc-1.2.1.tar.gz</pkg>
+				<mirror>https://ftp.gnu.org/gnu/mpc/</mirror>
+			</file>
+			<manualcheck date="20150529" interval="180" page="http://www.multiprecision.org/index.php?prog=mpc&amp;page=download" />
+			<check>
+				<page html="http://www.multiprecision.org/index.php?prog=mpc&amp;page=download">
+					<atext linktext="Version 1.0.5" />
+					<atext linktext="Version 1.0.4" />
+					<atext linktext="Version 1.1" />
+					<atext linktext="Version 2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			case `uname -m` in
+				i?86) 
+					CFLAGS='-mtune=generic -march=i686' CXXFLAGS='-mtune=generic -march=i686' \
+						./configure --prefix=/usr --docdir=/usr/share/doc/mpc-${PKGVERSION} && make -j 4
+				;;
+				*)
+					./configure --prefix=/usr --docdir=/usr/share/doc/mpc-${PKGVERSION} && make -j 4
+				;;
+			esac
+			
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			make install-html DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

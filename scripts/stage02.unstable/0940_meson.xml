@@ -1,0 +1,47 @@
+<llpackages>
+    <package name='meson' version='0.60.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='226847672a19139165b622027c15799451131bdb'>
+                    meson-0.60.2.tar.gz
+                </pkg>
+                <mirror>
+		https://github.com/mesonbuild/meson/releases/download/0.60.2/
+                </mirror>
+            </file>
+            <manualcheck date='20180927' interval='60' mirror='https://github.com/mesonbuild/meson/releases/download/0.48.0/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>glibc</dep>
+                        <dep>openssl</dep>
+                        <dep>setuptools3</dep>
+			<dep>ninja</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python3 setup.py config
+python3 setup.py build
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+python3 setup.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

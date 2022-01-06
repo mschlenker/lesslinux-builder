@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="expect"
+		version="5.45.4"
+		class="devel">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="a97b2f377c6a799928d6728c2ada55beb7f57d96">expect5.45.4.tar.gz</pkg>
+				<mirror>https://prdownloads.sourceforge.net/expect/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="https://github.com/westes/flex/releases/" />
+		</sources>
+		<builddeps>
+			<dep>tcl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}${PKGVERSION}
+			# sed -i -e '/test-bison/d' tests/Makefile.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr           \
+            --with-tcl=/usr/lib     \
+            --enable-shared         \
+            --mandir=/usr/share/man \
+            --with-tclinclude=/usr/include
+			make -j $jobcount 
+			
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			make test
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			make install
+			ln -svf expect${PKGVERSION}/libexpect${PKGVERSION}.so /usr/lib
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

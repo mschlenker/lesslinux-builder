@@ -1,0 +1,137 @@
+<llpackages>
+	<package 
+		name="llvm"
+		version="12.0.1"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                     
+				<pkg sha1="619fe668e0972d11d0fa2db670a57a42d02fb8ca">llvm-12.0.1.src.tar.xz</pkg>
+				<mirror>https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/</mirror>
+			</file>
+			<file>                                                                                     
+				<pkg sha1="e3cdd3fb39c78a5bcb0a1d5706678cf8643a48f6">clang-12.0.1.src.tar.xz</pkg>
+				<mirror>https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1</mirror>
+			</file>
+			<file>                                                                                     
+				<pkg sha1="d33af648dc9b901c6c9f6c5872af2f59203f1a25">compiler-rt-12.0.1.src.tar.xz</pkg>
+				<mirror>https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/</mirror>
+			</file>
+			<manualcheck date="20170610" interval="120" page="http://www.llvm.org/" />
+			<check>
+				<page html="http://llvm.org/releases/">
+					<atext href="4.0.1" />
+					<atext href="4.0.2" />
+					<atext href="4.0.3" />
+					<atext href="4.1." />
+					<atext href="4.2." />
+					<atext href="4.3." />
+					<atext href="4.4." />
+					<atext href="5.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>file</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>cmake</dep>
+                        <!-- <dep>xproto-base</dep> 
+			<dep>talloc</dep>
+			<dep>makedepend</dep> -->
+			<dep>libffi</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.src.tar.xz
+			mkdir ${PKGNAME}-build
+			cd ${PKGNAME}-${PKGVERSION}.src
+			tar -xf ${SRCDIR}/clang-${PKGVERSION}.src.tar.xz -C tools 
+			tar -xf ${SRCDIR}/compiler-rt-${PKGVERSION}.src.tar.xz -C projects
+			mv tools/clang-${PKGVERSION}.src tools/clang
+			mv projects/compiler-rt-${PKGVERSION}.src projects/compiler-rt
+			cd ..
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}.src
+			grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}.src
+			# sed -e 's:/docs/llvm:/share/doc/llvm:' -i Makefile.config.in
+			cd ../${PKGNAME}-build
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 4 `
+				CC='distcc gcc' \
+				CXX='distcc g++' \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr               \
+      -DLLVM_ENABLE_FFI=ON                      \
+      -DCMAKE_BUILD_TYPE=Release                \
+      -DLLVM_BUILD_LLVM_DYLIB=ON                \
+      -DLLVM_LINK_LLVM_DYLIB=ON                 \
+      -DLLVM_ENABLE_RTTI=ON                     \
+      -DLLVM_TARGETS_TO_BUILD="host;AMDGPU;BPF;ARM;AArch64;X86" \
+      -DLLVM_BUILD_TESTS=ON                     \
+      -DLLVM_BINUTILS_INCDIR=/usr/include       \
+      -Wno-dev -G Ninja ..../${PKGNAME}-${PKGVERSION}.src
+				#make -j $jobcount CC='distcc gcc' CXX='distcc g++' 
+				ninja
+			else
+				CC='gcc' \
+				CXX='g++'  \
+				cmake -DCMAKE_INSTALL_PREFIX=/usr               \
+      -DLLVM_ENABLE_FFI=ON                      \
+      -DCMAKE_BUILD_TYPE=Release                \
+      -DLLVM_BUILD_LLVM_DYLIB=ON                \
+      -DLLVM_LINK_LLVM_DYLIB=ON                 \
+      -DLLVM_ENABLE_RTTI=ON                     \
+      -DLLVM_TARGETS_TO_BUILD="host;AMDGPU;BPF;ARM;AArch64;X86" \
+      -DLLVM_BUILD_TESTS=ON                     \
+      -DLLVM_BINUTILS_INCDIR=/usr/include       \
+      -Wno-dev -G Ninja ../${PKGNAME}-${PKGVERSION}.src
+				ninja 
+				#make -j 4 CC='gcc' CXX='g++' 
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-build # ${PKGVERSION}.src
+			ninja install
+			#make install DESTDIR=${TGTDIR}
+			#for file in ${TGTDIR}/usr/lib/lib{clang,LLVM,LTO}*.a ; do
+			#	test -f $file && chmod -v 644 $file
+			#done
+			#install -v -dm755 ${TGTDIR}/usr/lib/clang-analyzer
+			#for prog in scan-build scan-view ; do
+			#	cp -rfv tools/clang/tools/$prog ${TGTDIR}/usr/lib/clang-analyzer/
+			#	ln -sfv ../lib/clang-analyzer/$prog/$prog ${TGTDIR}/usr/bin/
+			#done
+			#ln -sfv /usr/bin/clang ${TGTDIR}/usr/lib/clang-analyzer/scan-build/
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}.src
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>

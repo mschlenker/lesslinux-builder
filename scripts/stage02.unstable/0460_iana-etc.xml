@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="iana-etc"
+		version="2.30"
+		class="skel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="218593bcb9264014c4e397d838b2c218eac9df06">iana-etc-2.30.tar.bz2</pkg>
+				<mirror>http://sethwklein.net/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://sethwklein.net/" />
+			<check>
+				<page html="http://sethwklein.net/iana-etc">
+					<atext linktext="iana-etc-2.31." />
+					<atext linktext="iana-etc-2.32." />
+					<atext linktext="iana-etc-2.33." />
+					<atext linktext="iana-etc-2.40." />
+					<atext linktext="iana-etc-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>man-pages</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			for d in lib bin sbin ; do
+				mkdir -p ${TGTDIR}/usr/${d}
+				ln -sf ./usr/${d} ${TGTDIR}/${d}
+			done
+			make DESTDIR=${TGTDIR} prefix=/usr install
+			for d in lib bin sbin ; do
+				rm ${TGTDIR}/${d}
+			done
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

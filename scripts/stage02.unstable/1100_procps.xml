@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="procps"
+		version="3.3.17"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="a52952e8bc6aaab812176c00d25adc4d4e1552e2">procps-ng-3.3.17.tar.xz</pkg>
+				<mirror>http://downloads.sourceforge.net/project/procps-ng/Production/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="365" page="http://procps.sourceforge.net/" />
+			<!-- <check>
+				<page html="http://procps.sourceforge.net/download.html">
+					<atext linktext="procps-3.2.9.tar.gz" />
+					<atext linktext="procps-3.2.10.tar.gz" />
+					<atext linktext="procps-3.2.11.tar.gz" />
+					<atext linktext="procps-3.3.0.tar.gz" />
+					<atext linktext="procps-4.0.0.tar.gz" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>texinfo</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-ng-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr                            \
+            --docdir=/usr/share/doc/${PKGNAME}-ng-${PKGVERSION} \
+            --disable-static                         \
+            --disable-kill
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

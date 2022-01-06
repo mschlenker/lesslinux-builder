@@ -6,7 +6,7 @@ class SecondStage < AnyStage
 		system("mkdir -p " + builddir + "/stage01/chroot/usr/lib64")
 		system("mkdir -p " + builddir + "/stage01/chroot/usr/local/lib64")
 		system("mkdir -p " + builddir + "/stage01/chroot/opt/lib64")
-		system("mount -o bind /tmp " + builddir + "/stage01/chroot/tmp")
+		# system("mount -o bind /tmp " + builddir + "/stage01/chroot/tmp")
 		system("mount -o bind /dev " + builddir + "/stage01/chroot/dev")
 		system("mount -o bind " + builddir + "/stage02/build " + builddir + "/stage01/chroot/llbuild/build")
 		system("mount -o bind " + srcdir + " " + builddir + "/stage01/chroot/llbuild/src")
@@ -143,29 +143,40 @@ class SecondStage < AnyStage
 			bscript.write("cd " + @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "\n")
 			bscript.write("CHROOTDIR='" + @builddir + "/stage01/chroot'; export CHROOTDIR\n")
 			bscript.write("if [ -x ${CHROOTDIR}/usr/bin/strace ] ; then STRACE=/usr/bin/strace ; else STRACE=/tools/bin/strace ; fi ; \n")
+			bscript.write("if [ -x ${CHROOTDIR}/usr/bin/env ] ; then ENV=/usr/bin/env ; else ENV=/tools/bin/env ; fi ; \n")
+			# bscript.write("if [ -x ${CHROOTDIR}/bin/bash ] ; then BASH=/bin/bash ; else BASH=/tools/bin/bash ; fi ; \n")
+			# bscript.write("if [ -x ${CHROOTDIR}/bin/bash ] ; then BASH=/bin/bash ; else BASH=/tools/bin/bash ; fi ; \n")
+			bscript.write("BASH=bash\n")
 			bscript.write("### . ./mount.sh > /dev/null 2>&1 \n")
-			bscript.write("if [ -f ${CHROOTDIR}/usr/bin/env ] && [ -f ${CHROOTDIR}/bin/bash ] ; then\n")
+			# bscript.write("if [ -f ${CHROOTDIR}${ENV} ] && [ -f ${CHROOTDIR}/bin/bash ] ; then\n")
 			# FIXME: Do the strace just when necessary!
-			if (trace == true || @depends_on.nil?) 
-				bscript.write('chroot ${CHROOTDIR} /usr/bin/env -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+			if (trace == true || @depends_on.nil?)
+				bscript.write("if [ -x /tools/bin/strace -o -x /usr/bin/strace ]; then \n")
+				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
 					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
 					' ${STRACE} -f -e trace=file,process -o /llbuild/build/' + @pkg_name +  "-" + @pkg_version + '.strace.build.log ' +
-					' /bin/bash +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
+					' ${BASH} +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
 				bscript.write("else\n")
-				bscript.write('chroot ${CHROOTDIR} /tools/bin/env -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+				bscript.write("touch /llbuild/build/" + @pkg_name +  "-" + @pkg_version + ".strace.build.log\n")
+				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
 					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
-					' ${STRACE} -f -e trace=file,process -o /llbuild/build/' + @pkg_name +  "-" + @pkg_version + '.strace.build.log ' +
-					' /tools/bin/bash +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
+					' ${BASH} +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
+				bscript.write("fi\n")
+				#bscript.write("else\n")
+				#bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+				#	' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+				#	' ${STRACE} -f -e trace=file,process -o /llbuild/build/' + @pkg_name +  "-" + @pkg_version + '.strace.build.log ' +
+				#	' /tools/bin/bash +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
 			else
-				bscript.write('chroot ${CHROOTDIR} /usr/bin/env -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
 					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
-					' /bin/bash +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
-				bscript.write("else\n")
-				bscript.write('chroot ${CHROOTDIR} /tools/bin/env -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
-					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
-					' /tools/bin/bash +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
+					' ${BASH} +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
+				#bscript.write("else\n")
+				#bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+				#	' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+				#	' /tools/bin/bash +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
 			end
-			bscript.write("fi\n")
+			# bscript.write("fi\n")
 			bscript.write("### . ./umount.sh > /dev/null 2>&1 \n")
 			bscript.close
 			File.chmod(0755, @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/chroot_and_build.sh")
@@ -252,7 +263,7 @@ class SecondStage < AnyStage
 		
 	end
 
-	def install(log, trace)
+	def install(log, trace, forcesplitusr=false)
 		if File.exists?(@builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/install.success") 
 			puts sprintf("%015.4f", Time.now.to_f) + " build  > Previous install of " + @pkg_name + " " + @pkg_version + " successful"
 			$stdout.flush
@@ -272,16 +283,26 @@ class SecondStage < AnyStage
 			bscript.write("cd " + @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "\n") 
 			bscript.write("CHROOTDIR='" + @builddir + "/stage01/chroot'; export CHROOTDIR\n")
 			bscript.write("if [ -x ${CHROOTDIR}/usr/bin/strace ] ; then STRACE=/usr/bin/strace ; else STRACE=/tools/bin/strace ; fi ; \n ")
+			bscript.write("if [ -x ${CHROOTDIR}/usr/bin/env ] ; then ENV=/usr/bin/env ; else ENV=/tools/bin/env ; fi ; \n")
+			# bscript.write("if [ -x ${CHROOTDIR}/bin/bash ] ; then BASH=/bin/bash ; else BASH=/tools/bin/bash ; fi ; \n")
+			bscript.write("BASH=bash\n")
 			bscript.write("### . ./mount.sh > /dev/null 2>&1 \n")
 			if (trace == true || @depends_on.nil?) 
-				bscript.write('chroot ${CHROOTDIR} /tools/bin/env -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+				bscript.write("if [ -x /tools/bin/strace -o -x /usr/bin/strace ]; then \n")
+				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
 					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
 					' ${STRACE} -f -e trace=file,process -o /llbuild/build/' + @pkg_name +  "-" + @pkg_version + '.strace.install.log ' +
-					' /tools/bin/bash /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
-			else
-				bscript.write('chroot ${CHROOTDIR} /tools/bin/env -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+					' ${BASH} /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
+				bscript.write("else\n")
+				bscript.write("touch /llbuild/build/" + @pkg_name +  "-" + @pkg_version + '.strace.install.log ')
+				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
 					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
-					' /tools/bin/bash /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
+					' ${BASH} /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
+				bscript.write("fi\n")
+			else
+				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
+					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+					' ${BASH} /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
 			end
 			bscript.write("### . umount.sh > /dev/null 2>&1 \n")
 			bscript.close
@@ -331,8 +352,21 @@ class SecondStage < AnyStage
 				f.write("end   " + end_time.to_s + "\n")
 			}
 			if @target_type == "destdir"
-				system("tar -C " + @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + ".destdir -cf - . | tar -C " +  @builddir + "/stage01/chroot/ -xf - ")
-				system("chroot " +  @builddir + "/stage01/chroot/ ldconfig ")
+				refuseinstall = false
+				if forcesplitusr == true
+					[ "lib", "bin", "sbin"].each { |d|
+						if File.directory?(@builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + ".destdir/" + d)  
+							refuseinstall = true
+						end
+					}
+				end
+				unless refuseinstall 
+					system("tar -C " + @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + ".destdir -cf - . | tar -C " +  @builddir + "/stage01/chroot/ -xf - ")
+					system("chroot " +  @builddir + "/stage01/chroot/ ldconfig ")
+				else
+					$stderr.puts "+++   > Package " + @pkg_name + "-" + @pkg_version + " violates split usr policy!"
+					$stderr.flush 
+				end
 			end
 			puts sprintf("%015.4f", Time.now.to_f) + " build  > Finished installing " + @pkg_name + " " + @pkg_version
 			$stdout.flush
@@ -380,10 +414,15 @@ class SecondStage < AnyStage
 		end
 	end
 	
-	def filecheck(queue_name=nil, mail_notifier=nil)
+	def filecheck(queue_name=nil, mail_notifier=nil, forcesplitusr=false)
 		# Read all files
 		ignore_dirs = [ "/dev", "/tools", "/proc", "/tmp" ]
-		check_dirs = [ "bin", "boot", "etc", "lib", "opt", "sbin", "share", "tools", "usr", "var", "static" ] 
+		check_dirs = [ "boot", "etc", "opt", "share", "tools", "usr", "var", "static" ] 
+		if forcesplitusr == true
+			ignore_dirs = [ "/bin", "/lib", "/sbin" ] + ignore_dirs 
+		else
+			check_dirs = [ "bin", "lib", "sbin" ] + check_dirs
+		end
 		check_exps = check_dirs.collect { |x|
 			if (@target_type == "chroot" && File.exist?(@builddir + "/stage01/chroot/" + x))
 				File.expand_path(@builddir + "/stage01/chroot/" + x)
@@ -507,6 +546,17 @@ class SecondStage < AnyStage
 					end
 				end
 			}
+			if @target_type == "destdir"
+				refuseinstall = false
+				if forcesplitusr == true
+					[ "lib", "bin", "sbin"].each { |d|
+						if File.directory?(@builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + ".destdir/" + d)  
+							refuseinstall = true
+						end
+					}
+				end
+				modified_files = 0 if refuseinstall
+			end
 			if modified_files > 0
 				File.open(@builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/check.success", "w") { |f| 
 					f.write(Time.now.to_i.to_s + "\n")

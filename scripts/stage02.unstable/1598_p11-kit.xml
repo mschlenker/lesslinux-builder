@@ -1,0 +1,91 @@
+<llpackages>
+	<package 
+		name="p11-kit"
+		version="0.24.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                           
+				<pkg sha1="66380b519caa58d49f31f7fb4aae7b14e91b1a40">p11-kit-0.24.0.tar.xz</pkg>
+				<mirror>https://github.com/p11-glue/p11-kit/releases/download/0.24.0/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="https://github.com/p11-glue/p11-kit" />
+			<check>
+				<page html="http://p11-glue.freedesktop.org/releases/">
+					<atext linktext="p11-kit-0.24." />
+					<atext linktext="p11-kit-0.25." />
+					<atext linktext="p11-kit-0.26." />
+					<atext linktext="p11-kit-0.23.8" />
+					<atext linktext="p11-kit-0.23.9" />
+					<atext linktext="p11-kit-0.23.10" />
+					<atext linktext="p11-kit-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>make</dep>
+                        <dep>nettle</dep>
+			 <dep>libtasn1</dep>
+			<dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>readline</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz ] ; then
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --without-system-anchors  --without-trust-paths   CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --without-system-anchors  --without-trust-paths  
+				make  
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

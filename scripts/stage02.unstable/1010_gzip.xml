@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="gzip"
+		version="1.10"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="48d28c77cb8cac38573809fdd1665ecf75f91fa9">gzip-1.10.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/gzip/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="365" page="http://ftp.gnu.org/gnu/gzip/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gzip/">
+					<atext linktext="gzip-1.8.1.t" />
+					<atext linktext="gzip-1.8.2.t" />
+					<atext linktext="gzip-1.8.3.t" />
+					<atext linktext="gzip-1.9." />
+					<atext linktext="gzip-1.10." />
+					<atext linktext="gzip-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>findutils</dep>
+                        <dep>groff</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

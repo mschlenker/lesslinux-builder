@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="bzip2"
+		version="1.0.8"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="bf7badf7e248e0ecf465d33c2f5aeec774209227">bzip2-1.0.8.tar.gz</pkg>
+				<mirror>https://sourceware.org/pub/bzip2/</mirror>
+			</file>
+			<file>
+				<pkg sha1="86fa168b260bb12651ebfa6d47939e926e067036">bzip2-1.0.8-install_docs-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://www.bzip.org/" />
+			<check>
+				<page html="http://bzip.org/downloads.html">
+					<atext linktext="bzip2-1.0.6." />
+					<atext linktext="bzip2-1.0.7." />
+					<atext linktext="bzip2-1.0.8." />
+					<atext linktext="bzip2-1.0.9." />
+					<atext linktext="bzip2-1.0.10." />
+					<atext linktext="bzip2-1.0.11" />
+					<atext linktext="bzip2-1.1." />
+					<atext linktext="bzip2-1.2." />
+					<atext linktext="bzip2-1.3." />
+					<atext linktext="bzip2-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>zlib</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-install_docs-1.patch | patch -p1
+			## cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-version_fixes-1.patch | patch -p1
+			sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
+			sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# bf7badf7e248e0ecf465d33c2f5aeec774209227
+			jobcount=4
+			make -j $jobcount -f Makefile-libbz2_so
+			make clean
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			#mkdir -p ${TGTDIR}/usr/bin
+			#mkdir -p ${TGTDIR}/usr/lib
+			make PREFIX=/usr install
+			install -m 0755 bzip2-shared /usr/bin/bzip2
+			cp -av libbz2.so* /usr/lib
+			# rm -fv /usr/lib/libbz2.a
+			#for i in /usr/bin/{bzcat,bunzip2}; do
+			#	ln -sfv bzip2 $i
+			#done
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

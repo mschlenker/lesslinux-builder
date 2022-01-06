@@ -1,0 +1,85 @@
+<llpackages>
+	<package 
+		name="automake"
+		version="1.16.4"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    
+				<pkg sha1="25ce1e994860d73e9115e596e94111f3167dcf48">automake-1.16.4.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/automake/</mirror>
+			</file>
+			<manualcheck date="20170727" interval="180" page="http://ftp.gnu.org/gnu/automake/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/automake/">
+					<atext linktext="automake-1.15.5" />
+					<atext linktext="automake-1.15.2" />
+					<atext linktext="automake-1.15.3" />
+					<atext linktext="automake-1.15.4" />
+					<atext linktext="automake-1.18" />
+					<atext linktext="automake-1.16" />
+					<atext linktext="automake-1.17" />
+					<atext linktext="automake-1.20" />
+					<atext linktext="automake-2" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			 <dep>bash</dep>
+                        <dep>bison</dep>
+			<dep>bc</dep>
+			<dep>libtool</dep>
+			<dep>gdbm</dep>
+			<dep>gperf</dep>
+			<dep>expat</dep>
+			<dep>inetutils</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+			<dep>intltool</dep>
+			<dep>autoconf</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's:/\\\${:/\\\$\\{:' bin/automake.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=4
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} && make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make -j4 check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

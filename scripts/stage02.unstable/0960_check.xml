@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='check' version='0.15.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='54e6bae308aedab9a78a0349d839c92fc03bd2db'>
+                    check-0.15.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/libcheck/check/releases/download/0.15.2/
+                </mirror>
+            </file>
+            <manualcheck date='20211215' interval='60' mirror='https://github.com/libcheck/check/releases/download/0.15.2/'/>
+        </sources>
+	<builddeps>
+			<dep>coreutils</dep>
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make docdir=/usr/share/doc/${PKGNAME}-${PKGVERSION} install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="libelf"
+		version="0.185"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                     
+				<pkg sha1="ff645cefff25ee9bc98bcd233bd20a86392bf77a">elfutils-0.185.tar.bz2</pkg>
+				<mirror>https://fedorahosted.org/releases/e/l/elfutils/0.185/</mirror>
+			</file>
+			<manualcheck date="20170610" interval="180" page="https://fedorahosted.org/releases/e/l/" />
+			<check>
+				<page html="https://fedorahosted.org/releases/e/l/elfutils/">
+					<atext linktext="0.174" />
+					<atext linktext="0.175" />
+					<atext linktext="0.176" />
+					<atext linktext="0.177" />
+					<atext linktext="0.178" />
+					<atext linktext="0.179" />
+					<atext linktext="0.180" />
+					<atext linktext="0.181" />
+					<atext linktext="0.170" />
+					<atext linktext="0.171" />
+					<atext linktext="0.172" />
+					<atext linktext="0.173" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>automake</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/elfutils-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/elfutils-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/elfutils-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}Lib-${PKGVERSION}-llvm.patch | patch -p0
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd elfutils-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr                \
+            --disable-debuginfod         \
+            --enable-libdebuginfod=dummy
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd elfutils-${PKGVERSION}
+			make -C libelf install
+			install -vm644 config/libelf.pc /usr/lib/pkgconfig
+			rm /usr/lib/libelf.a
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf elfutils-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

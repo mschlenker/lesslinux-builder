@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="libreoffice-prep"
+		version="5.4.4"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<!-- <file>                                                                                           
+				<pkg sha1="05b8d7c3d8bbf5c347b4631d6854335ba60718fd">libreoffice-5.4.4.2.tar.xz</pkg>
+				<mirror>http://download.documentfoundation.org/libreoffice/src/5.4.4/libreoffice-5.4.4.2.tar.xz</mirror>
+			</file> -->
+			<manualcheck date="20180207" interval="180" page="http://sourceforge.net/projects/clamav/files/" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/clamav/files/">
+					<atext linktext="clamav-0.98.8." />
+					<atext linktext="clamav-0.98.9." />
+					<atext linktext="clamav-0.98.10." />
+					<atext linktext="clamav-0.99." />
+					<atext linktext="clamav-0.100." />
+					<atext linktext="clamav-1." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>clamav-prep</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			echo 'Nothing to unpack!'
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to build!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			if grep -E '^builder:' /etc/passwd ; then
+				echo 'User builder found in /etc/passwd'
+			else
+				echo 'builder:x:60023:60023:Builder:/tmp:/bin/bash' >> /etc/passwd
+			fi
+			if grep -E '^builder:' /etc/shadow ; then
+				echo 'User builder found in /etc/shadow'
+			else
+				echo 'builder:!:13792:0:99999:7:::' >> /etc/shadow
+			fi
+			if grep -E '^builder:' /etc/group ; then
+				echo 'Group builder found in /etc/group'
+			else
+				echo 'builder:x:60023:' >> /etc/group
+			fi
+			mkdir -p /etc/lesslinux/packages
+			touch /etc/lesslinux/packages/${PKGNAME}-${PKGVERSION}_just_prepares_passwd_for_libreoffice_build
+			]]>
+		</install>
+	</package>
+</llpackages>

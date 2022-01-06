@@ -35,6 +35,7 @@
 			./configure --prefix=/usr --host=$LFS_TGT
 			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
 			make -j${JOBCOUNT}
+			make
 			]]>
 		</build>
 		<install>

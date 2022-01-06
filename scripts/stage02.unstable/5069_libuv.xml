@@ -1,0 +1,60 @@
+<llpackages>
+    <package name='libuv' version='1.42.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='c78715261a1371381c8e2423995829e054daf906'>
+                    libuv-v1.42.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://dist.libuv.org/dist/v1.42.0/
+                </mirror>
+            </file>
+            <manualcheck date='20211216' interval='60' mirror='https://dist.libuv.org/dist/v1.42.0/'/>
+        </sources>
+	<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <!-- <dep>e2fsprogs</dep> -->
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>zlib</dep>
+			<dep>expat</dep>
+			<dep>bzip2</dep>
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/libuv-v1.42.0.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libuv-v1.42.0
+bash autogen.sh
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libuv-v1.42.0
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libuv-v1.42.0
+]]>
+        </clean>
+    </package>
+</llpackages>

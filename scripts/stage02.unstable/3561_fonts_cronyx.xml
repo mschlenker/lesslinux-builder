@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="font-cronyx-cyrillic"
+		version="1.0.3"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<!-- is latest -->                                                         
+				<pkg sha1="e5af8c2e8fb23955808a08bd38728ab3ad284d61">font-cronyx-cyrillic-1.0.3.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/font/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/font/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/font/">
+					<atext linktext="font-cronyx-cyrillic-1.0.4." />
+					<atext linktext="font-cronyx-cyrillic-1.0.5." />
+					<atext linktext="font-cronyx-cyrillic-1.0.6." />
+					<atext linktext="font-cronyx-cyrillic-1.1." />
+					<atext linktext="font-cronyx-cyrillic-1.2." />
+					<atext linktext="font-cronyx-cyrillic-1.3." />
+					<atext linktext="font-cronyx-cyrillic-2.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>bdftopcf</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>font-util</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>mkfontdir</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<!-- soft -->
+			 <dep>fontconfig</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>

@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='libpipeline' version='1.5.3' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='725e1104b864f06835e5620bfe689a5a00cbeb1f'>
+                    libpipeline-1.5.3.tar.gz
+                </pkg>
+                <mirror>
+                    https://download.savannah.gnu.org/releases/libpipeline/
+                </mirror>
+            </file>
+            <manualcheck date='20211215' interval='60' mirror='https://download.savannah.gnu.org/releases/libpipeline/'/>
+        </sources>
+	<builddeps>
+                        <dep>findutils</dep>
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make DESTDIR=${TGTDIR} install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

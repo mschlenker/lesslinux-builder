@@ -38,9 +38,9 @@ class FileChecker
 			return 0 if @file_to_check =~ /\/etc\/ld\.so\.cache$/ 
 			return 0 if @file_to_check =~ /\/etc\/distcc\/hosts$/ 
 			return 0 if @file_to_check =~ /\/etc\/resolv\.conf$/ 
-			unless arch == "x86_64"
+			#unless arch == "x86_64"
 				return 0 if @file_to_check =~ /\/lib64\// 
-			end
+			#end
 			begin 
 				if (@ftype == "f")
 					@size = File.stat(@fullpath).size

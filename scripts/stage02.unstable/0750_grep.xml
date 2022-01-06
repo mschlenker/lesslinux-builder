@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="grep"
+		version="3.7"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>  
+			<file>                                                                         
+				<pkg sha1="4d56da85e468e4012c81533a22052014a4c98b17">grep-3.7.tar.xz</pkg> 
+				<mirror>http://ftp.gnu.org/gnu/grep/</mirror>
+			</file>
+			<manualcheck date="20170727" interval="180" page="http://ftp.gnu.org/gnu/grep/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/grep/">
+					<atext linktext="grep-3.1.1.t" />
+					<atext linktext="grep-3.1.2.t" />
+					<atext linktext="grep-3.1.3.t" />
+					<atext linktext="grep-3.2." />
+					<atext linktext="grep-3.3." />
+					<atext linktext="grep-4." />
+				</page>
+			</check>
+			<!-- <file>
+				<pkg sha1="77b5967bc0aa25fa827f892cd0f4625e18d0361f">grep-2.5.4-debian_fixes-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+                        <dep>bison</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-debian_fixes-1.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr 
+			make -j $jobcount
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make check
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

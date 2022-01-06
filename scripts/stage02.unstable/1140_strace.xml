@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='strace' version='5.15' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='2cea29778e631838be676b451ea17ff381b673f0'>
+                    strace-5.15.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/strace/strace/releases/download/v5.15/
+                </mirror>
+            </file>
+            <manualcheck date='20211216' interval='60' mirror='https://github.com/strace/strace/releases/download/v5.15/'/>
+        </sources>
+	<builddeps>
+			<dep>procps</dep>
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make DESTDIR=${TGTDIR} install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

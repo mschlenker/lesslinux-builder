@@ -77,7 +77,7 @@
 		<patch>
 			<![CDATA[ 
 			cd gcc-${PKGVERSION}
-
+case $(uname -m) in
   x86_64)
     sed -e '/m64=/s/lib64/lib/' \
         -i.orig gcc/config/i386/t-linux64
@@ -141,7 +141,7 @@ cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
   
 mkdir -p $CHROOTDIR/lib64
 case $(uname -m) in
-    i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
+    i?86)   ln -sfv ld-linux.so.2 $CHROOTDIR/lib/ld-lsb.so.3
     ;;
     x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $CHROOTDIR/lib64
             ln -sfv ../lib/ld-linux-x86-64.so.2 $CHROOTDIR/lib64/ld-lsb-x86-64.so.3

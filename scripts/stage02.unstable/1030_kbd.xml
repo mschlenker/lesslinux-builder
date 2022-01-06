@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="kbd"
+		version="2.4.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                       
+				<pkg sha1="724c030926d125b5e430274e92c4236d8534d410">kbd-2.4.0.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/kbd/</mirror>
+			</file>
+			<file>  
+				<pkg sha1="44f2fb0ac18db4f717421db756db4897f88dc08c">kbd-2.4.0-backspace-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/11.0/</mirror>
+			</file>
+			<manualcheck date="20160609" interval="120" page="http://ftp.altlinux.com/pub/people/legion/kbd/" />
+			<check>
+				<page html="http://ftp.altlinux.com/pub/people/legion/kbd/">
+					<atext linktext="kbd-2.0.8." />
+					<atext linktext="kbd-2.0.5." />
+					<atext linktext="kbd-2.0.6." />
+					<atext linktext="kbd-2.0.7." />
+					<atext linktext="kbd-2.1." />
+					<atext linktext="kbd-2.2." />
+					<atext linktext="kbd-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>findutils</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			patch -Np1 -i ${SRCDIR}/${PKGNAME}-${PKGVERSION}-backspace-1.patch
+			sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure
+			sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# autoreconf
+			./configure --prefix=/usr --disable-vlock && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			make install DESTDIR=${TGTDIR}
+			mkdir -vp            ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			cp -R -v docs/doc/* ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="udev"
+		version="3.2.10"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                   
+				<pkg sha1="cb088d1d4fd6092b2718e3ee40f33b44b13520f8">eudev-3.2.10.tar.gz</pkg>
+				<mirror>http://dev.gentoo.org/~blueness/eudev/</mirror>
+			</file>
+			<file>      
+				<pkg sha1="4d7d980d90f6fb2022c8d6f2c53b145234b60608">udev-lfs-20171102.tar.xz</pkg>
+				<mirror>https://anduin.linuxfromscratch.org/LFS/</mirror>
+			</file>
+			<manualcheck date="20160801" interval="90" page="http://www.kernel.org/pub/linux/utils/kernel/hotplug/" />
+			<check>
+				<page html="http://dev.gentoo.org/~blueness/eudev/">
+					<atext linktext="eudev-3.2.6." />
+					<atext linktext="eudev-3.2.7." />
+					<atext linktext="eudev-3.2.3." />
+					<atext linktext="eudev-3.2.4." />
+					<atext linktext="eudev-3.2.5." />
+					<atext linktext="eudev-3.3." />
+					<atext linktext="eudev-3.4." />
+					<atext linktext="eudev-3.5." />
+					<atext linktext="eudev-3.6." />
+					<atext linktext="eudev-4." />
+					<atext linktext="eudev-5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>texinfo</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/e${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/udev-lfs-20171102.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd e${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr           \
+				--bindir=/usr/sbin      \
+				--sysconfdir=/etc       \
+				--enable-manpages       \
+				--disable-static
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -pv /usr/lib/udev/rules.d
+			mkdir -pv /etc/udev/rules.d
+			make -C e${PKGNAME}-${PKGVERSION} install
+			# ln -sf libudev.so.1.6.0 /lib/libudev.so.0
+			make -f udev-lfs-20140408/Makefile.lfs install
+			udevadm hwdb --update
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf e${PKGNAME}-${PKGVERSION} udev-lfs-20140408
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
-		name="libstdcplusplus"
+		name="libstdcplusplus-prepare"
 		version="11.2.0"
 		class="devel"
-		install="destdir">
+		install="destdir" providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                  
@@ -34,7 +34,7 @@
 		</unpack>
 		<build>
 			<![CDATA[ 
-			
+			cd gcc-${PKGVERSION}/gcc-build
 			../libstdc++-v3/configure            \
     CXXFLAGS="-g -O2 -D_GNU_SOURCE"  \
     --prefix=/usr                    \
@@ -49,9 +49,15 @@
 		<test />
 		<install>
 			<![CDATA[
-			
-	make DESTDIR=${TGTDIR} install
-			
+			cd gcc-${PKGVERSION}/gcc-build
+			for d in lib bin sbin ; do
+				mkdir -p ${TGTDIR}/usr/${d}
+				ln -sf ./usr/${d} ${TGTDIR}/${d}
+			done
+			make DESTDIR=${TGTDIR} prefix=/usr install
+			for d in lib bin sbin ; do
+				rm ${TGTDIR}/${d}
+			done
 			]]>
 		</install>
 		<clean>

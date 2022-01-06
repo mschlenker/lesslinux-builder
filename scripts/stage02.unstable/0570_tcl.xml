@@ -1,0 +1,87 @@
+<llpackages>
+	<package 
+		name="tcl"
+		version="8.6.11"
+		class="devel">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="8e2ccdafdcaee0274de16a6dfd627b490ecfa196">tcl8.6.11-src.tar.gz</pkg>
+				<mirror>https://downloads.sourceforge.net/tcl/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="https://github.com/westes/flex/releases/" />
+		</sources>
+		<builddeps>
+			<dep>flex</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}${PKGVERSION}-src.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}${PKGVERSION}
+			# sed -i -e '/test-bison/d' tests/Makefile.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			SRCDIR=$(pwd)
+			cd unix
+			./configure --prefix=/usr           \
+				--mandir=/usr/share/man \
+				$([ "$(uname -m)" = x86_64 ] && echo --enable-64bit)
+			make 
+			
+sed -e "s|$SRCDIR/unix|/usr/lib|" \
+    -e "s|$SRCDIR|/usr/include|"  \
+    -i tclConfig.sh
+
+sed -e "s|$SRCDIR/unix/pkgs/tdbc1.1.2|/usr/lib/tdbc1.1.2|" \
+    -e "s|$SRCDIR/pkgs/tdbc1.1.2/generic|/usr/include|"    \
+    -e "s|$SRCDIR/pkgs/tdbc1.1.2/library|/usr/lib/tcl8.6|" \
+    -e "s|$SRCDIR/pkgs/tdbc1.1.2|/usr/include|"            \
+    -i pkgs/tdbc1.1.2/tdbcConfig.sh
+
+sed -e "s|$SRCDIR/unix/pkgs/itcl4.2.1|/usr/lib/itcl4.2.1|" \
+    -e "s|$SRCDIR/pkgs/itcl4.2.1/generic|/usr/include|"    \
+    -e "s|$SRCDIR/pkgs/itcl4.2.1|/usr/include|"            \
+    -i pkgs/itcl4.2.1/itclConfig.sh
+
+unset SRCDIR
+
+			
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}/unix
+			make test
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}/unix
+			make install
+			make install-private-headers
+			ln -sfv tclsh8.6 /usr/bin/tclsh
+			mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

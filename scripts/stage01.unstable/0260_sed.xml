@@ -33,6 +33,7 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			./configure --prefix=/usr   \
             --host=$LFS_TGT
+	    make -j4
 	    make
 			]]>
 		</build>

@@ -1,0 +1,60 @@
+<llpackages>
+	<package 
+		name="psmisc"
+		version="23.4"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                   
+				<pkg sha1="a4c34111e570c43967efb2bbd8a4f31d94d22e0f">psmisc-23.4.tar.xz</pkg>
+				<mirror>https://sourceforge.net/projects/psmisc/files/psmisc</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://sourceforge.net/projects/psmisc/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/psmisc/files/">
+					<atext linktext="psmisc-22.23." />
+					<atext linktext="psmisc-22.24." />
+					<atext linktext="psmisc-22.22." />
+					<atext linktext="psmisc-23." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>gcc</dep>
+                        <dep>sed</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

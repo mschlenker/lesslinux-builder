@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
-		name="perl"
+		name="perl-prepare"
 		version="5.34.0"
 		class="user"
-		install="destdir">
+		providedeps="no" install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                             
@@ -27,11 +27,11 @@
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>bison</dep>
+                        <dep>bison-prepare</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME%-prepare}-${PKGVERSION}.tar.gz
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -42,7 +42,7 @@
 		</patch> -->
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
 			sh Configure -des                                        \
 				-Dprefix=/usr                               \
 				-Dvendorprefix=/usr                         \
@@ -59,8 +59,15 @@
 		</build>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
+			#for d in lib bin sbin ; do
+			#	mkdir -p ${TGTDIR}/usr/${d}
+			#	ln -sf ./usr/${d} ${TGTDIR}/${d}
+			#done
+			make prefix=/usr install
+			#for d in lib bin sbin ; do
+			#	rm ${TGTDIR}/${d}
+			#done
 			# ln -sf /usr/bin/perl /bin/perl
 			]]>
 		</install>

@@ -1,0 +1,48 @@
+<llpackages>
+	<package 
+		name="acl"
+		version="2.3.1"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                            
+				<pkg sha1="0be3fb59bc12e85a660bf0d9a67ffee03284bba8">acl-2.3.1.tar.xz</pkg>
+				<mirror>https://download.savannah.gnu.org/releases/acl/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://download.savannah.gnu.org/releases/acl/" />
+			<!-- <check>
+				<page html="http://ftp.gnu.org/pub/gnu/gperf/">
+					<atext linktext="gperf-3.0.5." />
+					<atext linktext="gperf-3.0.6." />
+					<atext linktext="gperf-3.0.7." />
+					<atext linktext="gperf-3.1." />
+					<atext linktext="gperf-3.2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>attr</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr         \
+            --disable-static      \
+            --docdir=/usr/share/doc/acl-${PKGVERSION}  && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

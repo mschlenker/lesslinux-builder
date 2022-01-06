@@ -40,6 +40,7 @@
             --build=$(build-aux/config.guess)
 			JOBCOUNT=` grep -c  processor /proc/cpuinfo ` 
 			make -j${JOBCOUNT}
+			make
 			]]>
 		</build>
 		<install>

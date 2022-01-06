@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="dhcpcd"
+		version="9.4.0"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                         
+				<pkg sha1="b6a2babca25f03fb4e30c341ffffecc8afedd58b">dhcpcd-9.4.0.tar.xz</pkg>
+				<mirror>http://roy.marples.name/downloads/dhcpcd/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="http://roy.marples.name/downloads/dhcpcd/" />
+			<check>
+				<page html="http://roy.marples.name/downloads/dhcpcd/">
+					<atext linktext="dhcpcd-6.11.6." />
+					<atext linktext="dhcpcd-6.11.7." />
+					<atext linktext="dhcpcd-6.11.8." />
+					<atext linktext="dhcpcd-6.11.9." />
+					<atext linktext="dhcpcd-6.14." />
+					<atext linktext="dhcpcd-6.12." />
+					<atext linktext="dhcpcd-6.13." />
+					<atext linktext="dhcpcd-7." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+			<dep>distcc</dep>
+			<dep>udev</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz ] ; then
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			else
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc/dhcpcd --dbdir=/var/lib/dhcpcd --libexecdir=/usr/lib/dhcpcd CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --sysconfdir=/etc/dhcpcd --dbdir=/var/lib/dhcpcd --libexecdir=/usr/lib/dhcpcd
+				make  
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

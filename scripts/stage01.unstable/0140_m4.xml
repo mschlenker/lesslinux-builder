@@ -38,6 +38,8 @@
 			./configure --prefix=/usr   \
             --host=$LFS_TGT \
             --build=$(build-aux/config.guess)
+			make -j 4 
+			make
 			]]>
 		</build>
 		<install>

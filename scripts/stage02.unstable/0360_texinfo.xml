@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
-		name="texinfo"
+		name="texinfo-prepare"
 		version="6.8"
 		class="user"
-		install="destdir">
+		install="destdir" providedeps="no">
 		<license>GPLv2</license>
 		<sources>
 			<file>
@@ -23,36 +23,43 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>Python3</dep>
+			<dep>Python3-prepare</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
-			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			tar xJf ${SRCDIR}/${PKGNAME%-prepare}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
 			sed -e 's/__attribute_nonnull__/__nonnull/' \
 				-i gnulib/lib/malloc/dynarray-skeleton.c
 			]]>
 		</patch>
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
 			jobcount=2
 			./configure --prefix=/usr && make -j $jobcount
 			]]>
 		</build>
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			cd ${PKGNAME%-prepare}-${PKGVERSION}
+			for d in lib bin sbin ; do
+				mkdir -p ${TGTDIR}/usr/${d}
+				ln -sf ./usr/${d} ${TGTDIR}/${d}
+			done
+			make DESTDIR=${TGTDIR} prefix=/usr install
+			for d in lib bin sbin ; do
+				rm ${TGTDIR}/${d}
+			done
 			]]>
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME%-prepare}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

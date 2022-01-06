@@ -1,0 +1,54 @@
+<llpackages>
+	<package 
+		name="p5-switch"
+		version="2.17"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                               
+				<pkg sha1="410fc346dc96347bdb04dc7594a1ae19e0bda834">Switch-2.17.tar.gz</pkg>
+				<mirror>http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://search.cpan.org/" />
+			<check>
+				<page html="http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/">
+					<atext linktext="Switch-2.23" />
+					<atext linktext="Switch-2.18" />
+					<atext linktext="Switch-2.19" />
+					<atext linktext="Switch-2.20" />
+					<atext linktext="Switch-2.21" />
+					<atext linktext="Switch-2.22" />
+					<atext linktext="Switch-3" />
+					<atext linktext="Switch-4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>perl</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/Switch-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd Switch-${PKGVERSION}
+			perl Makefile.PL
+			make
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd Switch-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf Switch-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

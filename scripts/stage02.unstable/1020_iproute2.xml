@@ -1,0 +1,69 @@
+<llpackages>
+	<package 
+		name="iproute2"
+		version="5.13.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                           
+				<pkg sha1="231fb4e8fb7074e49fc5d0761b0a044dabb46a19">iproute2-5.13.0.tar.xz</pkg>
+				<mirror>https://www.kernel.org/pub/linux/utils/net/iproute2/</mirror>
+			</file>
+			<manualcheck date="20170801" interval="90" page="https://www.kernel.org/pub/linux/utils/net/iproute2/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/utils/net/iproute2/">
+					<atext linktext="iproute2-4.12.1" />
+					<atext linktext="iproute2-4.12.2" />
+					<atext linktext="iproute2-4.16" />
+					<atext linktext="iproute2-4.13" />
+					<atext linktext="iproute2-4.14" />
+					<atext linktext="iproute2-4.15" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>findutils</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i /ARPD/d Makefile
+			rm -fv man/man8/arpd.8
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make  -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make SBINDIR=/usr/sbin DESTDIR=${TGTDIR} install
+			mkdir -p ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			cp -v COPYING README* ${TGTDIR}/usr/share/doc/${PKGNAME}-${PKGVERSION}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

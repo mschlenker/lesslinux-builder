@@ -1,0 +1,104 @@
+<llpackages>
+	<package 
+		name="gcc"
+		version="11.2.0">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                  
+				<pkg sha1="f902ccacecf8949978d6261e9f1d034cff73ffdb">gcc-11.2.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-11.2.0/</mirror>
+			</file>
+			<manualcheck date="20170608" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/gcc/">
+					<atext linktext="gcc-7.1.1" />
+					<atext linktext="gcc-7.1.2" />
+					<atext linktext="gcc-7.1.3" />
+					<atext linktext="gcc-7.2."/>
+					<atext linktext="gcc-7.3." />
+					<atext linktext="gcc-8." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>shadow</dep>
+			<dep>gmp</dep>
+			<dep>mpfr</dep>
+			<dep>mpc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			mkdir ${PKGNAME}-${PKGVERSION}/build
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+sed -e '/static.*SIGSTKSZ/d' \
+    -e 's/return kAltStackSize/return SIGSTKSZ * 4/' \
+    -i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
+
+
+case $(uname -m) in
+  x86_64)
+    sed -e '/m64=/s/lib64/lib/' \
+        -i.orig gcc/config/i386/t-linux64
+  ;;
+esac		
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			../configure --prefix=/usr            \
+             LD=ld                    \
+             --enable-languages=c,c++ \
+             --disable-multilib       \
+             --disable-bootstrap      \
+             --with-system-zlib
+			make -j ` grep -c processor /proc/cpuinfo ` 
+			]]>
+		</build>
+		<test>
+			<![CDATA[
+			cd ${PKGNAME}-build
+			ulimit -s 32768
+			make -k check
+			../${PKGNAME}-${PKGVERSION}/contrib/test_summary
+			]]>
+		</test>
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+
+make install
+rm -rf /usr/lib/gcc/$(gcc -dumpmachine)/11.2.0/include-fixed/bits/
+chown -v -R root:root \
+    /usr/lib/gcc/*linux-gnu/11.2.0/include{,-fixed}
+ln -svr /usr/bin/cpp /usr/lib
+ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/11.2.0/liblto_plugin.so \
+        /usr/lib/bfd-plugins/
+echo 'int main(){}' > dummy.c
+echo '-=> compiling and checking dummy'
+cc dummy.c -v -Wl,--verbose &> dummy.log
+readelf -l a.out | grep ': /lib'
+grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log
+grep -B4 '^ /usr/include' dummy.log
+grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'
+grep "/lib.*/libc.so.6 " dummy.log
+grep found dummy.log
+
+mkdir -pv /usr/share/gdb/auto-load/usr/lib
+mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib
+			
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>

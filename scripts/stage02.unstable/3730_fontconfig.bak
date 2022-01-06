@@ -1,0 +1,78 @@
+<llpackages>
+	<package 
+		name="fontconfig"
+		version="2.13.1"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>    	  	  		
+				<pkg sha1="75612356ef4f801735b49baf987f8942b4a7a5e1">fontconfig-2.13.1.tar.bz2</pkg>
+				<mirror>http://fontconfig.org/release/</mirror>
+			</file>
+			<manualcheck date="20170610" interval="90" page="http://fontconfig.org/release/" />
+			<!-- <check>
+				<page html="http://fontconfig.org/release/">
+					<atext linktext="fontconfig-2.10.96" />
+					<atext linktext="fontconfig-2.10.97" />
+					<atext linktext="fontconfig-2.10.98" />
+					<atext linktext="fontconfig-2.10.99" />
+					<atext linktext="fontconfig-2.11" />
+					<atext linktext="fontconfig-2.12" />
+					<atext linktext="fontconfig-2.13" />
+					<atext linktext="fontconfig-2.14" />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --localstatedir=/var --prefix=/usr CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --localstatedir=/var --prefix=/usr
+				make  
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			#paxctl -m ${TGTDIR}/usr/bin/fc-cache
+			#paxctl -m ${TGTDIR}/usr/bin/fc-cat
+			#paxctl -m ${TGTDIR}/usr/bin/fc-list
+			#paxctl -m ${TGTDIR}/usr/bin/fc-scan
+			]]>
+		</install>
+	</package>
+</llpackages>

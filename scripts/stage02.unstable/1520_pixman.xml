@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="pixman"
+		version="0.40.0"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>            
+			<file>                                                           
+				<pkg sha1="d7baa6377b6f48e29db011c669788bb1268d08ad">pixman-0.40.0.tar.gz</pkg>
+				<mirror>https://www.cairographics.org/releases</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<check>
+				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
+					<atext linktext="pixman-0.34.1" />
+					<atext linktext="pixman-0.34.2" />
+					<atext linktext="pixman-0.34.3" />
+					<atext linktext="pixman-0.34.4" />
+					<atext linktext="pixman-0.34.5" />
+					<atext linktext="pixman-0.34.6" />
+					<atext linktext="pixman-0.35." />
+					<atext linktext="pixman-0.36." />
+					<atext linktext="pixman-0.37." />
+					<atext linktext="pixman-0.38." />
+					<atext linktext="pixman-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --sysconfdir=/etc --prefix=/usr 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

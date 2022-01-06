@@ -1,0 +1,75 @@
+<llpackages>
+	<package 
+		name="pcre"
+		version="8.45"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                  
+				<pkg sha1="8463cc88b737e2c3ce7f041922a6ff0c5abbed34">pcre-8.45.tar.bz2</pkg>
+				<mirror>https://sourceforge.net/projects/pcre/files/pcre/8.45/</mirror>
+			</file>
+			<manualcheck date="20170609" interval="180" page="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/" />
+			<check>
+				<page html="http://mirror.switch.ch/ftp/pool/1/mirror/exim/pcre/">
+					<atext linktext="pcre-8.41." />
+					<atext linktext="pcre-8.42." />
+					<atext linktext="pcre-8.43." />
+					<atext linktext="pcre-8.44." />
+					<atext linktext="pcre-8.45." />
+					<atext linktext="pcre-8.4" />
+					<atext linktext="pcre-8.5" />
+					<atext linktext="pcre-9" />
+					<atext linktext="pcre-10" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>strace</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure  --prefix=/usr                     \
+				--docdir=/usr/share/doc/pcre-${PKGVERSION} \
+				--enable-unicode-properties       \
+				--enable-pcre16                   \
+				--enable-pcre32                   \
+				--enable-pcregrep-libz            \
+				--enable-pcretest-libreadline     \
+				--disable-static  && make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -22,7 +22,7 @@
 		<unpack>
 			<![CDATA[ 
 			tar xf ${SRCDIR}/binutils-${PKGVERSION}.tar.xz
-			mkdir binutils-build
+			mkdir binutils-${PKGVERSION}/binutils-build
 			]]>
 		</unpack>
 		<!-- <patch>
@@ -33,29 +33,20 @@
 		</patch> -->
 		<build>
 			<![CDATA[ 
-			cd binutils-build
-			../binutils-${PKGVERSION}/configure     \
+			cd binutils-${PKGVERSION}/binutils-build
+			../configure     \
 			--prefix=${CHROOTDIR}/tools            \
 			--with-sysroot=$CHROOTDIR        \
 			--target=$LFS_TGT          \
 			--disable-nls              \
 			--disable-werror
 			make -j 4
+			make
 			]]>
 		</build>
 		<install>
 			<![CDATA[
-cd binutils-build
-mkdir -pv $CHROOTDIR/{etc,var} $CHROOTDIR/usr/{bin,lib,sbin}
-
-for i in bin lib sbin; do
-  ln -sv usr/$i $CHROOTDIR/$i
-done
-
-case $(uname -m) in
-  x86_64) mkdir -pv $CHROOTDIR/lib64 ;;
-esac			
-
+cd binutils-${PKGVERSION}/binutils-build
 make install
 			]]>
 		</install>
