@@ -1,57 +1,52 @@
 <llpackages>
 	<package 
-		name="xf86-video-savage"
-		version="2.3.9"
+		name="xf86-video-nouveau"
+		version="1.0.17"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                 
-				<pkg sha1="5896fc5560c4b7242a5d3df2e6840f09f4995a4c">xf86-video-savage-2.3.9.tar.bz2</pkg>
+			<file>                                    
+				<pkg sha1="555afc9f52d0202d5c69475f8867b2517dd71c58">xf86-video-nouveau-1.0.17.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
 			</file>
-			<manualcheck date="20170614" interval="365" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<manualcheck date="20170614" interval="180" page="http://xorg.freedesktop.org/archive/individual/driver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
-					<atext linktext="xf86-video-savage-2.3.14" />
-					<atext linktext="xf86-video-savage-2.3.10" />
-					<atext linktext="xf86-video-savage-2.3.11" />
-					<atext linktext="xf86-video-savage-2.3.12" />
-					<atext linktext="xf86-video-savage-2.3.13" />
-					<atext linktext="xf86-video-savage-2.4." />
-					<atext linktext="xf86-video-savage-2.5." />
-					<atext linktext="xf86-video-savage-3." />
+					<atext linktext="xf86-video-nouveau-1.0.17." />
+					<atext linktext="xf86-video-nouveau-1.0.18." />
+					<atext linktext="xf86-video-nouveau-1.0.19." />
+					<atext linktext="xf86-video-nouveau-1.0.16." />
+					<atext linktext="xf86-video-nouveau-1.1." />
+					<atext linktext="xf86-video-nouveau-2." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>Mesa</dep>
+			<dep>Mesa</dep><dep>glu</dep>
                         <dep>Python3</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
                         <dep>distcc</dep>
-                        <dep>dri3proto</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <!-- <dep>git</dep> -->
                         <dep>glibc</dep>
-                        <dep>gnome-icon-theme</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
-                        <dep>libXext</dep>
+                        <!-- <dep>libXext</dep> -->
                         <dep>libdrm</dep>
                         <dep>libpciaccess</dep>
                         <dep>make</dep>
                         <dep>openssl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
-                        <dep>presentproto</dep>
                         <dep>procps</dep>
-                        <dep>pygobject</dep>
                         <dep>sed</dep>
-			<dep>util-linux-ng</dep>
-                        <dep>xineramaproto</dep>
+                        <dep>udev</dep>
+			 <dep>util-linux-ng</dep>
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
                 </builddeps>
@@ -84,7 +79,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>

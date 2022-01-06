@@ -1,34 +1,33 @@
 <llpackages>
 	<package 
-		name="xf86-video-v4l"
-		version="0.3.0"
+		name="xf86-video-fbdev"
+		version="0.5.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                            
-				<pkg sha1="e29308282fd2f12626e2582d07f9c932804b25d3">xf86-video-v4l-0.3.0.tar.bz2</pkg>
+			<file>                                    
+				<pkg sha1="8d79ec615cb54436ff96dc94b74775db6dc47aff">xf86-video-fbdev-0.5.0.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<manualcheck date="20150823" interval="180" page="http://xorg.freedesktop.org/archive/individual/driver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
-					<atext linktext="xf86-video-v4l-0.2.1.tar.bz2" />
-					<atext linktext="xf86-video-v4l-0.2.2.tar.bz2" />
-					<atext linktext="xf86-video-v4l-0.2.3.tar.bz2" />
-					<atext linktext="xf86-video-v4l-0.3.0.tar.bz2" />
-					<atext linktext="xf86-video-v4l-0.3.1.tar.bz2" />
-					<atext linktext="xf86-video-v4l-0.4.0.tar.bz2" />
+					<atext linktext="xf86-video-fbdev-0.4.5.tar.bz2" />
+					<atext linktext="xf86-video-fbdev-0.4.6.t" />
+					<atext linktext="xf86-video-fbdev-0.5." />
+					<atext linktext="xf86-video-fbdev-0.6" />
+					<atext linktext="xf86-video-fbdev-1." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
+                        <dep>Python3</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-			<dep>distcc</dep>
-                        <dep>dri3proto</dep>
+                        <dep>distcc</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
@@ -36,12 +35,12 @@
                         <dep>inetutils</dep>
                         <dep>libpciaccess</dep>
                         <dep>make</dep>
+                        <dep>openssl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
-                        <dep>presentproto</dep>
+                        <dep>procps</dep>
                         <dep>sed</dep>
 			<dep>util-linux-ng</dep>
-                        <dep>xineramaproto</dep>
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
                 </builddeps>
@@ -54,9 +53,11 @@
 			fi
 			]]>
 		</unpack>
+		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			# bash autogen.sh
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"

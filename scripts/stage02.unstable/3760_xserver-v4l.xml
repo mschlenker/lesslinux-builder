@@ -1,58 +1,44 @@
 <llpackages>
 	<package 
-		name="xf86-video-r128"
-		version="6.12.0"
+		name="xf86-video-v4l"
+		version="0.3.0"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                    
-				<pkg sha1="7cfa41d386fa43b5d30299203e4845d8afba4899">xf86-video-r128-6.12.0.tar.bz2</pkg>
+			<file>                            
+				<pkg sha1="e29308282fd2f12626e2582d07f9c932804b25d3">xf86-video-v4l-0.3.0.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/driver/</mirror>
 			</file>
-			<manualcheck date="20170610" interval="365" page="http://xorg.freedesktop.org/archive/individual/driver/" />
+			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/driver/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/driver/">
-					<atext linktext="xf86-video-r128-6.10.4." />
-					<atext linktext="xf86-video-r128-6.10.2." />
-					<atext linktext="xf86-video-r128-6.10.3." />
-					<atext linktext="xf86-video-r128-6.11." />
-					<atext linktext="xf86-video-r128-6.12." />
-					<atext linktext="xf86-video-r128-6.13." />
-					<atext linktext="xf86-video-r128-7." />
-					<atext linktext="xf86-video-r128-8." />
-					<atext linktext="xf86-video-r128-9." />
+					<atext linktext="xf86-video-v4l-0.2.1.tar.bz2" />
+					<atext linktext="xf86-video-v4l-0.2.2.tar.bz2" />
+					<atext linktext="xf86-video-v4l-0.2.3.tar.bz2" />
+					<atext linktext="xf86-video-v4l-0.3.0.tar.bz2" />
+					<atext linktext="xf86-video-v4l-0.3.1.tar.bz2" />
+					<atext linktext="xf86-video-v4l-0.4.0.tar.bz2" />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-                        <dep>Mesa</dep>
-                        <dep>Python3</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>distcc</dep>
-                        <dep>dri3proto</dep>
+			<dep>distcc</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
-                        <dep>gnome-icon-theme</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
-                        <dep>libXext</dep>
-                        <dep>libdrm</dep>
                         <dep>libpciaccess</dep>
                         <dep>make</dep>
-                        <dep>openssl</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
-                        <dep>presentproto</dep>
-                        <dep>procps</dep>
-                        <dep>pygobject</dep>
                         <dep>sed</dep>
 			<dep>util-linux-ng</dep>
-                        <dep>xineramaproto</dep>
                         <dep>xorg-server</dep>
                         <dep>xproto-base</dep>
                 </builddeps>
@@ -65,7 +51,6 @@
 			fi
 			]]>
 		</unpack>
-		<patch />
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
