@@ -1,0 +1,106 @@
+<llpackages>
+	<package 
+		name="sqlite"
+		version="3.37.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                             
+				<pkg sha1="328bc8146e15b67752b5249b8ac688c13230c517">sqlite-autoconf-3370100.tar.gz</pkg>
+				<mirror>https://sqlite.org/2021/</mirror>
+			</file>
+			<manualcheck date="20180104" interval="90" page="http://www.sqlite.org/" />
+			<check>
+				<page html="http://sqlite.org/download.html">
+					<atext linktext="sqlite-autoconf-32403001" />
+					<atext linktext="sqlite-autoconf-3240301" />
+					<atext linktext="sqlite-autoconf-3240302" />
+					<atext linktext="sqlite-autoconf-3240303" />
+					<atext linktext="sqlite-autoconf-3240304" />
+					<atext linktext="sqlite-autoconf-3240305" />
+					<atext linktext="sqlite-autoconf-3240306" />
+					<atext linktext="sqlite-autoconf-3240307" />
+					<atext linktext="sqlite-autoconf-3240308" />
+					<atext linktext="sqlite-autoconf-3240309" />
+					<atext linktext="sqlite-autoconf-32405" />
+					<atext linktext="sqlite-autoconf-32406" />
+					<atext linktext="sqlite-autoconf-32407" />
+					<atext linktext="sqlite-autoconf-32404" />
+					<atext linktext="sqlite-autoconf-325" />
+					<atext linktext="sqlite-autoconf-326" />
+					<atext linktext="sqlite-autoconf-327" />
+					<atext linktext="sqlite-autoconf-4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>readline</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf  ${SRCDIR}/${PKGNAME}-autoconf-3370100.tar.gz
+			mv ${PKGNAME}-autoconf-3370100 ${PKGNAME}
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr     \
+            --disable-static  \
+            --enable-fts5     \
+            CPPFLAGS="-DSQLITE_ENABLE_FTS3=1            \
+                      -DSQLITE_ENABLE_FTS4=1            \
+                      -DSQLITE_ENABLE_COLUMN_METADATA=1 \
+                      -DSQLITE_ENABLE_UNLOCK_NOTIFY=1   \
+                      -DSQLITE_ENABLE_DBSTAT_VTAB=1     \
+                      -DSQLITE_SECURE_DELETE=1          \
+                      -DSQLITE_ENABLE_FTS3_TOKENIZER=1"
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr     \
+            --disable-static  \
+            --enable-fts5     \
+            CPPFLAGS="-DSQLITE_ENABLE_FTS3=1            \
+                      -DSQLITE_ENABLE_FTS4=1            \
+                      -DSQLITE_ENABLE_COLUMN_METADATA=1 \
+                      -DSQLITE_ENABLE_UNLOCK_NOTIFY=1   \
+                      -DSQLITE_ENABLE_DBSTAT_VTAB=1     \
+                      -DSQLITE_SECURE_DELETE=1          \
+                      -DSQLITE_ENABLE_FTS3_TOKENIZER=1"
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}
+			]]>
+		</clean>
+	</package>
+</llpackages>

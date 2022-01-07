@@ -3,7 +3,7 @@
 		name="glu"
 		version="9.0.2"
 		class="user"
-		install="chroot"
+		install="destdir"
 		>
 		<license>GPLv2</license>
 		<sources>
@@ -59,8 +59,8 @@
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
-			ninja install
+			cd ${PKGNAME}-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install
 			#make install DESTDIR=${TGTDIR}
 			]]>
 		</install>

@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="garcon"
+		version="4.16.1"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="3ca7278b465ee6d0e46daf4668b79f7295b75020">garcon-4.16.1.tar.bz2</pkg>
+				<mirror>https://archive.xfce.org/src/xfce/garcon/4.16/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://archive.xfce.org/src/libs/garcon/0.6/" />
+			<check>
+				<page html="http://archive.xfce.org/src/libs/garcon/0.6/">
+					<atext linktext="garcon-0.6.5" />
+					<atext linktext="garcon-0.6.2" />
+					<atext linktext="garcon-0.6.3" />
+					<atext linktext="garcon-0.6.4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>exo</dep>
+                </builddeps> 
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make DESTDIR=${TGTDIR} install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

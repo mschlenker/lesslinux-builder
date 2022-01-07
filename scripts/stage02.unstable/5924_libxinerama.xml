@@ -1,30 +1,30 @@
 <llpackages>
 	<package 
-		name="libXcomposite"
-		version="0.4.5"
-		class="lib"
+		name="libXinerama"
+		version="1.1.4"
+		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>
-				<pkg sha1="902631efb55a798c81086e5ff90b60349839db40">libXcomposite-0.4.5.tar.bz2</pkg>
+			<file>                                                                                                         
+				<pkg sha1="34a1d9908ffbd46805d2357c6b05f5e341a8dc7c">libXinerama-1.1.4.tar.bz2</pkg>
 				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
-				<mirror>ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/current/src/lib/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20150823" interval="180" page="http://xorg.freedesktop.org/archive/individual/lib/" />
 			<check>
 				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXcomposite-0.4.8." />
-					<atext linktext="libXcomposite-0.4.5." />
-					<atext linktext="libXcomposite-0.4.6." />
-					<atext linktext="libXcomposite-0.4.7." />
-					<atext linktext="libXcomposite-0.5." />
-					<atext linktext="libXcomposite-0.6." />
+					<atext linktext="libXinerama-1.1.4." />
+					<atext linktext="libXinerama-1.1.5." />
+					<atext linktext="libXinerama-1.1.6." />
+					<atext linktext="libXinerama-1.1.7." />
+					<atext linktext="libXinerama-1.2." />
+					<atext linktext="libXinerama-1.3." />
+					<atext linktext="libXinerama-2." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-			<dep>bash</dep>
+                        <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
@@ -35,17 +35,14 @@
                         <dep>inetutils</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
                         <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libpthread-stubs</dep>
                         <dep>libxcb</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
-                        <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
-			<dep>distcc</dep>
-		</builddeps>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
@@ -59,23 +56,14 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
-				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
-				export CC="distcc gcc"
-				export CXX="distcc g++" 
-				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
-				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
-			else
-				./configure --sysconfdir=/etc --prefix=/usr 
-				make
-			fi
+			./configure --prefix=/usr --sysconfdir=/etc && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make install DESTDIR=${TGTDIR}
 			]]>
 		</install>
 		<clean>

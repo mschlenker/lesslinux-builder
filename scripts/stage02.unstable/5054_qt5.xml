@@ -1,0 +1,186 @@
+<llpackages>
+	<package 
+		name="qt5"
+		version="5.15.2"
+		class="user">
+		<license>GPLv2</license>
+		<sources>                                                                                                
+			<file>
+				<pkg sha1="b3760aadd696fa8009cf54eac0dd535c7886cc8f">qt-everywhere-src-5.15.2.tar.xz</pkg>
+				<mirror>https://download.qt.io/archive/qt/5.15/5.15.2/single/</mirror>
+			</file>
+			<file>
+				<pkg sha1="f2c5f2466b5498036d9d4edb0fae85ca70e1a0da">qt-everywhere-src-5.15.2-CVE-2021-3481-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<!-- <file>
+				<pkg sha1="5b85c6127b22d0c1c25a21dcb147ad3c023f8196">qt-everywhere-opensource-src-4.8.1-gcc_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<!-- <file>
+				<pkg sha1="c2b2b4f20bc76f298171e35af10866094f60d574">qt-everywhere-opensource-src-4.8.2-glib_fix-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20170615" interval="180" page="http://qt-project.org/downloads" />
+			<!-- <check>
+				<page html="http://releases.qt-project.org/qt4/source/">
+					<atext linktext="qt-everywhere-opensource-src-4.8.8." />
+					<atext linktext="qt-everywhere-opensource-src-4.8.5." />
+					<atext linktext="qt-everywhere-opensource-src-4.8.6." />
+					<atext linktext="qt-everywhere-opensource-src-4.9."/>
+					<atext linktext="qt-everywhere-opensource-src-4.10." />
+					<atext linktext="qt-everywhere-opensource-src-5." />
+				</page>
+			</check> -->
+		</sources>
+		 <builddeps>
+                        <!-- <dep>M2Crypto</dep> -->
+                        <dep>Mesa</dep>
+                        <dep>Python3</dep>
+                        <!-- <dep>WebOb</dep> -->
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <!-- <dep>cups</dep> -->
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <!-- <dep>fusepy</dep> -->
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gperf</dep>
+                        <dep>grep</dep>
+                        <!-- <dep>gst-plugins-bad</dep>
+                        <dep>gst-plugins-base1</dep>
+                        <dep>gst-plugins-base</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>gstreamer</dep> -->
+                        <dep>gtk3</dep>
+			<dep>harfbuzz</dep>
+                        <dep>icu</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXi</dep>
+                        <dep>libXrender</dep>
+                        <dep>libdrm</dep>
+                        <dep>libpng16</dep>
+                        <!-- <dep>libwebp</dep> -->
+                        <dep>libxcb</dep>
+                        <dep>libxkbcommon</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>make</dep>
+                        <!-- <dep>makedepend</dep> -->
+                        <dep>mtdev</dep>
+                        <dep>openssl</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>plaso</dep>
+                        <dep>protobuf</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep> -->
+                        <dep>ruby</dep>
+                        <dep>sed</dep>
+                        <!-- <dep>setuptools</dep> -->
+                        <dep>sqlite</dep>
+                        <dep>udev</dep>
+                        <!-- <dep>util-keysyms</dep> -->
+                        <dep>wayland</dep>
+                        <dep>which</dep>
+                        <!-- <dep>xcb-util-image</dep>
+                        <dep>xcb-util-renderutil</dep>
+                        <dep>xcb-util-wm</dep> -->
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/qt-everywhere-src-${PKGVERSION}.tar.xz 
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd qt-everywhere-src-${PKGVERSION}
+			cat ${SRCDIR}/qt-everywhere-src-5.15.2-CVE-2021-3481-1.patch | patch -p1
+
+sed -i '/utility/a #include <limits>'     qtbase/src/corelib/global/qglobal.h         &&
+sed -i '/string/a #include <limits>'      qtbase/src/corelib/global/qfloat16.h        &&
+sed -i '/qbytearray/a #include <limits>'  qtbase/src/corelib/text/qbytearraymatcher.h &&
+sed -i '/type_traits/a #include <limits>' qtdeclarative/src/qmldebug/qqmlprofilerevent_p.h
+
+
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd qt-everywhere-src-${PKGVERSION}
+			echo "INCLUDEPATH += /usr/include/openssl-1.0" >> qtbase/src/network/network.pro
+			export OPENSSL_LIBS='-L/usr/lib/openssl-1.0 -lssl -lcrypto'
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 8 ] && jobcount=8 
+				export CC='distcc gcc'
+				export CXX='distcc g++'
+				./configure -prefix /usr             \
+            -sysconfdir /etc/xdg                      \
+            -confirm-license                          \
+            -opensource                               \
+            -dbus-linked                              \
+            -openssl-linked                           \
+            -system-harfbuzz                          \
+            -system-sqlite                            \
+            -nomake examples                          \
+            -no-rpath                                 \
+            -syslog                                   \
+            -skip qtwebengine
+				make -j $jobcount 
+			else
+				./configure -prefix /usr                      \
+            -sysconfdir /etc/xdg                      \
+            -confirm-license                          \
+            -opensource                               \
+            -dbus-linked                              \
+            -openssl-linked                           \
+            -system-harfbuzz                          \
+            -system-sqlite                            \
+            -nomake examples                          \
+            -no-rpath                                 \
+            -syslog                                   \
+            -skip qtwebengine
+				make -j 4
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd qt-everywhere-src-${PKGVERSION}
+			make install 
+			for file in moc uic rcc qmake lconvert lrelease lupdate; do
+				ln -sfrvn /usr/bin/qt5/$file /usr/bin/$file-qt5
+			done
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf qt-everywhere-src-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

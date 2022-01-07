@@ -1,25 +1,27 @@
 <llpackages>
 	<package 
-		name="libXcomposite"
-		version="0.4.5"
+		name="dbus-glib"
+		version="0.112"
 		class="lib"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>
-				<pkg sha1="902631efb55a798c81086e5ff90b60349839db40">libXcomposite-0.4.5.tar.bz2</pkg>
-				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
-				<mirror>ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/current/src/lib/</mirror>
+			<file>                                                                  
+				<pkg sha1="9eb81f50e36e349f57297d1a2a61b48707a551cc">dbus-glib-0.112.tar.gz</pkg>
+				<mirror>http://dbus.freedesktop.org/releases/dbus-glib/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20170614" interval="180" page="http://dbus.freedesktop.org/releases/dbus-glib/" />
 			<check>
-				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXcomposite-0.4.8." />
-					<atext linktext="libXcomposite-0.4.5." />
-					<atext linktext="libXcomposite-0.4.6." />
-					<atext linktext="libXcomposite-0.4.7." />
-					<atext linktext="libXcomposite-0.5." />
-					<atext linktext="libXcomposite-0.6." />
+				<page html="http://dbus.freedesktop.org/releases/dbus-glib/">
+					<atext linktext="dbus-glib-0.109." />
+					<atext linktext="dbus-glib-0.110." />
+					<atext linktext="dbus-glib-0.111." />
+					<atext linktext="dbus-glib-0.112." />
+					<atext linktext="dbus-glib-0.108.3" />
+					<atext linktext="dbus-glib-0.108.2" />
+					<atext linktext="dbus-glib-0.108.1" />
+					<atext linktext="dbus-glib-1." />
+					<atext linktext="dbus-glib-2." />
 				</page>
 			</check>
 		</sources>
@@ -27,23 +29,20 @@
 			<dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
+                        <dep>dbus</dep>
                         <dep>diffutils</dep>
+                        <dep>expat</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
-                        <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libpthread-stubs</dep>
-                        <dep>libxcb</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>xproto-base</dep>
 			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
@@ -75,7 +74,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make DESTDIR=${TGTDIR} install
 			]]>
 		</install>
 		<clean>

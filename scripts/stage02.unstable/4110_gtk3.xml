@@ -1,0 +1,70 @@
+<llpackages>
+	<package 
+		name="gtk3"
+		version="3.24.31"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                   
+				<pkg sha1="4ff8fc4b9e42693aa661bb6e54089014146209b0">gtk+-3.24.31.tar.xz</pkg>
+				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.24/</mirror>
+			</file>
+			<manualcheck date="20170614" interval="180" page="http://ftp.acc.umu.se/pub/gnome/sources/gtk+/" />
+			<check>
+				<page html="http://ftp.gtk.org/pub/gtk/3.22/">
+					<atext linktext="gtk+-3.22.16." />
+					<atext linktext="gtk+-3.22.17." />
+					<atext linktext="gtk+-3.22.18." />
+					<atext linktext="gtk+-3.22.19." />
+					<atext linktext="gtk+-3.22.20." />
+				</page>
+				<page html="http://ftp.gtk.org/pub/gtk/">
+					<atext linktext="3.28" />
+					<atext linktext="3.24" />
+					<atext linktext="3.26" />
+					<atext linktext="4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>distcc</dep>
+			<!-- <dep>gtk</dep> -->
+			<dep>gdk-pixbuf</dep>
+			<dep>at-spi2-atk</dep>
+                        <dep>at-spi2-core</dep>
+			<dep>gobject-introspection</dep>
+			<dep>libxkbcommon</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/gtk+-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gtk+-${PKGVERSION}
+			#export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig
+			./configure --prefix=/usr              \
+            --sysconfdir=/etc          \
+            --enable-broadway-backend  \
+            --enable-x11-backend       \
+            --enable-wayland-backend   &&
+make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gtk+-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gtk+-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

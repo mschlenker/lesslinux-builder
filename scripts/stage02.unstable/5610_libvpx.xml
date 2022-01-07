@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="libvpx"
+		version="1.11.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                            
+				<pkg sha1="865737462d11b36f6ee1153e8b9fe90e160d4d35">libvpx-1.11.0.tar.gz</pkg>
+				<mirror>https://github.com/webmproject/libvpx/archive/v1.11.0</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://downloads.webmproject.org/releases/webm/index.html" />
+			<check>
+				<page html="http://downloads.webmproject.org/releases/webm/index.html">
+					<atext linktext="libvpx-v1.6.6." />
+					<atext linktext="libvpx-v1.6.2." />
+					<atext linktext="libvpx-v1.6.3." />
+					<atext linktext="libvpx-v1.6.4." />
+					<atext linktext="libvpx-v1.6.5." />
+					<atext linktext="libvpx-v1.10." />
+					<atext linktext="libvpx-v1.11." />
+					<atext linktext="libvpx-v1.12." />
+					<atext linktext="libvpx-v1.7." />
+					<atext linktext="libvpx-v1.8." />
+					<atext linktext="libvpx-v1.9." />
+					<atext linktext="libvpx-v2." />
+					<atext linktext="libvpx-v3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>yasm</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i 's/cp -p/cp/' build/make/Makefile &&
+			mkdir libvpx-build            &&
+cd    libvpx-build            &&
+
+../configure --prefix=/usr    \
+             --enable-shared  \
+             --disable-static &&
+make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/libvpx-build 
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

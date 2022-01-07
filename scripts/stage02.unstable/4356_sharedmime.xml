@@ -1,0 +1,99 @@
+<llpackages>
+	<package 
+		name="shared-mime-info"
+		version="2.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                           
+				<pkg sha1="3d41d131350eec61e00f6fa26e6bfd6e242d8ef4">shared-mime-info-2.1.tar.gz</pkg>
+				<mirror>https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/2.1/</mirror>
+			</file>
+			<file>                                                                           
+				<pkg sha1="7e053bbd64752e7936dc80e06dec9104971cc762">shared-mime-info-2.1-meson_0.60_fix-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://people.freedesktop.org/~hadess/" />
+			<check>
+				<page html="http://people.freedesktop.org/~hadess/">
+					<atext linktext="shared-mime-info-1.11" />
+					<atext linktext="shared-mime-info-1.12" />
+					<atext linktext="shared-mime-info-1.13" />
+					<atext linktext="shared-mime-info-1.14" />
+					<atext linktext="shared-mime-info-1.15" />
+					<atext linktext="shared-mime-info-1.16." />
+					<atext linktext="shared-mime-info-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>meson</dep>
+                        <dep>ninja</dep>
+			<dep>itstool</dep>
+			<dep>xmlto</dep>
+			<dep>docbook-xsl</dep>
+			<dep>docbook-sgml4</dep>
+			<dep>docbook-xml</dep>
+			<dep>docbook-xml44</dep>
+			<dep>docbook-xml43</dep>
+			<dep>docbook-sgml</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			gunzip -c  ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz | tar xf - 
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			patch -p1 -i ${SRCDIR}/${PKGNAME}-${PKGVERSION}-meson_0.60_fix-1.patch
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release -Dupdate-mimedb=true .. &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install
+			# mkdir /etc/lesslinux
+			# touch /etc/lesslinux/shared-mime-fucked-up 
+			#paxctl -m /usr/bin/update-mime-database
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

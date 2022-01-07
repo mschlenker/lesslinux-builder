@@ -1,0 +1,107 @@
+<llpackages>
+	<package 
+		name="docbook-xsl"
+		version="1.79.2"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file> 
+				<pkg sha1="fb4f60b3968777b5a794d1e1f9e5867b04517425">docbook-xsl-nons-1.79.2.tar.bz2</pkg>
+				<mirror>https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/</mirror>
+			</file>
+			<file> 
+				<pkg sha1="b1ca58c5c5b86472938337ecade5b5bbbebdac63">docbook-xsl-nons-1.79.2-stack_fix-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/blfs/11.0/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="365" page="http://downloads.sourceforge.net/docbook/" />
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>sed</dep>
+			<dep>docbook-xml</dep>
+			<dep>libxml2</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-nons-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			cd ${PKGNAME}-nons-${PKGVERSION}
+			patch -Np1 -i ${SRCDIR}/docbook-xsl-nons-${PKGVERSION}-stack_fix-1.patch
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			echo 'Nothing to build!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-nons-${PKGVERSION}
+install -v -m755 -d /usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2 &&
+
+cp -v -R VERSION assembly common eclipse epub epub3 extensions fo        \
+         highlighting html htmlhelp images javahelp lib manpages params  \
+         profiling roundtrip slides template tests tools webhelp website \
+         xhtml xhtml-1_1 xhtml5                                          \
+    /usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2 &&
+
+ln -s VERSION /usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2/VERSION.xsl &&
+
+install -v -m644 -D README \
+                    /usr/share/doc/docbook-xsl-nons-1.79.2/README.txt &&
+install -v -m644    RELEASE-NOTES* NEWS* \
+                    /usr/share/doc/docbook-xsl-nons-1.79.2
+		    
+if [ ! -d /etc/xml ]; then install -v -m755 -d /etc/xml; fi &&
+if [ ! -f /etc/xml/catalog ]; then
+    xmlcatalog --noout --create /etc/xml/catalog
+fi &&
+
+xmlcatalog --noout --add "rewriteSystem" \
+           "https://cdn.docbook.org/release/xsl-nons/1.79.2" \
+           "/usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2" \
+    /etc/xml/catalog &&
+
+xmlcatalog --noout --add "rewriteURI" \
+           "https://cdn.docbook.org/release/xsl-nons/1.79.2" \
+           "/usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2" \
+    /etc/xml/catalog &&
+
+xmlcatalog --noout --add "rewriteSystem" \
+           "https://cdn.docbook.org/release/xsl-nons/current" \
+           "/usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2" \
+    /etc/xml/catalog &&
+
+xmlcatalog --noout --add "rewriteURI" \
+           "https://cdn.docbook.org/release/xsl-nons/current" \
+           "/usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2" \
+    /etc/xml/catalog &&
+
+xmlcatalog --noout --add "rewriteSystem" \
+           "http://docbook.sourceforge.net/release/xsl/current" \
+           "/usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2" \
+    /etc/xml/catalog &&
+
+xmlcatalog --noout --add "rewriteURI" \
+           "http://docbook.sourceforge.net/release/xsl/current" \
+           "/usr/share/xml/docbook/xsl-stylesheets-nons-1.79.2" \
+    /etc/xml/catalog
+    
+xmlcatalog --noout --add "rewriteSystem" \
+           "http://docbook.sourceforge.net/release/xsl/<version>" \
+           "/usr/share/xml/docbook/xsl-stylesheets-<version>" \
+    /etc/xml/catalog &&
+
+xmlcatalog --noout --add "rewriteURI" \
+           "http://docbook.sourceforge.net/release/xsl/<version>" \
+           "/usr/share/xml/docbook/xsl-stylesheets-<version>" \
+    /etc/xml/catalog
+    
+			]]>
+		</install>
+	</package>
+</llpackages>

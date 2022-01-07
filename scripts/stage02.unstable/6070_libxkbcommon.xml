@@ -1,0 +1,68 @@
+<llpackages>
+    <package name='libxkbcommon' version='1.3.1' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='05e842667ce0a760a5c0404a70ce080b14309043'>libxkbcommon-1.3.1.tar.xz</pkg>
+                <mirror>
+                   https://xkbcommon.org/download/
+                </mirror> 
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='https://github.com/xkbcommon/libxkbcommon/releases'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>libX11</dep>
+                        <!-- <dep>libev</dep> -->
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>startup-notification</dep>
+                        <dep>util-keysyms</dep> -->
+                        <dep>which</dep>
+                        <!-- <dep>xcb-util-cursor</dep>
+                        <dep>xcb-util-wm</dep>
+                        <dep>xcb-util</dep> -->
+                        <dep>xproto-base</dep>
+			<dep>wayland-protocols</dep>
+                        <!-- <dep>yajl</dep> -->
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/libxkbcommon-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libxkbcommon-${PKGVERSION}
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release -Denable-docs=false .. &&
+ninja	    
+]]>
+        </build>
+        <install>
+            <![CDATA[cd  libxkbcommon-${PKGVERSION}/build
+	    DESTDIR=${TGTDIR} ninja install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libxkbcommon-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

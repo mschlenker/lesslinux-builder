@@ -1,49 +1,49 @@
 <llpackages>
 	<package 
-		name="libXcomposite"
-		version="0.4.5"
-		class="lib"
-		install="destdir">
+		name="giblib"
+		version="1.2.4"
+		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>
-				<pkg sha1="902631efb55a798c81086e5ff90b60349839db40">libXcomposite-0.4.5.tar.bz2</pkg>
-				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
-				<mirror>ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/current/src/lib/</mirror>
+			<file> 
+				<pkg sha1="342e6f7882c67d2277e1765299e1be5078329ab0">giblib-1.2.4.tar.gz</pkg>
+				<mirror>http://linuxbrit.co.uk/downloads/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20150823" interval="365" page="http://linuxbrit.co.uk/downloads/" />
 			<check>
-				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXcomposite-0.4.8." />
-					<atext linktext="libXcomposite-0.4.5." />
-					<atext linktext="libXcomposite-0.4.6." />
-					<atext linktext="libXcomposite-0.4.7." />
-					<atext linktext="libXcomposite-0.5." />
-					<atext linktext="libXcomposite-0.6." />
+				<page html="http://linuxbrit.co.uk/downloads/">
+					<atext linktext="giblib-1.2.5.tar.gz" />
+					<atext linktext="giblib-1.2.6.tar.gz" />
+					<atext linktext="giblib-1.2.7.tar.gz" />
+					<atext linktext="giblib-1.3.tar.gz" />
+					<atext linktext="giblib-1.3.0.tar.gz" />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-			<dep>bash</dep>
+			<dep>autoconf</dep>
+                        <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>gawk</dep>
+                        <dep>freetype</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
+			<!-- <dep>giflib</dep> -->
                         <dep>grep</dep>
+                        <dep>imlib2</dep>
                         <dep>inetutils</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
                         <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libpthread-stubs</dep>
                         <dep>libxcb</dep>
                         <dep>make</dep>
-                        <dep>pkg-config</dep>
+                        <dep>perl</dep>
                         <dep>sed</dep>
+                        <dep>texinfo</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
+			<dep>xmlto</dep>
 			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
@@ -75,13 +75,8 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make DESTDIR=${TGTDIR} install
 			]]>
 		</install>
-		<clean>
-			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
-			]]>
-		</clean>
 	</package>
 </llpackages>

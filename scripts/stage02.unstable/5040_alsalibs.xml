@@ -1,30 +1,34 @@
 <llpackages>
 	<package 
-		name="libXcomposite"
-		version="0.4.5"
-		class="lib"
+		name="alsa-lib"
+		version="1.2.6.1"
+		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>
-				<pkg sha1="902631efb55a798c81086e5ff90b60349839db40">libXcomposite-0.4.5.tar.bz2</pkg>
-				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
-				<mirror>ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/current/src/lib/</mirror>
+			<file>                                                              
+				<pkg sha1="46c48570b3ef0de554305d00f16845736a9548ab">alsa-lib-1.2.6.1.tar.bz2</pkg>
+				<mirror>https://www.alsa-project.org/files/pub/lib/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<!-- <file>                                           
+				<pkg sha1="ebda37d18379466ca9d843e7a80d10bb706a6b04">alsa-driver-1.0.25.tar.bz2</pkg>
+				<mirror>ftp://ftp.alsa-project.org/pub/driver/</mirror>
+			</file> -->
+			<manualcheck date="20170615" interval="180" page="ftp://ftp.alsa-project.org/pub/lib/" />
 			<check>
-				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXcomposite-0.4.8." />
-					<atext linktext="libXcomposite-0.4.5." />
-					<atext linktext="libXcomposite-0.4.6." />
-					<atext linktext="libXcomposite-0.4.7." />
-					<atext linktext="libXcomposite-0.5." />
-					<atext linktext="libXcomposite-0.6." />
+				<page html="http://ftp.silug.org/pub/alsa/lib/">
+					<atext linktext="alsa-lib-1.1.4.2." />
+					<atext linktext="alsa-lib-1.1.5." />
+					<atext linktext="alsa-lib-1.1.6." />
+					<atext linktext="alsa-lib-1.2." />
+					<atext linktext="alsa-lib-1.3." />
+					<atext linktext="alsa-lib-2." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
-			<dep>bash</dep>
+			<dep>Python3</dep>
+                        <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
@@ -33,17 +37,10 @@
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
-                        <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libpthread-stubs</dep>
-                        <dep>libxcb</dep>
                         <dep>make</dep>
-                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>xproto-base</dep>
 			<dep>distcc</dep>
 		</builddeps>
 		<unpack>
@@ -53,6 +50,7 @@
 			else
 				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			fi
+			# tar xjf ${SRCDIR}/alsa-driver-1.0.25.tar.bz2
 			]]>
 		</unpack>
 		<patch />
@@ -75,7 +73,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make install DESTDIR=$TGTDIR
 			]]>
 		</install>
 		<clean>

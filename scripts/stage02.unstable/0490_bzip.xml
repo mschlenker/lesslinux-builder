@@ -48,6 +48,7 @@
 		</patch>
 		<build>
 			<![CDATA[
+			export CFLAGS="-fPIC"
 			cd ${PKGNAME}-${PKGVERSION}
 			# bf7badf7e248e0ecf465d33c2f5aeec774209227
 			jobcount=4
@@ -65,7 +66,7 @@
 			make PREFIX=/usr install
 			install -m 0755 bzip2-shared /usr/bin/bzip2
 			cp -av libbz2.so* /usr/lib
-			# rm -fv /usr/lib/libbz2.a
+			rm -fv /usr/lib/libbz2.a
 			#for i in /usr/bin/{bzcat,bunzip2}; do
 			#	ln -sfv bzip2 $i
 			#done

@@ -1,0 +1,61 @@
+<llpackages>
+	<package 
+		name="docbook-sgml4"
+		version="4.5"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file> 
+				<pkg sha1="5efeb22936ea30cdaf88053337de7966dfda02bd">docbook-4.5.zip</pkg>
+				<mirror>http://www.docbook.org/sgml/4.5/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://www.docbook.org/" />
+			<check>
+				<page html="http://www.docbook.org/sgml/">
+					<atext linktext="4.6/" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>sed</dep>
+			<dep>sgml-common</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			mkdir ${PKGNAME}-${PKGVERSION}
+			cd  ${PKGNAME}-${PKGVERSION}
+			unzip ${SRCDIR}/docbook-4.5.zip
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed -i -e '/ISO 8879/d' -e '/gml/d' docbook.cat
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+
+install -v -d /usr/share/sgml/docbook/sgml-dtd-4.5 && chown -R root:root . && install -v docbook.cat /usr/share/sgml/docbook/sgml-dtd-4.5/catalog && cp -v -af *.dtd *.mod *.dcl /usr/share/sgml/docbook/sgml-dtd-4.5 && install-catalog --add /etc/sgml/sgml-docbook-dtd-4.5.cat /usr/share/sgml/docbook/sgml-dtd-4.5/catalog && install-catalog --add /etc/sgml/sgml-docbook-dtd-4.5.cat /etc/sgml/sgml-docbook.cat
+
+cat >> /usr/share/sgml/docbook/sgml-dtd-4.5/catalog << "EOF"
+  -- Begin Single Major Version catalog changes --
+
+PUBLIC "-//OASIS//DTD DocBook V4.4//EN" "docbook.dtd"
+PUBLIC "-//OASIS//DTD DocBook V4.3//EN" "docbook.dtd"
+PUBLIC "-//OASIS//DTD DocBook V4.2//EN" "docbook.dtd"
+PUBLIC "-//OASIS//DTD DocBook V4.1//EN" "docbook.dtd"
+PUBLIC "-//OASIS//DTD DocBook V4.0//EN" "docbook.dtd"
+
+  -- End Single Major Version catalog changes --
+EOF
+
+			]]>
+		</install>
+	</package>
+</llpackages>

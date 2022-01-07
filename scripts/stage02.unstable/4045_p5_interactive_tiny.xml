@@ -1,0 +1,50 @@
+<llpackages>
+    <package name='IO-Interactive-Tiny' version='0.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='06095cd95960319e455741e786686fec8283ab9a'>
+                    IO-Interactive-Tiny-0.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://cpan.metacpan.org/authors/id/D/DM/DMUEY/
+                </mirror>
+            </file>
+            <manualcheck date='20181017' interval='60' mirror='https://cpan.metacpan.org/authors/id/D/DM/DMUEY/'/>
+        </sources>
+	<builddeps>
+                        <dep>Path-Class</dep>
+                        <dep>Try-Tiny</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>perl</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+perl Makefile.PL
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

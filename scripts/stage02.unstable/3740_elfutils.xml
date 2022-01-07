@@ -67,6 +67,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
+			export CFLAGS="-fPIC"
 			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
 				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
 				export DISTCC_HOSTS
@@ -74,7 +75,7 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 			fi
-			./configure --prefix=/usr --program-prefix="eu-" --disable-debuginfod
+			./configure --prefix=/usr --program-prefix="eu-" --disable-debuginfod --disable-libdebuginfod --without-bzlib --disable-static
 			make -j $jobcount
 			]]>
 		</build>

@@ -1,0 +1,99 @@
+<llpackages>
+	<package 
+		name="openssh"
+		version="8.8p1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                       
+				<pkg sha1="1eb964897a4372f6fb96c7effeb509ec71c379c9">openssh-8.8p1.tar.gz</pkg>
+				<mirror>https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="120" page="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/" />
+			<check>
+				<page html="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/">
+					<atext linktext="openssh-7.5p3" />
+					<atext linktext="openssh-7.5p4" />
+					<atext linktext="openssh-7.5p2" />
+					<atext linktext="openssh-7.5.1" />
+					<atext linktext="openssh-7.6." />
+					<atext linktext="openssh-7.7." />
+					<atext linktext="openssh-7.8." />
+					<atext linktext="openssh-8." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>Linux-PAM</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>perl</dep>
+                        <dep>procps</dep>
+                        <dep>sed</dep>
+                        <dep>shadow</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr                            \
+            --sysconfdir=/etc/openssh                    \
+            --with-md5-passwords                     \
+            --with-privsep-path=/var/lib/sshd        \
+            --with-default-path=/usr/bin             \
+            --with-superuser-path=/usr/sbin:/usr/bin \
+            --with-pid-dir=/var/run   CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr                            \
+            --sysconfdir=/etc/openssh                    \
+            --with-md5-passwords                     \
+            --with-privsep-path=/var/lib/sshd        \
+            --with-default-path=/usr/bin             \
+            --with-superuser-path=/usr/sbin:/usr/bin \
+            --with-pid-dir=/var/run 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

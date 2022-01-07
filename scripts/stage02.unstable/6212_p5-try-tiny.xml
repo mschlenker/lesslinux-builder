@@ -1,0 +1,44 @@
+<llpackages>
+    <package name='Try-Tiny' version='0.31' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='32af708c7e4fce3d4af5403ef8fb38357155cb41'>
+                    Try-Tiny-0.31.tar.gz
+                </pkg>
+                <mirror>
+                    http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/
+                </mirror>
+            </file>
+            <manualcheck date='20171020' interval='60' mirror='http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>coreutils</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+perl Makefile.PL
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

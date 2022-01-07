@@ -1,0 +1,109 @@
+<llpackages>
+	<package 
+		name="libwnck3"
+		version="40.0"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                 
+				<pkg sha1="ff5ad434cbd424047965b5e301dc2d46a4d62ca4">libwnck-40.0.tar.xz</pkg>
+				<mirror>https://download.gnome.org/sources/libwnck/40/</mirror>
+			</file>
+			<manualcheck date="20170801" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/libwnck/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libwnck/3.24/">
+					<atext linktext="libwnck-3.24.4." />
+					<atext linktext="libwnck-3.24.2." />
+					<atext linktext="libwnck-3.24.3." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/libwnck/">
+					<atext linktext="3.28" />
+					<atext linktext="3.30" />
+					<atext linktext="3.26" />
+					<atext linktext="4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Python3</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <!-- <dep>glib-networking</dep> -->
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng16</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>startup-notification</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+                        <!-- <dep>xorg-cf-files</dep> -->
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/libwnck-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd libwnck-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd libwnck-${PKGVERSION}/build
+			DESTDIR=${TGTDIR}  ninja install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf libwnck-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

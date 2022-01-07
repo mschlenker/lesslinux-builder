@@ -1,0 +1,43 @@
+<llpackages>
+	<package 
+		name="lesslinux-auxiliary-scripts"
+		version="20130519-00"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                         
+				<pkg sha1="c6bcc073066b532a14c2f6453932a13019fe8138">lesslinux-auxiliary-scripts-20130519-00.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -m 0755 -p ${TGTDIR}/usr/share/lesslinux/auxiliary-scripts
+			install -m 0755 lesslinux-auxiliary-scripts/*.sh ${TGTDIR}/usr/share/lesslinux/auxiliary-scripts
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf lesslinux-auxiliary-scripts 
+			]]>
+		</clean>
+	</package>
+</llpackages>

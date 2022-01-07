@@ -1,0 +1,117 @@
+<llpackages>
+	<package 
+		name="mousepad"
+		version="0.5.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>             
+				<pkg sha1="be822712e1e25e4eb8920ef6c8ce33ec55a0c7d7">mousepad-0.5.8.tar.bz2</pkg>
+				<mirror>https://archive.xfce.org/src/apps/mousepad/0.5/</mirror>
+			</file>
+			<manualcheck date="20150530" interval="180" page="http://archive.xfce.org/src/apps/mousepad/" />
+			<check>
+				<page html="http://archive.xfce.org/src/apps/mousepad/0.4">
+					<atext linktext="mousepad-0.4.1" />
+					<atext linktext="mousepad-0.4.2" />
+					<atext linktext="mousepad-0.4.3" />
+					<atext linktext="mousepad-0.4.4" />
+					<atext linktext="mousepad-0.4.5" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>distcc</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>gtksourceview3</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libdrm</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng16</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxshmfence</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>xz</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc --disable-dbus  CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --sysconfdir=/etc --disable-dbus 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			# paxctl -m ${TGTDIR}/usr/bin/mousepad 
+			#mv ${TGTDIR}/usr/bin/mousepad  ${TGTDIR}/usr/bin/mousepad.broken
+			#echo '#!/bin/bash' >  ${TGTDIR}/usr/bin/mousepad
+			#echo 'exec /usr/bin/SciTE "$@"' >> ${TGTDIR}/usr/bin/mousepad
+			#chmod 0755 ${TGTDIR}/usr/bin/mousepad
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

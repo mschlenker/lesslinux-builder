@@ -1,0 +1,44 @@
+<llpackages>
+	<package 
+		name="ttf-sil-charis"
+		version="4.106"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>              
+				<pkg sha1="e6f3abac01f1ac507d83b13d9a0e7fc526bf8204">ttf-sil-charis_4.106.orig.tar.gz</pkg>
+				<mirror>http://ftp.de.debian.org/debian/pool/main/t/ttf-sil-charis/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://ftp.de.debian.org/debian/pool/main/t/ttf-sil-charis" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>gzip</dep>
+                        <dep>tar</dep>
+			<dep>coreutils</dep>
+			<dep>mkfontdir</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[
+			tar xzf ${SRCDIR}/ttf-sil-charis_4.106.orig.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo "Nothing to build"
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -vp ${TGTDIR}/usr/lib/X11/fonts/truetype
+			cd ttf-sil-charis-4.106/
+			for font in *.ttf ; do
+				install -m 0644 $font ${TGTDIR}/usr/lib/X11/fonts/truetype
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>

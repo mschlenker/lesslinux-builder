@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="atk"
+		version="2.36.0"
+		class="lib"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>             
+				<pkg sha1="7e4accf756bb76323acf7f91d8618e739aff56e6">atk-2.36.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/atk/2.36/</mirror>
+			</file>
+			<manualcheck date="20170614" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/atk" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/atk/2.24/">
+					<atext linktext="atk-2.24.1." />
+					<atext linktext="atk-2.24.2." />
+					<atext linktext="atk-2.24.3." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/atk/">
+					<atext linktext="2.28" />
+					<atext linktext="2.30" />
+					<atext linktext="2.26" />
+					<atext linktext="3.0" />
+					<atext linktext="3.2" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>gobject-introspection</dep>
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+		
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			DESTDIR=${TGTDIR}  ninja install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

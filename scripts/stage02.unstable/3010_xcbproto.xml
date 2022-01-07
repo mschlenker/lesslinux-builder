@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='xcb-proto' version='1.14.1' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='836d5b2dd00ff21bd038e92764fda9a256a1b022'>
+                    xcb-proto-1.14.1.tar.xz
+                </pkg>
+                <mirror>
+                    https://www.x.org/archive/individual/proto/
+                </mirror>
+            </file>
+            <manualcheck date='20220107' interval='60' mirror='https://www.x.org/archive/individual/proto/'/>
+        </sources>
+	<builddeps>
+                        <dep>xproto-base</dep>
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

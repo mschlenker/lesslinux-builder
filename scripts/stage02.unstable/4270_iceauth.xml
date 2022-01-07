@@ -1,25 +1,24 @@
 <llpackages>
 	<package 
-		name="libXcomposite"
-		version="0.4.5"
-		class="lib"
+		name="iceauth"
+		version="1.0.8"
+		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>
-				<pkg sha1="902631efb55a798c81086e5ff90b60349839db40">libXcomposite-0.4.5.tar.bz2</pkg>
-				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
-				<mirror>ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/current/src/lib/</mirror>
+			<file>                                                                                                    
+				<pkg sha1="2ce23c40a17d98badeb8ce70d26e81a5ac0e178c">iceauth-1.0.8.tar.bz2</pkg>
+				<mirror>http://xorg.freedesktop.org/archive/individual/app/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
+			<manualcheck date="20150529" interval="180" page="http://xorg.freedesktop.org/archive/individual/app/" />
 			<check>
-				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXcomposite-0.4.8." />
-					<atext linktext="libXcomposite-0.4.5." />
-					<atext linktext="libXcomposite-0.4.6." />
-					<atext linktext="libXcomposite-0.4.7." />
-					<atext linktext="libXcomposite-0.5." />
-					<atext linktext="libXcomposite-0.6." />
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="iceauth-1.0.9." />
+					<atext linktext="iceauth-1.0.10." />
+					<atext linktext="iceauth-1.0.8." />
+					<atext linktext="iceauth-1.1." />
+					<atext linktext="iceauth-1.2." />
+					<atext linktext="iceauth-2." />
 				</page>
 			</check>
 		</sources>
@@ -33,12 +32,7 @@
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>inetutils</dep>
-                        <dep>libX11</dep>
-                        <dep>libXau</dep>
-                        <dep>libXext</dep>
-                        <dep>libXfixes</dep>
-                        <dep>libpthread-stubs</dep>
-                        <dep>libxcb</dep>
+                        <dep>libICE</dep>
                         <dep>make</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
@@ -63,19 +57,20 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
-				./configure --sysconfdir=/etc --prefix=/usr   CC="distcc gcc" CXX="distcc g++" 
+				./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
-				./configure --sysconfdir=/etc --prefix=/usr 
-				make
+				./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+				make  
 			fi
+			# ./configure --prefix=/usr && make
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make DESTDIR=${TGTDIR} install
 			]]>
 		</install>
 		<clean>

@@ -1,0 +1,63 @@
+<llpackages>
+	<package 
+		name="autoconf213"
+		version="2.13"
+		class="devel"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                       
+				<pkg sha1="e4826c8bd85325067818f19b2b2ad2b625da66fc">autoconf-2.13.tar.gz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/autoconf/</mirror>
+			</file>
+			<manualcheck date="20120102" interval="3650" page="http://ftp.gnu.org/gnu/autoconf/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/autoconf/">
+					<atext linktext="autoconf-2.13.1." />
+					<atext linktext="autoconf-2.13.2." />
+					<atext linktext="autoconf-2.13.3." />
+					<atext linktext="autoconf-2.13.4." />
+					<atext linktext="autoconf-2.13.5." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>autoconf</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/autoconf-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd autoconf-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr/local/autoconf213 && make -j $jobcount
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			cd autoconf-${PKGVERSION}
+			#mkdir -p ${TGTDIR}/usr/local/autoconf213/bin
+			#mkdir -p ${TGTDIR}/usr/bin
+			make install
+			ln -sf autoconf /usr/local/autoconf213/bin/autoconf-2.13
+			ln -sf /usr/local/autoconf213/bin/autoconf /usr/bin/autoconf-2.13
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf autoconf-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

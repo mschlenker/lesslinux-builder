@@ -1,0 +1,71 @@
+<llpackages>
+    <package name='mozjs-gnome' version='78.15.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='34231209e6ec933e86ab010181b1d89ae6e4e894'>
+                    firefox-78.15.0esr.source.tar.xz
+                </pkg>
+                <mirror>
+                    https://archive.mozilla.org/pub/firefox/releases/78.15.0esr/source/
+                </mirror>
+		<pkg sha1='4520fa0742121117bba84df6cb47d44b6aa9d3b0'>
+                    js-78.15.0-python_3_10-1.patch
+                </pkg>
+                <mirror>
+                    https://www.linuxfromscratch.org/patches/blfs/svn/
+                </mirror>
+            </file>
+            <manualcheck date='20181023' interval='60' mirror='http://ftp.gnome.org/pub/gnome/teams/releng/tarballs-needing-help/mozjs/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+                        <dep>nspr</dep>
+			<dep>icu</dep>
+			<dep>rustc</dep>
+			<dep>autoconf213</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/firefox-${PKGVERSION}esr.source.tar.xz
+]]>
+        </unpack>
+        <patch>
+		<![CDATA[
+cd firefox-${PKGVERSION}/
+patch -Np1 -i ${SRCDIR}/js-${PKGVERSION}-python_3_10-1.patch
+]]>
+	</patch>
+        <build>
+            <![CDATA[
+cd firefox-${PKGVERSION}/
+export SHELL=/bin/sh
+export PATH=/usr/local/rustc-1.56.1/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/rustc-1.56.1/lib:$LD_LIBRARY_PATH:
+mkdir obj &&
+cd    obj &&
+
+CC=gcc CXX=g++ \
+../js/src/configure --prefix=/usr            \
+                    --with-intl-api          \
+                    --with-system-zlib       \
+                    --with-system-icu        \
+                    --disable-jemalloc       \
+                    --disable-debug-symbols  \
+                    --enable-readline        &&
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd firefox-${PKGVERSION}/obj
+	    make install DESTDIR=${TGTDIR}
+	    sed -i '/@NSPR_CFLAGS@/d' ${TGTDIR}/usr/bin/js78-config
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf firefox-${PKGVERSION}esr/
+]]>
+        </clean>
+    </package>
+</llpackages>

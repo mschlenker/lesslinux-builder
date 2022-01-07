@@ -1,51 +1,49 @@
 <llpackages>
 	<package 
-		name="libXcomposite"
-		version="0.4.5"
-		class="lib"
-		install="destdir">
+		name="libxklavier"
+		version="5.4"
+		class="user" install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>
-				<pkg sha1="902631efb55a798c81086e5ff90b60349839db40">libXcomposite-0.4.5.tar.bz2</pkg>
-				<mirror>http://xorg.freedesktop.org/archive/individual/lib/</mirror>
-				<mirror>ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/current/src/lib/</mirror>
+			<file>            
+				<pkg sha1="6bd04a332700ad43d518167beaafbf734e94bd35">libxklavier-5.4.tar.bz2</pkg>
+				<mirror>http://pkgs.fedoraproject.org/repo/pkgs/libxklavier/libxklavier-5.4.tar.bz2/13af74dcb6011ecedf1e3ed122bd31fa/</mirror>
 			</file>
-			<manualcheck date="20150823" interval="365" page="http://xorg.freedesktop.org/archive/individual/lib/" />
-			<check>
-				<page html="http://xorg.freedesktop.org/archive/individual/lib/">
-					<atext linktext="libXcomposite-0.4.8." />
-					<atext linktext="libXcomposite-0.4.5." />
-					<atext linktext="libXcomposite-0.4.6." />
-					<atext linktext="libXcomposite-0.4.7." />
-					<atext linktext="libXcomposite-0.5." />
-					<atext linktext="libXcomposite-0.6." />
-				</page>
-			</check>
+			<manualcheck date="20170801" interval="180" page="http://pkgs.fedoraproject.org/repo/pkgs/libxklavier/" />
 		</sources>
 		<builddeps>
-			<dep>bash</dep>
+                        <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <dep>glib</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
+                        <dep>imake</dep>
                         <dep>inetutils</dep>
+                        <dep>iso-codes</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
                         <dep>libXext</dep>
-                        <dep>libXfixes</dep>
+                        <dep>libXi</dep>
                         <dep>libpthread-stubs</dep>
                         <dep>libxcb</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>libxml2</dep>
                         <dep>make</dep>
+                        <dep>perl</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
+                        <dep>xkbcomp</dep>
+                        <!-- <dep>xorg-cf-files</dep> -->
                         <dep>xproto-base</dep>
 			<dep>distcc</dep>
-		</builddeps>
+			<!-- <dep>vala</dep> -->
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
@@ -75,13 +73,8 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make DESTDIR=${TGTDIR} install
 			]]>
 		</install>
-		<clean>
-			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
-			]]>
-		</clean>
 	</package>
 </llpackages>

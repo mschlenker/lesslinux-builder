@@ -1,0 +1,68 @@
+<llpackages>
+	<package 
+		name="dmidecode"
+		version="3.3"
+		class="lib">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                   
+				<pkg sha1="99b8a9deaf0a003083a5a5fadcb8c016e4ebdaa4">dmidecode-3.3.tar.xz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/dmidecode/</mirror>
+			</file>
+			<manualcheck date="20170614" interval="180" page="http://download.savannah.gnu.org/releases/dmidecode/" />
+			<check>
+				<page html="http://download.savannah.gnu.org/releases/dmidecode/">
+					<atext linktext="dmidecode-3.5." />
+					<atext linktext="dmidecode-3.2." />
+					<atext linktext="dmidecode-3.3." />
+					<atext linktext="dmidecode-3.4." />
+					<atext linktext="dmidecode-4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				make -j $jobcount prefix=/usr CC="distcc gcc" CXX="distcc g++" 
+			else
+				make prefix=/usr
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make prefix=/usr install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

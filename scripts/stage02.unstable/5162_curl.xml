@@ -40,6 +40,7 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
+			<dep>libssh2</dep>
                         <dep>zlib</dep>
 			<!-- soft -->
 			<!-- <dep>libidn</dep> -->
@@ -64,12 +65,12 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++" 
 				./configure --sysconfdir=/etc --prefix=/usr --with-ca-path=/etc/ssl/certs \
-					--disable-smb --without-nss --without-gnutls --without-libssh2 \
+					--disable-smb --without-nss --without-gnutls --with-openssl --with-ca-path=/etc/ssl/certs \
 					CC="distcc gcc" CXX="distcc g++" 
 				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
 			else
 				./configure --sysconfdir=/etc --prefix=/usr --with-ca-path=/etc/ssl/certs \
-					--disable-smb --without-nss --without-gnutls --without-libssh2
+					--disable-smb --without-nss --without-gnutls --with-openssl --with-ca-path=/etc/ssl/certs
 				make -j2 
 			fi
 			]]>

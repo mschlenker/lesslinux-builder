@@ -1,0 +1,91 @@
+<llpackages>
+    <package name='rustc' version='1.56.1' install='destdir'>
+        <license>unknown</license>
+        <sources>
+            <file>
+                <pkg sha1='69bd2cda334611d84c24a12c5372ece712b9b519'>rustc-1.56.1-src.tar.gz</pkg>
+                <mirror>https://static.rust-lang.org/dist</mirror>
+            </file>
+            <manualcheck date='20180704' interval='60' mirror='http://www.linuxfromscratch.org/blfs/view/cvs/general/rust.html'/>
+        </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+                        <dep>llvm</dep>
+			<dep>curl</dep>
+			<dep>cmake</dep>
+			<dep>libssh2</dep>
+			<dep>cacerts</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}-src
+cat << EOF > config.toml
+# see config.toml.example for more possible options
+# See the 8.4 book for an example using shipped LLVM
+# e.g. if not installing clang, or using a version before 10.0
+[llvm]
+# by default, rust will build for a myriad of architectures
+targets = "X86"
+
+# When using system llvm prefer shared libraries
+link-shared = true
+
+[build]
+# omit docs to save time and space (default is to build them)
+docs = false
+
+# install cargo as well as rust
+extended = true
+
+[install]
+prefix = "/usr/local/rustc-1.56.1"
+docdir = "share/doc/rustc-1.56.1"
+
+[rust]
+channel = "stable"
+rpath = false
+
+# BLFS does not install the FileCheck executable from llvm,
+# so disable codegen tests
+codegen-tests = false
+
+[target.x86_64-unknown-linux-gnu]
+# NB the output of llvm-config (i.e. help options) may be
+# dumped to the screen when config.toml is parsed.
+llvm-config = "/usr/bin/llvm-config"
+
+[target.i686-unknown-linux-gnu]
+# NB the output of llvm-config (i.e. help options) may be
+# dumped to the screen when config.toml is parsed.
+llvm-config = "/usr/bin/llvm-config"
+
+
+EOF
+
+sed -i -e '/^curl /s/0.4.38/0.4.40/' \
+       -e '/^curl-sys /s/0.4.48/0.4.50/' \
+       src/tools/cargo/Cargo.toml &&
+
+export RUSTFLAGS="$RUSTFLAGS -C link-args=-lffi" &&
+python3 ./x.py build --exclude src/tools/miri
+
+]]>
+        </build>
+        <install>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}-src    
+export LIBSSH2_SYS_USE_PKG_CONFIG=1 &&
+DESTDIR=${TGTDIR} python3 ./x.py install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}-src
+]]>
+        </clean>
+    </package>
+</llpackages>

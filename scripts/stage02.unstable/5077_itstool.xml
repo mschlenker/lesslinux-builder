@@ -1,0 +1,63 @@
+<llpackages>
+    <package name='itstool' version='2.0.7' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='52a7eacfe2b4303ecb0c6f8de1d2c01a951f9727'>
+                    itstool-2.0.7.tar.bz2
+                </pkg>
+                <mirror>
+                    http://files.itstool.org/itstool/
+                </mirror>
+            </file>
+            <manualcheck date='20220107' interval='60' mirror='http://files.itstool.org/itstool/'/>
+        </sources>
+	<builddeps>
+			<dep>Python3</dep>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>meson</dep>
+                        <dep>ninja</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+PYTHON=/usr/bin/python3 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make DESTDIR=${TGTDIR} install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,75 @@
+<llpackages>
+	<package 
+		name="x264"
+		version="20210814"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                              
+				<pkg sha1="fb015fc41c2290496a26b8374672bad05ee91407">x264-20210814.tar.xz</pkg>
+				<mirror>https://anduin.linuxfromscratch.org/BLFS/x264/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="45" page="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/" />
+			<check>
+				<page html="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/">
+					<!-- <atext linktext="x264-snapshot-201708" />
+					<atext linktext="x264-snapshot-201709" /> -->
+					<atext linktext="x264-snapshot-201710" />
+					<atext linktext="x264-snapshot-201711" />
+					<atext linktext="x264-snapshot-201712" />
+					<atext linktext="x264-snapshot-201713" />
+					<atext linktext="x264-snapshot-2018" />
+					<atext linktext="x264-snapshot-2019" />
+					<atext linktext="x264-snapshot-2020" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <!-- <dep>ffmpeg</dep> -->
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>yasm</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 2 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				./configure --prefix=/usr --enable-shared --enable-static --enable-pic --disable-cli  CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				./configure --prefix=/usr --enable-shared --enable-static --enable-pic --disable-cli 
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
