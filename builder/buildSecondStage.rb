@@ -324,8 +324,15 @@ class SecondStage < AnyStage
 				tscript.write("ln -s ./usr/lib ${TGTDIR}/lib\n")
 				tscript.write("ln -s ./usr/lib64 ${TGTDIR}/lib64\n")
 			end
+			tscript.write("for d in local compat.old compat.new ; do\n")
+			tscript.write("rm ${TGTDIR}/usr/${d}/lib64\n")
+			tscript.write("done\n")
 			tscript.write("LC_ALL=POSIX; export LC_ALL\n\n")
 			tscript.write(@xfile.elements["llpackages/package/install"].cdatas[0])
+			if forcesplitusr == true
+				tscript.write("rm ${TGTDIR}/lib\n")
+				tscript.write("rm ${TGTDIR}/lib64\n")
+			end
 			tscript.write("\n\n")
 			tscript.close
 			File.chmod(0755, @builddir + "/stage02/build/" + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh")
