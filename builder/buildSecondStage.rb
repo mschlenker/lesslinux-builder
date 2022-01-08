@@ -290,18 +290,18 @@ class SecondStage < AnyStage
 			if (trace == true || @depends_on.nil?) 
 				bscript.write("if [ -x /tools/bin/strace -o -x /usr/bin/strace ]; then \n")
 				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
-					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+					' PATH=/usr/bin:/usr/sbin:/bin:/sbin:/tools/bin ' + 
 					' ${STRACE} -f -e trace=file,process -o /llbuild/build/' + @pkg_name +  "-" + @pkg_version + '.strace.install.log ' +
 					' ${BASH} /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
 				bscript.write("else\n")
 				bscript.write("touch /llbuild/build/" + @pkg_name +  "-" + @pkg_version + '.strace.install.log ')
 				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
-					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+					' PATH=/usr/bin:/usr/sbin:/bin:/sbin:/tools/bin ' + 
 					' ${BASH} /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
 				bscript.write("fi\n")
 			else
 				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
-					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+					' PATH=/usr/bin:/usr/sbin:/bin:/sbin:/tools/bin ' + 
 					' ${BASH} /llbuild/build/' + @pkg_name + "-" + @pkg_version + "/install_in_chroot.sh\n")
 			end
 			bscript.write("### . umount.sh > /dev/null 2>&1 \n")
@@ -316,6 +316,14 @@ class SecondStage < AnyStage
 			tscript.write("TGTDIR=/llbuild/build/${PKGNAME}-${PKGVERSION}.destdir ; export TGTDIR\n")
 			tscript.write("mkdir -p ${TGTDIR}/usr/lib\n")
 			tscript.write("ln -s lib ${TGTDIR}/usr/lib64\n")
+			tscript.write("for d in local compat.old compat.new ; do\n")
+			tscript.write("mkdir -p ${TGTDIR}/usr/${d}/lib\n")
+			tscript.write("ln -s lib ${TGTDIR}/usr/${d}/lib64\n")
+			tscript.write("done\n")
+			if forcesplitusr == true
+				tscript.write("ln -s ./usr/lib ${TGTDIR}/lib\n")
+				tscript.write("ln -s ./usr/lib64 ${TGTDIR}/lib64\n")
+			end
 			tscript.write("LC_ALL=POSIX; export LC_ALL\n\n")
 			tscript.write(@xfile.elements["llpackages/package/install"].cdatas[0])
 			tscript.write("\n\n")
