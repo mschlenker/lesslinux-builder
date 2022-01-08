@@ -1,0 +1,86 @@
+<llpackages>
+	<package 
+		name="p7zip"
+		version="17.04"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>  
+				<pkg sha1="e4cd1283aff2fbb36b8736090c26a9fc5eec842d">p7zip-17.04.tar.gz</pkg>
+				<mirror>https://github.com/jinfeihan57/p7zip/archive/v17.04/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://downloads.sourceforge.net/project/p7zip/p7zip" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/p7zip/files/p7zip/">
+					<atext linktext="9.38.2" />
+					<atext linktext="9.38.3" />
+					<atext linktext="9.39" />
+					<atext linktext="9.40" />
+					<atext linktext="9.41" />
+					<atext linktext="9.42" />
+					<atext linktext="9.43" />
+					<atext linktext="9.44" />
+					<atext linktext="9.45" />
+					<atext linktext="9.46" />
+					<atext linktext="9.47" />
+					<atext linktext="9.48" />
+					<atext linktext="9.49" />
+					<atext linktext="9.50" />
+					<atext linktext="9.51" />
+					<atext linktext="9.52" />
+					<atext linktext="9.53" />
+					<atext linktext="9.54" />
+					<atext linktext="9.55" />
+					<atext linktext="9.56" />
+					<atext linktext="9.57" />
+					<atext linktext="9.58" />
+					<atext linktext="9.59" />
+					<atext linktext="9.60" />
+					<atext linktext="9.61" />
+					<atext linktext="10." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			sed '/^gzip/d' -i install.sh
+			sed -i '160a if(_buffer == nullptr || _size == _pos) return E_FAIL;' CPP/7zip/Common/StreamObjects.cpp
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount all3
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make DEST_HOME=/usr DEST_MAN=/usr/share/man install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

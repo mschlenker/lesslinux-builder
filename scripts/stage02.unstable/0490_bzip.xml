@@ -66,7 +66,8 @@
 			make PREFIX=/usr install
 			install -m 0755 bzip2-shared /usr/bin/bzip2
 			cp -av libbz2.so* /usr/lib
-			rm -fv /usr/lib/libbz2.a
+			mkdir -p /usr/compat.old/lib
+			mv -v /usr/lib/libbz2.a /usr/compat.old/lib
 			#for i in /usr/bin/{bzcat,bunzip2}; do
 			#	ln -sfv bzip2 $i
 			#done

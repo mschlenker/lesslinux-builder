@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="tangoicons"
+		version="0.8.90"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>          	  	  
+				<pkg sha1="2cce3c86b8df05784a301564221661d909d58a10">tango-icon-theme-0.8.90.tar.bz2</pkg>
+				<mirror>http://tango.freedesktop.org/releases/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://tango.freedesktop.org/releases/" />
+		</sources>
+		<builddeps>
+			<dep>ImageMagick</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>icon-naming-utils</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>make</dep>
+                        <dep>p5-xml</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[
+
+			tar xjf ${SRCDIR}/tango-icon-theme-${PKGVERSION}.tar.bz2
+
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			
+			cd tango-icon-theme-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc 
+			make
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			cd tango-icon-theme-${PKGVERSION}
+			make DESTDIR=${TGTDIR} install
+			
+			]]>
+		</install>
+	</package>
+</llpackages>

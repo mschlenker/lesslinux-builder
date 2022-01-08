@@ -3,22 +3,22 @@
 class SecondStage < AnyStage
 	
 	def SecondStage.mount(builddir, srcdir)
-		system("mkdir -p " + builddir + "/stage01/chroot/usr/lib64")
-		system("mkdir -p " + builddir + "/stage01/chroot/usr/local/lib64")
-		system("mkdir -p " + builddir + "/stage01/chroot/opt/lib64")
+		#system("mkdir -p " + builddir + "/stage01/chroot/usr/lib64")
+		#system("mkdir -p " + builddir + "/stage01/chroot/usr/local/lib64")
+		#system("mkdir -p " + builddir + "/stage01/chroot/opt/lib64")
 		# system("mount -o bind /tmp " + builddir + "/stage01/chroot/tmp")
 		system("mount -o bind /dev " + builddir + "/stage01/chroot/dev")
 		system("mount -o bind " + builddir + "/stage02/build " + builddir + "/stage01/chroot/llbuild/build")
 		system("mount -o bind " + srcdir + " " + builddir + "/stage01/chroot/llbuild/src")
 		arch = ` uname -m ` 
-		unless arch == "x86_64"
-			[ "lib64", "usr/lib64", "usr/compat.new/lib64", "usr/compat.old/lib64", "usr/local/lib64", "opt/lib64" ].each { |d|
-				system("mount -o bind " + builddir + "/stage01/chroot/" + d.gsub("lib64", "lib") + " " + builddir + "/stage01/chroot/" + d ) if File.directory?(builddir + "/stage01/chroot/" + d) 
-			}
-			[ "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32", "usr/local/lib32", "opt/lib32" ].each { |d|
-				system("mount -o bind " + builddir + "/stage01/chroot/" + d.gsub("lib32", "lib") + " " + builddir + "/stage01/chroot/" + d ) if File.directory?(builddir + "/stage01/chroot/" + d) 
-			}
-		end
+		#unless arch == "x86_64"
+		#	[ "lib64", "usr/lib64", "usr/compat.new/lib64", "usr/compat.old/lib64", "usr/local/lib64", "opt/lib64" ].each { |d|
+		#		system("mount -o bind " + builddir + "/stage01/chroot/" + d.gsub("lib64", "lib") + " " + builddir + "/stage01/chroot/" + d ) if File.directory?(builddir + "/stage01/chroot/" + d) 
+		#	}
+		#	[ "lib32", "usr/lib32", "usr/compat.new/lib32", "usr/compat.old/lib32", "usr/local/lib32", "opt/lib32" ].each { |d|
+		#		system("mount -o bind " + builddir + "/stage01/chroot/" + d.gsub("lib32", "lib") + " " + builddir + "/stage01/chroot/" + d ) if File.directory?(builddir + "/stage01/chroot/" + d) 
+		#	}
+		#end
 		system("mount -vt devpts devpts " + builddir + "/stage01/chroot/dev/pts")
 		system("mount -vt tmpfs shm     " + builddir + "/stage01/chroot/dev/shm")
 		system("mount -vt tmpfs tmpfs   " + builddir + "/stage01/chroot/root")
@@ -153,13 +153,13 @@ class SecondStage < AnyStage
 			if (trace == true || @depends_on.nil?)
 				bscript.write("if [ -x /tools/bin/strace -o -x /usr/bin/strace ]; then \n")
 				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
-					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+					' PATH=/usr/bin:/usr/sbin:/bin:/sbin:/tools/bin:/tools/sbin ' + 
 					' ${STRACE} -f -e trace=file,process -o /llbuild/build/' + @pkg_name +  "-" + @pkg_version + '.strace.build.log ' +
 					' ${BASH} +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
 				bscript.write("else\n")
 				bscript.write("touch /llbuild/build/" + @pkg_name +  "-" + @pkg_version + ".strace.build.log\n")
 				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
-					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+					' PATH=/usr/bin:/usr/sbin:/bin:/sbin:/tools/bin:/tools/sbin ' + 
 					' ${BASH} +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
 				bscript.write("fi\n")
 				#bscript.write("else\n")
@@ -169,7 +169,7 @@ class SecondStage < AnyStage
 				#	' /tools/bin/bash +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
 			else
 				bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 
-					' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin ' + 
+					' PATH=/usr/bin:/usr/sbin:/bin:/sbin:/tools/bin:/tools/sbin  ' + 
 					' ${BASH} +h /llbuild/build/' + @pkg_name +  "-" + @pkg_version + "/build_in_chroot.sh\n")
 				#bscript.write("else\n")
 				#bscript.write('chroot ${CHROOTDIR} ${ENV} -i HOME=/root TERM="$TERM" PS1=\'\u:\w\$ \'' + 

@@ -1,0 +1,78 @@
+<llpackages>
+	<package 
+		name="giflib"
+		version="5.2.1"
+		class="user"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>         
+				<pkg sha1="c3f774dcbdf26afded7788979c8081d33c6426dc">giflib-5.2.1.tar.gz</pkg>
+				<mirror>http://downloads.sourceforge.net/sourceforge/giflib/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="http://sourceforge.net/projects/giflib/files/" />
+			<check>
+				<page html="http://sourceforge.net/projects/giflib/files/">
+					<atext linktext="giflib-5.1.6." />
+					<atext linktext="giflib-5.1.7." />
+					<atext linktext="giflib-5.1.8." />
+					<atext linktext="giflib-5.1.5." />
+					<atext linktext="giflib-5.2." />
+					<atext linktext="giflib-5.3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<!-- soft -->
+			 <dep>imake</dep>
+			 <dep>xmlto</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

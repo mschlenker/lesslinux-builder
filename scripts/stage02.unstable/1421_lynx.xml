@@ -1,0 +1,67 @@
+<llpackages>
+	<package 
+		name="lynx"
+		version="2.8.9rel.1"
+		class="devel"
+		install="chroot">
+		<license>GPLv2</license>
+		<sources>
+			<file>                         
+				<pkg sha1="3e00ac30d008e0aa879bfd037abcfd9c0dd2faec">lynx2.8.9rel.1.tar.bz2</pkg>
+				<mirror>https://invisible-mirror.net/archives/lynx/tarballs/</mirror>
+			</file>
+			<file>                         
+				<pkg sha1="018df811b3087a2c800cdcacd30a3c75847fa709">lynx-2.8.9rel.1-security_fix-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<!-- <file>                         
+				<pkg sha1="e77dcfc75393108579d6f7d164faafd84dc17820">openssl-1.0.1h-fix_pod_syntax-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file> -->
+			<manualcheck date="20170609" interval="90" page="http://www.openssl.org/source/" />
+		</sources>
+		<builddeps>
+                        <dep>openssl</dep>
+			<dep>bzip2</dep>
+			<dep>zlib</dep>
+			<!-- <dep>distcc</dep> -->
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			patch -p1 -i ${SRCDIR}/lynx-2.8.9rel.1-security_fix-1.patch
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			./configure --prefix=/usr          \
+            --sysconfdir=/etc/lynx \
+            --datadir=/usr/share/doc/lynx-2.8.9rel.1 \
+            --with-zlib            \
+            --with-bzlib           \
+            --with-ssl             \
+            --with-screen=ncursesw \
+            --enable-locale-charset
+	    make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}${PKGVERSION}
+			make install-full
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

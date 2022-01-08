@@ -1,0 +1,58 @@
+<llpackages>
+	<package 
+		name="faad2"
+		version="2.10"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>           
+				<pkg sha1="7f2666d3aa891cb923d97cec1d73365944338f79">faad2-2_10_0.tar.gz</pkg>
+				<mirror>https://github.com/knik0/faad2/archive/2_10_0/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://dfn.dl.sourceforge.net/sourceforge/faac/" />
+			<check>
+				<page html="http://sourceforge.net/projects/faac/files/">
+					<atext linktext="faad2-2.7.1." />
+					<atext linktext="faad2-2.8." />
+					<atext linktext="faad2-2.9." />
+					<atext linktext="faad2-3.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/faad2-2_10_0.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd faad2-2_10_0
+			./bootstrap
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd faad2-2_10_0
+			make install
+			]]>
+		</install>
+	</package>
+</llpackages>

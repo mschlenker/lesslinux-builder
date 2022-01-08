@@ -29,7 +29,7 @@
 		</build>
 		<install>
 			<![CDATA[
-			mkdir -pv ${CHROOTDIR}/{boot,etc,opt,home,mnt,dev,proc,sys,usr,var,run,media}
+			mkdir -pv ${CHROOTDIR}/{boot,etc,opt,home,mnt,dev,proc,sys,usr,var,run,media,tools}
 			mkdir -pv ${CHROOTDIR}/usr/{bin,include,lib,sbin,src}
 			for i in bin lib sbin; do
 				ln -sv usr/$i ${CHROOTDIR}/$i
@@ -49,12 +49,15 @@
 			case $(uname -m) 
 			in
 				x86_64) 
-					mkdir -pv ${CHROOTDIR}/lib64
-					mkdir -pv ${CHROOTDIR}/usr/{,local/,compat.old/,compat.new/}lib64
-					mkdir -pv ${CHROOTDIR}/opt/lib64
-					# ln -sv lib ${CHROOTDIR}/lib64
-					# ln -sv lib ${CHROOTDIR}/usr/lib64
-					# ln -sv lib /tools/lib64 
+					#mkdir -pv ${CHROOTDIR}/lib64
+					#mkdir -pv ${CHROOTDIR}/usr/{,local/,compat.old/,compat.new/}lib64
+					#mkdir -pv ${CHROOTDIR}/opt/lib64
+					ln -sv lib ${CHROOTDIR}/lib64
+					ln -sv lib ${CHROOTDIR}/usr/lib64
+					ln -sv lib /tools/lib64
+					for d in local compat.old compat.new ; do
+						ln -sv lib ${CHROOTDIR}/usr/${d}/lib64
+					done
 				;;
 			esac
 			mkdir -v ${CHROOTDIR}/var/{lock,log,mail,run,spool}

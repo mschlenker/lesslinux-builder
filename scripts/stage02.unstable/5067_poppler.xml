@@ -1,0 +1,116 @@
+<llpackages>
+	<package 
+		name="poppler"
+		version="22.01.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                     
+				<pkg sha1="02cd277491a0d8c62059f3e7e8a1a9bb30645bef">poppler-22.01.0.tar.xz</pkg>
+				<mirror>https://poppler.freedesktop.org/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="http://poppler.freedesktop.org/" />
+			<check>
+				<page html="http://poppler.freedesktop.org/releases.html">
+					<atext linktext="poppler-0.55.1." />
+					<atext linktext="poppler-0.55.2." />
+					<atext linktext="poppler-0.55.3." />
+					<atext linktext="poppler-0.56." />
+					<atext linktext="poppler-0.57." />
+					<atext linktext="poppler-0.58." />
+					<atext linktext="poppler-0.59." />
+					<atext linktext="poppler-0.60." />
+					<atext linktext="poppler-0.61." />
+					<atext linktext="poppler-0.62." />
+					<atext linktext="poppler-0.63." />
+					<atext linktext="poppler-0.64." />
+					<atext linktext="poppler-0.65." />
+					<atext linktext="poppler-1." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpng16</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>openjpeg</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>qt5</dep> 
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<dep>nss</dep>
+			 <dep>imake</dep>
+			 <dep>distcc</dep>
+			<dep>cmake</dep> 
+			<dep>boost</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+			cd ${PKGNAME}-${PKGVERSION}
+			# export BOOST_ROOT=/usr/local/boost_1_78_0
+			mkdir build                         &&
+cd    build                         &&
+
+cmake  -DCMAKE_BUILD_TYPE=Release   \
+       -DCMAKE_INSTALL_PREFIX=/usr  \
+       -DTESTDATADIR=$PWD/testfiles -DENABLE_QT6=OFF -DENABLE_QT5=ON -DENABLE_BOOST=ON  \
+       -DENABLE_UNSTABLE_API_ABI_HEADERS=ON \
+       ..                           &&
+make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			make DESTDIR=${TGTDIR} install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,112 @@
+<llpackages>
+	<package 
+		name="file-roller3"
+		version="3.40.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                       
+				<pkg sha1="15e7da37a8f04d68aba6d70cfaee0bce37868651">file-roller-3.40.0.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/3.40/</mirror>
+			</file>
+			<manualcheck date="20160923" interval="180" page="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/3.24/">
+					<atext linktext="file-roller-3.24.2." />
+					<atext linktext="file-roller-3.24.3." />
+					<atext linktext="file-roller-3.24.4." />
+					<atext linktext="file-roller-3.24.5." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/">
+					<atext linktext="3.28" />
+					<atext linktext="3.30" />
+					<atext linktext="3.26" />
+					<atext linktext="4." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python3</dep>
+                        <dep>atk</dep>
+                        <dep>attr</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>desktop-file-utils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>file</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>itstool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libarchive</dep>
+                        <dep>libffi</dep>
+                        <dep>libnotify</dep>
+			<dep>libpng16</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>lzo</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>xproto-base</dep>
+                        <dep>xz</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/file-roller-${PKGVERSION}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd file-roller-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release -Dpackagekit=false .. &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd file-roller-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install
+			# paxctl -m ${TGTDIR}/usr/bin/file-roller
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf file-roller-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -479,6 +479,9 @@ def run_stage_two
 		else	
 			pkg_deps[i] = i.depends_on
 		end
+		if  i.target_type == "chroot"
+			puts sprintf("%015.4f", Time.now.to_f) + " note   > No destdir installation for: " + i.pkg_name + " "  + i.pkg_version 
+		end
 	}
 	###### Check if we have circular dependencies
 	already_resolved = []

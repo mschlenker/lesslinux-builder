@@ -1,0 +1,142 @@
+<llpackages>
+	<package 
+		name="boost"
+		version="1_78_0"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                           
+				<pkg sha1="7ccc47e82926be693810a687015ddc490b49296d">boost_1_78_0.tar.bz2</pkg>
+				<mirror>https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="60" page="http://sourceforge.net/projects/boost/files/boost/" />
+			<check>
+				<page html="http://sourceforge.net/projects/boost/files/boost/">
+					<atext linktext="1.63.1" />
+					<atext linktext="1.63.2" />
+					<atext linktext="1.64." />
+					<atext linktext="1.65." />
+					<atext linktext="1.66." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python3</dep>
+                        <dep>Thunar</dep>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>bzip2</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>file</dep>
+                        <dep>findutils</dep>
+                        <dep>flex</dep>
+                        <dep>fribidi</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+                        <dep>grep</dep>
+                        <dep>groff</dep>
+                        <dep>gzip</dep>
+                        <!-- <dep>hal</dep> -->
+                        <dep>iceauth</dep>
+                        <dep>inetutils</dep>
+			<dep>intltool</dep>
+                        <dep>kbd</dep>
+                        <dep>libIDL</dep>
+                        <dep>libXft</dep>
+                        <dep>libXpm</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libgsf</dep>
+                        <dep>libpng16</dep>
+                        <dep>librsvg</dep>
+                        <dep>libtool</dep>
+                        <dep>libusb</dep>
+                        <dep>libwnck3</dep>
+                        <dep>libxml2</dep>
+                        <dep>libxslt</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>nasm</dep>
+                        <dep>ncurses</dep>
+                        <dep>openssh</dep>
+                        <dep>openssl</dep>
+                        <dep>patch</dep>
+                        <dep>pciutils</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>polkit</dep>
+                        <dep>procps</dep>
+                        <dep>psmisc</dep>
+			<dep>rsync</dep>
+                        <dep>ruby</dep>
+                        <dep>scrollkeeper</dep>
+                        <dep>sed</dep>
+                        <dep>sgml-common</dep>
+                        <dep>shadow</dep>
+                        <dep>strace</dep>
+                        <dep>tar</dep>
+                        <dep>texinfo</dep>
+                        <dep>tiff</dep>
+                        <dep>unzip</dep>
+                        <!-- <dep>usbutils</dep> -->
+                        <dep>util-linux-ng</dep>
+                        <dep>which</dep>
+                        <dep>xz</dep>
+                        <dep>zip</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				[ "$jobcount" -gt 10 ] && jobcount=10 
+				CURRENTPWD=` pwd ` 
+				mkdir bin
+				for b in gcc cc g++ c++ ; do
+					ln -sf  /usr/bin/distcc ./bin/${b} 
+				done
+				export PATH=${CURRENTPWD}/bin:$PATH 
+			fi
+			cd ${PKGNAME}_${PKGVERSION}
+			
+			sh bootstrap.sh --prefix=/usr --with-python=python3
+			./b2 -j $jobcount stage threading=multi link=shared
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}_${PKGVERSION}
+			./b2 install threading=multi link=shared
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}_${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,48 @@
+<llpackages>
+    <package name='libhandy' version='1.4.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='149fc3d316870e9200bac90ae2f18449026f7f0f'>
+                    libhandy-1.4.0.tar.xz
+                </pkg>
+                <mirror>
+                    https://download.gnome.org/sources/libhandy/1.4/
+                </mirror>
+            </file>
+            <manualcheck date='20220108' interval='60' mirror='https://download.gnome.org/sources/libhandy/1.4/'/>
+        </sources>
+	<builddeps>
+		<dep>Python3</dep>
+		<dep>gtk3</dep>
+		<dep>vala</dep>
+		<dep>meson</dep>
+		<dep>ninja</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/build
+DESTDIR=${TGTDIR} ninja install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,89 @@
+<llpackages>
+	<package 
+		name="nss"
+		version="3.74"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="7acc8e81afad5c6ba3ece739d2079da552e1c434">nss-3.74.tar.gz</pkg>
+				<mirror>https://archive.mozilla.org/pub/security/nss/releases/NSS_3_74_RTM/src/</mirror>
+			</file>
+			<file>                                                                               
+				<pkg sha1="5fb76ea9118d5ea5c537eb901b4424ccced54973">nss-3.74-standalone-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/blfs/svn/</mirror>
+			</file>
+			<manualcheck date="20170830" interval="60" page="https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>make</dep>
+                        <dep>nspr</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>sqlite</dep>
+                        <dep>zlib</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-standalone-1.patch | patch -p1
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/nss/
+			case $(uname -m) 
+			in
+				x86_64) 
+					make -j1 BUILD_OPT=1                      \
+					NSPR_INCLUDE_DIR=/usr/include/nspr  \
+					USE_SYSTEM_ZLIB=1                   \
+					ZLIB_LIBS=-lz                       \
+					NSS_ENABLE_WERROR=0                 \
+					NSS_USE_SYSTEM_SQLITE=1 USE_64=1
+				;;
+				*)
+					make -j1 BUILD_OPT=1                      \
+					NSPR_INCLUDE_DIR=/usr/include/nspr  \
+					USE_SYSTEM_ZLIB=1                   \
+					ZLIB_LIBS=-lz                       \
+					NSS_ENABLE_WERROR=0                 \
+					NSS_USE_SYSTEM_SQLITE=1
+				;;
+			esac
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -p ${TGTDIR}/usr/lib/pkgconfig
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/include/nss
+			cd ${PKGNAME}-${PKGVERSION}/dist/
+			install -v -m755 Linux*/lib/*.so ${TGTDIR}/usr/lib
+			install -v -m644 Linux*/lib/{*.chk,libcrmf.a} ${TGTDIR}/usr/lib
+			cp -v -RL {public,private}/nss/* ${TGTDIR}/usr/include/nss
+			chmod -v 644 ${TGTDIR}/usr/include/nss/*
+			install -v -m755 Linux*/bin/{certutil,nss-config,pk12util} ${TGTDIR}/usr/bin
+			install -v -m644 Linux*/lib/pkgconfig/nss.pc ${TGTDIR}/usr/lib/pkgconfig
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

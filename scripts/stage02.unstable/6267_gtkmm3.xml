@@ -1,0 +1,74 @@
+<llpackages>
+    <package name='gtkmm3' version='3.24.5' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='86bbdc1917a37195c73cad4bbabcf26588ea69ad'>
+                    gtkmm-3.24.5.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/
+                </mirror>
+            </file>
+            <manualcheck date='20181120' interval='60' mirror='http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/'/>
+        </sources>
+	<builddeps>
+                        <dep>atkmm</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>cairomm</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <!-- <dep>doxygen</dep> -->
+                        <dep>fontconfig</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>glibmm</dep>
+                        <!-- <dep>graphviz</dep> -->
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libsigc++</dep>
+                        <dep>libxslt</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pangomm</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>xproto-base</dep>
+			<dep>meson</dep>
+                        <dep>ninja</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME%3}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME%3}-${PKGVERSION}
+mkdir gtkmm3-build &&
+cd    gtkmm3-build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME%3}-${PKGVERSION}/gtkmm3-build
+DESTDIR=${TGTDIR} ninja install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME%3}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

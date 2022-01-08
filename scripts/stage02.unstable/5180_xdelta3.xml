@@ -1,0 +1,80 @@
+<llpackages>
+	<package 
+		name="xdelta"
+		version="3.0.11"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                           
+				<pkg sha1="3758290f34f33d8c56d1d4ef033044effb317c39">xdelta3-3.0.11.tar.gz</pkg>
+				<mirror>https://github.com/jmacd/xdelta-devel/releases/download/v3.0.11/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="90" page="https://github.com/jmacd/xdelta-devel/releases" />
+			<check>
+				<page html="https://github.com/jmacd/xdelta-devel/releases">
+					<atext href="xdelta3-3.0.15" />
+					<atext href="xdelta3-3.0.16" />
+					<atext href="xdelta3-3.0.17" />
+					<atext href="xdelta3-3.0.12" />
+					<atext href="xdelta3-3.0.13" />
+					<atext href="xdelta3-3.0.14" />
+					<atext href="xdelta3-3.1." />
+					<atext href="xdelta3-3.2." />
+					<atext href="xdelta3-3.3." />
+					<atext href="xdelta4" />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}3-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}3-${PKGVERSION}.tar.bz2
+			else
+				tar xf ${SRCDIR}/${PKGNAME}3-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}3-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+				./configure --prefix=/usr --sysconfdir=/etc
+				make -j $jobcount
+				make -j $jobcount xdelta3
+			else
+				./configure --prefix=/usr --sysconfdir=/etc
+				make
+				make xdelta3
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}3-${PKGVERSION}
+			mkdir -p ${TGTDIR}/usr/bin
+			make install-man DESTDIR=${TGTDIR} 
+			install -m 0755 xdelta3 ${TGTDIR}/usr/bin
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}3-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

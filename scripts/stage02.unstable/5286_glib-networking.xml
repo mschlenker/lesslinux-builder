@@ -1,0 +1,94 @@
+<llpackages>
+	<package 
+		name="glib-networking"
+		version="2.70.1"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                           
+				<pkg sha1="222de3267957f6985fbcc41f5e2e83794fb6a10c">glib-networking-2.70.1.tar.xz</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/glib-networking/2.70/</mirror>
+			</file>
+			<manualcheck date="20160923" interval="90" page="http://ftp2.nluug.nl/windowing/gnome/sources/glib-networking/" />
+			<check>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/glib-networking/2.50/">
+					<atext linktext="glib-networking-2.50.1." />
+					<atext linktext="glib-networking-2.50.2." />
+					<atext linktext="glib-networking-2.50.3." />
+					<atext linktext="glib-networking-2.50.4." />
+				</page>
+				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/glib-networking/">
+					<atext linktext="2.56" />
+					<atext linktext="2.52" />
+					<atext linktext="2.54" />
+					<atext linktext="3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libffi</dep>
+                       <!-- <dep>libgcrypt</dep> 
+                        <dep>libgnome-keyring</dep> -->
+                        <dep>libgpg-error</dep>
+                        <!-- <dep>libproxy</dep> -->
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>sqlite</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			unxz -c ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz | tar xf - 
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson --prefix=/usr       \
+      --buildtype=release &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

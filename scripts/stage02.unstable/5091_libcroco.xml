@@ -1,16 +1,16 @@
 <llpackages>
 	<package 
-		name="libarchive"
-		version="3.5.2"
+		name="libcroco"
+		version="0.6.13"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                       
-				<pkg sha1="57c723a3458572d6e8b581fbbc946566e23e990a">libarchive-3.5.2.tar.xz</pkg>
-				<mirror>https://github.com/libarchive/libarchive/releases/download/v3.5.2/</mirror>
+				<pkg sha1="cd54520c6c3c42e53685dc706e28721742aa3fff">libcroco-0.6.13.tar.xz</pkg>
+				<mirror>http://ftp.acc.umu.se/pub/gnome/sources/libcroco/0.6/</mirror>
 			</file>
-			<manualcheck date="20170615" interval="120" page="http://www.libarchive.org/" />
+			<manualcheck date="20170615" interval="365" page="http://www.libarchive.org/" />
 			<!-- <check>
 				<page html="http://ftp2.nluug.nl/windowing/gnome/sources/file-roller/2.32/">
 					<atext linktext="file-roller-2.32.3." />
@@ -26,27 +26,16 @@
 		</sources>
 		<builddeps>
                         <dep>Python3</dep>
-                        <dep>bzip2</dep>
-                        <dep>coreutils</dep>
-                        <dep>diffutils</dep>
-                        <dep>distcc</dep>
-                        <dep>gawk</dep>
-                        <dep>gcc</dep>
-                        <dep>glibc</dep>
-                        <dep>grep</dep>
-                        <dep>inetutils</dep>
+                        <dep>glib</dep>
                         <dep>libxml2</dep>
-                        <dep>lzo</dep>
                         <dep>make</dep>
-                        <dep>xz</dep>
-                        <dep>zlib</dep>
                 </builddeps>
 		<unpack>
 			<![CDATA[ 
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>
@@ -54,8 +43,6 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			sed -i '436a if ((OSSL_PROVIDER_load(NULL, "legacy")) == NULL) \
-      return (ARCHIVE_FAILED);' libarchive/archive_digest.c
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
@@ -63,7 +50,7 @@
 				./configure --prefix=/usr --sysconfdir=/etc --disable-static
 				make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc --disable-static
+				./configure --prefix=/usr --sysconfdir=/etc --disable-static 
 				make
 			fi
 			]]>
@@ -73,7 +60,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			make install DESTDIR=${TGTDIR}
-			# paxctl -m ${TGTDIR}/usr/bin/file-roller
+			paxctl -m ${TGTDIR}/usr/bin/file-roller
 			]]>
 		</install>
 		<clean>

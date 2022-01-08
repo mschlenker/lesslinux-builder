@@ -24,6 +24,9 @@
 			</check>
 		</sources>
 		<builddeps>
+			<!-- <dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>alsa-lib</dep> -->
                         <dep>autoconf</dep>
                         <dep>automake</dep>
                         <dep>bash</dep>
@@ -35,10 +38,13 @@
                         <dep>gawk</dep>
                         <dep>gettext</dep>
                         <dep>glib</dep>
-                        <dep>gobject-introspection</dep>
+                        <!-- <dep>gobject-introspection</dep> -->
                         <dep>grep</dep>
+                        <!-- <dep>gtk3</dep> -->
                         <dep>inetutils</dep>
                         <dep>intltool</dep>
+                        <!-- <dep>libgcrypt</dep> -->
+                        <dep>libgpg-error</dep>
                         <dep>libtool</dep>
                         <dep>libxml2</dep>
                         <dep>libxslt</dep>
@@ -48,7 +54,8 @@
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-                        <dep>xorg-server</dep>
+                        <!-- <dep>xorg-server</dep>
+                        <dep>xtrans</dep> -->
 		</builddeps>
 		<unpack>
 			<![CDATA[ 

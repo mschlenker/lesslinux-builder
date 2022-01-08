@@ -1,0 +1,80 @@
+<llpackages>
+    <package name='gsettings-desktop-schemas' version='41.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='b0e66de18cf3e97266340764da509bcbcd4ce5fd'>
+                    gsettings-desktop-schemas-41.0.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.acc.umu.se/pub/gnome/sources/gsettings-desktop-schemas/41/
+                </mirror>
+            </file>
+            <manualcheck date='20181011' interval='60' mirror='http://ftp.acc.umu.se/pub/gnome/sources/gsettings-desktop-schemas/3.28/'/>
+        </sources>
+	<builddeps>
+			<dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>curl</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libffi</dep>
+                        <!-- <dep>libgcrypt</dep> -->
+                        <!-- <dep>libgnome-keyring</dep> -->
+                        <dep>libgpg-error</dep>
+                        <!-- <dep>libproxy</dep> -->
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>sqlite</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+sed -i -r 's:"(/system):"/org/gnome\1:g' schemas/*.in &&
+
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/build
+DESTDIR=${TGTDIR} ninja install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

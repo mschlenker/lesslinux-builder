@@ -1,0 +1,121 @@
+<llpackages>
+	<package 
+		name="gst-plugins-good1"
+		version="1.18.5"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                              
+				<pkg sha1="2b08d6eeea97e5efcefc0bce668973455d7581fc">gst-plugins-good-1.18.5.tar.xz</pkg>
+				<mirror>http://gstreamer.freedesktop.org/src/gst-plugins-good/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="120" page="http://gstreamer.freedesktop.org/src/gst-plugins-good/" />
+			<check>
+				<page html="http://gstreamer.freedesktop.org/src/gst-plugins-good/">
+					<atext linktext="gst-plugins-good-1.12.3." />
+					<atext linktext="gst-plugins-good-1.12.4." />
+					<atext linktext="gst-plugins-good-1.12.5." />
+					<atext linktext="gst-plugins-good-1.12.6." />
+					<atext linktext="gst-plugins-good-1.12.7." />
+					<atext linktext="gst-plugins-good-1.12.1." />
+					<atext linktext="gst-plugins-good-1.12.2." />
+					<atext linktext="gst-plugins-good-1.10." />
+					<atext linktext="gst-plugins-good-1.12." />
+					<atext linktext="gst-plugins-good-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bzip2</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gst-plugins-base1</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXv</dep>
+                        <dep>libffi</dep>
+                        <dep>libgcrypt15</dep>
+                       <!-- <dep>libgnome-keyring</dep> -->
+                        <dep>libgpg-error</dep>
+                        <dep>libpng16</dep>
+                        <dep>libsoup</dep>
+                        <dep>libvpx</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>speex</dep>
+                        <dep>sqlite</dep>
+                        <dep>tar</dep>
+                        <dep>udev</dep>
+                        <dep>util-linux-ng</dep>
+                        <!-- <dep>xorg-cf-files</dep> -->
+                        <dep>xproto-base</dep>
+                        <dep>xz</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xJf ${SRCDIR}/gst-plugins-good-${PKGVERSION}.tar.xz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd gst-plugins-good-${PKGVERSION}
+			mkdir build &&
+cd    build &&
+
+meson  --prefix=/usr       \
+       --buildtype=release \
+       -Dpackage-origin=https://www.linuxfromscratch.org/blfs/view/svn/ \
+       -Dpackage-name="GStreamer 1.18.5 BLFS" &&
+ninja
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd gst-plugins-good-${PKGVERSION}/build
+			DESTDIR=${TGTDIR} ninja install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf gst-plugins-good-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
