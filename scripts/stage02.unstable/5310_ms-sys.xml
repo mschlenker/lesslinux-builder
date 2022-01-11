@@ -1,0 +1,77 @@
+<llpackages>
+	<package 
+		name="ms-sys"
+		version="2.6.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                         
+				<pkg sha1="6a7d69d07fc5b726741e2a043d44a54ab1f4caef">ms-sys-2.6.0.tar.gz</pkg>
+				<mirror>https://jztkft.dl.sourceforge.net/project/ms-sys/ms-sys%20stable/2.6.0/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://sourceforge.net/projects/ms-sys/files/ms-sys%20stable/" />
+			<check>
+				<page html="http://sourceforge.net/projects/ms-sys/files/ms-sys%20stable/">
+					<atext linktext="2.4.6" />
+					<atext linktext="2.4.1" />
+					<atext linktext="2.4.2" />
+					<atext linktext="2.4.3" />
+					<atext linktext="2.4.4" />
+					<atext linktext="2.4.5" />
+					<atext linktext="2.5." />
+					<atext linktext="2.6." />
+					<atext linktext="2.7." />
+					<atext linktext="3.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>util-linux-ng</dep>
+			<dep>binutils</dep>
+			<dep>coreutils</dep>
+			<dep>gcc</dep>
+			<dep>gettext</dep>
+			<dep>glibc</dep>
+			<dep>make</dep>
+			<dep>texinfo</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install PREFIX=/usr DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

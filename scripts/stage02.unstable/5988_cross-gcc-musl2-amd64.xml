@@ -1,0 +1,140 @@
+<llpackages>
+	<package 
+		name="cross-gcc-musl2-amd64"
+		version="11.2.0"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<sources>
+			<file>                                                                                  
+				<pkg sha1="f902ccacecf8949978d6261e9f1d034cff73ffdb">gcc-11.2.0.tar.xz</pkg>
+				<mirror>ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-11.2.0/</mirror>
+			</file>
+			<!-- <file>                                                                         
+				<pkg sha1="cc0cf646f8bd9b08ff4e8d06a6e49f07688a0ab3">gcc-4.6.2-cross_compile-1.patch</pkg>
+				<mirror>http://www.linuxfromscratch.org/patches/lfs/development/</mirror>
+			</file> -->
+			<manualcheck date="20170601" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+		</sources>
+			<manualcheck date="20170601" interval="120" page="http://ftp.gnu.org/gnu/gcc/" />
+		</sources>
+		<builddeps>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>cross-binutils-musl64</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>mpfr</dep>
+                        <dep>perl</dep>
+                        <dep>readline</dep>
+                        <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>distcc</dep>
+			<dep>musl-amd64</dep>
+			<dep>libstdc++-musl-amd64</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			# exit 0
+			
+			tar xf ${SRCDIR}/gcc-${PKGVERSION}.tar.xz
+			# tar xf ${SRCDIR}/musl-gcc-patches-${PKGVERSION}.tar.xz
+			
+			tar xf ${SRCDIR}/mpfr-4.1.0.tar.bz2
+			tar xf ${SRCDIR}/gmp-6.2.1.tar.lz
+			tar xf ${SRCDIR}/mpc-1.2.1.tar.gz
+
+			mv -v mpc-1.2.1 gcc-${PKGVERSION}/mpc
+			mv -v gmp-6.2.1 gcc-${PKGVERSION}/gmp
+			mv -v mpfr-4.1.0 gcc-${PKGVERSION}/mpfr
+		
+			mkdir ${PKGNAME}-build
+			
+			cd gcc-${PKGVERSION}
+			sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			
+			exit 0
+			
+			cd gcc-${PKGVERSION}
+			cat ../musl-gcc-patches/series | while read fname ; do 
+				cat ../musl-gcc-patches/${fname} | patch -p1
+			done
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			
+			# exit 0
+			
+			cd ${PKGNAME}-build
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			# crosstools-ia32-musl/i386-linux-musl
+			export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+			export CLFS_TARGET=x86_64-linux-musl
+			export CLFS_CPU=k8
+			cd ../gcc-build
+			../gcc-${PKGVERSION}/configure \
+				--prefix=/usr/local/crosstools-amd64-musl \
+				--build=${CLFS_HOST} \
+				--target=${CLFS_TARGET} \
+				--host=${CLFS_HOST} \
+				--with-sysroot=/usr/local/crosstools-amd64-musl/${CLFS_TARGET} \
+				--enable-languages=c,c++                       \
+				--disable-libstdcxx-pch                        \
+				--disable-multilib                             \
+				--disable-bootstrap                            \
+				--disable-libgomp \
+				--disable-nls \
+				--disable-libitm \
+				--disable-libsanitizer \
+				--with-arch=${CLFS_CPU}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make -j 4
+			fi
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			#mkdir -p ${TGTDIR}/etc/lesslinux
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0
+			
+			cd ${PKGNAME}-build
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf gcc-${PKGVERSION}
+			rm -rf ${PKGNAME}-build
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -122,7 +122,7 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			rm ${TGTDIR}/usr/bin/convert
 			make install DESTDIR=${TGTDIR}
-			exit 0
+			true
 			]]>
 		</install>
 		<clean>

@@ -1,63 +1,59 @@
 <llpackages>
 	<package 
-		name="cairomm"
-		version="1.12.2"
+		name="libunique"
+		version="1.1.6"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                 
-				<pkg sha1="621546f32221a2ddc079167a13ce5b5409bed704">cairomm-1.12.2.tar.gz</pkg>
-				<mirror>http://cairographics.org/releases/</mirror>
+			<file>                   
+				<pkg sha1="d44ad06503efaaa0c660c5f8a817e90fbe254d1f">libunique-1.1.6.tar.bz2</pkg>
+				<mirror>http://ftp2.nluug.nl/windowing/gnome/sources/libunique/1.1/</mirror>
 			</file>
-			<manualcheck date="20170615" interval="180" page="http://cairographics.org/releases/" />
-			<check>
-				<page html="http://cairographics.org/releases/">
-					<atext linktext="cairomm-1.12.5." />
-					<atext linktext="cairomm-1.12.6." />
-					<atext linktext="cairomm-1.12.3." />
-					<atext linktext="cairomm-1.12.4." />
-					<atext linktext="cairomm-1.20." />
-					<atext linktext="cairomm-1.14." />
-					<atext linktext="cairomm-1.16." />
-					<atext linktext="cairomm-1.18." />
-					<atext linktext="cairomm-2." />
-				</page>
-			</check>
+			<file>                   
+				<pkg sha1="245d47fab38706c1b0a4096686ea8b1d7493c548">libunique-1.1.6-upstream_fixes-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/blfs/svn</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/libunique/" />
 		</sources>
 		<builddeps>
-			<dep>bash</dep>
+			<dep>atk</dep>
+                        <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
                         <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
                         <dep>diffutils</dep>
+                        <dep>findutils</dep>
                         <dep>fontconfig</dep>
                         <dep>freetype</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
                         <dep>glib</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
+                        <dep>gtk3</dep>
                         <dep>inetutils</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
                         <dep>libXrender</dep>
                         <dep>libpng16</dep>
                         <dep>libpthread-stubs</dep>
-                        <dep>libsigc++</dep>
-				<dep>libsigc++2</dep>
                         <dep>libxcb</dep>
                         <dep>libxml2</dep>
-                        <dep>libxslt</dep>
                         <dep>make</dep>
-                        <dep>perl</dep>
+                        <dep>pango</dep>
                         <dep>pixman</dep>
                         <dep>pkg-config</dep>
                         <dep>sed</dep>
-                        <dep>tar</dep>
                         <dep>util-linux-ng</dep>
                         <dep>xproto-base</dep>
-			<dep>distcc</dep>
+			<!-- soft -->
+			 <dep>imake</dep>
+			 <dep>distcc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -66,9 +62,15 @@
 			else
 				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
 			fi
+			tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-4.debian.tar.gz
 			]]>
 		</unpack>
-		<patch />
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			patch -Np1 -i ${SRCDIR}/libunique-1.1.6-upstream_fixes-1.patch
+			]]>
+		</patch>
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
@@ -76,10 +78,12 @@
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc 
+			find . -type f -name Makefile -exec sed -i 's%-Werror%%g' {} \;
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc
 				make
 			fi
 			]]>
@@ -88,7 +92,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make DESTDIR=${TGTDIR} install
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 	</package>

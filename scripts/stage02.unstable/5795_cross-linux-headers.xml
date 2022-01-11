@@ -1,0 +1,90 @@
+<llpackages>
+	<package 
+		name="cross-linux-headers"
+		version="5.10.84"
+		class="devel"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                 
+				<pkg sha1="be0b909f1fbb760cc2d5cf146e1da3b2af0cf899">linux-5.10.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v5.x/</mirror>
+			</file>
+			<file>
+				<pkg sha1="285dffec131cb5500ea45bbbfe2b1964465d3e42">patch-5.10.84.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/kernel/v5.x/</mirror>
+			</file>
+			<manualcheck date="20170830" interval="60" page="http://www.kernel.org/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/kernel/v4.x/">
+					<atext linktext="patch-4.9.49." />
+					<atext linktext="patch-4.9.47." />
+					<atext linktext="patch-4.9.48." />
+					<atext linktext="patch-4.12." />
+					<atext linktext="patch-4.13." />
+					<atext linktext="patch-4.14." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			unxz -c ${SRCDIR}/linux-${major}.${minor}.tar.xz | tar xf -
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[ 
+			major=` echo $PKGVERSION | awk -F '.' '{print $1}' ` 
+			minor=` echo $PKGVERSION | awk -F '.' '{print $2}' `
+			cd linux-${major}.${minor}
+			unxz -c ${SRCDIR}/patch-${PKGVERSION}.xz | patch -p1
+			cd ..
+			mv -v linux-${major}.${minor} linux-${PKGVERSION}
+			
+			]]>
+		</patch>
+		<build>
+			<![CDATA[ 
+			
+			cd linux-${PKGVERSION}
+			make mrproper
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			cd linux-${PKGVERSION}
+			make INSTALL_HDR_PATH=dest headers_install
+			find dest/include \( -name .install -o -name ..install.cmd \) -delete
+			
+			for tgt in musl  \
+				crosstools-ia32-musl/i386-linux-musl crosstools-amd64-musl/x86_64-linux-musl ; do
+				mkdir -p ${TGTDIR}/usr/local/${tgt}/include
+				cp -rv dest/include/* ${TGTDIR}/usr/local/${tgt}/include
+				ln -s . ${TGTDIR}/usr/local/${tgt}/usr
+			done
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf linux-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

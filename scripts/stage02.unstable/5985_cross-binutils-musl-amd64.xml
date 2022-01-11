@@ -1,0 +1,118 @@
+<llpackages>
+	<package 
+		name="cross-binutils-musl64"
+		version="2.37"
+		class="devel"
+		install="destdir"
+		providedeps="no">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                 
+				<pkg sha1="e9cf391b000010d6c752771974b394c9c743c928">binutils-2.37.tar.xz</pkg>
+				<mirror>http://ftp.gnu.org/gnu/binutils/</mirror>
+			</file>
+			<file>                                                                 
+				<pkg sha1="e25c30012771b1ed84896fd932ba773f5fe6bca2">binutils-2.37-upstream_fix-1.patch</pkg>
+				<mirror>https://www.linuxfromscratch.org/patches/lfs/11.0/</mirror>
+			</file>
+			<manualcheck date="20170801" interval="180" page="http://ftp.gnu.org/gnu/binutils/" />
+			<check>
+				<page html="http://ftp.gnu.org/gnu/binutils/">
+					<atext linktext="binutils-2.28.4." />
+					<atext linktext="binutils-2.28.2." />
+					<atext linktext="binutils-2.28.3" />
+					<atext linktext="binutils-2.29." />
+					<atext linktext="binutils-2.30." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>autoconf</dep>
+                        <dep>automake</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>sed</dep>
+                        <dep>texinfo</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>distcc</dep>
+			<dep>cross-linux-headers</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/binutils-${PKGVERSION}.tar.xz
+			mkdir binutils-build
+			]]>
+		</unpack>
+		<patch>			
+			<![CDATA[ 
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/binutils-2.37-upstream_fix-1.patch | patch -p1
+			]]>
+		</patch>
+		<!-- <patch>			
+			<![CDATA[ 
+			cd binutils-${PKGVERSION}
+			## cat ${SRCDIR}/${PKGNAME}-2.19-pt-pax-flags-200811041810.patch | patch -p1
+			sed -i -e 's/@colophon/@@colophon/' -e 's/doc@cygnus.com/doc@@cygnus.com/' bfd/doc/bfd.texinfo
+			rm -fv etc/standards.info
+			sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[ 
+			
+			# exit 0
+			
+			cd binutils-build
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+				../binutils-${PKGVERSION}/configure --target=x86_64-linux-musl \
+					--prefix=/usr/local/crosstools-amd64-musl --disable-nls \
+					--with-sysroot=/usr/local/crosstools-amd64-musl/x86_64-linux-musl \
+					--disable-werror --disable-multilib CC="distcc gcc" CXX="distcc g++" 
+				make -j $jobcount CC="distcc gcc" CXX="distcc g++" 
+			else
+				../binutils-${PKGVERSION}/configure --target=x86_64-linux-musl \
+					--prefix=/usr/local/crosstools-amd64-musl --disable-nls \
+					--with-sysroot=/usr/local/crosstools-amd64-musl/x86_64-linux-musl \
+					--disable-werror --disable-multilib
+				make -j 4
+			fi
+			]]>
+		</build>
+		<install>
+			<![CDATA[
+			
+			#mkdir -p ${TGTDIR}/etc/lesslinux
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0
+			
+			cd binutils-build
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+		<clean>
+			<![CDATA[ 
+			rm -rf binutils-build
+			rm -rf binutils-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

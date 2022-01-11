@@ -1,0 +1,79 @@
+<llpackages>
+	<package 
+		name="libcap"
+		version="2.62"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>	
+			<file>                                                    
+				<pkg sha1="711f8e31023ed53770e504832aec8733c6450a0b">libcap-2.62.tar.xz</pkg>
+				<mirror>http://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/</mirror>
+			</file>
+			<manualcheck date="20160630" interval="180" page="http://ftp.de.debian.org/debian/pool/main/libc/libcap2/" />
+			<check>
+				<page html="rsync://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/">
+					<atext linktext="libcap-2.28." />
+					<atext linktext="libcap-2.29." />
+					<atext linktext="libcap-2.30." />
+					<atext linktext="libcap-2.26." />
+					<atext linktext="libcap-2.27." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+			<dep>gcc</dep>
+                        <dep>glibc</dep>
+			<dep>file</dep>
+			<dep>zlib</dep>
+			<dep>bzip2</dep>
+			<dep>pkg-config</dep>
+			<dep>ncurses</dep>
+			<dep>attr</dep>
+			<dep>acl</dep>
+			<dep>Linux-PAM</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			# make -j $jobcount -C pam_cap PREFIX=/usr 
+			 make -j $jobcount PREFIX=/usr 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} RAISE_SETFCAP=no prefix=/usr
+			#mkdir -p ${TGTDIR}/usr/lib/security
+			#mkdir -p ${TGTDIR}/etc/security
+			#install -v -m755 pam_cap/pam_cap.so ${TGTDIR}/usr/lib/security &&
+			#install -v -m644 pam_cap/capability.conf ${TGTDIR}/etc/security
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

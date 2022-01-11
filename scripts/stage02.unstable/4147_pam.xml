@@ -2,7 +2,7 @@
 	<package 
 		name="Linux-PAM"
 		version="1.5.2"
-		class="lib" install="destdir">
+		class="lib" install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                     
@@ -46,7 +46,7 @@
 			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
 				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
 			fi
 			]]>
 		</unpack>
@@ -70,9 +70,9 @@ autoreconf
 		<install>
 			<![CDATA[
 
-install -v -m755 -d ${TGTDIR}/etc/pam.d
+install -v -m755 -d /etc/pam.d
 
-cat > ${TGTDIR}/etc/pam.d/other << "EOF"
+cat > /etc/pam.d/other << "EOF"
 auth     required       pam_deny.so
 account  required       pam_deny.so
 password required       pam_deny.so
@@ -80,8 +80,8 @@ session  required       pam_deny.so
 EOF
 
 			cd ${PKGNAME}-${PKGVERSION}
-			make DESTDIR=${TGTDIR} install
-			chmod -v 4755 ${TGTDIR}/usr/sbin/unix_chkpwd
+			make  install
+			chmod -v 4755 /usr/sbin/unix_chkpwd
 			]]>
 		</install>
 		<clean>

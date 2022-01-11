@@ -1,0 +1,81 @@
+<llpackages>
+	<package 
+		name="libproxy"
+		version="0.4.17"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                              
+				<pkg sha1="38d26535ebe07de1750a2a2c3c0afc24655ec25d">libproxy-0.4.17.tar.xz</pkg>
+				<mirror>https://github.com/libproxy/libproxy/releases/download/0.4.17/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://libproxy.googlecode.com/files/" />
+			<!-- <check>
+				<page html="http://code.google.com/p/libproxy/downloads/list">
+					<atext linktext="libproxy-0.4.14.t" />
+					<atext linktext="libproxy-0.4.12.t" />
+					<atext linktext="libproxy-0.4.13.t" />
+					<atext linktext="libproxy-0.5." />
+					<atext linktext="libproxy-0.6." />
+					<atext linktext="libproxy-0.7." />
+					<atext linktext="libproxy-1." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>openssh</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>qt5</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION} 
+			### cmake -DCMAKE_INSTALL_PREFIX=/usr .
+			### ./configure --prefix=/usr/ --sysconfdir=/etc
+			### export CC=/usr/local/gcc46/bin/gcc46 
+			### export CXX=/usr/local/gcc46/bin/c++46
+			cmake -DCMAKE_INSTALL_PREFIX=/usr -Dlibdir=/usr/lib -Dlibexecdir=/usr/libexec  -Ddatadir=/usr/share
+			make 
+			#### CC=/usr/local/gcc46/bin/gcc46 CXX=/usr/local/gcc46/bin/c++46
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install 
+			#### CC=/usr/local/gcc46/bin/gcc46 CXX=/usr/local/gcc46/bin/c++46 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
-		name="libsigc++"
-		version="3.0.7"
+		name="libsigc++2"
+		version="2.10.7"
 		class="user">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                   
-				<pkg sha1="df587ea463ab57134877ce2f51053ec6dfb36d41">libsigc++-3.0.7.tar.xz</pkg>
-				<mirror>https://download.gnome.org/sources/libsigc++/3.0/</mirror>
+				<pkg sha1="321281defb0eb924baedf7975a1f03cdb92bbf79">libsigc++-2.10.7.tar.xz</pkg>
+				<mirror>https://download.gnome.org/sources/libsigc++/2.10/</mirror>
 			</file>
 			<manualcheck date="20170615" interval="120" page="http://ftp2.nluug.nl/windowing/gnome/sources/libsigc++/" />
 			<check>
@@ -47,20 +47,14 @@
 			<dep>ninja</dep>
 		</builddeps>
 		<unpack>
-			<![CDATA[ 
-			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
-				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
-			elif [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz ] ; then
-				tar xJf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
-			else
-				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
-			fi
+			<![CDATA[
+			tar xf ${SRCDIR}/${PKGNAME%2}-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
 		<patch />
 		<build>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}
+			cd ${PKGNAME%2}-${PKGVERSION}
 			mkdir _build &&
 cd    _build &&
 
@@ -71,7 +65,7 @@ ninja
 		<test />
 		<install>
 			<![CDATA[
-			cd ${PKGNAME}-${PKGVERSION}/_build
+			cd ${PKGNAME%2}-${PKGVERSION}/_build
 			#mkdir -p ${TGTDIR}/usr/lib
 			#ln -s lib ${TGTDIR}/usr/lib64
 			ninja install 
@@ -80,7 +74,7 @@ ninja
 		</install>
 		<clean>
 			<![CDATA[
-			rm -rf ${PKGNAME}-${PKGVERSION}
+			rm -rf ${PKGNAME%2}-${PKGVERSION}
 			]]>
 		</clean>
 	</package>

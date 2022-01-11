@@ -1,44 +1,46 @@
 <llpackages>
 	<package 
-		name="libtasn1"
-		version="4.18.0"
+		name="libisofs"
+		version="1.5.4"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
-			<file>                                                                                             
-				<pkg sha1="1665249ce66e64958e8c61d5bdc6c1e9f3623888">libtasn1-4.18.0.tar.gz</pkg>
-				<mirror>http://ftp.gnu.org/pub/gnu/libtasn1/</mirror>
+			<file>                                                 
+				<pkg sha1="472733ee4b5cde17e2b87e2b5dcfb69417575752">libisofs-1.5.4.tar.gz</pkg>
+				<mirror>http://files.libburnia-project.org/releases/</mirror>
 			</file>
-			<manualcheck date="20170615" interval="90" page="http://ftp.gnu.org/pub/gnu/libtasn1/" />
+			<manualcheck date="20160923" interval="180" page="http://files.libburnia-project.org/releases/" />
 			<check>
-				<page html="http://ftp.gnu.org/pub/gnu/libtasn1/">
-					<atext linktext="libtasn1-4.14." />
-					<atext linktext="libtasn1-4.15." />
-					<atext linktext="libtasn1-4.16." />
-					<atext linktext="libtasn1-4.13." />
-					<atext linktext="libtasn1-5." />
+				<page html="http://files.libburnia-project.org/releases/">
+					<atext linktext="libisofs-1.4.10." />
+					<atext linktext="libisofs-1.4.12." />
+					<atext linktext="libisofs-1.4.14." />
+					<atext linktext="libisofs-1.4.8." />
+					<atext linktext="libisofs-1.5." />
+					<atext linktext="libisofs-1.6." />
+					<atext linktext="libisofs-1.7." />
+					<atext linktext="libisofs-2." />
 				</page>
 			</check>
 		</sources>
 		<builddeps>
 			<dep>bash</dep>
                         <dep>binutils</dep>
-                        <dep>bison</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
-                        <dep>findutils</dep>
                         <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
                         <dep>grep</dep>
-                        <dep>gzip</dep>
                         <dep>inetutils</dep>
                         <dep>make</dep>
-                        <dep>pkg-config</dep>
                         <dep>sed</dep>
                         <dep>util-linux-ng</dep>
-			<dep>distcc</dep>
+                        <dep>zlib</dep>
+			<!-- soft -->
+			 <dep>attr</dep>
+			 <dep>distcc</dep>
 		</builddeps>
 		<unpack>
 			<![CDATA[ 
@@ -69,7 +71,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR}
+			make install DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>

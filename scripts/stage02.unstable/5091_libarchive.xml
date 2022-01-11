@@ -56,14 +56,16 @@
 			cd ${PKGNAME}-${PKGVERSION}
 			sed -i '436a if ((OSSL_PROVIDER_load(NULL, "legacy")) == NULL) \
       return (ARCHIVE_FAILED);' libarchive/archive_digest.c
+			cp -v /usr/compat.old/libbz2.a .
+			cp -v /usr/compat.old/libbz2.a libarchive
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc --disable-static
+				./configure --prefix=/usr --sysconfdir=/etc --disable-static --without-bz2lib
 				make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc --disable-static
+				./configure --prefix=/usr --sysconfdir=/etc --disable-static --without-bz2lib
 				make
 			fi
 			]]>

@@ -1,0 +1,117 @@
+<llpackages>
+	<package 
+		name="testdisk"
+		version="7.2-WIP"
+		class="user" install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                       
+				<pkg sha1="cefd66c4d87ca920d84cb4185338428f42fb55a7">testdisk-7.2-WIP.tar.bz2</pkg>
+				<mirror>http://www.cgsecurity.org/</mirror>
+			</file>
+			<manualcheck date="20160930" interval="90" page="http://www.cgsecurity.org/" />
+			<check>
+				<page html="http://www.cgsecurity.org/wiki/TestDisk_Download">
+					<atext linktext="testdisk-7.1." />
+					<atext linktext="testdisk-7.2." />
+					<atext linktext="testdisk-7.3." />
+					<atext linktext="testdisk-7.4." />
+					<atext linktext="testdisk-7.5." />
+					<atext linktext="testdisk-8." />
+					<atext linktext="testdisk-9." />
+				</page>
+			</check>
+ 		</sources>
+		<builddeps>
+			<dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>e2fsprogs</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>ntfs-3g_ntfsprogs</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>zlib</dep>
+			<dep>qt5</dep>
+			<dep>distcc</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/photorec_611_exif_bound_checking_v2.patch | patch -p1
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --sysconfdir=/etc --prefix=/usr --without-ntfs --enable-qt --without-ewf
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
+				make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/share/icons
+			install -m 0644 src/photorec_64x64.png ${TGTDIR}/usr/share/icons
+
+			# Icon erstellen
+  
+cat >> ${TGTDIR}/usr/share/applications/qphotorec.desktop << QPICON
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=QPhotoRec
+Comment=
+Categories=CB-Rescue;
+Exec=sudo /usr/bin/qphotorec
+Icon=/usr/share/icons/photorec_64x64.png
+Terminal=false
+StartupNotify=true
+
+QPICON
+
+			
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>
