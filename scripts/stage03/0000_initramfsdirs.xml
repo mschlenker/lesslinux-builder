@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <llpackages>
 	<dirs>
-		<dir mode="0755">/bin</dir>
+		<!-- <dir mode="0755">/bin</dir>
 		<dir mode="0755">/sbin</dir>
-		<dir mode="0755">/lib</dir>
+		<dir mode="0755">/lib</dir> -->
 		<dir mode="0755">/usr</dir>
 		<dir mode="0755">/var</dir>
 		<dir mode="0755">/var/lib</dir>
@@ -2160,18 +2160,18 @@ case $1 in
     # Try to find out if a squashfs container for the modules exists, mount it!
     kversion=` uname -r ` 
     if [ -f /lesslinux/modules/${kversion}.sqs ] ; then
-	mkdir -p /lib/modules/${kversion}
+	mkdir -p /usr/lib/modules/${kversion}
 	free_loop=` losetup -f `
 	losetup $free_loop /lesslinux/modules/${kversion}.sqs
-	mount -t squashfs $free_loop /lib/modules/${kversion}
+	mount -t squashfs $free_loop /usr/lib/modules/${kversion}
     fi
     if [ -f /lesslinux/modules/firmware.sqs ] ; then
-	mkdir -p /lib/firmware
+	mkdir -p /usr/lib/firmware
 	free_loop=` losetup -f `
 	losetup $free_loop /lesslinux/modules/firmware.sqs
-	mount -t squashfs $free_loop /lib/firmware
+	mount -t squashfs $free_loop /usr/lib/firmware
     fi
-    
+    ln -sf /usr/lib /lib
     # Mount /tmp and /home on separate ramdisks
     if mountpoint -q /tmp ; then
 	# printf "$bold---> Skipping /tmp, already mounted $normal\n"
@@ -5139,12 +5139,14 @@ case $1 in
         if [ -f /lesslinux/modules/${kversion}.sqs ] && mountpoint -q /lib/modules/${kversion} ; then
 	    modloop=` cat /proc/mounts | grep "/lib/modules/${kversion}" | awk '{print $1}' `
 	    umount "/lib/modules/${kversion}"
+	    umount "/usr/lib/modules/${kversion}"
 	    losetup -d ${modloop}
         fi
 	# Same for firmware
 	if [ -f /lesslinux/modules/firmware.sqs ] && mountpoint -q /lib/firmware ; then
 	    firmloop=` cat /proc/mounts | grep "/lib/firmware" | awk '{print $1}' `
 	    umount "/lib/firmware"
+	    umount "/usr/lib/firmware"
 	    losetup -d ${firmloop}
         fi
         if [ '!' -f  /var/run/lesslinux/cdfound ] ; then
@@ -5173,9 +5175,13 @@ case $1 in
 		    container=` echo $fs | awk '{print $1}' `
 		    mkdir -p /lesslinux/fullsys
 		    mount -o loop,ro /lesslinux/$mediadir/$contdir/$container /lesslinux/fullsys
-		    for d in bin lib opt sbin usr srv ; do
-			mkdir -p /$d 
-			[ -d /lesslinux/fullsys/$d ] && mount --bind /lesslinux/fullsys/$d /$d 
+		    for d in usr bin lib opt sbin srv ; do
+			if [ -d /lesslinux/fullsys/$d ] ; then
+				mkdir -p /$d
+				mount --bind /lesslinux/fullsys/$d /$d
+			else
+				[ -d /lesslinux/fullsys/usr/$d ] && ln -s /usr/$d /$d
+			fi
 		    done
 		;;
 		*)
@@ -5204,18 +5210,19 @@ case $1 in
 	done
 	release=` uname -r `
 	modcontainer=` grep -E "^${release}"' ' /lesslinux/$mediadir/$contdir/modules.txt | awk '{print $2}' `
-	mountpoint -q /lib && mount -t tmpfs -o mode=0755 tmpfs /lib/modules
-	[ -d /lib/modules/$release ] || mkdir /lib/modules/$release
+	# mountpoint -q /lib && mount -t tmpfs -o mode=0755 tmpfs /lib/modules
+	mount -t tmpfs -o mode=0755 tmpfs /usr/lib/modules
+	[ -d /usr/lib/modules/$release ] || mkdir /usr/lib/modules/$release
 	if [ -f /lesslinux/$mediadir/$contdir/$modcontainer ] ; then
-	    mount -o loop,ro /lesslinux/$mediadir/$contdir/$modcontainer /lib/modules/$release
+	    mount -o loop,ro /lesslinux/$mediadir/$contdir/$modcontainer /usr/lib/modules/$release
 	    [ -f /lesslinux/modules/$release ] && rm /lesslinux/modules/$release
 	else
 	    free_loop=` losetup -f `
 	    losetup $free_loop /lesslinux/modules/${release}.sqs
-	    mount -t squashfs $free_loop /lib/modules/${release}
+	    mount -t squashfs $free_loop /usr/lib/modules/${release}
 	    free_loop=` losetup -f `
 	    losetup $free_loop /lesslinux/modules/firmware.sqs
-	    mount -t squashfs $free_loop /lib/firmware
+	    mount -t squashfs $free_loop /usr/lib/firmware
         fi
     ;;
 esac

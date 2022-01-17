@@ -33,7 +33,7 @@
 		<build>
 			<![CDATA[ 
 			
-			exit 0
+			# exit 0
 			
 			export PATH=/usr/local/crosstools-amd64-musl/x86_64-linux-musl/bin:/usr/local/crosstools-amd64-musl/bin:$PATH
 			export CC=x86_64-linux-musl-gcc
@@ -45,9 +45,9 @@
 		<install>
 			<![CDATA[
 			
-			mkdir -p ${TGTDIR}/etc/lesslinux
-			touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
-			exit 0
+			#mkdir -p ${TGTDIR}/etc/lesslinux
+			#touch ${TGTDIR}/etc/lesslinux/${PKGNAME}-${PKGVERSION}-dummy
+			#exit 0
 			
 			cd zlib-${PKGVERSION}
 			export PATH=/usr/local/crosstools-amd64-musl/x86_64-linux-musl/bin:/usr/local/crosstools-amd64-musl/bin:$PATH

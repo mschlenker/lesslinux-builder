@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='gummiboot' version='20150311' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='03d05860879a80ab7aa6c95e38b230141cf5e5a9'>
+                    gummiboot-20150311.tar.bz2
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20161111' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}
+bash autogen.sh
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make -k 
+]]>
+        </build>
+        <install>
+            <![CDATA[
+mkdir -p ${TGTDIR}/usr/share/gummiboot
+install -m 0644 ${PKGNAME}/gummibootia32.efi ${TGTDIR}/usr/share/gummiboot
+install -m 0644 ${PKGNAME}/gummibootx64.efi ${TGTDIR}/usr/share/gummiboot
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>

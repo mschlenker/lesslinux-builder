@@ -120,7 +120,7 @@ class ThirdStage < AnyStage
 	
 	# Install prepared files from the file list generated in the last step
 	
-	def pkg_install ( subpkgs, langs, skipfiles=Array.new, skipdirs=Array.new)
+	def pkg_install ( subpkgs, langs, skipfiles=Array.new, skipdirs=Array.new, forcesplitusr=true)
 		skipfiles = Array.new if skipfiles.nil?
 		# Currently just check for automatically generated file from the last build
 		# FIXME: Add prepared/modified versions later
@@ -162,7 +162,12 @@ class ThirdStage < AnyStage
 		initramfsdirs = ["etc", "static",  "var" ]
 		ignoredirs = [ "boot",  "dev", "home", "llbuild", "media", "mnt", "proc", "root", "sys", "tmp", "tools", 
 			"opt/lib64", "usr/lib64", "usr/local/lib64"  ]
-		squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr" ]
+		squashdirs = [ "opt",  "srv", "usr" ]
+		if forcesplitusr == true
+			ignoredirs = ignoredirs + [ "bin",  "lib", "sbin" ]
+		else
+			squashdirs = squashdirs + [ "bin",  "lib", "sbin" ]
+		end
 		files_to_strip = Array.new
 		tarfiles_squash = Array.new
 		tarfiles_initrd = Array.new
@@ -277,7 +282,7 @@ class ThirdStage < AnyStage
 			@xfile.elements.each("llpackages/scripts/modlist") { |i|
 				if @modmodel == "old" || i.attributes["provides"].to_s.strip == "systemfs"
 					i.elements.each("module") { |j|
-						IO.popen("find " + @builddir + "/stage01/chroot/lib/modules/" +  klong + " -type f -name " + j.text + ".ko"  ) { |f|
+						IO.popen("find " + @builddir + "/stage01/chroot/usr/lib/modules/" +  klong + " -type f -name " + j.text + ".ko"  ) { |f|
 							while f.gets
 								system("rsync -vP " + $_.strip + " " + @builddir + "/stage03/cpio-" + kname + "/static/modules/")
 							end
@@ -460,16 +465,17 @@ class ThirdStage < AnyStage
 	end
 	
 	def ThirdStage.copy_firmware (builddir)
-		system("tar -C " + builddir + "/stage01/chroot/ -c 'lib/firmware' -f - | tar -C " + builddir + "/stage03/squash/ -xvf - ")
+		system("tar -C " + builddir + "/stage01/chroot/ -c 'usr/lib/firmware' -f - | tar -C " + builddir + "/stage03/squash/ -xvf - ")
 		system("mkdir " + builddir + "/stage03/initramfs/")
 		# system("tar -C " + builddir + "/stage01/chroot/ -c 'lib/firmware' -f - | tar -C " + builddir + "/stage03/initramfs/ -xvf - ")
 	end
 	
-	def ThirdStage.create_squashfs (builddir, kconfig)
+	def ThirdStage.create_squashfs (builddir, kconfig, forcesplitusr=true)
 		mksquashfs = "mksquashfs"
 		mksquashfs = "mksquashfs4" if system("which mksquashfs4")
 		mksquashfs = ENV['MKSQUASHFS'] unless ENV['MKSQUASHFS'].nil? 
-		squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr", "usrbin", "firmware" ] # , "optkaspersky" ]
+		# squashdirs = [ "bin",  "lib",  "opt", "sbin",  "srv", "usr", "usrbin", "firmware" ] # , "optkaspersky" ]
+		squashdirs = [ "opt",  "srv", "usr", "usrbin", "firmware" ]
 		kcfg = REXML::Document.new(File.new(kconfig))
 		kcfg.elements.each("kernels/kernel") { |k|
 			klong = k.elements["long"].text
@@ -483,7 +489,8 @@ class ThirdStage < AnyStage
 		system("mv " + builddir + "/stage03/squash/usr/bin " + builddir + "/stage03/squash/usrbin")
 		system("ln -s lib " + builddir + "/stage03/squash/usr/lib64")
 		system("mv " + builddir + "/stage03/squash/lib/firmware " + builddir + "/stage03/squash/")
-		system("mkdir " + builddir + "/stage03/squash/lib/firmware" )
+		system("mkdir " + builddir + "/stage03/squash/usr/lib/firmware" )
+		system("mkdir " + builddir + "/stage03/squash/usr/lib/modules" )
 		system("mkdir -m 0755 " + builddir + "/stage03/squash/usr/bin")
 		## if system("test -d " + builddir + "/stage03/squash/opt/kaspersky")
 		##	system("mv " + builddir + "/stage03/squash/opt/kaspersky " + builddir + "/stage03/squash/optkaspersky")
