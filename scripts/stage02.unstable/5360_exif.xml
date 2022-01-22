@@ -1,0 +1,72 @@
+<llpackages>
+	<package 
+		name="exif"
+		version="0.6.22"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                               
+				<pkg sha1="3b86272e8931099ba02848c64fb49a23f4c802ec">exif-0.6.22.tar.gz</pkg>
+				<mirror>https://github.com/libexif/exif/releases/download/exif-0_6_22-release/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://sourceforge.net/projects/libexif/files/libexif/" />
+			<check>
+				<page html="http://sourceforge.net/projects/libexif/files/libexif/">
+					<atext linktext="0.6.26" />
+					<atext linktext="0.6.22" />
+					<atext linktext="0.6.23" />
+					<atext linktext="0.6.24" />
+					<atext linktext="0.6.25" />
+					<atext linktext="0.7." />
+					<atext linktext="0.8." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+			<dep>libexif</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			if [ -f ${SRCDIR}/exif-${PKGVERSION}.tar.bz2 ] ; then
+				tar xjf ${SRCDIR}/exif-${PKGVERSION}.tar.bz2
+			else
+				tar xzf ${SRCDIR}/exif-${PKGVERSION}.tar.gz
+			fi
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd exif-${PKGVERSION}
+			./configure --sysconfdir=/etc --prefix=/usr && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd exif-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf  exif-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

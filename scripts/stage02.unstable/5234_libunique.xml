@@ -14,10 +14,18 @@
 				<pkg sha1="245d47fab38706c1b0a4096686ea8b1d7493c548">libunique-1.1.6-upstream_fixes-1.patch</pkg>
 				<mirror>https://www.linuxfromscratch.org/patches/blfs/svn</mirror>
 			</file>
+			<file>                   
+				<pkg sha1="34768076df295c41b9a77551fc1827881dcea71a">libunique_1.1.6-4.debian.tar.gz</pkg>
+				<mirror>http://ftp.de.debian.org/debian/pool/main/libu/libunique/</mirror>
+			</file>
 			<manualcheck date="20150823" interval="365" page="http://ftp2.nluug.nl/windowing/gnome/sources/libunique/" />
 		</sources>
 		<builddeps>
 			<dep>atk</dep>
+			<dep>autoconf213</dep>
+			<dep>automake113</dep>
+			<dep>autoconf211</dep>
+			<dep>automake111</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>cairo</dep>
@@ -36,6 +44,7 @@
                         <dep>glibc</dep>
                         <dep>grep</dep>
                         <dep>gtk3</dep>
+			<dep>gtk</dep>
                         <dep>inetutils</dep>
                         <dep>libX11</dep>
                         <dep>libXau</dep>
@@ -68,7 +77,11 @@
 		<patch>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			patch -Np1 -i ${SRCDIR}/libunique-1.1.6-upstream_fixes-1.patch
+			cat ../debian/patches/00git_g_const_return.patch | patch -p1
+			cat ../debian/patches/01_format-security.patch | patch -p1
+			cat ../debian/patches/99_ltmain_as-needed.patch | patch -p1
+			#cd ${PKGNAME}-${PKGVERSION}
+			#patch -Np1 -i ${SRCDIR}/libunique-1.1.6-upstream_fixes-1.patch
 			]]>
 		</patch>
 		<build>
@@ -79,7 +92,11 @@
 				export CC="distcc gcc"
 				export CXX="distcc g++"
 			fi
-			./configure --prefix=/usr --sysconfdir=/etc 
+			# autoreconf --force --install
+
+./configure --prefix=/usr  \
+            --disable-dbus \
+            --disable-static 
 			find . -type f -name Makefile -exec sed -i 's%-Werror%%g' {} \;
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				make -j $jobcount

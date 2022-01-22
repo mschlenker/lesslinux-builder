@@ -1,0 +1,103 @@
+<llpackages>
+    <package name='pulseaudio' version='15.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='41e9f001770ccf7b47dc228311a99a09bb579563'>
+                    pulseaudio-15.0.tar.xz
+                </pkg>
+                <mirror>
+                    http://freedesktop.org/software/pulseaudio/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='http://freedesktop.org/software/pulseaudio/releases/'/>
+        </sources>
+	<builddeps>
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>avahi</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdbm</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>json-c</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXi</dep>
+                        <dep>libXtst</dep>
+                        <dep>libcap</dep>
+                        <dep>libsndfile</dep>
+                        <dep>libtool</dep>
+                        <dep>libxcb</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>pcre</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>tcp_wrappers</dep>
+                        <dep>udev</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xproto-base</dep>
+			<dep>distcc</dep>
+			<dep>meson</dep>
+			<dep>ninja</dep>
+			<dep>tdb</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+mkdir _build && cd    _build
+	# meson --help
+	    meson --prefix=/usr --buildtype=release -Ddatabase=gdbm     \
+      -Ddoxygen=false     \
+      -Dbluez5=disabled .. &&
+            ninja
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/_build
+ninja	    install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -42,8 +42,7 @@
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
 			jobcount=2
-			./configure --prefix=/usr    \
-				--disable-static \
+			./configure --prefix=/usr   \
 				--docdir=/usr/share/doc/xz-${PKGVERSION}
 			make -j $jobcount
 			]]>

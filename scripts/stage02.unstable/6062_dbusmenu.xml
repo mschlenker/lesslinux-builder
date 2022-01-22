@@ -1,0 +1,105 @@
+<llpackages>
+    <package name='libdbusmenu' version='12.10.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='067b77564f90633aa58494e54b99d733a21f3142'>
+                    libdbusmenu-12.10.2.tar.gz
+                </pkg>
+                <mirror>
+                    https://launchpad.net/libdbusmenu/12.10/12.10.2/+download/
+                </mirror>
+            </file>
+	      <file>
+                <pkg sha1='1a39f126811d8f44e0fbdb1c220bbb7f7736321a'>
+                   libdbusmenu_12.10.2-1.debian.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.de.debian.org/debian/pool/main/libd/libdbusmenu/
+                </mirror>
+            </file>
+            <manualcheck date='20150823' interval='180' mirror='https://launchpad.net/libdbusmenu/12.10/12.10.2/+download/'/>
+        </sources>
+	<builddeps>
+                        <dep>Python3</dep>
+                        <!-- <dep>WebOb</dep> -->
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <!-- <dep>distribute</dep> -->
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <!-- <dep>fusepy</dep> -->
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib-networking</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <!-- <dep>gtk-doc</dep> -->
+                        <dep>gtk3</dep>
+                        <dep>gtk</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <!-- <dep>json-glib</dep> -->
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng16</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxslt</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep>
+                        <dep>requests</dep> -->
+                        <dep>sed</dep>
+                        <!-- <dep>setuptools</dep> -->
+                        <dep>vala</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+	    tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-1.debian.tar.xz
+]]>
+        </unpack>
+        <patch>
+	 <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cat ../debian/patches/g_type_init.patch | patch -p1
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+	    rm -rf debian
+]]>
+        </clean>
+    </package>
+</llpackages>

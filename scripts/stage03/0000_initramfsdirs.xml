@@ -802,7 +802,7 @@ tty1::respawn:/static/bin/show_placeholder
 tty2::respawn:/static/sbin/getty -l /static/bin/login 38400 tty2
 tty3::respawn:/static/sbin/getty -l /static/bin/login 38400 tty3
 tty4::askfirst:/static/bin/ash
-tty5::askfirst:/bin/bash
+tty5::askfirst:/usr/bin/bash
 tty6::respawn:/static/bin/x_user_start
 serialconsole::askfirst:/static/bin/ash
 ::ctrlaltdel:/static/sbin/reboot
@@ -5224,6 +5224,9 @@ case $1 in
 	    losetup $free_loop /lesslinux/modules/firmware.sqs
 	    mount -t squashfs $free_loop /usr/lib/firmware
         fi
+	for d in lib64 lib bin sbin ; do
+		[ -d /${d} ] || [ -L /${d} ] || ln -sf /usr/${d} /${d} 
+	done
     ;;
 esac
 		
@@ -6306,7 +6309,7 @@ esac
 		]]>
 		</scriptdata>
 	</scripts>
-	<package name="busybox" version="1.27.1" allowfail="yes">
+	<package name="cross-busybox-musl-amd64" version="1.34.1" allowfail="yes">
 		<sources>
 			<file>
 				<pkg sha1="1c79e0eb88281bf4f734ab934a2d9f1d1b00de60">busybox-1.7.2-smack-static-ulibc-i686.tar.gz</pkg>
@@ -6351,14 +6354,15 @@ esac
 		</sources>
 		<unpack>
 		<![CDATA[ 
-		tar xjf ${CHROOT}/usr/share/staticstuff/busybox-static-musl-i686-${PKGVERSION}.tar.bz2
-		tar xzf ${SRCDIR}/${PKGNAME}-1.7.2-smack-static-ulibc-i686.tar.gz
+		# tar xjf ${CHROOT}/usr/share/staticstuff/busybox-static-musl-i686-${PKGVERSION}.tar.bz2
+		tar xjf ${CHROOT}/usr/share/staticstuff/busybox-static-musl-amd64-${PKGVERSION}.tar.bz2
+		# tar xzf ${SRCDIR}/${PKGNAME}-1.7.2-smack-static-ulibc-i686.tar.gz
 		]]>
 		</unpack>
 		<install>
 		<![CDATA[ 
-		rsync -avHP ${PKGNAME}-${PKGVERSION}/_install/ ${INITRAMFS}/static/
-		rsync -avHP ${PKGNAME}-1.7.2-smack-static-ulibc-i686/_install/bin/busybox ${INITRAMFS}/static/bin/busybox_smack
+		rsync -avHP busybox-${PKGVERSION}/_install/ ${INITRAMFS}/static/
+		# rsync -avHP ${PKGNAME}-1.7.2-smack-static-ulibc-i686/_install/bin/busybox ${INITRAMFS}/static/bin/busybox_smack
 		]]>
 		</install>
 	</package>

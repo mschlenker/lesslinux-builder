@@ -481,14 +481,14 @@ class ThirdStage < AnyStage
 			klong = k.elements["long"].text
 			kname = k.attributes["short"]
 			system("mkdir -p -m 0755 " + builddir + "/stage03/squash/m" + kname )
-			system("mkdir -p -m 0755 " + builddir + "/stage03/squash/lib/modules/" + klong )
-			system("rsync -aP " + builddir + "/stage01/chroot/lib/modules/" + klong + "/ " +  builddir + "/stage03/squash/m" + kname + "/" )
+			system("mkdir -p -m 0755 " + builddir + "/stage03/squash/usr/lib/modules/" + klong )
+			system("rsync -aP " + builddir + "/stage01/chroot/usr/lib/modules/" + klong + "/ " +  builddir + "/stage03/squash/m" + kname + "/" )
 			system(mksquashfs + " " + builddir + "/stage03/squash/m" + kname + " " + builddir + "/stage03/squash/m" + kname + ".sqs -noappend" )
 		}
 		# FIXME! FIXME! FIXME!
 		system("mv " + builddir + "/stage03/squash/usr/bin " + builddir + "/stage03/squash/usrbin")
 		system("ln -s lib " + builddir + "/stage03/squash/usr/lib64")
-		system("mv " + builddir + "/stage03/squash/lib/firmware " + builddir + "/stage03/squash/")
+		system("mv " + builddir + "/stage03/squash/usr/lib/firmware " + builddir + "/stage03/squash/")
 		system("mkdir " + builddir + "/stage03/squash/usr/lib/firmware" )
 		system("mkdir " + builddir + "/stage03/squash/usr/lib/modules" )
 		system("mkdir -m 0755 " + builddir + "/stage03/squash/usr/bin")
@@ -515,7 +515,7 @@ class ThirdStage < AnyStage
 			kname = k.attributes["short"]
 			system("mkdir -p -m 0755 " + builddir + "/stage03/squash/m" + kname )
 			system("mkdir -p -m 0755 " + builddir + "/stage03/squash/lib/modules/" + klong )
-			system("rsync -aP " + builddir + "/stage01/chroot/lib/modules/" + klong + "/ " +  builddir + "/stage03/squash/m" + kname + "/" )
+			system("rsync -aP " + builddir + "/stage01/chroot/usr/lib/modules/" + klong + "/ " +  builddir + "/stage03/squash/m" + kname + "/" )
 			system(mksquashfs + " " + builddir + "/stage03/squash/m" + kname + " " + builddir + "/stage03/squash/m" + kname + ".sqs -noappend" )
 		}
 		system("mv " + builddir + "/stage03/squash/lib/firmware " + builddir + "/stage03/squash/")
@@ -625,8 +625,11 @@ class ThirdStage < AnyStage
 		squashdirs.each { |d| 
 			system("tar -C " + builddir + "/stage01/chroot -cf - " + d + " | tar -C " + builddir + "/stage03/squash -xvf - ")
 		}
-		system("rm -rf " + builddir + "/stage03/squash/lib/modules" )
-		system("mkdir " + builddir + "/stage03/squash/lib/modules" )
+		system("rm -rf " + builddir + "/stage03/squash/usr/lib/modules" )
+		system("mkdir " + builddir + "/stage03/squash/usr/lib/modules" )
+		system("chmod 0755 " + builddir + "/stage03/squash/usr/lib/*.so*")
+		system("chmod 0755 " + builddir + "/stage03/squash/usr/bin/*")
+		system("chmod 0755 " + builddir + "/stage03/squash/usr/sbin/*")
 	end
 	
 	def ThirdStage.read_skiplist(filename)

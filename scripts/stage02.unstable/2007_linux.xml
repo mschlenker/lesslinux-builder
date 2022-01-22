@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="linux"
-		version="5.10.91"
+		version="5.15.15"
 		class="kernel"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                  
-				<pkg sha1="30bd7f6c88e6772fc00f3701fedaea9b34e0e88f">linux-5.10-config-amd64</pkg> 
+				<pkg sha1="30bd7f6c88e6772fc00f3701fedaea9b34e0e88f">linux-5.15-config-amd64</pkg> 
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>
@@ -15,11 +15,11 @@
 				<mirror>http://distfiles.lesslinux.org/</mirror>
 			</file>
 			<file>                                                                                               
-				<pkg sha1="be0b909f1fbb760cc2d5cf146e1da3b2af0cf899">linux-5.10.tar.xz</pkg>
+				<pkg sha1="ac61f2459040c09af1d5abd4ed100c3d316b443e">linux-5.15.tar.xz</pkg>
 				<mirror>https://cdn.kernel.org/pub/linux/kernel/v5.x</mirror>
 			</file>
 			<file>
-				<pkg sha1="0b7e8953954c1bfacd9801c2405170126af809ba">patch-5.10.91.xz</pkg>
+				<pkg sha1="6982835ea91e889d5d9dcd96599707e381ec6141">patch-5.15.15.xz</pkg>
 				<mirror>https://cdn.kernel.org/pub/linux/kernel/v5.x</mirror>
 			</file>
 			<manualcheck date="20180409" interval="60" page="http://www.kernel.org/" />
@@ -35,6 +35,8 @@
 			</check>
 		</sources>
 		<builddeps>
+			<dep>Python3</dep>
+			<dep>openssl</dep>
 			<dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
@@ -80,6 +82,8 @@
 			cp -v ${SRCDIR}/lesslinux-fblogo-20100922.ppm drivers/video/logo/logo_linux_clut224.ppm
 			cp -v ${SRCDIR}/linux-${major}.${minor}-config-amd64 .config
 			sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-'$localversion'"/g' .config
+			# sed -i 's/CONFIG_X86_X32=y/# CONFIG_X86_X32 is not set/g' .config 
+			# sed -i 's/CONFIG_SYSTEM_TRUSTED_KEYS/# CONFIG_SYSTEM_TRUSTED_KEYS/g' .config
 			cd ..
 			mv linux-${major}.${minor} linux-${PKGVERSION}
 			#mkdir linux-${PKGVERSION}.build
@@ -90,8 +94,10 @@
 			<![CDATA[ 
 			cd linux-${PKGVERSION} # .build
 			yes '' | make oldconfig
-			cp -v .config ../linux-${PKGVERSION}
-			make clean
+			sed -i 's/CONFIG_X86_X32=y/# CONFIG_X86_X32 is not set/g' .config 
+			sed -i 's/CONFIG_IKHEADERS=m/# CONFIG_IKHEADERS is not set/g' .config
+			# cp -v .config ../linux-${PKGVERSION}
+			# make clean
 			jobcount=4 
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ] ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
@@ -99,6 +105,7 @@
 				make -j $jobcount bzImage CC="distcc gcc" CXX="distcc g++" 
 			else
 				make -j $jobcount 
+				make -j $jobcount all
 				make -j $jobcount bzImage
 			fi
 			#rsync -avHP /usr/local/VirtualBox-guest/additions/src/  ../VirtualBox-guest/ 
@@ -119,25 +126,34 @@
 			#exit 0 
 			
 			localversion='ll-64-0'
+			cd linux-${PKGVERSION}
+			make modules_install
+			install -m 0644 arch/x86/boot/bzImage /boot/vmlinuz-${PKGVERSION}-${localversion}
+			find /usr/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
+			# mkdir -p /usr/src
+			# tar -cf - . | tar -C /usr/src/linux-${PKGVERSION}-${localversion} -xvf -
 			
-			cd linux-${PKGVERSION} # .build
-			mkdir -p ${TGTDIR}/boot
-			mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
-			ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux
-			INSTALL_MOD_PATH=${TGTDIR} make modules_install
+			#cd linux-${PKGVERSION} # .build
+			#mkdir -p ${TGTDIR}/boot
+			#mkdir -p ${TGTDIR}/usr/lib/modules
+			#ln -s usr/lib ${TGTDIR}/lib
+			#mkdir -p ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion}
+			#ln -sf linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/src/linux-lesslinux
+			#INSTALL_MOD_PATH=${TGTDIR} make modules_install
 			#for mod in vboxsf vboxguest vboxvideo ; do
 			#	INSTALL_MOD_PATH=${TGTDIR} make -C . M=../VirtualBox-guest/${mod} modules_install
 			#done
-			rm -rf ${TGTDIR}/lib/firmware 
-			install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
-			ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/lesslinux
-			for link in source build ; do
-				rm ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/$link 
-				ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion}/${link}
-			done
-			find ${TGTDIR}/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
+			#rm -rf ${TGTDIR}/lib/firmware 
+			#install -m 0644 arch/x86/boot/bzImage ${TGTDIR}/boot/vmlinuz-${PKGVERSION}-${localversion}
+			#ln -sf  ${PKGVERSION}-${localversion} ${TGTDIR}/usr/lib/modules/lesslinux
+			#for link in source build ; do
+			#	rm ${TGTDIR}/usr/lib/modules/${PKGVERSION}-${localversion}/$link 
+			#	ln -sf /usr/src/linux-${PKGVERSION}-${localversion} ${TGTDIR}/usr/lib/modules/${PKGVERSION}-${localversion}/${link}
+			#done
+			# find ${TGTDIR}/usr/lib/modules/${PKGVERSION}-${localversion} -type f -name '*.ko' -exec strip --strip-unneeded {} \; 
 			# cd ../linux-${PKGVERSION}
-			tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -   
+			#tar -cf - . | tar -C ${TGTDIR}/usr/src/linux-${PKGVERSION}-${localversion} -xvf -
+			# rm -f ${TGTDIR}/lib
 			]]>
 		</install>
 		<clean>

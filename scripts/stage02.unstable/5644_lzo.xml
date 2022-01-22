@@ -45,7 +45,7 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			./configure --prefix=/usr --enable-shared
+			./configure --prefix=/usr --enable-shared --enable-static 
 			make 
 			]]>
 		</build>

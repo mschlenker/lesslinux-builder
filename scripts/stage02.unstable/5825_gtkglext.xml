@@ -1,0 +1,114 @@
+<llpackages>
+	<package 
+		name="gtkglext"
+		version="1.2.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="462b782a617cd79eb81c4505c3808dd53bb645d4">gtkglext_1.2.0.orig.tar.gz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/g/gtkglext/</mirror>
+			</file>
+			<file>                                                                               
+				<pkg sha1="08115e7bf6c469e23c17c23b1bc35e84dac7b46c">gtkglext_1.2.0-1.2fakesync1.diff.gz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/g/gtkglext/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://archive.ubuntu.com/ubuntu/pool/universe/g/gtkglext/" />
+			<check>
+				<page html="http://archive.ubuntu.com/ubuntu/pool/universe/g/gtkglext/">
+					<atext linktext="gtkglext_1.2.5" />
+					<atext linktext="gtkglext_1.2.1" />
+					<atext linktext="gtkglext_1.2.2" />
+					<atext linktext="gtkglext_1.2.3" />
+					<atext linktext="gtkglext_1.2.4" />
+				</page>
+			</check> 
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep><dep>glu</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libpng16</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+			<!-- dep>distcc</dep -->
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			gunzip -c ${SRCDIR}/${PKGNAME}_${PKGVERSION}-1.2fakesync1.diff.gz | patch -p1
+			cat debian/patches/01_fix_fontcache_nullderef.dpatch | patch -p1
+			cat debian/patches/02_fix_gtk-2.20_deprecated_symbols.dpatch | patch -p1
+			sed '/AC_PATH_XTRA/d' -i configure.in
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			autoreconf --force --install
+			./configure --prefix=/usr --sysconfdir=/etc
+			make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

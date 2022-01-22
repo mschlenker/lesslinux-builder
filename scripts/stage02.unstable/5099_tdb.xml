@@ -1,0 +1,48 @@
+<llpackages>
+    <package name='tdb' version='1.4.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a7ffe213b3105055872f31e03ec6b51a1eebb867'>
+                    tdb-1.4.5.tar.gz
+                </pkg>
+                <mirror>
+                    https://www.samba.org/ftp/tdb/
+                </mirror>
+            </file>
+            <manualcheck date='20220120' interval='60' mirror='https://www.samba.org/ftp/tdb/'/>
+        </sources>
+	<builddeps>
+			<dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

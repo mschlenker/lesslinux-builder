@@ -1,0 +1,105 @@
+<llpackages>
+    <package name='libindicator' version='12.10.1' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='25c8a0a150651ee6b2198df3f36fcbb49f0295c2'>
+                    libindicator-12.10.1.tar.gz
+                </pkg>
+                <mirror>
+                    https://launchpad.net/libindicator/12.10/12.10.1/+download/
+                </mirror>
+            </file>
+            <manualcheck date='20150823' interval='180' mirror='https://launchpad.net/libindicator/12.10/12.10.1/+download/'/>
+        </sources>
+	<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng16</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+			<!-- <dep>gnome-common</dep> -->
+			<!-- <dep>ido</dep>-->
+			<!-- <dep>gcc54</dep> -->
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch>
+	 <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+sed '/-Werror/s/$/ -Wno-deprecated-declarations/' -i libindicator/Makefile.{am,in}
+  sed 's/LIBINDICATOR_LIBS+="$LIBM"/LIBINDICATOR_LIBS+=" $LIBM"/g' -i configure
+  sed 's/LIBM="-lmw"/LIBM=" -lmw"/g' -i configure
+  sed 's/LIBM="-lm"/LIBM=" -lm"/g' -i configure
+  sed 's/LIBS="-lm  $LIBS"/LIBS=" -lm  $LIBS"/g' -i configure
+  sed 's/LIBS="-lmw  $LIBS"/LIBS=" -lmw  $LIBS"/g' -i configure
+]]>
+	
+	</patch>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+#export CC="/usr/local/gcc54/bin/gcc54"
+#export CXX="/usr/local/gcc54/bin/g++54"
+  jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				#export CC="distcc /usr/local/gcc54/bin/gcc54"
+				#export CXX="distcc /usr/local/gcc54/bin/g++54" 
+			fi
+./configure \
+    --prefix='/usr' \
+    --localstatedir='/var' \
+    --sysconfdir='/etc' \
+    --disable-static \
+    --disable-tests
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+#export CC="/usr/local/gcc54/bin/gcc54"
+#export CXX="/usr/local/gcc54/bin/g++54"
+make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

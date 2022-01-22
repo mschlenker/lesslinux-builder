@@ -1,0 +1,51 @@
+<llpackages>
+    <package name='yajl' version='2.1.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='fe6b3c7439b26175aee59cabf8c4923b9eb3650d'>
+                    yajl-2.1.0.tar.gz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+            <manualcheck date='20141122' interval='60' mirror='http://distfiles.lesslinux.org/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>sed</dep>
+                        <dep>which</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd lloyd-${PKGNAME}-66cb08c
+cmake -DCMAKE_INSTALL_PREFIX=/usr  .
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd lloyd-${PKGNAME}-66cb08c
+make install  DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf lloyd-${PKGNAME}-66cb08c
+]]>
+        </clean>
+    </package>
+</llpackages>

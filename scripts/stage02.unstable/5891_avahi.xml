@@ -1,0 +1,131 @@
+<llpackages>
+	<package 
+		name="avahi"
+		version="0.8"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                      
+				<pkg sha1="969a50ae18c8d8e2288435a75666dd076e69852a">avahi-0.8.tar.gz</pkg>
+				<mirror>https://github.com/lathiat/avahi/releases/download/v0.8/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://avahi.org/download/" />
+			<!-- <check>
+				<page html="http://sourceforge.net/projects/xchat/files/">
+					<atext linktext="xchat-2.8.9." />
+					<atext linktext="xchat-2.8.10." />
+					<atext linktext="xchat-2.8.11." />
+					<atext linktext="xchat-2.8.12." />
+					<atext linktext="xchat-2.9." />
+					<atext linktext="xchat-2.10." />
+					<atext linktext="xchat-3." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>Python3</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>evince3</dep>
+                        <dep>expat</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdbm</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib-networking</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>gtk</dep>
+                        <dep>harfbuzz</dep>
+                        <dep>inetutils</dep>
+                        <dep>intltool</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <!-- <dep>libav</dep> -->
+                        <dep>libcap</dep>
+                        <!-- <dep>libdaemon</dep> -->
+			<dep>libevent</dep>
+                        <dep>libffi</dep>
+                        <dep>libpng16</dep>
+                        <dep>libwnck3</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>p5-xml</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>qt5</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+			<!-- dep>distcc</dep -->
+			<dep>libevent</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch>
+		<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			# sed -i 's/\(CFLAGS=.*\)-Werror \(.*\)/\1\2/' configure
+			# sed -i -e 's/-DG_DISABLE_DEPRECATED=1//' -e '/-DGDK_DISABLE_DEPRECATED/d' avahi-ui/Makefile.in
+			sed -i '426a if (events & AVAHI_WATCH_HUP) { \
+client_free(c); \
+return; \
+}' avahi-daemon/simple-protocol.c
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export PATH=/usr/compat.old/qt4/bin:$PATH
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig:/usr/compat.old/qt4/lib/pkgconfig ./configure \
+				--prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+				--disable-mono --disable-monodoc --disable-qt3 --disable-qt4 \
+				--with-distro=none --disable-python 
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			export PATH=/usr/compat.old/qt4/bin:$PATH
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

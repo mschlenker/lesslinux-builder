@@ -1,0 +1,70 @@
+<llpackages>
+    <package name='i3status' version='2.14' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='bf0861eba94f4df454d7ac32b503586c6e953a56'>
+                    i3status-2.14.tar.xz
+                </pkg>
+                <mirror>
+                    http://i3wm.org/i3status/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='180' mirror='http://i3wm.org/i3status/'/>
+	        <check>
+				<page html="http://i3wm.org/i3status/">
+					<atext linktext="i3status-2.11.1." />
+					<atext linktext="i3status-2.11.2." />
+					<atext linktext="i3status-2.11.3." />
+					<atext linktext="i3status-2.15." />
+					<atext linktext="i3status-2.16." />
+					<atext linktext="i3status-2.12." />
+					<atext linktext="i3status-2.13." />
+					<atext linktext="i3status-2.14." />
+					<atext linktext="i3status-3." />
+					<atext linktext="i3status-4." />
+					<atext linktext="i3status-5." />
+				</page>
+			</check>
+        </sources>
+	<builddeps>
+                        <dep>alsa-lib</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>confuse</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>wireless_tools</dep>
+			<!-- <dep>pulseaudio</dep> -->
+                        <dep>yajl</dep>
+			<dep>meson</dep>
+			  <dep>ninja</dep>
+			  <dep>pulseaudio</dep>
+	</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    mkdir _build && cd    _build
+	    meson --prefix=/usr --buildtype=release .. &&
+            ninja
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/_build
+	    DESTDIR=${TGTDIR}  ninja install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

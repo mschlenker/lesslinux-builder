@@ -1,0 +1,81 @@
+<llpackages>
+    <package name='xcb-util-cursor' version='0.1.3' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='f18f4a51111f76f68551e709652b772779bb4ae3'>
+                    xcb-util-cursor-0.1.3.tar.gz
+                </pkg>
+                <mirror>
+                    http://xcb.freedesktop.org/dist/
+                </mirror>
+            </file>
+            <manualcheck date='20160701' interval='180' mirror='http://xcb.freedesktop.org/dist/'/>
+	    <check>
+				<page html="http://xcb.freedesktop.org/dist/">
+					<atext linktext="xcb-util-cursor-0.1.9." />
+					<atext linktext="xcb-util-cursor-0.1.4." />
+					<atext linktext="xcb-util-cursor-0.1.5." />
+					<atext linktext="xcb-util-cursor-0.1.6." />
+					<atext linktext="xcb-util-cursor-0.1.7." />
+					<atext linktext="xcb-util-cursor-0.1.8." />
+					<atext linktext="xcb-util-cursor-0.2." />
+					<atext linktext="xcb-util-cursor-0.3." />
+					<atext linktext="xcb-util-cursor-1." />
+				</page>
+			</check>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libXau</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libxcb</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>xcb-util-image</dep>
+                        <dep>xcb-util-renderutil</dep>
+                        <dep>xcb-util</dep>
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	    jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
