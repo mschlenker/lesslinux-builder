@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='rubygem-vte' version='3.4.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0418fe4146087cf19e65704cb35520127c7a7404'>
+                    vte-3.4.3.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20220123' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+			<dep>rubygem-gtk2</dep>
+			<dep>gtksourceview</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/vte-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME#rubygem-} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f vte-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>

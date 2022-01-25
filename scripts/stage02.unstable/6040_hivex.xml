@@ -1,0 +1,82 @@
+<llpackages>
+    <package name='hivex' version='1.3.21' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='3d39d9210e92d809fc3d1e692ff27ee7e9fb0b4c'>
+                  hivex-1.3.21.tar.gz
+                </pkg>
+                <mirror>
+                    http://libguestfs.org/download/hivex/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='180' mirror='http://download.libguestfs.org/hivex/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <!-- <dep>distribute</dep> -->
+                        <dep>findutils</dep>
+                        <!-- <dep>fusepy</dep> -->
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <!-- <dep>google-api-python-client</dep> -->
+                        <dep>grep</dep>
+                        <dep>gzip</dep>
+                        <dep>inetutils</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>Python3</dep>
+                        <dep>readline</dep>
+                        <!-- <dep>requests</dep> -->
+                        <dep>ruby</dep>
+                        <dep>sed</dep>
+                        <!-- <dep>setuptools</dep>
+                        <dep>WebOb</dep> -->
+                        <dep>xz</dep>
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[
+tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+jobcount=2
+export LDFLAGS=-lncurses
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[
+cd ${PKGNAME}-${PKGVERSION}
+make install DESTDIR=${TGTDIR} 
+]]>
+        </install>
+        <clean>
+            <![CDATA[
+rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

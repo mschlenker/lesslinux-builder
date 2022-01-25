@@ -1,0 +1,49 @@
+<llpackages>
+	<package 
+		name="mini_portile2"
+		version="2.7.1"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="d40b158e0930eab8714a6c13bfd3b1ee8efc9f93">mini_portile2-2.7.1.gem</pkg>
+				<mirror>https://rubygems.org/downloads/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="https://rubygems.org/gems/mini_portile2/" />
+			<!--<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.1.2." />
+					<atext linktext="grsync-1.2." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>-->
+		</sources>
+		<builddeps>
+                        <dep>openssl</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.gem ./
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			true
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			gem install ${PKGNAME} --version ${PKGVERSION} --local
+			]]>
+		</install>
+		<clean>
+                        <![CDATA[
+                        rm ${PKGNAME}-${PKGVERSION}.gem
+                        ]]>
+                </clean>
+	</package>
+</llpackages>

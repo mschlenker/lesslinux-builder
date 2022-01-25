@@ -1,0 +1,88 @@
+<pkgdesc name='acl' version='2.3.1'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libacl.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libacl.so' owner='0' group='0'/>
+        <directory path='/usr/include/acl' owner='0' group='0'/>
+        <directory path='/usr/share/doc/acl-2.3.1' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/libacl.so.1.1.2301' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/chacl' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/getfacl' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/setfacl' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/doc/acl-2.3.1/extensions.txt' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/acl-2.3.1/CHANGES' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/acl-2.3.1/COPYING' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/acl-2.3.1/COPYING.LGPL' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/acl-2.3.1/libacl.txt' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/acl-2.3.1/PORTING' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/chacl.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/getfacl.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/setfacl.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_add_perm.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_calc_mask.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_check.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_clear_perms.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_cmp.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_copy_entry.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_copy_ext.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_copy_int.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_create_entry.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_delete_def_file.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_delete_entry.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_delete_perm.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_dup.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_entries.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_equiv_mode.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_error.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_extended_fd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_extended_file.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_extended_file_nofollow.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_free.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_from_mode.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_from_text.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_get_entry.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_get_fd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_get_file.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_get_perm.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_get_permset.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_get_qualifier.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_get_tag_type.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_init.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_set_fd.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_set_file.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_set_permset.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_set_qualifier.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_set_tag_type.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_size.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_to_any_text.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_to_text.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/acl_valid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man5/acl.5' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/sys/acl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/acl/libacl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libacl.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/fr/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/es/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/gl/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@quot/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/en@boldquot/LC_MESSAGES/acl.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libacl.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

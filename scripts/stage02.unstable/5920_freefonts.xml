@@ -1,0 +1,107 @@
+<llpackages>
+	<package 
+		name="freefont"
+		version="20131122"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="71a29efb77b4e2ad1de99ad9c9ea0b24701cf5de">freefont-droid-20131122.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<pkg sha1="0603b103124b415c5470aeb7c60c4ac2c9f56674">freefont-open-sans-20131122.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<pkg sha1="fa9be1260b41143695d2fcb2e6f34986c5d6746e">freefont-pt-20131122.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>
+				<pkg sha1="c3eec457193e68f1e32ba729ac4889491fd07bb2">freefont-roboto-20131122.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20140802" interval="120" page="http://distfiles.lesslinux.org/" />
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xset-1.2.3." />
+					<atext linktext="xset-1.2.4." />
+					<atext linktext="xset-1.2.5." />
+					<atext linktext="xset-1.2.6." />
+					<atext linktext="xset-1.3." />
+					<atext linktext="xset-1.4." />
+					<atext linktext="xset-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			for n in droid open-sans roboto pt ; do
+				tar xvzf ${SRCDIR}/${PKGNAME}-${n}-${PKGVERSION}.tar.gz
+			done
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do here!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			mkdir -vp ${TGTDIR}/usr/lib/X11/fonts/truetype
+			for f in \
+				Droid_Sans/DroidSans-Bold.ttf \
+				Droid_Sans/DroidSans.ttf \
+				Droid_Sans_Mono/DroidSansMono.ttf \
+				Open_Sans/OpenSans-ExtraBoldItalic.ttf \
+				Open_Sans/OpenSans-ExtraBold.ttf \
+				Open_Sans/OpenSans-BoldItalic.ttf \
+				Open_Sans/OpenSans-Bold.ttf \
+				Open_Sans/OpenSans-SemiboldItalic.ttf \
+				Open_Sans/OpenSans-Semibold.ttf \
+				Open_Sans/OpenSans-Italic.ttf \
+				Open_Sans/OpenSans-Regular.ttf \
+				Open_Sans/OpenSans-LightItalic.ttf \
+				Open_Sans/OpenSans-Light.ttf \
+				Open_Sans_Condensed/OpenSans-CondBold.ttf \
+				Open_Sans_Condensed/OpenSans-CondLightItalic.ttf \
+				Open_Sans_Condensed/OpenSans-CondLight.ttf \
+				PT_Mono/PTM55FT.ttf \
+				PT_Sans/PT_Sans-Web-BoldItalic.ttf \
+				PT_Sans/PT_Sans-Web-Bold.ttf \
+				PT_Sans/PT_Sans-Web-Italic.ttf \
+				PT_Sans/PT_Sans-Web-Regular.ttf \
+				PT_Sans_Narrow/PT_Sans-Narrow-Web-Bold.ttf \
+				PT_Sans_Narrow/PT_Sans-Narrow-Web-Regular.ttf \
+				Roboto/Roboto-BlackItalic.ttf \
+				Roboto/Roboto-Black.ttf \
+				Roboto/Roboto-BoldItalic.ttf \
+				Roboto/Roboto-Bold.ttf \
+				Roboto/Roboto-MediumItalic.ttf \
+				Roboto/Roboto-Medium.ttf \
+				Roboto/Roboto-Italic.ttf \
+				Roboto/Roboto-Regular.ttf \
+				Roboto/Roboto-LightItalic.ttf \
+				Roboto/Roboto-Light.ttf \
+				Roboto/Roboto-ThinItalic.ttf \
+				Roboto/Roboto-Thin.ttf \
+				Roboto_Condensed/RobotoCondensed-BoldItalic.ttf \
+				Roboto_Condensed/RobotoCondensed-Bold.ttf \
+				Roboto_Condensed/RobotoCondensed-Italic.ttf \
+				Roboto_Condensed/RobotoCondensed-Regular.ttf \
+				Roboto_Condensed/RobotoCondensed-LightItalic.ttf \
+				Roboto_Condensed/RobotoCondensed-Light.ttf ; do
+				install -m 0644 ${f} ${TGTDIR}/usr/lib/X11/fonts/truetype/
+			done
+			]]>
+		</install>
+	</package>
+</llpackages>

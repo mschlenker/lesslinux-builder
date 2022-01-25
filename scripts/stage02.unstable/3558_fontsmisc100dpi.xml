@@ -3,7 +3,7 @@
 		name="font-adobe-100dpi"
 		version="1.0.3"
 		class="user"
-		install="destdir">
+		install="chroot">
 		<license>GPLv2</license>
 		<sources>
 			<file>
@@ -61,7 +61,7 @@
 		<install>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
-			make install DESTDIR=${TGTDIR} 
+			make install # DESTDIR=${TGTDIR} 
 			]]>
 		</install>
 		<clean>

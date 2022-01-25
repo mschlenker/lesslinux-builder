@@ -1,0 +1,76 @@
+<llpackages>
+	<package 
+		name="lshw-gui"
+		version="B.02.19.2"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file> 
+				<pkg sha1="f44f0fa34968fdc0cce42e83c44b17e43579e978">lshw-B.02.19.2.tar.gz</pkg>
+				<mirror>http://ezix.org/software/files/</mirror>
+			</file>
+			<manualcheck date="20160701" interval="180" page="http://ezix.org/project/wiki/HardwareLiSter" />
+		</sources>
+		<builddeps>
+			<dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>xproto-base</dep> -->
+			<dep>sqlite</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/lshw-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd lshw-${PKGVERSION}/
+			cat ${SRCDIR}/lshw-${PKGVERSION}-gcc-4.5.patch | patch -p0
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cd lshw-${PKGVERSION}
+			make
+			make gui
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd lshw-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			make install-gui DESTDIR=${TGTDIR}
+			ln -sf lshw ${TGTDIR}/usr/sbin/lshw-static 
+			]]>
+		</install>
+		<clean>
+			  <![CDATA[
+			  
+			  rm -rf lshw-${PKGVERSION}
+			  
+			  ]]>
+		</clean>
+	</package>
+</llpackages>

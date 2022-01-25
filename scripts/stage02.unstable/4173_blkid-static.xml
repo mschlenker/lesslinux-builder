@@ -1,9 +1,9 @@
 <llpackages>
 	<package 
-		name="util-linux-ng"
+		name="blkid-static"
 		version="2.37.2"
 		class="user"
-		install="chroot">
+		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>                                                                                                                                    
@@ -28,46 +28,51 @@
 			</check>
 		</sources>
 		<builddeps>
-			<dep>texinfo</dep>
-		</builddeps>
+                        <dep>Linux-PAM</dep>
+                        <dep>Python3</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gettext</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <!-- <dep>gtk-doc</dep> -->
+                        <dep>inetutils</dep>
+                        <dep>libxslt</dep>
+                        <dep>make</dep>
+                        <dep>ncurses</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>pygobject</dep> -->
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                </builddeps>
 		<unpack>
 			<![CDATA[ 
 			tar xJf ${SRCDIR}/util-linux-${PKGVERSION}.tar.xz
 			]]>
 		</unpack>
-		<!-- <patch>
+		<patch>
 			<![CDATA[
 			cd util-linux-${PKGVERSION}
-			sed -e 's@etc/adjtime@var/lib/hwclock/adjtime@g'  -i $(grep -rl '/etc/adjtime' .)
 			]]>
-		</patch> -->
+		</patch>
 		<build>
 			<![CDATA[
 			cd util-linux-${PKGVERSION}
-			# export PATH=/usr/local/automake113/bin:$PATH
-			# export AL_OPTS="-I/usr/local/automake113/share/aclocal-1.13"
-			jobcount=`grep -c processor /proc/cpuinfo`
-			./configure ADJTIME_PATH=/var/lib/hwclock/adjtime   \
-            --libdir=/usr/lib    \
-            --docdir=/usr/share/doc/util-linux-${PKGVERSION} \
-            --disable-chfn-chsh  \
-            --disable-login      \
-            --disable-nologin    \
-            --disable-su         \
-            --disable-setpriv    \
-            --disable-runuser    \
-            --disable-pylibmount \
-            --without-python     \
-            --without-systemd    \
-            --without-systemdsystemunitdir \
-            runstatedir=/run  && make -j $jobcount 
+			./configure --enable-arch --enable-partx --enable-write --disable-login --disable-su
+			make blkid  LDFLAGS=-all-static
 			]]>
 		</build>
 		<test />
 		<install>
 			<![CDATA[
 			cd util-linux-${PKGVERSION}
-			make install 
+			mkdir -p $TGTDIR/static/sbin
+			install -m 0755 blkid $TGTDIR/static/sbin/blkid.static
 			]]>
 		</install>
 		<clean>

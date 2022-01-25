@@ -1,0 +1,55 @@
+<llpackages>
+    <package name='rb-inotify' version='0.10.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='e00e566a717550767d95901ff6f2c34c6e3dd136'>
+                    rb-inotify-0.10.1.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20180808' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+                        <!-- <dep>exifr</dep> -->
+                        <dep>ffi</dep>
+                        <!-- <dep>id3tag</dep> -->
+                        <dep>mini_portile2</dep>
+                        <dep>mini_portile</dep>
+                        <dep>native-package-installer</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-atk</dep>
+                        <dep>rubygem-gdk_pixbuf2</dep>
+                        <dep>rubygem-gio2</dep>
+                        <dep>rubygem-glib2</dep>
+                        <dep>rubygem-gobject-introspection</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/${PKGNAME}-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f ${PKGNAME}-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>

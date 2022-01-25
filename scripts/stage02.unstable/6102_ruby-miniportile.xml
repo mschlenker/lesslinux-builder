@@ -1,0 +1,49 @@
+<llpackages>
+	<package 
+		name="mini_portile"
+		version="0.6.2"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="696b940eb4ff8076a2080684046da1d2b10f41b8">mini_portile-0.6.2.gem</pkg>
+				<mirror>https://rubygems.org/downloads/</mirror>
+			</file>
+			<manualcheck date="20130524" interval="180" page="https://github.com/luislavena/sqlite3-ruby#readme" />
+			<!--<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.1.2." />
+					<atext linktext="grsync-1.2." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>-->
+		</sources>
+		<builddeps>
+                        <dep>openssl</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.gem ./
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			true
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			gem install ${PKGNAME} --version ${PKGVERSION} --local
+			]]>
+		</install>
+		<clean>
+                        <![CDATA[
+                        rm ${PKGNAME}-${PKGVERSION}.gem
+                        ]]>
+                </clean>
+	</package>
+</llpackages>

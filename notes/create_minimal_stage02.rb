@@ -56,6 +56,7 @@ if archname =~ /\.tar.bz2$/ || archname =~ /\.tar.gz$/ || archname =~  /\.tar.xz
 elsif archname =~ /\.gem$/ 
 	$stderr.puts "Leaving gem packed!"
 	buildtype = "rubygem"
+	pkgname = "rubygem-" + pkgname
 else
 	$stderr.puts "This type of archive is not (yet) supported!"
 	exit 1
@@ -124,8 +125,8 @@ clean = package.add_element("clean")
 chdir = nil
 unless pkgname.nil? 
 	if buildtype == "rubygem"
-		unpack.add(REXML::CData.new("cp -v ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + " . \n"))
-		clean.add(REXML::CData.new("rm -f " + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
+		unpack.add(REXML::CData.new("cp -v ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME#rubygem-}").gsub(pkgversion, "${PKGVERSION}") + " . \n"))
+		clean.add(REXML::CData.new("rm -f " + archname.gsub(pkgname, "${PKGNAME#rubygem-}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
 		chdir = ""
 	else
 		unpack.add(REXML::CData.new("tar xf ${SRCDIR}/" + archname.gsub(pkgname, "${PKGNAME}").gsub(pkgversion, "${PKGVERSION}") + "\n"))
@@ -163,7 +164,7 @@ elsif buildtype == "cmake"
 	installcommand.push("make install")
 elsif buildtype == "rubygem"
 	buildcommand.push("/bin/true")
-	installcommand.push("gem install ${PKGNAME} --version ${PKGVERSION} --local")
+	installcommand.push("gem install ${PKGNAME#rubygem-} --version ${PKGVERSION} --local")
 end
 [ buildcommand, installcommand ].each { |c| c.push("") }
 build.add(REXML::CData.new(buildcommand.join("\n")))

@@ -1,0 +1,42 @@
+<llpackages>
+    <package name='rubygem-poppler' version='3.4.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='836c666d57e0d8f0eed52cc0321d03d93a925e18'>
+                    poppler-3.4.3.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20220123' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+			<dep>rubygem-gtk2</dep>
+			<dep>rubygem-cairo-gobject</dep>
+			<dep>poppler</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/poppler-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME#rubygem-} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f poppler-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>

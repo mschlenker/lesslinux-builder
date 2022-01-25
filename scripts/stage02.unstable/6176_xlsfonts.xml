@@ -1,32 +1,37 @@
 <llpackages>
-    <package name='tdb' version='1.4.5' install='chroot'>
+    <package name='xlsfonts' version='1.0.6' install='chroot'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='a7ffe213b3105055872f31e03ec6b51a1eebb867'>
-                    tdb-1.4.5.tar.gz
+                <pkg sha1='bf95e46e0897dcb9d197ce20d4fa024b8ace5148'>
+                    xlsfonts-1.0.6.tar.bz2
                 </pkg>
                 <mirror>
-                    https://www.samba.org/ftp/tdb/
+                    https://www.x.org/archive/individual/app/
                 </mirror>
             </file>
-            <manualcheck date='20220120' interval='60' mirror='https://www.samba.org/ftp/tdb/'/>
+            <manualcheck date='20170103' interval='60' mirror='https://www.x.org/archive/individual/app/'/>
         </sources>
 	<builddeps>
-			<dep>Python3</dep>
                         <dep>bash</dep>
                         <dep>binutils</dep>
                         <dep>coreutils</dep>
                         <dep>diffutils</dep>
+                        <dep>gawk</dep>
                         <dep>gcc</dep>
                         <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
                         <dep>make</dep>
-			<dep>which</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>xproto-base</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
 ]]>
         </unpack>
         <patch/>

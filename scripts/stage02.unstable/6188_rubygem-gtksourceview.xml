@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='rubygem-gtksourceview2' version='3.4.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='ebd06f619eada4701b7e763567bb8460b33a2cf0'>
+                    gtksourceview2-3.4.3.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20220123' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+			<dep>rubygem-gtk2</dep>
+			<dep>gtksourceview</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/gtksourceview2-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME#rubygem-} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f gtksourceview2-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>

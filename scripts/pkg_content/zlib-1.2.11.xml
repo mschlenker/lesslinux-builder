@@ -1,19 +1,11 @@
 <pkgdesc name='zlib' version='1.2.11'>
     <subpackage name='skel'>
-        <softlink path='/lib/libz.so.1' owner='0' group='0'/>
         <softlink path='/usr/lib/libz.so' owner='0' group='0'/>
-        <directory path='/lib' owner='0' group='0'/>
-        <directory path='/usr' owner='0' group='0'/>
-        <directory path='/usr/share' owner='0' group='0'/>
-        <directory path='/usr/share/man' owner='0' group='0'/>
-        <directory path='/usr/share/man/man3' owner='0' group='0'/>
-        <directory path='/usr/include' owner='0' group='0'/>
-        <directory path='/usr/lib' owner='0' group='0'/>
-        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <softlink path='/usr/lib/libz.so.1' owner='0' group='0'/>
     </subpackage>
     <subpackage name='bin'/>
     <subpackage name='minimal'>
-        <file path='/lib/libz.so.1.2.11' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libz.so.1.2.11' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'>
         <file path='/usr/share/man/man3/zlib.3' owner='0' group='0' mode='100644'/>

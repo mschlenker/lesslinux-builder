@@ -1,0 +1,37 @@
+<pkgdesc name='zstd' version='1.5.0'>
+    <subpackage name='skel'>
+        <softlink path='/usr/bin/zstdcat' owner='0' group='0'/>
+        <softlink path='/usr/bin/unzstd' owner='0' group='0'/>
+        <softlink path='/usr/bin/zstdmt' owner='0' group='0'/>
+        <softlink path='/usr/lib/libzstd.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libzstd.so' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man1/zstdcat.1' owner='0' group='0'/>
+        <softlink path='/usr/share/man/man1/unzstd.1' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/bin/zstd' owner='0' group='0' mode='100755'/>
+	<file path='/usr/lib/libzstd.so.1.5.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/zstd.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/zstdgrep.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/zstdless.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/zstd.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/zstd_errors.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/zdict.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libzstd.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libzstd.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/bin/zstdless' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/zstdgrep' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

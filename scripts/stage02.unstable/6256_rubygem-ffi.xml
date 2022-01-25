@@ -1,0 +1,56 @@
+<llpackages>
+    <package name='ffi' version='1.15.5' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='97632b7975067266c0b39596de0a4c86d9330658'>
+                    ffi-1.15.5.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20180808' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <!-- <dep>exifr</dep> -->
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <!-- <dep>id3tag</dep> -->
+                        <dep>libffi</dep>
+                        <dep>make</dep>
+                        <dep>mini_portile2</dep>
+                        <dep>mini_portile</dep>
+                        <dep>native-package-installer</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/${PKGNAME}-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f ${PKGNAME}-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,60 @@
+<llpackages>
+    <package name='rubygem-red-colors' version='0.3.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='5340c9e6ba0ce924d21829a20dc7f2bfe56c5c71'>
+                    red-colors-0.3.0.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20220123' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>distcc</dep>
+                        <!-- <dep>exifr</dep> -->
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <!-- <dep>id3tag</dep> -->
+                        <dep>libffi</dep>
+                        <dep>make</dep>
+                        <dep>mini_portile2</dep>
+                        <dep>mini_portile</dep>
+                        <dep>native-package-installer</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+			<dep>rubygem-matrix</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/${PKGNAME#rubygem-}-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME#rubygem-} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f ${PKGNAME#rubygem-}-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>

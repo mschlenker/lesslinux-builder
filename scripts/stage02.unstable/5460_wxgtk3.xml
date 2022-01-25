@@ -1,0 +1,105 @@
+<llpackages>
+	<package 
+		name="wxWidgets3"
+		version="3.0.5"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                         
+				<pkg sha1="30a2f96a5a9e0b84f630c6e8629d2fb8c6414199">wxWidgets-3.0.5.tar.bz2</pkg>
+				<mirror>https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5</mirror>
+			</file>
+			<file>                                                                               
+				<pkg sha1="8423de32a5118acef897c40028680ff1b120f03b">scintilla446.tgz</pkg>
+				<mirror>https://www.scintilla.org/</mirror>
+			</file>
+		</sources>
+		<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>expat</dep>
+                        <dep>findutils</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>glu</dep>
+                        <dep>grep</dep>
+                        <dep>gst-plugins-base1</dep>
+                        <dep>gstreamer1</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>jpegsrc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libnotify</dep>
+                        <dep>libpng16</dep>
+                        <dep>libsoup</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>tiff</dep>
+                        <!-- <dep>webkit</dep> -->
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<!-- <dep>gcc54</dep> -->
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/scintilla446.tgz
+			tar xjf ${SRCDIR}/wxWidgets-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[ 
+			cd wxWidgets-${PKGVERSION}
+			sed -i 's%#include <stdlib.h>%#include <math.h>%g' src/stc/scintilla/src/Editor.cxx
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			make -C scintilla/gtk -j $jobcount prefix=/usr/compat.new GTK3=yes
+			cd wxWidgets-${PKGVERSION}
+			./configure --prefix=/usr/compat.new --sysconfdir=/etc/compat.new --with-gtk=3 --enable-shared --enable-static --disable-compat26 --enable-unicode  && make -j $jobcount
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			cd wxWidgets-${PKGVERSION}
+			make install
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf cd wxWidgets-${PKGVERSION}
+			rm -rf scintilla
+			]]>
+		</clean>
+	</package>
+</llpackages>

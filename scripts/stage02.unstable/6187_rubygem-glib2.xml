@@ -1,0 +1,64 @@
+<llpackages>
+	<package 
+		name="rubygem-glib2"
+		version="3.4.3"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>                 
+				<pkg sha1="9ab6eff15acfdfcc28fd350af77d367f55a75d59">glib2-3.4.3.gem</pkg>
+				<mirror>https://rubygems.org/downloads/</mirror>
+			</file>
+			<manualcheck date="20160113" interval="90" page="https://rubygems.org/downloads/" />
+			<!-- <file>
+				<pkg sha1="0ab34c99a720da4bf7e2d6f6f05d126417fe41ca">ruby-gnome2-all-0.19.4-glib-mkenums.patch</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+		</sources>
+		<builddeps>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>distcc</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>mini_portile2</dep>
+                        <dep>mini_portile</dep>
+                        <dep>native-package-installer</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			exit 0
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ${SRCDIR}/${PKGNAME}-${PKGVERSION}-glib-mkenums.patch | patch -p1
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			cp ${SRCDIR}/glib2-${PKGVERSION}.gem ./
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			gem install glib2 --version ${PKGVERSION} --local
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm glib2-${PKGVERSION}.gem
+			]]>
+		</clean>
+	</package>
+</llpackages>

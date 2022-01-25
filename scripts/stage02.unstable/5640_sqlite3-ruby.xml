@@ -1,0 +1,55 @@
+<llpackages>
+	<package 
+		name="sqlite3-ruby"
+		version="1.4.2"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="05b6ce56b352b75bd6dd8e4c5d7355bc23b0a5ee">sqlite3-1.4.2.gem</pkg>
+				<mirror>https://rubygems.org/downloads/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="180" page="https://github.com/luislavena/sqlite3-ruby#readme" />
+			<!--<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.1.2." />
+					<atext linktext="grsync-1.2." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>-->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>ruby</dep>
+                        <dep>sqlite</dep>
+			<dep>pkg-config</dep>
+			<dep>rubygem-pkg-config</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			cp ${SRCDIR}/sqlite3-${PKGVERSION}.gem ./
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			true
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			gem install sqlite3 --version ${PKGVERSION} --local
+			]]>
+		</install>
+		<clean>
+                        <![CDATA[
+                        rm sqlite3-${PKGVERSION}.gem
+                        ]]>
+                </clean>
+	</package>
+</llpackages>

@@ -1,0 +1,59 @@
+<llpackages>
+    <package name='rubygem-matrix' version='0.4.2' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='af38b20d9f4487e2b7cbc4bb3a1829e16e1a5df1'>
+                    matrix-0.4.2.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20220123' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>distcc</dep>
+                        <!-- <dep>exifr</dep> -->
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gobject-introspection</dep>
+                        <!-- <dep>id3tag</dep> -->
+                        <dep>libffi</dep>
+                        <dep>make</dep>
+                        <dep>mini_portile2</dep>
+                        <dep>mini_portile</dep>
+                        <dep>native-package-installer</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>pkg-config</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/${PKGNAME#rubygem-}-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME#rubygem-} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f ${PKGNAME#rubygem-}-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>
