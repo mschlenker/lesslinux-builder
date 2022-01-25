@@ -1,0 +1,100 @@
+<pkgdesc name='bdw-gc' version='8.0.4'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libgc.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgc.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgccpp.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libgccpp.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libcord.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libcord.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/doc' owner='0' group='0'/>
+        <directory path='/usr/share/doc/gc' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man3' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/gc' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libgc.so.1.4.3' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libgccpp.so.1.4.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libcord.so.1.4.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/doc/gc/AUTHORS' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.DGUX386' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.Mac' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.OS2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.amiga' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.arm.cross' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.autoconf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.cmake' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.cords' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.darwin' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.environment' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.ews4800' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.hp' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.linux' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.macros' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.rs6000' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.sgi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.solaris2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.symbian' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.uts' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.win32' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/README.win64' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/debugging.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/finalization.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/gcdescr.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/gcinterface.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/leak.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/overview.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/porting.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/scale.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/simple_example.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/gc/tree.md' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/gc.3' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/libgc.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libcord.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/bdw-gc.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc_cpp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_allocator.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_cpp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_backptr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_config_macros.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_gcj.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_inline.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_mark.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_pthread_redirects.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_tiny_fl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_typed.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/gc_version.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/javaxfc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/leak_detector.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/cord.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/cord_pos.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/gc/ec.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libgccpp.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

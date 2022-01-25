@@ -1,0 +1,29 @@
+<pkgdesc name='wpa_supplicant' version='2.9'>
+    <subpackage name='skel'>
+        <directory path='/etc/dbus-1/system.d' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/sbin/wpa_cli' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/wpa_passphrase' owner='0' group='0' mode='100755'/>
+        <file path='/usr/sbin/wpa_supplicant' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man5/wpa_supplicant.conf.5' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/wpa_cli.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/wpa_passphrase.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/wpa_supplicant.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/dbus-1/system.d/wpa_supplicant.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/dbus-1/system-services/fi.w1.wpa_supplicant1.service' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/X11/extensions/evieproto.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/extensions/Xeviestr.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

@@ -1,0 +1,37 @@
+<pkgdesc name='dhcpcd' version='9.4.0'>
+    <subpackage name='skel'>
+        <directory path='/etc/dhcpcd' owner='0' group='0'/>
+        <directory path='/usr/lib/dhcpcd' owner='0' group='0'/>
+        <directory path='/usr/lib/dhcpcd/dev' owner='0' group='0'/>
+        <directory path='/usr/lib/dhcpcd/dhcpcd-hooks' owner='0' group='0'/>
+        <directory path='/usr/share/dhcpcd' owner='0' group='0'/>
+        <directory path='/usr/share/dhcpcd/hooks' owner='0' group='0'/>
+        <directory path='/var/lib/dhcpcd' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/dhcpcd/dev/udev.so' owner='0' group='0' mode='100555'/>
+        <file path='/usr/sbin/dhcpcd' owner='0' group='0' mode='100555'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man5/dhcpcd.conf.5' owner='0' group='0' mode='100444'/>
+        <file path='/usr/share/man/man8/dhcpcd.8' owner='0' group='0' mode='100444'/>
+        <file path='/usr/share/man/man8/dhcpcd-run-hooks.8' owner='0' group='0' mode='100444'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/dhcpcd/dhcpcd.conf' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'/>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/dhcpcd/dhcpcd-run-hooks' owner='0' group='0' mode='100555'/>
+        <file path='/usr/lib/dhcpcd/dhcpcd-hooks/01-test' owner='0' group='0' mode='100444'/>
+        <file path='/usr/lib/dhcpcd/dhcpcd-hooks/20-resolv.conf' owner='0' group='0' mode='100444'/>
+        <file path='/usr/lib/dhcpcd/dhcpcd-hooks/30-hostname' owner='0' group='0' mode='100444'/>
+        <file path='/usr/share/dhcpcd/hooks/10-wpa_supplicant' owner='0' group='0' mode='100444'/>
+        <file path='/usr/share/dhcpcd/hooks/15-timezone' owner='0' group='0' mode='100444'/>
+        <file path='/usr/share/dhcpcd/hooks/29-lookup-hostname' owner='0' group='0' mode='100444'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
