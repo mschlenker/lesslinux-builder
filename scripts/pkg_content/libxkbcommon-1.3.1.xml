@@ -1,0 +1,68 @@
+<pkgdesc name='libxkbcommon' version='1.3.1'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libxkbcommon.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libxkbcommon.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libxkbcommon-x11.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libxkbcommon-x11.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libxkbregistry.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libxkbregistry.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/libexec' owner='0' group='0'/>
+        <directory path='/usr/libexec/xkbcommon' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/xkbcommon' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libxkbcommon.so.0.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libxkbcommon-x11.so.0.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/lib/libxkbregistry.so.0.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/xkbcli' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/xkbcommon/xkbcli-compile-keymap' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/xkbcommon/xkbcli-how-to-type' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/xkbcommon/xkbcli-interactive-evdev' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/xkbcommon/xkbcli-interactive-x11' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/xkbcommon/xkbcli-interactive-wayland' owner='0' group='0' mode='100755'/>
+        <file path='/usr/libexec/xkbcommon/xkbcli-list' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/xkbcli.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/xkbcli-compile-keymap.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/xkbcli-how-to-type.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/xkbcli-interactive-evdev.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/xkbcli-interactive-x11.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/xkbcli-interactive-wayland.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/xkbcli-list.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/xkbcommon.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/xkbcommon-x11.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/xkbregistry.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xkbcommon/xkbcommon.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xkbcommon/xkbcommon-compat.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xkbcommon/xkbcommon-compose.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xkbcommon/xkbcommon-keysyms.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xkbcommon/xkbcommon-names.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xkbcommon/xkbcommon-x11.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xkbcommon/xkbregistry.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

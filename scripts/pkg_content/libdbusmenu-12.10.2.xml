@@ -1,108 +1,104 @@
 <pkgdesc name='libdbusmenu' version='12.10.2'>
-    <subpackage name='skel'>
-        <softlink path='/usr/lib/libdbusmenu-gtk3.so' owner='0' group='0'/>
-        <softlink path='/usr/lib/libdbusmenu-jsonloader.so.4' owner='0' group='0'/>
-        <softlink path='/usr/lib/libdbusmenu-jsonloader.so' owner='0' group='0'/>
-        <softlink path='/usr/lib/libdbusmenu-gtk3.so.4' owner='0' group='0'/>
-        <softlink path='/usr/lib/libdbusmenu-glib.so.4' owner='0' group='0'/>
-        <softlink path='/usr/lib/libdbusmenu-glib.so' owner='0' group='0'/>
-        <directory path='/usr/include/libdbusmenu-gtk3-0.4' owner='0' group='0'/>
-        <directory path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk' owner='0' group='0'/>
-        <directory path='/usr/include/libdbusmenu-glib-0.4' owner='0' group='0'/>
-        <directory path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-jsonloader' owner='0' group='0'/>
-        <directory path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib' owner='0' group='0'/>
-        <directory path='/usr/share/gtk-doc/html/libdbusmenu-gtk' owner='0' group='0'/>
-        <directory path='/usr/share/gtk-doc/html/libdbusmenu-glib' owner='0' group='0'/>
-        <directory path='/usr/share/libdbusmenu' owner='0' group='0'/>
-        <directory path='/usr/share/libdbusmenu/json' owner='0' group='0'/>
-        <directory path='/usr/share/doc/libdbusmenu' owner='0' group='0'/>
-        <directory path='/usr/share/doc/libdbusmenu/examples' owner='0' group='0'/>
-    </subpackage>
-    <subpackage name='bin'>
-	<file path='/usr/libexec/dbusmenu-testapp' owner='0' group='0' mode='100755'/>
-        <file path='/usr/libexec/dbusmenu-dumper' owner='0' group='0' mode='100755'/>
-    </subpackage>
-    <subpackage name='minimal'>
-        <file path='/usr/lib/libdbusmenu-jsonloader.so.4.0.12' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/libdbusmenu-gtk3.so.4.0.12' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/libdbusmenu-glib.so.4.0.12' owner='0' group='0' mode='100755'/>
-	<file path='/usr/libexec/dbusmenu-bench' owner='0' group='0' mode='100755'/>
-    </subpackage>
-    <subpackage name='doc'>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk.devhelp2' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/up.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/left.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/index.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/style.css' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-DbusmenuGtkClient.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-parser.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/home.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/right.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/annotation-glossary.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/api-index-deprecated.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-menuitem.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/index.sgml' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/object-tree.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-DbusmenuGtkMenu.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/api-index-full.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/ch01.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/up.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-Types.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuMenuitem.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuServer.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/left.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/index.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/style.css' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/home.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuClient.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/right.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/annotation-glossary.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/api-index-deprecated.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib.devhelp2' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/index.sgml' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuMenuitemProxy.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/object-tree.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/api-index-full.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/ch01.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libdbusmenu/README.dbusmenu-bench' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libdbusmenu/examples/glib-server-nomenu.c' owner='0' group='0' mode='100644'/>
-    </subpackage>
+    <subpackage name='skel'/>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'/>
+    <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/dbusmenu-gtk.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/menu.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/parser.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/menuitem.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/client.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-jsonloader/json-loader.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/menuitem-proxy.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/enum-types.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/server.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/menuitem.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/types.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/client.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/dbusmenu-glib.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/pkgconfig/dbusmenu-jsonloader-0.4.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/pkgconfig/dbusmenu-glib-0.4.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/pkgconfig/dbusmenu-gtk3-0.4.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/libdbusmenu-glib.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/libdbusmenu-gtk3.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/libdbusmenu-jsonloader.a' owner='0' group='0' mode='100644'/>
-	<file path='/usr/lib/girepository-1.0/Dbusmenu-0.4.typelib' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/girepository-1.0/DbusmenuGtk3-0.4.typelib' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/libdbusmenu-gtk3.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/libdbusmenu-glib.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/libdbusmenu-jsonloader.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/share/gir-1.0/Dbusmenu-0.4.gir' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gir-1.0/DbusmenuGtk3-0.4.gir' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/vala/vapi/DbusmenuGtk3-0.4.vapi' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/vala/vapi/Dbusmenu-0.4.vapi' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/extensions/evieproto.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/extensions/Xeviestr.h' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'>
-        <file path='/usr/share/libdbusmenu/json/test-gtk-label.json' owner='0' group='0' mode='100644'/>
-    </subpackage>
+    <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
-    <vanished/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='bin'>
+            <file path='/usr/libexec/dbusmenu-testapp'/>
+            <file path='/usr/libexec/dbusmenu-dumper'/>
+        </subpackage>
+        <subpackage name='minimal'>
+            <file path='/usr/lib/libdbusmenu-jsonloader.so.4.0.12'/>
+            <file path='/usr/lib/libdbusmenu-gtk3.so.4.0.12'/>
+            <file path='/usr/lib/libdbusmenu-glib.so.4.0.12'/>
+            <file path='/usr/libexec/dbusmenu-bench'/>
+        </subpackage>
+        <subpackage name='doc'>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk.devhelp2'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/up.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/left.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/index.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/style.css'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-DbusmenuGtkClient.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-parser.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/home.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/right.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/annotation-glossary.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/api-index-deprecated.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-menuitem.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/index.sgml'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/object-tree.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/libdbusmenu-gtk-DbusmenuGtkMenu.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/api-index-full.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-gtk/ch01.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/up.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-Types.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuMenuitem.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuServer.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/left.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/index.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/style.css'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/home.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuClient.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/right.png'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/annotation-glossary.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/api-index-deprecated.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib.devhelp2'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/index.sgml'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/libdbusmenu-glib-DbusmenuMenuitemProxy.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/object-tree.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/api-index-full.html'/>
+            <file path='/usr/share/gtk-doc/html/libdbusmenu-glib/ch01.html'/>
+            <file path='/usr/share/doc/libdbusmenu/README.dbusmenu-bench'/>
+            <file path='/usr/share/doc/libdbusmenu/examples/glib-server-nomenu.c'/>
+        </subpackage>
+        <subpackage name='config'/>
+        <subpackage name='devel'>
+            <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/dbusmenu-gtk.h'/>
+            <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/menu.h'/>
+            <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/parser.h'/>
+            <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/menuitem.h'/>
+            <file path='/usr/include/libdbusmenu-gtk3-0.4/libdbusmenu-gtk/client.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-jsonloader/json-loader.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/menuitem-proxy.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/enum-types.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/server.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/menuitem.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/types.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/client.h'/>
+            <file path='/usr/include/libdbusmenu-glib-0.4/libdbusmenu-glib/dbusmenu-glib.h'/>
+            <file path='/usr/lib/pkgconfig/dbusmenu-jsonloader-0.4.pc'/>
+            <file path='/usr/lib/pkgconfig/dbusmenu-glib-0.4.pc'/>
+            <file path='/usr/lib/pkgconfig/dbusmenu-gtk3-0.4.pc'/>
+            <file path='/usr/lib/libdbusmenu-glib.a'/>
+            <file path='/usr/lib/libdbusmenu-gtk3.a'/>
+            <file path='/usr/lib/libdbusmenu-jsonloader.a'/>
+            <file path='/usr/lib/girepository-1.0/Dbusmenu-0.4.typelib'/>
+            <file path='/usr/lib/girepository-1.0/DbusmenuGtk3-0.4.typelib'/>
+            <file path='/usr/lib/libdbusmenu-gtk3.la'/>
+            <file path='/usr/lib/libdbusmenu-glib.la'/>
+            <file path='/usr/lib/libdbusmenu-jsonloader.la'/>
+            <file path='/usr/share/gir-1.0/Dbusmenu-0.4.gir'/>
+            <file path='/usr/share/gir-1.0/DbusmenuGtk3-0.4.gir'/>
+            <file path='/usr/share/vala/vapi/DbusmenuGtk3-0.4.vapi'/>
+            <file path='/usr/share/vala/vapi/Dbusmenu-0.4.vapi'/>
+        </subpackage>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'>
+            <file path='/usr/share/libdbusmenu/json/test-gtk-label.json'/>
+        </subpackage>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>
