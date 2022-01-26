@@ -1,7 +1,7 @@
-<pkgdesc name='util-keysyms' version='0.4.0'>
+<pkgdesc name='libass' version='0.15.2'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib/libxcb-keysyms.so.1' owner='0' group='0'/>
-        <softlink path='/usr/lib/libxcb-keysyms.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libass.so.9' owner='0' group='0'/>
+        <softlink path='/usr/lib/libass.so' owner='0' group='0'/>
         <softlink path='/usr/lib64' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
         <directory path='/usr/lib' owner='0' group='0'/>
@@ -13,19 +13,19 @@
         <directory path='/usr/compat.new' owner='0' group='0'/>
         <directory path='/usr/compat.new/lib' owner='0' group='0'/>
         <directory path='/usr/include' owner='0' group='0'/>
-        <directory path='/usr/include/xcb' owner='0' group='0'/>
-    </subpackage>
-    <subpackage name='minimal'>
-        <file path='/usr/lib/libxcb-keysyms.so.1.0.0' owner='0' group='0' mode='100755'/>
+        <directory path='/usr/include/ass' owner='0' group='0'/>
     </subpackage>
     <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libass.so.9.1.3' owner='0' group='0' mode='100755'/>
+    </subpackage>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/lib/libxcb-keysyms.la' owner='0' group='0' mode='100755'/>
-        <file path='/usr/lib/libxcb-keysyms.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/pkgconfig/xcb-keysyms.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/xcb/xcb_keysyms.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libass.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/libass.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ass/ass.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ass/ass_types.h' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>

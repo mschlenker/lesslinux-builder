@@ -1,0 +1,62 @@
+<llpackages>
+    <package name='libmnl' version='1.0.4' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='2db40dea612e88c62fd321906be40ab5f8f1685a'>
+                    libmnl-1.0.4.tar.bz2
+                </pkg>
+                <mirror>
+                    https://netfilter.org/projects/libmnl/files/
+                </mirror>
+            </file>
+            <manualcheck date='20220126' interval='60' mirror='https://netfilter.org/projects/libmnl/files/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>iptables</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>readline</dep>
+                        <dep>sed</dep>
+                        <dep>wpa_supplicant</dep>
+			<!-- <dep>bluez</dep> -->
+			<!-- <dep>openvpn</dep>
+			<dep>openconnect</dep> -->
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

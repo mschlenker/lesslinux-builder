@@ -1,67 +1,74 @@
 <pkgdesc name='libsndfile' version='1.0.28'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib/libsndfile.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libsndfile.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libsndfile.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
-        <directory path='/usr/share' owner='0' group='0'/>
-        <directory path='/usr/share/doc' owner='0' group='0'/>
-        <directory path='/usr/share/doc/libsndfile' owner='0' group='0'/>
-        <directory path='/usr/share/man' owner='0' group='0'/>
-        <directory path='/usr/share/man/man1' owner='0' group='0'/>
-        <directory path='/usr/include' owner='0' group='0'/>
         <directory path='/usr/lib' owner='0' group='0'/>
         <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/doc' owner='0' group='0'/>
+        <directory path='/usr/share/doc/libsndfile' owner='0' group='0'/>
         <directory path='/usr/bin' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-	 <file path='/usr/lib/libsndfile.so.1.0.28' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libsndfile.so.1.0.28' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
-        <file path='/usr/bin/sndfile-cmp' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-concat' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-metadata-set' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-interleave' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-convert' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-play' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-deinterleave' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-salvage' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/sndfile-regtest' owner='0' group='0' mode='100755'/>
-        <file path='/usr/bin/sndfile-metadata-get' owner='0' group='0' mode='100755'/>
         <file path='/usr/bin/sndfile-info' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-play' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-convert' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-cmp' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-metadata-set' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-metadata-get' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-interleave' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-deinterleave' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-concat' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/sndfile-salvage' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'>
+        <file path='/usr/share/man/man1/sndfile-info.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-play.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-convert.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-cmp.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-metadata-get.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-metadata-set.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-concat.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-interleave.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-deinterleave.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/sndfile-salvage.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/index.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/libsndfile.jpg' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/doc/libsndfile/libsndfile.css' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/doc/libsndfile/api.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/libsndfile.jpg' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/doc/libsndfile/command.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/embedded_files.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/new_file_type.HOWTO' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/lists.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/octave.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/tutorial.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/FAQ.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/win32.html' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/doc/libsndfile/bugs.html' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/doc/libsndfile/sndfile_info.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/doc/libsndfile/index.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-play.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-info.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-deinterleave.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-metadata-set.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-cmp.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-concat.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-salvage.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-interleave.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-metadata-get.1' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/man/man1/sndfile-convert.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/new_file_type.HOWTO' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/win32.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/FAQ.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/lists.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/embedded_files.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/octave.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/doc/libsndfile/tutorial.html' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/include/sndfile.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/sndfile.hh' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/pkgconfig/sndfile.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/libsndfile.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libsndfile.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/sndfile.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sndfile.hh' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sndfile.h' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
