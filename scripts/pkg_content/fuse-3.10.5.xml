@@ -1,0 +1,57 @@
+<pkgdesc name='fuse' version='3.10.5'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libfuse3.so.3' owner='0' group='0'/>
+        <softlink path='/usr/lib/libfuse3.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
+        <directory path='/etc' owner='0' group='0'/>
+        <directory path='/etc/init.d' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/lib/udev' owner='0' group='0'/>
+        <directory path='/usr/lib/udev/rules.d' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/sbin' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/fuse3' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/man' owner='0' group='0'/>
+        <directory path='/usr/share/man/man1' owner='0' group='0'/>
+        <directory path='/usr/share/man/man8' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libfuse3.so.3.10.5' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/fusermount3' owner='0' group='0' mode='104755'/>
+        <file path='/usr/sbin/mount.fuse3' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/fusermount3.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/mount.fuse3.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/fuse.conf' owner='0' group='0' mode='100644'/>
+        <file path='/etc/init.d/fuse3' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/lib/pkgconfig/fuse3.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fuse3/fuse.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fuse3/fuse_common.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fuse3/fuse_lowlevel.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fuse3/fuse_opt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fuse3/cuse_lowlevel.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/fuse3/fuse_log.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/udev/rules.d/99-fuse3.rules' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>

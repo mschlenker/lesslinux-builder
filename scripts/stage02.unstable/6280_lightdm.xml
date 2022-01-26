@@ -1,0 +1,69 @@
+<llpackages>
+    <package name='lightdm' version='1.30.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='d91966f79f173825ac8bb51973842f9fb6c9ef1b'>
+                    lightdm-1.30.0.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/CanonicalLtd/lightdm/releases/download/1.30.0/
+                </mirror>
+            </file>
+            <manualcheck date='20190624' interval='60' mirror='https://github.com/CanonicalLtd/lightdm/releases/download/1.30.0/'/>
+        </sources>
+	<builddeps>
+			<dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+			<dep>gtk3</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXrender</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <!-- <dep>libgcrypt</dep> -->
+			<dep>itstool</dep>
+			<dep>sqlite</dep>
+			<dep>vala</dep>
+			<dep>libxklavier</dep>
+			<dep>qt5</dep>
+		</builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static              \
+       --disable-tests
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

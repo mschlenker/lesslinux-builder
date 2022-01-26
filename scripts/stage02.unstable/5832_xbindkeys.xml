@@ -1,0 +1,55 @@
+<llpackages>
+	<package 
+		name="xbindkeys"
+		version="1.8.7"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                               
+				<pkg sha1="eb5eed246ccec4f5a513b0a0e7367ba669c77dba">xbindkeys-1.8.7.tar.gz</pkg>
+				<mirror>http://www.nongnu.org/xbindkeys/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="180" page="http://www.nongnu.org/xbindkeys/" />
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gmp</dep>
+                        <dep>grep</dep>
+                        <dep>guile</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			 ./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			]]>
+		</install>
+	</package>
+</llpackages>
