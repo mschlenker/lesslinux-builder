@@ -1,24 +1,29 @@
 <pkgdesc name='p5-gettext' version='1.07'>
     <subpackage name='skel'>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5/5.34.0' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5/5.34.0/site_perl' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5/5.34.0/site_perl/Locale' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5/5.34.0/site_perl/auto' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5/5.34.0/site_perl/auto/Locale' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5/5.34.0/site_perl/auto/Locale/gettext' owner='0' group='0'/>
+        <directory path='/usr/lib/perl5/5.34.0/core_perl' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
         <directory path='/usr/share' owner='0' group='0'/>
         <directory path='/usr/share/man' owner='0' group='0'/>
         <directory path='/usr/share/man/man3' owner='0' group='0'/>
-        <directory path='/usr/lib' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/site_perl' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/site_perl/5.24.1' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/site_perl/5.24.1/i686-linux' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/site_perl/5.24.1/i686-linux/auto' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/site_perl/5.24.1/i686-linux/auto/Locale' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/site_perl/5.24.1/i686-linux/auto/Locale/gettext' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/site_perl/5.24.1/i686-linux/Locale' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/5.24.1' owner='0' group='0'/>
-        <directory path='/usr/lib/perl5/5.24.1/i686-linux' owner='0' group='0'/>
     </subpackage>
-    <subpackage name='minimal'/>
-    <subpackage name='bin'>
-        <file path='/usr/lib/perl5/site_perl/5.24.1/i686-linux/auto/Locale/gettext/gettext.so' owner='0' group='0' mode='100555'/>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/perl5/5.34.0/site_perl/auto/Locale/gettext/gettext.so' owner='0' group='0' mode='100555'/>
     </subpackage>
     <subpackage name='doc'>
         <file path='/usr/share/man/man3/Locale::gettext.3' owner='0' group='0' mode='100444'/>
@@ -28,9 +33,9 @@
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file path='/usr/lib/perl5/site_perl/5.24.1/i686-linux/auto/Locale/gettext/.packlist' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/perl5/site_perl/5.24.1/i686-linux/Locale/gettext.pm' owner='0' group='0' mode='100444'/>
-        <file path='/usr/lib/perl5/5.24.1/i686-linux/perllocal.pod' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/perl5/5.34.0/site_perl/Locale/gettext.pm' owner='0' group='0' mode='100444'/>
+        <file path='/usr/lib/perl5/5.34.0/site_perl/auto/Locale/gettext/.packlist' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/perl5/5.34.0/core_perl/perllocal.pod' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
 </pkgdesc>

@@ -1,0 +1,26 @@
+<pkgdesc name='xinit' version='1.4.1'>
+    <subpackage name='skel'>
+        <directory path='/etc/X11' owner='0' group='0'/>
+        <directory path='/etc/X11/xinit' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'/>
+    <subpackage name='bin'>
+        <file path='/usr/bin/xinit' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/startx' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/startx.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/xinit.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'>
+        <file path='/etc/X11/xinit/xinitrc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='devel'>
+        <file path='/usr/include/X11/extensions/evieproto.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/extensions/Xeviestr.h' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+</pkgdesc>

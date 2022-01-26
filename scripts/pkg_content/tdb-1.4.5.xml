@@ -1,0 +1,29 @@
+<pkgdesc name='tdb' version='1.4.5'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libtdb.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libtdb.so' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/python3.9/site-packages/tdb.cpython-39-x86_64-linux-gnu.so' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libtdb.so.1.4.5' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/tdbrestore' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/tdbdump' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/tdbbackup' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/tdbtool' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/tdb.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/tdb.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/python3.9/site-packages/_tdb_text.py' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

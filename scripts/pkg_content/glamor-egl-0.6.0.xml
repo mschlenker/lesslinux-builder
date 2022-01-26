@@ -1,37 +1,43 @@
-<pkgdesc version='0.6.0' name='glamor-egl'>
+<pkgdesc name='glamor-egl' version='0.6.0'>
     <subpackage name='skel'>
-        <softlink owner='0' group='0' path='/usr/lib/libglamor.so.0'/>
-        <softlink owner='0' group='0' path='/usr/lib/libglamor.so'/>
-        <directory owner='0' group='0' path='/usr'/>
-        <directory owner='0' group='0' path='/usr/include'/>
-        <directory owner='0' group='0' path='/usr/include/xorg'/>
-        <directory owner='0' group='0' path='/usr/share'/>
-        <directory owner='0' group='0' path='/usr/share/X11'/>
-        <directory owner='0' group='0' path='/usr/share/X11/xorg.conf.d'/>
-        <directory owner='0' group='0' path='/usr/lib'/>
-        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
-        <directory owner='0' group='0' path='/usr/lib/xorg'/>
-        <directory owner='0' group='0' path='/usr/lib/xorg/modules'/>
+        <softlink path='/usr/lib/libglamor.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libglamor.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/xorg' owner='0' group='0'/>
+        <directory path='/usr/lib/xorg/modules' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/xorg' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/X11' owner='0' group='0'/>
+        <directory path='/usr/share/X11/xorg.conf.d' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libglamor.so.0.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xorg/modules/libglamoregl.so' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'/>
-    <subpackage name='minimal'>
-        <file owner='0' group='0' mode='100755' path='/usr/lib/libglamor.so.0.0.0'/>
-        <file owner='0' group='0' mode='100755' path='/usr/lib/xorg/modules/libglamoregl.so'/>
-    </subpackage>
     <subpackage name='doc'/>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file owner='0' group='0' mode='100644' path='/usr/include/xorg/glamor.h'/>
-        <file owner='0' group='0' mode='100755' path='/usr/lib/libglamor.la'/>
-        <file owner='0' group='0' mode='100644' path='/usr/lib/pkgconfig/glamor.pc'/>
-        <file owner='0' group='0' mode='100644' path='/usr/lib/pkgconfig/glamor-egl.pc'/>
-        <file owner='0' group='0' mode='100755' path='/usr/lib/xorg/modules/libglamoregl.la'/>
+        <file path='/usr/lib/libglamor.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/xorg/modules/libglamoregl.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/glamor-egl.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/glamor.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/xorg/glamor.h' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file owner='0' group='0' mode='100644' path='/usr/share/X11/xorg.conf.d/glamor.conf'/>
+        <file path='/usr/share/X11/xorg.conf.d/glamor.conf' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
-    <vanished/>
 </pkgdesc>

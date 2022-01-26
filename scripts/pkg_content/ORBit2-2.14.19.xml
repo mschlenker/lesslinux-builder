@@ -1,128 +1,132 @@
-<pkgdesc version='2.14.19' name='ORBit2'>
+<pkgdesc name='ORBit2' version='2.14.19'>
     <subpackage name='skel'>
-        <softlink group='0' owner='0' path='/usr/lib/libORBit-2.so.0'/>
-        <softlink group='0' owner='0' path='/usr/lib/libORBit-2.so'/>
-        <softlink group='0' owner='0' path='/usr/lib/libORBitCosNaming-2.so.0'/>
-        <softlink group='0' owner='0' path='/usr/lib/libORBitCosNaming-2.so'/>
-        <softlink group='0' owner='0' path='/usr/lib/libORBit-imodule-2.so.0'/>
-        <softlink group='0' owner='0' path='/usr/lib/libORBit-imodule-2.so'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0/orbit-idl'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0/ORBitservices'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0/orbit'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0/orbit/util'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0/orbit/orb-core'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0/orbit/poa'/>
-        <directory group='0' owner='0' path='/usr/include/orbit-2.0/orbit/dynamic'/>
-        <directory group='0' owner='0' path='/usr/lib/orbit-2.0'/>
-        <directory group='0' owner='0' path='/usr/share/gtk-doc/html/ORBit2'/>
-        <directory group='0' owner='0' path='/usr/share/idl'/>
-        <directory group='0' owner='0' path='/usr/share/idl/orbit-2.0'/>
+        <softlink path='/usr/lib/libORBit-2.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libORBit-2.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libORBitCosNaming-2.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libORBitCosNaming-2.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libORBit-imodule-2.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libORBit-imodule-2.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/lib/orbit-2.0' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/bin' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0/orbit-idl' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0/ORBitservices' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0/orbit' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0/orbit/util' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0/orbit/orb-core' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0/orbit/poa' owner='0' group='0'/>
+        <directory path='/usr/include/orbit-2.0/orbit/dynamic' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/idl' owner='0' group='0'/>
+        <directory path='/usr/share/idl/orbit-2.0' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html/ORBit2' owner='0' group='0'/>
+        <directory path='/usr/share/aclocal' owner='0' group='0'/>
     </subpackage>
     <subpackage name='minimal'>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/libORBit-2.so.0.1.0'/>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/libORBitCosNaming-2.so.0.1.0'/>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/libORBit-imodule-2.so.0.0.0'/>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/orbit-2.0/Everything_module.so'/>
+        <file path='/usr/lib/libORBit-2.so.0.1.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libORBitCosNaming-2.so.0.1.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libORBit-imodule-2.so.0.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/orbit-2.0/Everything_module.so' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'>
-        <file group='0' owner='0' mode='100755' path='/usr/bin/linc-cleanup-sockets'/>
-        <file group='0' owner='0' mode='100755' path='/usr/bin/orbit-idl-2'/>
-        <file group='0' owner='0' mode='100755' path='/usr/bin/ior-decode-2'/>
-        <file group='0' owner='0' mode='100755' path='/usr/bin/typelib-dump'/>
+        <file path='/usr/bin/linc-cleanup-sockets' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/orbit-idl-2' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/ior-decode-2' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/typelib-dump' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/ORBit2-orbit2-allocators.html'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/ORBit2-orbit2-small.html'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/ORBit2.devhelp'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/ORBit2.devhelp2'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/general.html'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/home.png'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/index.html'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/index.sgml'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/left.png'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/right.png'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/style.css'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/gtk-doc/html/ORBit2/up.png'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/ORBit2-orbit2-allocators.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/ORBit2-orbit2-small.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/ORBit2.devhelp' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/ORBit2.devhelp2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/general.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/home.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/index.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/index.sgml' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/left.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/right.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/style.css' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/ORBit2/up.png' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file group='0' owner='0' mode='100755' path='/usr/bin/orbit2-config'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit-idl/orbit-idl-backend.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/ORBitservices/CosNaming.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/ORBitservices/CosNaming_impl.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/ORBitservices/orbit-imodule.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/util/basic_types.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/util/orbit-util.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/util/orbit-genrand.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-environment-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-nvlist.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-object-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-orb-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-orb.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-pobj.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-typecode-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/orb-core.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/orb-types.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/orbit-object.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/orbit-small.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-defs.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-context.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-context-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/iop-defs.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-object.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-policy-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-string.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-environment.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-any.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/orb-core-types.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-typecode.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/allocators.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/corba-any-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orb-core/orbit-interface.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/poa-types.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/poa.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/poa-basics.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/poa-defs.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/poa-policy.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/portableserver-poa-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/portableserver-current-type.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/poa/orbit-adaptor.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/dynamic/dynamic.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/dynamic/dynamic-defs.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orbit.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orbit-config.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/include/orbit-2.0/orbit/orbit-types.h'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/pkgconfig/ORBit-idl-2.0.pc'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/pkgconfig/ORBit-2.0.pc'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/pkgconfig/ORBit-CosNaming-2.0.pc'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/pkgconfig/ORBit-imodule-2.0.pc'/>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/libORBit-2.la'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/libORBit-2.a'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/libname-server-2.a'/>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/libORBitCosNaming-2.la'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/libORBitCosNaming-2.a'/>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/libORBit-imodule-2.la'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/libORBit-imodule-2.a'/>
-        <file group='0' owner='0' mode='100755' path='/usr/lib/orbit-2.0/Everything_module.la'/>
-        <file group='0' owner='0' mode='100644' path='/usr/lib/orbit-2.0/Everything_module.a'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/aclocal/ORBit2.m4'/>
-        <file group='0' owner='0' mode='100644' path='/usr/share/idl/orbit-2.0/CosNaming.idl'/>
+        <file path='/usr/lib/pkgconfig/ORBit-idl-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/ORBit-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/ORBit-CosNaming-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/ORBit-imodule-2.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libORBit-2.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libORBit-2.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libname-server-2.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libORBitCosNaming-2.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libORBitCosNaming-2.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libORBit-imodule-2.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libORBit-imodule-2.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/orbit-2.0/Everything_module.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/orbit-2.0/Everything_module.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/bin/orbit2-config' owner='0' group='0' mode='100755'/>
+        <file path='/usr/include/orbit-2.0/orbit-idl/orbit-idl-backend.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/ORBitservices/CosNaming.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/ORBitservices/CosNaming_impl.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/ORBitservices/orbit-imodule.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/util/basic_types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/util/orbit-util.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/util/orbit-genrand.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-environment-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-nvlist.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-object-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-orb-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-orb.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-pobj.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-typecode-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/orb-core.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/orb-types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/orbit-object.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/orbit-small.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-defs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-context.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-context-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/iop-defs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-object.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-policy-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-string.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-environment.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-any.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/orb-core-types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-typecode.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/allocators.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/corba-any-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orb-core/orbit-interface.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/poa-types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/poa.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/poa-basics.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/poa-defs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/poa-policy.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/portableserver-poa-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/portableserver-current-type.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/poa/orbit-adaptor.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/dynamic/dynamic.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/dynamic/dynamic-defs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orbit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orbit-config.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/orbit-2.0/orbit/orbit-types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/idl/orbit-2.0/CosNaming.idl' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/aclocal/ORBit2.m4' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'/>
     <subpackage name='ignore'/>
-    <vanished>
-        <subpackage name='doc'/>
-        <subpackage name='ignore'/>
-        <subpackage name='bin'/>
-        <subpackage name='devel'/>
-        <subpackage name='skel'/>
-        <subpackage name='tzdata'/>
-        <subpackage name='localization'/>
-        <subpackage name='uncategorized'/>
-        <subpackage name='minimal'/>
-        <subpackage name='config'/>
-    </vanished>
 </pkgdesc>

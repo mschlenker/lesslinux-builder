@@ -1,10 +1,17 @@
 <pkgdesc name='libXfont' version='1.5.4'>
     <subpackage name='skel'>
-        <softlink path='/usr/lib/libXfont.so' owner='0' group='0'/>
         <softlink path='/usr/lib/libXfont.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libXfont.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
         <directory path='/usr' owner='0' group='0'/>
         <directory path='/usr/lib' owner='0' group='0'/>
         <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
         <directory path='/usr/include' owner='0' group='0'/>
         <directory path='/usr/include/X11' owner='0' group='0'/>
         <directory path='/usr/include/X11/fonts' owner='0' group='0'/>
@@ -19,21 +26,21 @@
         <file path='/usr/lib/libXfont.la' owner='0' group='0' mode='100755'/>
         <file path='/usr/lib/libXfont.a' owner='0' group='0' mode='100644'/>
         <file path='/usr/lib/pkgconfig/xfont.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/ft.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/pcf.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fntfilst.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fontshow.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/bitmap.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fontutil.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/ftfuncs.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fntfil.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fontmisc.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fontxlfd.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fontconf.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/X11/fonts/bdfint.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/X11/fonts/fntfilio.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/bitmap.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/X11/fonts/bufio.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fntfil.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fntfilio.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fntfilst.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/X11/fonts/fontencc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fontmisc.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fontshow.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fontutil.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fontxlfd.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/pcf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/ft.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/ftfuncs.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/fonts/fontconf.h' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>

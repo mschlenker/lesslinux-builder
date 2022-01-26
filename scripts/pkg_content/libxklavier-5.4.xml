@@ -1,47 +1,69 @@
 <pkgdesc name='libxklavier' version='5.4'>
-    <subpackage name='skel'/>
-    <subpackage name='bin'/>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libxklavier.so.16' owner='0' group='0'/>
+        <softlink path='/usr/lib/libxklavier.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/girepository-1.0' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/gir-1.0' owner='0' group='0'/>
+        <directory path='/usr/share/vala' owner='0' group='0'/>
+        <directory path='/usr/share/vala/vapi' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html/libxklavier' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/libxklavier' owner='0' group='0'/>
+    </subpackage>
     <subpackage name='minimal'>
         <file path='/usr/lib/libxklavier.so.16.4.0' owner='0' group='0' mode='100755'/>
     </subpackage>
+    <subpackage name='bin'/>
     <subpackage name='doc'>
-        <file path='/usr/share/gtk-doc/html/libxklavier/XklEngine.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/libxklavier-xklavier.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/home.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/index.sgml' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/ch01.html' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/gtk-doc/html/libxklavier/XklConfigItem.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/libxklavier-xkl-engine.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/ch02.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/libxklavier.devhelp2' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/up.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/XklConfigRegistry.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/left.png' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/index.html' owner='0' group='0' mode='100644'/>
-        <file path='/usr/share/gtk-doc/html/libxklavier/right.png' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/gtk-doc/html/libxklavier/XklConfigRec.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/XklConfigRegistry.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/ch01.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/ch02.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/home.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/index.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/index.sgml' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/left.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/libxklavier-xkl-engine.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/libxklavier-xklavier.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/libxklavier.devhelp2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/right.png' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/gtk-doc/html/libxklavier/style.css' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/libxklavier/up.png' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file path='/usr/include/libxklavier/xkl_config_registry.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libxklavier/xklavier.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libxklavier/xkl_config_rec.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/include/libxklavier/xkl-enum-types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libxklavier.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libxklavier.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libxklavier.pc' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/libxklavier/xkl_engine.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/libxklavier/xkl_config_item.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libxklavier/xkl_config_registry.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libxklavier/xkl_config_rec.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/libxklavier/xkl_engine_marshal.h' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/pkgconfig/libxklavier.pc' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/libxklavier.a' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/libxklavier.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/include/libxklavier/xklavier.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/libxklavier/xkl-enum-types.h' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
+        <file path='/usr/lib/girepository-1.0/Xkl-1.0.typelib' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/gir-1.0/Xkl-1.0.gir' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/vala/vapi/libxklavier.vapi' owner='0' group='0' mode='100644'/>
         <file path='/usr/share/vala/vapi/libxklavier.deps' owner='0' group='0' mode='100644'/>
-        <file path='/usr/lib/girepository-1.0/Xkl-1.0.typelib' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
 </pkgdesc>

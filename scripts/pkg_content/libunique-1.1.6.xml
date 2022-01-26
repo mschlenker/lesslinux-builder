@@ -1,59 +1,65 @@
 <pkgdesc name='libunique' version='1.1.6'>
     <subpackage name='skel'>
-        <softlink owner='0' group='0' path='/usr/lib/libunique-1.0.so.0'/>
-        <softlink owner='0' group='0' path='/usr/lib/libunique-1.0.so'/>
-        <directory owner='0' group='0' path='/usr'/>
-        <directory owner='0' group='0' path='/usr/lib'/>
-        <directory owner='0' group='0' path='/usr/lib/girepository-1.0'/>
-        <directory owner='0' group='0' path='/usr/lib/pkgconfig'/>
-        <directory owner='0' group='0' path='/usr/share'/>
-        <directory owner='0' group='0' path='/usr/share/gir-1.0'/>
-        <directory owner='0' group='0' path='/usr/share/gtk-doc'/>
-        <directory owner='0' group='0' path='/usr/share/gtk-doc/html'/>
-        <directory owner='0' group='0' path='/usr/share/gtk-doc/html/unique'/>
-        <directory owner='0' group='0' path='/usr/include'/>
-        <directory owner='0' group='0' path='/usr/include/unique-1.0'/>
-        <directory owner='0' group='0' path='/usr/include/unique-1.0/unique'/>
+        <softlink path='/usr/lib/libunique-1.0.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libunique-1.0.so' owner='0' group='0'/>
+        <softlink path='/usr/lib64' owner='0' group='0'/>
+        <directory path='/usr' owner='0' group='0'/>
+        <directory path='/usr/lib' owner='0' group='0'/>
+        <directory path='/usr/lib/girepository-1.0' owner='0' group='0'/>
+        <directory path='/usr/lib/pkgconfig' owner='0' group='0'/>
+        <directory path='/usr/local' owner='0' group='0'/>
+        <directory path='/usr/local/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.old' owner='0' group='0'/>
+        <directory path='/usr/compat.old/lib' owner='0' group='0'/>
+        <directory path='/usr/compat.new' owner='0' group='0'/>
+        <directory path='/usr/compat.new/lib' owner='0' group='0'/>
+        <directory path='/usr/share' owner='0' group='0'/>
+        <directory path='/usr/share/gir-1.0' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html' owner='0' group='0'/>
+        <directory path='/usr/share/gtk-doc/html/unique' owner='0' group='0'/>
+        <directory path='/usr/include' owner='0' group='0'/>
+        <directory path='/usr/include/unique-1.0' owner='0' group='0'/>
+        <directory path='/usr/include/unique-1.0/unique' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libunique-1.0.so.0.100.6' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='bin'/>
-    <subpackage name='minimal'>
-        <file owner='0' group='0' path='/usr/lib/libunique-1.0.so.0.100.6' mode='100755'/>
-    </subpackage>
     <subpackage name='doc'>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/UniqueApp.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/UniqueBackend.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/home.png' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/index.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/index.sgml' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/ix01.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/left.png' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/license.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/right.png' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/style.css' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/unique-Message-Data.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/unique-Versioning-Information.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/unique-overview.html' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/unique.devhelp' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/unique.devhelp2' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gtk-doc/html/unique/up.png' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/UniqueApp.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/UniqueBackend.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/home.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/index.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/index.sgml' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/ix01.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/left.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/license.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/right.png' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/style.css' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/unique-Message-Data.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/unique-Versioning-Information.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/unique-overview.html' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/unique.devhelp' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/unique.devhelp2' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gtk-doc/html/unique/up.png' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='config'/>
     <subpackage name='devel'>
-        <file owner='0' group='0' path='/usr/lib/libunique-1.0.la' mode='100755'/>
-        <file owner='0' group='0' path='/usr/lib/libunique-1.0.a' mode='100644'/>
-        <file owner='0' group='0' path='/usr/lib/pkgconfig/unique-1.0.pc' mode='100644'/>
-        <file owner='0' group='0' path='/usr/include/unique-1.0/unique/uniqueapp.h' mode='100644'/>
-        <file owner='0' group='0' path='/usr/include/unique-1.0/unique/uniquebackend.h' mode='100644'/>
-        <file owner='0' group='0' path='/usr/include/unique-1.0/unique/uniquemessage.h' mode='100644'/>
-        <file owner='0' group='0' path='/usr/include/unique-1.0/unique/uniqueenumtypes.h' mode='100644'/>
-        <file owner='0' group='0' path='/usr/include/unique-1.0/unique/uniqueversion.h' mode='100644'/>
-        <file owner='0' group='0' path='/usr/include/unique-1.0/unique/unique.h' mode='100644'/>
+        <file path='/usr/lib/libunique-1.0.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/pkgconfig/unique-1.0.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/unique-1.0/unique/uniqueapp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/unique-1.0/unique/uniquebackend.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/unique-1.0/unique/uniquemessage.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/unique-1.0/unique/uniqueenumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/unique-1.0/unique/uniqueversion.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/unique-1.0/unique/unique.h' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
     <subpackage name='uncategorized'>
-        <file owner='0' group='0' path='/usr/lib/girepository-1.0/Unique-1.0.typelib' mode='100644'/>
-        <file owner='0' group='0' path='/usr/share/gir-1.0/Unique-1.0.gir' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/Unique-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/Unique-1.0.gir' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
 </pkgdesc>

@@ -1,0 +1,33 @@
+<pkgdesc name='faad2' version='2.10'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libfaad.so.2' owner='0' group='0'/>
+        <softlink path='/usr/lib/libfaad.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libfaad_drm.so.2' owner='0' group='0'/>
+        <softlink path='/usr/lib/libfaad_drm.so' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libfaad.so.2.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libfaad_drm.so.2.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/faad' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/faad.1' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/faad.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/neaacdec.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/faad2.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libfaad.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libfaad.a' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libfaad_drm.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libfaad_drm.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+</pkgdesc>
