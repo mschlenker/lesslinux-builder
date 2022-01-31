@@ -1,0 +1,53 @@
+<llpackages>
+    <package name='mbedtls' version='2.28.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='31f6e1b6112f3eb1252367722c6d1e23ea524784'>
+                    mbedtls-2.28.0-gpl.tgz
+                </pkg>
+                <mirror>
+                    https://tls.mbed.org/download/
+                </mirror>
+            </file>
+            <manualcheck date='20181206' interval='60' mirror='https://tls.mbed.org/download/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>perl</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/mbedtls-2.28.0-gpl.tgz
+]]>
+        </unpack>
+        <patch>
+		<![CDATA[
+cd mbedtls-2.28.0
+sed -i 's%/usr/local%/usr%g' Makefile 
+]]>
+	</patch>
+        <build>
+            <![CDATA[cd mbedtls-2.28.0
+	   export CFLAGS="-fPIC" 
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd mbedtls-2.28.0
+make install
+# echo '/usr/compat.old/qt4/lib' >> /etc/ld.so.conf
+# ldconfig 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf mbedtls-2.28.0
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,59 @@
+<llpackages>
+	<package 
+		name="ruby-mahoro"
+		version="0.5"
+		class="user"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="3ed962a1b1234cd1f567294548b037afdb9ffbb9">mahoro-0.5.gem</pkg>
+				<mirror>https://rubygems.org/downloads/</mirror>
+			</file>
+			<manualcheck date="20130429" interval="60" page="http://bogomips.org/mahoro.git/snapshot/" />
+			<!--<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.1.2." />
+					<atext linktext="grsync-1.2." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>-->
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>ruby</dep>
+                        <dep>file</dep>
+			<dep>rubygem-pkg-config</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			install -m 0644  ${SRCDIR}/mahoro-${PKGVERSION}.gem . 
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			
+			
+			
+
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			gem install ${PKGNAME#ruby-} --version ${PKGVERSION} --local
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf mahoro-${PKGVERSION}.gem
+			]]>
+		</clean>
+	</package>
+</llpackages>

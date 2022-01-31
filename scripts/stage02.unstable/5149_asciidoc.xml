@@ -1,0 +1,46 @@
+<llpackages>
+    <package name='asciidoc' version='9.1.0' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a71b34922d5b4c774ca971b48f1d6dc52ad36e29'>
+                    asciidoc-9.1.0.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/asciidoc/asciidoc-py3/releases/download/9.1.0/
+                </mirror>
+            </file>
+            <manualcheck date='20220129' interval='60' mirror='https://github.com/asciidoc/asciidoc-py3/releases/download/9.1.0/'/>
+        </sources>
+	<builddeps>
+			<dep>libxslt</dep>
+			<dep>lynx</dep>
+			<dep>Python3</dep>
+			<dep>ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+sed -i 's:doc/testasciidoc.1::' Makefile.in &&
+rm doc/testasciidoc.1.txt
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

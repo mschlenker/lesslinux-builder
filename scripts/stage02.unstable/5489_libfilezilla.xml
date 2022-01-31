@@ -1,0 +1,74 @@
+<llpackages>
+    <package name='libfilezilla' version='0.35.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='2f4c94cb45039089b7bc39fade0561f29d9cd883'>
+                    libfilezilla-0.35.0.tar.bz2
+                </pkg>
+                <mirror>https://download.filezilla-project.org/libfilezilla/
+                </mirror>
+            </file>
+            <manualcheck date='20170615' interval='60' mirror='http://downloads.sourceforge.net/project/filezilla/libfilezilla/'/>
+        </sources>
+	<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gnutls3</dep>
+                        <dep>grep</dep>
+                        <dep>gtk3</dep>
+                        <dep>inetutils</dep>
+                        <dep>libidn</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>sqlite</dep>
+                        <dep>wxWidgets3</dep>
+                        <dep>xdg-utils</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+]]>
+        </unpack>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	jobcount=2
+	if [ -n "$DISTCC_POTENTIAL_HOSTS" ] && which distcc ; then
+		jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+		export CC="distcc gcc"
+		export CXX="distcc g++"
+	fi
+	#export CC=gcc82 
+	#export CXX=g++82
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+	make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+	   # export CC=gcc82 
+	#export CXX=g++82
+make install DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -60,6 +60,7 @@
 	<links>
 		<softlink target="/static/bin/busybox">/linuxrc</softlink>
 		<softlink target="/static/bin/busybox">/init</softlink>
+		<softlink target="/var/run">/run</softlink>
 		<!-- <softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc</softlink>
 		<softlink target="/usr/share/themes/Xfce/gtk-2.0/gtkrc">/root/.gtkrc-2.0</softlink> -->
 	</links>
@@ -361,7 +362,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/static/bin:/static/sbin
 . /etc/rc.subr/extractbootparams
 . /etc/rc.subr/colors
 		
-DBUS_LAUNCH=/usr/bin/dbus-launch
+DBUS_LAUNCH="/usr/bin/dbus-launch --exit-with-session"
 ## VESA_MODE=0x0117
 ## driver="xvesa"
 ## vesapref=""
@@ -4331,7 +4332,7 @@ iso_hack_convert() {
 	[ "$swapblocks" -gt 1 ] && sed -i 's/swap=none/swap='"${swapuuid}"'/g'    /lesslinux/boot/boot/isolinux/extlinux.conf
 
 	echo -n "${newuuid}" > /lesslinux/boot/boot/boot.uuid
-	extlinux --install /lesslinux/boot/boot/isolinux
+	extlinux --install /lesslinux/boot/boot/isolinux || touch /var/run/lesslinux/preppartitions
 	
 	tar -C /lesslinux/cdrom -cf - Manual Anleitungen autorun.usb GPL.txt license lesslinux.ico secuperts.ico sad.ico cobi.ico | tar -C  /lesslinux/boot -xvf -
 	mv /lesslinux/boot/autorun.usb /lesslinux/boot/autorun.inf
@@ -5265,6 +5266,9 @@ case $1 in
 	fi
 	mkdir -p /lesslinux/boot
 	mount -t vfat -o rw,iocharset=utf8 ${device}1 /lesslinux/boot
+	if [ '!' -f /lesslinux/boot/boot/isolinux/ldlinux.sys ]  ; then
+		extlinux --install /lesslinux/boot/boot/isolinux
+	fi
 	if [ -f /lesslinux/cdrom/boot/kickstart.xd3 ]  ; then
 		for f in ` cat /lesslinux/cdrom/lesslinux/boot.sha | awk '{print $2}' `; do
 			cat /lesslinux/cdrom/boot/kernel/${f} >> /lesslinux/boot/boot/kickstart.raw

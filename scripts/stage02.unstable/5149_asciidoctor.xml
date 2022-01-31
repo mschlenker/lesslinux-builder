@@ -1,0 +1,43 @@
+<llpackages>
+    <package name='rubygem-asciidoctor' version='2.0.17' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='541e323fe0d447723286ac3641c7d124fcfcb592'>
+                    asciidoctor-2.0.17.gem
+                </pkg>
+                <mirror>
+                    https://rubygems.org/downloads/
+                </mirror>
+            </file>
+            <manualcheck date='20220129' interval='60' mirror='https://rubygems.org/downloads/'/>
+        </sources>
+	<builddeps>
+			<dep>libxslt</dep>
+			<dep>lynx</dep>
+			<dep>Python3</dep>
+			<dep>ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[cp -v ${SRCDIR}/asciidoctor-${PKGVERSION}.gem . 
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+/bin/true
+]]>
+        </build>
+        <install>
+            <![CDATA[
+gem install ${PKGNAME#rubygem-} --version ${PKGVERSION} --local
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -f asciidoctor-${PKGVERSION}.gem
+]]>
+        </clean>
+    </package>
+</llpackages>

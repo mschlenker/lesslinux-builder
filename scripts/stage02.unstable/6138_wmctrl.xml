@@ -1,0 +1,59 @@
+<llpackages>
+    <package name='wmctrl' version='1.07' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='a123019a7fd5adc3e393fc1108cb706268a34e4d'>
+                    wmctrl-1.07.tar.gz
+                </pkg>
+                <mirror>
+                    https://sites.google.com/site/tstyblo/wmctrl/
+                </mirror>
+            </file>
+            <manualcheck date='20151017' interval='60' mirror='https://sites.google.com/site/tstyblo/wmctrl/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>glib</dep>
+                        <dep>grep</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libX11</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXt</dep>
+                        <dep>make</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

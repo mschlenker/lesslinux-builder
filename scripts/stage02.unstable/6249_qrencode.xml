@@ -1,0 +1,47 @@
+<llpackages>
+    <package name='libqrencode' version='4.1.1' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='8d0283fc2d7e6a23d1e5809f4bb406bd32369d36'>
+                    libqrencode-4.1.1.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/fukuchi/libqrencode/archive/refs/tags/
+                </mirror>
+            </file>
+            <manualcheck date='20220129' interval='60' mirror='https://github.com/fukuchi/libqrencode/archive/refs/tags/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/libqrencode-4.1.1.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libqrencode-4.1.1
+bash autogen.sh
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libqrencode-4.1.1
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libqrencode-4.1.1
+]]>
+        </clean>
+    </package>
+</llpackages>

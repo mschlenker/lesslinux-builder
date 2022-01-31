@@ -58,11 +58,7 @@
                         <dep>glibc</dep>
                         <dep>gperf</dep>
                         <dep>grep</dep>
-                        <!-- <dep>gst-plugins-bad</dep>
                         <dep>gst-plugins-base1</dep>
-                        <dep>gst-plugins-base</dep>
-                        <dep>gstreamer1</dep>
-                        <dep>gstreamer</dep> -->
                         <dep>gtk3</dep>
 			<dep>harfbuzz</dep>
                         <dep>icu</dep>
@@ -102,9 +98,9 @@
                         <!-- <dep>util-keysyms</dep> -->
                         <dep>wayland</dep>
                         <dep>which</dep>
-                        <!-- <dep>xcb-util-image</dep>
+                        <dep>xcb-util-image</dep>
                         <dep>xcb-util-renderutil</dep>
-                        <dep>xcb-util-wm</dep> -->
+                        <dep>xcb-util-wm</dep>
                         <dep>xproto-base</dep>
                         <dep>zlib</dep>
                 </builddeps>
@@ -147,8 +143,7 @@ sed -i '/type_traits/a #include <limits>' qtdeclarative/src/qmldebug/qqmlprofile
             -system-sqlite                            \
             -nomake examples                          \
             -no-rpath                                 \
-            -syslog                                   \
-            -skip qtwebengine
+            -syslog                            
 				make -j $jobcount 
 			else
 				./configure -prefix /usr                      \
@@ -161,8 +156,7 @@ sed -i '/type_traits/a #include <limits>' qtdeclarative/src/qmldebug/qqmlprofile
             -system-sqlite                            \
             -nomake examples                          \
             -no-rpath                                 \
-            -syslog                                   \
-            -skip qtwebengine
+            -syslog                                 
 				make -j 4
 			fi
 			]]>

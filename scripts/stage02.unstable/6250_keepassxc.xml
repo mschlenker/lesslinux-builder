@@ -1,0 +1,89 @@
+<llpackages>
+    <package name='keepassxc' version='2.6.6' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='11a2d66f0b08e1504d1521bff025bf6f9b9ca648'>
+                    keepassxc-2.6.6-src.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/keepassxreboot/keepassxc/releases/download/2.6.6/
+                </mirror>
+            </file>
+            <manualcheck date='20180316' interval='60' mirror='https://github.com/keepassxreboot/keepassxc/releases/download/2.3.1/'/>
+        </sources>
+	<builddeps>
+                        <dep>Mesa</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>libICE</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXScrnSaver</dep>
+                        <dep>libXau</dep>
+                        <dep>libXcomposite</dep>
+                        <dep>libXcursor</dep>
+                        <dep>libXdamage</dep>
+                        <dep>libXdmcp</dep>
+                        <dep>libXext</dep>
+                        <dep>libXfixes</dep>
+                        <dep>libXft</dep>
+                        <dep>libXi</dep>
+                        <dep>libXinerama</dep>
+                        <dep>libXmu</dep>
+                        <dep>libXpm</dep>
+                        <dep>libXrandr</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libXtst</dep>
+                        <dep>libXv</dep>
+                        <dep>libXxf86vm</dep>
+                        <dep>libgcrypt15</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxkbfile</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>phc-winner-argon2</dep>
+                        <dep>qt5</dep>
+                        <!-- <dep>qtstyleplugins</dep> -->
+                        <dep>xproto-base</dep>
+                        <dep>zlib</dep>
+			<dep>libqrencode</dep>
+			<dep>libsodium</dep>
+			<dep>asciidoc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}-src.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[
+	 export CFLAGS+="-fPIE"   
+cd ${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

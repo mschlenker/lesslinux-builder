@@ -1,0 +1,65 @@
+<llpackages>
+	<package 
+		name="lesslinux-eset"
+		version="20190103-01"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="76f38bfbd96b98ae96dfdf4486b720927063c9e3">lesslinux-eset-20190103-01.tar.bz2</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<manualcheck date="20170831" interval="120" page="http://distfiles.lesslinux.org/" />
+			<!--
+			https://download.eset.com/com/eset/tools/recovery/rescue_cd/latest/eset-sysrescue.1.0.9.0.enu.iso
+			-->
+			<!-- <check>
+				<page html="http://xorg.freedesktop.org/archive/individual/app/">
+					<atext linktext="xset-1.2.3." />
+					<atext linktext="xset-1.2.4." />
+					<atext linktext="xset-1.2.5." />
+					<atext linktext="xset-1.2.6." />
+					<atext linktext="xset-1.3." />
+					<atext linktext="xset-1.4." />
+					<atext linktext="xset-2." />
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+			<dep>bash</dep>
+			<dep>ruby</dep>
+		</builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			echo 'Nothing to do here!'
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd eset
+			mkdir -p ${TGTDIR}/etc/opt/eset
+			touch ${TGTDIR}/etc/opt/eset/.keep_me
+			mkdir -p ${TGTDIR}/opt/eset/esets
+			touch ${TGTDIR}/opt/eset/esets/.keep_me
+			mkdir -p ${TGTDIR}/var/opt/eset/esets
+			touch ${TGTDIR}/var/opt/eset/esets/.keep_me
+			mkdir -p ${TGTDIR}/usr/bin
+			mkdir -p ${TGTDIR}/usr/share/applications
+			mkdir -p ${TGTDIR}/usr/share/lesslinux/blob
+			install -m 0755 download-eset.rb ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0644 eset.xml ${TGTDIR}/usr/share/lesslinux/blob/
+			install -m 0644 eset.desktop ${TGTDIR}/usr/share/applications
+			install -m 0755 eset.sh ${TGTDIR}/usr/bin
+			
+			]]>
+		</install>
+	</package>
+</llpackages>

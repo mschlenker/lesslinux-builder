@@ -1,0 +1,57 @@
+<llpackages>
+	<package 
+		name="libassuan"
+		version="2.5.5"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="ec4f67c0117ccd17007c748a392ded96dc1b1ae9">libassuan-2.5.5.tar.bz2</pkg>
+				<mirror>ftp://ftp.gnupg.org/gcrypt/libassuan/</mirror>
+			</file>
+			<manualcheck date="20160923" interval="90" page="ftp://ftp.gnupg.org/gcrypt/libassuan/" />
+			<check>
+				<page html="ftp://ftp.gnupg.org/gcrypt/libassuan/">
+					<atext linktext="libassuan-2.4.7." />
+					<atext linktext="libassuan-2.4.8." />
+					<atext linktext="libassuan-2.4.4." />
+					<atext linktext="libassuan-2.4.5." />
+					<atext linktext="libassuan-2.4.6." />
+					<atext linktext="libassuan-2.5." />
+					<atext linktext="libassuan-2.6." />
+					<atext linktext="libassuan-2.7." />
+					<atext linktext="libassuan-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>libgpg-error</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<patch />
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			./configure --prefix=/usr --sysconfdir=/etc
+			make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

@@ -1,0 +1,59 @@
+<llpackages>
+    <package name='devilspie2' version='0.43' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='12dbaa373394de67053a0d9d4b15e493d35232eb'>
+                    devilspie2_0.43-src.tar.gz
+                </pkg>
+                <mirror>
+                    http://download.savannah.nongnu.org/releases/devilspie2/
+                </mirror>
+            </file>
+            <manualcheck date='20190104' interval='60' mirror='http://download.savannah.nongnu.org/releases/devilspie2/'/>
+        </sources>
+	<builddeps>
+                        <dep>atk</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>gettext</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>gtk3</dep>
+                        <dep>libX11</dep>
+                        <dep>libwnck3</dep>
+                        <dep>lua</dep>
+                        <dep>make</dep>
+                        <dep>pango</dep>
+                        <dep>pkg-config</dep>
+                        <dep>sed</dep>
+                        <dep>xproto-base</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/devilspie2_0.43-src.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd devilspie2-0.43
+export PKG_CONFIG_PATH=/usr/compat.new/lib/pkgconfig:/usr/lib/pkgconfig:/usr/compat.old/lib/pkgconfig
+make PREFIX=/usr WERROR=0
+]]>
+        </build>
+        <install>
+            <![CDATA[cd devilspie2-0.43
+make install PREFIX=/usr WERROR=0 DESTDIR=${TGTDIR}
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf devilspie2-0.43
+]]>
+        </clean>
+    </package>
+</llpackages>

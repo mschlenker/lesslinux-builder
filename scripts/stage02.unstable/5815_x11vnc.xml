@@ -1,0 +1,126 @@
+<llpackages>
+	<package 
+		name="x11vnc"
+		version="0.9.16"
+		class="user"
+		install="destdir"
+		>
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                                    
+				<pkg sha1="4e0ccad71583858beab1ba4e5fa91a33ca2f7986">x11vnc_0.9.16.orig.tar.gz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/x/x11vnc/</mirror>
+			</file>
+			<file>                                                                                                    
+				<pkg sha1="7d9ec2ce6ac38f93ada341be2e3042d1b4c2b794">x11vnc_0.9.16-7.debian.tar.xz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/universe/x/x11vnc/</mirror>
+			</file>
+			<manualcheck date="20150823" interval="365" page="http://www.karlrunge.com/x11vnc/#downloading" />
+			<!-- <check>
+				<page html="http://archive.xfce.org/src/apps/midori/0.3/">
+					<atext linktext="midori-0.3.7." />
+					<atext linktext="midori-0.3.8." />
+					<atext linktext="midori-0.3.9." />
+					<atext linktext="midori-0.3.10." />
+					<atext linktext="midori-0.3.11." />
+					<atext linktext="midori-0.3.12." />
+				</page>
+				<page html="http://archive.xfce.org/src/apps/midori/">
+					<atext linktext="0.4" />
+					<atext linktext="0.5" />
+					<atext linktext="0.6" /> 
+				</page>
+			</check> -->
+		</sources>
+		<builddeps>
+                        <dep>libXtst</dep>
+			<dep>libXext</dep>
+			<dep>libXrandr</dep>
+			<dep>libXfixes</dep>
+			<dep>libXdamage</dep>
+			<dep>libX11</dep>
+			<dep>libpthread-stubs</dep>
+			<dep>zlib</dep>
+			<dep>jpegsrc</dep>
+			<dep>libXi</dep>
+			<dep>libxcb</dep>
+                        <dep>xcb-util</dep>
+			<dep>libXau</dep>
+			<dep>libXdmcp</dep>
+			<dep>libXrender</dep>
+			<dep>imake</dep>
+			<dep>xorg-server</dep>
+			<dep>LibVNCServer</dep>
+                </builddeps> 
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
+			tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-7.debian.tar.xz
+			]]>
+		</unpack>
+		<patch>
+		<![CDATA[ 
+		
+cd ${PKGNAME}-${PKGVERSION}
+cat ../debian/patches/series | while read fname ; do cat ../debian/patches/$fname | patch -p1; done
+
+		
+		]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			bash autogen.sh
+			./configure --prefix=/usr --sysconfdir=/etc && make
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR}
+			mkdir -p ${TGTDIR}/usr/bin
+			
+cat >> ${TGTDIR}/usr/bin/hilfmattias << WRAPPER
+#!/bin/bash
+
+pid=\$( pidof x11vnc )
+dotheloop=1
+
+if zenity --question --text "Dieses Script stellt eine unverschlüsselte Reverse-VNC-Verbindung zu matt23.mine.nu (der DynDNS-Adresse des LessLinux-Entwicklers) her. Sie sollten das nur zulassen, wenn Sie wissen, was Sie tun.\n\nWollen Sie das wirklich?" ; then
+	echo "Continuing..."
+else
+	zenity --error --text "Abbruch."
+	exit 1
+fi
+
+if [ -n "\$pid" ] && zenity --question --text "Ein Fernzugriff scheint bereits aktiv. Wollen Sie ihn beenden?" ; then
+	kill \$pid
+	sleep 2
+	kill -9 \$pid
+	zenity --info --text "Erledigt."
+	exit 0	
+fi 
+
+while [ "\$dotheloop" -gt 0 ] ; do
+	x11vnc -display :0 -connect matt23.mine.nu
+	if zenity --question --text "Die Verbindung wurde beendet. Soll sie erneut aufgebaut werden?" ; then
+		dotheloop=1
+	else
+		dotheloop=0
+	fi 
+done
+
+WRAPPER
+
+chmod 0755 ${TGTDIR}/usr/bin/hilfmattias
+
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

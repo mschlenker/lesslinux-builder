@@ -22,10 +22,12 @@
     <subpackage name='bin'>
         <file path='/usr/share/syslinux/ifcpu64.c32' owner='0' group='0' mode='100644'/>
         <file path='/usr/sbin/extlinux' owner='0' group='0' mode='100755'/>
-        <file path='/static/sbin/extlinux' owner='0' group='0' mode='100755'/>
     </subpackage>
     <subpackage name='doc'/>
-    <subpackage name='config'/>
+    <subpackage name='config'>
+        <file path='/etc/syslinux/mbr.bin' owner='0' group='0' mode='100644'/>
+        <file path='/etc/syslinux/gptmbr.bin' owner='0' group='0' mode='100644'/>
+    </subpackage>
     <subpackage name='devel'/>
     <subpackage name='localization'/>
     <subpackage name='tzdata'/>
@@ -55,4 +57,18 @@
         <file path='/usr/share/syslinux/isolinux.bin' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='minimal'/>
+        <subpackage name='bin'>
+            <file path='/static/sbin/extlinux'/>
+        </subpackage>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
 </pkgdesc>

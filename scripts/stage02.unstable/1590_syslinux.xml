@@ -82,7 +82,7 @@
 			#install -m 0755 syslinux.dynamic 	  			  ${TGTDIR}/usr/sbin/syslinux
 			#install -m 0755 extlinux.dynamic                                  ${TGTDIR}/usr/sbin/extlinux
 			
-			install -m 0755 extlinux/usr/bin/extlinux       ${TGTDIR}/static/sbin/extlinux
+			# install -m 0755 extlinux/usr/bin/extlinux       ${TGTDIR}/static/sbin/extlinux
 			install -m 0755 extlinux/usr/bin/extlinux       ${TGTDIR}/usr/sbin/extlinux
 			
 			install -m 0644 isolinux/usr/lib/ISOLINUX/isolinux.bin       ${TGTDIR}/usr/share/syslinux
@@ -93,14 +93,14 @@
 				libcom32.c32 liblua.c32 libgpl.c32 ; do
 				install -m 0644 syslinux-common/usr/lib/syslinux/modules/bios/${f} ${TGTDIR}/usr/share/syslinux/
 			done
-			for f in mbr.bin gptmbr.bin ; do
-				install -m 0644 syslinux-common/usr/lib/syslinux/mbr/ ${TGTDIR}/etc/syslinux
-			done
 			for f in syslinux-common/usr/lib/syslinux/mbr/extra/*.bin syslinux-common/usr/lib/syslinux/mbr/*.bin ; do
 				install -m 0644 $f ${TGTDIR}/usr/share/syslinux/
 			done
 			for f in isolinux/usr/lib/ISOLINUX/*.bin ; do
 				install -m 0644 $f ${TGTDIR}/usr/share/syslinux/
+			done
+			for f in mbr.bin gptmbr.bin ; do
+				install -m 0644 ${TGTDIR}/usr/share/syslinux/${f} ${TGTDIR}/etc/syslinux/
 			done
 			]]>
 		</install>

@@ -1,0 +1,71 @@
+<llpackages>
+	<package 
+		name="lzip"
+		version="1.22"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                        
+				<pkg sha1="9614e7b2460b72a118ed77c8a8c56dc5f5d338bf">lzip-1.22.tar.gz</pkg>
+				<mirror>http://download.savannah.gnu.org/releases/lzip/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="http://download.savannah.gnu.org/releases/lzip/" />
+			<check>
+				<page html="http://download.savannah.gnu.org/releases/lzip/">
+					<atext linktext="lzip-1.23." />
+					<atext linktext="lzip-1.24." />
+					<atext linktext="lzip-1.25." />
+					<atext linktext="lzip-1.20." />
+					<atext linktext="lzip-1.21." />
+					<atext linktext="lzip-1.22." />
+					<atext linktext="lzip-2." />
+					<atext linktext="lzip-3." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xzf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++"
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc
+			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
+				make -j $jobcount
+			else
+				make
+			fi
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

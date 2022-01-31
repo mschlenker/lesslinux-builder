@@ -1,0 +1,53 @@
+<llpackages>
+    <package name='cmst' version='2022.01.05' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='324481c951f12a080ad0f7fb355d557ad1eaab3b'>
+                    cmst-2022.01.05.tar.xz
+                </pkg>
+                <mirror>
+                    https://github.com/andrew-bibb/cmst/releases/download/cmst-2022.01.05/
+                </mirror>
+            </file>
+            <manualcheck date='20170629' interval='60' mirror='https://github.com/andrew-bibb/cmst/releases/download/cmst-2017.03.18/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>kguiaddons</dep>
+                        <dep>kidletime</dep>
+                        <dep>kwayland</dep>
+                        <dep>kwindowsystem</dep>
+                        <dep>libkscreen</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <dep>qt5</dep>
+                        <dep>solid</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}
+	    qmake-qt5
+	    make -j4
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}
+	    make install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}
+]]>
+        </clean>
+    </package>
+</llpackages>

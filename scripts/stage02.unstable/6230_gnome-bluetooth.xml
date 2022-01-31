@@ -1,0 +1,46 @@
+<llpackages>
+    <package name='gnome-bluetooth' version='3.34.5' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='0321aeee016b34fef5050dcf9511ba48d0779b81'>
+                    gnome-bluetooth-3.34.5.tar.xz
+                </pkg>
+                <mirror>
+                    http://ftp.gnome.org/pub/gnome/sources/gnome-bluetooth/3.34/
+                </mirror>
+            </file>
+            <manualcheck date='20171123' interval='60' mirror='http://ftp.gnome.org/pub/gnome/sources/gnome-bluetooth/3.20/'/>
+        </sources>
+	<builddeps>
+                        
+                        <dep>ghex</dep>
+				<dep>bluez</dep>
+				<dep>libcanberra</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.xz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+mkdir build &&
+cd    build &&
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}/build
+DESTDIR=${TGTDIR} ninja install 
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

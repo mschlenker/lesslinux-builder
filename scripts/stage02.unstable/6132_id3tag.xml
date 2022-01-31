@@ -1,0 +1,52 @@
+<llpackages>
+	<package 
+		name="id3tag"
+		version="0.14.2"
+		class="user">
+		<license>GPLv2</license>
+		<sources>
+			<file>
+				<pkg sha1="af62ee315142cf7ddc877a95fe259816cbfda95d">id3tag-0.14.2.gem</pkg>
+				<mirror>https://rubygems.org/downloads/</mirror>
+			</file>
+			<manualcheck date="20130524" interval="180" page="https://github.com/luislavena/sqlite3-ruby#readme" />
+			<!--<check>
+				<page html="http://sourceforge.net/projects/grsync/files/">
+					<atext linktext="grsync-1.1.2." />
+					<atext linktext="grsync-1.2." />
+					<atext linktext="grsync-2." />
+				</page>
+			</check>-->
+		</sources>
+		<builddeps>
+                        <dep>exifr</dep>
+                        <dep>mini_portile</dep>
+                        <dep>nokogiri</dep>
+                        <dep>openssl</dep>
+                        <dep>ruby</dep>
+                        <dep>rubygem-pkg-config</dep>
+                        <dep>sqlite3-ruby</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			cp ${SRCDIR}/${PKGNAME}-${PKGVERSION}.gem ./
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			true
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			gem install ${PKGNAME} --version ${PKGVERSION} --local
+			]]>
+		</install>
+		<clean>
+                        <![CDATA[
+                        rm ${PKGNAME}-${PKGVERSION}.gem
+                        ]]>
+                </clean>
+	</package>
+</llpackages>

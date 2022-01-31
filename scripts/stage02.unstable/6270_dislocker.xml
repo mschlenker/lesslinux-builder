@@ -1,0 +1,57 @@
+<llpackages>
+    <package name='dislocker' version='20220129' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='2dd615f45ab8636b3804bc6e31709c0defb7b18f'>
+                    dislocker-20220129.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/Aorimn/dislocker/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20181206' interval='60' mirror='https://github.com/Aorimn/dislocker/archive/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>fuse</dep>
+                        <dep>gcc</dep>
+                        <dep>git</dep>
+                        <dep>glibc</dep>
+                        <dep>gzip</dep>
+                        <dep>make</dep>
+                        <dep>mbedtls</dep>
+                        <dep>ruby</dep>
+			<dep>fuse</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/dislocker-20220129.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd dislocker
+mkdir _build
+cd _build
+export CFLAGS="-fPIC"
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd dislocker
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf dislocker
+]]>
+        </clean>
+    </package>
+</llpackages>

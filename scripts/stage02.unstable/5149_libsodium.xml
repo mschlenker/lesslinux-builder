@@ -1,0 +1,41 @@
+<llpackages>
+    <package name='libsodium' version='1.0.18' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='795b73e3f92a362fabee238a71735579bf46bb97'>
+                    libsodium-1.0.18.tar.gz
+                </pkg>
+                <mirror>
+                    https://download.libsodium.org/libsodium/releases/
+                </mirror>
+            </file>
+            <manualcheck date='20220129' interval='60' mirror='https://download.libsodium.org/libsodium/releases/'/>
+        </sources>
+	<builddeps>
+			<dep>libqrencode</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

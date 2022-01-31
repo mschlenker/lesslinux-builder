@@ -1,0 +1,49 @@
+<llpackages>
+    <package name='phc-winner-argon2' version='20190702' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='4b1de90ec1ccfb6e91001e849f2cbe0222cc8b4c'>
+                    20190702.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/P-H-C/phc-winner-argon2/archive/
+                </mirror>
+            </file>
+            <manualcheck date='20180316' interval='60' mirror='https://github.com/P-H-C/phc-winner-argon2/archive/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>make</dep>
+			<dep>ruby</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/20190702.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd phc-winner-argon2-20190702
+	    export CFLAGS+="-fPIE"
+make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd phc-winner-argon2-20190702
+make install
+install -m 0644 /usr/lib/x86_64-linux-gnu/libargon2.a /usr/lib
+install -m 0755 /usr/lib/x86_64-linux-gnu/libargon2.so.1 /usr/lib
+install -m 0644 /usr/lib/x86_64-linux-gnu/pkgconfig/libargon2.pc /usr/lib/pkgconfig/
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf phc-winner-argon2-20190702
+]]>
+        </clean>
+    </package>
+</llpackages>

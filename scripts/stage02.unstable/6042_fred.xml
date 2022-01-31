@@ -1,0 +1,90 @@
+<llpackages>
+    <package name='fred' version='0.2.0' install='destdir'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='39c95e662aa4739a8666fd9ddeb902e35f2cc016'>
+                    fred-0.2.0.tar.gz
+                </pkg>
+                <mirror>
+                    http://files.pinguin.lu/
+                </mirror>
+            </file>
+	     <file>
+                <pkg sha1='ecc9f9417242ab8584cf0674dcbad48a029e2093'>fred-extras-0.1.1.tar.bz2</pkg>
+                <mirror>http://distfiles.lesslinux.org/</mirror>
+            </file>
+            <manualcheck date='20150823' interval='180' mirror='http://files.pinguin.lu/'/>
+        </sources>
+	<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>hivex</dep>
+                        <dep>make</dep>
+                        <dep>qt5</dep>
+                        <dep>which</dep>
+			<dep>distcc</dep>
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+	    tar xf ${SRCDIR}/${PKGNAME}-extras-0.1.1.tar.bz2
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd ${PKGNAME}-${PKGVERSION}
+
+jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+# bash autogen.sh
+# ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+qmake
+make -j $jobcount 
+]]>
+        </build>
+        <install>
+            <![CDATA[
+mkdir -p ${TGTDIR}/usr/sbin
+mkdir -p ${TGTDIR}/usr/share/applications
+mkdir -p ${TGTDIR}/usr/share/fred
+
+[ -f ${PKGNAME}-${PKGVERSION}/fred ] || exit 1
+
+install -m 0755 ${PKGNAME}-${PKGVERSION}/fred  ${TGTDIR}/usr/sbin/
+install -m 0644 fred/*.pdf fred/*.fred ${TGTDIR}/usr/share/fred
+
+cat << DESKFILE >  ${TGTDIR}/usr/share/applications/fred.desktop
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=FRED Registry Editor
+Categories=CB-Other;
+Exec=sudo /usr/sbin/fred
+Icon=wine
+Terminal=false
+StartupNotify=true
+Path=
+
+DESKFILE
+
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf ${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

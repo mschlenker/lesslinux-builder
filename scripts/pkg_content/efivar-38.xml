@@ -1,0 +1,78 @@
+<pkgdesc name='efivar' version='38'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libefivar.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libefivar.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libefiboot.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libefiboot.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libefisec.so.1' owner='0' group='0'/>
+        <softlink path='/usr/lib/libefisec.so' owner='0' group='0'/>
+        <directory path='/usr/include/efivar' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/libefivar.so.1.38' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libefiboot.so.1.38' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libefisec.so.1.38' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/efivar' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/efisecdb' owner='0' group='0' mode='100755'/>
+        
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/efisecdb.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/efivar.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_append_variable.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_del_variable.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_get_next_variable_name.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_get_variable.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_get_variable_attributes.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_get_variable_size.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_guid_to_id_guid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_guid_to_name.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_guid_to_str.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_guid_to_symbol.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_name_to_guid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_set_variable.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_str_to_guid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_symbol_to_guid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variables_supported.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_t.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_import.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_export.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_alloc.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_free.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_set_name.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_get_name.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_set_guid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_get_guid.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_set_data.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_get_data.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_get_attributes.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_set_attributes.3' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man3/efi_variable_realize.3' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/X11/extensions/evieproto.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/extensions/Xeviestr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efiboot-creator.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efiboot-loadopt.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efiboot.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efisec-secdb.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efisec-types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efisec.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efivar-dp.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efivar-guids.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efivar-time.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efivar-types.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/efivar/efivar.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/efivar.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/efiboot.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/efisec.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'/>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

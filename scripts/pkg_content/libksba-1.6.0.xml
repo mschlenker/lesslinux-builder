@@ -1,0 +1,43 @@
+<pkgdesc name='libksba' version='1.6.0'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libksba.so.8' owner='0' group='0'/>
+        <softlink path='/usr/lib/libksba.so' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libksba.so.8.14.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/info/dir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/info/ksba.info' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/X11/extensions/evieproto.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/extensions/Xeviestr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/ksba.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/ksba.pc' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/bin/ksba-config' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/libksba.la' owner='0' group='0' mode='100755'/>
+        <file path='/usr/share/aclocal/ksba.m4' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished>
+        <subpackage name='skel'/>
+        <subpackage name='bin'/>
+        <subpackage name='minimal'>
+            <file path='/usr/lib/libksba.so.8.11.6'/>
+        </subpackage>
+        <subpackage name='doc'/>
+        <subpackage name='config'/>
+        <subpackage name='devel'/>
+        <subpackage name='localization'/>
+        <subpackage name='tzdata'/>
+        <subpackage name='uncategorized'/>
+        <subpackage name='ignore'/>
+    </vanished>
+</pkgdesc>

@@ -1,13 +1,13 @@
 <llpackages>
 	<package 
 		name="gnupg"
-		version="1.4.23"
+		version="2.2.33"
 		class="user"
 		install="destdir">
 		<license>GPLv2</license>
 		<sources>
 			<file>            
-				<pkg sha1="13747486ed5ff707f796f34f50f4c3085c3a6875">gnupg-1.4.23.tar.bz2</pkg>
+				<pkg sha1="70053b799a79139e0e7889282805fc889dd22540">gnupg-2.2.33.tar.bz2</pkg>
 				<mirror>https://gnupg.org/ftp/gcrypt/gnupg/</mirror>
 			</file>
 			<manualcheck date="20170801" interval="90" page="ftp://ftp.gnupg.org/gcrypt/gnupg/" />
@@ -53,6 +53,11 @@
                         <dep>tar</dep>
                         <dep>util-linux-ng</dep>
                         <dep>zlib</dep>
+			<dep>libassuan</dep>
+			<dep>libgcrypt15</dep>
+			<dep>libksba</dep>
+			<dep>npth</dep>
+			<dep>gnutls3</dep>
 			<!-- soft -->
 			 <dep>curl</dep>
 			 <dep>distcc</dep>
@@ -70,14 +75,15 @@
 		<build>
 			<![CDATA[
 			cd ${PKGNAME}-${PKGVERSION}
+			sed -e '/noinst_SCRIPTS = gpg-zip/c sbin_SCRIPTS += gpg-zip' -i tools/Makefile.in
 			if [ -n "$DISTCC_POTENTIAL_HOSTS" ]  ; then
 				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
 				export CC="distcc gcc"
 				export CXX="distcc g++"
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 				make -j $jobcount
 			else
-				./configure --prefix=/usr --sysconfdir=/etc
+				./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 				make
 			fi
 			]]>

@@ -59,6 +59,7 @@
             --disable-pylibmount \
             --without-python     \
             --without-systemd    \
+	    --enable-static \
             --without-systemdsystemunitdir \
             runstatedir=/run  && make -j $jobcount 
 			]]>

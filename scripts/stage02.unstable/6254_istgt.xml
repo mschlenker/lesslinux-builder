@@ -1,12 +1,20 @@
 <llpackages>
-    <package name='istgt' version='20180524' install='destdir'>
+    <package name='istgt' version='0.4~20111008' install='destdir'>
         <license>
             unknown
         </license>
         <sources>
             <file>
-                <pkg sha1='bab6e886628491a26addb426505fa72b6526a57b'>
-                    istgt-20180524.tar.gz
+                <pkg sha1='aa7bc47365763bddf82b4fcdffd659b2cb38a77c'>
+                    istgt_0.4~20111008.orig.tar.gz
+                </pkg>
+                <mirror>
+                    http://distfiles.lesslinux.org/
+                </mirror>
+            </file>
+	    <file>
+                <pkg sha1='73a45e68ef7c03e99640db122b24f934fa40ff2f'>
+                    istgt_0.4~20111008-4.debian.tar.xz
                 </pkg>
                 <mirror>
                     http://distfiles.lesslinux.org/
@@ -30,23 +38,37 @@
                         <dep>sed</dep>
                 </builddeps>
         <unpack>
-            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+            <![CDATA[
+tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}.orig.tar.gz
+tar xf ${SRCDIR}/${PKGNAME}_${PKGVERSION}-4.debian.tar.xz
 ]]>
         </unpack>
-        <patch/>
+        <patch>
+	<![CDATA[
+cd istgt-20111008
+cat ../debian/patches/series | while read fname ; do cat ../debian/patches/$fname | patch -p1; done
+	
+]]>
+	</patch>
         <build>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[
+# cd ${PKGNAME}-${PKGVERSION}
+cd istgt-20111008
+export CC=/usr/bin/gcc	    
+bash autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 make
 ]]>
         </build>
         <install>
-            <![CDATA[cd ${PKGNAME}
+            <![CDATA[
+cd istgt-20111008
+# cd ${PKGNAME}-${PKGVERSION}
 make install DESTDIR=${TGTDIR}
 ]]>
         </install>
         <clean>
-            <![CDATA[rm -rf ${PKGNAME}
+            <![CDATA[rm -rf istgt-20111008
 ]]>
         </clean>
     </package>

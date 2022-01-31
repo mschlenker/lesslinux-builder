@@ -1,110 +1,106 @@
 <pkgdesc name='polkit' version='0.120'>
-    <subpackage name='skel'/>
-    <subpackage name='minimal'/>
-    <subpackage name='bin'/>
-    <subpackage name='doc'/>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libpolkit-gobject-1.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpolkit-gobject-1.so' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpolkit-agent-1.so.0' owner='0' group='0'/>
+        <softlink path='/usr/lib/libpolkit-agent-1.so' owner='0' group='0'/>
+        <directory path='/etc/polkit-1' owner='0' group='0'/>
+        <directory path='/etc/polkit-1/rules.d' owner='0' group='0'/>
+        <directory path='/usr/include/polkit-1' owner='0' group='0'/>
+        <directory path='/usr/include/polkit-1/polkit' owner='0' group='0'/>
+        <directory path='/usr/include/polkit-1/polkitagent' owner='0' group='0'/>
+        <directory path='/usr/lib/polkit-1' owner='0' group='0'/>
+        <directory path='/usr/share/polkit-1/rules.d' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='minimal'>
+	<file path='/usr/lib/libpolkit-gobject-1.so.0.0.0' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/polkit-1/polkitd' owner='0' group='0' mode='100755'/>
+        <file path='/usr/lib/polkit-1/polkit-agent-helper-1' owner='0' group='0' mode='104755'/>
+        <file path='/usr/lib/libpolkit-agent-1.so.0.0.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='bin'>
+        <file path='/usr/bin/pkexec' owner='0' group='0' mode='104755'/>
+        <file path='/usr/bin/pkcheck' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pkaction' owner='0' group='0' mode='100755'/>
+        <file path='/usr/bin/pkttyagent' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'>
+        <file path='/usr/share/man/man1/pkexec.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pkcheck.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pkaction.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man1/pkttyagent.1' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/polkit.8' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/man/man8/polkitd.8' owner='0' group='0' mode='100644'/>
+    </subpackage>
     <subpackage name='config'>
-        <file path='/etc/passwd' owner='0' group='0' mode='100644'/>
-        <file path='/etc/group' owner='0' group='0' mode='100644'/>
-        <file path='/etc/shadow' owner='0' group='0' mode='100644'/>
+        <file path='/etc/pam.d/polkit-1' owner='0' group='0' mode='100644'/>
+        <file path='/etc/polkit-1/rules.d/50-default.rules' owner='0' group='0' mode='100644'/>
     </subpackage>
     <subpackage name='devel'>
         <file path='/usr/include/X11/extensions/evieproto.h' owner='0' group='0' mode='100644'/>
         <file path='/usr/include/X11/extensions/Xeviestr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitenumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitauthorityfeatures.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitcheckauthorizationflags.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkiterror.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitimplicitauthorization.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitactiondescription.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitauthority.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitauthorizationresult.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitdetails.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkit.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitidentity.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitpermission.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitsubject.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitsystembusname.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkittemporaryauthorization.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitunixgroup.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitunixnetgroup.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitunixprocess.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitunixsession.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitunixuser.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkitprivate.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkit/polkittypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkitagent/polkitagentenumtypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkitagent/polkitagentlistener.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkitagent/polkitagent.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkitagent/polkitagentsession.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkitagent/polkitagenttextlistener.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/polkit-1/polkitagent/polkitagenttypes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/polkit-gobject-1.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/polkit-agent-1.pc' owner='0' group='0' mode='100644'/>
     </subpackage>
-    <subpackage name='localization'/>
+    <subpackage name='localization'>
+        <file path='/usr/share/locale/pl/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/tr/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/da/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/it/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/de/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sv/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hr/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/cs/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/id/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/uk/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/pt_BR/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_CN/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/sk/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/hu/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/zh_TW/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/ro/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/locale/nn/LC_MESSAGES/polkit-1.mo' owner='0' group='0' mode='100644'/>
+    </subpackage>
     <subpackage name='tzdata'/>
-    <subpackage name='uncategorized'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/girepository-1.0/Polkit-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/girepository-1.0/PolkitAgent-1.0.typelib' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gettext/its/polkit.its' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gettext/its/polkit.loc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/dbus-1/system.d/org.freedesktop.PolicyKit1.conf' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/dbus-1/system-services/org.freedesktop.PolicyKit1.service' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/Polkit-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/gir-1.0/PolkitAgent-1.0.gir' owner='0' group='0' mode='100644'/>
+        <file path='/usr/share/polkit-1/actions/org.freedesktop.policykit.policy' owner='0' group='0' mode='100644'/>
+    </subpackage>
     <subpackage name='ignore'/>
-    <vanished>
-        <subpackage name='skel'/>
-        <subpackage name='minimal'>
-            <file path='/usr/lib/libpolkit-gobject-1.so.0.0.0'/>
-            <file path='/usr/lib/libpolkit-agent-1.so.0.0.0'/>
-        </subpackage>
-        <subpackage name='bin'>
-            <file path='/usr/bin/pkexec'/>
-            <file path='/usr/bin/pk-example-frobnicate'/>
-            <file path='/usr/bin/pkcheck'/>
-            <file path='/usr/bin/pkttyagent'/>
-            <file path='/usr/bin/pkaction'/>
-            <file path='/usr/lib/polkit-1/polkit-agent-helper-1'/>
-            <file path='/usr/lib/polkit-1/polkitd'/>
-        </subpackage>
-        <subpackage name='doc'>
-            <file path='/usr/share/man/man1/pkcheck.1'/>
-            <file path='/usr/share/man/man1/pkexec.1'/>
-            <file path='/usr/share/man/man1/pkttyagent.1'/>
-            <file path='/usr/share/man/man1/pkaction.1'/>
-            <file path='/usr/share/man/man8/polkitd.8'/>
-            <file path='/usr/share/man/man8/polkit.8'/>
-        </subpackage>
-        <subpackage name='config'>
-            <file path='/etc/polkit-1/rules.d/50-default.rules'/>
-            <file path='/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf'/>
-        </subpackage>
-        <subpackage name='devel'>
-            <file path='/usr/lib/libpolkit-gobject-1.la'/>
-            <file path='/usr/lib/libpolkit-agent-1.la'/>
-            <file path='/usr/lib/pkgconfig/polkit-agent-1.pc'/>
-            <file path='/usr/lib/pkgconfig/polkit-gobject-1.pc'/>
-            <file path='/usr/include/polkit-1/polkitagent/polkitagent.h'/>
-            <file path='/usr/include/polkit-1/polkitagent/polkitagentlistener.h'/>
-            <file path='/usr/include/polkit-1/polkitagent/polkitagentenumtypes.h'/>
-            <file path='/usr/include/polkit-1/polkitagent/polkitagentsession.h'/>
-            <file path='/usr/include/polkit-1/polkitagent/polkitagenttextlistener.h'/>
-            <file path='/usr/include/polkit-1/polkitagent/polkitagenttypes.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitenumtypes.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitunixnetgroup.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitauthority.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitimplicitauthorization.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitprivate.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitauthorityfeatures.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitsystembusname.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkittemporaryauthorization.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitsubject.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitpermission.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitunixprocess.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitauthorizationresult.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitdetails.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitunixuser.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkittypes.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitactiondescription.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkit.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitcheckauthorizationflags.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkiterror.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitidentity.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitunixsession.h'/>
-            <file path='/usr/include/polkit-1/polkit/polkitunixgroup.h'/>
-        </subpackage>
-        <subpackage name='localization'>
-            <file path='/usr/share/locale/de/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/pt_BR/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/hr/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/da/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/sv/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/hu/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/uk/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/tr/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/sk/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/zh_CN/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/pl/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/zh_TW/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/cs/LC_MESSAGES/polkit-1.mo'/>
-            <file path='/usr/share/locale/id/LC_MESSAGES/polkit-1.mo'/>
-        </subpackage>
-        <subpackage name='tzdata'/>
-        <subpackage name='uncategorized'>
-            <file path='/usr/share/polkit-1/actions/org.freedesktop.policykit.examples.pkexec.policy'/>
-            <file path='/usr/share/polkit-1/actions/org.freedesktop.policykit.policy'/>
-            <file path='/usr/share/gettext/its/polkit.loc'/>
-            <file path='/usr/share/gettext/its/polkit.its'/>
-            <file path='/usr/share/dbus-1/system-services/org.freedesktop.PolicyKit1.service'/>
-            <file path='/usr/share/gir-1.0/PolkitAgent-1.0.gir'/>
-            <file path='/usr/share/gir-1.0/Polkit-1.0.gir'/>
-            <file path='/usr/lib/girepository-1.0/Polkit-1.0.typelib'/>
-            <file path='/usr/lib/girepository-1.0/PolkitAgent-1.0.typelib'/>
-        </subpackage>
-        <subpackage name='ignore'/>
-    </vanished>
 </pkgdesc>

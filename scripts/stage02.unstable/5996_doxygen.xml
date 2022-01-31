@@ -1,0 +1,63 @@
+<llpackages>
+    <package name='doxygen' version='1.9.3' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='cf98170e27a87a1bb980e3ab48e572b49b3c71e4'>
+                    doxygen-1.9.3.src.tar.gz
+                </pkg>
+                <mirror>
+                    https://www.doxygen.nl/files/
+                </mirror>
+            </file>
+            <manualcheck date='20160412' interval='60' mirror='http://ftp.stack.nl/pub/doxygen/'/>
+        </sources>
+	<builddeps>
+                        <!-- <dep>M2Crypto</dep> -->
+                        <dep>Python3</dep>
+                        <!-- <dep>WebOb</dep> -->
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>bison</dep>
+                        <dep>cmake</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>flex</dep>
+                        <!-- <dep>fusepy</dep> -->
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>libxml2</dep>
+                        <dep>m4</dep>
+                        <dep>make</dep>
+                        <dep>openssl</dep>
+                        <!-- <dep>plaso</dep>
+                        <dep>pygobject</dep>
+                        <dep>python-dateutil</dep> 
+                        <dep>setuptools</dep> -->
+                </builddeps>
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/doxygen-${PKGVERSION}.src.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd doxygen-${PKGVERSION}/
+	    mkdir build 
+	    cd build 
+	    cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr  ..
+	    make
+]]>
+        </build>
+        <install>
+            <![CDATA[cd doxygen-${PKGVERSION}/build
+	    make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf doxygen-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>

@@ -1,0 +1,50 @@
+<llpackages>
+	<package 
+		name="regulatory.bin"
+		version="2021.08.28"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="81b781bec898256f4cd5baf78e9020ba63e50ffc">wireless-regdb-2021.08.28.tar.xz</pkg>
+				<mirror>http://kernel.org/pub/software/network/wireless-regdb/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="http://kernel.org/pub/software/network/wireless-regdb/" />
+		</sources>
+		<builddeps>
+                        <dep>coreutils</dep>
+			<!-- dep>distcc</dep -->
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			
+			tar xf ${SRCDIR}/wireless-regdb-${PKGVERSION}.tar.xz
+			
+			]]>
+		</unpack>
+		<build>
+			<![CDATA[
+			
+			echo 'Nothing to build!'
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			
+			mkdir -p ${TGTDIR}/usr/lib/crda
+			install -m 0644  wireless-regdb-${PKGVERSION}/regulatory.bin ${TGTDIR}/usr/lib/crda/regulatory.bin
+			
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			
+			echo 'Nothing to clean!'
+			
+			]]>
+		</clean>
+	</package>
+</llpackages>

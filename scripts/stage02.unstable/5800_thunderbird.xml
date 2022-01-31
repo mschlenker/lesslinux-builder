@@ -1,0 +1,246 @@
+<llpackages>
+	<package 
+		name="thunderbird"
+		version="91.5.1"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>                                                                                          
+				<pkg sha1="0b8fe9cb7664871e31994ca7f90934aeac46e3e9">thunderbird-91.5.1.tar.bz2</pkg>
+				<mirror>http://ftp.mozilla.org/pub/thunderbird/releases/91.5.1/linux-x86_64/de/</mirror>
+			</file>  
+			<!-- 
+
+tbtag=THUNDERBIRD_52_5_2_RELEASE
+for l in de es-ES pl ru fr it nl pt-PT da lt lv et sk sl sv-SE bg hr nb-NO ro sr tr cs hu fi el ; do
+echo '==> Cloning: '"$l"
+hg clone http://hg.mozilla.org/releases/l10n/mozilla-release/${l}/
+( cd $l ; hg checkout $tbtag )
+done
+			-->
+			<!-- <file>       
+				<pkg sha1="70b785827521ca59559781da074124b9df991ee6">thunderbird-52.5.2.source.de-es-pl-ru.tar.xz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                                           
+				<pkg sha1="39116467fefa91d4eda92ff4bad21f698d05ef8a">mozconfig-thunderbird-31.0-20141118</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file>
+			<file>                                    
+				<pkg sha1="13b5c8a518b7226d05eaa9ac4ba203ee2c6adf53">dotcargo-i686-20170622.tar.gz</pkg>
+				<mirror>http://distfiles.lesslinux.org/</mirror>
+			</file> -->
+			<!-- <file>                                                               
+				<pkg sha1="6f9d3be09e3858cfa65795389aa4d79ec2d1a4a9">enigmail-1.5.2.tar.gz</pkg>
+				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
+			</file> -->
+			<!-- <file>                                                               
+				<pkg sha1="51a7eb7d86ce24d8199f741a0079f0d56ecd6368">enigmail-1.6.tar.gz</pkg>
+				<mirror>http://www.mozilla-enigmail.org/download/source/</mirror>
+			</file> -->
+			<manualcheck date="20180104" interval="90" page="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/" />
+			<check>
+				<page html="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/">
+					<atext linktext="52.5.3" />
+					<atext linktext="52.5.4" />
+					<atext linktext="52.5.5" />
+					<atext linktext="52.6." />
+					<atext linktext="52.7." />
+					<atext linktext="59.0." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>GConf</dep>
+                        <dep>ORBit2</dep>
+                        <dep>Python3</dep>
+                        <dep>alsa-lib</dep>
+                        <dep>atk</dep>
+                        <dep>autoconf</dep>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+			<dep>bzip2</dep>
+                        <dep>cairo</dep>
+                        <dep>coreutils</dep>
+                        <dep>dbus-glib</dep>
+                        <dep>dbus</dep>
+                        <dep>diffutils</dep>
+                        <dep>findutils</dep>
+                        <dep>fontconfig</dep>
+                        <dep>freetype</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>gdk-pixbuf</dep>
+                        <dep>glib</dep>
+                        <dep>glibc</dep>
+                        <dep>grep</dep>
+                        <dep>gtk</dep>
+                        <dep>imake</dep>
+                        <dep>inetutils</dep>
+                        <dep>libICE</dep>
+                        <dep>libIDL</dep>
+                        <dep>libSM</dep>
+                        <dep>libX11</dep>
+                        <dep>libXau</dep>
+                        <dep>libXext</dep>
+                        <dep>libXrender</dep>
+                        <dep>libXt</dep>
+                        <dep>libcanberra</dep>
+                        <dep>libnotify</dep>
+                        <dep>libpthread-stubs</dep>
+                        <dep>libxcb</dep>
+                        <dep>libxml2</dep>
+                        <dep>make</dep>
+			<dep>openssl</dep>
+                        <dep>pango</dep>
+                        <dep>perl</dep>
+                        <dep>pixman</dep>
+                        <dep>pkg-config</dep>
+                        <dep>popt</dep>
+                        <dep>sed</dep>
+                        <dep>tar</dep>
+                        <dep>unzip</dep>
+                        <dep>util-linux-ng</dep>
+                        <dep>wireless_tools</dep>
+                        <dep>xorg-cf-files</dep>
+                        <dep>xproto-base</dep>
+			<dep>yasm</dep>
+                        <dep>zip</dep>
+			<dep>zlib</dep>
+			<dep>libpng16</dep>
+			<dep>nspr</dep>
+			<!-- dep>distcc</dep -->
+			<!-- <dep>gst-libav</dep> -->
+			<dep>gst-plugins-bad1</dep>
+			<dep>gst-plugins-good1</dep>
+			<dep>gst-plugins-ugly1</dep>
+			<dep>gstreamer1</dep>
+			<dep>startup-notification</dep>
+			<dep>sqlite</dep>
+			<dep>libevent</dep>
+			<!-- <dep>libvpx</dep> -->
+			<dep>nspr</dep>
+			<dep>nss</dep>
+			<dep>icu</dep>
+			<dep>libevent</dep>
+			<dep>firefox</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			# tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.source.tar.xz
+			# mv thunderbird-${PKGVERSION%esr} mozilla-release
+			tar xf ${SRCDIR}/thunderbird-${PKGVERSION}.tar.bz2
+			]]>
+		</unpack>
+		<!-- <patch>
+			<![CDATA[
+			
+			cd comm-esr
+sed -e '/#include/i\
+    print OUT "#define _GLIBCXX_INCLUDE_NEXT_C_HEADERS\\n"\;' \
+    -i mozilla/nsprpub/config/make-system-wrappers.pl 
+    
+sed -e '/#include/a\
+    print OUT "#undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS\\n"\;' \
+    -i mozilla/nsprpub/config/make-system-wrappers.pl
+    
+			cp ${SRCDIR}/mozconfig-thunderbird-31.0-20141118 .mozconfig
+			
+			]]>
+		</patch> -->
+		<build>
+			<![CDATA[
+			
+			true
+			
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+
+mkdir -p ${TGTDIR}/opt
+		mkdir -p ${TGTDIR}/usr/share/mozilla-addons
+		mkdir -p ${TGTDIR}/usr/share/icons
+		mkdir -p ${TGTDIR}/opt/thunderbird-${PKGVERSION}
+		rsync -avHP thunderbird/ ${TGTDIR}/opt/thunderbird-${PKGVERSION}/ 
+		
+
+mkdir -p ${TGTDIR}/usr/bin
+
+
+
+
+
+
+
+
+
+################################
+
+mkdir -p ${TGTDIR}/opt
+mkdir -p ${TGTDIR}/usr/share/mozilla-addons
+tar -C ${TGTDIR}/opt -xvjf "${TARFILE}"
+mv ${TGTDIR}/opt/thunderbird ${TGTDIR}/opt/thunderbird-${PKGVERSION}
+
+
+mkdir -p ${TGTDIR}/usr/share/mozilla-addons/
+mkdir -p ${TGTDIR}/usr/bin/	
+mkdir -p ${TGTDIR}/usr/share/icons
+install -m 0644 ${TGTDIR}/opt/thunderbird-${PKGVERSION}/chrome/icons/default/default256.png ${TGTDIR}/usr/share/icons/thunderbird256.png
+
+
+echo -n '' > ${TGTDIR}/usr/bin/thunderbird
+cat >> ${TGTDIR}/usr/bin/thunderbird << TBRUN
+#!/bin/sh
+
+. /etc/rc.defaults
+. /etc/rc.subr/extractbootparams
+
+langopts=""
+lc=\$( echo \$LC_ALL | awk -F '.' '{print \$1}' | sed 's/_/-/g' )
+langopts="-contentLocale \${lc} -UILocale \${lc}"
+
+[ "\$security" '!=' "smack" ] && exec /opt/thunderbird-${PKGVERSION}/thunderbird \$langopts \$@
+
+if [ "\$#" -lt 1 ] ; then
+    exec sudo /opt/thunderbird-${PKGVERSION}/thunderbird_smack
+else
+    if ps waux | grep 'surfer   /opt/.*/thunderbird-bin' | grep -v grep ; then
+        /opt/thunderbird-${PKGVERSION}/thunderbird \$@
+    else
+        sudo /opt/thunderbird-${PKGVERSION}/thunderbird_smack &
+	sleep 5
+	exec /opt/thunderbird-${PKGVERSION}/thunderbird \$@
+    fi
+fi
+
+TBRUN
+
+chmod a+rx ${TGTDIR}/usr/bin/thunderbird
+	
+echo -n '' > ${TGTDIR}/opt/thunderbird-${PKGVERSION}/thunderbird_smack
+cat >> ${TGTDIR}/opt/thunderbird-${PKGVERSION}/thunderbird_smack << TBSMACK
+#!/static/bin/ash
+
+langopts=""
+lc=\$( echo \$LC_ALL | awk -F '.' '{print \$1}' | sed 's/_/-/g' )
+langopts="-contentLocale \${lc} -UILocale \${lc}"
+
+/static/sbin/newsmack internet /static/bin/su surfer -c "/opt/thunderbird-${PKGVERSION}/thunderbird \$langopts"
+
+TBSMACK
+
+chmod a+rx ${TGTDIR}/opt/thunderbird-${PKGVERSION}/thunderbird_smack
+/sbin/paxctl -m -r ${TGTDIR}/opt/thunderbird-${PKGVERSION}/thunderbird-bin
+
+]]>
+		</install>
+		<clean>
+			 <![CDATA[
+			rm -rf comm-esr  l10n .cargo
+			]]>
+		</clean>
+	</package>
+</llpackages>

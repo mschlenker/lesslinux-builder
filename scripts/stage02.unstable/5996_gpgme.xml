@@ -1,0 +1,90 @@
+<llpackages>
+	<package 
+		name="gpgme"
+		version="1.16.0"
+		class="user"
+		install="destdir">
+		<license>GPLv2</license>
+		<sources>
+			<file>            
+				<pkg sha1="536763b24a661538a83182ff0917469d85c6173b">gpgme-1.16.0.tar.bz2</pkg>
+				<mirror>ftp://ftp.gnupg.org/gcrypt/gpgme/</mirror>
+			</file>
+			<file>            
+				<pkg sha1="3e3769525777062af21d429e00db71cb9df1dbcf">gpgme1.0_1.16.0-1.2ubuntu2.debian.tar.xz</pkg>
+				<mirror>http://archive.ubuntu.com/ubuntu/pool/main/g/gpgme1.0/</mirror>
+			</file>
+			<manualcheck date="20170615" interval="90" page="ftp://ftp.gnupg.org/gcrypt/gpgme/" />
+			<check>
+				<page html="ftp://ftp.gnupg.org/gcrypt/gpgme/">
+					<atext linktext="gpgme-1.9.1." />
+					<atext linktext="gpgme-1.9.2." />
+					<atext linktext="gpgme-1.9.3." />
+					<atext linktext="gpgme-1.9.4." />
+					<atext linktext="gpgme-1.9.5." />
+					<atext linktext="gpgme-1.9.6." />
+					<atext linktext="gpgme-1.10." />
+					<atext linktext="gpgme-1.11." />
+					<atext linktext="gpgme-2." />
+				</page>
+			</check>
+		</sources>
+		<builddeps>
+                        <dep>bash</dep>
+                        <dep>binutils</dep>
+                        <dep>coreutils</dep>
+                        <dep>diffutils</dep>
+                        <dep>gawk</dep>
+                        <dep>gcc</dep>
+                        <dep>glibc</dep>
+                        <dep>gnupg</dep>
+                        <dep>grep</dep>
+                        <dep>inetutils</dep>
+                        <dep>libassuan</dep>
+                        <dep>libgpg-error</dep>
+                        <dep>make</dep>
+                        <dep>sed</dep>
+			<dep>distcc</dep>
+			<dep>Python3</dep>
+                </builddeps>
+		<unpack>
+			<![CDATA[ 
+			tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.bz2
+			tar xf ${SRCDIR}/gpgme1.0_1.16.0-1.2ubuntu2.debian.tar.xz
+			]]>
+		</unpack>
+		<patch>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			cat ../debian/patches/series | while read fname ; do cat ../debian/patches/$fname | patch -p1; done
+			]]>
+		</patch>
+		<build>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			jobcount=2
+			if [ -n "$DISTCC_POTENTIAL_HOSTS"  ] ;  then 
+				DISTCC_HOSTS="$DISTCC_POTENTIAL_HOSTS" 
+				export DISTCC_HOSTS
+				jobcount=` expr $DISTCC_HOSTCOUNT '*' 3 `
+				export CC="distcc gcc"
+				export CXX="distcc g++" 
+			fi
+			./configure --prefix=/usr --sysconfdir=/etc --disable-gpgsm-test
+			make -j $jobcount 
+			]]>
+		</build>
+		<test />
+		<install>
+			<![CDATA[
+			cd ${PKGNAME}-${PKGVERSION}
+			make install DESTDIR=${TGTDIR} 
+			]]>
+		</install>
+		<clean>
+			<![CDATA[
+			rm -rf ${PKGNAME}-${PKGVERSION}
+			]]>
+		</clean>
+	</package>
+</llpackages>

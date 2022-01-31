@@ -1,0 +1,89 @@
+<pkgdesc name='libsodium' version='1.0.18'>
+    <subpackage name='skel'>
+        <softlink path='/usr/lib/libsodium.so.23' owner='0' group='0'/>
+        <softlink path='/usr/lib/libsodium.so' owner='0' group='0'/>
+        <directory path='/usr/include/sodium' owner='0' group='0'/>
+    </subpackage>
+    <subpackage name='bin'/>
+    <subpackage name='minimal'>
+        <file path='/usr/lib/libsodium.so.23.3.0' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='doc'/>
+    <subpackage name='config'/>
+    <subpackage name='devel'>
+        <file path='/usr/include/X11/extensions/evieproto.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/X11/extensions/Xeviestr.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/core.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_aead_aes256gcm.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_aead_chacha20poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_aead_xchacha20poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_auth.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_auth_hmacsha256.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_auth_hmacsha512.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_auth_hmacsha512256.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_box.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_box_curve25519xchacha20poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_box_curve25519xsalsa20poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_core_ed25519.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_core_ristretto255.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_core_hchacha20.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_core_hsalsa20.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_core_salsa20.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_core_salsa2012.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_core_salsa208.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_generichash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_generichash_blake2b.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_hash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_hash_sha256.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_hash_sha512.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_kdf.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_kdf_blake2b.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_kx.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_onetimeauth.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_onetimeauth_poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_pwhash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_pwhash_argon2i.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_pwhash_argon2id.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_pwhash_scryptsalsa208sha256.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_scalarmult.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_scalarmult_curve25519.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_scalarmult_ed25519.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_scalarmult_ristretto255.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_secretbox.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_secretbox_xchacha20poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_secretbox_xsalsa20poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_secretstream_xchacha20poly1305.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_shorthash.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_shorthash_siphash24.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_sign.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_sign_ed25519.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_sign_edwards25519sha512batch.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_stream.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_stream_chacha20.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_stream_salsa20.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_stream_salsa2012.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_stream_salsa208.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_stream_xchacha20.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_stream_xsalsa20.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_verify_16.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_verify_32.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/crypto_verify_64.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/export.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/randombytes.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/randombytes_internal_random.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/randombytes_sysrandom.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/runtime.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/utils.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium/version.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/include/sodium.h' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/pkgconfig/libsodium.pc' owner='0' group='0' mode='100644'/>
+        <file path='/usr/lib/libsodium.a' owner='0' group='0' mode='100644'/>
+    </subpackage>
+    <subpackage name='localization'/>
+    <subpackage name='tzdata'/>
+    <subpackage name='uncategorized'>
+        <file path='/usr/lib/libsodium.la' owner='0' group='0' mode='100755'/>
+    </subpackage>
+    <subpackage name='ignore'/>
+    <vanished/>
+</pkgdesc>

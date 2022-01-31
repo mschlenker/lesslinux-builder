@@ -1,0 +1,60 @@
+<llpackages>
+    <package name='LibVNCServer' version='0.9.13' install='chroot'>
+        <license>
+            unknown
+        </license>
+        <sources>
+            <file>
+                <pkg sha1='55d79e6c4305cd67cd487c601298349c17ca05c1'>
+                    LibVNCServer-0.9.13.tar.gz
+                </pkg>
+                <mirror>
+                    https://github.com/LibVNC/libvncserver/archive/refs/tags/
+                </mirror>
+            </file>
+            <manualcheck date='20220128' interval='60' mirror='https://github.com/LibVNC/libvncserver/archive/refs/tags/'/>
+        </sources>
+	<builddeps>
+                        <dep>libXtst</dep>
+			<dep>libXext</dep>
+			<dep>libXrandr</dep>
+			<dep>libXfixes</dep>
+			<dep>libXdamage</dep>
+			<dep>libX11</dep>
+			<dep>libpthread-stubs</dep>
+			<dep>zlib</dep>
+			<dep>jpegsrc</dep>
+			<dep>libXi</dep>
+			<dep>libxcb</dep>
+                        <dep>xcb-util</dep>
+			<dep>libXau</dep>
+			<dep>libXdmcp</dep>
+			<dep>libXrender</dep>
+			<dep>imake</dep>
+			<dep>xorg-server</dep>
+                </builddeps> 
+        <unpack>
+            <![CDATA[tar xf ${SRCDIR}/${PKGNAME}-${PKGVERSION}.tar.gz
+]]>
+        </unpack>
+        <patch/>
+        <build>
+            <![CDATA[cd libvncserver-${PKGNAME}-${PKGVERSION}
+mkdir _build
+cd _build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j 2
+]]>
+        </build>
+        <install>
+            <![CDATA[cd libvncserver-${PKGNAME}-${PKGVERSION}
+cd _build
+make install
+]]>
+        </install>
+        <clean>
+            <![CDATA[rm -rf libvncserver-${PKGNAME}-${PKGVERSION}
+]]>
+        </clean>
+    </package>
+</llpackages>
